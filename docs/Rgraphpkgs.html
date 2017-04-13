@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title></title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">LetiR</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="test.html">Test</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Posts
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Presentations</li>
+    <li>
+      <a href="pres/pres1.html">pres1</a>
+    </li>
+    <li>
+      <a href="pres/presex.html">presex</a>
+    </li>
+    <li class="dropdown-header">Posts</li>
+    <li>
+      <a href="Rgraphpkgs.html">R graph packages</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+
+</div>
+
+
+<div id="r-packages-to-create-and-edit-plots" class="section level1">
+<h1>R packages to create and edit plots</h1>
+<div id="why-use-r-to-produce-graphics" class="section level2">
+<h2>Why use R to produce graphics?</h2>
+<p>S, R’s ancestor, was first designed to be an interactive interface for calling routines from the SCS (Statistical Computing Subroutines) FORTRAN library. It expanded to be a complete programming language dedicated to data manipulation, statistical analysis and data visualization (see <a href="http://www.lcg.unam.mx/~lcollado/R/resources/history_of_S.pdf">A brief History of S</a>). Today’s graphical system of R is directly derived from the one of S. When R is installed, you get from it two base packages, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html">‘graphics’</a> and <a href="https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html">‘grid’</a>, which produce graphics that are exported with the <a href="https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/00Index.html">grDevices</a> package. These packages are very complete and flexible. They allow users to efficiently create graphics that scientists use in their day to day operations, <em>i.e.</em> scatterplots, box plots, histograms, etc. We consider that the ‘graphics’ package is somewhat more user-friendly than the trickier ‘grid’ package which offers better facilities to develop new graphical functions (e.g. grid’ has been employed to build <a href="https://cran.r-project.org/web/packages/ggplot2">ggplot2</a>). Recently, the <a href="https://journal.r-project.org/archive/2015-1/murrell.pdf">gridGraphics</a> package has been developed to bridge the gap between ‘grid’ and ‘graphics’ packages.</p>
+<p>That being said, the advantages are numerous and more can be built in. For instance:</p>
+<ol style="list-style-type: decimal">
+<li><p>You get all the advantages linked with using R, <em>i.e.</em> it is free, lot of documentation exists, a very large community of users, there are many packages, it is easy to learn.</p></li>
+<li><p>Any kind of graphics a scientist needs has already been implemented by many contributors (see the packages review below). If you find there is room for improvement or that we are mistaken, all information is available to further develop missing plotting functions or correct existing ones.</p></li>
+<li><p>Almost everything is possible. All graphics are fully customizable. Some time is required to learn the works, but it’s worth it.</p></li>
+<li><p>Although there may be many good reasons to use software to post-treat graphics R produces in WYSIWYG softwares, we contend that once you master R, you will never do so. When a graphics is done, it is associated with only a few lines of code. Changing solely the lines of code is a much more efficient way more efficient to solve any problem than reproducing and post-treating the graphics. As scientists, it is a victory to only modify a few lines of code when reviewers quibble about a figure.</p></li>
+<li><p>Once a graphics is created, we can export it in many formats: <code>.eps</code>, <code>.jpeg</code>, <code>.pdf</code>, <code>.bmp</code>, <code>.svg</code> with appropriate resolution and size. There is 100% guarantee that you will meet a journal’s requirements for figures publication.</p></li>
+</ol>
+<!-- This blog section is dedicated to help you realize these advantages. Examples will be provided with many parameters to ensure you can get exactly what you want (in term of graphics). We wish to show and assist you in making everything possible. Every tool is already available and we made some more accessible through this [graphicsutils](https://github.com/KevCaz/graphicsutils) package available on github.
+ -->
+<p><br/></p>
+</div>
+<div id="documentation" class="section level2">
+<h2>Documentation</h2>
+<p>We will make the content below ‘evolving’ by collecting and indexing as many sources of documentation as possible. Please comment in the Disqus section below to suggest and/or provide your own sources:</p>
+<ul>
+<li><strong>Comprehensive R Archive Network</strong> (<a href="https://cran.r-project.org">CRAN</a>)
+<ul>
+<li><a href="https://cran.r-project.org/manuals.html">Manuals</a></li>
+<li><a href="https://cran.r-project.org/other-docs.html">Contributed manuals and cheat sheets</a></li>
+</ul></li>
+<li><strong>Journals</strong>
+<ul>
+<li><a href="https://journal.r-project.org">R journal</a></li>
+<li><a href="http://www.jstatsoft.org/index">Journal of Statistical Software</a></li>
+</ul></li>
+<li><strong>Books</strong>:
+<ul>
+<li><a href="https://www.stat.auckland.ac.nz/~paul/RG2e/index.html">Rgraphics, Second Edition</a></li>
+<li><a href="http://ms.mcmaster.ca/~bolker/misc/ggplot2-book.pdf">ggplot2</a></li>
+<li><a href="http://www.cookbook-r.com/Graphs/">R Graphics Cookbook</a></li>
+</ul></li>
+<li><strong>Blogs</strong>:
+<ul>
+<li><a href="http://www.r-bloggers.com">R-bloggers</a></li>
+<li><a href="http://www.inside-r.org">inside-R</a></li>
+<li><a href="http://www.statmethods.net/about/learningcurve.html">Quick-R</a></li>
+<li><a href="http://blog.revolutionanalytics.com/about.html">Revolutions</a></li>
+<li><a href="http://rgraphgallery.blogspot.ca">R graph gallery</a></li>
+<li><a href="http://www.r-graph-gallery.com">A newer graph gallery</a></li>
+</ul></li>
+</ul>
+<p><br/></p>
+</div>
+</div>
+<div id="list-of-packages" class="section level1">
+<h1>List of packages</h1>
+<!-- Find package [here](http://rpackages.ianhowson.com) A comprehensive index of R packages and documentation from CRAN, Bioconductor, GitHub and R-Forge. (https://cran.r-project.org/web/packages/available_packages_by_name.html) -->
+<p>Many packages for graphics are indexed in a dedicated <a href="https://cran.r-project.org/web/views/Graphics.html">task view maintained by Nicholas Lewin-Koh</a>. We have indexed many of them and refer to more below. For each package, we provide :</p>
+<ul>
+<li>the name of the package with a link that goes to the <a href="https://cran.r-project.org">CRAN</a> repository where the manual and optional vignettes can be found,</li>
+<li>a text summarizing the package content (an adequate part of the description found online),</li>
+</ul>
+<p>when available, we also provide :</p>
+<ul>
+<li><a href=""><i class="fa fa-github"></i></a> : a link that goes to the <a href="https://github.com">Github</a> repository,</li>
+<li><a href=""><i class="fa fa-bitbucket"></i></a> : a link that goes to the associated <a href="https://bitbucket.org">Bitbucket</a> repository,</li>
+<li><a href=""><i class="fa fa-globe"></i></a> : a link that goes to a dedicated website or a html vignette that describes well the package,</li>
+<li><a href=""><i class="fa fa-link"></i></a> : a link that goes to a relevant publication,</li>
+<li><a href=""><i class="fa fa-file-pdf-o"></i></a> : a link that goes to an relevant pdf file (an R journal article for instance).</li>
+</ul>
+<div id="Graphpkgs">
+
+</div>
+<script src="./js/yaml.min.js"></script>
+<script src="./js/Rgraphpkg.js"></script>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

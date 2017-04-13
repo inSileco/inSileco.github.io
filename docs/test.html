@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Testing before using</title>
+
+<script src="site_libs/jquery-1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<script src="site_libs/htmlwidgets-0.8/htmlwidgets.js"></script>
+<link href="site_libs/leaflet-0.7.7/leaflet.css" rel="stylesheet" />
+<script src="site_libs/leaflet-0.7.7/leaflet.js"></script>
+<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<link href="site_libs/leaflet-label-0.2.2/leaflet.label.css" rel="stylesheet" />
+<script src="site_libs/leaflet-label-0.2.2/leaflet.label.js"></script>
+<script src="site_libs/Proj4Leaflet-0.7.2/proj4-compressed.js"></script>
+<script src="site_libs/Proj4Leaflet-0.7.2/proj4leaflet.js"></script>
+<script src="site_libs/leaflet-binding-1.1.0/leaflet.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">LetiR</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="test.html">Test</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    Posts
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Presentations</li>
+    <li>
+      <a href="pres/pres1.html">pres1</a>
+    </li>
+    <li>
+      <a href="pres/presex.html">presex</a>
+    </li>
+    <li class="dropdown-header">Posts</li>
+    <li>
+      <a href="Rgraphpkgs.html">R graph packages</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Testing before using</h1>
+
+</div>
+
+
+<div id="more-about-this-website." class="section level2">
+<h2>More about this website.</h2>
+</div>
+<div id="session-information" class="section level2">
+<h2>Session information:</h2>
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>## R version 3.3.3 (2017-03-06)
+## Platform: x86_64-apple-darwin16.4.0 (64-bit)
+## Running under: macOS Sierra 10.12.3
+## 
+## locale:
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+## 
+## attached base packages:
+## [1] grDevices graphics  stats     utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] letiRmisc_0.1       graphicsutils_1.1-1 magrittr_1.5       
+## [4] devtools_1.12.0     jpeg_0.1-8          png_0.1-7          
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.10    digest_0.6.10   withr_1.0.2     rprojroot_1.2  
+##  [5] backports_1.0.5 evaluate_0.10   stringi_1.1.2   rmarkdown_1.3  
+##  [9] tools_3.3.3     stringr_1.2.0   yaml_2.1.14     memoise_1.0.0  
+## [13] htmltools_0.3.5 knitr_1.15.1</code></pre>
+</div>
+<div id="ajouter-un-iframe" class="section level2">
+<h2>Ajouter un iframe</h2>
+<iframe src="https://www.franceinter.fr/embed/player/aod/79f6a1f8-1313-48b0-96a1-525ad42ee84e" width="100%" height="64" frameborder="0" scrolling="no">
+</iframe>
+</div>
+<div id="ajouter-une-map" class="section level2">
+<h2>Ajouter une map</h2>
+<pre class="r"><code>library(leaflet)
+
+m &lt;- leaflet() %&gt;%
+  addTiles() %&gt;%  # Add default OpenStreetMap map tiles
+  addMarkers(lng=174.768, lat=-36.852, popup=&quot;The birthplace of R&quot;)
+m  # Print the map</code></pre>
+<div id="htmlwidget-573d453e6e4d669ee7dd" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-573d453e6e4d669ee7dd">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[-36.852,174.768,null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"The birthplace of R",null,null,null,null,null,null]}],"limits":{"lat":[-36.852,-36.852],"lng":[174.768,174.768]}},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="ajouter-un-igraph" class="section level2">
+<h2>Ajouter un igraph</h2>
+<pre class="r"><code>plot(1:10, 1:10)</code></pre>
+<p><img src="test_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+</div>
+<div id="ajouter-un-table" class="section level2">
+<h2>Ajouter un table</h2>
+<pre class="r"><code>library(magrittr)
+library(knitr)
+CO2 %&gt;% kable</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Plant</th>
+<th align="left">Type</th>
+<th align="left">Treatment</th>
+<th align="right">conc</th>
+<th align="right">uptake</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Qn1</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">95</td>
+<td align="right">16.0</td>
+</tr>
+<tr class="even">
+<td align="left">Qn1</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">175</td>
+<td align="right">30.4</td>
+</tr>
+<tr class="odd">
+<td align="left">Qn1</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">250</td>
+<td align="right">34.8</td>
+</tr>
+<tr class="even">
+<td align="left">Qn1</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">350</td>
+<td align="right">37.2</td>
+</tr>
+<tr class="odd">
+<td align="left">Qn1</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">500</td>
+<td align="right">35.3</td>
+</tr>
+<tr class="even">
+<td align="left">Qn1</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">675</td>
+<td align="right">39.2</td>
+</tr>
+<tr class="odd">
+<td align="left">Qn1</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">1000</td>
+<td align="right">39.7</td>
+</tr>
+<tr class="even">
+<td align="left">Qn2</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">95</td>
+<td align="right">13.6</td>
+</tr>
+<tr class="odd">
+<td align="left">Qn2</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">175</td>
+<td align="right">27.3</td>
+</tr>
+<tr class="even">
+<td align="left">Qn2</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">250</td>
+<td align="right">37.1</td>
+</tr>
+<tr class="odd">
+<td align="left">Qn2</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">350</td>
+<td align="right">41.8</td>
+</tr>
+<tr class="even">
+<td align="left">Qn2</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">500</td>
+<td align="right">40.6</td>
+</tr>
+<tr class="odd">
+<td align="left">Qn2</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">675</td>
+<td align="right">41.4</td>
+</tr>
+<tr class="even">
+<td align="left">Qn2</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">1000</td>
+<td align="right">44.3</td>
+</tr>
+<tr class="odd">
+<td align="left">Qn3</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">95</td>
+<td align="right">16.2</td>
+</tr>
+<tr class="even">
+<td align="left">Qn3</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">175</td>
+<td align="right">32.4</td>
+</tr>
+<tr class="odd">
+<td align="left">Qn3</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">250</td>
+<td align="right">40.3</td>
+</tr>
+<tr class="even">
+<td align="left">Qn3</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">350</td>
+<td align="right">42.1</td>
+</tr>
+<tr class="odd">
+<td align="left">Qn3</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">500</td>
+<td align="right">42.9</td>
+</tr>
+<tr class="even">
+<td align="left">Qn3</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">675</td>
+<td align="right">43.9</td>
+</tr>
+<tr class="odd">
+<td align="left">Qn3</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">1000</td>
+<td align="right">45.5</td>
+</tr>
+<tr class="even">
+<td align="left">Qc1</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">95</td>
+<td align="right">14.2</td>
+</tr>
+<tr class="odd">
+<td align="left">Qc1</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">175</td>
+<td align="right">24.1</td>
+</tr>
+<tr class="even">
+<td align="left">Qc1</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">250</td>
+<td align="right">30.3</td>
+</tr>
+<tr class="odd">
+<td align="left">Qc1</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">350</td>
+<td align="right">34.6</td>
+</tr>
+<tr class="even">
+<td align="left">Qc1</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">500</td>
+<td align="right">32.5</td>
+</tr>
+<tr class="odd">
+<td align="left">Qc1</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">675</td>
+<td align="right">35.4</td>
+</tr>
+<tr class="even">
+<td align="left">Qc1</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">1000</td>
+<td align="right">38.7</td>
+</tr>
+<tr class="odd">
+<td align="left">Qc2</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">95</td>
+<td align="right">9.3</td>
+</tr>
+<tr class="even">
+<td align="left">Qc2</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">175</td>
+<td align="right">27.3</td>
+</tr>
+<tr class="odd">
+<td align="left">Qc2</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">250</td>
+<td align="right">35.0</td>
+</tr>
+<tr class="even">
+<td align="left">Qc2</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">350</td>
+<td align="right">38.8</td>
+</tr>
+<tr class="odd">
+<td align="left">Qc2</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">500</td>
+<td align="right">38.6</td>
+</tr>
+<tr class="even">
+<td align="left">Qc2</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">675</td>
+<td align="right">37.5</td>
+</tr>
+<tr class="odd">
+<td align="left">Qc2</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">1000</td>
+<td align="right">42.4</td>
+</tr>
+<tr class="even">
+<td align="left">Qc3</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">95</td>
+<td align="right">15.1</td>
+</tr>
+<tr class="odd">
+<td align="left">Qc3</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">175</td>
+<td align="right">21.0</td>
+</tr>
+<tr class="even">
+<td align="left">Qc3</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">250</td>
+<td align="right">38.1</td>
+</tr>
+<tr class="odd">
+<td align="left">Qc3</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">350</td>
+<td align="right">34.0</td>
+</tr>
+<tr class="even">
+<td align="left">Qc3</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">500</td>
+<td align="right">38.9</td>
+</tr>
+<tr class="odd">
+<td align="left">Qc3</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">675</td>
+<td align="right">39.6</td>
+</tr>
+<tr class="even">
+<td align="left">Qc3</td>
+<td align="left">Quebec</td>
+<td align="left">chilled</td>
+<td align="right">1000</td>
+<td align="right">41.4</td>
+</tr>
+<tr class="odd">
+<td align="left">Mn1</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">95</td>
+<td align="right">10.6</td>
+</tr>
+<tr class="even">
+<td align="left">Mn1</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">175</td>
+<td align="right">19.2</td>
+</tr>
+<tr class="odd">
+<td align="left">Mn1</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">250</td>
+<td align="right">26.2</td>
+</tr>
+<tr class="even">
+<td align="left">Mn1</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">350</td>
+<td align="right">30.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Mn1</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">500</td>
+<td align="right">30.9</td>
+</tr>
+<tr class="even">
+<td align="left">Mn1</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">675</td>
+<td align="right">32.4</td>
+</tr>
+<tr class="odd">
+<td align="left">Mn1</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">1000</td>
+<td align="right">35.5</td>
+</tr>
+<tr class="even">
+<td align="left">Mn2</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">95</td>
+<td align="right">12.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Mn2</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">175</td>
+<td align="right">22.0</td>
+</tr>
+<tr class="even">
+<td align="left">Mn2</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">250</td>
+<td align="right">30.6</td>
+</tr>
+<tr class="odd">
+<td align="left">Mn2</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">350</td>
+<td align="right">31.8</td>
+</tr>
+<tr class="even">
+<td align="left">Mn2</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">500</td>
+<td align="right">32.4</td>
+</tr>
+<tr class="odd">
+<td align="left">Mn2</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">675</td>
+<td align="right">31.1</td>
+</tr>
+<tr class="even">
+<td align="left">Mn2</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">1000</td>
+<td align="right">31.5</td>
+</tr>
+<tr class="odd">
+<td align="left">Mn3</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">95</td>
+<td align="right">11.3</td>
+</tr>
+<tr class="even">
+<td align="left">Mn3</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">175</td>
+<td align="right">19.4</td>
+</tr>
+<tr class="odd">
+<td align="left">Mn3</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">250</td>
+<td align="right">25.8</td>
+</tr>
+<tr class="even">
+<td align="left">Mn3</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">350</td>
+<td align="right">27.9</td>
+</tr>
+<tr class="odd">
+<td align="left">Mn3</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">500</td>
+<td align="right">28.5</td>
+</tr>
+<tr class="even">
+<td align="left">Mn3</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">675</td>
+<td align="right">28.1</td>
+</tr>
+<tr class="odd">
+<td align="left">Mn3</td>
+<td align="left">Mississippi</td>
+<td align="left">nonchilled</td>
+<td align="right">1000</td>
+<td align="right">27.8</td>
+</tr>
+<tr class="even">
+<td align="left">Mc1</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">95</td>
+<td align="right">10.5</td>
+</tr>
+<tr class="odd">
+<td align="left">Mc1</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">175</td>
+<td align="right">14.9</td>
+</tr>
+<tr class="even">
+<td align="left">Mc1</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">250</td>
+<td align="right">18.1</td>
+</tr>
+<tr class="odd">
+<td align="left">Mc1</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">350</td>
+<td align="right">18.9</td>
+</tr>
+<tr class="even">
+<td align="left">Mc1</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">500</td>
+<td align="right">19.5</td>
+</tr>
+<tr class="odd">
+<td align="left">Mc1</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">675</td>
+<td align="right">22.2</td>
+</tr>
+<tr class="even">
+<td align="left">Mc1</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">1000</td>
+<td align="right">21.9</td>
+</tr>
+<tr class="odd">
+<td align="left">Mc2</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">95</td>
+<td align="right">7.7</td>
+</tr>
+<tr class="even">
+<td align="left">Mc2</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">175</td>
+<td align="right">11.4</td>
+</tr>
+<tr class="odd">
+<td align="left">Mc2</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">250</td>
+<td align="right">12.3</td>
+</tr>
+<tr class="even">
+<td align="left">Mc2</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">350</td>
+<td align="right">13.0</td>
+</tr>
+<tr class="odd">
+<td align="left">Mc2</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">500</td>
+<td align="right">12.5</td>
+</tr>
+<tr class="even">
+<td align="left">Mc2</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">675</td>
+<td align="right">13.7</td>
+</tr>
+<tr class="odd">
+<td align="left">Mc2</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">1000</td>
+<td align="right">14.4</td>
+</tr>
+<tr class="even">
+<td align="left">Mc3</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">95</td>
+<td align="right">10.6</td>
+</tr>
+<tr class="odd">
+<td align="left">Mc3</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">175</td>
+<td align="right">18.0</td>
+</tr>
+<tr class="even">
+<td align="left">Mc3</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">250</td>
+<td align="right">17.9</td>
+</tr>
+<tr class="odd">
+<td align="left">Mc3</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">350</td>
+<td align="right">17.9</td>
+</tr>
+<tr class="even">
+<td align="left">Mc3</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">500</td>
+<td align="right">17.9</td>
+</tr>
+<tr class="odd">
+<td align="left">Mc3</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">675</td>
+<td align="right">18.9</td>
+</tr>
+<tr class="even">
+<td align="left">Mc3</td>
+<td align="left">Mississippi</td>
+<td align="left">chilled</td>
+<td align="right">1000</td>
+<td align="right">19.9</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
