@@ -32,6 +32,10 @@
 <script src="site_libs/Proj4Leaflet-0.7.2/proj4leaflet.js"></script>
 <script src="site_libs/leaflet-binding-1.1.0/leaflet.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+<link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="css/academicons.css"/>
+<script src="./js/yaml.min.js"></script>
+<script src="./js/Rgraphpkg.js"></script>
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css">
@@ -76,6 +80,7 @@ h6 {
 }
 </style>
 
+<link rel="stylesheet" href="css/academicons.min.css" type="text/css" />
 
 </head>
 
@@ -212,7 +217,7 @@ $(document).ready(function () {
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    <span class="fa fa-gear"></span>
+    <span class="ion ion-arrow-down-b"></span>
      
     More
      
@@ -226,7 +231,6 @@ $(document).ready(function () {
     <li>
       <a href="pres/presex.html">presex</a>
     </li>
-    <li class="dropdown-header">Posts</li>
   </ul>
 </li>
 <li>
@@ -269,13 +273,13 @@ $(document).ready(function () {
 ## [1] grDevices graphics  stats     utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] yaml_2.1.14         leaflet_1.1.0       showtext_0.4-6     
-##  [4] sysfonts_0.5        letiRmisc_0.1       graphicsutils_1.1-1
-##  [7] magrittr_1.5        devtools_1.12.0     jpeg_0.1-8         
-## [10] png_0.1-7          
+##  [1] knitr_1.15.1        yaml_2.1.14         leaflet_1.1.0      
+##  [4] showtext_0.4-6      sysfonts_0.5        letiRmisc_0.1      
+##  [7] graphicsutils_1.1-1 magrittr_1.5        devtools_1.12.0    
+## [10] jpeg_0.1-8          png_0.1-7          
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.10    knitr_1.15.1    xtable_1.8-2    R6_2.2.0       
+##  [1] Rcpp_0.12.10    xtable_1.8-2    R6_2.2.0        highr_0.6      
 ##  [5] stringr_1.2.0   showtextdb_1.0  tools_3.3.3     withr_1.0.2    
 ##  [9] htmltools_0.3.5 crosstalk_1.0.0 rprojroot_1.2   digest_0.6.10  
 ## [13] shiny_1.0.0     htmlwidgets_0.8 memoise_1.0.0   evaluate_0.10  
@@ -295,8 +299,8 @@ m &lt;- leaflet() %&gt;%
   addTiles() %&gt;%  # Add default OpenStreetMap map tiles
   addMarkers(lng=174.768, lat=-36.852, popup=&quot;The birthplace of R&quot;)
 m  # Print the map</code></pre>
-<div id="htmlwidget-e3779bcd4150196a82c8" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-e3779bcd4150196a82c8">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[-36.852,174.768,null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"The birthplace of R",null,null,null,null,null,null]}],"limits":{"lat":[-36.852,-36.852],"lng":[174.768,174.768]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-d5242aa79d54778ba4da" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-d5242aa79d54778ba4da">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[-36.852,174.768,null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"The birthplace of R",null,null,null,null,null,null]}],"limits":{"lat":[-36.852,-36.852],"lng":[174.768,174.768]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="ajouter-un-igraph" class="section level2">
 <h2>Ajouter un igraph</h2>
@@ -911,6 +915,17 @@ CO2 %&gt;% kable</code></pre>
 </table>
 </div>
 
+<br/><br/><br/> <hr>
+<p>
+  Copyright &copy; 2017 LetiR. &nbsp; All rights reserved.
+  Made with <i class="ion-heart"></i>
+  with <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html">
+  Rmarkdown</a>
+  <br/>
+  Last update 14-05-2017.&nbsp;; Code source available on
+    <a href="https://github.com/letiR/letiR_website">
+      <i class='fa fa-github fa-1x'></i></a>
+</p>
 
 
 

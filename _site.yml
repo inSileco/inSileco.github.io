@@ -17,13 +17,18 @@ navbar:
         - text: "R graph packages"
           href: Rgraphpkgs.html
     - text: "More"
-      icon: fa-gear
+      icon: ion-arrow-down-b
       menu:
         - text: "Presentations"
         - text: "pres1"
           href: pres/pres1.html
         - text: "presex"
           href: pres/presex.html
-        - text: "Posts"
     - icon: fa-github
       href: https://github.com/letiR/letiR_website
+output:
+  html_document:
+    css: css/academicons.min.css
+    include:
+        in_header: header.html
+        after_body: footer.html
