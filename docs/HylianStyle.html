@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Make your plot Hylian</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-1.1/highlight.js"></script>
+<link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs && document.readyState && document.readyState === "complete") {
+   window.setTimeout(function() {
+      hljs.initHighlighting();
+   }, 0);
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">LetiR</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="test.html">Test</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Posts
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">R posts</li>
+    <li>
+      <a href="HylianStyle.html">Hylian Style</a>
+    </li>
+    <li>
+      <a href="Rgraphpkgs.html">R graph packages</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    <span class="fa fa-gear"></span>
+     
+    More
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li class="dropdown-header">Presentations</li>
+    <li>
+      <a href="pres/pres1.html">pres1</a>
+    </li>
+    <li>
+      <a href="pres/presex.html">presex</a>
+    </li>
+    <li class="dropdown-header">Posts</li>
+  </ul>
+</li>
+<li>
+  <a href="pres/presex.html">
+    <span class="fa fa-github"></span>
+     
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Make your plot Hylian</h1>
+
+</div>
+
+
+<p>Here are the 5 steps you need to make your plot a hylian one!! May the triforce be with you!</p>
+<ol style="list-style-type: decimal">
+<li><p>Download the <a href="https://zeldauniverse.net/media/fonts/"><em>Triforce</em> font</a></p></li>
+<li><p>Open R and install showtext if not install</p></li>
+</ol>
+<pre class="r"><code>install.package(showtext)</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>To see the list of font available locally do so</li>
+</ol>
+<pre class="r"><code>library(showtext)</code></pre>
+<pre><code>## Loading required package: sysfonts</code></pre>
+<pre class="r"><code>showtext.auto()
+font.files()</code></pre>
+<pre><code>##   [1] &quot;3270Medium.ttf&quot;                                  
+##   [2] &quot;3270Narrow.ttf&quot;                                  
+##   [3] &quot;3270SemiNarrow.ttf&quot;                              
+##   [4] &quot;Al Nile.ttc&quot;                                     
+##   [5] &quot;Al Tarikh.ttc&quot;                                   
+##   [6] &quot;AlBayan.ttc&quot;                                     
+##   [7] &quot;AmericanTypewriter.ttc&quot;                          
+##   [8] &quot;Andale Mono.ttf&quot;                                 
+##   [9] &quot;Anonymice Powerline Bold Italic.ttf&quot;             
+##  [10] &quot;Anonymice Powerline Bold.ttf&quot;                    
+##  [11] &quot;Anonymice Powerline Italic.ttf&quot;                  
+##  [12] &quot;Anonymice Powerline.ttf&quot;                         
+##  [13] &quot;Apple Chancery.ttf&quot;                              
+##  [14] &quot;AppleGothic.ttf&quot;                                 
+##  [15] &quot;AppleMyungjo.ttf&quot;                                
+##  [16] &quot;Arial Black.ttf&quot;                                 
+##  [17] &quot;Arial Bold Italic.ttf&quot;                           
+##  [18] &quot;Arial Bold.ttf&quot;                                  
+##  [19] &quot;Arial Italic.ttf&quot;                                
+##  [20] &quot;Arial Narrow Bold Italic.ttf&quot;                    
+##  [21] &quot;Arial Narrow Bold.ttf&quot;                           
+##  [22] &quot;Arial Narrow Italic.ttf&quot;                         
+##  [23] &quot;Arial Narrow.ttf&quot;                                
+##  [24] &quot;Arial Rounded Bold.ttf&quot;                          
+##  [25] &quot;Arial Unicode.ttf&quot;                               
+##  [26] &quot;Arial.ttf&quot;                                       
+##  [27] &quot;Arimo Bold for Powerline.ttf&quot;                    
+##  [28] &quot;Arimo Bold Italic for Powerline.ttf&quot;             
+##  [29] &quot;Arimo for Powerline.ttf&quot;                         
+##  [30] &quot;Arimo Italic for Powerline.ttf&quot;                  
+##  [31] &quot;Athelas.ttc&quot;                                     
+##  [32] &quot;Ayuthaya.ttf&quot;                                    
+##  [33] &quot;Baghdad.ttc&quot;                                     
+##  [34] &quot;Bangla MN.ttc&quot;                                   
+##  [35] &quot;Bangla Sangam MN.ttc&quot;                            
+##  [36] &quot;Baskerville.ttc&quot;                                 
+##  [37] &quot;Beirut.ttc&quot;                                      
+##  [38] &quot;BigCaslon.ttf&quot;                                   
+##  [39] &quot;Bodoni 72 OS.ttc&quot;                                
+##  [40] &quot;Bodoni 72 Smallcaps Book.ttf&quot;                    
+##  [41] &quot;Bodoni 72.ttc&quot;                                   
+##  [42] &quot;Bodoni Ornaments.ttf&quot;                            
+##  [43] &quot;Bradley Hand Bold.ttf&quot;                           
+##  [44] &quot;Brush Script.ttf&quot;                                
+##  [45] &quot;Chalkboard.ttc&quot;                                  
+##  [46] &quot;ChalkboardSE.ttc&quot;                                
+##  [47] &quot;Chalkduster.ttf&quot;                                 
+##  [48] &quot;Charter.ttc&quot;                                     
+##  [49] &quot;Cochin.ttc&quot;                                      
+##  [50] &quot;Comic Sans MS Bold.ttf&quot;                          
+##  [51] &quot;Comic Sans MS.ttf&quot;                               
+##  [52] &quot;Copperplate.ttc&quot;                                 
+##  [53] &quot;Corsiva.ttc&quot;                                     
+##  [54] &quot;Courier New Bold Italic.ttf&quot;                     
+##  [55] &quot;Courier New Bold.ttf&quot;                            
+##  [56] &quot;Courier New Italic.ttf&quot;                          
+##  [57] &quot;Courier New.ttf&quot;                                 
+##  [58] &quot;Cousine Bold for Powerline.ttf&quot;                  
+##  [59] &quot;Cousine Bold Italic for Powerline.ttf&quot;           
+##  [60] &quot;Cousine for Powerline.ttf&quot;                       
+##  [61] &quot;Cousine Italic for Powerline.ttf&quot;                
+##  [62] &quot;D2Coding Bold for Powerline.ttf&quot;                 
+##  [63] &quot;D2Coding for Powerline.ttf&quot;                      
+##  [64] &quot;Damascus.ttc&quot;                                    
+##  [65] &quot;DecoTypeNaskh.ttc&quot;                               
+##  [66] &quot;DejaVu Sans Mono Bold for Powerline.ttf&quot;         
+##  [67] &quot;DejaVu Sans Mono Bold Oblique for Powerline.ttf&quot; 
+##  [68] &quot;DejaVu Sans Mono for Powerline.ttf&quot;              
+##  [69] &quot;DejaVu Sans Mono Oblique for Powerline.ttf&quot;      
+##  [70] &quot;Devanagari Sangam MN.ttc&quot;                        
+##  [71] &quot;DevanagariMT.ttc&quot;                                
+##  [72] &quot;Didot.ttc&quot;                                       
+##  [73] &quot;DIN Alternate Bold.ttf&quot;                          
+##  [74] &quot;DIN Condensed Bold.ttf&quot;                          
+##  [75] &quot;Diwan Kufi.ttc&quot;                                  
+##  [76] &quot;Diwan Thuluth.ttf&quot;                               
+##  [77] &quot;Droid Sans Mono Dotted for Powerline.ttf&quot;        
+##  [78] &quot;Droid Sans Mono for Powerline.otf&quot;               
+##  [79] &quot;Droid Sans Mono Slashed for Powerline.ttf&quot;       
+##  [80] &quot;EuphemiaCAS.ttc&quot;                                 
+##  [81] &quot;Farah.ttc&quot;                                       
+##  [82] &quot;Farisi.ttf&quot;                                      
+##  [83] &quot;FontAwesome.otf&quot;                                 
+##  [84] &quot;FuraMono-Bold Powerline.otf&quot;                     
+##  [85] &quot;FuraMono-Medium Powerline.otf&quot;                   
+##  [86] &quot;FuraMono-Regular Powerline.otf&quot;                  
+##  [87] &quot;Futura.ttc&quot;                                      
+##  [88] &quot;Georgia Bold Italic.ttf&quot;                         
+##  [89] &quot;Georgia Bold.ttf&quot;                                
+##  [90] &quot;Georgia Italic.ttf&quot;                              
+##  [91] &quot;Georgia.ttf&quot;                                     
+##  [92] &quot;GillSans.ttc&quot;                                    
+##  [93] &quot;Go Mono Bold for Powerline.ttf&quot;                  
+##  [94] &quot;Go Mono Bold Italic for Powerline.ttf&quot;           
+##  [95] &quot;Go Mono for Powerline.ttf&quot;                       
+##  [96] &quot;Go Mono Italic for Powerline.ttf&quot;                
+##  [97] &quot;Gujarati Sangam MN.ttc&quot;                          
+##  [98] &quot;GujaratiMT.ttc&quot;                                  
+##  [99] &quot;Gurmukhi MN.ttc&quot;                                 
+## [100] &quot;Gurmukhi Sangam MN.ttc&quot;                          
+## [101] &quot;Gurmukhi.ttf&quot;                                    
+## [102] &quot;Hack-Bold.ttf&quot;                                   
+## [103] &quot;Hack-BoldItalic.ttf&quot;                             
+## [104] &quot;Hack-Italic.ttf&quot;                                 
+## [105] &quot;Hack-Regular.ttf&quot;                                
+## [106] &quot;Herculanum.ttf&quot;                                  
+## [107] &quot;Hoefler Text Ornaments.ttf&quot;                      
+## [108] &quot;Hoefler Text.ttc&quot;                                
+## [109] &quot;HylianSymbols.ttf&quot;                               
+## [110] &quot;Impact.ttf&quot;                                      
+## [111] &quot;InaiMathi.ttf&quot;                                   
+## [112] &quot;Inconsolata Bold for Powerline.ttf&quot;              
+## [113] &quot;Inconsolata for Powerline.otf&quot;                   
+## [114] &quot;Inconsolata-dz for Powerline.otf&quot;                
+## [115] &quot;Inconsolata-g for Powerline.otf&quot;                 
+## [116] &quot;Iowan Old Style.ttc&quot;                             
+## [117] &quot;ITFDevanagari.ttc&quot;                               
+## [118] &quot;Kailasa.ttc&quot;                                     
+## [119] &quot;Kannada MN.ttc&quot;                                  
+## [120] &quot;Kannada Sangam MN.ttc&quot;                           
+## [121] &quot;Kefa.ttc&quot;                                        
+## [122] &quot;Khmer MN.ttc&quot;                                    
+## [123] &quot;Khmer Sangam MN.ttf&quot;                             
+## [124] &quot;Kokonor.ttf&quot;                                     
+## [125] &quot;Krungthep.ttf&quot;                                   
+## [126] &quot;KufiStandardGK.ttc&quot;                              
+## [127] &quot;Lao MN.ttc&quot;                                      
+## [128] &quot;Lao Sangam MN.ttf&quot;                               
+## [129] &quot;Literation Mono Powerline Bold Italic.ttf&quot;       
+## [130] &quot;Literation Mono Powerline Bold.ttf&quot;              
+## [131] &quot;Literation Mono Powerline Italic.ttf&quot;            
+## [132] &quot;Literation Mono Powerline.ttf&quot;                   
+## [133] &quot;Luminari.ttf&quot;                                    
+## [134] &quot;Malayalam MN.ttc&quot;                                
+## [135] &quot;Malayalam Sangam MN.ttc&quot;                         
+## [136] &quot;Marion.ttc&quot;                                      
+## [137] &quot;Meslo LG L Bold for Powerline.ttf&quot;               
+## [138] &quot;Meslo LG L Bold Italic for Powerline.ttf&quot;        
+## [139] &quot;Meslo LG L DZ Bold for Powerline.ttf&quot;            
+## [140] &quot;Meslo LG L DZ Bold Italic for Powerline.ttf&quot;     
+## [141] &quot;Meslo LG L DZ Italic for Powerline.ttf&quot;          
+## [142] &quot;Meslo LG L DZ Regular for Powerline.ttf&quot;         
+## [143] &quot;Meslo LG L Italic for Powerline.ttf&quot;             
+## [144] &quot;Meslo LG L Regular for Powerline.ttf&quot;            
+## [145] &quot;Meslo LG M Bold for Powerline.ttf&quot;               
+## [146] &quot;Meslo LG M Bold Italic for Powerline.ttf&quot;        
+## [147] &quot;Meslo LG M DZ Bold for Powerline.ttf&quot;            
+## [148] &quot;Meslo LG M DZ Bold Italic for Powerline.ttf&quot;     
+## [149] &quot;Meslo LG M DZ Italic for Powerline.ttf&quot;          
+## [150] &quot;Meslo LG M DZ Regular for Powerline.ttf&quot;         
+## [151] &quot;Meslo LG M Italic for Powerline.ttf&quot;             
+## [152] &quot;Meslo LG M Regular for Powerline.ttf&quot;            
+## [153] &quot;Meslo LG S Bold for Powerline.ttf&quot;               
+## [154] &quot;Meslo LG S Bold Italic for Powerline.ttf&quot;        
+## [155] &quot;Meslo LG S DZ Bold for Powerline.ttf&quot;            
+## [156] &quot;Meslo LG S DZ Bold Italic for Powerline.ttf&quot;     
+## [157] &quot;Meslo LG S DZ Italic for Powerline.ttf&quot;          
+## [158] &quot;Meslo LG S DZ Regular for Powerline.ttf&quot;         
+## [159] &quot;Meslo LG S Italic for Powerline.ttf&quot;             
+## [160] &quot;Meslo LG S Regular for Powerline.ttf&quot;            
+## [161] &quot;Microsoft Sans Serif.ttf&quot;                        
+## [162] &quot;Mishafi Gold.ttf&quot;                                
+## [163] &quot;Mishafi.ttf&quot;                                     
+## [164] &quot;Monofur Bold for Powerline.ttf&quot;                  
+## [165] &quot;Monofur for Powerline.ttf&quot;                       
+## [166] &quot;Monofur Italic for Powerline.ttf&quot;                
+## [167] &quot;Mshtakan.ttc&quot;                                    
+## [168] &quot;Muna.ttc&quot;                                        
+## [169] &quot;Myanmar MN.ttc&quot;                                  
+## [170] &quot;Myanmar Sangam MN.ttc&quot;                           
+## [171] &quot;Nadeem.ttc&quot;                                      
+## [172] &quot;NewPeninimMT.ttc&quot;                                
+## [173] &quot;NISC18030.ttf&quot;                                   
+## [174] &quot;Noto Mono for Powerline.ttf&quot;                     
+## [175] &quot;Oriya MN.ttc&quot;                                    
+## [176] &quot;Oriya Sangam MN.ttc&quot;                             
+## [177] &quot;Papyrus.ttc&quot;                                     
+## [178] &quot;Phosphate.ttc&quot;                                   
+## [179] &quot;PlantagenetCherokee.ttf&quot;                         
+## [180] &quot;PTMono.ttc&quot;                                      
+## [181] &quot;PTSans.ttc&quot;                                      
+## [182] &quot;PTSerif.ttc&quot;                                     
+## [183] &quot;PTSerifCaption.ttc&quot;                              
+## [184] &quot;Raanana.ttc&quot;                                     
+## [185] &quot;Roboto Mono Bold for Powerline.ttf&quot;              
+## [186] &quot;Roboto Mono Bold Italic for Powerline.ttf&quot;       
+## [187] &quot;Roboto Mono for Powerline.ttf&quot;                   
+## [188] &quot;Roboto Mono Italic for Powerline.ttf&quot;            
+## [189] &quot;Roboto Mono Light for Powerline.ttf&quot;             
+## [190] &quot;Roboto Mono Light Italic for Powerline.ttf&quot;      
+## [191] &quot;Roboto Mono Medium for Powerline.ttf&quot;            
+## [192] &quot;Roboto Mono Medium Italic for Powerline.ttf&quot;     
+## [193] &quot;Roboto Mono Thin for Powerline.ttf&quot;              
+## [194] &quot;Roboto Mono Thin Italic for Powerline.ttf&quot;       
+## [195] &quot;Sana.ttc&quot;                                        
+## [196] &quot;Sathu.ttf&quot;                                       
+## [197] &quot;Sauce Code Powerline Black.otf&quot;                  
+## [198] &quot;Sauce Code Powerline Bold.otf&quot;                   
+## [199] &quot;Sauce Code Powerline ExtraLight.otf&quot;             
+## [200] &quot;Sauce Code Powerline Light.otf&quot;                  
+## [201] &quot;Sauce Code Powerline Medium.otf&quot;                 
+## [202] &quot;Sauce Code Powerline Regular.otf&quot;                
+## [203] &quot;Sauce Code Powerline Semibold.otf&quot;               
+## [204] &quot;Savoye LET.ttc&quot;                                  
+## [205] &quot;Seravek.ttc&quot;                                     
+## [206] &quot;Shree714.ttc&quot;                                    
+## [207] &quot;SignPainter.ttc&quot;                                 
+## [208] &quot;Silom.ttf&quot;                                       
+## [209] &quot;Sinhala MN.ttc&quot;                                  
+## [210] &quot;Sinhala Sangam MN.ttc&quot;                           
+## [211] &quot;Skia.ttf&quot;                                        
+## [212] &quot;SnellRoundhand.ttc&quot;                              
+## [213] &quot;Songti.ttc&quot;                                      
+## [214] &quot;STIXGeneral.otf&quot;                                 
+## [215] &quot;STIXGeneralBol.otf&quot;                              
+## [216] &quot;STIXGeneralBolIta.otf&quot;                           
+## [217] &quot;STIXGeneralItalic.otf&quot;                           
+## [218] &quot;STIXIntDBol.otf&quot;                                 
+## [219] &quot;STIXIntDReg.otf&quot;                                 
+## [220] &quot;STIXIntSmBol.otf&quot;                                
+## [221] &quot;STIXIntSmReg.otf&quot;                                
+## [222] &quot;STIXIntUpBol.otf&quot;                                
+## [223] &quot;STIXIntUpDBol.otf&quot;                               
+## [224] &quot;STIXIntUpDReg.otf&quot;                               
+## [225] &quot;STIXIntUpReg.otf&quot;                                
+## [226] &quot;STIXIntUpSmBol.otf&quot;                              
+## [227] &quot;STIXIntUpSmReg.otf&quot;                              
+## [228] &quot;STIXNonUni.otf&quot;                                  
+## [229] &quot;STIXNonUniBol.otf&quot;                               
+## [230] &quot;STIXNonUniBolIta.otf&quot;                            
+## [231] &quot;STIXNonUniIta.otf&quot;                               
+## [232] &quot;STIXSizFiveSymReg.otf&quot;                           
+## [233] &quot;STIXSizFourSymBol.otf&quot;                           
+## [234] &quot;STIXSizFourSymReg.otf&quot;                           
+## [235] &quot;STIXSizOneSymBol.otf&quot;                            
+## [236] &quot;STIXSizOneSymReg.otf&quot;                            
+## [237] &quot;STIXSizThreeSymBol.otf&quot;                          
+## [238] &quot;STIXSizThreeSymReg.otf&quot;                          
+## [239] &quot;STIXSizTwoSymBol.otf&quot;                            
+## [240] &quot;STIXSizTwoSymReg.otf&quot;                            
+## [241] &quot;STIXVar.otf&quot;                                     
+## [242] &quot;STIXVarBol.otf&quot;                                  
+## [243] &quot;SukhumvitSet.ttc&quot;                                
+## [244] &quot;SuperClarendon.ttc&quot;                              
+## [245] &quot;Symbol Neu for Powerline.ttf&quot;                    
+## [246] &quot;Tahoma Bold.ttf&quot;                                 
+## [247] &quot;Tahoma.ttf&quot;                                      
+## [248] &quot;Tamil MN.ttc&quot;                                    
+## [249] &quot;Tamil Sangam MN.ttc&quot;                             
+## [250] &quot;Telugu MN.ttc&quot;                                   
+## [251] &quot;Telugu Sangam MN.ttc&quot;                            
+## [252] &quot;Times New Roman Bold Italic.ttf&quot;                 
+## [253] &quot;Times New Roman Bold.ttf&quot;                        
+## [254] &quot;Times New Roman Italic.ttf&quot;                      
+## [255] &quot;Times New Roman.ttf&quot;                             
+## [256] &quot;Tinos Bold for Powerline.ttf&quot;                    
+## [257] &quot;Tinos Bold Italic for Powerline.ttf&quot;             
+## [258] &quot;Tinos for Powerline.ttf&quot;                         
+## [259] &quot;Tinos Italic for Powerline.ttf&quot;                  
+## [260] &quot;Trattatello.ttf&quot;                                 
+## [261] &quot;Trebuchet MS Bold Italic.ttf&quot;                    
+## [262] &quot;Trebuchet MS Bold.ttf&quot;                           
+## [263] &quot;Trebuchet MS Italic.ttf&quot;                         
+## [264] &quot;Trebuchet MS.ttf&quot;                                
+## [265] &quot;Triforce.ttf&quot;                                    
+## [266] &quot;Ubuntu Mono derivative Powerline Bold Italic.ttf&quot;
+## [267] &quot;Ubuntu Mono derivative Powerline Bold.ttf&quot;       
+## [268] &quot;Ubuntu Mono derivative Powerline Italic.ttf&quot;     
+## [269] &quot;Ubuntu Mono derivative Powerline.ttf&quot;            
+## [270] &quot;Verdana Bold Italic.ttf&quot;                         
+## [271] &quot;Verdana Bold.ttf&quot;                                
+## [272] &quot;Verdana Italic.ttf&quot;                              
+## [273] &quot;Verdana.ttf&quot;                                     
+## [274] &quot;Waseem.ttc&quot;                                      
+## [275] &quot;Webdings.ttf&quot;                                    
+## [276] &quot;Wingdings 2.ttf&quot;                                 
+## [277] &quot;Wingdings 3.ttf&quot;                                 
+## [278] &quot;Wingdings.ttf&quot;                                   
+## [279] &quot;Zapfino.ttf&quot;                                     
+## [280] &quot;ヒラギノ丸ゴ ProN W4.ttc&quot;</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Add <em>Hylia Serif</em> to your session</li>
+</ol>
+<pre class="r"><code>font.add(family = &#39;Hylian&#39;, regular = &#39;HylianSymbols.ttf&#39;)
+font.add(family = &#39;Triforce&#39;, regular = &#39;Triforce.ttf&#39;)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Use it!</li>
+</ol>
+<pre class="r"><code>par(family=&quot;Triforce&quot;)
+plot(c(0,1), c(0,1), type=&quot;n&quot;, xlab=&quot;X-axis&quot;, ylab=&quot;Y-axis&quot;, main=&quot;Hylian style&quot;)
+points(runif(10), runif(10), pch=&quot;*&quot;)</code></pre>
+<p><img src="HylianStyle_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
