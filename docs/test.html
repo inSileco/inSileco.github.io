@@ -269,17 +269,18 @@ $(document).ready(function () {
 ## [1] grDevices graphics  stats     utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] leaflet_1.1.0       showtext_0.4-6      sysfonts_0.5       
-## [4] letiRmisc_0.1       graphicsutils_1.1-1 magrittr_1.5       
-## [7] devtools_1.12.0     jpeg_0.1-8          png_0.1-7          
+##  [1] yaml_2.1.14         leaflet_1.1.0       showtext_0.4-6     
+##  [4] sysfonts_0.5        letiRmisc_0.1       graphicsutils_1.1-1
+##  [7] magrittr_1.5        devtools_1.12.0     jpeg_0.1-8         
+## [10] png_0.1-7          
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] Rcpp_0.12.10    knitr_1.15.1    xtable_1.8-2    R6_2.2.0       
 ##  [5] stringr_1.2.0   showtextdb_1.0  tools_3.3.3     withr_1.0.2    
-##  [9] htmltools_0.3.5 crosstalk_1.0.0 yaml_2.1.14     rprojroot_1.2  
-## [13] digest_0.6.10   shiny_1.0.0     htmlwidgets_0.8 memoise_1.0.0  
-## [17] evaluate_0.10   mime_0.5        rmarkdown_1.3   stringi_1.1.2  
-## [21] backports_1.0.5 jsonlite_1.3    httpuv_1.3.3</code></pre>
+##  [9] htmltools_0.3.5 crosstalk_1.0.0 rprojroot_1.2   digest_0.6.10  
+## [13] shiny_1.0.0     htmlwidgets_0.8 memoise_1.0.0   evaluate_0.10  
+## [17] mime_0.5        rmarkdown_1.3   stringi_1.1.2   backports_1.0.5
+## [21] jsonlite_1.3    httpuv_1.3.3</code></pre>
 </div>
 <div id="ajouter-un-iframe" class="section level2">
 <h2>Ajouter un iframe</h2>
@@ -294,8 +295,8 @@ m &lt;- leaflet() %&gt;%
   addTiles() %&gt;%  # Add default OpenStreetMap map tiles
   addMarkers(lng=174.768, lat=-36.852, popup=&quot;The birthplace of R&quot;)
 m  # Print the map</code></pre>
-<div id="htmlwidget-81a24ccc9850f0d4ab7e" style="width:672px;height:480px;" class="leaflet html-widget"></div>
-<script type="application/json" data-for="htmlwidget-81a24ccc9850f0d4ab7e">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[-36.852,174.768,null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"The birthplace of R",null,null,null,null,null,null]}],"limits":{"lat":[-36.852,-36.852],"lng":[174.768,174.768]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-e3779bcd4150196a82c8" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-e3779bcd4150196a82c8">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addTiles","args":["//{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",null,null,{"minZoom":0,"maxZoom":18,"maxNativeZoom":null,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"continuousWorld":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":null,"unloadInvisibleTiles":null,"updateWhenIdle":null,"detectRetina":false,"reuseTiles":false,"attribution":"&copy; <a href=\"http://openstreetmap.org\">OpenStreetMap<\/a> contributors, <a href=\"http://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA<\/a>"}]},{"method":"addMarkers","args":[-36.852,174.768,null,null,null,{"clickable":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},"The birthplace of R",null,null,null,null,null,null]}],"limits":{"lat":[-36.852,-36.852],"lng":[174.768,174.768]}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="ajouter-un-igraph" class="section level2">
 <h2>Ajouter un igraph</h2>

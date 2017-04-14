@@ -7,24 +7,27 @@ title: "My Website"
 # Who are we?
 
 
+<br/>
+
 # Where are we
 
 
-
-```{r, echo=FALSE}
+```{r map_authors, echo=FALSE, fig.width=9.5}
 library(leaflet)
 library(yaml)
-m <- leaflet() %>% setView(lng = -71.27729, lat = 46.78012, zoom = 4)
-m %>% addTiles()
-m %>% addProviderTiles(providers$Stamen.Toner)
-## add author popup
-auth <- yaml.load_file(
-  "/Users/KevCaz/Codes/Github/letiR_website/data/authors_info.yml"
+map_aut <- leaflet() %>%
+  setView(lng = -30.27729, lat = 46.78012, zoom = 3) %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addProviderTiles(providers$Stamen.Toner)
+# add author's popups
+aut <- yaml.load_file("data/authors_info.yml")
+for (i in 1:length(aut)){
+  map_aut <- addMarkers(
+    map_aut,
+    lng=aut[[i]]$institution[[1]]$lon,
+    lat=aut[[i]]$institution[[1]]$lat,
+    popup=paste(aut[[i]]$given_name, aut[[i]]$family_name, sep=" ")
   )
-for (i in 1:length(author)){
-  addMarkers(
-    lng=c[[i]]$institution[[1]]$lat,
-    lat=c[[i]]$institution[[1]]$lon,
-    popup=paste(c[[i]]$given_name, c[[i]]$family_name, sep=" ")
 }
+map_aut  # Print the map
 ```
