@@ -4,7 +4,8 @@ title: "My Website"
 
 <br/>
 
-# Who are we?
+
+## Who are we?
 
 
 ```{r table_authors, echo=FALSE}
@@ -24,18 +25,14 @@ data.frame(names=names, description=descri) %>% kable
 
 <br/>
 
-# Where are we?
+## Where are we?
 
 <br/>
 
 
 ```{r map_authors, echo=FALSE, fig.width=9.5}
-library(leaflet)
-library(yaml)
-library(magrittr)
-addiconurl <- function(url, icon){
-  paste0("<a href='", url, "'><i class='", icon, "'></i></a>")
-}
+source("Rscript/misc.R")
+#
 map_aut <- leaflet() %>%
   setView(lng = -64, lat = 35, zoom = 3) %>%
   addTiles() %>%  # Add default OpenStreetMap map tiles
