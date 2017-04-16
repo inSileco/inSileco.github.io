@@ -13,8 +13,11 @@
 - To set the visual style, modify the `css/perso.css` file.
 
 
-# {% octicon tasklist %} To do
+# To do
 
 - [ ] add a description of contributors / contributions
 - [ ] fix the R graphs packages post
 - [ ] add software
+
+
+:blowfish:
