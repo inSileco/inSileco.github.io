@@ -1,6 +1,6 @@
 document.getElementById('Graphpkgs').innerHTML += "cool0";
 
-var pkg = YAML.load("../data/Rpkgs.yml");
+var pkg = YAML.load("./data/Rpkgs.yml");
 document.getElementById('Graphpkgs').innerHTML += "cool1";
 var categ = [];
 for (var i=0; i<pkg.length; i++){
