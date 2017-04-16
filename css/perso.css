@@ -1,2 +1,17 @@
 .site-footer:
   background: #eee;
+
+
+h1::after{
+  content: "cool";
+}
+
+h2{
+  margin-top: 1em;
+  padding-bottom: 1em;
+}
+
+h2::before {
+   font-family: FontAwesome;
+   content: "\f0da  ";
+}
