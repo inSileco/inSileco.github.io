@@ -4,7 +4,7 @@ hr.hline_color {
 }
 
 h1.title{
-  margin-bottom: 1.5em;
+  margin-bottom: 1em;
 }
 
 h2{
@@ -15,4 +15,16 @@ h2{
 h2::before {
    font-family: FontAwesome;
    content: "\f0da  ";
+}
+
+h4.date {
+  font-size: 14px;
+}
+
+h4.date::before {
+  content: "first posted on ";
+}
+
+h4.author::before {
+   content: "by ";
 }

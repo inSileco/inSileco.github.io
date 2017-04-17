@@ -9,6 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
+<meta name="author" content="Kevin Cazelles and David Beauchesne" />
 
 
 <title>Make your plot Hylian</title>
@@ -248,18 +249,22 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Make your plot Hylian</h1>
+<h4 class="author"><em>Kevin Cazelles and David Beauchesne</em></h4>
+<h4 class="date"><em>April, 14 2017 - last update on April, 16 2017</em></h4>
 
 </div>
 
 
+<!-- `paste0("2017-04-15", Last update, format(Sys.time(), "%B, %d %Y"))` -->
+<p><br/></p>
 <p>Here are the 5 steps you need to make your plot a hylian one! May the triforce be with you!</p>
 <ol style="list-style-type: decimal">
 <li><p>Download the <a href="https://zeldauniverse.net/media/fonts/"><em>Triforce</em> font</a></p></li>
-<li><p>Open R and install the <code>showtext</code> package if not already installed</p></li>
+<li><p>Open R and install the <code>showtext</code> package if not already installed:</p></li>
 </ol>
 <pre class="r"><code>install.package(showtext)</code></pre>
 <ol start="3" style="list-style-type: decimal">
-<li>To see the list of font available locally do so</li>
+<li>To see the list of font available locally do so:</li>
 </ol>
 <pre class="r"><code>library(showtext)</code></pre>
 <pre><code>## Loading required package: sysfonts</code></pre>
@@ -547,17 +552,18 @@ font.files()</code></pre>
 ## [280] &quot;Zapfino.ttf&quot;                                     
 ## [281] &quot;ヒラギノ丸ゴ ProN W4.ttc&quot;</code></pre>
 <ol start="4" style="list-style-type: decimal">
-<li>Add <em>Hylia Serif</em> to your session</li>
+<li>Add the <em>Triforce</em> font to your session:</li>
 </ol>
-<pre class="r"><code>font.add(family = &#39;Hylian&#39;, regular = &#39;HylianSymbols.ttf&#39;)
-font.add(family = &#39;Triforce&#39;, regular = &#39;Triforce.ttf&#39;)</code></pre>
+<pre class="r"><code>font.add(family = &#39;Triforce&#39;, regular = &#39;Triforce.ttf&#39;)</code></pre>
 <ol start="5" style="list-style-type: decimal">
 <li>Here it goes:</li>
 </ol>
-<pre class="r"><code>par(family=&quot;Triforce&quot;)
+<pre class="r"><code>par(family=&quot;Triforce&quot;, las=1, cex.lab=2, cex.main=2, mar=c(4,5,5,0))
 plot(c(0,1), c(0,1), type=&quot;n&quot;, xlab=&quot;X-axis&quot;, ylab=&quot;Y-axis&quot;, main=&quot;Hylian Style - Link must be proud of us!&quot;)
-points(runif(10), runif(10), pch=&quot;*&quot;)</code></pre>
-<p><img src="HylianStyle_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+points(runif(7), runif(7), pch=&quot;*&quot;, cex=2)
+points(runif(7), runif(7), pch=&quot;$&quot;, col=&quot;#347AB7&quot;, cex=2)
+points(.1, .1, pch=&quot;%&quot;, cex=6, col=&quot;#347AB7&quot;)</code></pre>
+<p><img src="HylianStyle_files/figure-html/unnamed-chunk-4-1.png" width="912" /></p>
 
 <br/><br/><br/> <hr>
 <p>
@@ -572,6 +578,10 @@ points(runif(10), runif(10), pch=&quot;*&quot;)</code></pre>
 </p>
 
 <script src="js/Rgraphpkg.js"></script>
+<!-- jQuery -->
+<script>
+  jQuery("h1.title").append("<hr class='hline_color'/>");
+</script>
 
 
 

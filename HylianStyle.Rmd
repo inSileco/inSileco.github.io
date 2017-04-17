@@ -1,20 +1,27 @@
 ---
 title: "Make your plot Hylian"
+author:
+  - Kevin Cazelles and
+    David Beauchesne
+date: "`r paste0('April, 14 2017  -  last update on ', format(Sys.time(), '%B, %d %Y'))`"
 ---
 
+<!-- `paste0("2017-04-15", Last update, format(Sys.time(), "%B, %d %Y"))` -->
+
+<br/>
 
 Here are the 5 steps you need to make your plot a hylian one!
 May the triforce be with you!
 
 1. Download the [*Triforce* font](https://zeldauniverse.net/media/fonts/)
 
-2. Open R and install the `showtext` package if not already installed
+2. Open R and install the `showtext` package if not already installed:
 
 ```{r, eval=FALSE}
 install.package(showtext)
 ```
 
-3. To see the list of font available locally do so
+3. To see the list of font available locally do so:
 
 ```{r}
 library(showtext)
@@ -22,17 +29,18 @@ showtext.auto()
 font.files()
 ```
 
-4. Add *Hylia Serif* to your session
+4. Add the *Triforce* font to your session:
 
 ```{r}
-font.add(family = 'Hylian', regular = 'HylianSymbols.ttf')
 font.add(family = 'Triforce', regular = 'Triforce.ttf')
 ```
 
 5. Here it goes:
 
-```{r}
-par(family="Triforce")
+```{r, fig.width=9.5, fig.height=7}
+par(family="Triforce", las=1, cex.lab=2, cex.main=2, mar=c(4,5,5,0))
 plot(c(0,1), c(0,1), type="n", xlab="X-axis", ylab="Y-axis", main="Hylian Style - Link must be proud of us!")
-points(runif(10), runif(10), pch="*")
+points(runif(7), runif(7), pch="*", cex=2)
+points(runif(7), runif(7), pch="$", col="#347AB7", cex=2)
+points(.1, .1, pch="%", cex=6, col="#347AB7")
 ```

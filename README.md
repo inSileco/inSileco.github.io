@@ -11,7 +11,7 @@
 
 - Any additional header contain does `header.html`
 - To set the visual style, modify the `css/perso.css` file.
-
+- Add *jQueries* in `footer.html`
 
 # To do
 

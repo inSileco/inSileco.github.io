@@ -3,10 +3,6 @@ title: "Talks"
 ---
 
 
-<!-- <span class="flag-icon flag-icon-fr"></span> -->
-
-
-<br/>
 
 ```{r map_authors, echo=FALSE, results="asis"}
 source("Rscript/misc.R")
@@ -33,7 +29,7 @@ for (i in 1:length(vec_categu)){
         addiconurl(paste0("https://github.com/", tal[[i]]$github), "fa fa-github")
         )
   }
-  txt %<>% paste0("<br/> \n\n")
+  txt %<>% paste0("<br/><br/> \n\n")
 }
 
 cat(txt)
