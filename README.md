@@ -16,7 +16,8 @@
 # To do
 
 - [ ] add a description of contributors / contributions
-- [ ] fix the R graphs packages post
+- [ ] fix the R graphs packages post (issue with the js script)
+- [ ] add disqus to the post
 - [ ] add software
 
 

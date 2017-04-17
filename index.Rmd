@@ -6,10 +6,7 @@ title: "LetiR website"
 ## Who are we?
 
 ```{r table_authors, echo=FALSE}
-library(leaflet)
-library(yaml)
-library(magrittr)
-library(knitr)
+source("Rscript/init.R")
 aut <- yaml.load_file("data/authors_info.yml")
 names <- descri <- character(length(aut))
 for (i in 1:length(aut)){
@@ -24,7 +21,7 @@ data.frame(names=names, description=descri) %>% kable
 
 
 ```{r map_authors, echo=FALSE, fig.width=9.5}
-source("Rscript/misc.R")
+source("Rscript/init.R")
 #
 map_aut <- leaflet() %>%
   setView(lng = -64, lat = 35, zoom = 3) %>%

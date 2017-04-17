@@ -6,7 +6,7 @@ title: "Software"
 <br/>
 
 ```{r map_authors, echo=FALSE, results="asis"}
-source("Rscript/misc.R")
+source("Rscript/init.R")
 #
 sof <- yaml.load_file("data/software.yml")
 sz <- length(sof)

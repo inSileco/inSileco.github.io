@@ -5,7 +5,7 @@ title: "Talks"
 
 
 ```{r map_authors, echo=FALSE, results="asis"}
-source("Rscript/misc.R")
+source("Rscript/init.R")
 #
 tal <- yaml.load_file("data/talks.yml")
 sz <- length(tal)
