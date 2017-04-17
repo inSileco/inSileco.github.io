@@ -24,9 +24,10 @@ for (i in 1:length(vec_categu)){
         "<span class='flag-icon flag-icon-",
         tal[[id[j]]]$lang,
         "'></span> &nbsp;",
-        addiconurl(tal[[i]]$link, "fa fa-link"),
+        addiconurl(tal[[id[j]]]$link, "fa fa-link"),
         "&nbsp;",
-        addiconurl(paste0("https://github.com/", tal[[i]]$github), "fa fa-github")
+        addiconurl(paste0("https://github.com/", tal[[id[j]]]$github), "fa fa-github"),
+        "\n"
         )
   }
   txt %<>% paste0("<br/><br/> \n\n")
