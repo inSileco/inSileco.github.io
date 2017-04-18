@@ -17,7 +17,7 @@ for (j in 1:length(tal)){
   if (!is.null(tal[[j]]$github)) txt %<>% paste0(" ", addiconurl(paste0("https://github.com/", tal[[j]]$github), "fa fa-github"))
   ##
   chc <- c(tal[[j]]$travis, tal[[j]]$appveyor, tal[[j]]$codecov)
-  for (k in length(chc)){
+  for (k in 1:length(chc)){
     if (!is.null(chc[k])) txt %<>% paste0(" ", chc[k])
   }
   ##
