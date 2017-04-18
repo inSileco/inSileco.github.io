@@ -29,13 +29,20 @@ h4.author::before {
    content: "by ";
 }
 
+.main-container {
+  margin-bottom: -77px;
+}
 
-.fullband{
-  position: fixed;
+
+.footer{
+  position: absolute;
+  z-index: 2;
+  box-sizing: border-box;
   background-color: #f8f8f8;
   height: 77px;
   padding: 14px 10%;
   left: 0px;
   right: 0px;
   color: #777;
+  min-width: 100%
 }
