@@ -6,11 +6,5 @@ title: "Software"
 <br/>
 
 ```{r map_authors, echo=FALSE, results="asis"}
-source("Rscript/init.R")
-#
-sof <- yaml.load_file("data/software.yml")
-sz <- length(sof)
-# vec_categ <- lapply(sof, . %>% extract('categ')) %>% unlist
-# vec_categu <- vec_categ %>% unique
-# txt <- ""
+source("Rscript/rgraphpkgs.R")
 ```
