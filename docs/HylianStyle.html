@@ -257,10 +257,18 @@ $(document).ready(function () {
 
 <!-- `paste0("2017-04-15", Last update, format(Sys.time(), "%B, %d %Y"))` -->
 <p><br/></p>
-<p>Here are the 5 steps you need to make your plot a Hylian one! May the triforce be with you!</p>
+<p>Here are the 5 steps you need to make your plot a Hylian one! <strong>May the triforce be with you</strong>!</p>
+<ol start="0" style="list-style-type: decimal">
+<li>R Version</li>
+</ol>
+<pre class="r"><code>sessionInfo()[[1]]$version.string</code></pre>
+<pre><code>## [1] &quot;R version 3.3.3 (2017-03-06)&quot;</code></pre>
 <ol style="list-style-type: decimal">
-<li><p>Download the <a href="https://zeldauniverse.net/media/fonts/"><em>Triforce</em> font</a></p></li>
-<li><p>Open R and install the <code>showtext</code> package if not already installed:</p></li>
+<li>Download the <a href="https://zeldauniverse.net/media/fonts/"><em>Triforce</em> font</a></li>
+</ol>
+<pre class="r"><code>session.Info()</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Open R and install the <code>showtext</code> package if not already installed:</li>
 </ol>
 <pre class="r"><code>install.package(showtext)</code></pre>
 <ol start="3" style="list-style-type: decimal">
@@ -563,7 +571,7 @@ plot(c(0,1), c(0,1), type=&quot;n&quot;, xlab=&quot;X-axis&quot;, ylab=&quot;Y-a
 points(runif(7), runif(7), pch=&quot;*&quot;, cex=2)
 points(runif(7), runif(7), pch=&quot;$&quot;, col=&quot;#347AB7&quot;, cex=2)
 points(.1, .1, pch=&quot;%&quot;, cex=6, col=&quot;#347AB7&quot;)</code></pre>
-<p><img src="HylianStyle_files/figure-html/unnamed-chunk-4-1.png" width="912" /></p>
+<p><img src="HylianStyle_files/figure-html/unnamed-chunk-6-1.png" width="912" /></p>
 
 <br/><br/>
 
@@ -613,7 +621,7 @@ function placeFooter() {
   ga('send', 'pageview');
 
 </script>
-<br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/><br/><br/>
 <!-- disqus -->
  <div id="disqus_thread" class="standardPadding"></div>
     <script type="text/javascript">
