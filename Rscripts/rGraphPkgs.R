@@ -1,4 +1,4 @@
-source("Rscript/init.R")
+source("Rscripts/init.R")
 #
 pkg <- yaml.load_file("data/Rpkgs.yml")
 sz <- length(pkg)
@@ -30,20 +30,3 @@ for (i in 1:length(vec_categu)){
   txt %<>% paste0("<br/><br/> \n\n")
 }
 cat(txt)
-#
-#
-#
-# for (j in 1:length(tal)){
-#   txt %<>% paste0(
-#     "### ",
-#     pkg[[j]]$name,
-#     "\n")
-#   if (!is.null(pkg[[j]]$github)) txt %<>% paste0(" ", addiconurl(paste0("https://github.com/", pkg[[j]]$github), "fa fa-github fa-2x"))
-#   txt %<>% paste0(paste0(rep("&nbsp;",6), collapse=""))
-#   chc <- c(pkg[[j]]$travis, pkg[[j]]$appveyor, pkg[[j]]$codecov)
-#   for (k in 1:length(chc)){
-#     if (!is.null(chc[k])) txt %<>% paste0(" ", chc[k])
-#   }
-#   ##
-#   txt %<>% paste0("<br/><br/> \n\n")
-# }

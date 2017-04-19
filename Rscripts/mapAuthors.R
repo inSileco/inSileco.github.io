@@ -1,0 +1,51 @@
+source("Rscripts/init.R")
+#
+map_aut <- leaflet() %>%
+  setView(lng = -64, lat = 35, zoom = 3) %>%
+  addTiles() %>%  # Add default OpenStreetMap map tiles
+  addProviderTiles(providers$Stamen.Toner)
+# add author's popups
+aut <- yaml.load_file("data/authors_info.yml")
+for (i in 1:length(aut)){
+  txt <- paste(
+    "<b>", aut[[i]]$given_name, "</b>",
+    "<b>", aut[[i]]$family_name, "</b>",
+    "<br/>",
+    aut[[i]]$institution[[1]]$name,
+    "<br/>",
+    sep = " "
+    )
+  if (!is.null(aut[[i]]$website)) {
+    txt %<>% paste0(addiconurl(aut[[i]]$website, "fa fa-globe fa-2x"), "&nbsp;")
+  }
+  if (!is.null(aut[[i]]$github)) {
+    txt %<>% paste0(addiconurl(aut[[i]]$github, "fa fa-github fa-2x"), "&nbsp;")
+  }
+  if (!is.null(aut[[i]]$twitter)) {
+    txt %<>% paste0(
+      addiconurl(paste0("http://twitter.com/", aut[[i]]$twitter),
+      "fa fa-twitter fa-2x"), "&nbsp;")
+  }
+  if (!is.null(aut[[i]]$orcid)) {
+    txt %<>% paste0(
+      addiconurl(paste0("http://orcid.org/", aut[[i]]$orcid),
+      "ai ai-orcid-square ai-2x"), "&nbsp;")
+
+  }
+  if (!is.null(aut[[i]]$researchgate)) {
+    txt %<>% paste0(
+      addiconurl(paste0("https://www.researchgate.net/profile/", aut[[i]]$researchgate),
+      "ai ai-researchgate ai-2x"), "&nbsp;")
+  }
+  if (!is.null(aut[[i]]$gscholar)) {
+    txt %<>% paste0(
+      addiconurl(aut[[i]]$gscholar,
+      "ai ai-google-scholar-square ai-2x"), "&nbsp;")
+  }
+  map_aut <- addMarkers(
+    map_aut,
+    lng=aut[[i]]$institution[[1]]$lon,
+    lat=aut[[i]]$institution[[1]]$lat,
+    popup = txt
+  )
+}

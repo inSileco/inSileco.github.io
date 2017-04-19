@@ -1,4 +1,4 @@
-source("Rscript/init.R")
+source("Rscripts/init.R")
 #
 tal <- yaml.load_file("data/software.yml")
 sz <- length(tal)
