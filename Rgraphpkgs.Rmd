@@ -67,7 +67,7 @@ We will make the content below 'evolving' by collecting and indexing as many sou
 <br/>
 
 
-# List of packages
+## List of packages
 
 <!-- Find package [here](http://rpackages.ianhowson.com) A comprehensive index of R packages and documentation from CRAN, Bioconductor, GitHub and R-Forge. (https://cran.r-project.org/web/packages/available_packages_by_name.html) -->
 Many packages for graphics are indexed in a dedicated [task view maintained by Nicholas Lewin-Koh](https://cran.r-project.org/web/views/Graphics.html). We have indexed many of them and refer to more below. For each package, we provide :
@@ -77,8 +77,15 @@ Many packages for graphics are indexed in a dedicated [task view maintained by N
 
 when available, we also provide :
 
-  - <a href=""><i class="fa fa-github"></i></a> : a link that goes to the [Github](https://github.com) repository,
-  - <a href=""><i class="fa fa-bitbucket"></i></a> : a link that goes to the associated [Bitbucket](https://bitbucket.org) repository,
-  - <a href=""><i class="fa fa-globe"></i></a> : a link that goes to a dedicated website or a html vignette that describes well the package,
-  - <a href=""><i class="fa fa-link"></i></a> : a link that goes to a relevant publication,
-  - <a href=""><i class="fa fa-file-pdf-o"></i></a> : a link that goes to an relevant pdf file (an R journal article for instance).
+  - <a href=""><i class="fa fa-github"></i></a>: a link that goes to the [Github](https://github.com) repository,
+  - <a href=""><i class="fa fa-bitbucket"></i></a>: a link that goes to the associated [Bitbucket](https://bitbucket.org) repository,
+  - <a href=""><i class="ai ai-doi"></i></a>: a link that goes to the [DOI](http://www.doi.org) link,
+  - <a href=""><i class="fa fa-link"></i></a>: a link that goes to a dedicated website, a html vignette that describes well the package or a relevant publication,
+  - <a href=""><i class="fa fa-file-pdf-o"></i></a>: a link that goes to an relevant pdf file (an R journal article for instance).
+
+
+<br/><br/>
+
+```{r map_authors, echo=FALSE, results="asis"}
+  source("Rscript/rGraphPkgs.R")
+```
