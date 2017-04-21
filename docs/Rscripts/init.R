@@ -11,3 +11,5 @@ library(htmlwidgets)
 addiconurl <- function(url, icon){
   paste0("<a href='", url, "'><i class='", icon, "'></i></a>")
 }
+##
+source("Rscripts/addAuthorsLinks.R")

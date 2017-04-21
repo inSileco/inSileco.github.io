@@ -3,24 +3,11 @@ title: "LetiR website"
 ---
 
 
-## Who are we?
-
-```{r tableAuthors, echo=FALSE}
-source("Rscripts/init.R")
-aut <- yaml.load_file("data/authors_info.yml")
-names <- descri <- character(length(aut))
-for (i in 1:length(aut)){
-  names[i] <- paste0(aut[[i]]$given_name, " ", aut[[i]]$family_name)
-  descri[i] <- paste0(aut[[i]]$description)
-}
-data.frame(names=names, description=descri) %>% kable
-```
-
-
-
-## Where are we?
+## Who and where are we?
 
 ```{r mapAuthors, fig.width=9.5, echo=FALSE}
 source("Rscripts/mapAuthors.R")
 map_aut  # I have to add this the make the map working
 ```
+
+[Learn more]("./about.html")
