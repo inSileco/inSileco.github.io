@@ -17,10 +17,6 @@
 # To do
 
 - [ ] add a description of contributors / contributions
-- [ ] fix the R graphs packages post (issue with the js script)
-- [X] add disqus to the post
-  - [X] disqus must be added only on desired pages (for the moment every single page gets a disqus section)
-- [ ] add software
-
+- [ ] add a wordcloud
 
 :blowfish:

@@ -7,7 +7,7 @@ library(wordcloud2)
 library(webshot)
 library(htmlwidgets)
 
-## function
+## functions
 addiconurl <- function(url, icon){
   paste0("<a href='", url, "'><i class='", icon, "'></i></a>")
 }
