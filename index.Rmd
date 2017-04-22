@@ -5,7 +5,7 @@ title: "LetiR website"
 
 ## Who and where are we?
 
-```{r mapAuthors, fig.width=9.5, echo=FALSE}
+```{r mapAuthors, fig.width=9.5, echo=FALSE, message=FALSE}
 source("Rscripts/mapAuthors.R")
 map_aut  # I have to add this the make the map working
 ```
@@ -16,10 +16,10 @@ map_aut  # I have to add this the make the map working
 ## What are we interested in?
 
 
-```{r wordcloud, fig.width=9.5, echo=FALSE, results="asis"}
+```{r wordcloud, fig.width=9.5, echo=FALSE, , message=FALSE, results="asis"}
 source("Rscripts/ourWordcloud.R")
 wc_aut
-cat("Wordcloud made with the [wordcloud2 package](https://github.com/lchiffon/wordcloud2); silhouette image available on [PhyloPic](http://phylopic.org).")
+cat("Wordcloud made with the [wordcloud2 R package](https://github.com/lchiffon/wordcloud2); silhouette image available on [PhyloPic](http://phylopic.org).")
 ```
 
 [*Learn more*](./about.html)

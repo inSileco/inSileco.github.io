@@ -1,6 +1,5 @@
 source("Rscripts/init.R")
 # Ref: http://onepager.togaware.com/TextMiningO.pdf
-system("for f in ~/Dropbox/LetiR/publi/*.pdf; do pdftotext -enc ASCII7 -nopgbrk $f; done")
 ###################
 docs <- Corpus(
   DirSource(
