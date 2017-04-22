@@ -1,8 +1,8 @@
 # Rscript --no-site-file --no-init-file -e "rmarkdown::render_site('index.Rmd')"
-d = `date "+%d-%m-%Y"`
+dat = $(shell date "+%d-%m-%Y")
 
 website:
-	sed -e "s/update: [0-9\-]*./update: $d./g" footer.html > footer.html
+	gsed -i "s/update: [0-9\-]*./update: $(dat)./" footer.html
 	Rscript --no-site-file --no-init-file -e 'rmarkdown::render_site()'
 
 reveal:
