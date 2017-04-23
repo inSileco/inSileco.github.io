@@ -11,12 +11,12 @@
 # Contributing
 
 - Any additional header contain does `header.html`
-- To set the visual style, modify the `css/perso.css` file.
+- To tune the current visual style, modify the `css/perso.css` file.
 - Add *jQueries* in `footer.html`
 
 # To do
 
-- [ ] add a description of contributors / contributions
-- [ ] add a wordcloud
+- [ ] add a more exhaustive description of contributors / contributions
+- [ ] fix the current wordcloud
 
 :blowfish:
