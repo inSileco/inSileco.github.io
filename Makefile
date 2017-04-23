@@ -10,6 +10,3 @@ reveal:
 
 clean:
 	Rscript --no-site-file --no-init-file -e "rmarkdown::clean_site()"
-
-worcloud:
-	for f in ~/Dropbox/LetiR/publi/*.pdf; pdftotext -enc ASCII7 -nopgbrk $f

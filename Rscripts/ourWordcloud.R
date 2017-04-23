@@ -1,6 +1,7 @@
 source("Rscripts/init.R")
 # Ref: http://onepager.togaware.com/TextMiningO.pdf
 ###################
+# system("for f in ~/Dropbox/LetiR/publi/*.pdf; pdftotext -enc ASCII7 -nopgbrk $f")
 docs <- Corpus(
   DirSource(
     directory = "~/Dropbox/LetiR/publi",
@@ -34,7 +35,7 @@ freq <- colSums(as.matrix(dtm))
 datdoc <- data.frame(names=names(freq), freq=freq)
 datdoc <- datdoc[rev(order(datdoc$freq)), ]
 datext <- data.frame(
-  names=c("R", "Open-Science", "Markdown", "Latex", "Python", "C/C++", "Web", "Javascript"),
-  freq=c(100, 100, 90, 40, 40, 40, 80, 40))
+  names=c("R", "Open-data", "Open-Science", "Markdown", "Latex", "Python", "C/C++", "Web", "Javascript"),
+  freq=c(220, 160, 160, 140, 70, 70, 70, 100, 40))
 dat <- rbind(datext, datdoc)
 wc_aut <- wordcloud2(dat, figPath = "./img/butterfly.png", size = 2, color="white", backgroundColor=1)
