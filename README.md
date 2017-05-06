@@ -17,6 +17,7 @@
 # To do
 
 - [ ] add a more exhaustive description of contributors / contributions
-- [ ] fix the current wordcloud
+- [ ] fix the current wordcloud (it often fails loading)
+- [ ] add tags to posts. (Hugo does it well and it is a valuable feature to add).
 
 :blowfish:
