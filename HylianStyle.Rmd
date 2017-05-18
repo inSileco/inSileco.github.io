@@ -1,0 +1,98 @@
+---
+title: "Make your plot Hylian"
+author:
+  - Kevin Cazelles and
+    David Beauchesne
+date: "`r paste0('April 14, 2017  -  last update on ', format(Sys.time(), '%B %d, %Y'))`"
+output:
+  html_document:
+    include:
+        after_body: [footer.html, disqus.html]
+---
+
+
+<!-- `paste0("2017-04-15", Last update, format(Sys.time(), "%B, %d %Y"))` -->
+
+<br/>
+
+Here are the 6 steps you need to make your plot a Hylian one!
+**May the triforce be with you**!
+
+
+0. R Version
+
+```{r, echo = TRUE, eval = TRUE}
+sessionInfo()[[1]]$version.string
+```
+
+1. Open R and download the [*Triforce* font](https://zeldauniverse.net/media/fonts/)
+
+```{r, echo = TRUE, eval = TRUE}
+# Create a directory < fonts >
+dir.create("fonts", showWarnings = FALSE)
+
+# Download Triforce font < Triforce.ttf >
+url <- "http://zeldauniverse.net/wp-content/uploads/2014/01/Triforce.ttf_.zip"
+download.file(url, paste0("fonts/", basename(url)))
+dir("fonts/")
+
+# Unzip the file
+untar(paste0("fonts/", basename(url)), exdir = "fonts/", compressed = "gzip")
+dir("fonts/")
+
+# Remove .zip
+file.remove(paste0("fonts/", basename(url)))
+dir("fonts/")
+```
+
+
+2. Install the `showtext` package if not already installed:
+
+```{r, echo = TRUE, eval = FALSE}
+install.package("showtext", dependencies = TRUE)
+library(showtext)
+```
+
+```{r, echo = FALSE, eval = TRUE}
+library(showtext)
+```
+
+3. To see the list of font available locally do so:
+
+```{r, echo = TRUE, eval = TRUE}
+showtext.auto()
+font.files()
+```
+
+4. Add the new directory < fonts > to the available font paths of showtext
+
+```{r, echo = TRUE, eval = FALSE}
+font.paths("fonts/")
+```
+
+```{r, echo = FALSE, eval = TRUE}
+gsub("/Users/nicolascasajus/", "~/", font.paths("fonts/"))
+```
+
+```{r, echo = TRUE, eval = TRUE}
+# Is the TTF present?
+font.files()[grep("Triforce", font.files())]
+```
+
+5. Add the *Triforce* font to your session:
+
+```{r, echo = TRUE, eval = TRUE}
+font.add(family = 'Triforce', regular = 'Triforce.ttf')
+font.families()
+```
+
+6. Here it goes:
+
+```{r, echo = TRUE, eval = TRUE, fig.width = 9.5, fig.height = 7, fig.showtext = TRUE}
+par(family = "Triforce", las = 1, cex.lab = 2, cex.main = 2, mar = c(4, 5, 5, 0))
+plot(x = c(0, 1), y = c(0, 1), type = "n", xlab = "X-axis", ylab = "Y-axis")
+title(main = "Hylian Style - Link must be proud of us!")
+points(x = runif(7), y = runif(7), pch = "*", cex = 2)
+points(x = runif(7), y = runif(7), pch = "$", cex = 2, col = "#347AB7")
+points(x = 0.1, y = 0.1, pch = "%", cex = 6, col = "#347AB7")
+```
