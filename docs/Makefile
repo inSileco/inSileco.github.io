@@ -10,15 +10,15 @@ all: docs/index.html $(mainh) $(posth)
 
 docs/%.html: _posts/%.Rmd
 	cp $< ./
-	Rscript --no-init-file -e "rmarkdown::render_site('$(patsubst _posts/%,%,$<)')"
+	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('$(patsubst _posts/%,%,$<)')"
 	rm $(patsubst _posts/%,%,$<)
 
 docs/%.html: _main/%.Rmd
 	cp $< ./
-	Rscript --no-init-file -e "rmarkdown::render_site('$(patsubst _main/%,%,$<)')"
+	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('$(patsubst _main/%,%,$<)')"
 	rm $(patsubst _main/%,%,$<)
 
-docs/index.html: $(indr)
+docs/index.html: $(indr) _site.yml css/* data/* assets/*
 	gsed -i "s/update: [0-9\-]*./update: $(dat)./" footer.html
 	Rscript --no-init-file -e "rmarkdown::render_site()"
 	rm -rf docs/tmp_files
