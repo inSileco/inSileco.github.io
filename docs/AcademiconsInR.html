@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="Kevin Cazelles" />
+<meta name="author" content="Kevin Cazelles &amp; David Beauchesne" />
 
 
 <title>Add icons on your plots</title>
@@ -254,17 +254,22 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Add icons on your plots</h1>
-<h4 class="author"><em>Kevin Cazelles</em></h4>
-<h4 class="date"><em>May 23, 2017 - last update on May 23, 2017</em></h4>
+<h4 class="author"><em>Kevin Cazelles &amp; David Beauchesne</em></h4>
+<h4 class="date"><em>May 23, 2017 - last update on May 24, 2017</em></h4>
 
 </div>
 
 
 <p><br/></p>
+<div class="figure">
+<img src="https://img.shields.io/badge/letiR-InRevision-blue.svg" />
+
+</div>
+<p><br/></p>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>Icons are very popular on websites to improve the visual grepping. We all know how to go at the top or the bottom of a website clicking on chevrons (<i class="fa fa-chevron-down" aria-hidden="true"></i> <i class="fa fa-chevron-up" aria-hidden="true"></i>). We also are familiar with simple symbols where we click to edit the text we are typing (<i class="fa fa-align-left" aria-hidden="true"></i> <i class="fa fa-align-center" aria-hidden="true"></i> <i class="fa fa-align-right" aria-hidden="true"></i>). Moreover, some web applications are so widespread than their logo appears in thousands of websites (i.e Twitter <i class="fa fa-twitter" aria-hidden="true"></i> or Github <i class="fa fa-github" aria-hidden="true"></i>). Here, we explain how to add these icons on your R plots. Why using icons on a R plot? It simply increases the number of markers you could use which could be very useful to refine your plots.</p>
-<p>There are two strategies to include icons on a R plot: 1- using icons as a font when possible or 2- using icons as images. Here, we exemplify the first strategy and let the second one for another post (hopefully). We will use icons from three different iconic frameworks:</p>
+<p>Icons are very popular on websites to improve the visual grepping (<em>i.e.</em> visual optimization of <em>eyeball</em> search). We all know how to go at the top or the bottom of a website clicking on chevrons (<i class="fa fa-chevron-down" aria-hidden="true"></i> <i class="fa fa-chevron-up" aria-hidden="true"></i>). We are also familiar with simple symbols that allow us to click and edit the text we are typing (<i class="fa fa-align-left" aria-hidden="true"></i> <i class="fa fa-align-center" aria-hidden="true"></i> <i class="fa fa-align-right" aria-hidden="true"></i>). Moreover, some web applications are so widespread than their logo appears in thousands of websites (i.e Twitter <i class="fa fa-twitter" aria-hidden="true"></i> or Github <i class="fa fa-github" aria-hidden="true"></i>). Here, we explain how to use these icons in your R plots. Why use icons on an R plot? It simply increases the possibilities for the number of markers you could use and thus efficiently and usefully refine your plots.</p>
+<p>There are two strategies to include icons on a R plot: 1- using icons as a font when possible or 2- using icons as images. Here, we exemplify the first strategy and leave the second one for another post (hopefully). We will use icons from three different iconic frameworks:</p>
 <ol style="list-style-type: decimal">
 <li><a href="jpswalsh.github.io/academicons/">Academicon</a>;<br />
 </li>
@@ -280,7 +285,7 @@ $(document).ready(function () {
 <div id="r-version-used-to-build-the-last-update-of-this-post" class="section level4">
 <h4>R version used to build the last update of this post</h4>
 <pre class="r"><code>sessionInfo()[[1]]$version.string</code></pre>
-<pre><code>## [1] &quot;R version 3.4.0 (2017-04-21)&quot;</code></pre>
+<pre><code>## [1] &quot;R version 3.3.3 (2017-03-06)&quot;</code></pre>
 </div>
 <div id="list-of-packages-to-be-used" class="section level4">
 <h4>List of packages to be used</h4>
@@ -295,30 +300,31 @@ $(document).ready(function () {
 <pre class="r"><code>library(magrittr)
 library(showtext)</code></pre>
 <pre><code>## Loading required package: sysfonts</code></pre>
+<pre class="r"><code>library(graphicsutils)</code></pre>
 </div>
 <div id="material-to-be-downloaded" class="section level4">
 <h4>Material to be downloaded</h4>
-<p>We have to download the 3 fonts to be used, we can easily find them on Github. You can simply click on the links below to get them (<em>lazy searching</em>).</p>
+<p>We have to download the 3 fonts to be used, which can easily be found on Github. You can simply click on the links below to get them (<em>lazy searching</em>).</p>
 <ol style="list-style-type: decimal">
 <li><a href="https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf">the <em>Academicons</em> font</a><br />
 </li>
-<li><a href="https://github.com/FortAwesome/Font-Awesome/raw/master/fonts/fontawesome.otf">the <em>FontAwesome</em> font</a><br />
+<li><a href="https://github.com/FortAwesome/Font-Awesome/raw/master/fonts/FontAwesome.otf">the <em>FontAwesome</em> font</a><br />
 </li>
 <li><a href="https://github.com/driftyco/ionicons/raw/master/fonts/ionicons.ttf">the <em>Ionicons</em> font</a></li>
 </ol>
-<p>Once downloaded, install them on your computer (there is most likely a application on your computer to do so but note that it is also possible to store the fonts in a dedicated folder and then provide the path to use them with <code>showtext</code>, see the <code>font.paths()</code> function).</p>
+<p>Once downloaded, install them on your computer (there is most likely an application on your computer to do so but note that it is also possible to store the fonts in a dedicated folder and then provide the path to use them with <code>showtext</code>. See the <code>font.paths()</code> function.</p>
 <p><br/></p>
 </div>
 </div>
 <div id="loading-the-fonts" class="section level2">
 <h2>Loading the fonts</h2>
-<p>To activate the facilities <code>showtext</code> provide, it only requires <code>showtext.auto()</code> (by the way, the author of the package deserves a medal):</p>
+<p>To activate the facilities <code>showtext</code> provide, it only requires <code>showtext.auto()</code> (by the way, the author of the package deserves a medal!):</p>
 <pre class="r"><code>showtext.auto()</code></pre>
 <p>Then, add <code>academicons.ttf</code>, <code>FontAwesome.otf</code> and <code>ionicons.ttf</code> fonts to your session with the <code>font.add()</code> function:</p>
-<pre class="r"><code>font.add(family = &#39;Academicons&#39;, regular = &#39;fonts/academicons.ttf&#39;)
+<pre class="r"><code>font.add(family = &#39;Academicons&#39;, regular = &#39;academicons.ttf&#39;)
 font.add(family = &#39;FontAwesome&#39;, regular = &#39;FontAwesome.otf&#39;)
 font.add(family = &#39;Ionicons&#39;, regular = &#39;ionicons.ttf&#39;)</code></pre>
-<p>Here, things are going to be a little bit trickier than there were in the <a href="./HylianStyle.html">Hylian blog post</a> as we should first locate the unicode characters to be used. Fortunately, this is fairly doable:</p>
+<p>Here, things are going to be a little bit trickier than they were in the <a href="./HylianStyle.html">Hylian blog post</a>, as we should first locate the unicode characters to be used. Fortunately, this is fairly doable:</p>
 <ol style="list-style-type: decimal">
 <li>FontAwesome provides a very <a href="http://fontawesome.io/cheatsheet/">helpful cheatsheet</a>;<br />
 </li>
@@ -329,14 +335,14 @@ font.add(family = &#39;Ionicons&#39;, regular = &#39;ionicons.ttf&#39;)</code></
 <img src="assets/img/academicsicon.png" alt="Academics icon on LibreOffice" />
 <p class="caption">Academics icon on LibreOffice</p>
 </div>
-<p>To use unicode characters in R, there are several possibilities, this <a href="https://www.r-bloggers.com/unicode-symbols-in-r/">this blog post</a> explain it well. Below use different way to deal with the unicode characters.</p>
+<p>To use unicode characters in R, there are several possibilities, this <a href="https://www.r-bloggers.com/unicode-symbols-in-r/">blog post</a> explains it well. Below we use different way to deal with the unicode characters.</p>
 <p><br/></p>
 </div>
 <div id="lets-add-icons-our-plot" class="section level2">
 <h2>Let’s add icons our plot</h2>
 <div id="academicons" class="section level3">
 <h3>Academicons</h3>
-<p>There are 36 unicode character available. There are numbered like so: “E9” + all numbers from 00 to 35 (version 1.8.0). To use then will create the sequence using <code>sprintf()</code> abd <code>paste0()</code> funcion</p>
+<p>There are 36 unicode characters available. They are numbered like so: “E9” + all numbers from 00 to 35 (version 1.8.0). To use them we will create the sequence using <code>sprintf()</code> and <code>paste0()</code> function</p>
 <pre class="r"><code>nb &lt;- 35
 acs &lt;- sprintf(&quot;%02d&quot;, 0:nb) %&gt;% paste0(&quot;E9&quot;,.)</code></pre>
 <p>We now plot them as if they were on a regular grid and we add the decimal value below:</p>
@@ -349,6 +355,332 @@ text(coord[,1], coord[,2], labels= acs,  offset = 1.6, cex=.66, pos=1)
 ##
 par(family = &quot;Academicons&quot;)
 points(coord[,1], coord[,2], pch=-as.hexmode(acs), cex=3, col=cols)</code></pre>
+<pre><code>## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;
+
+## Warning in plot.xy(xy.coords(x, y), type = type, ...): no font could be
+## found for family &quot;Academicons&quot;</code></pre>
 <p><img src="AcademiconsInR_files/figure-html/figacadem-1.png" width="912" /></p>
 </div>
 <div id="adding-fontawesomes-icons" class="section level3">
@@ -375,6 +707,8 @@ par(mar=c(0,0,0,0))
 par(family = &quot;Ionicons&quot;)
 points(coord[,1], coord[,2], pch=ias, cex=2.5, col=cols)</code></pre>
 <p><img src="AcademiconsInR_files/figure-html/figionic-1.png" width="912" /></p>
+<pre class="r"><code>plot(coord[,1], coord[,2], pch=ias, cex=2.5, col=cols)</code></pre>
+<p><img src="AcademiconsInR_files/figure-html/figionic-2.png" width="912" /></p>
 </div>
 <div id="combining-them" class="section level3">
 <h3>Combining them</h3>
@@ -395,6 +729,14 @@ points(0.451, 0.091, pch=-as.hexmode(&quot;F448&quot;), col=&quot;#b92a0a&quot;,
 ##
 par(family = &quot;Academicons&quot;)
 mtext(text=intToUtf8(&quot;59651&quot;), side=4, adj=1, line=3, cex=3)</code></pre>
+<pre><code>## Warning in mtext(text = intToUtf8(&quot;59651&quot;), side = 4, adj = 1, line = 3, :
+## no font could be found for family &quot;Academicons&quot;
+
+## Warning in mtext(text = intToUtf8(&quot;59651&quot;), side = 4, adj = 1, line = 3, :
+## no font could be found for family &quot;Academicons&quot;
+
+## Warning in mtext(text = intToUtf8(&quot;59651&quot;), side = 4, adj = 1, line = 3, :
+## no font could be found for family &quot;Academicons&quot;</code></pre>
 <p><img src="AcademiconsInR_files/figure-html/volcano-1.png" width="912" /></p>
 <p><br/></p>
 </div>
@@ -402,8 +744,8 @@ mtext(text=intToUtf8(&quot;59651&quot;), side=4, adj=1, line=3, cex=3)</code></p
 <div id="further-remarks" class="section level2">
 <h2>Further remarks</h2>
 <ol style="list-style-type: decimal">
-<li><p>Note the steps described here are useful to include any kind of police you have on your computer or you may find on line. Therefore this post should help you dealing with font if you intend to publish a figure in a journal that request a specific font. By the way, <code>showtext</code> allows you to search direct on google font, see the <code>font.add.google()</code> function.</p></li>
-<li><p>As you may have realized reading this post there are different way to write a character in unicode. Fortunately, many online converters help you getting from one standard to another (e.g. <a href="http://www.endmemo.com/unicode/unicodeconverter.php">unicodeconverter</a> does the job).</p></li>
+<li><p>Note that the steps described here are useful to include any kind of police you have on your computer or you may find online. Therefore this post should help you deal with font if you intend to publish a figure in a journal that requests a specific font. By the way, <code>showtext</code> allows you to search directly on google font (see the <code>font.add.google()</code> function).</p></li>
+<li><p>As you may have realized reading this post there are different ways to write a character in unicode. Fortunately, many online converters help you get from one standard to another (<em>e.g.</em> <a href="http://www.endmemo.com/unicode/unicodeconverter.php">unicodeconverter</a> does the job).</p></li>
 <li><p>You may also want to use emoji to cheer your plot up! See the emojifont package available on <a href="https://cran.r-project.org/web/packages/emojifont/">CRAN</a> and <a href="https://guangchuangyu.github.io/emojifont/">Github</a>.</p></li>
 </ol>
 </div>
