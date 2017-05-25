@@ -145,9 +145,8 @@ The unicode hexadecimal for the FontAwesome's icons range from `f000` (<i class=
 nsq <- 12
 fas <- 1:(nsq*nsq) %>% as.hexmode %>% paste0("f0", .)
 coord <- expand.grid(1:nsq, 1:nsq)
-par(mar=c(0,0,0,0), family = 'FontAwesome')
-plot0(c(0,nsq+1), c(0,nsq+1), type="n")
-points(coord[,1], coord[,2], pch=-as.hexmode(fas), cex=2.5, col=cols)
+par(mar=c(2,2,2,2), family = 'FontAwesome')
+plot(coord[,1], coord[,2], pch=-as.hexmode(fas), cex=2.5, col=cols, ann=FALSE, axes=FALSE)
 ```
 
 ### Adding Ionicons
@@ -157,14 +156,10 @@ The unicode decimal value of Ionicons's icons range from 61696 to 62711. There a
 ```{r figionic, fig.width=9.5, fig.height=8}
 val <- 61970:62046
 ias <- sapply(val, FUN=intToUtf8)
-par(mar=c(0,0,0,0))
-plot0(c(0,12), c(0,8), type="n")
 coord <- expand.grid(rev(1:11), 1:7)
-par(mar=c(0,0,0,0))
-# text(coord[,1], coord[,2], labels=val, cex=.6)
-par(family = "Ionicons")
-points(coord[,1], coord[,2], pch=ias, cex=2.5, col=cols)
-plot(coord[,1], coord[,2], pch=ias, cex=2.5, col=cols)
+##
+par(mar=c(2,2,2,2), family = "Ionicons")
+plot(coord[,1], coord[,2], ann=FALSE, axes=FALSE, pch=ias, cex=2.5, col=cols)
 ```
 
 

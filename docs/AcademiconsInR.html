@@ -255,7 +255,7 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Add icons on your plots</h1>
 <h4 class="author"><em>Kevin Cazelles &amp; David Beauchesne</em></h4>
-<h4 class="date"><em>May 23, 2017 - last update on May 24, 2017</em></h4>
+<h4 class="date"><em>May 23, 2017 - last update on May 25, 2017</em></h4>
 
 </div>
 
@@ -360,9 +360,8 @@ points(coord[,1], coord[,2], pch=-as.hexmode(acs), cex=3, col=cols)</code></pre>
 <pre class="r"><code>nsq &lt;- 12
 fas &lt;- 1:(nsq*nsq) %&gt;% as.hexmode %&gt;% paste0(&quot;f0&quot;, .)
 coord &lt;- expand.grid(1:nsq, 1:nsq)
-par(mar=c(0,0,0,0), family = &#39;FontAwesome&#39;)
-plot0(c(0,nsq+1), c(0,nsq+1), type=&quot;n&quot;)
-points(coord[,1], coord[,2], pch=-as.hexmode(fas), cex=2.5, col=cols)</code></pre>
+par(mar=c(2,2,2,2), family = &#39;FontAwesome&#39;)
+plot(coord[,1], coord[,2], pch=-as.hexmode(fas), cex=2.5, col=cols, ann=FALSE, axes=FALSE)</code></pre>
 <p><img src="AcademiconsInR_files/figure-html/figfontawe-1.png" width="912" /></p>
 </div>
 <div id="adding-ionicons" class="section level3">
@@ -370,16 +369,11 @@ points(coord[,1], coord[,2], pch=-as.hexmode(fas), cex=2.5, col=cols)</code></pr
 <p>The unicode decimal value of Ionicons’s icons range from 61696 to 62711. There are 765 icons available (version 2.0.1), therefore some hexidecimal are not assigned. Here we’ll use the <code>intToUtf8</code> function to convert the decimal value into unicode character.</p>
 <pre class="r"><code>val &lt;- 61970:62046
 ias &lt;- sapply(val, FUN=intToUtf8)
-par(mar=c(0,0,0,0))
-plot0(c(0,12), c(0,8), type=&quot;n&quot;)
 coord &lt;- expand.grid(rev(1:11), 1:7)
-par(mar=c(0,0,0,0))
-# text(coord[,1], coord[,2], labels=val, cex=.6)
-par(family = &quot;Ionicons&quot;)
-points(coord[,1], coord[,2], pch=ias, cex=2.5, col=cols)</code></pre>
+##
+par(mar=c(2,2,2,2), family = &quot;Ionicons&quot;)
+plot(coord[,1], coord[,2], ann=FALSE, axes=FALSE, pch=ias, cex=2.5, col=cols)</code></pre>
 <p><img src="AcademiconsInR_files/figure-html/figionic-1.png" width="912" /></p>
-<pre class="r"><code>plot(coord[,1], coord[,2], pch=ias, cex=2.5, col=cols)</code></pre>
-<p><img src="AcademiconsInR_files/figure-html/figionic-2.png" width="912" /></p>
 </div>
 <div id="combining-them" class="section level3">
 <h3>Combining them</h3>
