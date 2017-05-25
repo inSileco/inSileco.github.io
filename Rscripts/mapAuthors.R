@@ -1,7 +1,7 @@
 source("Rscripts/init.R")
 #
 map_aut <- leaflet() %>%
-  setView(lng = -64, lat = 35, zoom = 3) %>%
+  setView(lng = -74, lat = 46, zoom = 5) %>%
   addTiles() %>%  # Add default OpenStreetMap map tiles
   addProviderTiles(providers$Stamen.Toner)
 # add author's popups
@@ -15,7 +15,7 @@ for (i in 1:length(aut)){
     "<br/>",
     sep = " "
     )
-  addAuthorsLinks(aut[[i]])
+  txt <- paste0(txt, addAuthorsLinks(aut[[i]]))
   map_aut <- addMarkers(
     map_aut,
     lng=aut[[i]]$institution[[1]]$lon,

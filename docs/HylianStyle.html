@@ -280,16 +280,16 @@ dir.create(&quot;fonts&quot;, showWarnings = FALSE)
 url &lt;- &quot;http://zeldauniverse.net/wp-content/uploads/2014/01/Triforce.ttf_.zip&quot;
 download.file(url, paste0(&quot;fonts/&quot;, basename(url)))
 dir(&quot;fonts/&quot;)</code></pre>
-<pre><code>## [1] &quot;academicons.ttf&quot;   &quot;Triforce.ttf&quot;      &quot;Triforce.ttf_.zip&quot;</code></pre>
+<pre><code>## [1] &quot;Triforce.ttf&quot;      &quot;Triforce.ttf_.zip&quot;</code></pre>
 <pre class="r"><code># Unzip the file
 untar(paste0(&quot;fonts/&quot;, basename(url)), exdir = &quot;fonts/&quot;, compressed = &quot;gzip&quot;)
 dir(&quot;fonts/&quot;)</code></pre>
-<pre><code>## [1] &quot;academicons.ttf&quot;   &quot;Triforce.ttf&quot;      &quot;Triforce.ttf_.zip&quot;</code></pre>
+<pre><code>## [1] &quot;Triforce.ttf&quot;      &quot;Triforce.ttf_.zip&quot;</code></pre>
 <pre class="r"><code># Remove .zip
 file.remove(paste0(&quot;fonts/&quot;, basename(url)))</code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <pre class="r"><code>dir(&quot;fonts/&quot;)</code></pre>
-<pre><code>## [1] &quot;academicons.ttf&quot; &quot;Triforce.ttf&quot;</code></pre>
+<pre><code>## [1] &quot;Triforce.ttf&quot;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Install the <code>showtext</code> package if not already installed:</li>
 </ol>
@@ -620,7 +620,7 @@ points(x = 0.1, y = 0.1, pch = &quot;%&quot;, cex = 6, col = &quot;#347AB7&quot;
   with <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html">
   Rmarkdown</a>
   <br/>
-  Last update: 23-05-2017. Code source available on
+  Last update: 24-05-2017. Code source available on
     <a href="https://github.com/letiR/letiR_website">
       <i class='fa fa-github fa-1x'></i></a>
 </div>
