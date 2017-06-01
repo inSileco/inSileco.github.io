@@ -13,6 +13,8 @@ for (i in 1:length(aut)){
     aut[[i]]$description,
     "\n\n",
     addAuthorsLinks(aut[[i]]),
+    "\n\n<b>Research project</b>: ",
+    aut[[i]]$project,
     "<br/><br/> \n\n")
 }
 cat(txt)
