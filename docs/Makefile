@@ -18,7 +18,7 @@ docs/%.html: _main/%.Rmd
 	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('$(patsubst _main/%,%,$<)')"
 	rm $(patsubst _main/%,%,$<)
 
-docs/index.html: $(indr) _site.yml css/* data/* assets/*
+docs/index.html: $(indr) _site.yml css/* data/* assets/* Rscripts/*
 	gsed -i "s/update: [0-9\-]*./update: $(dat)./" footer.html
 	Rscript --no-init-file -e "rmarkdown::render_site()"
 	rm -rf docs/tmp_files

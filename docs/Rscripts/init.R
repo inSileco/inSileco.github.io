@@ -6,6 +6,7 @@ library(knitr)
 library(wordcloud2)
 library(webshot)
 library(htmlwidgets)
+library(htmltools)
 library(tm)
 
 ## functions

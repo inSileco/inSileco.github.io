@@ -4,7 +4,7 @@ addAuthorsLinks <-function(author){
     txt %<>% paste0(addiconurl(author$website, "fa fa-globe fa-2x"), "&nbsp;")
   }
   if (!is.null(author$github)) {
-    txt %<>% paste0(addiconurl(author$github, "fa fa-github fa-2x"), "&nbsp;")
+    txt %<>% paste0(addiconurl(paste0("https://github.com/", author$github), "fa fa-github fa-2x"), "&nbsp;")
   }
   if (!is.null(author$twitter)) {
     txt %<>% paste0(
