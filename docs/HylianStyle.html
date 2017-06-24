@@ -26,6 +26,7 @@
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
 <link rel="stylesheet" href="css/academicons.css"/>
+<link rel="stylesheet" href="css/creativecommons.css"/>
 <link rel="stylesheet" href="css/perso.css"/>
 <link rel="stylesheet" href="css/flag-icon.css"/>
 <!-- favicon -->
@@ -255,13 +256,13 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Make your plot Hylian</h1>
 <h4 class="author"><em>Kevin Cazelles, David Beauchesne &amp; Nicolas Casajus</em></h4>
-<h4 class="date"><em>April 14, 2017 - last update on June 12, 2017</em></h4>
+<h4 class="date"><em>April 14, 2017 - last update on June 24, 2017`</em></h4>
 
 </div>
 
 
 <p><br/></p>
-<p>Status: <img src="https://img.shields.io/badge/letiR-InRevision-blue.svg" /></p>
+<p>Status: <img src="https://img.shields.io/badge/letiR-finalVersion-800fa2.svg" /></p>
 <!-- `paste0("2017-04-15", Last update, format(Sys.time(), "%B, %d %Y"))` -->
 <p><br/></p>
 <p>Here are the 6 steps you need to make your plot a Hylian one! <strong>May the triforce be with you</strong>!</p>
@@ -271,24 +272,25 @@ $(document).ready(function () {
 <pre class="r"><code>sessionInfo()[[1]]$version.string</code></pre>
 <pre><code>## [1] &quot;R version 3.4.0 (2017-04-21)&quot;</code></pre>
 <ol style="list-style-type: decimal">
-<li>Open R and download the <a href="https://zeldauniverse.net/media/fonts/"><em>Triforce</em> font</a></li>
+<li>Open R and download the <a href="https://zeldauniverse.net/media/dir"><em>Triforce</em> font</a></li>
 </ol>
 <pre class="r"><code># Create a directory &lt; fonts &gt;
-dir.create(&quot;fonts&quot;, showWarnings = FALSE)
+dir &lt;- &quot;_tmp/dir&quot;
+dir.create(&quot;_tmp/fonts&quot;, showWarnings = FALSE)
 
 # Download Triforce font &lt; Triforce.ttf &gt;
 url &lt;- &quot;http://zeldauniverse.net/wp-content/uploads/2014/01/Triforce.ttf_.zip&quot;
-download.file(url, paste0(&quot;fonts/&quot;, basename(url)))
-dir(&quot;fonts/&quot;)</code></pre>
-<pre><code>## [1] &quot;Triforce.ttf&quot;      &quot;Triforce.ttf_.zip&quot;</code></pre>
+download.file(url, paste0(&quot;dir&quot;, basename(url)))
+dir(&quot;dir&quot;)</code></pre>
+<pre><code>## character(0)</code></pre>
 <pre class="r"><code># Unzip the file
-untar(paste0(&quot;fonts/&quot;, basename(url)), exdir = &quot;fonts/&quot;, compressed = &quot;gzip&quot;)
-dir(&quot;fonts/&quot;)</code></pre>
-<pre><code>## [1] &quot;Triforce.ttf&quot;      &quot;Triforce.ttf_.zip&quot;</code></pre>
+untar(paste0(&quot;dir&quot;, basename(url)), exdir = &quot;dir&quot;, compressed = &quot;gzip&quot;)
+dir(&quot;dir&quot;)</code></pre>
+<pre><code>## [1] &quot;Triforce.ttf&quot;</code></pre>
 <pre class="r"><code># Remove .zip
-file.remove(paste0(&quot;fonts/&quot;, basename(url)))</code></pre>
+file.remove(paste0(&quot;dir&quot;, basename(url)))</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>dir(&quot;fonts/&quot;)</code></pre>
+<pre class="r"><code>dir(&quot;dir&quot;)</code></pre>
 <pre><code>## [1] &quot;Triforce.ttf&quot;</code></pre>
 <ol start="2" style="list-style-type: decimal">
 <li>Install the <code>showtext</code> package if not already installed:</li>
@@ -346,252 +348,253 @@ font.files()</code></pre>
 ##  [43] &quot;Bodoni Ornaments.ttf&quot;                            
 ##  [44] &quot;Bradley Hand Bold.ttf&quot;                           
 ##  [45] &quot;Brush Script.ttf&quot;                                
-##  [46] &quot;Chalkboard.ttc&quot;                                  
-##  [47] &quot;ChalkboardSE.ttc&quot;                                
-##  [48] &quot;Chalkduster.ttf&quot;                                 
-##  [49] &quot;Charter.ttc&quot;                                     
-##  [50] &quot;Cochin.ttc&quot;                                      
-##  [51] &quot;Comic Sans MS Bold.ttf&quot;                          
-##  [52] &quot;Comic Sans MS.ttf&quot;                               
-##  [53] &quot;Copperplate.ttc&quot;                                 
-##  [54] &quot;Corsiva.ttc&quot;                                     
-##  [55] &quot;Courier New Bold Italic.ttf&quot;                     
-##  [56] &quot;Courier New Bold.ttf&quot;                            
-##  [57] &quot;Courier New Italic.ttf&quot;                          
-##  [58] &quot;Courier New.ttf&quot;                                 
-##  [59] &quot;Cousine Bold for Powerline.ttf&quot;                  
-##  [60] &quot;Cousine Bold Italic for Powerline.ttf&quot;           
-##  [61] &quot;Cousine for Powerline.ttf&quot;                       
-##  [62] &quot;Cousine Italic for Powerline.ttf&quot;                
-##  [63] &quot;D2Coding Bold for Powerline.ttf&quot;                 
-##  [64] &quot;D2Coding for Powerline.ttf&quot;                      
-##  [65] &quot;Damascus.ttc&quot;                                    
-##  [66] &quot;DecoTypeNaskh.ttc&quot;                               
-##  [67] &quot;DejaVu Sans Mono Bold for Powerline.ttf&quot;         
-##  [68] &quot;DejaVu Sans Mono Bold Oblique for Powerline.ttf&quot; 
-##  [69] &quot;DejaVu Sans Mono for Powerline.ttf&quot;              
-##  [70] &quot;DejaVu Sans Mono Oblique for Powerline.ttf&quot;      
-##  [71] &quot;Devanagari Sangam MN.ttc&quot;                        
-##  [72] &quot;DevanagariMT.ttc&quot;                                
-##  [73] &quot;Didot.ttc&quot;                                       
-##  [74] &quot;DIN Alternate Bold.ttf&quot;                          
-##  [75] &quot;DIN Condensed Bold.ttf&quot;                          
-##  [76] &quot;Diwan Kufi.ttc&quot;                                  
-##  [77] &quot;Diwan Thuluth.ttf&quot;                               
-##  [78] &quot;Droid Sans Mono Dotted for Powerline.ttf&quot;        
-##  [79] &quot;Droid Sans Mono for Powerline.otf&quot;               
-##  [80] &quot;Droid Sans Mono Slashed for Powerline.ttf&quot;       
-##  [81] &quot;EuphemiaCAS.ttc&quot;                                 
-##  [82] &quot;Farah.ttc&quot;                                       
-##  [83] &quot;Farisi.ttf&quot;                                      
-##  [84] &quot;FontAwesome.otf&quot;                                 
-##  [85] &quot;For R.ttf&quot;                                       
-##  [86] &quot;FuraMono-Bold Powerline.otf&quot;                     
-##  [87] &quot;FuraMono-Medium Powerline.otf&quot;                   
-##  [88] &quot;FuraMono-Regular Powerline.otf&quot;                  
-##  [89] &quot;Futura.ttc&quot;                                      
-##  [90] &quot;Georgia Bold Italic.ttf&quot;                         
-##  [91] &quot;Georgia Bold.ttf&quot;                                
-##  [92] &quot;Georgia Italic.ttf&quot;                              
-##  [93] &quot;Georgia.ttf&quot;                                     
-##  [94] &quot;GillSans.ttc&quot;                                    
-##  [95] &quot;Go Mono Bold for Powerline.ttf&quot;                  
-##  [96] &quot;Go Mono Bold Italic for Powerline.ttf&quot;           
-##  [97] &quot;Go Mono for Powerline.ttf&quot;                       
-##  [98] &quot;Go Mono Italic for Powerline.ttf&quot;                
-##  [99] &quot;graphicsutils.ttf&quot;                               
-## [100] &quot;Gujarati Sangam MN.ttc&quot;                          
-## [101] &quot;GujaratiMT.ttc&quot;                                  
-## [102] &quot;Gurmukhi MN.ttc&quot;                                 
-## [103] &quot;Gurmukhi Sangam MN.ttc&quot;                          
-## [104] &quot;Gurmukhi.ttf&quot;                                    
-## [105] &quot;Hack-Bold.ttf&quot;                                   
-## [106] &quot;Hack-BoldItalic.ttf&quot;                             
-## [107] &quot;Hack-Italic.ttf&quot;                                 
-## [108] &quot;Hack-Regular.ttf&quot;                                
-## [109] &quot;Herculanum.ttf&quot;                                  
-## [110] &quot;Hoefler Text Ornaments.ttf&quot;                      
-## [111] &quot;Hoefler Text.ttc&quot;                                
-## [112] &quot;HylianSymbols.ttf&quot;                               
-## [113] &quot;Impact.ttf&quot;                                      
-## [114] &quot;InaiMathi.ttf&quot;                                   
-## [115] &quot;Inconsolata Bold for Powerline.ttf&quot;              
-## [116] &quot;Inconsolata for Powerline.otf&quot;                   
-## [117] &quot;Inconsolata-dz for Powerline.otf&quot;                
-## [118] &quot;Inconsolata-g for Powerline.otf&quot;                 
-## [119] &quot;ionicons.ttf&quot;                                    
-## [120] &quot;Iowan Old Style.ttc&quot;                             
-## [121] &quot;ITFDevanagari.ttc&quot;                               
-## [122] &quot;Kailasa.ttc&quot;                                     
-## [123] &quot;Kannada MN.ttc&quot;                                  
-## [124] &quot;Kannada Sangam MN.ttc&quot;                           
-## [125] &quot;Kefa.ttc&quot;                                        
-## [126] &quot;Khmer MN.ttc&quot;                                    
-## [127] &quot;Khmer Sangam MN.ttf&quot;                             
-## [128] &quot;Kokonor.ttf&quot;                                     
-## [129] &quot;Krungthep.ttf&quot;                                   
-## [130] &quot;KufiStandardGK.ttc&quot;                              
-## [131] &quot;Lao MN.ttc&quot;                                      
-## [132] &quot;Lao Sangam MN.ttf&quot;                               
-## [133] &quot;Literation Mono Powerline Bold Italic.ttf&quot;       
-## [134] &quot;Literation Mono Powerline Bold.ttf&quot;              
-## [135] &quot;Literation Mono Powerline Italic.ttf&quot;            
-## [136] &quot;Literation Mono Powerline.ttf&quot;                   
-## [137] &quot;Luminari.ttf&quot;                                    
-## [138] &quot;Malayalam MN.ttc&quot;                                
-## [139] &quot;Malayalam Sangam MN.ttc&quot;                         
-## [140] &quot;Marion.ttc&quot;                                      
-## [141] &quot;Meslo LG L Bold for Powerline.ttf&quot;               
-## [142] &quot;Meslo LG L Bold Italic for Powerline.ttf&quot;        
-## [143] &quot;Meslo LG L DZ Bold for Powerline.ttf&quot;            
-## [144] &quot;Meslo LG L DZ Bold Italic for Powerline.ttf&quot;     
-## [145] &quot;Meslo LG L DZ Italic for Powerline.ttf&quot;          
-## [146] &quot;Meslo LG L DZ Regular for Powerline.ttf&quot;         
-## [147] &quot;Meslo LG L Italic for Powerline.ttf&quot;             
-## [148] &quot;Meslo LG L Regular for Powerline.ttf&quot;            
-## [149] &quot;Meslo LG M Bold for Powerline.ttf&quot;               
-## [150] &quot;Meslo LG M Bold Italic for Powerline.ttf&quot;        
-## [151] &quot;Meslo LG M DZ Bold for Powerline.ttf&quot;            
-## [152] &quot;Meslo LG M DZ Bold Italic for Powerline.ttf&quot;     
-## [153] &quot;Meslo LG M DZ Italic for Powerline.ttf&quot;          
-## [154] &quot;Meslo LG M DZ Regular for Powerline.ttf&quot;         
-## [155] &quot;Meslo LG M Italic for Powerline.ttf&quot;             
-## [156] &quot;Meslo LG M Regular for Powerline.ttf&quot;            
-## [157] &quot;Meslo LG S Bold for Powerline.ttf&quot;               
-## [158] &quot;Meslo LG S Bold Italic for Powerline.ttf&quot;        
-## [159] &quot;Meslo LG S DZ Bold for Powerline.ttf&quot;            
-## [160] &quot;Meslo LG S DZ Bold Italic for Powerline.ttf&quot;     
-## [161] &quot;Meslo LG S DZ Italic for Powerline.ttf&quot;          
-## [162] &quot;Meslo LG S DZ Regular for Powerline.ttf&quot;         
-## [163] &quot;Meslo LG S Italic for Powerline.ttf&quot;             
-## [164] &quot;Meslo LG S Regular for Powerline.ttf&quot;            
-## [165] &quot;Microsoft Sans Serif.ttf&quot;                        
-## [166] &quot;Mishafi Gold.ttf&quot;                                
-## [167] &quot;Mishafi.ttf&quot;                                     
-## [168] &quot;Monofur Bold for Powerline.ttf&quot;                  
-## [169] &quot;Monofur for Powerline.ttf&quot;                       
-## [170] &quot;Monofur Italic for Powerline.ttf&quot;                
-## [171] &quot;Mshtakan.ttc&quot;                                    
-## [172] &quot;Muna.ttc&quot;                                        
-## [173] &quot;Myanmar MN.ttc&quot;                                  
-## [174] &quot;Myanmar Sangam MN.ttc&quot;                           
-## [175] &quot;Nadeem.ttc&quot;                                      
-## [176] &quot;NewPeninimMT.ttc&quot;                                
-## [177] &quot;NISC18030.ttf&quot;                                   
-## [178] &quot;Noto Mono for Powerline.ttf&quot;                     
-## [179] &quot;Oriya MN.ttc&quot;                                    
-## [180] &quot;Oriya Sangam MN.ttc&quot;                             
-## [181] &quot;Papyrus.ttc&quot;                                     
-## [182] &quot;Phosphate.ttc&quot;                                   
-## [183] &quot;PlantagenetCherokee.ttf&quot;                         
-## [184] &quot;PTMono.ttc&quot;                                      
-## [185] &quot;PTSans.ttc&quot;                                      
-## [186] &quot;PTSerif.ttc&quot;                                     
-## [187] &quot;PTSerifCaption.ttc&quot;                              
-## [188] &quot;Raanana.ttc&quot;                                     
-## [189] &quot;Roboto Mono Bold for Powerline.ttf&quot;              
-## [190] &quot;Roboto Mono Bold Italic for Powerline.ttf&quot;       
-## [191] &quot;Roboto Mono for Powerline.ttf&quot;                   
-## [192] &quot;Roboto Mono Italic for Powerline.ttf&quot;            
-## [193] &quot;Roboto Mono Light for Powerline.ttf&quot;             
-## [194] &quot;Roboto Mono Light Italic for Powerline.ttf&quot;      
-## [195] &quot;Roboto Mono Medium for Powerline.ttf&quot;            
-## [196] &quot;Roboto Mono Medium Italic for Powerline.ttf&quot;     
-## [197] &quot;Roboto Mono Thin for Powerline.ttf&quot;              
-## [198] &quot;Roboto Mono Thin Italic for Powerline.ttf&quot;       
-## [199] &quot;Sana.ttc&quot;                                        
-## [200] &quot;Sathu.ttf&quot;                                       
-## [201] &quot;Sauce Code Powerline Black.otf&quot;                  
-## [202] &quot;Sauce Code Powerline Bold.otf&quot;                   
-## [203] &quot;Sauce Code Powerline ExtraLight.otf&quot;             
-## [204] &quot;Sauce Code Powerline Light.otf&quot;                  
-## [205] &quot;Sauce Code Powerline Medium.otf&quot;                 
-## [206] &quot;Sauce Code Powerline Regular.otf&quot;                
-## [207] &quot;Sauce Code Powerline Semibold.otf&quot;               
-## [208] &quot;Savoye LET.ttc&quot;                                  
-## [209] &quot;Seravek.ttc&quot;                                     
-## [210] &quot;Shree714.ttc&quot;                                    
-## [211] &quot;SignPainter.ttc&quot;                                 
-## [212] &quot;Silom.ttf&quot;                                       
-## [213] &quot;Sinhala MN.ttc&quot;                                  
-## [214] &quot;Sinhala Sangam MN.ttc&quot;                           
-## [215] &quot;Skia.ttf&quot;                                        
-## [216] &quot;SnellRoundhand.ttc&quot;                              
-## [217] &quot;Songti.ttc&quot;                                      
-## [218] &quot;STIXGeneral.otf&quot;                                 
-## [219] &quot;STIXGeneralBol.otf&quot;                              
-## [220] &quot;STIXGeneralBolIta.otf&quot;                           
-## [221] &quot;STIXGeneralItalic.otf&quot;                           
-## [222] &quot;STIXIntDBol.otf&quot;                                 
-## [223] &quot;STIXIntDReg.otf&quot;                                 
-## [224] &quot;STIXIntSmBol.otf&quot;                                
-## [225] &quot;STIXIntSmReg.otf&quot;                                
-## [226] &quot;STIXIntUpBol.otf&quot;                                
-## [227] &quot;STIXIntUpDBol.otf&quot;                               
-## [228] &quot;STIXIntUpDReg.otf&quot;                               
-## [229] &quot;STIXIntUpReg.otf&quot;                                
-## [230] &quot;STIXIntUpSmBol.otf&quot;                              
-## [231] &quot;STIXIntUpSmReg.otf&quot;                              
-## [232] &quot;STIXNonUni.otf&quot;                                  
-## [233] &quot;STIXNonUniBol.otf&quot;                               
-## [234] &quot;STIXNonUniBolIta.otf&quot;                            
-## [235] &quot;STIXNonUniIta.otf&quot;                               
-## [236] &quot;STIXSizFiveSymReg.otf&quot;                           
-## [237] &quot;STIXSizFourSymBol.otf&quot;                           
-## [238] &quot;STIXSizFourSymReg.otf&quot;                           
-## [239] &quot;STIXSizOneSymBol.otf&quot;                            
-## [240] &quot;STIXSizOneSymReg.otf&quot;                            
-## [241] &quot;STIXSizThreeSymBol.otf&quot;                          
-## [242] &quot;STIXSizThreeSymReg.otf&quot;                          
-## [243] &quot;STIXSizTwoSymBol.otf&quot;                            
-## [244] &quot;STIXSizTwoSymReg.otf&quot;                            
-## [245] &quot;STIXVar.otf&quot;                                     
-## [246] &quot;STIXVarBol.otf&quot;                                  
-## [247] &quot;SukhumvitSet.ttc&quot;                                
-## [248] &quot;SuperClarendon.ttc&quot;                              
-## [249] &quot;Symbol Neu for Powerline.ttf&quot;                    
-## [250] &quot;Tahoma Bold.ttf&quot;                                 
-## [251] &quot;Tahoma.ttf&quot;                                      
-## [252] &quot;Tamil MN.ttc&quot;                                    
-## [253] &quot;Tamil Sangam MN.ttc&quot;                             
-## [254] &quot;Telugu MN.ttc&quot;                                   
-## [255] &quot;Telugu Sangam MN.ttc&quot;                            
-## [256] &quot;Times New Roman Bold Italic.ttf&quot;                 
-## [257] &quot;Times New Roman Bold.ttf&quot;                        
-## [258] &quot;Times New Roman Italic.ttf&quot;                      
-## [259] &quot;Times New Roman.ttf&quot;                             
-## [260] &quot;Tinos Bold for Powerline.ttf&quot;                    
-## [261] &quot;Tinos Bold Italic for Powerline.ttf&quot;             
-## [262] &quot;Tinos for Powerline.ttf&quot;                         
-## [263] &quot;Tinos Italic for Powerline.ttf&quot;                  
-## [264] &quot;Trattatello.ttf&quot;                                 
-## [265] &quot;Trebuchet MS Bold Italic.ttf&quot;                    
-## [266] &quot;Trebuchet MS Bold.ttf&quot;                           
-## [267] &quot;Trebuchet MS Italic.ttf&quot;                         
-## [268] &quot;Trebuchet MS.ttf&quot;                                
-## [269] &quot;Triforce.ttf&quot;                                    
-## [270] &quot;Ubuntu Mono derivative Powerline Bold Italic.ttf&quot;
-## [271] &quot;Ubuntu Mono derivative Powerline Bold.ttf&quot;       
-## [272] &quot;Ubuntu Mono derivative Powerline Italic.ttf&quot;     
-## [273] &quot;Ubuntu Mono derivative Powerline.ttf&quot;            
-## [274] &quot;ubuntu-mono-590dccc17c4bd.otf&quot;                   
-## [275] &quot;Verdana Bold Italic.ttf&quot;                         
-## [276] &quot;Verdana Bold.ttf&quot;                                
-## [277] &quot;Verdana Italic.ttf&quot;                              
-## [278] &quot;Verdana.ttf&quot;                                     
-## [279] &quot;Waseem.ttc&quot;                                      
-## [280] &quot;Webdings.ttf&quot;                                    
-## [281] &quot;Wingdings 2.ttf&quot;                                 
-## [282] &quot;Wingdings 3.ttf&quot;                                 
-## [283] &quot;Wingdings.ttf&quot;                                   
-## [284] &quot;Zapfino.ttf&quot;                                     
-## [285] &quot;ヒラギノ丸ゴ ProN W4.ttc&quot;</code></pre>
+##  [46] &quot;cc-icons.ttf&quot;                                    
+##  [47] &quot;Chalkboard.ttc&quot;                                  
+##  [48] &quot;ChalkboardSE.ttc&quot;                                
+##  [49] &quot;Chalkduster.ttf&quot;                                 
+##  [50] &quot;Charter.ttc&quot;                                     
+##  [51] &quot;Cochin.ttc&quot;                                      
+##  [52] &quot;Comic Sans MS Bold.ttf&quot;                          
+##  [53] &quot;Comic Sans MS.ttf&quot;                               
+##  [54] &quot;Copperplate.ttc&quot;                                 
+##  [55] &quot;Corsiva.ttc&quot;                                     
+##  [56] &quot;Courier New Bold Italic.ttf&quot;                     
+##  [57] &quot;Courier New Bold.ttf&quot;                            
+##  [58] &quot;Courier New Italic.ttf&quot;                          
+##  [59] &quot;Courier New.ttf&quot;                                 
+##  [60] &quot;Cousine Bold for Powerline.ttf&quot;                  
+##  [61] &quot;Cousine Bold Italic for Powerline.ttf&quot;           
+##  [62] &quot;Cousine for Powerline.ttf&quot;                       
+##  [63] &quot;Cousine Italic for Powerline.ttf&quot;                
+##  [64] &quot;D2Coding Bold for Powerline.ttf&quot;                 
+##  [65] &quot;D2Coding for Powerline.ttf&quot;                      
+##  [66] &quot;Damascus.ttc&quot;                                    
+##  [67] &quot;DecoTypeNaskh.ttc&quot;                               
+##  [68] &quot;DejaVu Sans Mono Bold for Powerline.ttf&quot;         
+##  [69] &quot;DejaVu Sans Mono Bold Oblique for Powerline.ttf&quot; 
+##  [70] &quot;DejaVu Sans Mono for Powerline.ttf&quot;              
+##  [71] &quot;DejaVu Sans Mono Oblique for Powerline.ttf&quot;      
+##  [72] &quot;Devanagari Sangam MN.ttc&quot;                        
+##  [73] &quot;DevanagariMT.ttc&quot;                                
+##  [74] &quot;Didot.ttc&quot;                                       
+##  [75] &quot;DIN Alternate Bold.ttf&quot;                          
+##  [76] &quot;DIN Condensed Bold.ttf&quot;                          
+##  [77] &quot;Diwan Kufi.ttc&quot;                                  
+##  [78] &quot;Diwan Thuluth.ttf&quot;                               
+##  [79] &quot;Droid Sans Mono Dotted for Powerline.ttf&quot;        
+##  [80] &quot;Droid Sans Mono for Powerline.otf&quot;               
+##  [81] &quot;Droid Sans Mono Slashed for Powerline.ttf&quot;       
+##  [82] &quot;EuphemiaCAS.ttc&quot;                                 
+##  [83] &quot;Farah.ttc&quot;                                       
+##  [84] &quot;Farisi.ttf&quot;                                      
+##  [85] &quot;FontAwesome.otf&quot;                                 
+##  [86] &quot;For R.ttf&quot;                                       
+##  [87] &quot;FuraMono-Bold Powerline.otf&quot;                     
+##  [88] &quot;FuraMono-Medium Powerline.otf&quot;                   
+##  [89] &quot;FuraMono-Regular Powerline.otf&quot;                  
+##  [90] &quot;Futura.ttc&quot;                                      
+##  [91] &quot;Georgia Bold Italic.ttf&quot;                         
+##  [92] &quot;Georgia Bold.ttf&quot;                                
+##  [93] &quot;Georgia Italic.ttf&quot;                              
+##  [94] &quot;Georgia.ttf&quot;                                     
+##  [95] &quot;GillSans.ttc&quot;                                    
+##  [96] &quot;Go Mono Bold for Powerline.ttf&quot;                  
+##  [97] &quot;Go Mono Bold Italic for Powerline.ttf&quot;           
+##  [98] &quot;Go Mono for Powerline.ttf&quot;                       
+##  [99] &quot;Go Mono Italic for Powerline.ttf&quot;                
+## [100] &quot;graphicsutils.ttf&quot;                               
+## [101] &quot;Gujarati Sangam MN.ttc&quot;                          
+## [102] &quot;GujaratiMT.ttc&quot;                                  
+## [103] &quot;Gurmukhi MN.ttc&quot;                                 
+## [104] &quot;Gurmukhi Sangam MN.ttc&quot;                          
+## [105] &quot;Gurmukhi.ttf&quot;                                    
+## [106] &quot;Hack-Bold.ttf&quot;                                   
+## [107] &quot;Hack-BoldItalic.ttf&quot;                             
+## [108] &quot;Hack-Italic.ttf&quot;                                 
+## [109] &quot;Hack-Regular.ttf&quot;                                
+## [110] &quot;Herculanum.ttf&quot;                                  
+## [111] &quot;Hoefler Text Ornaments.ttf&quot;                      
+## [112] &quot;Hoefler Text.ttc&quot;                                
+## [113] &quot;HylianSymbols.ttf&quot;                               
+## [114] &quot;Impact.ttf&quot;                                      
+## [115] &quot;InaiMathi.ttf&quot;                                   
+## [116] &quot;Inconsolata Bold for Powerline.ttf&quot;              
+## [117] &quot;Inconsolata for Powerline.otf&quot;                   
+## [118] &quot;Inconsolata-dz for Powerline.otf&quot;                
+## [119] &quot;Inconsolata-g for Powerline.otf&quot;                 
+## [120] &quot;ionicons.ttf&quot;                                    
+## [121] &quot;Iowan Old Style.ttc&quot;                             
+## [122] &quot;ITFDevanagari.ttc&quot;                               
+## [123] &quot;Kailasa.ttc&quot;                                     
+## [124] &quot;Kannada MN.ttc&quot;                                  
+## [125] &quot;Kannada Sangam MN.ttc&quot;                           
+## [126] &quot;Kefa.ttc&quot;                                        
+## [127] &quot;Khmer MN.ttc&quot;                                    
+## [128] &quot;Khmer Sangam MN.ttf&quot;                             
+## [129] &quot;Kokonor.ttf&quot;                                     
+## [130] &quot;Krungthep.ttf&quot;                                   
+## [131] &quot;KufiStandardGK.ttc&quot;                              
+## [132] &quot;Lao MN.ttc&quot;                                      
+## [133] &quot;Lao Sangam MN.ttf&quot;                               
+## [134] &quot;Literation Mono Powerline Bold Italic.ttf&quot;       
+## [135] &quot;Literation Mono Powerline Bold.ttf&quot;              
+## [136] &quot;Literation Mono Powerline Italic.ttf&quot;            
+## [137] &quot;Literation Mono Powerline.ttf&quot;                   
+## [138] &quot;Luminari.ttf&quot;                                    
+## [139] &quot;Malayalam MN.ttc&quot;                                
+## [140] &quot;Malayalam Sangam MN.ttc&quot;                         
+## [141] &quot;Marion.ttc&quot;                                      
+## [142] &quot;Meslo LG L Bold for Powerline.ttf&quot;               
+## [143] &quot;Meslo LG L Bold Italic for Powerline.ttf&quot;        
+## [144] &quot;Meslo LG L DZ Bold for Powerline.ttf&quot;            
+## [145] &quot;Meslo LG L DZ Bold Italic for Powerline.ttf&quot;     
+## [146] &quot;Meslo LG L DZ Italic for Powerline.ttf&quot;          
+## [147] &quot;Meslo LG L DZ Regular for Powerline.ttf&quot;         
+## [148] &quot;Meslo LG L Italic for Powerline.ttf&quot;             
+## [149] &quot;Meslo LG L Regular for Powerline.ttf&quot;            
+## [150] &quot;Meslo LG M Bold for Powerline.ttf&quot;               
+## [151] &quot;Meslo LG M Bold Italic for Powerline.ttf&quot;        
+## [152] &quot;Meslo LG M DZ Bold for Powerline.ttf&quot;            
+## [153] &quot;Meslo LG M DZ Bold Italic for Powerline.ttf&quot;     
+## [154] &quot;Meslo LG M DZ Italic for Powerline.ttf&quot;          
+## [155] &quot;Meslo LG M DZ Regular for Powerline.ttf&quot;         
+## [156] &quot;Meslo LG M Italic for Powerline.ttf&quot;             
+## [157] &quot;Meslo LG M Regular for Powerline.ttf&quot;            
+## [158] &quot;Meslo LG S Bold for Powerline.ttf&quot;               
+## [159] &quot;Meslo LG S Bold Italic for Powerline.ttf&quot;        
+## [160] &quot;Meslo LG S DZ Bold for Powerline.ttf&quot;            
+## [161] &quot;Meslo LG S DZ Bold Italic for Powerline.ttf&quot;     
+## [162] &quot;Meslo LG S DZ Italic for Powerline.ttf&quot;          
+## [163] &quot;Meslo LG S DZ Regular for Powerline.ttf&quot;         
+## [164] &quot;Meslo LG S Italic for Powerline.ttf&quot;             
+## [165] &quot;Meslo LG S Regular for Powerline.ttf&quot;            
+## [166] &quot;Microsoft Sans Serif.ttf&quot;                        
+## [167] &quot;Mishafi Gold.ttf&quot;                                
+## [168] &quot;Mishafi.ttf&quot;                                     
+## [169] &quot;Monofur Bold for Powerline.ttf&quot;                  
+## [170] &quot;Monofur for Powerline.ttf&quot;                       
+## [171] &quot;Monofur Italic for Powerline.ttf&quot;                
+## [172] &quot;Mshtakan.ttc&quot;                                    
+## [173] &quot;Muna.ttc&quot;                                        
+## [174] &quot;Myanmar MN.ttc&quot;                                  
+## [175] &quot;Myanmar Sangam MN.ttc&quot;                           
+## [176] &quot;Nadeem.ttc&quot;                                      
+## [177] &quot;NewPeninimMT.ttc&quot;                                
+## [178] &quot;NISC18030.ttf&quot;                                   
+## [179] &quot;Noto Mono for Powerline.ttf&quot;                     
+## [180] &quot;Oriya MN.ttc&quot;                                    
+## [181] &quot;Oriya Sangam MN.ttc&quot;                             
+## [182] &quot;Papyrus.ttc&quot;                                     
+## [183] &quot;Phosphate.ttc&quot;                                   
+## [184] &quot;PlantagenetCherokee.ttf&quot;                         
+## [185] &quot;PTMono.ttc&quot;                                      
+## [186] &quot;PTSans.ttc&quot;                                      
+## [187] &quot;PTSerif.ttc&quot;                                     
+## [188] &quot;PTSerifCaption.ttc&quot;                              
+## [189] &quot;Raanana.ttc&quot;                                     
+## [190] &quot;Roboto Mono Bold for Powerline.ttf&quot;              
+## [191] &quot;Roboto Mono Bold Italic for Powerline.ttf&quot;       
+## [192] &quot;Roboto Mono for Powerline.ttf&quot;                   
+## [193] &quot;Roboto Mono Italic for Powerline.ttf&quot;            
+## [194] &quot;Roboto Mono Light for Powerline.ttf&quot;             
+## [195] &quot;Roboto Mono Light Italic for Powerline.ttf&quot;      
+## [196] &quot;Roboto Mono Medium for Powerline.ttf&quot;            
+## [197] &quot;Roboto Mono Medium Italic for Powerline.ttf&quot;     
+## [198] &quot;Roboto Mono Thin for Powerline.ttf&quot;              
+## [199] &quot;Roboto Mono Thin Italic for Powerline.ttf&quot;       
+## [200] &quot;Sana.ttc&quot;                                        
+## [201] &quot;Sathu.ttf&quot;                                       
+## [202] &quot;Sauce Code Powerline Black.otf&quot;                  
+## [203] &quot;Sauce Code Powerline Bold.otf&quot;                   
+## [204] &quot;Sauce Code Powerline ExtraLight.otf&quot;             
+## [205] &quot;Sauce Code Powerline Light.otf&quot;                  
+## [206] &quot;Sauce Code Powerline Medium.otf&quot;                 
+## [207] &quot;Sauce Code Powerline Regular.otf&quot;                
+## [208] &quot;Sauce Code Powerline Semibold.otf&quot;               
+## [209] &quot;Savoye LET.ttc&quot;                                  
+## [210] &quot;Seravek.ttc&quot;                                     
+## [211] &quot;Shree714.ttc&quot;                                    
+## [212] &quot;SignPainter.ttc&quot;                                 
+## [213] &quot;Silom.ttf&quot;                                       
+## [214] &quot;Sinhala MN.ttc&quot;                                  
+## [215] &quot;Sinhala Sangam MN.ttc&quot;                           
+## [216] &quot;Skia.ttf&quot;                                        
+## [217] &quot;SnellRoundhand.ttc&quot;                              
+## [218] &quot;Songti.ttc&quot;                                      
+## [219] &quot;STIXGeneral.otf&quot;                                 
+## [220] &quot;STIXGeneralBol.otf&quot;                              
+## [221] &quot;STIXGeneralBolIta.otf&quot;                           
+## [222] &quot;STIXGeneralItalic.otf&quot;                           
+## [223] &quot;STIXIntDBol.otf&quot;                                 
+## [224] &quot;STIXIntDReg.otf&quot;                                 
+## [225] &quot;STIXIntSmBol.otf&quot;                                
+## [226] &quot;STIXIntSmReg.otf&quot;                                
+## [227] &quot;STIXIntUpBol.otf&quot;                                
+## [228] &quot;STIXIntUpDBol.otf&quot;                               
+## [229] &quot;STIXIntUpDReg.otf&quot;                               
+## [230] &quot;STIXIntUpReg.otf&quot;                                
+## [231] &quot;STIXIntUpSmBol.otf&quot;                              
+## [232] &quot;STIXIntUpSmReg.otf&quot;                              
+## [233] &quot;STIXNonUni.otf&quot;                                  
+## [234] &quot;STIXNonUniBol.otf&quot;                               
+## [235] &quot;STIXNonUniBolIta.otf&quot;                            
+## [236] &quot;STIXNonUniIta.otf&quot;                               
+## [237] &quot;STIXSizFiveSymReg.otf&quot;                           
+## [238] &quot;STIXSizFourSymBol.otf&quot;                           
+## [239] &quot;STIXSizFourSymReg.otf&quot;                           
+## [240] &quot;STIXSizOneSymBol.otf&quot;                            
+## [241] &quot;STIXSizOneSymReg.otf&quot;                            
+## [242] &quot;STIXSizThreeSymBol.otf&quot;                          
+## [243] &quot;STIXSizThreeSymReg.otf&quot;                          
+## [244] &quot;STIXSizTwoSymBol.otf&quot;                            
+## [245] &quot;STIXSizTwoSymReg.otf&quot;                            
+## [246] &quot;STIXVar.otf&quot;                                     
+## [247] &quot;STIXVarBol.otf&quot;                                  
+## [248] &quot;SukhumvitSet.ttc&quot;                                
+## [249] &quot;SuperClarendon.ttc&quot;                              
+## [250] &quot;Symbol Neu for Powerline.ttf&quot;                    
+## [251] &quot;Tahoma Bold.ttf&quot;                                 
+## [252] &quot;Tahoma.ttf&quot;                                      
+## [253] &quot;Tamil MN.ttc&quot;                                    
+## [254] &quot;Tamil Sangam MN.ttc&quot;                             
+## [255] &quot;Telugu MN.ttc&quot;                                   
+## [256] &quot;Telugu Sangam MN.ttc&quot;                            
+## [257] &quot;Times New Roman Bold Italic.ttf&quot;                 
+## [258] &quot;Times New Roman Bold.ttf&quot;                        
+## [259] &quot;Times New Roman Italic.ttf&quot;                      
+## [260] &quot;Times New Roman.ttf&quot;                             
+## [261] &quot;Tinos Bold for Powerline.ttf&quot;                    
+## [262] &quot;Tinos Bold Italic for Powerline.ttf&quot;             
+## [263] &quot;Tinos for Powerline.ttf&quot;                         
+## [264] &quot;Tinos Italic for Powerline.ttf&quot;                  
+## [265] &quot;Trattatello.ttf&quot;                                 
+## [266] &quot;Trebuchet MS Bold Italic.ttf&quot;                    
+## [267] &quot;Trebuchet MS Bold.ttf&quot;                           
+## [268] &quot;Trebuchet MS Italic.ttf&quot;                         
+## [269] &quot;Trebuchet MS.ttf&quot;                                
+## [270] &quot;Triforce.ttf&quot;                                    
+## [271] &quot;Ubuntu Mono derivative Powerline Bold Italic.ttf&quot;
+## [272] &quot;Ubuntu Mono derivative Powerline Bold.ttf&quot;       
+## [273] &quot;Ubuntu Mono derivative Powerline Italic.ttf&quot;     
+## [274] &quot;Ubuntu Mono derivative Powerline.ttf&quot;            
+## [275] &quot;ubuntu-mono-590dccc17c4bd.otf&quot;                   
+## [276] &quot;Verdana Bold Italic.ttf&quot;                         
+## [277] &quot;Verdana Bold.ttf&quot;                                
+## [278] &quot;Verdana Italic.ttf&quot;                              
+## [279] &quot;Verdana.ttf&quot;                                     
+## [280] &quot;Waseem.ttc&quot;                                      
+## [281] &quot;Webdings.ttf&quot;                                    
+## [282] &quot;Wingdings 2.ttf&quot;                                 
+## [283] &quot;Wingdings 3.ttf&quot;                                 
+## [284] &quot;Wingdings.ttf&quot;                                   
+## [285] &quot;Zapfino.ttf&quot;                                     
+## [286] &quot;ヒラギノ丸ゴ ProN W4.ttc&quot;</code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>Add the new directory &lt; fonts &gt; to the available font paths of showtext</li>
 </ol>
-<pre class="r"><code>font.paths(&quot;fonts/&quot;)</code></pre>
-<pre><code>## [1] &quot;/Users/KevCaz/Codes/Github/sites/letiR_website/fonts&quot;
-## [2] &quot;/Library/Fonts&quot;                                      
+<pre class="r"><code>font.paths(&quot;dir&quot;)</code></pre>
+<pre><code>## [1] &quot;/Users/KevCaz/Codes/Github/sites/letiR_website/dir&quot;
+## [2] &quot;/Library/Fonts&quot;                                    
 ## [3] &quot;/Users/KevCaz/Library/Fonts&quot;</code></pre>
 <pre class="r"><code># Is the TTF present?
 font.files()[grep(&quot;Triforce&quot;, font.files())]</code></pre>
@@ -617,12 +620,17 @@ points(x = 0.1, y = 0.1, pch = &quot;%&quot;, cex = 6, col = &quot;#347AB7&quot;
 <br/><br/>
 
 <div class="footer">
-  Copyright &copy; 2017 LetiR. &nbsp; All rights reserved.
+  Copyright &copy; 2017 LetiR. All rights reserved.
+  All content under
+  <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
+      <i class='cc cc-cc-circle cc-1x'></i> <i class='cc cc-by-circle cc-1x'></i>
+      <i class='cc cc-nc-circle cc-1x'></i> <i class='cc cc-sa-circle cc-1x'></i>
+  </a> unless otherwise specified.  <br/>
   Made with <i class="ion-heart"></i>
   with <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html">
   Rmarkdown</a>
   <br/>
-  Last update: 12-06-2017. Code source available on
+  Last update: 24-06-2017. Code source available on
     <a href="https://github.com/letiR/letiR_website">
       <i class='fa fa-github fa-1x'></i></a>
 </div>

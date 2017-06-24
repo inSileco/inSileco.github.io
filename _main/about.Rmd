@@ -9,8 +9,16 @@ title: "About this website"
 source("Rscripts/textAuthors.R")
 ```
 
+
 <br/>
+<br/>
+
 
 ## About the posts
 
-*to be added*
+Here is the exhaustive list of R packages we use to generate this website. Therefore it includes all the packages (*i.e.* CRAN and Github packages) required to generate all our blog posts.
+We do our best to keep this list as short as possible. To do so, we do not include packages that will be installed as a dependency. For instance, we may use several functions of the *raster* package but as *biomod2* depends on in, we did not include *raster* in the list (it will be installed with *biomod2*).
+
+To make future updates easier, we used the following [gist](https://help.github.com/articles/about-gists/):
+
+<script src="https://gist.github.com/KevCaz/aaa83151e9d12cc07fbe379e2c32a385.js"></script>

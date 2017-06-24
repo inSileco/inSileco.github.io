@@ -4,7 +4,7 @@ author:
   - Kevin Cazelles,
     David Beauchesne &
     Nicolas Casajus
-date: "`r paste0('April 14, 2017  -  last update on ', format(Sys.time(), '%B %d, %Y'))`"
+date: "April 14, 2017  -  last update on June 24, 2017`"
 output:
   html_document:
     include:
@@ -13,7 +13,7 @@ output:
 
 <br/>
 
-Status: ![](https://img.shields.io/badge/letiR-InRevision-blue.svg)
+Status: ![](https://img.shields.io/badge/letiR-finalVersion-800fa2.svg)
 
 
 <!-- `paste0("2017-04-15", Last update, format(Sys.time(), "%B, %d %Y"))` -->
@@ -30,24 +30,25 @@ Here are the 6 steps you need to make your plot a Hylian one!
 sessionInfo()[[1]]$version.string
 ```
 
-1. Open R and download the [*Triforce* font](https://zeldauniverse.net/media/fonts/)
+1. Open R and download the [*Triforce* font](https://zeldauniverse.net/media/dir)
 
 ```{r, echo = TRUE, eval = TRUE}
 # Create a directory < fonts >
-dir.create("fonts", showWarnings = FALSE)
+dir <- "_tmp/dir"
+dir.create("_tmp/fonts", showWarnings = FALSE)
 
 # Download Triforce font < Triforce.ttf >
 url <- "http://zeldauniverse.net/wp-content/uploads/2014/01/Triforce.ttf_.zip"
-download.file(url, paste0("fonts/", basename(url)))
-dir("fonts/")
+download.file(url, paste0("dir", basename(url)))
+dir("dir")
 
 # Unzip the file
-untar(paste0("fonts/", basename(url)), exdir = "fonts/", compressed = "gzip")
-dir("fonts/")
+untar(paste0("dir", basename(url)), exdir = "dir", compressed = "gzip")
+dir("dir")
 
 # Remove .zip
-file.remove(paste0("fonts/", basename(url)))
-dir("fonts/")
+file.remove(paste0("dir", basename(url)))
+dir("dir")
 ```
 
 
@@ -72,11 +73,11 @@ font.files()
 4. Add the new directory < fonts > to the available font paths of showtext
 
 ```{r, echo = TRUE, eval = FALSE}
-font.paths("fonts/")
+font.paths("dir")
 ```
 
 ```{r, echo = FALSE, eval = TRUE}
-gsub("/Users/nicolascasajus/", "~/", font.paths("fonts/"))
+gsub("/Users/nicolascasajus/", "~/", font.paths("dir"))
 ```
 
 ```{r, echo = TRUE, eval = TRUE}

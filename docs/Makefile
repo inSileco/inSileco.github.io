@@ -20,12 +20,14 @@ docs/%.html: _main/%.Rmd
 
 docs/index.html: $(indr) _site.yml css/* data/* assets/* Rscripts/*
 	gsed -i "s/update: [0-9\-]*./update: $(dat)./" footer.html
-	Rscript --no-init-file -e "rmarkdown::render_site()"
+	Rscript --no-init-file -e 'rmarkdown::render_site(".")'
 	rm -rf docs/tmp_files
 
+newpost:
+	cp _template/emptyPost.md _posts/
 
 reveal:
 	Rscript --no-init-file -e "for (i in list.files('pres', pattern='*.Rmd', full.names=T)) rmarkdown::render(i)"
 
 clean:
-	Rscript --no-init-file -e "rmarkdown::clean_site()"
+	Rscript --no-init-file -e "rmarkdown::clean_site(".")"

@@ -177,13 +177,23 @@ We can then import environmental data using `sdmpredictors`. Since our study are
 
 <br/>
 
+```{r, importEnvVarhidden, echo = FALSE, eval = FALSE}
+# Import marine layers
+    layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
+    envCov <- readRDS("assets/envCov.Rds")
+```
+
 ```{r, importEnvVar, eval = TRUE}
 # Import marine layers
     layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
     # layers <- 'BO_ph'
+    envCov <- sdmpredictors::load_layers(layers, datadir = paste0( getwd(), "/_tmp"), rasterstack = TRUE)
 
-    envCov <- sdmpredictors::load_layers(layers, datadir = tempdir(), rasterstack = TRUE)
+```
 
+Clip them and plot them:
+
+```{r, plotEnvVar, eval = TRUE}
 # Clip to study area extent
     envCov <- raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax))
     envCov <- raster::stack(envCov)
