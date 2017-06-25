@@ -23,8 +23,12 @@ docs/index.html: $(indr) _site.yml css/* data/* assets/* Rscripts/*
 	Rscript --no-init-file -e 'rmarkdown::render_site(".")'
 	rm -rf docs/tmp_files
 
+
 newpost:
 	cp _template/emptyPost.md _posts/
+
+wordcloud:
+	Rscript --no-init-file ./Rscripts/ourWordcloud.R
 
 reveal:
 	Rscript --no-init-file -e "for (i in list.files('pres', pattern='*.Rmd', full.names=T)) rmarkdown::render(i)"

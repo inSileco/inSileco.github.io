@@ -35,7 +35,15 @@ freq <- colSums(as.matrix(dtm))
 datdoc <- data.frame(names=names(freq), freq=freq)
 datdoc <- datdoc[rev(order(datdoc$freq)), ]
 datext <- data.frame(
-  names=c("R", "Open-data", "Open-Science", "Markdown", "Latex", "Python", "C/C++", "Web", "Javascript"),
-  freq=c(220, 160, 160, 140, 70, 70, 70, 100, 40))
+  names=c("R", "Open-data", "Open-Science", "Markdown", "Latex", "Python", "C/C++", "Web", "Javascript", "Julia"),
+  freq=c(300, 220, 240, 180, 100, 100, 100, 100, 100, 70)
+  )
 dat <- rbind(datext, datdoc)
-wc_aut <- wordcloud2(dat, figPath = "./img/butterfly.png", size = 2, color="white", backgroundColor=1)
+# imgwc <- "assets/img/butterfly.png"
+# imgwc <- "assets/img/favicon.png"
+imgwc <- "assets/img/tortue.png"
+wc_aut <- wordcloud2(dat, figPath = imgwc, size = 2, color="white", backgroundColor=1)
+##
+saveWidget(wc_aut, paste0(getwd(),"/assets/ourWordcloud.html"), selfcontained = FALSE)
+## convert into png
+# webshot("./assets/ourWordcloud.html", "./assets/img/ourWordcloud.png", delay = 30)

@@ -269,10 +269,7 @@ $(document).ready(function () {
 </div>
 <div id="dependencies" class="section level2">
 <h2>Dependencies</h2>
-<p>In order to build this website, the following are needed: - R(&gt;=3.3.0) - Rmarkdown(&gt;=) - We use the to build the website so … GNU make file</p>
-<ul>
-<li>We used a couple of different packages throughout for the different blog posts the simplest way to get them all is to use <a href="https://gist.github.com/KevCaz/aaa83151e9d12cc07fbe379e2c32a385">this gist</a>.</li>
-</ul>
+<p>In order to build this website, the following are needed: - R(&gt;=3.3.0); - Rmarkdown(&gt;=1.5); - We use a customized Makefile do build this website, so you need to use <a href="https://www.gnu.org/software/make/">GNU Makefile</a> already install on most of (all?) UNIX systems. Windows users should consider using <a href="http://www.cygwin.com" class="uri">http://www.cygwin.com</a>; - We used a couple of different packages throughout our different blog posts. The simplest way to get them all is to use [this gist](<a href="https://gist.github.com/KevCaz/aaa83151e9d12cc07fbe379e2c32a385" class="uri">https://gist.github.com/KevCaz/aaa83151e9d12cc07fbe379e2c32a385</a>].</p>
 </div>
 </div>
 <div id="contributing" class="section level1">
@@ -281,7 +278,9 @@ $(document).ready(function () {
 <li>Any additional header contain does <code>header.html</code></li>
 <li>To tune the current visual style, modify the <code>css/perso.css</code> file.</li>
 <li>Add <em>jQueries</em> in <code>footer.html</code></li>
+<li>create a new blog post:</li>
 </ul>
+<pre><code>  make newpost</code></pre>
 </div>
 <div id="to-do" class="section level1">
 <h1>To do</h1>
@@ -297,16 +296,14 @@ $(document).ready(function () {
 <br/><br/>
 
 <div class="footer">
-  Copyright &copy; 2017 LetiR. All rights reserved.
-  All content under
+  Copyright &copy; 2017 LetiR. All rights reserved.   Made with <i class="ion-heart"></i>
+    with <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html">
+    Rmarkdown</a>. <br/>
+  Content on this site is licensed under
   <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/">
       <i class='cc cc-cc-circle cc-1x'></i> <i class='cc cc-by-circle cc-1x'></i>
       <i class='cc cc-nc-circle cc-1x'></i> <i class='cc cc-sa-circle cc-1x'></i>
-  </a> unless otherwise specified.  <br/>
-  Made with <i class="ion-heart"></i>
-  with <a href="http://rmarkdown.rstudio.com/rmarkdown_websites.html">
-  Rmarkdown</a>
-  <br/>
+  </a> unless otherwise specified. <br/>
   Last update: 24-06-2017. Code source available on
     <a href="https://github.com/letiR/letiR_website">
       <i class='fa fa-github fa-1x'></i></a>
