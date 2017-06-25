@@ -29,11 +29,15 @@ In order to build this website, the following are needed:
   make newpost
 ```
 
+# Licence
+
+- Content on the website is licensed under https://creativecommons.org/licenses/by-nc-sa/4.0/ unless otherwise specified.
+
 
 # To do
 
 - [ ] add a more exhaustive description of contributors/contributions :raising_hand:
-- [ ] fix the current wordcloud (it often fails loading) :pray:
-- [ ] add tags to posts. (Hugo does it well and it is a valuable feature to add).
+- [x] fix the current wordcloud (it often fails loading)
+- [ ] add tags to posts. (Hugo does it well and it is a great feature to add). :pray:
 - [ ] add contributing for how to make posts
 - [ ] add anchor for all h1 / h2 titles (a simple jQuery code should do the job)
