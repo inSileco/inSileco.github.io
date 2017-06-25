@@ -14,7 +14,7 @@
 In order to build this website, the following are needed:
 - R(>=3.3.0);
 - Rmarkdown(>=1.5);
-- We use a customized Makefile do build this website, so you need to use [GNU Makefile](https://www.gnu.org/software/make/) already install on most of (all?) UNIX systems. Windows users should consider using http://www.cygwin.com;
+- We use a customized Makefile do build this website, so you need to use [GNU Makefile](https://www.gnu.org/software/make/) already install on most  (all?) UNIX systems. Windows users should consider using http://www.cygwin.com;
 - We used a couple of different packages throughout our different blog posts. The simplest way to get them all is to use [this gist](https://gist.github.com/KevCaz/aaa83151e9d12cc07fbe379e2c32a385].
 
 
