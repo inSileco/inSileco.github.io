@@ -242,7 +242,7 @@ could also be used.
 
 Clip them and plot them:
 
-```{r, plotEnvVar, eval = TRUE, fig.width = 9.5, fig.height = 7}
+```{r, plotEnvVar, eval = TRUE, fig.width = 9.5, fig.height = 6}
 # Clip to study area extent
     envCov <- raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax))
     envCov <- raster::stack(envCov)
