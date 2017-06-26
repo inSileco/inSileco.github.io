@@ -51,6 +51,6 @@ dat <- dat[1:800,]
 imgwc <- "assets/img/tortue.png"
 wc_aut <- wordcloud2(dat, figPath = imgwc, size = 2, color="white", backgroundColor=1)
 ##
-saveWidget(wc_aut, paste0(getwd(),"/assets/ourWordcloud.html"), selfcontained = FALSE)
+saveWidget(wc_aut, paste0(getwd(),"/_tmp/ourWordcloud.html"), selfcontained = FALSE)
 ## convert into png
-# webshot("./assets/ourWordcloud.html", "./assets/img/ourWordcloud.png", delay = 10)
+# webshot("./_tmp/ourWordcloud.html", "./assets/img/ourWordcloud.png", delay = 10)

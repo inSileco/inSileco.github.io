@@ -12,7 +12,9 @@ output:
 
 <br/>
 
-Status: ![](https://img.shields.io/badge/letiR-InDevelopment-blue.svg)
+<!-- Status: ![](https://img.shields.io/badge/letiR-InDevelopment-blue.svg) -->
+
+Status: ![](https://img.shields.io/badge/letiR-InRevision-blue.svg)
 
 <!-- render(input = './_posts/OnlineEcology.rmd', 'html_document') -->
 
@@ -20,6 +22,7 @@ Status: ![](https://img.shields.io/badge/letiR-InDevelopment-blue.svg)
 rm(list=ls())
 library(raster)
 ```
+
 
 <br/>
 
@@ -35,7 +38,11 @@ sessionInfo()[[1]]$version.string
 
 # IMAGINE!
 
-Let's imagine that you are interested in a species in a given area and wish to know as much as possible about it. But, you can't go out in the field because funding is running short. What you do have, however, is a certain knowledge of the tools that are available to you and you are wondering how far they can take you. Let's find out.
+Let's imagine that you are interested in a species in a given area and wish to
+know as much as possible about it. But, you can't go out in the field because
+funding is running short. What you do have, however, is a certain knowledge of
+the tools that are available to you and you are wondering how far they can take
+you. Let's find out.
 
 <br/>
 
@@ -73,7 +80,10 @@ Let's imagine that you are interested in a species in a given area and wish to k
 
 ### Fishbase
 
-We'll start with a description of the species. First, let's see what [fishbase](http://www.fishbase.ca/) has to offer. This online data repository, along with [sealifebase](http://www.sealifebase.org/), contains a lot of information on marine and aquatic species all over the world and is accessible through the package [`rfishbase`](https://github.com/ropensci/rfishbase)
+We'll start with a description of the species. First, let's see what [fishbase](http://www.fishbase.ca/) has to offer. This online data repository,
+along with [sealifebase](http://www.sealifebase.org/), contains a lot of
+information on marine and aquatic species all over the world and is accessible
+through the package [`rfishbase`](https://github.com/ropensci/rfishbase)
 
 <br/>
 
@@ -88,11 +98,15 @@ ecol <- ecol[!is.na(ecol[,2]), ] # remove NAs
 knitr::kable(ecol, col.names = c('Descriptors', 'Attributes'))
 ```
 
+
 <br/>
 
 ### Taxize
 
-We can also extract taxonomic informations rather easily. The package [taxize](https://ropensci.org/tutorials/taxize_tutorial.html) allows you to extract and validate, among other things, the taxonomy of millions of species by accessing an important number of online databases accessible through their Application Program Interface (API).
+We can also extract taxonomic informations rather easily. The package [taxize](https://ropensci.org/tutorials/taxize_tutorial.html) allows you to
+extract and validate, among other things, the taxonomy of millions of species
+by accessing an important number of online databases accessible through their
+Application Programming Interface (API).
 
 <br/>
 
@@ -111,11 +125,15 @@ We can also extract taxonomic informations rather easily. The package [taxize](h
     knitr::kable(taxize::children(strsplit(sp, ' ')[[1]][1], db = 'itis')[[1]])
 ```
 
+
 <br/>
 
 ### GloBI
 
-How about extracting all known preys and predators of the species of interest? The [Global Biotic Interactions](http://globalbioticinteractions.org) web platform contains thousands of empirical binary interactions for multiple types of interactions, all over the world, and is easily accessible using the package [rglobi](https://github.com/ropensci/rglobi).
+How about extracting all known preys and predators of the species of interest?
+The [Global Biotic Interactions](http://globalbioticinteractions.org) web
+platform contains thousands of empirical binary interactions for multiple types
+of interactions, all over the world, and is easily accessible using the package [rglobi](https://github.com/ropensci/rglobi).
 
 <br/>
 
@@ -138,7 +156,11 @@ How about extracting all known preys and predators of the species of interest? T
 
 ### Get data from OBIS
 
-OBIS is the [Ocean Biogeographic Information System](http://www.iobis.org/) and their vision is: "To be the most comprehensive gateway to the world’s ocean biodiversity and biogeographic data and information required to address pressing coastal and world ocean concerns." We can get access to their HUGE database through the excellent `robis` package by [ropensci](https://ropensci.org/)
+OBIS is the [Ocean Biogeographic Information System](http://www.iobis.org/)
+and their vision is: "To be the most comprehensive gateway to the world’s ocean
+biodiversity and biogeographic data and information required to address pressing
+coastal and world ocean concerns." We can get access to their **HUGE** database
+through the excellent `robis` package [available on Github](https://github.com/iobis/robis).
 
 <br/>
 
@@ -159,11 +181,20 @@ OBIS is the [Ocean Biogeographic Information System](http://www.iobis.org/) and 
     mapview::mapview(OBIS, cex = 4)@map
 ```
 
+
 <br/>
 
 ## Environmental variables
 
-There are multiple resources available to access environmental data directly through R. Bathymetry data can easily be accessed using the `marmap` package. Other environmental data can also be accessed using other packages like `raster` for terrestrial climatic data (bioclim) and `rnoaa` for some environmental layers like sea surface temperature et sea ice cover. Finally, a precious resource is the recently published `sdmpredictors` package, which provides access to multiple important global environmental datasets for marine and terrestrial environments and a total of `r nrow(sdmpredictors::list_layers(sdmpredictors::list_datasets()))`
+There are multiple resources available to access environmental data directly
+through R. Bathymetry data can easily be accessed using the `marmap` package.
+Other environmental data can also be accessed using other packages like `raster`
+for terrestrial climatic data (bioclim) and `rnoaa` for some environmental
+layers like sea surface temperature et sea ice cover. Finally, a precious
+resource is the recently published [`sdmpredictors` package](https://cran.r-project.org/web/packages/sdmpredictors/index.html),
+which provides access to multiple important global environmental datasets for marine
+and terrestrial environments and a total of
+`r nrow(sdmpredictors::list_layers(sdmpredictors::list_datasets()))`
 
 <br/>
 
@@ -173,11 +204,15 @@ knitr::kable(sdmpredictors::list_datasets())
 
 <br/>
 
-We can then import environmental data using `sdmpredictors`. Since our study area of interest is marine, we will select environmental variables accordingly from the `Bio-ORACLE` dataset, although data from `MARSPEC` could also be used.
+We can then import environmental data using the `sdmpredictors()` function.
+Since our study area of interest is marine, we will select environmental
+variables accordingly from the `Bio-ORACLE` dataset, although data from `MARSPEC`
+could also be used.
 
 
 <br/>
 
+<!-- KC I did the following to not always dowload the tif  -->
 ```{r, importEnvVarhidden, echo = FALSE, eval = TRUE}
 # Import marine layers
     layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
@@ -196,11 +231,9 @@ We can then import environmental data using `sdmpredictors`. Since our study are
       envCov <- sdmpredictors::load_layers(layers, datadir = paste0( getwd(), "/_tmp"), rasterstack = TRUE)
       saveRDS(envCov, "./_tmp/envCov.Rds")
     }
-
-
 ```
 
-```{r, importEnvVar, eval = TRUE}
+```{r, importEnvVar, eval = FALSE}
 # Import marine layers
     layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
     # layers <- 'BO_ph'
@@ -209,7 +242,7 @@ We can then import environmental data using `sdmpredictors`. Since our study are
 
 Clip them and plot them:
 
-```{r, plotEnvVar, eval = TRUE}
+```{r, plotEnvVar, eval = TRUE, fig.width = 9.5, fig.height = 7}
 # Clip to study area extent
     envCov <- raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax))
     envCov <- raster::stack(envCov)
@@ -221,17 +254,29 @@ Clip them and plot them:
     raster::plot(envCov)
 ```
 
+
 <br/>
 
 ## Species distribution models
 
-Now what we can do once we have species occurrence data and environmental variables are species distribution models (SDMs). There are multiple ways and packages to perform SDMs and this [vignette](https://cran.r-project.org/web/packages/dismo/vignettes/sdm.pdf) provides an extensive overview of the different methods available. For this workshop, we will be using the package `biomod2`, which implements most of the methods presented in the vignette. There is also a thorough explanation of our to use `biomod2` in another very interesting [vignette](https://r-forge.r-project.org/scm/viewvc.php/*checkout*/pkg/biomod2/inst/doc/Simple_species_modelling.pdf?root=biomod)
+Now what we can do once we have species occurrence data and environmental
+variables are species distribution models (SDMs). There are multiple ways and
+packages to perform SDMs and this [vignette](https://cran.r-project.org/web/packages/dismo/vignettes/sdm.pdf)
+provides an extensive overview of the different methods available. For this
+blog post, we will be using the package `biomod2`, which implements most of
+the methods presented in the vignette. There is also a thorough explanation of
+our to use `biomod2` in another very interesting [vignette](https://r-forge.r-project.org/scm/viewvc.php/*checkout*/pkg/biomod2/inst/doc/Simple_species_modelling.pdf?root=biomod)
+
 
 <br/>
 
-### Formating data
+### Formatting data
 
-The first thing to do is to format our data to be able to work with `biomod2` functions, which work with BIOMOD.formated.data.PA class objects. This entails stacking all of our environmental data together to perform analyses, which was performed in the previous step using the `sdmpredictors` package. You can then create your `biomod2` data class.
+The first thing to do is to format our data to be able to work with `biomod2`
+functions, which work with BIOMOD.formated.data.PA class objects. This entails
+stacking all of our environmental data together to perform analyses, which was
+performed in the previous step using the `sdmpredictors` package. You can then
+create your `biomod2` data class.
 
 <br/>
 
@@ -245,7 +290,8 @@ SDMdata <- biomod2::BIOMOD_FormatingData(resp.var = rep(1,nrow(OBIS)),
 
 <br/>
 
-...and use this object with the `biomod2` functions are generate a distribution model for your species of interest.
+...and use this object with the `biomod2` functions are generate a distribution
+model for your species of interest.
 
 <br/>
 
@@ -262,7 +308,7 @@ SDMdata <- biomod2::BIOMOD_FormatingData(resp.var = rep(1,nrow(OBIS)),
 
 <br/>
 
-You can then extract the evaluation of the fit of your model
+You can then extract the evaluation of the fit of your model:
 
 <br/>
 
@@ -273,11 +319,12 @@ You can then extract the evaluation of the fit of your model
 
 <br/>
 
-Finally, once the models are calibrated and evaluated, you can project your species spatial distribution...
+Finally, once the models are calibrated and evaluated, you can project your
+species spatial distribution:
 
 <br/>
 
-```{r, sdmSpatial, results = 'hide'}
+```{r, sdmSpatial, results = 'hide', fig.width = 7, fig.height = 7}
 # Model spatial projection
     SDMproj <- biomod2::BIOMOD_Projection(modeling.output = SDM,
                                           new.env = envCov,
@@ -293,11 +340,16 @@ Finally, once the models are calibrated and evaluated, you can project your spec
 
 <br/>
 
-Riveting! We starting with a basic idea and ended up with a species description, an idea of the distribution of certain environmental parameters in our area of interest (could be better, we know!) and the potential spatial distribution of our species!
+Riveting! We starting with a basic idea and ended up with a species description,
+an idea of the distribution of certain environmental parameters in our area of
+interest (could be better, we know!) and the potential spatial distribution of
+our species!
 
 ...but should we stop there?
 
-The reality is, there is so much more going on in our area of interest than the spatial distribution of a single species. Let's see what other insights we an get from available open source resources.
+The reality is, there is so much more going on in our area of interest than
+the spatial distribution of a single species. Let's see what other insights
+we an get from available open source resources.
 
 
 <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
