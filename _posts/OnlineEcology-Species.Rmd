@@ -6,6 +6,9 @@ status: draft
 date: "`r paste0('June 19, 2017  -  last update on ', format(Sys.time(), '%B %d, %Y'))`"
 output:
   html_document:
+    toc: true
+    toc_float:
+      collapsed: false
     include:
         after_body: [footer.html, disqus.html]
 ---
