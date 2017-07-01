@@ -1,10 +1,10 @@
 source("Rscripts/init.R")
 #
-soft <- yaml.load_file("data/software.yml")
+soft <- yaml::yaml.load_file("data/software.yml")
 sz <- length(soft)
 txt <- ""
 ##
-vec_categ <- lapply(soft, . %>% extract('category')) %>% unlist
+vec_categ <- lapply(soft, . %>% magrittr::extract('category')) %>% unlist
 vec_categu <- vec_categ %>% unique
 
 for (i in 1:length(vec_categu)){
@@ -22,7 +22,7 @@ for (i in 1:length(vec_categu)){
       if (!is.null(chc[k])) txt %<>% paste0(" ", chc[k])
     }
     ##
-    txt %<>% paste0("<br/><br/> \n\n")
+    txt %<>% paste0("\n\n")
   }
 }
 ##

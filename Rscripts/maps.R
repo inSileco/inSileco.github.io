@@ -1,8 +1,8 @@
 source("Rscripts/init.R")
 #
-map <- yaml.load_file("data/maps.yml")
+map <- yaml::yaml.load_file("data/maps.yml")
 sz <- length(map)
-vec_categ <- lapply(map, . %>% extract('category')) %>% unlist
+vec_categ <- lapply(map, . %>% magrittr::extract('category')) %>% unlist
 vec_categu <- vec_categ %>% unique
 txt <- ""
 

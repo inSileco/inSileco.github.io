@@ -6,8 +6,8 @@ map_aut <- leaflet() %>%
   addTiles() %>%  # Add default OpenStreetMap map tiles
   addProviderTiles(providers$Stamen.Toner)
 # load the yaml files
-aut <- yaml.load_file("data/authors_info.yml")
-uni <- yaml.load_file("data/univ.yml")
+aut <- yaml::yaml.load_file("data/authors_info.yml")
+uni <- yaml::yaml.load_file("data/univ.yml")
 # Univ ID's by authors
 aut_uni <- lapply(aut, function (x) x$institution) %>%
   lapply(function (x) lapply(x, function(y) unlist(y$id))) %>%

@@ -1,8 +1,8 @@
 source("Rscripts/init.R")
 #
-tal <- yaml.load_file("data/talks.yml")
+tal <- yaml::yaml.load_file("data/talks.yml")
 sz <- length(tal)
-vec_categ <- lapply(tal, . %>% extract('categ')) %>% unlist
+vec_categ <- lapply(tal, . %>% magrittr::extract('categ')) %>% unlist
 vec_categu <- vec_categ %>% unique
 txt <- ""
 
@@ -23,7 +23,7 @@ for (i in 1:length(vec_categu)){
         "\n"
         )
   }
-  txt %<>% paste0("<br/><br/> \n\n")
+  txt %<>% paste0("\n\n")
 }
 
 cat(txt)

@@ -2,6 +2,9 @@ name: "LetiR"
 output_dir: "docs"
 exclude: ["LICENSE", "README.html", "posts/*.Rmd"]
 code_download: true
+toc_depth: 3
+toc_float:
+  collapsed: false
 navbar:
   title: "LetiR"
   left:
@@ -22,11 +25,15 @@ navbar:
           href: HylianStyle.html
         - text: "Icons on you plots"
           href: AcademiconsInR.html
+        - text: "---------"
         - text: "Ecology and R"
-        - text: "Online Ecology series"
+        # - text: "Online Ecology series"
         - text: "Species"
           href: OnlineEcology-Species.html
-        - text: "R tips"
+        - text: "---------"
+        - text: "Code tips"
+        - text: "Code tips 0001"
+          href: "Codetips0001.html"
     - text: "Maps"
       href: maps.html
     - text: "More"
@@ -41,6 +48,9 @@ navbar:
       href: https://github.com/letiR/letiR_website
 output:
   html_document:
+    theme: cosmo
+    highlight: textmate
     include:
         in_header: header.html
         after_body: footer.html
+    # css: css/perso.css

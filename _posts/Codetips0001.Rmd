@@ -1,0 +1,249 @@
+---
+title: "Code tips 0001 (R)"
+author:
+  - Kevin Cazelles
+status: draft
+date: "June 30, 2017 -  last update on June 30, 2017"
+output:
+  html_document:
+    include:
+        after_body: [footer.html, disqus.html]
+---
+
+
+Status: ![](https://img.shields.io/badge/letiR-InRevision-blue.svg)
+
+
+## Code tips you said?
+
+This is the first blog post of a series aiming at presenting 5 -- hopefully
+helpful -- tips in each post pertaining to a specific programming langage. Tips
+provided could be of many kind: a function, a way of combining of functions,
+a single argument, a note about the philosophy of the langage and practical
+consequences, tricks to improve the way you code, etc. They should be short,
+meaning that the whole tip is described within no more than 5 lines of code of reasonable density (say 80 characters per line MAX). However the author may
+take the liberty of exemplifying his tips with code-chunks longer than 5 lines
+of codes. This should not affect the principle pertaining to the tip length.
+
+When writing a tip, the author must think this way: "I should have known this
+*¶ø?!@~:(&* piece of code long ago". Note that some tips might be obvious for
+careful readers of documentations (God bless them for their wiseness), they would
+nonetheless help many other readers that suffer from reading documentations that
+are sometime fairly technical. By the way, there are doubtlessly many similar
+initiatives on the web, for instance on Twitter, there is a ['One R Tip a Day' account](https://twitter.com/RLangTip).
+
+
+For the first post of the series, let's introduce 5 **R** tips:
+
+  1. The %in% operator      
+  2. The `paste0()` function    
+  3. Using "\\r" in `cat()`   
+  4. The `sprintf()` function     
+  5. The `xaxs` and `yaxs` arguments of `par()`     
+
+
+
+## The '%in%' operator
+
+I know this for a while, but I keep remembering how it eases my pain when I
+learnt how to use it. Let's consider two vector `vecA` and `vecB`, the
+`vecA%in%vecB` returns a vector of logical of the length `vecA` stating whether
+the elements of `vecA` are in `vecB`:
+
+```{r inOperator}
+vecA <- c("a", "d", "2", "4", "e", ";")
+vecB <- letters # vector of lower case letters the Roman alphabet
+vecA%in%vecB
+```
+
+the i^th^ element of the output vector is `TRUE` if the i^th^ element of `vecA` is
+among the elements of `vecB`. Note that you can have a similar result calling the `intersect()` functions which returns elements that `vecA` and `vecB` are sharing.
+
+```{r intersect}
+intersect(vecA, vecB)
+```
+
+By the way, you should have a look to the documentation of `intersect()`.
+
+
+
+## The `paste0()` function
+
+I often concatenate strings. The natural way to do this is to use the `paste()` function. Let's say I need to create a set of original file names such as: "myfile1", "myfile2", "myfile3", etc. I can call `paste()` like so:
+
+```{r paste1}
+paste("myfile", 1:7)
+```
+
+BUT, there is a annoying space between "myfile" and the number, to remove the
+space, `sep` argument is needed:
+
+```{r paste2}
+paste("myfile", 1:3, sep="")
+```
+
+UNLESS you use the `paste0()` that is the version of `paste()` with the desired
+default parameters:
+
+```{r paste0}
+paste0("myfile", 1:3)
+```
+
+I know... this means you'll save 5 previous characters each time you call `paste0()`!
+
+
+
+
+## Using argument '\\r' in `cat()`
+
+*Note that for this tip, you should execute the code-chunk in your own R console*
+
+When programming we often need to monitor what we are doing especially for  time-consuming calculation. Using `cat()` with all its default is very helpful to report information on progress:
+
+```{r cat, eval=F}
+for (i in 1:10) {
+  cat("iteration n°", i, "\n")
+}
+```
+
+Here `"\n"` is what breaks the line! Instead of breaking the line, we can erase
+the line, i.e. using `"\r"`:
+
+
+```{r catErase, eval=F}
+for (i in 1:10) {
+  Sys.sleep(.25) # I added a pause so you can see what's happening
+  cat("iteration n°", i, "\r")
+}
+```
+
+I hope this gives you some ideas :). If you are thinking "where the *!&)@(* is
+he going with this!" let me give you two extra way to monitor a for loop:
+
+1. Use percentage:
+
+```{r catMonitorPerc, eval=F}
+nmx <- 222
+for (i in 1:nmx) {
+  Sys.sleep(.01) # replace it by what you are doing
+  cat("==>", format(100*i/nmx, digits=4), "%", "\r")
+}
+```
+
+2. Create you own progress bar:
+
+```{r catMonitorPB, eval=F}
+nmx <- 222
+sz <- 60
+for (i in 1:nmx) {
+  Sys.sleep(.01) # replace it by what you are doing
+  nb <- floor(sz*i/nmx)
+  pgr <- paste(rep(c("="," "), c(nb, sz-nb)), collapse="")
+  cat("|", pgr, "| ", "\r")
+}
+```
+
+I hope you like this! Otherwise, stick to use `getTxtProgressBar()` and `setProgressBar()` functions, but I swear you are missing something.
+
+
+
+## The `sprintf()` function
+
+The function is a wrapper for a well-known C function `sprintf()`. There are
+so much to say about it and I won't (so please have a careful look at the
+documentation) but I think it is worth a tip to present the most used features
+of this function.
+
+The first argument of `sprintf()` is a string that includes tag to be replaced
+by the extra arguments. A tag starts with a `%`, is followed by a
+couple of optional characters tuning the display and ends with a letter
+specifying the nature of the variable(s) to be displayed (number or string). The
+most common letters are:
+
+- "d" for integer value;  
+- "f" for double precision value;
+- "s" for strings.  
+
+The most common options are:
+
+- "n", an integer values specifying the width of the field;
+- "0" indicates whether zero-padding should be used;    
+- ".m" where n is an integer.  
+
+
+That being said, to be as clear as possible, let me exemplify!
+
+1. Different kind of variables:
+
+```{r sprintf1, results='hold'}
+sprintf("%d", 1)
+sprintf("%f", pi)
+sprintf("%s", "A")
+```
+
+2. Combine different variables:
+
+```{r sprintf2}
+sprintf("An integer: %d, a double: %f, a string: %s", 1, pi, "A")
+```
+
+3. Tune the field width:
+
+```{r sprintf3}
+sprintf("%10f", pi)
+```
+
+4. Zero-padding:
+
+```{r sprintf4}
+sprintf("%010f", pi)
+```
+
+5. Tune the precision:   
+
+```{r sprintf5}
+sprintf("%.50f", pi)
+```
+
+Pretty cool, isn't it? To conclude two questions. Question 1: do you remember the file naming example using to showcase `paste0()`? I assume your answer if yes. Let's say you now have more than 100 files to name and you want to use zero-padding and a constant field width of 3 (e.g. "myfile001", "myfile010", "myfile100"). This leads
+me to question 2: what do you do?  => Go `sprintf()`!
+
+```{r sprintf6}
+paste0("myfile", sprintf("%03d", c(1,10,100)))
+```
+
+
+
+## The `xaxs` and `yaxs` arguments of `par()`
+
+This is also something I learnt years ago and keep using for almost all my
+plots ever since. Default values of graphical parameters generate plot that
+add and extra 4% to the axes limits. This is actually useful to ensure that
+all graphical symbols are entirely displayed. However, I prefer using round
+values as axes limits and handling myself their values so that all symbols stay visible. In order to get rid of the extra 4% added on the x-axis (y-axis), you
+have to pass `xaxs="i"` (`yaxs="i"`) to the `par()` function. I compare below
+a plot using the default parameters' values and the same plot using the tip:
+
+```{r xaxsYaxs, fig.width=9.5}
+par(mfrow=c(1,2), bty="l")
+plot(0:10, 0:10, pch=20)     
+par(xaxs="i", yaxs="i")   
+plot(0:10, 0:10, pch=20)   
+```
+
+Can you the see the difference? Let me add two extra code lines to stress the differences out.
+
+```{r xaxsYaxsV2, fig.width=9.5}
+par(mfrow=c(1,2), bty="l")
+plot(0:10, 0:10, pch=20)  
+abline(v=c(0,10), h=c(0,10), col=2)   
+par(xaxs="i", yaxs="i")   
+plot(0:10, 0:10, pch=20)   
+abline(v=c(0,10), h=c(0,10), col=2)
+```
+
+<br/>
+
+**That's all folks!**
+
+<br/>

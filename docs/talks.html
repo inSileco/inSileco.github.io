@@ -15,12 +15,12 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-1.1/highlight.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
@@ -212,12 +212,16 @@ $(document).ready(function () {
     <li>
       <a href="AcademiconsInR.html">Icons on you plots</a>
     </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Ecology and R</li>
-    <li class="dropdown-header">Online Ecology series</li>
     <li>
       <a href="OnlineEcology-Species.html">Species</a>
     </li>
-    <li class="dropdown-header">R tips</li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Code tips</li>
+    <li>
+      <a href="Codetips0001.html">Code tips 0001</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -268,14 +272,14 @@ $(document).ready(function () {
 <h2>Bibliography</h2>
 <ol style="list-style-type: decimal">
 <li><strong>Gérer et formater sa bibliographie</strong> <span class="flag-icon flag-icon-fr"></span>  <a href='http://steveviss.github.io/Talk_bib/#1'><i class='fa fa-link'></i></a> <a href='https://github.com/SteveViss/Talk_bib'><i class='fa fa-github'></i></a></li>
-<li><strong>Créer des documents dynamiques avec Rmarkdown</strong> <span class="flag-icon flag-icon-fr"></span>  <a href='kevcaz.github.io/pres_Rmarkdown_fr/'><i class='fa fa-link'></i></a> <a href='https://github.com/KevCaz/pres_Rmarkdown_fr'><i class='fa fa-github'></i></a> <br/><br/></li>
+<li><strong>Créer des documents dynamiques avec Rmarkdown</strong> <span class="flag-icon flag-icon-fr"></span>  <a href='kevcaz.github.io/pres_Rmarkdown_fr/'><i class='fa fa-link'></i></a> <a href='https://github.com/KevCaz/pres_Rmarkdown_fr'><i class='fa fa-github'></i></a></li>
 </ol>
 </div>
 <div id="graphics" class="section level2">
 <h2>Graphics</h2>
 <ol style="list-style-type: decimal">
 <li><strong>R Graphics, An overview of possibilities</strong> <span class="flag-icon flag-icon-us"></span>  <a href='http://kevcaz.github.io/QCBSgraphR/'><i class='fa fa-link'></i></a> <a href='https://github.com/KevCaz/QCBSgraphR'><i class='fa fa-github'></i></a></li>
-<li><strong>Vectorial creation with Inkscape</strong> <span class="flag-icon flag-icon-us"></span>  <a href='https://steveviss.github.io/Talk_Inkscape/'><i class='fa fa-link'></i></a> <a href='https://github.com/SteveViss/Talk_Inkscape'><i class='fa fa-github'></i></a> <br/><br/></li>
+<li><strong>Vectorial creation with Inkscape</strong> <span class="flag-icon flag-icon-us"></span>  <a href='https://steveviss.github.io/Talk_Inkscape/'><i class='fa fa-link'></i></a> <a href='https://github.com/SteveViss/Talk_Inkscape'><i class='fa fa-github'></i></a></li>
 </ol>
 </div>
 
@@ -290,7 +294,7 @@ $(document).ready(function () {
       <i class='cc cc-cc-circle cc-1x'></i> <i class='cc cc-by-circle cc-1x'></i>
       <i class='cc cc-nc-circle cc-1x'></i> <i class='cc cc-sa-circle cc-1x'></i>
   </a> unless otherwise specified. <br/>
-  Last update: 28-06-2017. Code source available on
+  Last update: 30-06-2017. Code source available on
     <a href="https://github.com/letiR/letiR_website">
       <i class='fa fa-github fa-1x'></i></a>
 </div>
@@ -298,6 +302,8 @@ $(document).ready(function () {
 <!-- jQuery -->
 <script>
   jQuery("h1.title").append("<hr class='hline_color'/>");
+  jQuery("h1.title").before("<br/>");
+  jQuery(".section.level2").before("<br/><br/>");
 </script>
 
 <!-- GoogleAnalytics -->

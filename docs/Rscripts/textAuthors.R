@@ -1,6 +1,6 @@
 source("Rscripts/init.R")
 #####
-aut <- yaml.load_file("data/authors_info.yml")
+aut <- yaml::yaml.load_file("data/authors_info.yml")
 names <- descri <- character(length(aut))
 txt <- ""
 #####

@@ -1,6 +1,5 @@
 ## packages
 library(leaflet)
-library(yaml)
 library(magrittr)
 library(knitr)
 library(wordcloud2)

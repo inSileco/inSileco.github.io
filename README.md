@@ -8,6 +8,25 @@
 - silhouette images are found on the [PhyloPic](http://phylopic.org) website;
 - some R tricks (see the `Rmd` files).
 
+We used a custom [Makefile](https://www.gnu.org/software/make/) to build the website. Use:
+
+```
+  make newpost
+```
+
+to create a new post, then use
+
+```
+  make
+```
+
+to build the website. If any of `footer.html`, `header.html`, `*.css` or
+`site.yml` have been changed, use:
+
+```
+  make rebuildall
+```
+
 
 ## Dependencies
 
@@ -28,6 +47,9 @@ In order to build this website, the following are needed:
 ```
   make newpost
 ```
+
+
+
 
 # Licence
 

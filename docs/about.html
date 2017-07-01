@@ -15,12 +15,12 @@
 
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/bootstrap.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/highlightjs-1.1/default.css" rel="stylesheet" />
+<link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-1.1/highlight.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 <link href="site_libs/ionicons-2.0.1/css/ionicons.min.css" rel="stylesheet" />
@@ -212,12 +212,16 @@ $(document).ready(function () {
     <li>
       <a href="AcademiconsInR.html">Icons on you plots</a>
     </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Ecology and R</li>
-    <li class="dropdown-header">Online Ecology series</li>
     <li>
       <a href="OnlineEcology-Species.html">Species</a>
     </li>
-    <li class="dropdown-header">R tips</li>
+    <li class="divider"></li>
+    <li class="dropdown-header">Code tips</li>
+    <li>
+      <a href="Codetips0001.html">Code tips 0001</a>
+    </li>
   </ul>
 </li>
 <li>
@@ -301,7 +305,6 @@ $(document).ready(function () {
 <p>PhD student at <a href="http://ielab.recherche.usherbrooke.ca">iELab</a></p>
 <p><a href='http://willvieira.github.io'><i class='fa fa-globe fa-2x'></i></a> <a href='https://github.com/willvieira'><i class='fa fa-github fa-2x'></i></a> <a href='http://twitter.com/willvieira90'><i class='fa fa-twitter fa-2x'></i></a> <a href='http://orcid.org/0000-0003-0283-4570'><i class='ai ai-orcid-square ai-2x'></i></a> <a href='https://www.researchgate.net/profile/Willian_Vieira'><i class='ai ai-researchgate ai-2x'></i></a> </p>
 <p><b>Research project</b>: It is well known that climate change will modify the distribution of trees over the coming decades and many studies have already showed responses for some species. However, the potential of forest management to mitigate climate change impacts on forest dynamics remains poorly understood. The overall goal of my PhD is to develop a decision-make tool to improve management strategies that take climate change into account. I will build a model that represents forest dynamics at different spatial and temporal scales, and the effect of natural and anthropogenic disturbances. The model will be parametrized from a forest inventory database and we will focus on tracking uncertainty using Bayesian methods. By quantifying trees migration rate under climate change in different forest management scenarios, we expect to find a positive effect of forest management on accelerating forest migration towards the north. In addition, we expect a better understanding of the synergetic interactions between human actions and forest dynamics.<br/><br/></p>
-<p><br/> <br/></p>
 </div>
 </div>
 <div id="about-the-posts" class="section level2">
@@ -322,7 +325,7 @@ $(document).ready(function () {
       <i class='cc cc-cc-circle cc-1x'></i> <i class='cc cc-by-circle cc-1x'></i>
       <i class='cc cc-nc-circle cc-1x'></i> <i class='cc cc-sa-circle cc-1x'></i>
   </a> unless otherwise specified. <br/>
-  Last update: 28-06-2017. Code source available on
+  Last update: 30-06-2017. Code source available on
     <a href="https://github.com/letiR/letiR_website">
       <i class='fa fa-github fa-1x'></i></a>
 </div>
@@ -330,6 +333,8 @@ $(document).ready(function () {
 <!-- jQuery -->
 <script>
   jQuery("h1.title").append("<hr class='hline_color'/>");
+  jQuery("h1.title").before("<br/>");
+  jQuery(".section.level2").before("<br/><br/>");
 </script>
 
 <!-- GoogleAnalytics -->

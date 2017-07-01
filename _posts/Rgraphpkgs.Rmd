@@ -13,6 +13,7 @@ output:
         after_body: [footer.html, disqus.html]
 ---
 
+
 <br/>
 
 Status: ![](https://img.shields.io/badge/letiR-finalVersion-800fa2.svg)
@@ -43,7 +44,7 @@ That being said, the advantages are numerous and more can be built in. For insta
 <!-- This blog section is dedicated to help you realize these advantages. Examples will be provided with many parameters to ensure you can get exactly what you want (in term of graphics). We wish to show and assist you in making everything possible. Every tool is already available and we made some more accessible through this [graphicsutils](https://github.com/KevCaz/graphicsutils) package available on github.
  -->
 
-<br/>
+
 
 
 ## Documentation
@@ -73,7 +74,7 @@ We will make the content below 'evolving' by collecting and indexing as many sou
     - [A newer graph gallery](http://www.r-graph-gallery.com)
 
 
-<br/>
+
 
 
 ## List of packages
@@ -93,8 +94,8 @@ when available, we also provide :
   - <a href=""><i class="fa fa-file-pdf-o"></i></a>: a link that goes to an relevant pdf file (an R journal article for instance).
 
 
-<br/><br/>
 
-```{r rgrappkgs, echo=FALSE, results="asis"}
+
+```{r rgrappkgs, echo=FALSE, results="asis", message=FALSE}
   source("Rscripts/rGraphPkgs.R")
 ```

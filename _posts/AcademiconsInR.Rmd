@@ -14,8 +14,8 @@ output:
 
 Status: ![](https://img.shields.io/badge/letiR-finalVersion-800fa2.svg)
 
-
 <br/>
+
 
 
 ## Introduction
@@ -30,7 +30,7 @@ There are two strategies to include icons on a R plot: 1- using icons as a font 
 
 All of these academics framework propose either a `.ttf` (TrueType Font) or a `.otf` file (OpenType Font) (or both). These files make our life very easy and we can make a direct **link** with a [previous blog post](./HylianStyle.html).
 
-<br/>
+
 
 
 
@@ -72,7 +72,7 @@ We have to download the 3 fonts to be used, which can easily be found on Github.
 
 Once downloaded, install them on your computer (there is most likely an application on your computer to do so but note that it is also possible to store the fonts in a dedicated folder and then provide the path to use them with `showtext`. See the `font.paths()` function.
 
-<br/>
+
 
 ## Loading the fonts
 
@@ -96,7 +96,7 @@ Here, things are going to be a little bit trickier than they were in the [Hylian
   2. `.ttf` files are easy to explore, for instance using LibreOffice and inserting a special character (see the figure below).     
 
 
-<br/>
+
 
 ![Academics icon on LibreOffice](./assets/img/academicsicon.png)
 
@@ -104,7 +104,7 @@ Here, things are going to be a little bit trickier than they were in the [Hylian
 To use unicode characters in R, there are several possibilities, this [blog post](https://www.r-bloggers.com/unicode-symbols-in-r/) explains it well.
 Below we use different way to deal with the unicode characters.
 
-<br/>
+
 
 
 
@@ -187,7 +187,7 @@ par(family = "Academicons")
 mtext(text=intToUtf8("59651"), side=4, adj=1, line=3, cex=3)
 ```
 
-<br/>
+
 
 ## Further remarks
 

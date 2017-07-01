@@ -1,10 +1,10 @@
 source("Rscripts/init.R")
-#
-pkg <- yaml.load_file("data/Rpkgs.yml")
+##
+pkg <- yaml::yaml.load_file("data/Rpkgs.yml")
 sz <- length(pkg)
 txt <- ""
 ##
-vec_categ <- lapply(pkg, . %>% extract('category')) %>% unlist
+vec_categ <- lapply(pkg, . %>% magrittr::extract('category')) %>% unlist
 vec_categu <- vec_categ %>% unique
 txt <- ""
 
@@ -27,6 +27,7 @@ for (i in 1:length(vec_categu)){
     if (!is.null(pkg[[id[j]]]$pdf)) txt %<>% paste0(" ", addiconurl(pkg[[id[j]]]$pdf, "fa fa-file-pdf-o"))
     txt %<>% paste0("\n")
   }
-  txt %<>% paste0("<br/><br/> \n\n")
+  txt %<>% paste0("<br/> \n\n")
 }
+
 cat(txt)
