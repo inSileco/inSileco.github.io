@@ -2,10 +2,12 @@
 title: "Add icons on your plots"
 author:
   - Kevin Cazelles & David Beauchesne
-status: draft
+status: finalVersion
+pgmlang: R(>=3.0.0)
 date: "May 23, 2017  -  last update on June 25, 2017"
 output:
   html_document:
+    code_download: TRUE
     toc: true
     toc_float:
       collapsed: false
@@ -13,11 +15,12 @@ output:
         after_body: [footer.html, disqus.html]
 ---
 
-<br/>
 
-Status: ![](https://img.shields.io/badge/letiR-finalVersion-800fa2.svg)
 
-<br/>
+```{r addStatus, echo=FALSE, results="asis", message=FALSE}
+  source("Rscripts/readYaml.R")
+  readYAML("AcademiconsInR.Rmd")
+```
 
 
 

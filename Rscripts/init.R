@@ -13,4 +13,8 @@ addiconurl <- function(url, icon){
   paste0("<a href='", url, "'><i class='", icon, "'></i></a>")
 }
 ##
+addSpace <- function(nb=1){
+  paste(rep("&nbsp;", nb), collapse=" ")
+}
+##
 source("Rscripts/addAuthorsLinks.R")

@@ -24,6 +24,9 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/FileSaver.min.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-1.1/highlight.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -76,6 +79,9 @@ h6 {
 }
 .table th:not([align]) {
   text-align: left;
+}
+#rmd-source-code {
+  display: none;
 }
 </style>
 
@@ -170,6 +176,14 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("Codetips0001.Rmd");
+});
+</script>
 
 
 
@@ -298,9 +312,6 @@ div.tocify {
 <li>
   <a href="software.html">Software</a>
 </li>
-<li>
-  <a href="talks.html">Talks</a>
-</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Posts
@@ -321,7 +332,7 @@ div.tocify {
     <li class="divider"></li>
     <li class="dropdown-header">Ecology and R</li>
     <li>
-      <a href="OnlineEcology-Species.html">Species</a>
+      <a href="OnlineEcology-Species.html">Individual species description</a>
     </li>
     <li class="divider"></li>
     <li class="dropdown-header">Code tips</li>
@@ -329,9 +340,6 @@ div.tocify {
       <a href="Codetips0001.html">Code tips 0001</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="maps.html">Maps</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -342,6 +350,13 @@ div.tocify {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="maps.html">Maps</a>
+    </li>
+    <li>
+      <a href="talks.html">Talks</a>
+    </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Presentations</li>
     <li>
       <a href="pres/pres1.html">pres1</a>
@@ -367,6 +382,13 @@ div.tocify {
 
 <div class="fluid-row" id="header">
 
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Code tips 0001 (R)</h1>
@@ -376,11 +398,11 @@ div.tocify {
 </div>
 
 
-<p>Status: <img src="https://img.shields.io/badge/letiR-InRevision-blue.svg" /></p>
+<p>Status:   <img src="https://img.shields.io/badge/letiR-inRevision-blue.svg" /> <img src="https://img.shields.io/badge/pgmLang-R(%3E=3.0.0)-blue.svg" /> <br/></p>
 <div id="code-tips-you-said" class="section level2">
 <h2>Code tips you said?</h2>
 <p>This is the first blog post of a series aiming at presenting 5 – hopefully helpful – tips in each post pertaining to a specific programming langage. Tips provided could be of many kind: a function, a way of combining of functions, a single argument, a note about the philosophy of the langage and practical consequences, tricks to improve the way you code, etc. They should be short, meaning that the whole tip is described within no more than 5 lines of code of reasonable density (say 80 characters per line MAX). However the author may take the liberty of exemplifying his tips with code-chunks longer than 5 lines of codes. This should not affect the principle pertaining to the tip length.</p>
-<p>When writing a tip, the author must think this way: “I should have known this <em>¶ø?!@~:(&amp;</em> piece of code long ago”. Note that some tips might be obvious for careful readers of documentations (God bless them for their wiseness), they would nonetheless help many other readers that suffer from reading documentations that are sometime fairly technical. By the way, there are doubtlessly many similar initiatives on the web, for instance on Twitter, there is a <a href="https://twitter.com/RLangTip">‘One R Tip a Day’ account</a>.</p>
+<p>When writing a tip, the author must think this way: “I should have known this <em>¶ø?!@~:&amp;</em> piece of code long ago”. Note that some tips might be obvious for careful readers of documentations (God bless them for their wiseness), they would nonetheless help many other readers that suffer from reading documentations that are sometime fairly technical. By the way, there are doubtlessly many similar initiatives on the web, for instance on Twitter, there is a <a href="https://twitter.com/RLangTip">‘One R Tip a Day’ account</a>.</p>
 <p>For the first post of the series, let’s introduce 5 <strong>R</strong> tips:</p>
 <ol style="list-style-type: decimal">
 <li>The %in% operator<br />
@@ -526,6 +548,7 @@ abline(v=c(0,10), h=c(0,10), col=2)</code></pre>
 <p><br/></p>
 </div>
 
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQ29kZSB0aXBzIDAwMDEgKFIpIgphdXRob3I6CiAgLSBLZXZpbiBDYXplbGxlcwpkYXRlOiAiSnVuZSAzMCwgMjAxNyAtICBsYXN0IHVwZGF0ZSBvbiBKdW5lIDMwLCAyMDE3IgpzdGF0dXM6IGluUmV2aXNpb24KcGdtbGFuZzogUig+PTMuMC4wKQpvdXRwdXQ6CiAgaHRtbF9kb2N1bWVudDoKICAgIGNvZGVfZG93bmxvYWQ6IFRSVUUKICAgIHRvYzogdHJ1ZQogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IGZhbHNlCiAgICBpbmNsdWRlOgogICAgICAgIGFmdGVyX2JvZHk6IFtmb290ZXIuaHRtbCwgZGlzcXVzLmh0bWxdCi0tLQoKCmBgYHtyIGFkZFN0YXR1cywgZWNobz1GQUxTRSwgcmVzdWx0cz0iYXNpcyIsIG1lc3NhZ2U9RkFMU0V9CiAgc291cmNlKCJSc2NyaXB0cy9yZWFkWWFtbC5SIikKICByZWFkWUFNTCgiQ29kZXRpcHMwMDAxLlJtZCIpCmBgYAoKCiMjIENvZGUgdGlwcyB5b3Ugc2FpZD8KClRoaXMgaXMgdGhlIGZpcnN0IGJsb2cgcG9zdCBvZiBhIHNlcmllcyBhaW1pbmcgYXQgcHJlc2VudGluZyA1IC0tIGhvcGVmdWxseQpoZWxwZnVsIC0tIHRpcHMgaW4gZWFjaCBwb3N0IHBlcnRhaW5pbmcgdG8gYSBzcGVjaWZpYyBwcm9ncmFtbWluZyBsYW5nYWdlLiBUaXBzCnByb3ZpZGVkIGNvdWxkIGJlIG9mIG1hbnkga2luZDogYSBmdW5jdGlvbiwgYSB3YXkgb2YgY29tYmluaW5nIG9mIGZ1bmN0aW9ucywKYSBzaW5nbGUgYXJndW1lbnQsIGEgbm90ZSBhYm91dCB0aGUgcGhpbG9zb3BoeSBvZiB0aGUgbGFuZ2FnZSBhbmQgcHJhY3RpY2FsCmNvbnNlcXVlbmNlcywgdHJpY2tzIHRvIGltcHJvdmUgdGhlIHdheSB5b3UgY29kZSwgZXRjLiBUaGV5IHNob3VsZCBiZSBzaG9ydCwKbWVhbmluZyB0aGF0IHRoZSB3aG9sZSB0aXAgaXMgZGVzY3JpYmVkIHdpdGhpbiBubyBtb3JlIHRoYW4gNSBsaW5lcyBvZiBjb2RlIG9mIHJlYXNvbmFibGUgZGVuc2l0eSAoc2F5IDgwIGNoYXJhY3RlcnMgcGVyIGxpbmUgTUFYKS4gSG93ZXZlciB0aGUgYXV0aG9yIG1heQp0YWtlIHRoZSBsaWJlcnR5IG9mIGV4ZW1wbGlmeWluZyBoaXMgdGlwcyB3aXRoIGNvZGUtY2h1bmtzIGxvbmdlciB0aGFuIDUgbGluZXMKb2YgY29kZXMuIFRoaXMgc2hvdWxkIG5vdCBhZmZlY3QgdGhlIHByaW5jaXBsZSBwZXJ0YWluaW5nIHRvIHRoZSB0aXAgbGVuZ3RoLgoKV2hlbiB3cml0aW5nIGEgdGlwLCB0aGUgYXV0aG9yIG11c3QgdGhpbmsgdGhpcyB3YXk6ICJJIHNob3VsZCBoYXZlIGtub3duIHRoaXMKKsK2w7g/IUB+OiYqIHBpZWNlIG9mIGNvZGUgbG9uZyBhZ28iLiBOb3RlIHRoYXQgc29tZSB0aXBzIG1pZ2h0IGJlIG9idmlvdXMgZm9yCmNhcmVmdWwgcmVhZGVycyBvZiBkb2N1bWVudGF0aW9ucyAoR29kIGJsZXNzIHRoZW0gZm9yIHRoZWlyIHdpc2VuZXNzKSwgdGhleSB3b3VsZApub25ldGhlbGVzcyBoZWxwIG1hbnkgb3RoZXIgcmVhZGVycyB0aGF0IHN1ZmZlciBmcm9tIHJlYWRpbmcgZG9jdW1lbnRhdGlvbnMgdGhhdAphcmUgc29tZXRpbWUgZmFpcmx5IHRlY2huaWNhbC4gQnkgdGhlIHdheSwgdGhlcmUgYXJlIGRvdWJ0bGVzc2x5IG1hbnkgc2ltaWxhcgppbml0aWF0aXZlcyBvbiB0aGUgd2ViLCBmb3IgaW5zdGFuY2Ugb24gVHdpdHRlciwgdGhlcmUgaXMgYSBbJ09uZSBSIFRpcCBhIERheScgYWNjb3VudF0oaHR0cHM6Ly90d2l0dGVyLmNvbS9STGFuZ1RpcCkuCgoKRm9yIHRoZSBmaXJzdCBwb3N0IG9mIHRoZSBzZXJpZXMsIGxldCdzIGludHJvZHVjZSA1ICoqUioqIHRpcHM6CgogIDEuIFRoZSAlaW4lIG9wZXJhdG9yICAgICAgCiAgMi4gVGhlIGBwYXN0ZTAoKWAgZnVuY3Rpb24gICAgCiAgMy4gVXNpbmcgIlxcciIgaW4gYGNhdCgpYCAgIAogIDQuIFRoZSBgc3ByaW50ZigpYCBmdW5jdGlvbiAgICAgCiAgNS4gVGhlIGB4YXhzYCBhbmQgYHlheHNgIGFyZ3VtZW50cyBvZiBgcGFyKClgICAgICAKCgoKIyMgVGhlICclaW4lJyBvcGVyYXRvcgoKSSBrbm93IHRoaXMgZm9yIGEgd2hpbGUsIGJ1dCBJIGtlZXAgcmVtZW1iZXJpbmcgaG93IGl0IGVhc2VzIG15IHBhaW4gd2hlbiBJCmxlYXJudCBob3cgdG8gdXNlIGl0LiBMZXQncyBjb25zaWRlciB0d28gdmVjdG9yIGB2ZWNBYCBhbmQgYHZlY0JgLCB0aGUKYHZlY0ElaW4ldmVjQmAgcmV0dXJucyBhIHZlY3RvciBvZiBsb2dpY2FsIG9mIHRoZSBsZW5ndGggYHZlY0FgIHN0YXRpbmcgd2hldGhlcgp0aGUgZWxlbWVudHMgb2YgYHZlY0FgIGFyZSBpbiBgdmVjQmA6CgpgYGB7ciBpbk9wZXJhdG9yfQp2ZWNBIDwtIGMoImEiLCAiZCIsICIyIiwgIjQiLCAiZSIsICI7IikKdmVjQiA8LSBsZXR0ZXJzICMgdmVjdG9yIG9mIGxvd2VyIGNhc2UgbGV0dGVycyB0aGUgUm9tYW4gYWxwaGFiZXQKdmVjQSVpbiV2ZWNCCmBgYAoKdGhlIGledGheIGVsZW1lbnQgb2YgdGhlIG91dHB1dCB2ZWN0b3IgaXMgYFRSVUVgIGlmIHRoZSBpXnRoXiBlbGVtZW50IG9mIGB2ZWNBYCBpcwphbW9uZyB0aGUgZWxlbWVudHMgb2YgYHZlY0JgLiBOb3RlIHRoYXQgeW91IGNhbiBoYXZlIGEgc2ltaWxhciByZXN1bHQgY2FsbGluZyB0aGUgYGludGVyc2VjdCgpYCBmdW5jdGlvbnMgd2hpY2ggcmV0dXJucyBlbGVtZW50cyB0aGF0IGB2ZWNBYCBhbmQgYHZlY0JgIGFyZSBzaGFyaW5nLgoKYGBge3IgaW50ZXJzZWN0fQppbnRlcnNlY3QodmVjQSwgdmVjQikKYGBgCgpCeSB0aGUgd2F5LCB5b3Ugc2hvdWxkIGhhdmUgYSBsb29rIHRvIHRoZSBkb2N1bWVudGF0aW9uIG9mIGBpbnRlcnNlY3QoKWAuCgoKCiMjIFRoZSBgcGFzdGUwKClgIGZ1bmN0aW9uCgpJIG9mdGVuIGNvbmNhdGVuYXRlIHN0cmluZ3MuIFRoZSBuYXR1cmFsIHdheSB0byBkbyB0aGlzIGlzIHRvIHVzZSB0aGUgYHBhc3RlKClgIGZ1bmN0aW9uLiBMZXQncyBzYXkgSSBuZWVkIHRvIGNyZWF0ZSBhIHNldCBvZiBvcmlnaW5hbCBmaWxlIG5hbWVzIHN1Y2ggYXM6ICJteWZpbGUxIiwgIm15ZmlsZTIiLCAibXlmaWxlMyIsIGV0Yy4gSSBjYW4gY2FsbCBgcGFzdGUoKWAgbGlrZSBzbzoKCmBgYHtyIHBhc3RlMX0KcGFzdGUoIm15ZmlsZSIsIDE6NykKYGBgCgpCVVQsIHRoZXJlIGlzIGEgYW5ub3lpbmcgc3BhY2UgYmV0d2VlbiAibXlmaWxlIiBhbmQgdGhlIG51bWJlciwgdG8gcmVtb3ZlIHRoZQpzcGFjZSwgYHNlcGAgYXJndW1lbnQgaXMgbmVlZGVkOgoKYGBge3IgcGFzdGUyfQpwYXN0ZSgibXlmaWxlIiwgMTozLCBzZXA9IiIpCmBgYAoKVU5MRVNTIHlvdSB1c2UgdGhlIGBwYXN0ZTAoKWAgdGhhdCBpcyB0aGUgdmVyc2lvbiBvZiBgcGFzdGUoKWAgd2l0aCB0aGUgZGVzaXJlZApkZWZhdWx0IHBhcmFtZXRlcnM6CgpgYGB7ciBwYXN0ZTB9CnBhc3RlMCgibXlmaWxlIiwgMTozKQpgYGAKCkkga25vdy4uLiB0aGlzIG1lYW5zIHlvdSdsbCBzYXZlIDUgcHJldmlvdXMgY2hhcmFjdGVycyBlYWNoIHRpbWUgeW91IGNhbGwgYHBhc3RlMCgpYCEKCgoKCiMjIFVzaW5nIGFyZ3VtZW50ICdcXHInIGluIGBjYXQoKWAKCipOb3RlIHRoYXQgZm9yIHRoaXMgdGlwLCB5b3Ugc2hvdWxkIGV4ZWN1dGUgdGhlIGNvZGUtY2h1bmsgaW4geW91ciBvd24gUiBjb25zb2xlKgoKV2hlbiBwcm9ncmFtbWluZyB3ZSBvZnRlbiBuZWVkIHRvIG1vbml0b3Igd2hhdCB3ZSBhcmUgZG9pbmcgZXNwZWNpYWxseSBmb3IgIHRpbWUtY29uc3VtaW5nIGNhbGN1bGF0aW9uLiBVc2luZyBgY2F0KClgIHdpdGggYWxsIGl0cyBkZWZhdWx0IGlzIHZlcnkgaGVscGZ1bCB0byByZXBvcnQgaW5mb3JtYXRpb24gb24gcHJvZ3Jlc3M6CgpgYGB7ciBjYXQsIGV2YWw9Rn0KZm9yIChpIGluIDE6MTApIHsKICBjYXQoIml0ZXJhdGlvbiBuwrAiLCBpLCAiXG4iKQp9CmBgYAoKSGVyZSBgIlxuImAgaXMgd2hhdCBicmVha3MgdGhlIGxpbmUhIEluc3RlYWQgb2YgYnJlYWtpbmcgdGhlIGxpbmUsIHdlIGNhbiBlcmFzZQp0aGUgbGluZSwgaS5lLiB1c2luZyBgIlxyImA6CgoKYGBge3IgY2F0RXJhc2UsIGV2YWw9Rn0KZm9yIChpIGluIDE6MTApIHsKICBTeXMuc2xlZXAoLjI1KSAjIEkgYWRkZWQgYSBwYXVzZSBzbyB5b3UgY2FuIHNlZSB3aGF0J3MgaGFwcGVuaW5nCiAgY2F0KCJpdGVyYXRpb24gbsKwIiwgaSwgIlxyIikKfQpgYGAKCkkgaG9wZSB0aGlzIGdpdmVzIHlvdSBzb21lIGlkZWFzIDopLiBJZiB5b3UgYXJlIHRoaW5raW5nICJ3aGVyZSB0aGUgKiEmKUAoKiBpcwpoZSBnb2luZyB3aXRoIHRoaXMhIiBsZXQgbWUgZ2l2ZSB5b3UgdHdvIGV4dHJhIHdheSB0byBtb25pdG9yIGEgZm9yIGxvb3A6CgoxLiBVc2UgcGVyY2VudGFnZToKCmBgYHtyIGNhdE1vbml0b3JQZXJjLCBldmFsPUZ9Cm5teCA8LSAyMjIKZm9yIChpIGluIDE6bm14KSB7CiAgU3lzLnNsZWVwKC4wMSkgIyByZXBsYWNlIGl0IGJ5IHdoYXQgeW91IGFyZSBkb2luZwogIGNhdCgiPT0+IiwgZm9ybWF0KDEwMCppL25teCwgZGlnaXRzPTQpLCAiJSIsICJcciIpCn0KYGBgCgoyLiBDcmVhdGUgeW91IG93biBwcm9ncmVzcyBiYXI6CgpgYGB7ciBjYXRNb25pdG9yUEIsIGV2YWw9Rn0Kbm14IDwtIDIyMgpzeiA8LSA2MApmb3IgKGkgaW4gMTpubXgpIHsKICBTeXMuc2xlZXAoLjAxKSAjIHJlcGxhY2UgaXQgYnkgd2hhdCB5b3UgYXJlIGRvaW5nCiAgbmIgPC0gZmxvb3Ioc3oqaS9ubXgpCiAgcGdyIDwtIHBhc3RlKHJlcChjKCI9IiwiICIpLCBjKG5iLCBzei1uYikpLCBjb2xsYXBzZT0iIikKICBjYXQoInwiLCBwZ3IsICJ8ICIsICJcciIpCn0KYGBgCgpJIGhvcGUgeW91IGxpa2UgdGhpcyEgT3RoZXJ3aXNlLCBzdGljayB0byB1c2UgYGdldFR4dFByb2dyZXNzQmFyKClgIGFuZCBgc2V0UHJvZ3Jlc3NCYXIoKWAgZnVuY3Rpb25zLCBidXQgSSBzd2VhciB5b3UgYXJlIG1pc3Npbmcgc29tZXRoaW5nLgoKCgojIyBUaGUgYHNwcmludGYoKWAgZnVuY3Rpb24KClRoZSBmdW5jdGlvbiBpcyBhIHdyYXBwZXIgZm9yIGEgd2VsbC1rbm93biBDIGZ1bmN0aW9uIGBzcHJpbnRmKClgLiBUaGVyZSBhcmUKc28gbXVjaCB0byBzYXkgYWJvdXQgaXQgYW5kIEkgd29uJ3QgKHNvIHBsZWFzZSBoYXZlIGEgY2FyZWZ1bCBsb29rIGF0IHRoZQpkb2N1bWVudGF0aW9uKSBidXQgSSB0aGluayBpdCBpcyB3b3J0aCBhIHRpcCB0byBwcmVzZW50IHRoZSBtb3N0IHVzZWQgZmVhdHVyZXMKb2YgdGhpcyBmdW5jdGlvbi4KClRoZSBmaXJzdCBhcmd1bWVudCBvZiBgc3ByaW50ZigpYCBpcyBhIHN0cmluZyB0aGF0IGluY2x1ZGVzIHRhZyB0byBiZSByZXBsYWNlZApieSB0aGUgZXh0cmEgYXJndW1lbnRzLiBBIHRhZyBzdGFydHMgd2l0aCBhIGAlYCwgaXMgZm9sbG93ZWQgYnkgYQpjb3VwbGUgb2Ygb3B0aW9uYWwgY2hhcmFjdGVycyB0dW5pbmcgdGhlIGRpc3BsYXkgYW5kIGVuZHMgd2l0aCBhIGxldHRlcgpzcGVjaWZ5aW5nIHRoZSBuYXR1cmUgb2YgdGhlIHZhcmlhYmxlKHMpIHRvIGJlIGRpc3BsYXllZCAobnVtYmVyIG9yIHN0cmluZykuIFRoZQptb3N0IGNvbW1vbiBsZXR0ZXJzIGFyZToKCi0gImQiIGZvciBpbnRlZ2VyIHZhbHVlOyAgCi0gImYiIGZvciBkb3VibGUgcHJlY2lzaW9uIHZhbHVlOwotICJzIiBmb3Igc3RyaW5ncy4gIAoKVGhlIG1vc3QgY29tbW9uIG9wdGlvbnMgYXJlOgoKLSAibiIsIGFuIGludGVnZXIgdmFsdWVzIHNwZWNpZnlpbmcgdGhlIHdpZHRoIG9mIHRoZSBmaWVsZDsKLSAiMCIgaW5kaWNhdGVzIHdoZXRoZXIgemVyby1wYWRkaW5nIHNob3VsZCBiZSB1c2VkOyAgICAKLSAiLm0iIHdoZXJlIG4gaXMgYW4gaW50ZWdlci4gIAoKClRoYXQgYmVpbmcgc2FpZCwgdG8gYmUgYXMgY2xlYXIgYXMgcG9zc2libGUsIGxldCBtZSBleGVtcGxpZnkhCgoxLiBEaWZmZXJlbnQga2luZCBvZiB2YXJpYWJsZXM6CgpgYGB7ciBzcHJpbnRmMSwgcmVzdWx0cz0naG9sZCd9CnNwcmludGYoIiVkIiwgMSkKc3ByaW50ZigiJWYiLCBwaSkKc3ByaW50ZigiJXMiLCAiQSIpCmBgYAoKMi4gQ29tYmluZSBkaWZmZXJlbnQgdmFyaWFibGVzOgoKYGBge3Igc3ByaW50ZjJ9CnNwcmludGYoIkFuIGludGVnZXI6ICVkLCBhIGRvdWJsZTogJWYsIGEgc3RyaW5nOiAlcyIsIDEsIHBpLCAiQSIpCmBgYAoKMy4gVHVuZSB0aGUgZmllbGQgd2lkdGg6CgpgYGB7ciBzcHJpbnRmM30Kc3ByaW50ZigiJTEwZiIsIHBpKQpgYGAKCjQuIFplcm8tcGFkZGluZzoKCmBgYHtyIHNwcmludGY0fQpzcHJpbnRmKCIlMDEwZiIsIHBpKQpgYGAKCjUuIFR1bmUgdGhlIHByZWNpc2lvbjogICAKCmBgYHtyIHNwcmludGY1fQpzcHJpbnRmKCIlLjUwZiIsIHBpKQpgYGAKClByZXR0eSBjb29sLCBpc24ndCBpdD8gVG8gY29uY2x1ZGUgdHdvIHF1ZXN0aW9ucy4gUXVlc3Rpb24gMTogZG8geW91IHJlbWVtYmVyIHRoZSBmaWxlIG5hbWluZyBleGFtcGxlIHVzaW5nIHRvIHNob3djYXNlIGBwYXN0ZTAoKWA/IEkgYXNzdW1lIHlvdXIgYW5zd2VyIGlmIHllcy4gTGV0J3Mgc2F5IHlvdSBub3cgaGF2ZSBtb3JlIHRoYW4gMTAwIGZpbGVzIHRvIG5hbWUgYW5kIHlvdSB3YW50IHRvIHVzZSB6ZXJvLXBhZGRpbmcgYW5kIGEgY29uc3RhbnQgZmllbGQgd2lkdGggb2YgMyAoZS5nLiAibXlmaWxlMDAxIiwgIm15ZmlsZTAxMCIsICJteWZpbGUxMDAiKS4gVGhpcyBsZWFkcwptZSB0byBxdWVzdGlvbiAyOiB3aGF0IGRvIHlvdSBkbz8gID0+IEdvIGBzcHJpbnRmKClgIQoKYGBge3Igc3ByaW50ZjZ9CnBhc3RlMCgibXlmaWxlIiwgc3ByaW50ZigiJTAzZCIsIGMoMSwxMCwxMDApKSkKYGBgCgoKCiMjIFRoZSBgeGF4c2AgYW5kIGB5YXhzYCBhcmd1bWVudHMgb2YgYHBhcigpYAoKVGhpcyBpcyBhbHNvIHNvbWV0aGluZyBJIGxlYXJudCB5ZWFycyBhZ28gYW5kIGtlZXAgdXNpbmcgZm9yIGFsbW9zdCBhbGwgbXkKcGxvdHMgZXZlciBzaW5jZS4gRGVmYXVsdCB2YWx1ZXMgb2YgZ3JhcGhpY2FsIHBhcmFtZXRlcnMgZ2VuZXJhdGUgcGxvdCB0aGF0CmFkZCBhbmQgZXh0cmEgNCUgdG8gdGhlIGF4ZXMgbGltaXRzLiBUaGlzIGlzIGFjdHVhbGx5IHVzZWZ1bCB0byBlbnN1cmUgdGhhdAphbGwgZ3JhcGhpY2FsIHN5bWJvbHMgYXJlIGVudGlyZWx5IGRpc3BsYXllZC4gSG93ZXZlciwgSSBwcmVmZXIgdXNpbmcgcm91bmQKdmFsdWVzIGFzIGF4ZXMgbGltaXRzIGFuZCBoYW5kbGluZyBteXNlbGYgdGhlaXIgdmFsdWVzIHNvIHRoYXQgYWxsIHN5bWJvbHMgc3RheSB2aXNpYmxlLiBJbiBvcmRlciB0byBnZXQgcmlkIG9mIHRoZSBleHRyYSA0JSBhZGRlZCBvbiB0aGUgeC1heGlzICh5LWF4aXMpLCB5b3UKaGF2ZSB0byBwYXNzIGB4YXhzPSJpImAgKGB5YXhzPSJpImApIHRvIHRoZSBgcGFyKClgIGZ1bmN0aW9uLiBJIGNvbXBhcmUgYmVsb3cKYSBwbG90IHVzaW5nIHRoZSBkZWZhdWx0IHBhcmFtZXRlcnMnIHZhbHVlcyBhbmQgdGhlIHNhbWUgcGxvdCB1c2luZyB0aGUgdGlwOgoKYGBge3IgeGF4c1lheHMsIGZpZy53aWR0aD05LjV9CnBhcihtZnJvdz1jKDEsMiksIGJ0eT0ibCIpCnBsb3QoMDoxMCwgMDoxMCwgcGNoPTIwKSAgICAgCnBhcih4YXhzPSJpIiwgeWF4cz0iaSIpICAgCnBsb3QoMDoxMCwgMDoxMCwgcGNoPTIwKSAgIApgYGAKCkNhbiB5b3UgdGhlIHNlZSB0aGUgZGlmZmVyZW5jZT8gTGV0IG1lIGFkZCB0d28gZXh0cmEgY29kZSBsaW5lcyB0byBzdHJlc3MgdGhlIGRpZmZlcmVuY2VzIG91dC4KCmBgYHtyIHhheHNZYXhzVjIsIGZpZy53aWR0aD05LjV9CnBhcihtZnJvdz1jKDEsMiksIGJ0eT0ibCIpCnBsb3QoMDoxMCwgMDoxMCwgcGNoPTIwKSAgCmFibGluZSh2PWMoMCwxMCksIGg9YygwLDEwKSwgY29sPTIpICAgCnBhcih4YXhzPSJpIiwgeWF4cz0iaSIpICAgCnBsb3QoMDoxMCwgMDoxMCwgcGNoPTIwKSAgIAphYmxpbmUodj1jKDAsMTApLCBoPWMoMCwxMCksIGNvbD0yKQpgYGAKCjxici8+CgoqKlRoYXQncyBhbGwgZm9sa3MhKioKCjxici8+Cg==</div>
 <br/><br/>
 
 <div class="footer">
@@ -537,7 +560,7 @@ abline(v=c(0,10), h=c(0,10), col=2)</code></pre>
       <i class='cc cc-cc-circle cc-1x'></i> <i class='cc cc-by-circle cc-1x'></i>
       <i class='cc cc-nc-circle cc-1x'></i> <i class='cc cc-sa-circle cc-1x'></i>
   </a> unless otherwise specified. <br/>
-  Last update: 30-06-2017. Code source available on
+  Last update: 02-07-2017. Code source available on
     <a href="https://github.com/letiR/letiR_website">
       <i class='fa fa-github fa-1x'></i></a>
 </div>

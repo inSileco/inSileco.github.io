@@ -5,16 +5,18 @@ names <- descri <- character(length(aut))
 txt <- ""
 #####
 for (i in 1:length(aut)){
-  txt %<>% paste0("#### ",
+  txt %<>% paste0("<h4 class='big'> <b>",
     aut[[i]]$given_name,
     " ",
     aut[[i]]$family_name,
-    "\n\n",
+    "</b>",
+    addSpace(3),
+    addAuthorsLinks(aut[[i]], sz=1),
+    "</h4>\n",
     aut[[i]]$description,
-    "\n\n",
-    addAuthorsLinks(aut[[i]]),
     "\n\n<b>Research project</b>: ",
     aut[[i]]$project,
-    "<br/><br/> \n\n")
+    "<br/><br/><br/> \n\n")
 }
+txt %<>% htmltools::HTML()
 cat(txt)

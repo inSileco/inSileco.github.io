@@ -1,7 +1,6 @@
 name: "LetiR"
 output_dir: "docs"
 exclude: ["LICENSE", "README.html", "posts/*.Rmd"]
-code_download: TRUE
 navbar:
   title: "LetiR"
   left:
@@ -11,8 +10,6 @@ navbar:
       href: about.html
     - text: "Software"
       href: software.html
-    - text: "Talks"
-      href: talks.html
     - text: "Posts"
       menu:
         - text: "R and graphs"
@@ -25,17 +22,20 @@ navbar:
         - text: "---------"
         - text: "Ecology and R"
         # - text: "Online Ecology series"
-        - text: "Species"
+        - text: "Individual species description"
           href: OnlineEcology-Species.html
         - text: "---------"
         - text: "Code tips"
         - text: "Code tips 0001"
           href: "Codetips0001.html"
-    - text: "Maps"
-      href: maps.html
     - text: "More"
       icon: ion-plus-circled
       menu:
+        - text: "Maps"
+          href: maps.html
+        - text: "Talks"
+          href: talks.html
+        - text: "---------"
         - text: "Presentations"
         - text: "pres1"
           href: pres/pres1.html

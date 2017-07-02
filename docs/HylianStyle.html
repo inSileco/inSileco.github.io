@@ -21,6 +21,9 @@
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/FileSaver.min.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-1.1/highlight.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -73,6 +76,9 @@ h6 {
 }
 .table th:not([align]) {
   text-align: left;
+}
+#rmd-source-code {
+  display: none;
 }
 </style>
 
@@ -167,6 +173,14 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("HylianStyle.Rmd");
+});
+</script>
 
 
 
@@ -194,9 +208,6 @@ $(document).ready(function () {
 <li>
   <a href="software.html">Software</a>
 </li>
-<li>
-  <a href="talks.html">Talks</a>
-</li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
     Posts
@@ -217,7 +228,7 @@ $(document).ready(function () {
     <li class="divider"></li>
     <li class="dropdown-header">Ecology and R</li>
     <li>
-      <a href="OnlineEcology-Species.html">Species</a>
+      <a href="OnlineEcology-Species.html">Individual species description</a>
     </li>
     <li class="divider"></li>
     <li class="dropdown-header">Code tips</li>
@@ -225,9 +236,6 @@ $(document).ready(function () {
       <a href="Codetips0001.html">Code tips 0001</a>
     </li>
   </ul>
-</li>
-<li>
-  <a href="maps.html">Maps</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -238,6 +246,13 @@ $(document).ready(function () {
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="maps.html">Maps</a>
+    </li>
+    <li>
+      <a href="talks.html">Talks</a>
+    </li>
+    <li class="divider"></li>
     <li class="dropdown-header">Presentations</li>
     <li>
       <a href="pres/pres1.html">pres1</a>
@@ -263,6 +278,13 @@ $(document).ready(function () {
 
 <div class="fluid-row" id="header">
 
+<div class="btn-group pull-right">
+<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Make your plot Hylian</h1>
@@ -272,9 +294,7 @@ $(document).ready(function () {
 </div>
 
 
-<p><br/></p>
-<p>Status: <img src="https://img.shields.io/badge/letiR-finalVersion-800fa2.svg" /></p>
-<!-- `paste0("2017-04-15", Last update, format(Sys.time(), "%B, %d %Y"))` -->
+<p>Status:   <img src="https://img.shields.io/badge/letiR-finalVersion-800fa2.svg" /> <img src="https://img.shields.io/badge/pgmLang-R(%3E=3.0.0)-blue.svg" /> <br/></p>
 <p><br/> <br/></p>
 <p>Here are the 6 steps you need to make your plot a Hylian one! <strong>May the triforce be with you</strong>!</p>
 <ol start="0" style="list-style-type: decimal">
@@ -627,6 +647,7 @@ points(x = runif(7), y = runif(7), pch = &quot;$&quot;, cex = 2, col = &quot;#34
 points(x = 0.1, y = 0.1, pch = &quot;%&quot;, cex = 6, col = &quot;#347AB7&quot;)</code></pre>
 <p><img src="HylianStyle_files/figure-html/unnamed-chunk-10-1.png" width="912" /></p>
 
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTWFrZSB5b3VyIHBsb3QgSHlsaWFuIgphdXRob3I6CiAgLSBLZXZpbiBDYXplbGxlcywKICAgIERhdmlkIEJlYXVjaGVzbmUgJgogICAgTmljb2xhcyBDYXNhanVzCnN0YXR1czogZmluYWxWZXJzaW9uCnBnbWxhbmc6IFIoPj0zLjAuMCkKZGF0ZTogIkFwcmlsIDE0LCAyMDE3ICAtICBsYXN0IHVwZGF0ZSBvbiBKdW5lIDI0LCAyMDE3YCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICBjb2RlX2Rvd25sb2FkOiBUUlVFCiAgICBpbmNsdWRlOgogICAgICAgIGFmdGVyX2JvZHk6IFtmb290ZXIuaHRtbCwgZGlzcXVzLmh0bWxdCi0tLQoKCmBgYHtyIGFkZFN0YXR1cywgZWNobz1GQUxTRSwgcmVzdWx0cz0iYXNpcyIsIG1lc3NhZ2U9RkFMU0V9CiAgc291cmNlKCJSc2NyaXB0cy9yZWFkWWFtbC5SIikKICByZWFkWUFNTCgiSHlsaWFuU3R5bGUuUm1kIikKYGBgCgo8YnIvPgo8YnIvPgoKSGVyZSBhcmUgdGhlIDYgc3RlcHMgeW91IG5lZWQgdG8gbWFrZSB5b3VyIHBsb3QgYSBIeWxpYW4gb25lIQoqKk1heSB0aGUgdHJpZm9yY2UgYmUgd2l0aCB5b3UqKiEKCgowLiBSIFZlcnNpb24KCmBgYHtyLCBlY2hvID0gVFJVRSwgZXZhbCA9IFRSVUV9CnNlc3Npb25JbmZvKClbWzFdXSR2ZXJzaW9uLnN0cmluZwpgYGAKCjEuIE9wZW4gUiBhbmQgZG93bmxvYWQgdGhlIFsqVHJpZm9yY2UqIGZvbnRdKGh0dHBzOi8vemVsZGF1bml2ZXJzZS5uZXQvbWVkaWEvZGlyKQoKYGBge3IsIGVjaG8gPSBUUlVFLCBldmFsID0gVFJVRX0KIyBDcmVhdGUgYSBkaXJlY3RvcnkgPCBmb250cyA+CmRpciA8LSAiX3RtcC9kaXIiCmRpci5jcmVhdGUoIl90bXAvZm9udHMiLCBzaG93V2FybmluZ3MgPSBGQUxTRSkKCiMgRG93bmxvYWQgVHJpZm9yY2UgZm9udCA8IFRyaWZvcmNlLnR0ZiA+CnVybCA8LSAiaHR0cDovL3plbGRhdW5pdmVyc2UubmV0L3dwLWNvbnRlbnQvdXBsb2Fkcy8yMDE0LzAxL1RyaWZvcmNlLnR0Zl8uemlwIgpkb3dubG9hZC5maWxlKHVybCwgcGFzdGUwKCJkaXIiLCBiYXNlbmFtZSh1cmwpKSkKZGlyKCJkaXIiKQoKIyBVbnppcCB0aGUgZmlsZQp1bnRhcihwYXN0ZTAoImRpciIsIGJhc2VuYW1lKHVybCkpLCBleGRpciA9ICJkaXIiLCBjb21wcmVzc2VkID0gImd6aXAiKQpkaXIoImRpciIpCgojIFJlbW92ZSAuemlwCmZpbGUucmVtb3ZlKHBhc3RlMCgiZGlyIiwgYmFzZW5hbWUodXJsKSkpCmRpcigiZGlyIikKYGBgCgoKMi4gSW5zdGFsbCB0aGUgYHNob3d0ZXh0YCBwYWNrYWdlIGlmIG5vdCBhbHJlYWR5IGluc3RhbGxlZDoKCmBgYHtyLCBlY2hvID0gVFJVRSwgZXZhbCA9IEZBTFNFfQppbnN0YWxsLnBhY2thZ2UoInNob3d0ZXh0IiwgZGVwZW5kZW5jaWVzID0gVFJVRSkKbGlicmFyeShzaG93dGV4dCkKYGBgCgpgYGB7ciwgZWNobyA9IEZBTFNFLCBldmFsID0gVFJVRX0KbGlicmFyeShzaG93dGV4dCkKYGBgCgozLiBUbyBzZWUgdGhlIGxpc3Qgb2YgZm9udCBhdmFpbGFibGUgbG9jYWxseSBkbyBzbzoKCmBgYHtyLCBlY2hvID0gVFJVRSwgZXZhbCA9IFRSVUV9CnNob3d0ZXh0LmF1dG8oKQpmb250LmZpbGVzKCkKYGBgCgo0LiBBZGQgdGhlIG5ldyBkaXJlY3RvcnkgPCBmb250cyA+IHRvIHRoZSBhdmFpbGFibGUgZm9udCBwYXRocyBvZiBzaG93dGV4dAoKYGBge3IsIGVjaG8gPSBUUlVFLCBldmFsID0gRkFMU0V9CmZvbnQucGF0aHMoImRpciIpCmBgYAoKYGBge3IsIGVjaG8gPSBGQUxTRSwgZXZhbCA9IFRSVUV9CmdzdWIoIi9Vc2Vycy9uaWNvbGFzY2FzYWp1cy8iLCAifi8iLCBmb250LnBhdGhzKCJkaXIiKSkKYGBgCgpgYGB7ciwgZWNobyA9IFRSVUUsIGV2YWwgPSBUUlVFfQojIElzIHRoZSBUVEYgcHJlc2VudD8KZm9udC5maWxlcygpW2dyZXAoIlRyaWZvcmNlIiwgZm9udC5maWxlcygpKV0KYGBgCgo1LiBBZGQgdGhlICpUcmlmb3JjZSogZm9udCB0byB5b3VyIHNlc3Npb246CgpgYGB7ciwgZWNobyA9IFRSVUUsIGV2YWwgPSBUUlVFfQpmb250LmFkZChmYW1pbHkgPSAnVHJpZm9yY2UnLCByZWd1bGFyID0gJ1RyaWZvcmNlLnR0ZicpCmZvbnQuZmFtaWxpZXMoKQpgYGAKCjYuIEhlcmUgaXQgZ29lczoKCmBgYHtyLCBlY2hvID0gVFJVRSwgZXZhbCA9IFRSVUUsIGZpZy53aWR0aCA9IDkuNSwgZmlnLmhlaWdodCA9IDcsIGZpZy5zaG93dGV4dCA9IFRSVUV9CnBhcihmYW1pbHkgPSAiVHJpZm9yY2UiLCBsYXMgPSAxLCBjZXgubGFiID0gMiwgY2V4Lm1haW4gPSAyLCBtYXIgPSBjKDQsIDUsIDUsIDApKQpwbG90KHggPSBjKDAsIDEpLCB5ID0gYygwLCAxKSwgdHlwZSA9ICJuIiwgeGxhYiA9ICJYLWF4aXMiLCB5bGFiID0gIlktYXhpcyIpCnRpdGxlKG1haW4gPSAiSHlsaWFuIFN0eWxlIC0gTGluayBtdXN0IGJlIHByb3VkIG9mIHVzISIpCnBvaW50cyh4ID0gcnVuaWYoNyksIHkgPSBydW5pZig3KSwgcGNoID0gIioiLCBjZXggPSAyKQpwb2ludHMoeCA9IHJ1bmlmKDcpLCB5ID0gcnVuaWYoNyksIHBjaCA9ICIkIiwgY2V4ID0gMiwgY29sID0gIiMzNDdBQjciKQpwb2ludHMoeCA9IDAuMSwgeSA9IDAuMSwgcGNoID0gIiUiLCBjZXggPSA2LCBjb2wgPSAiIzM0N0FCNyIpCmBgYAo=</div>
 <br/><br/>
 
 <div class="footer">
@@ -638,7 +659,7 @@ points(x = 0.1, y = 0.1, pch = &quot;%&quot;, cex = 6, col = &quot;#347AB7&quot;
       <i class='cc cc-cc-circle cc-1x'></i> <i class='cc cc-by-circle cc-1x'></i>
       <i class='cc cc-nc-circle cc-1x'></i> <i class='cc cc-sa-circle cc-1x'></i>
   </a> unless otherwise specified. <br/>
-  Last update: 30-06-2017. Code source available on
+  Last update: 02-07-2017. Code source available on
     <a href="https://github.com/letiR/letiR_website">
       <i class='fa fa-github fa-1x'></i></a>
 </div>

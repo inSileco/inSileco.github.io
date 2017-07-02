@@ -4,19 +4,21 @@ author:
   - Kevin Cazelles,
     David Beauchesne &
     Nicolas Casajus
+status: finalVersion
+pgmlang: R(>=3.0.0)
 date: "April 14, 2017  -  last update on June 24, 2017`"
 output:
   html_document:
+    code_download: TRUE
     include:
         after_body: [footer.html, disqus.html]
 ---
 
-<br/>
 
-Status: ![](https://img.shields.io/badge/letiR-finalVersion-800fa2.svg)
-
-
-<!-- `paste0("2017-04-15", Last update, format(Sys.time(), "%B, %d %Y"))` -->
+```{r addStatus, echo=FALSE, results="asis", message=FALSE}
+  source("Rscripts/readYaml.R")
+  readYAML("HylianStyle.Rmd")
+```
 
 <br/>
 <br/>

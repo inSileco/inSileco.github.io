@@ -2,10 +2,12 @@
 title: "Online ecology - Individual species description"
 author:
   - David Beauchesne, Kévin Cazelles & Rémi Daigle
-status: draft
+status: inRevision
+pgmlang: R(>=3.0.0)
 date: "`r paste0('June 19, 2017  -  last update on ', format(Sys.time(), '%B %d, %Y'))`"
 output:
   html_document:
+    code_download: TRUE
     toc: true
     toc_float:
       collapsed: false
@@ -13,13 +15,12 @@ output:
         after_body: [footer.html, disqus.html]
 ---
 
-<br/>
+```{r addStatus, echo=FALSE, results="asis", message=FALSE}
+  source("Rscripts/readYaml.R")
+  readYAML("OnlineEcology-Species.Rmd")
+```
 
-<!-- Status: ![](https://img.shields.io/badge/letiR-InDevelopment-blue.svg) -->
 
-Status: ![](https://img.shields.io/badge/letiR-InRevision-blue.svg)
-
-<!-- render(input = './_posts/OnlineEcology.rmd', 'html_document') -->
 
 ```{r, include = FALSE}
 rm(list=ls())
@@ -28,6 +29,8 @@ library(magrittr)
 library(knitr)
 library(kableExtra)
 ```
+
+<br/><br/>
 
 # Online ecology
 

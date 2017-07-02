@@ -11,9 +11,10 @@ rscr := $(wildcard Rscripts/*.R)
 indr := index.Rmd
 dat = $(shell date "+%d-%m-%Y")
 
+
 all: docs/index.html $(mainh) $(posth)
 
-docs/%.html: _posts/%.Rmd
+docs/%.html: _posts/%.Rmd #Rscripts/readYaml.R
 	cp $< ./
 	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('$(patsubst _posts/%,%,$<)')"
 	rm $(patsubst _posts/%, %, $<)
@@ -43,7 +44,7 @@ reveal:
 	Rscript --no-init-file -e "for (i in list.files('pres', pattern='*.Rmd', full.names=T)) rmarkdown::render(i)"
 
 cleanpost:
-	rm $(postt) $(maint)
+	rm $(postt) $(maint) $(patsubst docs/%, %, $(posth)) $(patsubst docs/%, %, $(mainh))
 
 clean:
 	Rscript --no-init-file -e "rmarkdown::clean_site(".")"

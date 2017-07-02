@@ -6,7 +6,8 @@ author:
     Steve Vissault &
     David Beauchesne
 date: "December 4, 2015 -  last update on June 25, 2017`"
-status: published
+status: finalVersion
+pgmlang: R
 output:
   html_document:
     toc: true
@@ -17,9 +18,10 @@ output:
 ---
 
 
-<br/>
-
-Status: ![](https://img.shields.io/badge/letiR-finalVersion-800fa2.svg)
+```{r addStatus, echo=FALSE, results="asis", message=FALSE}
+  source("Rscripts/readYaml.R")
+  readYAML("Rgraphpkgs.Rmd")
+```
 
 Note that the list of packages below would be updated as soon as we find a new package.
 If you know a package that should be in the list, please feel mention it in the disqus section that follows the list.  

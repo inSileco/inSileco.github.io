@@ -2,10 +2,12 @@
 title: "Code tips 0001 (R)"
 author:
   - Kevin Cazelles
-status: draft
 date: "June 30, 2017 -  last update on June 30, 2017"
+status: inRevision
+pgmlang: R(>=3.0.0)
 output:
   html_document:
+    code_download: TRUE
     toc: true
     toc_float:
       collapsed: false
@@ -14,7 +16,10 @@ output:
 ---
 
 
-Status: ![](https://img.shields.io/badge/letiR-InRevision-blue.svg)
+```{r addStatus, echo=FALSE, results="asis", message=FALSE}
+  source("Rscripts/readYaml.R")
+  readYAML("Codetips0001.Rmd")
+```
 
 
 ## Code tips you said?
@@ -29,7 +34,7 @@ take the liberty of exemplifying his tips with code-chunks longer than 5 lines
 of codes. This should not affect the principle pertaining to the tip length.
 
 When writing a tip, the author must think this way: "I should have known this
-*¶ø?!@~:(&* piece of code long ago". Note that some tips might be obvious for
+*¶ø?!@~:&* piece of code long ago". Note that some tips might be obvious for
 careful readers of documentations (God bless them for their wiseness), they would
 nonetheless help many other readers that suffer from reading documentations that
 are sometime fairly technical. By the way, there are doubtlessly many similar
