@@ -13,7 +13,8 @@ docs <- Corpus(
 # inspect(docs[1])
 # getTransformations()
 stopwords_pers <-  c("hence", "since", "university", "can", "also", "null", "using", "may",
-  "first", "will", "one", "two", "three", "fig", "tab", "eqn", "therefore", "although", "aij", "clearly")
+  "first", "will", "one", "two", "three", "fig", "tab", "eqn", "therefore", "gravel", "des"
+  "although", "aij", "clearly", "cazelles", "araujo", "lett", "res", "thuiller", "biol")
 docs %<>% tm_map(content_transformer(tolower))
 docs %<>% tm_map(removeNumbers)
 docs %<>% tm_map(removePunctuation)
@@ -43,13 +44,13 @@ datext <- data.frame(
 ## Combine the dataset / order and keeb the 500 more frequent words
 dat <- rbind(datext, datdoc)
 dat <- dat[rev(order(dat$freq)),]
-dat <- dat[1:800,]
+dat <- dat[1:1000,]
 # print(head(dat))
 
 # imgwc <- "assets/img/butterfly.png"
 # imgwc <- "assets/img/favicon.png"
 imgwc <- "assets/img/tortue.png"
-wc_aut <- wordcloud2(dat, figPath = imgwc, size = 2, color="white", backgroundColor=1)
+wc_aut <- wordcloud2(dat, figPath = imgwc, size = 2, color="black", backgroundColor="white")
 ##
 saveWidget(wc_aut, paste0(getwd(),"/_tmp/ourWordcloud.html"), selfcontained = FALSE)
 ## convert into png

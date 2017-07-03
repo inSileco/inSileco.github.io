@@ -59,7 +59,6 @@ In order to build this website, the following are needed:
 # To do
 
 - [ ] add a more exhaustive description of contributors/contributions :raising_hand:
-- [x] fix the current wordcloud (it often fails loading)
-- [ ] add tags to posts. (Hugo does it well and it is a great feature to add). :pray:
+- [ ] add tags to posts (Hugo does it well and it is a great feature to add). :pray:
 - [ ] add contributing for how to make posts
-- [ ] add anchor for all h1 / h2 titles (a simple jQuery code should do the job)
+- [ ] add a multi-lang feature

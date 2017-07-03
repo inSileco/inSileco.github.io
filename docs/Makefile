@@ -19,7 +19,7 @@ docs/%.html: _posts/%.Rmd #Rscripts/readYaml.R
 	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('$(patsubst _posts/%,%,$<)')"
 	rm $(patsubst _posts/%, %, $<)
 
-docs/%.html: _main/%.Rmd $(rscr)
+docs/%.html: _main/%.Rmd #$(rscr)
 	cp $< ./
 	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('$(patsubst _main/%,%,$<)')"
 	rm $(patsubst _main/%, %, $<)

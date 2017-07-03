@@ -19,8 +19,8 @@ output:
 
 
 ```{r addStatus, echo=FALSE, results="asis", message=FALSE}
-  source("Rscripts/readYaml.R")
-  readYAML("Rgraphpkgs.Rmd")
+  source("Rscripts/addStatus.R")
+  addStatus("Rgraphpkgs.Rmd")
 ```
 
 Note that the list of packages below would be updated as soon as we find a new package.

@@ -4,6 +4,10 @@ author:
   - Kevin Cazelles & David Beauchesne
 status: finalVersion
 pgmlang: R(>=3.0.0)
+keywords:
+  - plot
+  - R
+  - icon
 date: "May 23, 2017  -  last update on June 25, 2017"
 output:
   html_document:
@@ -18,8 +22,8 @@ output:
 
 
 ```{r addStatus, echo=FALSE, results="asis", message=FALSE}
-  source("Rscripts/readYaml.R")
-  readYAML("AcademiconsInR.Rmd")
+  source("Rscripts/addStatus.R")
+  addStatus("AcademiconsInR.Rmd")
 ```
 
 

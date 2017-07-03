@@ -2,24 +2,16 @@ source("Rscripts/init.R")
 
 ##
 
-readYAML <- function(rmd_file){
-  ## Read current file
-  doc <- readLines(rmd_file)
-  id <- which(doc=="---")
-  ##
-  ##
-  if ((length(id))>=2) {
-    if ((id[2L]-id[1L])>=2) {
-      tmp <- (id[1L]+1):(id[2L]-1)
-      yml_cur <- yaml::yaml.load(paste(doc[tmp], collapse="\n"))
-    } else return(invisible(NULL))
-  } else return(invisible(NULL))
+addStatus <- function(rmd_file){
+
+  yml_cur <- readYaml(rmd_file)
+  if (is.null(yml_cur)) return(invisible(NULL))
 
   #### Format
   txt <- ""
   ## Statut
   if (!is.null(yml_cur$status) | !is.null(yml_cur$pgmlang)) {
-    txt %<>% paste0("Status:", addSpace(2))
+    txt %<>% paste0("**Status**:", addSpace(2))
     ##
     sta <- c("inDevelopment", "inRevision", "finalVersion")
     idb <- which(sta == yml_cur$status)
@@ -38,11 +30,17 @@ readYAML <- function(rmd_file){
       badge, ".svg) ", plg, " <br/>"
       )
   }
-  ## Keyword
+  ## Keywords
   if (!is.null(yml_cur$keywords)){
-    length(yml_cur$keywords)
+    txt %<>% paste0("**Keywords**: ")
+    for (i in 1:length(yml_cur$keywords)){
+      txt %<>% paste0(
+        "<a class='btn btn-primary btn-outline btn-xs' href='#'>",
+        yml_cur$keywords[[i]], "</a> ")
+    }
   }
   ##
+
   cat(txt)
   invisible(txt)
 }
