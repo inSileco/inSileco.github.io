@@ -59,6 +59,5 @@ In order to build this website, the following are needed:
 # To do
 
 - [ ] add a more exhaustive description of contributors/contributions :raising_hand:
-- [ ] add tags to posts (Hugo does it well and it is a great feature to add). :pray:
 - [ ] add contributing for how to make posts
-- [ ] add a multi-lang feature
+- [ ] the makefile should be reviewed to associate `.Rmd` files and their dependencies more accurately

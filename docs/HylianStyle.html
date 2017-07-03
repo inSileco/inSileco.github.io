@@ -206,7 +206,7 @@ $(document).ready(function () {
   <a href="about.html">About</a>
 </li>
 <li>
-  <a href="software.html">Software</a>
+  <a href="softwares.html">Softwares</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -294,7 +294,7 @@ $(document).ready(function () {
 </div>
 
 
-<p>Status:   <img src="https://img.shields.io/badge/letiR-finalVersion-800fa2.svg" /> <img src="https://img.shields.io/badge/pgmLang-R(%3E=3.0.0)-blue.svg" /> <br/></p>
+<p><strong>Status</strong>:   <img src="https://img.shields.io/badge/letiR-finalVersion-800fa2.svg" /> <img src="https://img.shields.io/badge/pgmLang-R(%3E=3.0.0)-blue.svg" /> <br/><strong>Keywords</strong>: <a class='btn btn-primary btn-outline btn-xs' href='#'>plot</a> <a class='btn btn-primary btn-outline btn-xs' href='#'>R</a> <a class='btn btn-primary btn-outline btn-xs' href='#'>icon</a> <a class='btn btn-primary btn-outline btn-xs' href='#'>zelda</a></p>
 <p><br/> <br/></p>
 <p>Here are the 6 steps you need to make your plot a Hylian one! <strong>May the triforce be with you</strong>!</p>
 <ol start="0" style="list-style-type: decimal">
@@ -328,7 +328,6 @@ file.remove(paste0(&quot;dir&quot;, basename(url)))</code></pre>
 </ol>
 <pre class="r"><code>install.package(&quot;showtext&quot;, dependencies = TRUE)
 library(showtext)</code></pre>
-<pre><code>## Loading required package: sysfonts</code></pre>
 <ol start="3" style="list-style-type: decimal">
 <li>To see the list of font available locally do so:</li>
 </ol>
@@ -636,7 +635,7 @@ font.files()[grep(&quot;Triforce&quot;, font.files())]</code></pre>
 <pre class="r"><code>font.add(family = &#39;Triforce&#39;, regular = &#39;Triforce.ttf&#39;)
 font.families()</code></pre>
 <pre><code>## [1] &quot;sans&quot;         &quot;serif&quot;        &quot;mono&quot;         &quot;wqy-microhei&quot;
-## [5] &quot;Triforce&quot;</code></pre>
+## [5] &quot;Academicons&quot;  &quot;FontAwesome&quot;  &quot;Ionicons&quot;     &quot;Triforce&quot;</code></pre>
 <ol start="6" style="list-style-type: decimal">
 <li>Here it goes:</li>
 </ol>
@@ -648,7 +647,7 @@ points(x = runif(7), y = runif(7), pch = &quot;$&quot;, cex = 2, col = &quot;#34
 points(x = 0.1, y = 0.1, pch = &quot;%&quot;, cex = 6, col = &quot;#347AB7&quot;)</code></pre>
 <p><img src="HylianStyle_files/figure-html/unnamed-chunk-10-1.png" width="912" /></p>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTWFrZSB5b3VyIHBsb3QgSHlsaWFuIgphdXRob3I6CiAgLSBLZXZpbiBDYXplbGxlcywKICAgIERhdmlkIEJlYXVjaGVzbmUgJgogICAgTmljb2xhcyBDYXNhanVzCnN0YXR1czogZmluYWxWZXJzaW9uCnBnbWxhbmc6IFIoPj0zLjAuMCkKZGF0ZTogIkFwcmlsIDE0LCAyMDE3ICAtICBsYXN0IHVwZGF0ZSBvbiBKdW5lIDI0LCAyMDE3YCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICBjb2RlX2Rvd25sb2FkOiBUUlVFCiAgICBpbmNsdWRlOgogICAgICAgIGFmdGVyX2JvZHk6IFtmb290ZXIuaHRtbCwgZGlzcXVzLmh0bWxdCi0tLQoKCmBgYHtyIGFkZFN0YXR1cywgZWNobz1GQUxTRSwgcmVzdWx0cz0iYXNpcyIsIG1lc3NhZ2U9RkFMU0V9CiAgc291cmNlKCJSc2NyaXB0cy9hZGRTdGF0dXMuUiIpCiAgYWRkU3RhdHVzKCJIeWxpYW5TdHlsZS5SbWQiKQpgYGAKCjxici8+Cjxici8+CgpIZXJlIGFyZSB0aGUgNiBzdGVwcyB5b3UgbmVlZCB0byBtYWtlIHlvdXIgcGxvdCBhIEh5bGlhbiBvbmUhCioqTWF5IHRoZSB0cmlmb3JjZSBiZSB3aXRoIHlvdSoqIQoKCjAuIFIgVmVyc2lvbgoKYGBge3IsIGVjaG8gPSBUUlVFLCBldmFsID0gVFJVRX0Kc2Vzc2lvbkluZm8oKVtbMV1dJHZlcnNpb24uc3RyaW5nCmBgYAoKMS4gT3BlbiBSIGFuZCBkb3dubG9hZCB0aGUgWypUcmlmb3JjZSogZm9udF0oaHR0cHM6Ly96ZWxkYXVuaXZlcnNlLm5ldC9tZWRpYS9kaXIpCgpgYGB7ciwgZWNobyA9IFRSVUUsIGV2YWwgPSBUUlVFfQojIENyZWF0ZSBhIGRpcmVjdG9yeSA8IGZvbnRzID4KZGlyIDwtICJfdG1wL2RpciIKZGlyLmNyZWF0ZSgiX3RtcC9mb250cyIsIHNob3dXYXJuaW5ncyA9IEZBTFNFKQoKIyBEb3dubG9hZCBUcmlmb3JjZSBmb250IDwgVHJpZm9yY2UudHRmID4KdXJsIDwtICJodHRwOi8vemVsZGF1bml2ZXJzZS5uZXQvd3AtY29udGVudC91cGxvYWRzLzIwMTQvMDEvVHJpZm9yY2UudHRmXy56aXAiCmRvd25sb2FkLmZpbGUodXJsLCBwYXN0ZTAoImRpciIsIGJhc2VuYW1lKHVybCkpKQpkaXIoImRpciIpCgojIFVuemlwIHRoZSBmaWxlCnVudGFyKHBhc3RlMCgiZGlyIiwgYmFzZW5hbWUodXJsKSksIGV4ZGlyID0gImRpciIsIGNvbXByZXNzZWQgPSAiZ3ppcCIpCmRpcigiZGlyIikKCiMgUmVtb3ZlIC56aXAKZmlsZS5yZW1vdmUocGFzdGUwKCJkaXIiLCBiYXNlbmFtZSh1cmwpKSkKZGlyKCJkaXIiKQpgYGAKCgoyLiBJbnN0YWxsIHRoZSBgc2hvd3RleHRgIHBhY2thZ2UgaWYgbm90IGFscmVhZHkgaW5zdGFsbGVkOgoKYGBge3IsIGVjaG8gPSBUUlVFLCBldmFsID0gRkFMU0V9Cmluc3RhbGwucGFja2FnZSgic2hvd3RleHQiLCBkZXBlbmRlbmNpZXMgPSBUUlVFKQpsaWJyYXJ5KHNob3d0ZXh0KQpgYGAKCmBgYHtyLCBlY2hvID0gRkFMU0UsIGV2YWwgPSBUUlVFfQpsaWJyYXJ5KHNob3d0ZXh0KQpgYGAKCjMuIFRvIHNlZSB0aGUgbGlzdCBvZiBmb250IGF2YWlsYWJsZSBsb2NhbGx5IGRvIHNvOgoKYGBge3IsIGVjaG8gPSBUUlVFLCBldmFsID0gVFJVRX0Kc2hvd3RleHQuYXV0bygpCmZvbnQuZmlsZXMoKQpgYGAKCjQuIEFkZCB0aGUgbmV3IGRpcmVjdG9yeSA8IGZvbnRzID4gdG8gdGhlIGF2YWlsYWJsZSBmb250IHBhdGhzIG9mIHNob3d0ZXh0CgpgYGB7ciwgZWNobyA9IFRSVUUsIGV2YWwgPSBGQUxTRX0KZm9udC5wYXRocygiZGlyIikKYGBgCgpgYGB7ciwgZWNobyA9IEZBTFNFLCBldmFsID0gVFJVRX0KZ3N1YigiL1VzZXJzL25pY29sYXNjYXNhanVzLyIsICJ+LyIsIGZvbnQucGF0aHMoImRpciIpKQpgYGAKCmBgYHtyLCBlY2hvID0gVFJVRSwgZXZhbCA9IFRSVUV9CiMgSXMgdGhlIFRURiBwcmVzZW50Pwpmb250LmZpbGVzKClbZ3JlcCgiVHJpZm9yY2UiLCBmb250LmZpbGVzKCkpXQpgYGAKCjUuIEFkZCB0aGUgKlRyaWZvcmNlKiBmb250IHRvIHlvdXIgc2Vzc2lvbjoKCmBgYHtyLCBlY2hvID0gVFJVRSwgZXZhbCA9IFRSVUV9CmZvbnQuYWRkKGZhbWlseSA9ICdUcmlmb3JjZScsIHJlZ3VsYXIgPSAnVHJpZm9yY2UudHRmJykKZm9udC5mYW1pbGllcygpCmBgYAoKNi4gSGVyZSBpdCBnb2VzOgoKYGBge3IsIGVjaG8gPSBUUlVFLCBldmFsID0gVFJVRSwgZmlnLndpZHRoID0gOS41LCBmaWcuaGVpZ2h0ID0gNywgZmlnLnNob3d0ZXh0ID0gVFJVRX0KcGFyKGZhbWlseSA9ICJUcmlmb3JjZSIsIGxhcyA9IDEsIGNleC5sYWIgPSAyLCBjZXgubWFpbiA9IDIsIG1hciA9IGMoNCwgNSwgNSwgMCkpCnBsb3QoeCA9IGMoMCwgMSksIHkgPSBjKDAsIDEpLCB0eXBlID0gIm4iLCB4bGFiID0gIlgtYXhpcyIsIHlsYWIgPSAiWS1heGlzIikKdGl0bGUobWFpbiA9ICJIeWxpYW4gU3R5bGUgLSBMaW5rIG11c3QgYmUgcHJvdWQgb2YgdXMhIikKcG9pbnRzKHggPSBydW5pZig3KSwgeSA9IHJ1bmlmKDcpLCBwY2ggPSAiKiIsIGNleCA9IDIpCnBvaW50cyh4ID0gcnVuaWYoNyksIHkgPSBydW5pZig3KSwgcGNoID0gIiQiLCBjZXggPSAyLCBjb2wgPSAiIzM0N0FCNyIpCnBvaW50cyh4ID0gMC4xLCB5ID0gMC4xLCBwY2ggPSAiJSIsIGNleCA9IDYsIGNvbCA9ICIjMzQ3QUI3IikKYGBgCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTWFrZSB5b3VyIHBsb3QgSHlsaWFuIgphdXRob3I6CiAgLSBLZXZpbiBDYXplbGxlcywKICAgIERhdmlkIEJlYXVjaGVzbmUgJgogICAgTmljb2xhcyBDYXNhanVzCnN0YXR1czogZmluYWxWZXJzaW9uCnBnbWxhbmc6IFIoPj0zLjAuMCkKa2V5d29yZHM6CiAgLSBwbG90CiAgLSBSCiAgLSBpY29uCiAgLSB6ZWxkYQpkYXRlOiAiQXByaWwgMTQsIDIwMTcgIC0gIGxhc3QgdXBkYXRlIG9uIEp1bmUgMjQsIDIwMTdgIgpvdXRwdXQ6CiAgaHRtbF9kb2N1bWVudDoKICAgIGNvZGVfZG93bmxvYWQ6IFRSVUUKICAgIGluY2x1ZGU6CiAgICAgICAgYWZ0ZXJfYm9keTogW2Zvb3Rlci5odG1sLCBkaXNxdXMuaHRtbF0KLS0tCgoKYGBge3IgYWRkU3RhdHVzLCBlY2hvPUZBTFNFLCByZXN1bHRzPSJhc2lzIiwgbWVzc2FnZT1GQUxTRX0KICBzb3VyY2UoIlJzY3JpcHRzL2FkZFN0YXR1cy5SIikKICBhZGRTdGF0dXMoIkh5bGlhblN0eWxlLlJtZCIpCmBgYAoKPGJyLz4KPGJyLz4KCkhlcmUgYXJlIHRoZSA2IHN0ZXBzIHlvdSBuZWVkIHRvIG1ha2UgeW91ciBwbG90IGEgSHlsaWFuIG9uZSEKKipNYXkgdGhlIHRyaWZvcmNlIGJlIHdpdGggeW91KiohCgoKMC4gUiBWZXJzaW9uCgpgYGB7ciwgZWNobyA9IFRSVUUsIGV2YWwgPSBUUlVFfQpzZXNzaW9uSW5mbygpW1sxXV0kdmVyc2lvbi5zdHJpbmcKYGBgCgoxLiBPcGVuIFIgYW5kIGRvd25sb2FkIHRoZSBbKlRyaWZvcmNlKiBmb250XShodHRwczovL3plbGRhdW5pdmVyc2UubmV0L21lZGlhL2RpcikKCmBgYHtyLCBlY2hvID0gVFJVRSwgZXZhbCA9IFRSVUV9CiMgQ3JlYXRlIGEgZGlyZWN0b3J5IDwgZm9udHMgPgpkaXIgPC0gIl90bXAvZGlyIgpkaXIuY3JlYXRlKCJfdG1wL2ZvbnRzIiwgc2hvd1dhcm5pbmdzID0gRkFMU0UpCgojIERvd25sb2FkIFRyaWZvcmNlIGZvbnQgPCBUcmlmb3JjZS50dGYgPgp1cmwgPC0gImh0dHA6Ly96ZWxkYXVuaXZlcnNlLm5ldC93cC1jb250ZW50L3VwbG9hZHMvMjAxNC8wMS9Ucmlmb3JjZS50dGZfLnppcCIKZG93bmxvYWQuZmlsZSh1cmwsIHBhc3RlMCgiZGlyIiwgYmFzZW5hbWUodXJsKSkpCmRpcigiZGlyIikKCiMgVW56aXAgdGhlIGZpbGUKdW50YXIocGFzdGUwKCJkaXIiLCBiYXNlbmFtZSh1cmwpKSwgZXhkaXIgPSAiZGlyIiwgY29tcHJlc3NlZCA9ICJnemlwIikKZGlyKCJkaXIiKQoKIyBSZW1vdmUgLnppcApmaWxlLnJlbW92ZShwYXN0ZTAoImRpciIsIGJhc2VuYW1lKHVybCkpKQpkaXIoImRpciIpCmBgYAoKCjIuIEluc3RhbGwgdGhlIGBzaG93dGV4dGAgcGFja2FnZSBpZiBub3QgYWxyZWFkeSBpbnN0YWxsZWQ6CgpgYGB7ciwgZWNobyA9IFRSVUUsIGV2YWwgPSBGQUxTRX0KaW5zdGFsbC5wYWNrYWdlKCJzaG93dGV4dCIsIGRlcGVuZGVuY2llcyA9IFRSVUUpCmxpYnJhcnkoc2hvd3RleHQpCmBgYAoKYGBge3IsIGVjaG8gPSBGQUxTRSwgZXZhbCA9IFRSVUV9CmxpYnJhcnkoc2hvd3RleHQpCmBgYAoKMy4gVG8gc2VlIHRoZSBsaXN0IG9mIGZvbnQgYXZhaWxhYmxlIGxvY2FsbHkgZG8gc286CgpgYGB7ciwgZWNobyA9IFRSVUUsIGV2YWwgPSBUUlVFfQpzaG93dGV4dC5hdXRvKCkKZm9udC5maWxlcygpCmBgYAoKNC4gQWRkIHRoZSBuZXcgZGlyZWN0b3J5IDwgZm9udHMgPiB0byB0aGUgYXZhaWxhYmxlIGZvbnQgcGF0aHMgb2Ygc2hvd3RleHQKCmBgYHtyLCBlY2hvID0gVFJVRSwgZXZhbCA9IEZBTFNFfQpmb250LnBhdGhzKCJkaXIiKQpgYGAKCmBgYHtyLCBlY2hvID0gRkFMU0UsIGV2YWwgPSBUUlVFfQpnc3ViKCIvVXNlcnMvbmljb2xhc2Nhc2FqdXMvIiwgIn4vIiwgZm9udC5wYXRocygiZGlyIikpCmBgYAoKYGBge3IsIGVjaG8gPSBUUlVFLCBldmFsID0gVFJVRX0KIyBJcyB0aGUgVFRGIHByZXNlbnQ/CmZvbnQuZmlsZXMoKVtncmVwKCJUcmlmb3JjZSIsIGZvbnQuZmlsZXMoKSldCmBgYAoKNS4gQWRkIHRoZSAqVHJpZm9yY2UqIGZvbnQgdG8geW91ciBzZXNzaW9uOgoKYGBge3IsIGVjaG8gPSBUUlVFLCBldmFsID0gVFJVRX0KZm9udC5hZGQoZmFtaWx5ID0gJ1RyaWZvcmNlJywgcmVndWxhciA9ICdUcmlmb3JjZS50dGYnKQpmb250LmZhbWlsaWVzKCkKYGBgCgo2LiBIZXJlIGl0IGdvZXM6CgpgYGB7ciwgZWNobyA9IFRSVUUsIGV2YWwgPSBUUlVFLCBmaWcud2lkdGggPSA5LjUsIGZpZy5oZWlnaHQgPSA3LCBmaWcuc2hvd3RleHQgPSBUUlVFfQpwYXIoZmFtaWx5ID0gIlRyaWZvcmNlIiwgbGFzID0gMSwgY2V4LmxhYiA9IDIsIGNleC5tYWluID0gMiwgbWFyID0gYyg0LCA1LCA1LCAwKSkKcGxvdCh4ID0gYygwLCAxKSwgeSA9IGMoMCwgMSksIHR5cGUgPSAibiIsIHhsYWIgPSAiWC1heGlzIiwgeWxhYiA9ICJZLWF4aXMiKQp0aXRsZShtYWluID0gIkh5bGlhbiBTdHlsZSAtIExpbmsgbXVzdCBiZSBwcm91ZCBvZiB1cyEiKQpwb2ludHMoeCA9IHJ1bmlmKDcpLCB5ID0gcnVuaWYoNyksIHBjaCA9ICIqIiwgY2V4ID0gMikKcG9pbnRzKHggPSBydW5pZig3KSwgeSA9IHJ1bmlmKDcpLCBwY2ggPSAiJCIsIGNleCA9IDIsIGNvbCA9ICIjMzQ3QUI3IikKcG9pbnRzKHggPSAwLjEsIHkgPSAwLjEsIHBjaCA9ICIlIiwgY2V4ID0gNiwgY29sID0gIiMzNDdBQjciKQpgYGAK</div>
 <br/><br/>
 
 <div class="footer">
@@ -660,7 +659,7 @@ points(x = 0.1, y = 0.1, pch = &quot;%&quot;, cex = 6, col = &quot;#347AB7&quot;
       <i class='cc cc-cc-circle cc-1x'></i> <i class='cc cc-by-circle cc-1x'></i>
       <i class='cc cc-nc-circle cc-1x'></i> <i class='cc cc-sa-circle cc-1x'></i>
   </a> unless otherwise specified. <br/>
-  Last update: 02-07-2017. Code source available on
+  Last update: 03-07-2017. Code source available on
     <a href="https://github.com/letiR/letiR_website">
       <i class='fa fa-github fa-1x'></i></a>
 </div>

@@ -7,7 +7,7 @@ slclang:
 
 
 
-```{r slcLang, fig.width=9.5, echo=FALSE, results="asis", message=FALSE}
+```{r slcLang, echo=FALSE, results="asis", message=FALSE}
 source("Rscripts/slcLang.R")
 slcLang("index.Rmd")  # I have to add this the make the map working.
 source("Rscripts/mapAuthors.R")

@@ -40,6 +40,8 @@ newpost:
 wordcloud:
 	Rscript --no-init-file ./Rscripts/ourWordcloud.R
 
+# index:
+
 reveal:
 	Rscript --no-init-file -e "for (i in list.files('pres', pattern='*.Rmd', full.names=T)) rmarkdown::render(i)"
 
