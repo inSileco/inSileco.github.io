@@ -9,7 +9,7 @@
 <meta name="generator" content="pandoc" />
 
 
-<meta name="author" content="David Beauchesne" />
+<meta name="author" content="David Beauchesne &amp; Kévin Cazelles" />
 
 
 <title>Animations in R: Time series of erythemal irradiance in the St. Lawrence</title>
@@ -270,8 +270,8 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Animations in R: Time series of erythemal irradiance in the St. Lawrence</h1>
-<h4 class="author"><em>David Beauchesne</em></h4>
-<h4 class="date"><em>June 19, 2017 - last update on July 04, 2017</em></h4>
+<h4 class="author"><em>David Beauchesne &amp; Kévin Cazelles</em></h4>
+<h4 class="date"><em>June 19, 2017 - last update on July 05, 2017</em></h4>
 
 </div>
 
@@ -324,6 +324,10 @@ $(document).ready(function () {
 ## Source: &quot;./data/shpfile/&quot;, layer: &quot;ne_10m_ocean&quot;
 ## with 1 features
 ## It has 2 fields</code></pre>
+<pre class="r"><code>    class(ocean)</code></pre>
+<pre><code>## [1] &quot;SpatialPolygonsDataFrame&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;sp&quot;</code></pre>
 <p><br/></p>
 </div>
 <div id="set-parameters-and-functions" class="section level2">
@@ -373,7 +377,7 @@ $(document).ready(function () {
                 mask(ocean)
             eplot(xmin = ext[1], xmax = ext[2], ymin = ext[3], ymax = ext[4])
             plot(r, col= rbPal(100), breaks = seq(min_,max_,length.out=100), legend = F, add = T)
-            plot(ocean, add = T)
+            plot(ocean, add = T, lwd = 2)
             text(x = -54.5, y = 45, labels = paste(colnames(labels)[1], rownames(labels)[i]), adj = 1, cex = 1.5)
         }
 }, movie.name = &quot;UV2005animate.gif&quot;)</code></pre>
@@ -455,7 +459,7 @@ saveGIF({
       <i class='cc cc-cc-circle cc-1x'></i> <i class='cc cc-by-circle cc-1x'></i>
       <i class='cc cc-nc-circle cc-1x'></i> <i class='cc cc-sa-circle cc-1x'></i>
   </a> unless otherwise specified. <br/>
-  Last update: 04-07-2017. Code source available on
+  Last update: 05-07-2017. Code source available on
     <a href="https://github.com/letiR/letiR_website">
       <i class='fa fa-github fa-1x'></i></a>
 </div>

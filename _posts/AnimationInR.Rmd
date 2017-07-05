@@ -1,8 +1,15 @@
 ---
 title: "Animations in R: Time series of erythemal irradiance in the St. Lawrence"
 author:
-  - David Beauchesne
+  - David Beauchesne & Kévin Cazelles
 status: draft
+keywords:
+  - plot
+  - R
+  - animation
+  - NASA
+  - radiation
+  - St. Lawrence
 date: "`r paste0('June 19, 2017  -  last update on ', format(Sys.time(), '%B %d, %Y'))`"
 output:
   html_document:
@@ -18,7 +25,6 @@ Status: ![](https://img.shields.io/badge/letiR-InDevelopment-blue.svg)
 
 ```{r, include = FALSE}
 rm(list=ls())
-setwd("/Users/davidbeauchesne/Dropbox/PhD/letir.github.io") # À enlever
 library(raster)
 library(magrittr)
 library(plyr)
@@ -68,7 +74,7 @@ The maps generated in this post require the user to load [`ocean`](http://www.na
 
 <br/>
 
-```{r, loadData}
+```{r, loadData, message=F}
 # UV data
     UV <- readRDS('./data/MonthOMI.rds')
 
@@ -78,6 +84,8 @@ The maps generated in this post require the user to load [`ocean`](http://www.na
 # Ocean shapefile
     ocean <- readOGR(dsn = "./data/shpfile/", layer = "ne_10m_ocean") %>%
              spTransform(CRSobj = CRS(spatProj))
+
+    class(ocean)
 ```
 
 <br/>
@@ -137,7 +145,7 @@ saveGIF({
                 mask(ocean)
             eplot(xmin = ext[1], xmax = ext[2], ymin = ext[3], ymax = ext[4])
             plot(r, col= rbPal(100), breaks = seq(min_,max_,length.out=100), legend = F, add = T)
-            plot(ocean, add = T)
+            plot(ocean, add = T, lwd = 2)
             text(x = -54.5, y = 45, labels = paste(colnames(labels)[1], rownames(labels)[i]), adj = 1, cex = 1.5)
         }
 }, movie.name = "UV2005animate.gif")
