@@ -1,6 +1,7 @@
 source("Rscripts/init.R")
 
-##
+## add System requirements
+## add R packages R github packages
 
 addStatus <- function(rmd_file){
 
