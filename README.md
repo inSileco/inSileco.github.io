@@ -40,13 +40,15 @@ In order to build this website, the following are needed:
 # Contributing
 
 - Any additional header contain does `header.html`
-- To tune the current visual style, modify the `css/perso.css` file.
+- To tune the current visual style, modify the `css/perso.css` file
 - Add *jQueries* in `footer.html`
 - create a new blog post:
 
 ```
   make newpost
 ```
+
+- When creating a `new post`, all extra material (*e.g.* data, figures) required to build it should be stored in `assets/new post`
 
 
 
