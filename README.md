@@ -48,7 +48,7 @@ In order to build this website, the following are needed:
   make newpost
 ```
 
-- When creating a `new post`, all extra material (*e.g.* data, figures) required to build it should be stored in `assets/new post`
+- When creating a `new post`, all extra material (*e.g.* data, figures) required to build it should be stored in `assets/new post/` folder
 
 
 
