@@ -31,12 +31,14 @@ addStatus <- function(rmd_file){
       badge, ".svg) ", plg, " <br/>"
       )
   }
+
   ## Keywords
   if (!is.null(yml_cur$keywords)){
     txt %<>% paste0("**Keywords**: ")
     for (i in 1:length(yml_cur$keywords)){
       txt %<>% paste0(
-        "<a class='btn btn-primary btn-outline btn-xs' href='#'>",
+        "<a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#",
+        tolower(gsub(yml_cur$keywords[[i]], pat=" ", rep="_")), "'>",
         yml_cur$keywords[[i]], "</a> ")
     }
   }
