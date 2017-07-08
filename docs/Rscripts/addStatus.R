@@ -28,21 +28,33 @@ addStatus <- function(rmd_file) {
     ##
     txt %<>% paste0(
       "![](https://img.shields.io/badge/letiR-",
-      badge, ".svg) ", plg, " <br/>"
+      badge, ".svg) ", plg, " <br/> \n"
       )
   }
 
   ## Keywords
-  if (!is.null(yml_cur$keywords)){
+  if (!is.null(yml_cur$keywords)) {
     txt %<>% paste0("<i class='fa fa-tags' aria-hidden='true'></i>", addSpace(2))
     for (i in 1:length(yml_cur$keywords)){
       txt %<>% paste0(
         " <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#",
         tolower(gsub(yml_cur$keywords[[i]], pat=" ", rep="_")), "'>",
-        yml_cur$keywords[[i]], "</a> ")
+        yml_cur$keywords[[i]], "</a>")
     }
   }
   ##
+
+  txt %<>% paste0("<br/><br/>")
+
+  ## Tweet
+  if (!is.null(yml_cur$tweet)) {
+    twt <- URLencode(yml_cur$tweet)
+    url <- URLencode(paste0("https://letir.github.io/docs/", gsub(rmd_file, pat = ".Rmd", rep = ".html")))
+    txt %<>% paste0("<a class='twitter-share-button' ",
+      "href='https://twitter.com/intent/tweet?text=", twt,
+      "&url=", url, "'>Tweet</a> \n")
+  }
+
 
   cat(txt)
   invisible(txt)

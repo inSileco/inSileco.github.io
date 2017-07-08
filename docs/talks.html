@@ -303,7 +303,7 @@ $(document).ready(function () {
       <i class='cc cc-cc-circle cc-1x'></i> <i class='cc cc-by-circle cc-1x'></i>
       <i class='cc cc-nc-circle cc-1x'></i> <i class='cc cc-sa-circle cc-1x'></i>
   </a> unless otherwise specified. <br/>
-  Last update: 05-07-2017. Code source available on
+  Last update: 08-07-2017. Code source available on
     <a href="https://github.com/letiR/letiR_website">
       <i class='fa fa-github fa-1x'></i></a>
 </div>
@@ -315,6 +315,26 @@ $(document).ready(function () {
   jQuery(".section.level2").before("<br/><br/>");
 </script>
 
+
+<!-- twitter -->
+<script>
+window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));
+</script>
 
 
 <!-- GoogleAnalytics -->

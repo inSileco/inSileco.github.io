@@ -301,11 +301,14 @@ $(document).ready(function () {
 <h1>Contributing</h1>
 <ul>
 <li>Any additional header contain does <code>header.html</code></li>
-<li>To tune the current visual style, modify the <code>css/perso.css</code> file.</li>
+<li>To tune the current visual style, modify the <code>css/perso.css</code> file</li>
 <li>Add <em>jQueries</em> in <code>footer.html</code></li>
 <li>create a new blog post:</li>
 </ul>
 <pre><code>  make newpost</code></pre>
+<ul>
+<li>When creating a <code>new post</code>, all extra material (<em>e.g.</em> data, figures) required to build it should be stored in <code>assets/new post/</code> folder</li>
+</ul>
 </div>
 <div id="licence" class="section level1">
 <h1>Licence</h1>
@@ -333,7 +336,7 @@ $(document).ready(function () {
       <i class='cc cc-cc-circle cc-1x'></i> <i class='cc cc-by-circle cc-1x'></i>
       <i class='cc cc-nc-circle cc-1x'></i> <i class='cc cc-sa-circle cc-1x'></i>
   </a> unless otherwise specified. <br/>
-  Last update: 05-07-2017. Code source available on
+  Last update: 08-07-2017. Code source available on
     <a href="https://github.com/letiR/letiR_website">
       <i class='fa fa-github fa-1x'></i></a>
 </div>
@@ -345,6 +348,26 @@ $(document).ready(function () {
   jQuery(".section.level2").before("<br/><br/>");
 </script>
 
+
+<!-- twitter -->
+<script>
+window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));
+</script>
 
 
 <!-- GoogleAnalytics -->

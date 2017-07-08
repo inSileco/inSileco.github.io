@@ -275,12 +275,12 @@ $(document).ready(function () {
 
 <h1 class="title toc-ignore">Animations in R: Time series of erythemal irradiance in the St. Lawrence</h1>
 <h4 class="author"><em>David Beauchesne &amp; Kevin Cazelles</em></h4>
-<h4 class="date"><em>June 19, 2017 - July 7, 2017</em></h4>
+<h4 class="date"><em>June 19, 2017 – last update on July 7, 2017</em></h4>
 
 </div>
 
 
-<p><i class='fa fa-cogs' aria-hidden='true'></i>   <img src="https://img.shields.io/badge/letiR-inDevelopment-yellow.svg" /> <img src="https://img.shields.io/badge/pgmLang-R(%3E=3.0.0)-blue.svg" /> <br/><i class='fa fa-tags' aria-hidden='true'></i>    <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#plot'>Plot</a> <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#r'>R</a> <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#animation'>Animation</a> <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#nasa'>NASA</a> <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#radiation'>Radiation</a> <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#st._lawrence'>St. Lawrence</a></p>
+<p><i class='fa fa-cogs' aria-hidden='true'></i>   <img src="https://img.shields.io/badge/letiR-inDevelopment-yellow.svg" /> <img src="https://img.shields.io/badge/pgmLang-R(%3E=3.0.0)-blue.svg" /> <br/> <i class='fa fa-tags' aria-hidden='true'></i>    <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#plot'>Plot</a> <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#r'>R</a> <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#animation'>Animation</a> <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#nasa'>NASA</a> <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#radiation'>Radiation</a> <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#st._lawrence'>St. Lawrence</a><br/><br/><a class='twitter-share-button' href='https://twitter.com/intent/tweet?text=Animations%20in%20R:%20Time%20series%20of%20erythemal%20irradiance%20in%20the%20St.%20Lawrence&url=https://letir.github.io/docs/AnimationInR.html'>Tweet</a></p>
 <p><br/></p>
 <div id="the-need-for-animations" class="section level2">
 <h2>The “<em>need</em>” for animations</h2>
@@ -474,6 +474,26 @@ saveGIF({
   jQuery(".section.level2").before("<br/><br/>");
 </script>
 
+
+<!-- twitter -->
+<script>
+window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+
+  return t;
+}(document, "script", "twitter-wjs"));
+</script>
 
 
 <!-- GoogleAnalytics -->
