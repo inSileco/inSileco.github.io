@@ -3,7 +3,7 @@ source("Rscripts/init.R")
 ## add System requirements
 ## add R packages R github packages
 
-addStatus <- function(rmd_file){
+addStatus <- function(rmd_file) {
 
   yml_cur <- readYaml(rmd_file)
   if (is.null(yml_cur)) return(invisible(NULL))

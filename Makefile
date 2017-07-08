@@ -14,7 +14,7 @@ dat = $(shell date "+%d-%m-%Y")
 
 all: docs/index.html $(mainh) $(posth)
 
-docs/%.html: _posts/%.Rmd Rscripts/readYaml.R Rscripts/addStatus.R
+docs/%.html: _posts/%.Rmd Rscripts/addStatus.R
 	cp $< ./
 	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('$(patsubst _posts/%,%,$<)')"
 	rm $(patsubst _posts/%, %, $<)
@@ -24,7 +24,7 @@ docs/about.html: _main/about.Rmd data/authors_info.yml Rscripts/addAuthorsLinks.
 	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('$(patsubst _main/%,%,$<)')"
 	rm $(patsubst _main/%, %, $<)
 
-docs/maps.html: _main/about.Rmd data/maps.yml Rscripts/maps.R
+docs/maps.html: _main/maps.Rmd data/maps.yml Rscripts/maps.R
 	cp $< ./
 	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('$(patsubst _main/%,%,$<)')"
 	rm $(patsubst _main/%, %, $<)

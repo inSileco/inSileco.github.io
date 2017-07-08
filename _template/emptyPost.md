@@ -12,3 +12,11 @@ output:
     include:
         after_body: [footer.html, disqus.html]
 ---
+
+
+```{r addStatus, echo=FALSE, results="asis", message=FALSE}
+  source("Rscripts/addStatus.R")
+  addStatus("emptyPost.Rmd")
+```
+
+# First section

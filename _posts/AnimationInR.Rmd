@@ -1,15 +1,15 @@
 ---
 title: "Animations in R: Time series of erythemal irradiance in the St. Lawrence"
 author:
-  - David Beauchesne & Kévin Cazelles
-status: draft
+  - David Beauchesne & Kevin Cazelles
+status: inDevelopment
 pgmlang: R(>=3.0.0)
 keywords:
-  - plot
+  - Plot
   - R
-  - animation
+  - Animation
   - NASA
-  - radiation
+  - Radiation
   - St. Lawrence
 date: "June 19, 2017  - July 7, 2017"
 output:
@@ -18,9 +18,11 @@ output:
         after_body: [footer.html, disqus.html]
 ---
 
-<br/>
 
-Status: ![](https://img.shields.io/badge/letiR-InDevelopment-blue.svg)
+```{r addStatus, echo=FALSE, results="asis", message=FALSE}
+  source("Rscripts/addStatus.R")
+  addStatus("AnimationInR.Rmd")
+```
 
 <br/>
 
@@ -33,11 +35,12 @@ library(animation)
 library(rgdal)
 ```
 
+
 ## The "*need*" for animations
 
 <br/>
 
-As part of my PhD thesis, I am currently characterizing the intensity of multiple stressors in the estuary and gulf of St. Lawrence (see researchgate [project](https://www.researchgate.net/project/Evaluating-the-cumulative-impacts-of-human-activities-on-the-structure-and-function-the-trophic-network-of-the-estuary-and-gulf-of-StLawrence) for more details). I have recently *needed* (read: *thought it would be cool*) to create an animation of the temporal variations in ultra-violet intensity in the St. Lawrence. Here is how I did it.
+As part of my PhD thesis, I am currently characterizing the intensity of multiple stressors in the estuary and gulf of St. Lawrence (see ResearchGate [project](https://www.researchgate.net/project/Evaluating-the-cumulative-impacts-of-human-activities-on-the-structure-and-function-the-trophic-network-of-the-estuary-and-gulf-of-StLawrence) for more details). I have recently *needed* (read: *thought it would be cool*) to create an animation of the temporal variations in ultra-violet intensity in the St. Lawrence. Here is how I did it.
 
 <br/>
 
