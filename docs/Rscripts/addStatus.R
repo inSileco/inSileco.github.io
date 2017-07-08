@@ -12,7 +12,7 @@ addStatus <- function(rmd_file) {
   txt <- ""
   ## Statut
   if (!is.null(yml_cur$status) | !is.null(yml_cur$pgmlang)) {
-    txt %<>% paste0("**Status**:", addSpace(2))
+    txt %<>% paste0("<i class='fa fa-cogs' aria-hidden='true'></i>", addSpace(2))
     ##
     sta <- c("inDevelopment", "inRevision", "finalVersion")
     idb <- which(sta == yml_cur$status)
@@ -34,10 +34,10 @@ addStatus <- function(rmd_file) {
 
   ## Keywords
   if (!is.null(yml_cur$keywords)){
-    txt %<>% paste0("**Keywords**: ")
+    txt %<>% paste0("<i class='fa fa-tags' aria-hidden='true'></i>", addSpace(2))
     for (i in 1:length(yml_cur$keywords)){
       txt %<>% paste0(
-        "<a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#",
+        " <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#",
         tolower(gsub(yml_cur$keywords[[i]], pat=" ", rep="_")), "'>",
         yml_cur$keywords[[i]], "</a> ")
     }

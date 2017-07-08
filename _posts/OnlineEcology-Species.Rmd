@@ -20,14 +20,17 @@ output:
 ---
 
 
+
 ```{r addStatus, echo=FALSE, results="asis", message=FALSE}
   source("Rscripts/addStatus.R")
   addStatus("OnlineEcology-Species.Rmd")
+  knitr::opts_chunk$set(error = TRUE)
 ```
 
 
 
-```{r, include = FALSE}
+
+```{r, results = "hide", echo = FALSE, message = FALSE}
 rm(list=ls())
 library(raster)
 library(magrittr)
@@ -138,7 +141,7 @@ rownames(ecol) <- NULL
 ecol <- ecol[ecol[,2] != 0, ] # remove 0
 ecol <- ecol[!is.na(ecol[,2]), ] # remove NAs
 
-kable(ecol, col.names = c('Descriptors', 'Attributes'), "html") %>%
+knitr::kable(ecol, col.names = c('Descriptors', 'Attributes'), "html") %>%
     kable_styling(full_width = F)
 ```
 
@@ -155,7 +158,7 @@ databases accessible through their Application Programming Interface (API).
 
 ```{r, taxonomy, eval = TRUE, message = FALSE}
 # Export the taxonomy of the species of interest
-    kable(taxize::classification(sp, db = 'worms', verbose = FALSE)[[1]], "html") %>%
+    knitr::kable(taxize::classification(sp, db = 'worms', verbose = FALSE)[[1]], "html") %>%
         kable_styling(full_width = F)
 
 # We can also extract the common or scientific names using sci2comm() & comm2sci(), respectively.
@@ -166,7 +169,7 @@ databases accessible through their Application Programming Interface (API).
 
 # Another really interesting feature is to extract all known species at a given taxonomic scale.
 # Let's take the genus level and see the first 20 species that are part of that genus on the itis database
-    kable(taxize::children(strsplit(sp, ' ')[[1]][1], db = 'itis')[[1]], "html") %>%
+    knitr::kable(taxize::children(strsplit(sp, ' ')[[1]][1], db = 'itis')[[1]], "html") %>%
         kable_styling(full_width = F)
 ```
 
@@ -183,7 +186,7 @@ of interactions, all over the world, and is accessible using the package [`rglob
 
 ```{r, trophic, eval = TRUE}
 # There are multiple types of interactions available on GloBI
-    kable(rglobi::get_interaction_types()[,1:3], 'html') %>%
+    knitr::kable(rglobi::get_interaction_types()[,1:3], 'html') %>%
         kable_styling(full_width = F)
 
 # For now let's focus on predator-prey interactions
@@ -262,7 +265,7 @@ and terrestrial environments and a total of
 
 ```{r, sdmpredictors}
 # List sdmpredictors datasets
-    kable(sdmpredictors::list_datasets())
+    knitr::kable(sdmpredictors::list_datasets())
 ```
 
 <br/>
@@ -299,7 +302,7 @@ could also be used.
 # Import marine layers
     layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
     # layers <- 'BO_ph'
-    envCov <- sdmpredictors::load_layers(layers, datadir = paste0( getwd(), "/_tmp"), rasterstack = TRUE)
+    envCov <- sdmpredictors::load_layers(layers, datadir = paste0(getwd(), "/_tmp"), rasterstack = TRUE)
 ```
 
 <br/>
@@ -308,14 +311,17 @@ Clip them and plot them:
 
 <br/>
 
-```{r, plotEnvVar, eval = TRUE, fig.width = 9.5, fig.height = 6}
+```{r, cropEnvCov, eval = TRUE}
 # Clip to study area extent
     envCov <- raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax))
-    envCov <- raster::stack(envCov)
+    print(envCov0)
+    envCov %<>% raster::stack()
 
 # Data description
-    kable(sdmpredictors::get_layers_info(layers)$current[,1:4])
+    knitr::kable(sdmpredictors::get_layers_info(layers)$current[,1:4])
+```
 
+```{r, plotEnvVar, eval = TRUE, fig.width = 9.5, fig.height = 6}
 # Plot 'em!
     raster::plot(envCov)
 ```
@@ -379,7 +385,7 @@ model for your species of interest...
 
 ```{r, modelEval}
 # Model evaluation
-    kable(biomod2::get_evaluations(SDM))
+    knitr::kable(biomod2::get_evaluations(SDM))
 ```
 
 <br/>
