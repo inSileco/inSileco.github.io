@@ -30,9 +30,9 @@ docs/index.html: $(indr) _site.yml css/* data/* assets/*
 
 
 rebuildall:
-	cp $(postr) $(mainr) ./
+	cp $(postr) $(mainr) _template/indexPosts.Rmd ./
 	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('.')"
-	rm $(postt) $(maint)
+	rm $(postt) $(maint) $(patsubst _template/%, %, _template/indexPosts.Rmd)
 
 newpost:
 	cp _template/emptyPost.md _posts/
@@ -40,7 +40,10 @@ newpost:
 wordcloud:
 	Rscript --no-init-file ./Rscripts/ourWordcloud.R
 
-# index:
+index: _template/indexPosts.Rmd
+	cp $< ./
+	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('$(patsubst _template/%,%,$<)')"
+	rm $(patsubst _template/%, %, $<)
 
 reveal:
 	Rscript --no-init-file -e "for (i in list.files('pres', pattern='*.Rmd', full.names=T)) rmarkdown::render(i)"
