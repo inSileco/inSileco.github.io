@@ -14,6 +14,12 @@ nkw <- length(veckw)
 firstUpper <- function(str) {
   tmp <- strsplit(str, "")[[1L]]
   tmp[1L] %<>% toupper
+  id <- which(tmp %in% c(" ", ".", "-", "_"))
+  if (length(id)) {
+    for (i in 1:length(id)) {
+      if (id[i]<length(tmp)) tmp[id[i]+1] %<>% toupper
+    }
+  }
   return(paste(tmp, collapse=""))
 }
 

@@ -4,6 +4,7 @@ author:
   - Who you are
 date: "today"
 status: inDevelopment
+pgmlang: R(>=3.0.0)
 keywords:
   - kw1
   - kw2

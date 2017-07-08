@@ -19,6 +19,9 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-1.1/highlight.js"></script>
@@ -170,6 +173,107 @@ $(document).ready(function () {
 
 
 
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
@@ -309,7 +413,7 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="open-data" class="section level2">
-<h2>Open-data <a name='open-data'></a></h2>
+<h2>Open-Data <a name='open-data'></a></h2>
 <ol style="list-style-type: decimal">
 <li><a href="OnlineEcology-Species.html">Online ecology - Individual species description</a> <em>June 19, 2017 - last update on July 3, 2017</em></li>
 </ol>
@@ -320,11 +424,6 @@ $(document).ready(function () {
 <li><a href="AcademiconsInR.html">Add icons on your plots</a> <em>May 23, 2017 - last update on June 25, 2017</em></li>
 <li><a href="AnimationInR.html">Animations in R: Time series of erythemal irradiance in the St. Lawrence</a> <em>June 19, 2017 - July 7, 2017</em></li>
 <li><a href="HylianStyle.html">Make your plot Hylian</a> <em>April 14, 2017 - last update on June 24, 2017`</em></li>
-</ol>
-</div>
-<div id="plots" class="section level2">
-<h2>Plots <a name='plots'></a></h2>
-<ol style="list-style-type: decimal">
 <li><a href="Rgraphpkgs.html">List of R packages to create and edit plots</a> <em>December 4, 2015 - last update on June 25, 2017`</em></li>
 </ol>
 </div>
@@ -346,7 +445,7 @@ $(document).ready(function () {
 </ol>
 </div>
 <div id="st.lawrence" class="section level2">
-<h2>St. lawrence <a name='st._lawrence'></a></h2>
+<h2>St. Lawrence <a name='st._lawrence'></a></h2>
 <ol style="list-style-type: decimal">
 <li><a href="AnimationInR.html">Animations in R: Time series of erythemal irradiance in the St. Lawrence</a> <em>June 19, 2017 - July 7, 2017</em></li>
 </ol>
@@ -376,7 +475,7 @@ $(document).ready(function () {
       <i class='cc cc-cc-circle cc-1x'></i> <i class='cc cc-by-circle cc-1x'></i>
       <i class='cc cc-nc-circle cc-1x'></i> <i class='cc cc-sa-circle cc-1x'></i>
   </a> unless otherwise specified. <br/>
-  Last update: 05-07-2017. Code source available on
+  Last update: 08-07-2017. Code source available on
     <a href="https://github.com/letiR/letiR_website">
       <i class='fa fa-github fa-1x'></i></a>
 </div>
@@ -401,6 +500,8 @@ $(document).ready(function () {
 </script>
 
 
+</div>
+</div>
 
 </div>
 
