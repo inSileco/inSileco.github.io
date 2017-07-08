@@ -1,6 +1,6 @@
 source("Rscripts/init.R")
 #
-soft <- yaml::yaml.load_file("data/software.yml")
+soft <- yaml::yaml.load_file("data/softwares.yml")
 sz <- length(soft)
 txt <- ""
 ##

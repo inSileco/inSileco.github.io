@@ -14,19 +14,36 @@ dat = $(shell date "+%d-%m-%Y")
 
 all: docs/index.html $(mainh) $(posth)
 
-docs/%.html: _posts/%.Rmd #Rscripts/readYaml.R
+docs/%.html: _posts/%.Rmd Rscripts/readYaml.R Rscripts/addStatus.R
 	cp $< ./
 	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('$(patsubst _posts/%,%,$<)')"
 	rm $(patsubst _posts/%, %, $<)
 
-docs/%.html: _main/%.Rmd #$(rscr)
+docs/about.html: _main/about.Rmd data/authors_info.yml Rscripts/addAuthorsLinks.R Rscripts/textAuthors.R
 	cp $< ./
 	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('$(patsubst _main/%,%,$<)')"
 	rm $(patsubst _main/%, %, $<)
 
-docs/index.html: $(indr) _site.yml css/* data/* assets/*
+docs/maps.html: _main/about.Rmd data/maps.yml Rscripts/maps.R
+	cp $< ./
+	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('$(patsubst _main/%,%,$<)')"
+	rm $(patsubst _main/%, %, $<)
+
+docs/softwares.html: _main/softwares.Rmd data/softwares.yml Rscripts/softwares.R
+	cp $< ./
+	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('$(patsubst _main/%,%,$<)')"
+	rm $(patsubst _main/%, %, $<)
+
+docs/talks.html: _main/talks.Rmd data/talks.yml Rscripts/talks.R
+	cp $< ./
+	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('$(patsubst _main/%,%,$<)')"
+	rm $(patsubst _main/%, %, $<)
+
+docs/index.html: $(indr) data/univ.yml data/authors_info.yml Rscripts/addAuthorsLinks.R Rscripts/mapAuthors.R
 	gsed -i "s/update: [0-9\-]*./update: $(dat)./" footer.html
 	Rscript --no-init-file -e "rmarkdown::render_site('$<')"
+
+
 
 
 rebuildall:
