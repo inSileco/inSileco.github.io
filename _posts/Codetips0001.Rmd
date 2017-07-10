@@ -1,14 +1,13 @@
 ---
-title: "Code tips 0001 (R)"
+title: "*blogPostSeriesName* 0001 {R}"
 author:
   - Kevin Cazelles
-date: "June 30, 2017 --  last update on June 30, 2017"
+date: "June 30, 2017 -  last update on June 30, 2017"
 status: inRevision
 pgmlang: R(>=3.0.0)
 keywords:
   - R
-  - Tips
-tweet: "five R tips: %in%, paste0(), \\r in cat(), sprintf(), xaxs/yaxs on par()"
+  - tips
 output:
   html_document:
     code_download: TRUE
@@ -28,22 +27,35 @@ output:
 
 ## Code tips you said?
 
-This is the first blog post of a series aiming at presenting 5 -- hopefully
-helpful -- tips in each post pertaining to a specific programming langage. Tips
-provided could be of many kind: a function, a way of combining of functions,
-a single argument, a note about the philosophy of the langage and practical
-consequences, tricks to improve the way you code, etc. They should be short,
-meaning that the whole tip is described within no more than 5 lines of code of reasonable density (say 80 characters per line MAX). However the author may
-take the liberty of exemplifying his tips with code-chunks longer than 5 lines
-of codes. This should not affect the principle pertaining to the tip length.
+Ever tumbled on a code chunk that made you say: "I should have known this
+*¶ø?!@~:&* piece of code long ago!"? Chances are you have, frustratingly,
+just like we have, and on multiple occasions too.
 
-When writing a tip, the author must think this way: "I should have known this
-*¶ø?!@~:&* piece of code long ago". Note that some tips might be obvious for
-careful readers of documentations (God bless them for their wiseness), they would
-nonetheless help many other readers that suffer from reading documentations that
-are sometime fairly technical. By the way, there are doubtlessly many similar
-initiatives on the web, for instance on Twitter, there is a ['One R Tip a Day' account](https://twitter.com/RLangTip).
+In comes *blogPostSeriesName*!
 
+*blogPostSeriesName* is a series of blog posts that each present 5 -- hopefully
+helpful -- coding tips for a specific programming language.
+
+Posts should be short (*i.e.* no more than 5 lines of code, max 80 characters
+per line, except when appropriate) and provide tips of many kind: a function,
+a way of combining of functions, a single argument, a note about the philosophy
+of the language and practical consequences, tricks to improve the way you code,
+good practices, etc.
+
+Note that while some tips might be obvious for careful documentation readers
+(God bless them for their wisdom), almost all the tips we present constituted
+some sort of eureka moments for us.
+
+By the way, there are undoubtedly similar initiatives on the web (*e.g.*
+['One R Tip a Day' account](https://twitter.com/RLangTip)). Also, feel free to
+send us tip ideas or a post of code tips of your own which we will be happy to
+incorporate to *blogPostSeriesName*!
+
+Enjoy and get ready to frustratingly appreciate our tips!
+
+---
+
+## *blogPostSeriesName* 0001
 
 For the first post of the series, let's introduce 5 **R** tips:
 
@@ -57,8 +69,8 @@ For the first post of the series, let's introduce 5 **R** tips:
 
 ## The '%in%' operator
 
-I know this for a while, but I keep remembering how it eases my pain when I
-learnt how to use it. Let's consider two vector `vecA` and `vecB`, the
+I have known this for a while, but I keep remembering how it eases my pain when I
+learned how to use it. Let's consider two vector `vecA` and `vecB`, the
 `vecA%in%vecB` returns a vector of logical of the length `vecA` stating whether
 the elements of `vecA` are in `vecB`:
 
@@ -110,7 +122,9 @@ I know... this means you'll save 5 previous characters each time you call `paste
 
 *Note that for this tip, you should execute the code-chunk in your own R console*
 
-When programming we often need to monitor what we are doing especially for  time-consuming calculation. Using `cat()` with all its default is very helpful to report information on progress:
+When programming we often need to monitor what we are doing, especially for  
+time-consuming calculation. Using `cat()` with all its default is very helpful
+to report information on progress:
 
 ```{r cat, eval=F}
 for (i in 1:10) {
@@ -256,6 +270,6 @@ abline(v=c(0,10), h=c(0,10), col=2)
 
 <br/>
 
-**That's all folks!**
+**That's all folks, until next time!**
 
 <br/>
