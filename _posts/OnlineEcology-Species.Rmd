@@ -111,16 +111,16 @@ to extract information for other species in other habitats.*
 
 # Create a spatial bounding box for the area of interest using the 'sf' package:
 # create a matrix:
-    bbmat <- cbind(c(lonmin,lonmax,lonmax,lonmin,lonmin),
-                   c(latmin,latmin,latmax,latmax,latmin))
-# 2. Make the matrix a 'simple features' polygon:
-    bbsf <- sf::st_polygon(list(bbmat))
-
-# and let's give it information about the projection:
-    bbsfc <- sf::st_sfc(bbsf,crs="+proj=longlat +datum=WGS84")
-
-# finally, let's make it a simple features data.frame:
-    bb <- sf::st_sf(name="Study Site",geometry=bbsfc)
+    bb <- cbind(c(lonmin,lonmax,lonmax,lonmin,lonmin),
+                   c(latmin,latmin,latmax,latmax,latmin)) %>% 
+        # put that matrix into a list, because that's what `st_polygon()` needs
+        list() %>% 
+        # Make the matrix a 'simple features' polygon:
+        sf::st_polygon() %>% 
+        # and let's make it a simple feature column and give it information about the projection:
+        sf::st_sfc(crs="+proj=longlat +datum=WGS84") %>% 
+        # finally, let's put the sfc in a simple features data.frame in the variable `geometry`:
+        sf::st_sf(name="Study Site",geometry=.)
 ```
 
 <br/>
