@@ -23,6 +23,8 @@ output:
 
 
 ```{r addStatus, echo=FALSE, results="asis", message=FALSE}
+# if following the tutorial, do not run this block and/or feel free to delete the entire block
+# this is only for 'website building purposes'
   source("Rscripts/addStatus.R")
   addStatus("OnlineEcology-Species.Rmd")
   knitr::opts_chunk$set(error = TRUE)
@@ -46,9 +48,9 @@ library(kableExtra)
 Let's imagine that we are interested in a species in a given area and wish to
 know as much as possible about it. But, you can't go out in the field because
 funding is running short. What we do have, however, is a certain knowledge of
-the tools that are at our disposal. In a series of post about online ecology,
-we will find out exactly just how far these tools allow us to delve into the
-ecology of the species that interest us.
+the open data science tools that are at our disposal. In a series of post 
+about online ecology, we will find out exactly just how far these tools allow
+us to delve into the ecology of the species that interest us.
 
 <br/>
 
@@ -93,7 +95,7 @@ gulf of St. Lawrence in eastern Canada.
 
 Let's set the parameters and create the spatial bounding box that we will be
 using for the area of interest. *Note that all these parameters can be changed
-to extract informations for other species in other habitats.*
+to extract information for other species in other habitats.*
 
 <br/>
 
@@ -125,7 +127,7 @@ to extract informations for other species in other habitats.*
 
 ## Describe your species
 
-### Retrieve miscalaneous ecological information: ***Fishbase***
+### Retrieve miscellaneous ecological information: ***Fishbase***
 
 We'll start with a description of the species. First, let's see what [fishbase](http://www.fishbase.ca/) has to offer. This online data repository,
 along with [sealifebase](http://www.sealifebase.org/), contains a lot of precious
@@ -150,7 +152,7 @@ knitr::kable(ecol, col.names = c('Descriptors', 'Attributes'), "html") %>%
 
 ### Retrieving taxonomic information: ***Taxize***
 
-We can also extract taxonomic informations using the package [`taxize`](https://ropensci.org/tutorials/taxize_tutorial.html).
+We can also extract taxonomic information using the package [`taxize`](https://ropensci.org/tutorials/taxize_tutorial.html).
 This package allows you to extract and validate, among other things, the
 taxonomy of millions of species by accessing an important number of online
 databases accessible through their Application Programming Interface (API).
@@ -256,7 +258,7 @@ data can also be accessed using other packages like
 [`raster`](https://cran.r-project.org/web/packages/raster/index.html)
 for terrestrial climatic data (*i.e.* bioclim) and
 [`rnoaa`](https://github.com/ropensci/rnoaa) for some environmental
-layers like sea surface temperature et sea ice cover. Finally, a precious
+layers like sea surface temperature and sea ice cover. Finally, a precious
 resource is the recently published [`sdmpredictors`](https://cran.r-project.org/web/packages/sdmpredictors/index.html)
 package, which provides access to multiple important global environmental datasets for marine
 and terrestrial environments and a total of
@@ -280,6 +282,8 @@ could also be used.
 <br/>
 
 ```{r, importEnvVarhidden, echo = FALSE, eval = TRUE}
+# if following the tutorial, do not run this block and/or feel free to delete the entire block
+# this is only for saving/loading the data from our repository, the steps to download the data are in the next chunk
 # Import marine layers
     layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
     ##
@@ -315,7 +319,7 @@ Clip them and plot them:
 ```{r, cropEnvCov, eval = TRUE}
 # Clip to study area extent
     envCov <- raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax))
-    print(envCov0)
+    print(envCov)
     envCov %<>% raster::stack()
 
 # Data description
@@ -345,7 +349,7 @@ a thorough explanation of our to use `biomod2` in another very interesting [vign
 ### Formatting the data
 
 The first thing to do is to format our data to be able to work with `biomod2`
-functions, which work with BIOMOD.formated.data.PA class objects. This entails
+functions, which work with `BIOMOD.formated.data.PA` class objects. This entails
 stacking all of our environmental data together to perform analyses. Luckily
 this was accomplished previously when extracting environmental data using the
 `sdmpredictors` package. You can then create your `biomod2` data class...
