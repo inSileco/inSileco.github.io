@@ -13,7 +13,7 @@ addAuthorsLinks <- function(author, sz = 2){
     txt %<>% paste0(
       addiconurl(
         paste0("https://github.com/", author$github),
-        paste0("fa fa-github fa-", sz)
+        paste0("fa fa-github fa-", sz, "x")
         ),
       "&nbsp;")
   }

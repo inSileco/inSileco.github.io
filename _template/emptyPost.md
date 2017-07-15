@@ -5,6 +5,7 @@ author:
 date: "today"
 status: inDevelopment
 pgmlang: R(>=3.0.0)
+tweet: "text to describe your post to appear on the tweet button"
 keywords:
   - kw1
   - kw2
