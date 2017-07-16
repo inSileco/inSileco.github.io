@@ -285,7 +285,7 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">LetiR</a>
+      <a class="navbar-brand" href="index.html">inSilico Blog</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -421,7 +421,6 @@ dir(&quot;dir&quot;)</code></pre>
 <h3>2. Install the <code>showtext</code> package</h3>
 <pre class="r"><code>install.package(&quot;showtext&quot;, dependencies = TRUE)
 library(showtext)</code></pre>
-<pre><code>## Loading required package: sysfonts</code></pre>
 <p><br/></p>
 </div>
 <div id="look-at-the-list-of-fonts-available-locally" class="section level3">
@@ -721,9 +720,12 @@ font.files()</code></pre>
 <h3>4. Add a path to your font</h3>
 <p>If you have downloaded the font using R, you must notify showtext about to folder <code>dir</code> where the font has been stored. To so do, use the <code>font.paths()</code> function:</p>
 <pre class="r"><code>font.paths(&quot;dir&quot;)</code></pre>
+<pre><code>## Warning in normalizePath(c(new, .pkg.env$.font.path)): path[2]=&quot;assets/
+## AcadeiconsInR&quot;: No such file or directory</code></pre>
 <pre><code>## [1] &quot;/Users/KevCaz/Codes/Github/Websites/letiR_website/assets/HylianStyle&quot;
-## [2] &quot;/Library/Fonts&quot;                                                      
-## [3] &quot;/Users/KevCaz/Library/Fonts&quot;</code></pre>
+## [2] &quot;assets/AcadeiconsInR&quot;                                                
+## [3] &quot;/Library/Fonts&quot;                                                      
+## [4] &quot;/Users/KevCaz/Library/Fonts&quot;</code></pre>
 <p><br/></p>
 </div>
 <div id="add-the-triforce-font-to-your-session" class="section level3">
@@ -736,7 +738,7 @@ font.files()[grep(&quot;Triforce&quot;, font.files())]</code></pre>
 <pre class="r"><code>font.add(family = &#39;Triforce&#39;, regular = &#39;Triforce.ttf&#39;)
 font.families()</code></pre>
 <pre><code>## [1] &quot;sans&quot;         &quot;serif&quot;        &quot;mono&quot;         &quot;wqy-microhei&quot;
-## [5] &quot;Triforce&quot;</code></pre>
+## [5] &quot;Academicons&quot;  &quot;FontAwesome&quot;  &quot;Ionicons&quot;     &quot;Triforce&quot;</code></pre>
 <p><br/></p>
 </div>
 <div id="finally-lets-make-our-hylian-plot" class="section level3">
