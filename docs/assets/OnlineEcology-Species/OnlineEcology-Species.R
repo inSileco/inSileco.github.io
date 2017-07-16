@@ -119,15 +119,15 @@ knitr::kable(ecol, col.names = c('Descriptors', 'Attributes'), "html") %>%
       saveRDS(envCov, "./_tmp/envCov.Rds")
     }
 
-## ---- importEnvVar, eval = FALSE-----------------------------------------
-## # Import marine layers
-##     layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
-##     # layers <- 'BO_ph'
-##     envCov <- sdmpredictors::load_layers(layers, datadir = paste0(getwd(), "/_tmp"), rasterstack = TRUE)
+## ---- importEnvVar, eval = TRUE------------------------------------------
+# Import marine layers
+    layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
+    # layers <- 'BO_ph'
+    envCov <- sdmpredictors::load_layers(layers, datadir = paste0(getwd(), "/_tmp"), rasterstack = TRUE)
 
 ## ---- cropEnvCov, eval = TRUE--------------------------------------------
 # Clip to study area extent
-    envCov <- raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax))
+    envCov <- raster::crop(envCov, raster::exte nt(lonmin, lonmax, latmin, latmax))
     print(envCov)
     envCov %<>% raster::stack()
 
@@ -171,4 +171,7 @@ SDMdata <- biomod2::BIOMOD_FormatingData(resp.var = rep(1,nrow(OBIS)),
                                           output.format = '.grd')
 # ... and visualize them!
     biomod2::plot(SDMproj)
+
+## ---- unlink, echo = FALSE-----------------------------------------------
+unlink('./Gadus.morhua/', recursive = T)
 
