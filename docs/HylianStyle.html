@@ -20,10 +20,10 @@
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<script src="site_libs/navigation-1.1/codefolding.js"></script>
-<script src="site_libs/navigation-1.1/FileSaver.min.js"></script>
-<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/highlightjs-1.1/textmate.css" rel="stylesheet" />
 <script src="site_libs/highlightjs-1.1/highlight.js"></script>
 <link href="site_libs/font-awesome-4.5.0/css/font-awesome.min.css" rel="stylesheet" />
@@ -76,9 +76,6 @@ h6 {
 }
 .table th:not([align]) {
   text-align: left;
-}
-#rmd-source-code {
-  display: none;
 }
 </style>
 
@@ -173,16 +170,109 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
-<style type="text/css">
-.code-folding-btn { margin-bottom: 4px; }
-</style>
+
+
+
+
 <script>
-$(document).ready(function () {
-  window.initializeSourceEmbed("HylianStyle.Rmd");
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
 });
 </script>
 
+<style type="text/css">
 
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -285,33 +375,30 @@ $(document).ready(function () {
 
 <div class="fluid-row" id="header">
 
-<div class="btn-group pull-right">
-<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu" style="min-width: 50px;">
-<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
-</ul>
-</div>
-
 
 
 <h1 class="title toc-ignore">Make your plot Hylian</h1>
 <h4 class="author"><em>Kevin Cazelles, David Beauchesne &amp; Nicolas Casajus</em></h4>
-<h4 class="date"><em>April 14, 2017 – last update on June 24, 2017</em></h4>
+<h4 class="date"><em>April 14, 2017 – last update on July 16, 2017 ()</em></h4>
 
 </div>
 
 
-<p><i class='fa fa-cogs' aria-hidden='true'></i>   <img src="https://img.shields.io/badge/letiR-finalVersion-800fa2.svg" /> <img src="https://img.shields.io/badge/pgmLang-R(%3E=3.0.0)-blue.svg" /> <br/><i class='fa fa-download' aria-hidden='true'></i>   <i class='fa fa-code' aria-hidden='true'></i> <a href='assets/HylianStyle/HylianStyle.Rmd'>Rmd file </a>   <i class='fa fa-code' aria-hidden='true'></i> <a href='assets/HylianStyle/HylianStyle.R'>R only </a>   <br/><i class='fa fa-tags' aria-hidden='true'></i>    <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#plot'>plot</a> <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#r'>R</a> <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#icon'>icon</a> <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#zelda'>zelda</a><br/><br/><a class='twitter-share-button' href='https://twitter.com/intent/tweet?text=Make%20your%20plot%20Hylian&url=https://letir.github.io/docs/HylianStyle.html'>Tweet</a></p>
-<p><br/> <br/></p>
-<p>Here are the 6 steps you need to make your plot a Hylian one! <strong>May the triforce be with you</strong>!</p>
-<ol start="0" style="list-style-type: decimal">
-<li>R Version</li>
-</ol>
+<p><i class='fa fa-cogs' aria-hidden='true'></i>   <img src="https://img.shields.io/badge/letiR-finalVersion-800fa2.svg" /> <img src="https://img.shields.io/badge/pgmLang-R(%3E=3.0.0)-blue.svg" /> <br/><i class='fa fa-download' aria-hidden='true'></i>   <i class='fa fa-code' aria-hidden='true'></i> <a href='assets/HylianStyle/HylianStyle.Rmd'>Rmd file </a>   <i class='fa fa-code' aria-hidden='true'></i> <a href='assets/HylianStyle/HylianStyle.R'>R only </a>   <i class='fa fa-file-archive-o'></i> <a href='Triforce.ttf.zip'>fontIcons</a>   <br/><i class='fa fa-tags' aria-hidden='true'></i>    <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#plot'>plot</a> <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#r'>R</a> <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#icon'>icon</a> <a class='btn btn-primary btn-outline btn-xs' href='indexPosts.html#zelda'>zelda</a><br/><br/><a class='twitter-share-button' href='https://twitter.com/intent/tweet?text=Make%20your%20plot%20Hylian&url=https://letir.github.io/docs/HylianStyle.html'>Tweet</a></p>
+<p><br/></p>
+<div id="below-are-presented-the-6-steps-you-need-to-make-your-plot-a-hylian-one-may-the-triforce-be-with-you" class="section level4">
+<h4>Below are presented the 6 steps you need to make your plot a Hylian one! <strong>May the triforce be with you</strong>!</h4>
+<p><br/></p>
+</div>
+<div id="r-version" class="section level3">
+<h3>0. R Version</h3>
 <pre class="r"><code>sessionInfo()[[1]]$version.string</code></pre>
 <pre><code>## [1] &quot;R version 3.4.1 (2017-06-30)&quot;</code></pre>
-<ol style="list-style-type: decimal">
-<li>Open R and download the <a href="https://zeldauniverse.net/media/dir"><em>Triforce</em> font</a></li>
-</ol>
+<p><br/></p>
+</div>
+<div id="open-r-and-download-the-font" class="section level3">
+<h3>1. Open R and download the font</h3>
+<p>The <a href="https://zeldauniverse.net/media/dir"><em>Triforce</em> font</a> is available on line. Alternatively, you may simply download and install it, if you proceed so, skip step 1.</p>
 <pre class="r"><code># Create a directory &lt; fonts &gt;
 dir &lt;- &quot;_tmp/dir&quot;
 dir.create(&quot;_tmp/fonts&quot;, showWarnings = FALSE)
@@ -319,26 +406,26 @@ dir.create(&quot;_tmp/fonts&quot;, showWarnings = FALSE)
 # Download Triforce font &lt; Triforce.ttf &gt;
 url &lt;- &quot;http://zeldauniverse.net/wp-content/uploads/2014/01/Triforce.ttf_.zip&quot;
 download.file(url, paste0(&quot;dir&quot;, basename(url)))
-dir(&quot;dir&quot;)</code></pre>
-<pre><code>## [1] &quot;Triforce.ttf&quot;</code></pre>
-<pre class="r"><code># Unzip the file
+dir(&quot;dir&quot;)
+
+# Unzip the file
 untar(paste0(&quot;dir&quot;, basename(url)), exdir = &quot;dir&quot;, compressed = &quot;gzip&quot;)
+dir(&quot;dir&quot;)
+
+# Remove .zip
+file.remove(paste0(&quot;dir&quot;, basename(url)))
 dir(&quot;dir&quot;)</code></pre>
-<pre><code>## [1] &quot;Triforce.ttf&quot;</code></pre>
-<pre class="r"><code># Remove .zip
-file.remove(paste0(&quot;dir&quot;, basename(url)))</code></pre>
-<pre><code>## [1] TRUE</code></pre>
-<pre class="r"><code>dir(&quot;dir&quot;)</code></pre>
-<pre><code>## [1] &quot;Triforce.ttf&quot;</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>Install the <code>showtext</code> package if not already installed:</li>
-</ol>
+<p><br/></p>
+</div>
+<div id="install-the-showtext-package" class="section level3">
+<h3>2. Install the <code>showtext</code> package</h3>
 <pre class="r"><code>install.package(&quot;showtext&quot;, dependencies = TRUE)
 library(showtext)</code></pre>
 <pre><code>## Loading required package: sysfonts</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>To see the list of font available locally do so:</li>
-</ol>
+<p><br/></p>
+</div>
+<div id="look-at-the-list-of-fonts-available-locally" class="section level3">
+<h3>3. Look at the list of fonts available locally</h3>
 <pre class="r"><code>showtext.auto()
 font.files()</code></pre>
 <pre><code>##   [1] &quot;3270Medium.ttf&quot;                                  
@@ -627,26 +714,33 @@ font.files()</code></pre>
 ## [284] &quot;Wingdings.ttf&quot;                                   
 ## [285] &quot;Zapfino.ttf&quot;                                     
 ## [286] &quot;ヒラギノ丸ゴ ProN W4.ttc&quot;</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Add the new directory &lt; fonts &gt; to the available font paths of showtext</li>
-</ol>
+<p>If you have installed the font on your computer, it should be in the list, then you can skip step 4.</p>
+<p><br/></p>
+</div>
+<div id="add-a-path-to-your-font" class="section level3">
+<h3>4. Add a path to your font</h3>
+<p>If you have downloaded the font using R, you must notify showtext about to folder <code>dir</code> where the font has been stored. To so do, use the <code>font.paths()</code> function:</p>
 <pre class="r"><code>font.paths(&quot;dir&quot;)</code></pre>
-<pre><code>## [1] &quot;/Users/KevCaz/Codes/Github/Websites/letiR_website/dir&quot;
-## [2] &quot;/Library/Fonts&quot;                                       
+<pre><code>## [1] &quot;/Users/KevCaz/Codes/Github/Websites/letiR_website/assets/HylianStyle&quot;
+## [2] &quot;/Library/Fonts&quot;                                                      
 ## [3] &quot;/Users/KevCaz/Library/Fonts&quot;</code></pre>
+<p><br/></p>
+</div>
+<div id="add-the-triforce-font-to-your-session" class="section level3">
+<h3>5. Add the <em>Triforce</em> font to your session:</h3>
+<p>Either way, the Triforce font should now be available</p>
 <pre class="r"><code># Is the TTF present?
 font.files()[grep(&quot;Triforce&quot;, font.files())]</code></pre>
 <pre><code>## [1] &quot;Triforce.ttf&quot; &quot;Triforce.ttf&quot;</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Add the <em>Triforce</em> font to your session:</li>
-</ol>
+<p>Let’s add it to our session:</p>
 <pre class="r"><code>font.add(family = &#39;Triforce&#39;, regular = &#39;Triforce.ttf&#39;)
 font.families()</code></pre>
 <pre><code>## [1] &quot;sans&quot;         &quot;serif&quot;        &quot;mono&quot;         &quot;wqy-microhei&quot;
 ## [5] &quot;Triforce&quot;</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>Here it goes:</li>
-</ol>
+<p><br/></p>
+</div>
+<div id="finally-lets-make-our-hylian-plot" class="section level3">
+<h3>6. Finally, let’s make our Hylian plot!</h3>
 <pre class="r"><code>par(family = &quot;Triforce&quot;, las = 1, cex.lab = 2, cex.main = 2, mar = c(4, 5, 5, 0))
 plot(x = c(0, 1), y = c(0, 1), type = &quot;n&quot;, xlab = &quot;X-axis&quot;, ylab = &quot;Y-axis&quot;)
 title(main = &quot;Hylian Style - Link must be proud of us!&quot;)
@@ -654,8 +748,8 @@ points(x = runif(7), y = runif(7), pch = &quot;*&quot;, cex = 2)
 points(x = runif(7), y = runif(7), pch = &quot;$&quot;, cex = 2, col = &quot;#347AB7&quot;)
 points(x = 0.1, y = 0.1, pch = &quot;%&quot;, cex = 6, col = &quot;#347AB7&quot;)</code></pre>
 <p><img src="HylianStyle_files/figure-html/unnamed-chunk-10-1.png" width="912" /></p>
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTWFrZSB5b3VyIHBsb3QgSHlsaWFuIgphdXRob3I6CiAgLSBLZXZpbiBDYXplbGxlcywKICAgIERhdmlkIEJlYXVjaGVzbmUgJgogICAgTmljb2xhcyBDYXNhanVzCnN0YXR1czogZmluYWxWZXJzaW9uCnBnbWxhbmc6IFIoPj0zLjAuMCkKa2V5d29yZHM6CiAgLSBwbG90CiAgLSBSCiAgLSBpY29uCiAgLSB6ZWxkYQpkYXRlOiAiQXByaWwgMTQsIDIwMTcgLS0gbGFzdCB1cGRhdGUgb24gSnVuZSAyNCwgMjAxNyIKdHdlZXQ6ICJNYWtlIHlvdXIgcGxvdCBIeWxpYW4iCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgY29kZV9kb3dubG9hZDogVFJVRQogICAgaW5jbHVkZToKICAgICAgICBhZnRlcl9ib2R5OiBbZm9vdGVyLmh0bWwsIGRpc3F1cy5odG1sXQotLS0KCgoKYGBge3IgYWRkU3RhdHVzLCBlY2hvPUZBTFNFLCByZXN1bHRzPSJhc2lzIiwgbWVzc2FnZT1GQUxTRX0KICBzb3VyY2UoIlJzY3JpcHRzL2FkZFN0YXR1cy5SIikKICBhZGRTdGF0dXMoIkh5bGlhblN0eWxlLlJtZCIpCmBgYAoKPGJyLz4KPGJyLz4KCkhlcmUgYXJlIHRoZSA2IHN0ZXBzIHlvdSBuZWVkIHRvIG1ha2UgeW91ciBwbG90IGEgSHlsaWFuIG9uZSEKKipNYXkgdGhlIHRyaWZvcmNlIGJlIHdpdGggeW91KiohCgoKCjAuIFIgVmVyc2lvbgoKYGBge3IsIGVjaG8gPSBUUlVFLCBldmFsID0gVFJVRX0Kc2Vzc2lvbkluZm8oKVtbMV1dJHZlcnNpb24uc3RyaW5nCmBgYAoKMS4gT3BlbiBSIGFuZCBkb3dubG9hZCB0aGUgWypUcmlmb3JjZSogZm9udF0oaHR0cHM6Ly96ZWxkYXVuaXZlcnNlLm5ldC9tZWRpYS9kaXIpCgpgYGB7ciwgZWNobyA9IFRSVUUsIGV2YWwgPSBUUlVFfQojIENyZWF0ZSBhIGRpcmVjdG9yeSA8IGZvbnRzID4KZGlyIDwtICJfdG1wL2RpciIKZGlyLmNyZWF0ZSgiX3RtcC9mb250cyIsIHNob3dXYXJuaW5ncyA9IEZBTFNFKQoKIyBEb3dubG9hZCBUcmlmb3JjZSBmb250IDwgVHJpZm9yY2UudHRmID4KdXJsIDwtICJodHRwOi8vemVsZGF1bml2ZXJzZS5uZXQvd3AtY29udGVudC91cGxvYWRzLzIwMTQvMDEvVHJpZm9yY2UudHRmXy56aXAiCmRvd25sb2FkLmZpbGUodXJsLCBwYXN0ZTAoImRpciIsIGJhc2VuYW1lKHVybCkpKQpkaXIoImRpciIpCgojIFVuemlwIHRoZSBmaWxlCnVudGFyKHBhc3RlMCgiZGlyIiwgYmFzZW5hbWUodXJsKSksIGV4ZGlyID0gImRpciIsIGNvbXByZXNzZWQgPSAiZ3ppcCIpCmRpcigiZGlyIikKCiMgUmVtb3ZlIC56aXAKZmlsZS5yZW1vdmUocGFzdGUwKCJkaXIiLCBiYXNlbmFtZSh1cmwpKSkKZGlyKCJkaXIiKQpgYGAKCgoyLiBJbnN0YWxsIHRoZSBgc2hvd3RleHRgIHBhY2thZ2UgaWYgbm90IGFscmVhZHkgaW5zdGFsbGVkOgoKYGBge3IsIGVjaG8gPSBUUlVFLCBldmFsID0gRkFMU0V9Cmluc3RhbGwucGFja2FnZSgic2hvd3RleHQiLCBkZXBlbmRlbmNpZXMgPSBUUlVFKQpsaWJyYXJ5KHNob3d0ZXh0KQpgYGAKCmBgYHtyLCBlY2hvID0gRkFMU0UsIGV2YWwgPSBUUlVFfQpsaWJyYXJ5KHNob3d0ZXh0KQpgYGAKCjMuIFRvIHNlZSB0aGUgbGlzdCBvZiBmb250IGF2YWlsYWJsZSBsb2NhbGx5IGRvIHNvOgoKYGBge3IsIGVjaG8gPSBUUlVFLCBldmFsID0gVFJVRX0Kc2hvd3RleHQuYXV0bygpCmZvbnQuZmlsZXMoKQpgYGAKCjQuIEFkZCB0aGUgbmV3IGRpcmVjdG9yeSA8IGZvbnRzID4gdG8gdGhlIGF2YWlsYWJsZSBmb250IHBhdGhzIG9mIHNob3d0ZXh0CgpgYGB7ciwgZWNobyA9IFRSVUUsIGV2YWwgPSBGQUxTRX0KZm9udC5wYXRocygiZGlyIikKYGBgCgpgYGB7ciwgZWNobyA9IEZBTFNFLCBldmFsID0gVFJVRX0KZ3N1YigiL1VzZXJzL25pY29sYXNjYXNhanVzLyIsICJ+LyIsIGZvbnQucGF0aHMoImRpciIpKQpgYGAKCmBgYHtyLCBlY2hvID0gVFJVRSwgZXZhbCA9IFRSVUV9CiMgSXMgdGhlIFRURiBwcmVzZW50Pwpmb250LmZpbGVzKClbZ3JlcCgiVHJpZm9yY2UiLCBmb250LmZpbGVzKCkpXQpgYGAKCjUuIEFkZCB0aGUgKlRyaWZvcmNlKiBmb250IHRvIHlvdXIgc2Vzc2lvbjoKCmBgYHtyLCBlY2hvID0gVFJVRSwgZXZhbCA9IFRSVUV9CmZvbnQuYWRkKGZhbWlseSA9ICdUcmlmb3JjZScsIHJlZ3VsYXIgPSAnVHJpZm9yY2UudHRmJykKZm9udC5mYW1pbGllcygpCmBgYAoKNi4gSGVyZSBpdCBnb2VzOgoKYGBge3IsIGVjaG8gPSBUUlVFLCBldmFsID0gVFJVRSwgZmlnLndpZHRoID0gOS41LCBmaWcuaGVpZ2h0ID0gNywgZmlnLnNob3d0ZXh0ID0gVFJVRX0KcGFyKGZhbWlseSA9ICJUcmlmb3JjZSIsIGxhcyA9IDEsIGNleC5sYWIgPSAyLCBjZXgubWFpbiA9IDIsIG1hciA9IGMoNCwgNSwgNSwgMCkpCnBsb3QoeCA9IGMoMCwgMSksIHkgPSBjKDAsIDEpLCB0eXBlID0gIm4iLCB4bGFiID0gIlgtYXhpcyIsIHlsYWIgPSAiWS1heGlzIikKdGl0bGUobWFpbiA9ICJIeWxpYW4gU3R5bGUgLSBMaW5rIG11c3QgYmUgcHJvdWQgb2YgdXMhIikKcG9pbnRzKHggPSBydW5pZig3KSwgeSA9IHJ1bmlmKDcpLCBwY2ggPSAiKiIsIGNleCA9IDIpCnBvaW50cyh4ID0gcnVuaWYoNyksIHkgPSBydW5pZig3KSwgcGNoID0gIiQiLCBjZXggPSAyLCBjb2wgPSAiIzM0N0FCNyIpCnBvaW50cyh4ID0gMC4xLCB5ID0gMC4xLCBwY2ggPSAiJSIsIGNleCA9IDYsIGNvbCA9ICIjMzQ3QUI3IikKYGBgCg==</div>
 <br/><br/>
 
 <div class="footer">
@@ -667,7 +761,7 @@ points(x = 0.1, y = 0.1, pch = &quot;%&quot;, cex = 6, col = &quot;#347AB7&quot;
       <i class='cc cc-cc-circle cc-1x'></i> <i class='cc cc-by-circle cc-1x'></i>
       <i class='cc cc-nc-circle cc-1x'></i> <i class='cc cc-sa-circle cc-1x'></i>
   </a> unless otherwise specified. <br/>
-  Last update: 15-07-2017. Code source available on
+  Last update: 16-07-2017. Code source available on
     <a href="https://github.com/letiR/letiR_website">
       <i class='fa fa-github fa-1x'></i></a>
 </div>
@@ -736,6 +830,8 @@ window.twttr = (function(d, s, id) {
     <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
 
 
+</div>
+</div>
 
 </div>
 

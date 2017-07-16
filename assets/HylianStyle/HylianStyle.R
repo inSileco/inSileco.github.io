@@ -5,23 +5,23 @@
 ## ---- echo = TRUE, eval = TRUE-------------------------------------------
 sessionInfo()[[1]]$version.string
 
-## ---- echo = TRUE, eval = TRUE-------------------------------------------
-# Create a directory < fonts >
-dir <- "_tmp/dir"
-dir.create("_tmp/fonts", showWarnings = FALSE)
-
-# Download Triforce font < Triforce.ttf >
-url <- "http://zeldauniverse.net/wp-content/uploads/2014/01/Triforce.ttf_.zip"
-download.file(url, paste0("dir", basename(url)))
-dir("dir")
-
-# Unzip the file
-untar(paste0("dir", basename(url)), exdir = "dir", compressed = "gzip")
-dir("dir")
-
-# Remove .zip
-file.remove(paste0("dir", basename(url)))
-dir("dir")
+## ---- echo = TRUE, eval = FALSE------------------------------------------
+## # Create a directory < fonts >
+## dir <- "_tmp/dir"
+## dir.create("_tmp/fonts", showWarnings = FALSE)
+## 
+## # Download Triforce font < Triforce.ttf >
+## url <- "http://zeldauniverse.net/wp-content/uploads/2014/01/Triforce.ttf_.zip"
+## download.file(url, paste0("dir", basename(url)))
+## dir("dir")
+## 
+## # Unzip the file
+## untar(paste0("dir", basename(url)), exdir = "dir", compressed = "gzip")
+## dir("dir")
+## 
+## # Remove .zip
+## file.remove(paste0("dir", basename(url)))
+## dir("dir")
 
 ## ---- echo = TRUE, eval = FALSE------------------------------------------
 ## install.package("showtext", dependencies = TRUE)
@@ -37,8 +37,8 @@ font.files()
 ## ---- echo = TRUE, eval = FALSE------------------------------------------
 ## font.paths("dir")
 
-## ---- echo = FALSE, eval = TRUE------------------------------------------
-gsub("/Users/nicolascasajus/", "~/", font.paths("dir"))
+## ---- echo = FALSE-------------------------------------------------------
+font.paths("assets/HylianStyle")
 
 ## ---- echo = TRUE, eval = TRUE-------------------------------------------
 # Is the TTF present?
