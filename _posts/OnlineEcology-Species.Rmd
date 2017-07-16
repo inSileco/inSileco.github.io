@@ -60,8 +60,8 @@ us to delve into the ecology of the species that interest us.
 Online ecology posts:
 
 1. Individual species description (*this post*)
-2. Community spatial distribution (*under development*)
-3. Biotic interactions (*under development*)
+2. [Communities: cooccurrence](./docs/OnlineEcology-CommCoocc.html) (*under development*)
+3. [Communities: interactions](./docs/OnlineEcology-CommInter.html) (*under development*)
 4. Scenarios of global change impact on community structure (*under development*)
 5. more to come!
 
@@ -306,7 +306,7 @@ could also be used.
     }
 ```
 
-```{r, importEnvVar, eval = FALSE}
+```{r, importEnvVar, eval = TRUE}
 # Import marine layers
     layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
     # layers <- 'BO_ph'
@@ -321,7 +321,7 @@ Clip them and plot them:
 
 ```{r, cropEnvCov, eval = TRUE}
 # Clip to study area extent
-    envCov <- raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax))
+    envCov <- raster::crop(envCov, raster::exte nt(lonmin, lonmax, latmin, latmax))
     print(envCov)
     envCov %<>% raster::stack()
 
@@ -415,6 +415,10 @@ species spatial distribution:
                                           output.format = '.grd')
 # ... and visualize them!
     biomod2::plot(SDMproj)
+```
+
+```{r, unlink, echo = FALSE}
+unlink('./Gadus.morhua/', recursive = T)
 ```
 
 <br/>
