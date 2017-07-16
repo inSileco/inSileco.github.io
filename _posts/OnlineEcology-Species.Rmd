@@ -48,7 +48,7 @@ library(kableExtra)
 Let's imagine that we are interested in a species in a given area and wish to
 know as much as possible about it. But, you can't go out in the field because
 funding is running short. What we do have, however, is a certain knowledge of
-the open data science tools that are at our disposal. In a series of post 
+the open data science tools that are at our disposal. In a series of post
 about online ecology, we will find out exactly just how far these tools allow
 us to delve into the ecology of the species that interest us.
 
@@ -57,8 +57,8 @@ us to delve into the ecology of the species that interest us.
 Online ecology posts:
 
 1. Individual species description (*this post*)
-2. Community spatial distribution (*under development*)
-3. Biotic interactions (*under development*)
+2. [Communities: cooccurrence](./docs/OnlineEcology-CommCoocc.html) (*under development*)
+3. [Communities: interactions](./docs/OnlineEcology-CommInter.html) (*under development*)
 4. Scenarios of global change impact on community structure (*under development*)
 5. more to come!
 
@@ -112,13 +112,13 @@ to extract information for other species in other habitats.*
 # Create a spatial bounding box for the area of interest using the 'sf' package:
 # create a matrix:
     bb <- cbind(c(lonmin,lonmax,lonmax,lonmin,lonmin),
-                   c(latmin,latmin,latmax,latmax,latmin)) %>% 
+                   c(latmin,latmin,latmax,latmax,latmin)) %>%
         # put that matrix into a list, because that's what `st_polygon()` needs
-        list() %>% 
+        list() %>%
         # Make the matrix a 'simple features' polygon:
-        sf::st_polygon() %>% 
+        sf::st_polygon() %>%
         # and let's make it a simple feature column and give it information about the projection:
-        sf::st_sfc(crs="+proj=longlat +datum=WGS84") %>% 
+        sf::st_sfc(crs="+proj=longlat +datum=WGS84") %>%
         # finally, let's put the sfc in a simple features data.frame in the variable `geometry`:
         sf::st_sf(name="Study Site",geometry=.)
 ```
@@ -303,7 +303,7 @@ could also be used.
     }
 ```
 
-```{r, importEnvVar, eval = FALSE}
+```{r, importEnvVar, eval = TRUE}
 # Import marine layers
     layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
     # layers <- 'BO_ph'
@@ -318,7 +318,7 @@ Clip them and plot them:
 
 ```{r, cropEnvCov, eval = TRUE}
 # Clip to study area extent
-    envCov <- raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax))
+    envCov <- raster::crop(envCov, raster::exte nt(lonmin, lonmax, latmin, latmax))
     print(envCov)
     envCov %<>% raster::stack()
 
@@ -412,6 +412,10 @@ species spatial distribution:
                                           output.format = '.grd')
 # ... and visualize them!
     biomod2::plot(SDMproj)
+```
+
+```{r, unlink, echo = FALSE}
+unlink('./Gadus.morhua/', recursive = T)
 ```
 
 <br/>
