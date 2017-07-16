@@ -10,6 +10,10 @@ library(tm)
 
 #### functions
 
+addurl <- function(url, txt){
+  paste0("<a href='", url, "'>", txt,"</a>")
+}
+
 addiconurl <- function(url, icon){
   paste0("<a href='", url, "'><i class='", icon, "'></i></a>")
 }
