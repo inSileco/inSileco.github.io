@@ -16,6 +16,7 @@ all: docs/index.html $(mainh) $(posth)
 
 docs/%.html: _posts/%.Rmd Rscripts/addStatus.R
 	cp $< ./
+	Rscript --no-restore-history --no-init-file Rscripts/purlIt.R $(patsubst _posts/%, %, $<)
 	Rscript --no-restore-history --no-init-file -e "rmarkdown::render_site('$(patsubst _posts/%,%,$<)')"
 	rm $(patsubst _posts/%, %, $<)
 
