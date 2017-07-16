@@ -1,0 +1,43 @@
+---
+title: "Welcome to inSileco!"
+author:
+  - (*order indicative of birth dominance*)
+  - David Beauchesne
+  - Nicolas Casajus
+  - Kevin Cazelles
+  - Rémi Daigle
+  - Willian Vieira
+  - Steve Vissault
+  - Thomas Zgirski
+status: inDevelopment
+pgmlang: R(>=3.0.0)
+keywords:
+  - Plot
+  - R
+  - Icon
+date: "July 16, 2017 -- last update on July 16, 2017"
+tweet: "Welcome to inSileco!"
+output:
+  html_document:
+    code_download: TRUE
+    toc: true
+    toc_float:
+      collapsed: false
+    include:
+        after_body: [footer.html, disqus.html]
+---
+
+```{r addStatus, echo=FALSE, results="asis", message=FALSE}
+  source("Rscripts/addStatus.R")
+  addStatus("AcademiconsInR.Rmd")
+```
+
+# Welcome to inSileco!
+
+Congratulations, you are here, on ground zero for this new and revolutionary - in our head at least - blog, ***inSileco***!
+
+If you are here, it's either because you were roped into visiting us - thank you friends and family! - or because you have an acute interest in one or more of the following: ecology, programming and open science.
+
+The overarching goal of this blog is quite straightforward: tackle challenges and opportunities provided by this new era of open-access and computationally intensive research in the field of ecology. You will therefore find a collection of blog posts that reflect this: code snippets, ecological insights, new and exciting computational tools, opinions on various field of ecology and programming, etc.
+
+In the interest of full disclosure, we also have a hidden agenda for this blog. As a group revolving almost exclusively around academia (for more [about us](./docs/about.html)) - and as such, some might say out of touch with reality - we have to write **a lot**, which can be quite hard (*cough* *read procrastination* *cough*). This blog is therefore also our attempt at significantly stepping-up our writing game!
