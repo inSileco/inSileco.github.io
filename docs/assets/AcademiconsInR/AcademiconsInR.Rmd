@@ -8,7 +8,11 @@ keywords:
   - Plot
   - R
   - Icon
-date: "May 23, 2017 -- last update on June 25, 2017"
+download:
+  - text: "fontIcons"
+    href: "fontIcons.zip"
+    icon: "fa fa-file-archive-o"
+date: "May 23, 2017 -- last update on July, 16 2017 (fonts store in a zip to download)"
 tweet: "Add icons on your plots"
 output:
   html_document:
@@ -21,7 +25,7 @@ output:
 ---
 
 
-
+<a name="#top">&nbsp;</a>
 ```{r addStatus, echo=FALSE, results="asis", message=FALSE}
   source("Rscripts/addStatus.R")
   addStatus("AcademiconsInR.Rmd")
@@ -66,7 +70,7 @@ install.packages(c('magrittr', 'showtext'))
 
 Then, we load them:
 
-```{r}
+```{r libraries, message=FALSE}
 library(magrittr)
 library(showtext)
 library(graphicsutils)
@@ -75,7 +79,9 @@ library(graphicsutils)
 
 #### Material to be downloaded
 
-We have to download the 3 fonts to be used, which can easily be found on Github. You can simply click on the links below to get them (*lazy searching*).
+We have to download the 3 fonts to be used, which can easily be found on Github.
+You can simply click on the links below to get them or used the zip file provided
+at the [top of this page](#top) (*lazy searching*).
 
 1. [the *Academicons* font](https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf)   
 2. [the *FontAwesome* font](https://github.com/FortAwesome/Font-Awesome/raw/master/fonts/FontAwesome.otf)   
@@ -93,6 +99,14 @@ To activate the facilities `showtext` provide, it only requires  `showtext.auto(
 showtext.auto()
 ```
 
+<!-- help rebuilding the website without downloading font as they are
+included in this folder -->
+
+```{r, echo=FALSE}
+font.paths("assets/AcadeiconsInR")
+```
+
+
 Then, add `academicons.ttf`, `FontAwesome.otf` and `ionicons.ttf` fonts to your session with the `font.add()` function:
 
 ```{r addfont}
@@ -109,7 +123,7 @@ Here, things are going to be a little bit trickier than they were in the [Hylian
 
 
 
-![Academics icon on LibreOffice](./assets/img/academicsicon.png)
+![Academics icon on LibreOffice](./assets/AcademiconsInR/academicsicon.png)
 
 
 To use unicode characters in R, there are several possibilities, this [blog post](https://www.r-bloggers.com/unicode-symbols-in-r/) explains it well.
@@ -200,7 +214,7 @@ mtext(text=intToUtf8("59651"), side=4, adj=1, line=3, cex=3)
 
 
 
-## Further remarks
+## Additional remarks
 
 1. Note that the steps described here are useful to include any kind of police you have on your computer or you may find online. Therefore this post should help you deal with font if you intend to publish a figure in a journal that requests a specific font. By the way, `showtext` allows you to search directly on google font (see the `font.add.google()` function).
 

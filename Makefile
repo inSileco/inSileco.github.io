@@ -70,4 +70,4 @@ cleanpost:
 	rm $(postt) $(maint) $(patsubst docs/%, %, $(posth)) $(patsubst docs/%, %, $(mainh))
 
 clean:
-	Rscript --no-init-file -e "rmarkdown::clean_site(".")"
+	Rscript --no-init-file -e "rmarkdown::clean_site('.')"

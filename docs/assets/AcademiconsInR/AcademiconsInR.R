@@ -8,13 +8,16 @@ sessionInfo()[[1]]$version.string
 ## ---- eval = FALSE-------------------------------------------------------
 ## install.packages(c('magrittr', 'showtext'))
 
-## ------------------------------------------------------------------------
+## ----libraries, message=FALSE--------------------------------------------
 library(magrittr)
 library(showtext)
 library(graphicsutils)
 
 ## ----showtext------------------------------------------------------------
 showtext.auto()
+
+## ---- echo=FALSE---------------------------------------------------------
+font.paths("assets/AcadeiconsInR")
 
 ## ----addfont-------------------------------------------------------------
 font.add(family = 'Academicons', regular = 'academicons.ttf')
