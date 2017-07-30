@@ -1,0 +1,15 @@
+<div class="item">
+
+    {{ if eq .Type "post" }}
+
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+
+        <h4><a href="/about/">{{ .Params.author }}</a></h4>
+
+        <h5>{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</h5>
+
+        {{ range .Params.tags }} <kbd class="item-tag">{{ . }}</kbd> {{ end }}
+
+    {{ end }}
+
+</div>

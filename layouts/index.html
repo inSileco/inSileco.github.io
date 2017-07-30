@@ -1,0 +1,21 @@
+{{ partial "header" . }}
+
+<img class="full-width" width="100%" src="img/banner2.png"></img>
+  <div class="container">
+  <div class="row">
+  <div class="col-sm-4">
+    <h3>Latest posts</h3>
+    <hr> {{ range first 5 .Site.Pages }} {{if eq .Type "post" }}
+    <p><a href="{{ .RelPermalink }}">{{ .Title }}</a>, {{ .Date.Format "02 Jan, 2006" }}</p>
+    {{ end }} {{ end }}
+  </div>
+  <div class="col-sm-4">
+    <div class="text-justify">{{ .Content }}</div>
+  </div>
+  <div class="col-sm-4">
+    <a class="twitter-timeline" href="https://twitter.com/{{ .Site.Params.twitterUsername }}" data-chrome="nofooter hoheader"></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
+  </div>
+  </div>
+
+{{ partial "footer" . }}

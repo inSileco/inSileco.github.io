@@ -1,0 +1,26 @@
+{{ partial "header" . }}
+
+<img class="full-width" width="100%" src="/img/banner2.png"></img>
+
+<div class="container">
+<div class="col-sm-12">
+
+    {{ partial "list-item" . }}
+
+    <br> <div class="text-justify">{{ .Content }}</div>
+
+    <!-- related posts with the same tags -->
+    {{ $related := first 3 (where (where (where .Site.Pages.ByDate.Reverse ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }}
+
+    {{ if $related }}
+
+        <h4 class="page-header">Related</h4>
+
+        {{ range $related }} {{ partial "list-item" . }} {{ end }}
+
+    {{ end }}
+
+</div>
+</div>
+
+{{ partial "footer.html" . }}

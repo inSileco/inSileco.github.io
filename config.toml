@@ -1,0 +1,56 @@
+baseurl = "/"
+relativeurls = true
+languageCode = "en-us"
+title = "inSileco"
+theme = "minimal"
+googleAnalytics = ""
+disqusShortname = ""
+ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
+
+[permalinks]
+    post = "/:year/:month/:day/:slug/"
+
+[[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 1
+[[menu.main]]
+    name = "About"
+    url = "/about/"
+[[menu.main]]
+    name = "Posts"
+    url = "/post/"
+[[menu.main]]
+    name = "Tips"
+    url = "/tips/"
+[[menu.main]]
+    name = "Softwares"
+    url = "/softwares/"
+
+[params]
+    # options for highlight.js (version, additional languages, and theme)
+    MathJaxCDN = "//cdn.bootcss.com"
+    MathJaxVersion = "2.7.1"
+    author = "inSileco"
+    description = "Codes, ideas and methods in ecology"
+    githubUsername = "#inSileco"
+    twitterUsername = "inSileco"
+    accent = "#3fb3b2"
+    showBorder = true
+    backgroundColor = "white"
+    font = "Raleway" # should match the name on Google Fonts!
+    highlight = true
+    highlightStyle = "github"
+    highlightjsLang = ["r", "yaml"]
+
+[[menu.icon]]
+    url = "https://github.com/inSileco/"
+    name = "github"
+    weight = 1
+
+[[menu.icon]]
+    url = "https://twitter.com/inSileco/"
+    name = "twitter"
+    weight = 2
+
+

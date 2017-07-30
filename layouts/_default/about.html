@@ -1,0 +1,15 @@
+{{ partial "header" . }}
+
+<main>
+
+<div class="text-justify">{{ .Content }}</div>
+
+<div>
+  {{ range .Site.Data.authors }}
+    <h3> {{ .given_name }} </h3>
+  {{ end }}
+</div>
+
+</main>
+
+{{ partial "footer.html" . }}
