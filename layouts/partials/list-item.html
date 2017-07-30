@@ -1,18 +1,19 @@
 <div class="item">
 
-    {{ if eq .Type "post" }}
+  {{ if eq .Type "post" }}
 
-        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+  <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2> {{ range $auth := .Params.author }} {{ $info := index $.Site.Data.authors $auth }}
+  <p>{{ $info.given_name }} {{ $info.family_name }} <a href="#"></a></p>
+  {{ end }}
 
-        {{ range $auth := .Params.author }}
-          {{ $info := index $.Site.Data.authors $auth }}
-        <p>{{ $info.given_name }} {{ $info.family_name }} <a href="#"></a></p>
-        {{ end }}
+  <h5>{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</h5>
 
-        <h5>{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</h5>
+  <p>{{ range .Params.tags }} <kbd class="item-tag">{{ . }}</kbd> {{ end }}</p>
 
-        {{ range .Params.tags }} <kbd class="item-tag">{{ . }}</kbd> {{ end }}
-    
-    {{ end }}
+  <p> <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true">Tweet</a>
+    <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </p>
+
+  {{ end }}
 
 </div>
