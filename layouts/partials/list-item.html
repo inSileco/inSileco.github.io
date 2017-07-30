@@ -4,16 +4,15 @@
 
         <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
 
-        {{ range .Params.author }}
-        <h4><a href="/about/">{{ . }}</a></h4>
+        {{ range $auth := .Params.author }}
+          {{ $info := index $.Site.Data.authors $auth }}
+        <p>{{ $info.given_name }} {{ $info.family_name }} <a href="#"></a></p>
         {{ end }}
-
-        <pre> {{ .Site.Data.authors.david }} </pre>
 
         <h5>{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</h5>
 
         {{ range .Params.tags }} <kbd class="item-tag">{{ . }}</kbd> {{ end }}
-
+    
     {{ end }}
 
 </div>
