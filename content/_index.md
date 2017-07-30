@@ -6,4 +6,6 @@ The overarching goal of this blog is quite straightforward: tackle challenges an
 
 In the interest of full disclosure, we also have a hidden agenda for this blog. As a group revolving almost exclusively around academia (for more [about us](./docs/about.html)) - and as such, some might say out of touch with reality - we have to write **a lot**, which can be quite hard (*cough* *read procrastination* *cough*). This blog is therefore also our attempt at significantly stepping-up our writing game!
 
-{{< figure src="/img/ourwc4.png" width="100%" caption="Wordcloud created with the wordcloud2 R package; silhouette image available on PhyloPic (Lepidochelys olivacea)" >}}
+{{< figure src="/img/ourwc4.png" width="100%" >}}
+
+*Wordcloud created with the wordcloud2 R package; silhouette image available on PhyloPic (Lepidochelys olivacea)*

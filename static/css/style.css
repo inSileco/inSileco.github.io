@@ -1,3 +1,5 @@
+/* Custom CSS overwriting part of the minimal css theme  */
+
 .banner {
   position: absolute;
   height: auto;
@@ -5,5 +7,15 @@
 }
 
 .container {
-  max-width: 900px;
+  width: 1000px;
+  max-width: 90%;
+}
+
+.row {
+  margin-top: 10px;
+}
+
+h3 {
+  color: var(--accent) !important;
+  text-align: center;
 }
