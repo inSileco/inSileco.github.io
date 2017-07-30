@@ -4,7 +4,11 @@
 
         <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
 
-        <h4><a href="/about/">{{ .Params.author }}</a></h4>
+        {{ range .Params.author }}
+        <h4><a href="/about/">{{ . }}</a></h4>
+        {{ end }}
+
+        <pre> {{ .Site.Data.authors.david }} </pre>
 
         <h5>{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</h5>
 
