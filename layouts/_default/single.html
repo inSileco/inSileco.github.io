@@ -7,6 +7,16 @@
 
     {{ partial "list-item" . }}
 
+    <p>By</p>
+
+    {{ range $auth := .Params.author }} {{ $info := index $.Site.Data.authors $auth }}
+    <p>{{ $info.given_name }} {{ $info.family_name }} <a href="#"></a></p>
+    {{ end }}
+
+    <p> <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true">Tweet</a>
+      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </p>
+
     <br> <div class="text-justify">{{ .Content }}</div>
 
     <!-- related posts with the same tags -->

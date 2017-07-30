@@ -1,15 +1,27 @@
 {{ partial "header" . }}
 
-<main>
+<img class="full-width" width="100%" src="/img/banner2.png"></img>
+
+<div class="container">
+<div class="col-sm-12">
 
 <div class="text-justify">{{ .Content }}</div>
 
-<div>
   {{ range .Site.Data.authors }}
-    <h3> {{ .given_name }} </h3>
+  <div class="col-sm-6 text-left" style="padding-top:15px;">
+    <div class="col-sm-4 text-right">
+      <img src="https://github.com/{{ .github }}.png" width="80%" class="img-rounded" alt="">
+    </div>
+    <div class="col-sm-8">
+      <h4 style="font-weight:bold;"> {{ .given_name }} {{ .family_name }} </h4>
+      <p> {{ .description | markdownify }}</p>
+      <!-- <h5 style="font-weight:bold;">Research project:</h5> -->
+      <!-- <p class="text-justify"> {{ .project }}</p> -->
+    </div>
+  </div>
   {{ end }}
-</div>
 
-</main>
+</div>
+</div>
 
 {{ partial "footer.html" . }}
