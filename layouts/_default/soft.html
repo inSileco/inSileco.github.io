@@ -1,0 +1,28 @@
+{{ partial "header" . }}
+
+<img class="full-width" width="100%" src="/img/banner2.png"></img>
+
+<div class="container">
+
+  <div class="col-sm-12">
+    <h1 style="margin-top:50px;margin-bottom:20px;">Software developments</h1> {{ range $.Site.Data.softwares }}
+    <div class="col-sm-6 text-left">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="col-sm-12">
+            {{ with .github }} <a href="https://github.com/{{.}}" style="display:inline;"><i class="fa fa-2x fa-github" aria-hidden="true"></i></a>  {{ end }}<h3 style="font-weight:bold;display:inline;"> {{ .name }} </h3>
+            <hr>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+            <p style="margin-top:10px;">
+               {{ with .travis }} {{ . | markdownify }} {{ end }} {{ with .appveyor }} {{ . | markdownify }} {{ end }} {{ with .codecov }} {{ . | markdownify }} {{ end }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+
+  </div>
+</div>
+
+{{ partial "footer.html" . }}

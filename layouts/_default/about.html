@@ -3,25 +3,27 @@
 <img class="full-width" width="100%" src="/img/banner2.png"></img>
 
 <div class="container">
-<div class="col-sm-12">
 
-<div class="text-justify">{{ .Content }}</div>
+  <div class="text-justify">{{ .Content }}</div>
 
   {{ range .Site.Data.authors }}
-  <div class="col-sm-6 text-left" style="padding-top:15px;">
-    <div class="col-sm-4 text-right">
-      <img src="https://github.com/{{ .github }}.png" width="80%" class="img-rounded" alt="">
-    </div>
-    <div class="col-sm-8">
-      <h4 style="font-weight:bold;"> {{ .given_name }} {{ .family_name }} </h4>
-      <p> {{ .description | markdownify }}</p>
-      <!-- <h5 style="font-weight:bold;">Research project:</h5> -->
-      <!-- <p class="text-justify"> {{ .project }}</p> -->
+  <div class="col-sm-6 text-left" style="padding:10px;marging:10px;">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="col-sm-4 text-right">
+          <img src="https://github.com/{{ .github }}.png" width="100%" class="img-rounded" alt="">
+        </div>
+        <div class="col-sm-8">
+          <h4 style="font-weight:bold;"> {{ .given_name }} {{ .family_name }} </h4>
+          <p> {{ .description | markdownify }}</p>
+          <!-- <h5 style="font-weight:bold;">Research project:</h5> -->
+          <!-- <p class="text-justify"> {{ .project }}</p> -->
+        </div>
+      </div>
     </div>
   </div>
   {{ end }}
 
-</div>
 </div>
 
 {{ partial "footer.html" . }}
