@@ -1,15 +1,15 @@
 ---
-title: "Make your plot Hylian"
-author: ["david","kevin",nicolas]
+title: Make your plot Hylian
+author: [david,kevin,nicolas]
 date: 2017-04-14
-tags: ["plot","R","icon","zelda"]
+tags: [plot,R,icon,zelda]
 draft: false
-tweet: "Make your plot Hylian"
+tweet: Make your plot Hylian
 output:
   rmarkdown::html_page:
     toc: true
     fig_width: 3
-    dev: "svg"
+    dev: svg
 ---
 
 #### Below are presented the 6 steps you need to make your plot a Hylian one! **May the triforce be with you**!
@@ -40,12 +40,6 @@ unzip(paste0(dr, basename(url)), exdir = "./hylianStyle_files")
 
 # Remove .zip
 file.remove(paste0(dr, basename(url)))
-```
-
-```{r, echo = FALSE, eval = TRUE}
-# Copy the font to the public folder
-file.copy(list.files(dr,full.names=TRUE),paste0('../../static/post/',list.files(dr,full.names=TRUE)))
-
 ```
 
 ### 2. Install the `showtext` package
