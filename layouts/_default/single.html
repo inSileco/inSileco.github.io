@@ -13,7 +13,7 @@
     <p>{{ $info.given_name }} {{ $info.family_name }} <a href="#"></a></p>
     {{ end }}
 
-    <p> <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true">Tweet</a>
+    <p> <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true" data-text="{{ .Params.tweet }}">Tweet</a>
       <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     </p>
 
