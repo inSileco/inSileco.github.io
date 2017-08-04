@@ -3,9 +3,14 @@
 <img class="full-width" width="100%" src="/img/banner2.png"></img>
 
 <div class="container">
-<div class="col-sm-12">
+  <div class="col-sm-12">
 
-    {{ partial "list-item" . }}
+    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+
+    <h5>{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</h5>
+
+    <p>{{ range .Params.tags }} <kbd class="item-tag">{{ . }}</kbd> {{ end }}</p>
+
 
     <p>By</p>
 
@@ -17,18 +22,13 @@
       <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     </p>
 
-    <br> <div class="text-justify">{{ .Content }}</div>
+    <br>
+    <div class="text-justify">{{ .Content }}</div>
 
     <!-- related posts with the same tags -->
-    {{ $related := first 3 (where (where (where .Site.Pages.ByDate.Reverse ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }}
+    {{ $related := first 3 (where (where (where .Site.Pages.ByDate.Reverse ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }} {{ if $related }}
 
-    {{ if $related }}
-
-        <h4 class="page-header">Related</h4>
-
-        {{ range $related }} {{ partial "list-item" . }} {{ end }}
-
-    {{ end }}
+    <h4 class="page-header">Related</h4> {{ range $related }} {{ partial "list-item" . }} {{ end }} {{ end }}
 
     <div id="disqus_thread"></div>
     <script>
@@ -36,9 +36,15 @@
        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
-      var disqus_config = function () {
-      this.page.url = "https://insileco.github.io"+{{ .Permalink }};  // Replace PAGE_URL with your page's canonical URL variable
-      this.page.identifier = {{ .Title }}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      var disqus_config = function() {
+        this.page.url = "https://insileco.github.io" + {
+          {.Permalink
+          }
+        }; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = {
+          {.Title
+          }
+        }; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
       };
 
       (function() { // DON'T EDIT BELOW THIS LINE
@@ -51,7 +57,7 @@
     </script>
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
-</div>
+  </div>
 </div>
 
 {{ partial "footer.html" . }}
