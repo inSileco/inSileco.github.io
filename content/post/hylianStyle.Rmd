@@ -44,12 +44,8 @@ file.remove(paste0(dr, basename(url)))
 
 ### 2. Install the `showtext` package
 
-```{r, echo = TRUE, eval = FALSE}
+```{r, echo = TRUE, eval = TRUE}
 install.package("showtext", dependencies = TRUE)
-library(showtext)
-```
-
-```{r, echo = FALSE, eval = TRUE}
 library(showtext)
 ```
 
