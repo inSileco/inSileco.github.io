@@ -1,0 +1,161 @@
+---
+title: Add icons on your plots
+author: [kevin, david]
+date: 2017-23-05
+tags: [R, plot, icon]
+tweet: "How to add icons on your plots"
+draft: false
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p>Icons are very popular on websites to improve the visual grepping (<em>i.e.</em> visual optimization of <em>eyeball</em> search). We all know how to go at the top or the bottom of a website clicking on chevrons (<i class="fa fa-chevron-down" aria-hidden="true"></i> <i class="fa fa-chevron-up" aria-hidden="true"></i>). We are also familiar with simple symbols that allow us to click and edit the text we are typing (<i class="fa fa-align-left" aria-hidden="true"></i> <i class="fa fa-align-center" aria-hidden="true"></i> <i class="fa fa-align-right" aria-hidden="true"></i>). Moreover, some web applications are so widespread than their logo appears in thousands of websites (i.e Twitter <i class="fa fa-twitter" aria-hidden="true"></i> or Github <i class="fa fa-github" aria-hidden="true"></i>). Here, we explain how to use these icons in your R plots. Why use icons on an R plot? It simply increases the possibilities for the number of markers you could use and thus efficiently and usefully refine your plots.</p>
+<p>There are two strategies to include icons on a R plot: 1- using icons as a font when possible or 2- using icons as images. Here, we exemplify the first strategy and leave the second one for another post (hopefully). We will use icons from three different iconic frameworks:</p>
+<ol style="list-style-type: decimal">
+<li><a href="jpswalsh.github.io/academicons/">Academicon</a>;<br />
+</li>
+<li><a href="http://fontawesome.io">Font Awesome</a>;<br />
+</li>
+<li><a href="http://ionicons.com">Ionicons</a>.</li>
+</ol>
+<p>All of these academics framework propose either a <code>.ttf</code> (TrueType Font) or a <code>.otf</code> file (OpenType Font) (or both). These files make our life very easy and we can make a direct <strong>link</strong> with a <a href="./HylianStyle.html">previous blog post</a>.</p>
+</div>
+<div id="setting-up-r" class="section level2">
+<h2>Setting up R</h2>
+<div id="r-version-used-to-build-the-last-update-of-this-post" class="section level4">
+<h4>R version used to build the last update of this post</h4>
+<pre class="r"><code>sessionInfo()[[1]]$version.string</code></pre>
+<pre><code>## [1] &quot;R version 3.4.1 (2017-06-30)&quot;</code></pre>
+</div>
+<div id="list-of-packages-to-be-used" class="section level4">
+<h4>List of packages to be used</h4>
+<ul>
+<li>the <code>showtext</code> package and its dependency <code>sysfont</code> <a href="https://cran.r-project.org/web/packages/showtext/index.html">see the <i class="fa fa-link" aria-hidden="true"></i></a>;<br />
+</li>
+<li>the <code>magrittr</code> package for the pipes (see the <a href="http://magrittr.tidyverse.org">associated websites</a>).</li>
+</ul>
+<p>Here is line of code you need to install these packages:</p>
+<pre class="r"><code>install.packages(c(&#39;magrittr&#39;, &#39;showtext&#39;))</code></pre>
+<p>Then, we load them:</p>
+<pre class="r"><code>library(magrittr)
+library(showtext)
+library(graphicsutils)</code></pre>
+</div>
+<div id="material-to-be-downloaded" class="section level4">
+<h4>Material to be downloaded</h4>
+<p>We have to download the 3 fonts to be used, which can easily be found on Github. You can simply click on the links below to get them. <!-- or used the zip file provided
+at the [top of this page](#top) (*lazy searching*). --></p>
+<ol style="list-style-type: decimal">
+<li><a href="https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf">the <em>Academicons</em> font</a><br />
+</li>
+<li><a href="https://github.com/FortAwesome/Font-Awesome/raw/master/fonts/FontAwesome.otf">the <em>FontAwesome</em> font</a><br />
+</li>
+<li><a href="https://github.com/driftyco/ionicons/raw/master/fonts/ionicons.ttf">the <em>Ionicons</em> font</a></li>
+</ol>
+<p>Once downloaded, install them on your computer (there is most likely an application on your computer to do so but note that it is also possible to store the fonts in a dedicated folder and then provide the path to use them with <code>showtext</code>. See the <code>font.paths()</code> function.</p>
+</div>
+</div>
+<div id="loading-the-fonts" class="section level2">
+<h2>Loading the fonts</h2>
+<p>To activate the facilities <code>showtext</code> provide, it only requires <code>showtext.auto()</code> (by the way, the author of the package deserves a medal!):</p>
+<pre class="r"><code>showtext.auto()</code></pre>
+<!-- help rebuilding the website without downloading font as they are
+included in this folder -->
+<pre><code>## Warning in normalizePath(c(new, .pkg.env$.font.path)): path[1]=&quot;assets/
+## AcadeiconsInR&quot;: No such file or directory</code></pre>
+<pre><code>## [1] &quot;assets/AcadeiconsInR&quot;        &quot;/Library/Fonts&quot;             
+## [3] &quot;/Users/KevCaz/Library/Fonts&quot;</code></pre>
+<p>Then, add <code>academicons.ttf</code>, <code>FontAwesome.otf</code> and <code>ionicons.ttf</code> fonts to your session with the <code>font.add()</code> function:</p>
+<pre class="r"><code>font.add(family = &#39;Academicons&#39;, regular = &#39;academicons.ttf&#39;)
+font.add(family = &#39;FontAwesome&#39;, regular = &#39;FontAwesome.otf&#39;)
+font.add(family = &#39;Ionicons&#39;, regular = &#39;ionicons.ttf&#39;)</code></pre>
+<p>Here, things are going to be a little bit trickier than they were in the <a href="./HylianStyle.html">Hylian blog post</a>, as we should first locate the unicode characters to be used. Fortunately, this is fairly doable:</p>
+<ol style="list-style-type: decimal">
+<li>FontAwesome provides a very <a href="http://fontawesome.io/cheatsheet/">helpful cheatsheet</a>;<br />
+</li>
+<li><code>.ttf</code> files are easy to explore, for instance using LibreOffice and inserting a special character (see the figure below).</li>
+</ol>
+<div class="figure">
+<img src="./assets/AcademiconsInR/academicsicon.png" alt="Academics icon on LibreOffice" />
+<p class="caption">Academics icon on LibreOffice</p>
+</div>
+<p>To use unicode characters in R, there are several possibilities, this <a href="https://www.r-bloggers.com/unicode-symbols-in-r/">blog post</a> explains it well. Below we use different way to deal with the unicode characters.</p>
+</div>
+<div id="lets-add-icons-our-plot" class="section level2">
+<h2>Let’s add icons our plot</h2>
+<div id="academicons" class="section level3">
+<h3>Academicons</h3>
+<p>There are 36 unicode characters available. They are numbered like so: “E9” + all numbers from 00 to 35 (version 1.8.0). To use them we will create the sequence using <code>sprintf()</code> and <code>paste0()</code> function</p>
+<pre class="r"><code>nb &lt;- 35
+acs &lt;- sprintf(&quot;%02d&quot;, 0:nb) %&gt;% paste0(&quot;E9&quot;,.)</code></pre>
+<p>We now plot them as if they were on a regular grid and we add the decimal value below:</p>
+<pre class="r"><code>coord &lt;- expand.grid(1:9, 1:4)
+cols &lt;- c(&quot;#3fb3b2&quot;, &quot;#8059a7&quot;, &quot;#ffdd55&quot;, &quot;#1b95e0&quot;)
+##
+par(mar=c(0,0,0,0))
+plot(c(0,9), c(0,5), type=&quot;n&quot;, ann=FALSE, axes=FALSE)
+text(coord[,1], coord[,2], labels= acs,  offset = 1.6, cex=.66, pos=1)
+##
+par(family = &quot;Academicons&quot;)
+points(coord[,1], coord[,2], pch=-as.hexmode(acs), cex=3, col=cols)</code></pre>
+<p><img src="/post/AcademiconsInR_files/figure-html/figacadem-1.png" width="912" /></p>
+</div>
+<div id="adding-fontawesomes-icons" class="section level3">
+<h3>Adding FontAwesome’s icons</h3>
+<p>The unicode hexadecimal for the FontAwesome’s icons range from <code>f000</code> (<i class="fa fa-glass" aria-hidden="true"></i>) to <code>f2e0</code> (<i class="fa fa-meetup" aria-hidden="true"></i>) in version 4.7.</p>
+<pre class="r"><code>nsq &lt;- 12
+fas &lt;- 1:(nsq*nsq) %&gt;% as.hexmode %&gt;% paste0(&quot;f0&quot;, .)
+coord &lt;- expand.grid(1:nsq, 1:nsq)
+par(mar=c(2,2,2,2), family = &#39;FontAwesome&#39;)
+plot(coord[,1], coord[,2], pch=-as.hexmode(fas), cex=2.5, col=cols, ann=FALSE, axes=FALSE)</code></pre>
+<p><img src="/post/AcademiconsInR_files/figure-html/figfontawe-1.png" width="912" /></p>
+</div>
+<div id="adding-ionicons" class="section level3">
+<h3>Adding Ionicons</h3>
+<p>The unicode decimal value of Ionicons’s icons range from 61696 to 62711. There are 765 icons available (version 2.0.1), therefore some hexidecimal are not assigned. Here we’ll use the <code>intToUtf8</code> function to convert the decimal value into unicode character.</p>
+<pre class="r"><code>val &lt;- 61970:62046
+ias &lt;- sapply(val, FUN=intToUtf8)
+coord &lt;- expand.grid(rev(1:11), 1:7)
+##
+par(mar=c(2,2,2,2), family = &quot;Ionicons&quot;)
+plot(coord[,1], coord[,2], ann=FALSE, axes=FALSE, pch=ias, cex=2.5, col=cols)</code></pre>
+<p><img src="/post/AcademiconsInR_files/figure-html/figionic-1.png" width="912" /></p>
+</div>
+<div id="combining-them" class="section level3">
+<h3>Combining them</h3>
+<p>To combine, we have to switch from one font to another. Here is a simple example using the three icon frameworks.</p>
+<pre class="r"><code>data(volcano)
+par(las=1, mar=c(4,5,4,4))
+image(volcano, col=colorRampPalette(c(&quot;grey10&quot;, &quot;grey90&quot;))(100))
+contour(volcano, add=T, col=&quot;#ffdd55&quot;)
+title(main = toupper(&quot;My volcano&quot;), cex.main=2)
+##
+par(family=&quot;FontAwesome&quot;)
+title(ylab=intToUtf8(61552), cex.lab=2)
+points(0.336, 0.58, pch=-as.hexmode(&quot;F041&quot;), col=&quot;#3fb3b2&quot;, cex=2.5)
+##
+par(family = &quot;Ionicons&quot;)
+points(0.946, 0.943, pch=-as.hexmode(&quot;F203&quot;), col=&quot;grey95&quot;, cex=4)
+points(0.451, 0.091, pch=-as.hexmode(&quot;F448&quot;), col=&quot;#3fb3b2&quot;, cex=2)
+##
+par(family = &quot;Academicons&quot;)
+mtext(text=intToUtf8(&quot;59651&quot;), side=4, adj=1, line=3, cex=3)</code></pre>
+<p><img src="/post/AcademiconsInR_files/figure-html/volcano-1.png" width="912" /></p>
+</div>
+</div>
+<div id="additional-remarks" class="section level2">
+<h2>Additional remarks</h2>
+<ol style="list-style-type: decimal">
+<li><p>Note that the steps described here are useful to include any kind of police you have on your computer or you may find online. Therefore this post should help you deal with font if you intend to publish a figure in a journal that requests a specific font. By the way, <code>showtext</code> allows you to search directly on google font (see the <code>font.add.google()</code> function).</p></li>
+<li><p>As you may have realized reading this post there are different ways to write a character in unicode. Fortunately, many online converters help you get from one standard to another (<em>e.g.</em> <a href="http://www.endmemo.com/unicode/unicodeconverter.php">unicodeconverter</a> does the job).</p></li>
+<li><p>You may also want to use emoji to cheer your plot up! See the emojifont package available on <a href="https://cran.r-project.org/web/packages/emojifont/">CRAN</a> and <a href="https://guangchuangyu.github.io/emojifont/">Github</a>.</p></li>
+<li><p><a href="https://fontstruct.com">fontstruct</a> is a great web application that helps you creating your own font (you can save your font as a <code>.tff</code> on your computer and now you know how to deal with it!)</p></li>
+</ol>
+</div>
