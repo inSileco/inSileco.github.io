@@ -39,4 +39,8 @@ Rscript -e 'blogdown::new_post('MY_TITLE')'
 - blue twitter: "#1b95e0"
 
 
-**TODO:** Describe all YAML headers options
+
+## TODO
+
+[ ] Describe all YAML headers options;
+[ ] KevCaz would like to know if we can add a custom yaml field.

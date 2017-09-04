@@ -45,16 +45,16 @@ output:
 <p>The maps generated in this post require the user to load <a href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_ocean.zip"><code>ocean</code></a> shapefile from <a href="http://www.naturalearthdata.com/">Natural Earth</a>.</p>
 <p><br/></p>
 <pre class="r"><code># UV data
-  UV &lt;- readRDS(&#39;../../static/AnimationInR/MonthOMI.rds&#39;)
+  UV &lt;- readRDS(&#39;../../static/assets/AnimationInR/MonthOMI.rds&#39;)
 
 # Projection
   spatProj &lt;- &#39;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&#39;
 
 # Ocean shapefile
-  ocean &lt;- readOGR(dsn = &quot;../../static/AnimationInR/shpfile/&quot;, layer = &quot;ne_10m_ocean&quot;) %&gt;%
+  ocean &lt;- readOGR(dsn = &quot;../../static/assets/AnimationInR/shpfile/&quot;, layer = &quot;ne_10m_ocean&quot;) %&gt;%
              spTransform(CRSobj = CRS(spatProj))</code></pre>
 <pre><code>## OGR data source with driver: ESRI Shapefile 
-## Source: &quot;../../static/AnimationInR/shpfile/&quot;, layer: &quot;ne_10m_ocean&quot;
+## Source: &quot;../../static/assets/AnimationInR/shpfile/&quot;, layer: &quot;ne_10m_ocean&quot;
 ## with 1 features
 ## It has 2 fields</code></pre>
 <pre class="r"><code>  class(ocean)</code></pre>

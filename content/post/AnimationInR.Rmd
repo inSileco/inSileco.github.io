@@ -68,13 +68,13 @@ The maps generated in this post require the user to load [`ocean`](http://www.na
 
 ```{r, loadData, message=FALSE}
 # UV data
-  UV <- readRDS('../../static/AnimationInR/MonthOMI.rds')
+  UV <- readRDS('../../static/assets/AnimationInR/MonthOMI.rds')
 
 # Projection
   spatProj <- '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'
 
 # Ocean shapefile
-  ocean <- readOGR(dsn = "../../static/AnimationInR/shpfile/", layer = "ne_10m_ocean") %>%
+  ocean <- readOGR(dsn = "../../static/assets/AnimationInR/shpfile/", layer = "ne_10m_ocean") %>%
              spTransform(CRSobj = CRS(spatProj))
 
   class(ocean)

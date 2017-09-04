@@ -4,23 +4,24 @@
 install.packages(
   c(
     "animation",
-    "biomod2",
+    # "biomod2",
     "devtools",
-    "kableExtra",
-    "leaflet",
+    # "kableExtra",
+    # "leaflet",
     "plyr",
     "rmarkdown",
     "sdmpredictors",
     "sf",
-    "tm",
+    # "tm",
     "showtext",
-    "wordcloud2",
-    "webshot",
+    # "wordcloud2",
+    # "webshot",
     "yaml"
   ),
   repos = "https://cran.wu.ac.at/",
   dependencies = TRUE
 )
+
 
 ## Github packages
 devtools::install_github("iobis/robis")

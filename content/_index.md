@@ -8,4 +8,6 @@ In the interest of full disclosure, we also have a hidden agenda for this blog. 
 
 {{< figure src="/img/ourwc4.png" width="100%" >}}
 
-*Wordcloud created with the wordcloud2 R package; silhouette image available on PhyloPic (Lepidochelys olivacea)*
+*Wordcloud created with the [wordcloud2](https://cran.r-project.org/web/packages/wordcloud2/)
+R package; silhouette image available on [PhyloPic](http://phylopic.org)
+(Lepidochelys olivacea)*
