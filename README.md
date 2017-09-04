@@ -44,3 +44,5 @@ Rscript -e 'blogdown::new_post('MY_TITLE')'
 
 [ ] Describe all YAML headers options;
 [ ] KevCaz would like to know if we can add a custom yaml field.
+[ ] Set a repository to include how the worcloud was generated and link this
+repo in the website
