@@ -1,6 +1,6 @@
 language: r
 dist: trusty
-sudo: false
+sudo: true
 
 branches:
   only:
@@ -17,8 +17,8 @@ cache:
     - $HOME/bin
 
 before_install:
-  - apt-get -qq update
-  - apt-get install -y libgdal-dev libgeos-dev libproj-dev
+  - sudo apt-get -qq update
+  - sudo apt-get install -y libgdal-dev libgeos-dev libproj-dev
 
 before_script:
   - "Rscript -e 'blogdown::install_hugo()'"
