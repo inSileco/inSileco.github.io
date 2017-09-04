@@ -1,7 +1,7 @@
 ---
 title: Add icons on your plots
 author: [kevin, david]
-date: 2017-23-05
+date: 2017-05-23
 tags: [R, plot, icon]
 tweet: "How to add icons on your R plots"
 draft: false
@@ -55,7 +55,6 @@ Then, we load them:
 ```{r libraries, message=FALSE}
 library(magrittr)
 library(showtext)
-library(graphicsutils)
 ```
 
 #### Material to be downloaded
@@ -104,8 +103,7 @@ Here, things are going to be a little bit trickier than they were in the [Hylian
 
 
 
-
-![Academics icon on LibreOffice](./assets/AcademiconsInR/academicsicon.png)
+![Academics icon on LibreOffice](/img/academicsicon.png){width=95%}
 
 
 To use unicode characters in R, there are several possibilities, this [blog post](https://www.r-bloggers.com/unicode-symbols-in-r/) explains it well.

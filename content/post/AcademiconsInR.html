@@ -1,9 +1,9 @@
 ---
 title: Add icons on your plots
 author: [kevin, david]
-date: 2017-23-05
+date: 2017-05-23
 tags: [R, plot, icon]
-tweet: "How to add icons on your plots"
+tweet: "How to add icons on your R plots"
 draft: false
 output:
   rmarkdown::html_page:
@@ -45,8 +45,7 @@ output:
 <pre class="r"><code>install.packages(c(&#39;magrittr&#39;, &#39;showtext&#39;))</code></pre>
 <p>Then, we load them:</p>
 <pre class="r"><code>library(magrittr)
-library(showtext)
-library(graphicsutils)</code></pre>
+library(showtext)</code></pre>
 </div>
 <div id="material-to-be-downloaded" class="section level4">
 <h4>Material to be downloaded</h4>
@@ -83,7 +82,7 @@ font.add(family = &#39;Ionicons&#39;, regular = &#39;ionicons.ttf&#39;)</code></
 <li><code>.ttf</code> files are easy to explore, for instance using LibreOffice and inserting a special character (see the figure below).</li>
 </ol>
 <div class="figure">
-<img src="./assets/AcademiconsInR/academicsicon.png" alt="Academics icon on LibreOffice" />
+<img src="/img/academicsicon.png" alt="Academics icon on LibreOffice" style="width:95.0%" />
 <p class="caption">Academics icon on LibreOffice</p>
 </div>
 <p>To use unicode characters in R, there are several possibilities, this <a href="https://www.r-bloggers.com/unicode-symbols-in-r/">blog post</a> explains it well. Below we use different way to deal with the unicode characters.</p>
