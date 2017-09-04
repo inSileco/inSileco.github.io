@@ -5,7 +5,7 @@ install.packages(
   c(
     "animation",
     # "biomod2",
-    "devtools",
+    # "devtools",
     # "kableExtra",
     # "leaflet",
     "plyr",
@@ -14,8 +14,6 @@ install.packages(
     "sf",
     # "tm",
     "showtext",
-    # "wordcloud2",
-    # "webshot",
     "yaml"
   ),
   repos = "https://cran.wu.ac.at/",

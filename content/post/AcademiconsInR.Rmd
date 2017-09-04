@@ -36,6 +36,7 @@ All of these academics framework propose either a `.ttf` (TrueType Font) or a `.
 #### R version used to build the last update of this post
 
 ```{r infosession}
+path <- "../../static/assets/AcademiconsInR/"
 sessionInfo()[[1]]$version.string
 ```
 
@@ -84,16 +85,16 @@ showtext.auto()
 included in this folder -->
 
 ```{r, echo=FALSE}
-font.paths("../../static/asset/AcadeiconsInR")
+font.paths(path)
 ```
 
 
 Then, add `academicons.ttf`, `FontAwesome.otf` and `ionicons.ttf` fonts to your session with the `font.add()` function:
 
 ```{r addfont}
-font.add(family = 'Academicons', regular = 'academicons.ttf')
-font.add(family = 'FontAwesome', regular = 'FontAwesome.otf')
-font.add(family = 'Ionicons', regular = 'ionicons.ttf')
+font.add(family = 'Academicons', regular = paste0(path,'/academicons.ttf'))
+font.add(family = 'FontAwesome', regular = paste0(path,'/FontAwesome.otf'))
+font.add(family = 'Ionicons', regular = paste0(path,'/ionicons.ttf'))
 ```
 
 Here, things are going to be a little bit trickier than they were in the [Hylian blog post](./HylianStyle.html), as we should first locate the unicode characters to be used. Fortunately, this is fairly doable:
@@ -102,13 +103,11 @@ Here, things are going to be a little bit trickier than they were in the [Hylian
   2. `.ttf` files are easy to explore, for instance using LibreOffice and inserting a special character (see the figure below).     
 
 
-
 ![Academics icon on LibreOffice](asset/AcadeiconsInR/academicsicon.png){width=95%}
 
 
 To use unicode characters in R, there are several possibilities, this [blog post](https://www.r-bloggers.com/unicode-symbols-in-r/) explains it well.
 Below we use different way to deal with the unicode characters.
-
 
 
 

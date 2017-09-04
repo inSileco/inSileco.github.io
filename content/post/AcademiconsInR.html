@@ -31,7 +31,8 @@ output:
 <h2>Setting up R</h2>
 <div id="r-version-used-to-build-the-last-update-of-this-post" class="section level4">
 <h4>R version used to build the last update of this post</h4>
-<pre class="r"><code>sessionInfo()[[1]]$version.string</code></pre>
+<pre class="r"><code>path &lt;- &quot;../../static/assets/AcademiconsInR/&quot;
+sessionInfo()[[1]]$version.string</code></pre>
 <pre><code>## [1] &quot;R version 3.4.1 (2017-06-30)&quot;</code></pre>
 </div>
 <div id="list-of-packages-to-be-used" class="section level4">
@@ -67,14 +68,13 @@ at the [top of this page](#top) (*lazy searching*). --></p>
 <pre class="r"><code>showtext.auto()</code></pre>
 <!-- help rebuilding the website without downloading font as they are
 included in this folder -->
-<pre><code>## Warning in normalizePath(c(new, .pkg.env$.font.path)): path[1]=&quot;../../
-## static/asset/AcadeiconsInR&quot;: No such file or directory</code></pre>
-<pre><code>## [1] &quot;../../static/asset/AcadeiconsInR&quot; &quot;/Library/Fonts&quot;                  
+<pre><code>## [1] &quot;/Users/KevCaz/Codes/Github/Websites/inSileco.github.io/static/assets/AcademiconsInR&quot;
+## [2] &quot;/Library/Fonts&quot;                                                                     
 ## [3] &quot;/Users/KevCaz/Library/Fonts&quot;</code></pre>
 <p>Then, add <code>academicons.ttf</code>, <code>FontAwesome.otf</code> and <code>ionicons.ttf</code> fonts to your session with the <code>font.add()</code> function:</p>
-<pre class="r"><code>font.add(family = &#39;Academicons&#39;, regular = &#39;academicons.ttf&#39;)
-font.add(family = &#39;FontAwesome&#39;, regular = &#39;FontAwesome.otf&#39;)
-font.add(family = &#39;Ionicons&#39;, regular = &#39;ionicons.ttf&#39;)</code></pre>
+<pre class="r"><code>font.add(family = &#39;Academicons&#39;, regular = paste0(path,&#39;/academicons.ttf&#39;))
+font.add(family = &#39;FontAwesome&#39;, regular = paste0(path,&#39;/FontAwesome.otf&#39;))
+font.add(family = &#39;Ionicons&#39;, regular = paste0(path,&#39;/ionicons.ttf&#39;))</code></pre>
 <p>Here, things are going to be a little bit trickier than they were in the <a href="./HylianStyle.html">Hylian blog post</a>, as we should first locate the unicode characters to be used. Fortunately, this is fairly doable:</p>
 <ol style="list-style-type: decimal">
 <li>FontAwesome provides a very <a href="http://fontawesome.io/cheatsheet/">helpful cheatsheet</a>;<br />
