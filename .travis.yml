@@ -18,7 +18,7 @@ cache:
 
 before_install:
   - sudo apt-get -qq update
-  - sudo apt-get install -y libgdal-dev libgeos-dev libproj-dev
+  - sudo apt-get install -y libgdal-dev libgeos-dev libproj-dev libudunits2-dev
 
 before_script:
   - "Rscript -e 'blogdown::install_hugo()'"
