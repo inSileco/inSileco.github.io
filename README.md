@@ -4,6 +4,8 @@
 
 The overarching goal of this blog is quite straightforward: tackle challenges and opportunities provided by this new era of open-access and computationally intensive research in the field of ecology.
 
+
+
 ### Getting started
 
 #### Install blowgdown
