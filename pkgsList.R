@@ -4,15 +4,16 @@
 install.packages(
   c(
     "animation",
-    # "biomod2",
-    # "devtools",
-    # "kableExtra",
-    # "leaflet",
+    "biomod2",
+    "kableExtra",
+    "leaflet",
     "plyr",
     "rmarkdown",
     "sdmpredictors",
+    "rgdal",
+    "rgeos"
     "sf",
-    # "tm",
+    "tm",
     "showtext",
     "yaml"
   ),
