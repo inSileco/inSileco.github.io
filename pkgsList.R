@@ -13,7 +13,9 @@ install.packages(
     "rgdal",
     "rgeos",
     "rfishbase",
+    "rglobi",
     "sf",
+    "taxize"
     "tm",
     "showtext",
     "yaml"
