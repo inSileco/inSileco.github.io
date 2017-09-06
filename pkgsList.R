@@ -15,7 +15,7 @@ install.packages(
     "rfishbase",
     "rglobi",
     "sf",
-    "taxize"
+    "taxize",
     "tm",
     "showtext",
     "yaml"
