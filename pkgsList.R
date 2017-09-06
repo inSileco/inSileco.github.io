@@ -12,6 +12,7 @@ install.packages(
     "sdmpredictors",
     "rgdal",
     "rgeos",
+    "rfishbase",
     "sf",
     "tm",
     "showtext",
