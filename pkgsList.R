@@ -11,7 +11,7 @@ install.packages(
     "rmarkdown",
     "sdmpredictors",
     "rgdal",
-    "rgeos"
+    "rgeos",
     "sf",
     "tm",
     "showtext",
