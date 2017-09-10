@@ -25,6 +25,8 @@
             {{ if .orcid}} <a href="http://orcid.org/{{ .orcid }}"><i class="ai ai-orcid ai-2x" aria-hidden="true"></i></a> {{ end }}
             {{ if .researchgate}} <a href="https://www.researchgate.net/profile/{{ .researchgate }}"><i class="ai ai-researchgate ai-2x"></i></a> {{ end }}
             {{ if .gscholar}} <a href="{{ .gscholar }}"><i class="ai ai-google-scholar ai-2x" aria-hidden="true"></i></a> {{ end }}
+            {{ if .impactstory}} <a href="https://profiles.impactstory.org/u/{{ .impactstory }}"><i class="ai ai-impactstory ai-2x" aria-hidden="true"></i></a> {{ end }}
+            {{ if .publons}} <a href="https://publons.com/author/{{ .publons }}"><i class="ai ai-publons ai-2x" aria-hidden="true"></i></a> {{ end }}
           </h5>
         </div>
       </div>
