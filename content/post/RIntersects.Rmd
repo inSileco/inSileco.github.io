@@ -269,7 +269,7 @@ The alternative solution that we are testing here combines `sf::st_intersects` t
                 # Zonal intersections on combinations of `x` and `y` known to intersect
                 zonalInter[[i]] <- sf::st_intersection(x[binInterID[i], ],
                                                        y[binInter[[binInterID[i]]], ])
-                zonalInter[[i]] <- sf::st_sf(name = rep(binInterID[zonalInter[[i]]], length(.)),
+                zonalInter[[i]] <- sf::st_sf(name = rep(binInterID[i], length(zonalInter[[i]])),
                                              geometry = zonalInter[[i]])
             }   
             zonalInter <- do.call("rbind", zonalInter) # rbind all elements of the list
