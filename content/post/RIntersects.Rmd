@@ -1,0 +1,303 @@
+---
+title: Efficiency of spatial intersects in R
+author: [david,kevin,remi]
+date: 2017-04-14
+tags: [R,spatial,intersection]
+draft: true
+tweet: R spatial intersects efficiency
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+<!-- ![](https://img.shields.io/badge/inSileco-In Development-3fb3b2.svg) -->
+
+<br/>
+
+# Intersects & R
+
+We are increasingly performing spatial analyses in R. The replicability and the efficiency of programming languages is much more appealing than using user friendly softwares like ArcGIS, even though you can still code your way through analyses when using those softwares. The performance of tools available for spatial analyses in R is however not completely certain.
+
+In this post, we compare four different methods to perform spatial intersects between objects in R, from three different packages. More specifically, we test how these methods fare when performing binary (TRUE/FALSE) and zonal or aeral intersects.
+
+- `raster::intersect`
+- `rgeos::gIntersection`
+- `sf::st_intersects`
+- `sf::st_intersection`
+
+
+# Initiate R
+
+```{r init}
+# R version
+sessionInfo()[[1]]$version.string
+
+rm(list=ls())
+library(sf)
+library(rgdal)
+library(sp)
+library(raster)
+library(rgeos)
+library(methods)
+
+# Empty plot function
+    eplot <- function(x = 1, y = 1, xmin = 0, xmax = 1, ymin = 0, ymax = 1) {
+      plot(x = x,y = y,bty = "n",ann = FALSE,xaxt = "n",yaxt = "n",type = "n",bg = 'grey',ylim = c(ymin,ymax),xlim = c(xmin,xmax))
+        }
+
+```
+
+# Generate spatial objects for testing
+
+We start be generating random spatial object in space. For the record, the area selected is within the St. Lawrence estuary in eastern Canada (see [online ecology series](./)), although the actual location really does not matter for this post!
+
+<br/>
+
+## Grid
+
+We use a regular grid to intersect vectorized data, *i.e.* points and polygons for this post. This simulate the use of a grid used to extract environmental data (biotic and/or abiotic) from multiple sources to characterize a study area.
+
+<br/>
+
+```{r grid}
+# Projection in lambers
+projSpat <- "+proj=lcc +lat_1=46 +lat_2=60 +lat_0=44 +lon_0=-68.5 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs +ellps=GRS80 +towgs84=0,0,0"
+
+# Bounding box
+latmax <- 625000
+latmin <- 585000
+lonmax <- 150000
+lonmin <- 100000
+
+# Create a spatial bounding box for the area of interest using the 'sp' package:
+bb <- cbind(c(lonmin,lonmax,lonmax,lonmin,lonmin),
+                   c(latmin,latmin,latmax,latmax,latmin)) %>%
+      Polygon() %>% list() %>%
+      Polygons(ID = 'ID1') %>% list() %>%
+      SpatialPolygons(proj4string = CRS(projSpat))
+
+
+# Create spatial grid that will be used for intersects
+A <- 5 * 1000000 # Surface of cells in m^2 (area in km^2 * 1000000)
+cellsize <- sqrt(2*A)/3^(1/4) # value of the small diagonal
+grid <- sp::spsample(bb,type="hexagonal",cellsize=cellsize, offset=c(0,0)) %>% # Points for a hexagonal grid
+        sp::HexPoints2SpatialPolygons() # creating polygons
+
+# We now have a grid of polygons to work with!
+plot(grid)
+lines(bb, col = 'blue', lwd = 2)
+
+# We need this grid in `sp` and `sf` usable formats
+gridSP <- grid
+gridSF <- sf::st_as_sf(grid)
+class(gridSP)
+class(gridSF)
+```
+
+## Points and Polygons
+
+Now we generate random points within the bounding box to test the intersects. This is done for `1, 10, 50, 100, 250, 500, 1000` points. Then, to get all data required to perform the tests, we also need to create polygons from the point data.
+
+<br/>
+
+```{r randomData}
+# Number of samples
+samp <- c(1, 10, 50, 100, 250, 500, 1000)
+nSamp <- length(samp)
+
+# Names of points samples
+sampNames <- paste0('Pt',samp)
+sampNames
+
+# Random points for all samples
+for(i in 1:nSamp) {
+    assign(x = sampNames[i],
+           value = data.frame(lon = runif(n = samp[i], min = lonmin, max = lonmax),
+                              lat = runif(n = samp[i], min = latmin, max = latmax)))    
+}
+
+# We now have nSamp new objects with randomly generated coordinates
+ls()
+
+# Let's now create spatial objects with those coordinates for use with the `sp` package
+sampNamesSP <- paste0(sampNames, 'SP')
+for(i in 1:nSamp) {
+    assign(x = sampNamesSP[i],
+           value = SpatialPoints(coords = get(sampNames[i]), proj4string=CRS(projSpat)))
+}
+
+
+# Visualize them
+par(mfrow = c(3,3))
+for(i in 1:nSamp) {
+    par(mar = c(0,0,0,0))
+    plot(bb, lwd = 2)
+    points(get(sampNamesSP[i]), cex = 0.75, col = 'transparent', bg = '#1e6b7955', pch = 21)
+}
+
+# Now we generate polygons from the point data using the `rgeos::gBuffer`  
+# `sf::st_buffer` is the equivalent for the `sf` package
+sampNamesPoly <- paste0('Poly',samp)
+sampNamesSPPoly <- paste0(sampNamesPoly, 'SP')
+for(i in 1:nSamp) {
+    assign(x = sampNamesSPPoly[i],
+           value = rgeos::gBuffer(get(sampNamesSP[i]), byid = T, width = 2000))
+}
+
+# Visualize them
+par(mfrow = c(3,3))
+for(i in 1:nSamp) {
+    par(mar = c(0,0,0,0))
+    plot(bb, lwd = 2)
+    plot(get(sampNamesSPPoly[i]), border = 'transparent', col = '#1e6b7955', add = T)
+}
+
+# Transform points and polygons for use with the `sf` package
+sampNamesSF <- paste0(sampNames, 'SF') # for points
+sampNamesSFPoly <- paste0(sampNamesPoly, 'SF') # for polygons
+
+
+for(i in 1:nSamp) {
+    assign(x = sampNamesSF[i],
+           sf::st_as_sf(get(sampNamesSP[i]))) # points
+    assign(x = sampNamesSFPoly[i],
+           sf::st_as_sf(get(sampNamesSPPoly[i]))) # polygons
+}
+```
+
+<br/>
+
+# Benchmarking
+
+Now that the data is ready for use, we can perform the tests! But first, let's take a quick look at the type of results that are returned by each function.
+
+<br/>
+
+## Points intersections
+
+First, we will test the intersects only with the points.
+
+<br/>
+
+```{r ptIntersect}
+res1 <- data.frame(n = samp, raster_intersect = numeric(nSamp), rgeos_gIntersection = numeric(nSamp), sf_st_intersects = numeric(nSamp), sf_st_intersection = numeric(nSamp))
+
+for(i in 1:nSamp) {
+    res1$raster_intersect[i] <- system.time(raster::intersect(gridSP, get(sampNamesSP[i])))['elapsed']
+    res1$rgeos_gIntersection[i] <- system.time(rgeos::gIntersection(gridSP, get(sampNamesSP[i]), byid = T))['elapsed']
+    res1$sf_st_intersects[i] <- system.time(sf::st_intersects(gridSF, get(sampNamesSF[i])))['elapsed']
+    res1$sf_st_intersection[i] <- system.time(sf::st_intersection(gridSF, get(sampNamesSF[i])))['elapsed']
+}
+
+# Visualize results
+cols <- c('#a2154f','#c9a936','#5e99e8','#77d664')
+layout(matrix(c(1,2), ncol =2), widths = c(5,2), heights = 3)
+par(mar = c(3,3,0,0), family = "serif")
+plot(res1$raster_intersect ~ res1$n, type = 'l', lwd = 2, col = cols[1], ylim = c(0,max(res1[,2:5])), xlab = 'Number of points', ylab = 'Time (s)')
+lines(res1$rgeos_gIntersection ~ res1$n, lwd = 2, col = cols[2])
+lines(res1$sf_st_intersects ~ res1$n, lwd = 2, col = cols[3])
+lines(res1$sf_st_intersection ~ res1$n, lwd = 2, col = cols[4])
+# Legend
+par(mar = c(0,0,0,0), family = "serif")
+eplot()
+legend(x = 'center', legend = as.character(colnames(res1)[-1]), bty = 'n', lty = 1, col = cols, seg.len = 2, cex = 0.8, title = expression(bold('Fonctions')))
+```
+
+<br/>
+
+## Polygons intersections
+
+<br/>
+
+```{r polyIntersect}
+res2 <- data.frame(n = samp, raster_intersect = numeric(nSamp), rgeos_gIntersection = numeric(nSamp), sf_st_intersects = numeric(nSamp), sf_st_intersection = numeric(nSamp))
+
+for(i in 1:nSamp) {
+    res2$raster_intersect[i] <- system.time(raster::intersect(gridSP, get(sampNamesSPPoly[i])))['elapsed']
+    res2$rgeos_gIntersection[i] <- system.time(rgeos::gIntersection(gridSP, get(sampNamesSPPoly[i]), byid = T))['elapsed']
+    res2$sf_st_intersects[i] <- system.time(sf::st_intersects(gridSF, get(sampNamesSFPoly[i])))['elapsed']
+    res2$sf_st_intersection[i] <- system.time(sf::st_intersection(gridSF, get(sampNamesSFPoly[i])))['elapsed']
+}
+
+# Visualize results
+    cols <- c('#a2154f','#c9a936','#5e99e8','#77d664')
+    layout(matrix(c(1,2), ncol =2), widths = c(5,2), heights = 3)
+    par(mar = c(3,3,0,0), family = "serif")
+    plot(res2$raster_intersect ~ res2$n, type = 'l', lwd = 2, col = cols[1], ylim = c(0,max(res2[,2:5])), xlab = 'Number of polygons', ylab = 'Time (s)')
+    lines(res2$rgeos_gIntersection ~ res2$n, lwd = 2, col = cols[2])
+    lines(res2$sf_st_intersects ~ res2$n, lwd = 2, col = cols[3])
+    lines(res2$sf_st_intersection ~ res2$n, lwd = 2, col = cols[4])
+    # Legend
+    par(mar = c(0,0,0,0), family = "serif")
+    eplot()
+    legend(x = 'center', legend = as.character(colnames(res2)[-1]), bty = 'n', lty = 1, col = cols, seg.len = 2, cex = 0.8, title = expression(bold('Fonctions')))
+```
+
+<br/>
+
+Intersects with polygons take a significantly longer type to calculate, except for the `sf::st_intersects` function. If you are interested in zonal statistics (*e.g.* area or perimeter) of intersected objects, this function is however uninformative. The other functions are therefore more informative, especially `raster::intersect` and `sf::st_intersection`, which outputs the merged data of intersected features. Calculation time is however significantly longer, with no clearcut method to choose from.
+
+
+## Alternative solution
+
+The alternative solution that we are testing here combines `sf::st_intersects` to take advantage of it's calculation efficiency with `sf::st_intersection`. The trick is to first identify which polygons intersect using `sf::st_intersects` and then performing zonal intersection with `sf::st_intersection`. Let's build the funnction and compare the results.
+
+<br/>
+
+```{r alternativeFunction}
+# `st_intersects` returns a list of vectors
+# Each element of the list correspond to a feature in `x`
+# Vector elements are the elements of `y` intersecting `x`
+# We need to transform this into 0 and 1 to make an index that will allow
+# us to perform intersects only on features that we know are intersecting
+# Function to return 0 or 1 depending on object length:
+    nl <- function(z) if(length(z) == 0) {return(0)} else {1}
+
+# Now for the alternative intersect function:
+    altIntersect <- function(x,y) {
+        # Now run `st_intersects` on `x` and `y` and generate the index
+            binInter <- sf::st_intersects(x, y) # binary intersects
+            binIndex <- unlist(lapply(binInter, nl)) # index
+
+        # Now run `st_intersection` only on polygons known to intersect
+            binInterID <- which(binIndex == 1) # ID which `x` have `y` in them
+            nBinInter <- length(binInterID) # Number of `x` with `y` in them
+            zonalInter <- vector('list', nBinInter) # empty list
+            for(i in 1:nBinInter) {
+                # Zonal intersections on combinations of `x` and `y` known to intersect
+                zonalInter[[i]] <- sf::st_intersection(x[binInterID[i], ],
+                                                       y[binInter[[binInterID[i]]], ]) %>%
+                                   sf::st_sf(name = rep(binInterID[i], length(.)), geometry = .)
+            }   
+            zonalInter <- do.call("rbind", zonalInter) # rbind all elements of the list
+            return(zonalInter)
+        }
+
+
+# We can now perform the tests again!
+alternative_Intersect <- numeric(nSamp)
+for(i in 1:nSamp) {
+    alternative_Intersect[i] <- system.time(altIntersect(gridSF, get(sampNamesSFPoly[i])))['elapsed']
+}
+
+# Bind to results obtained previously
+res2 <- cbind(res2, alternative_Intersect)
+
+# Visualize results
+    cols <- c('#a2154f','#c9a936','#5e99e8','#77d664','#5a4271')
+    layout(matrix(c(1,2), ncol =2), widths = c(5,2), heights = 3)
+    par(mar = c(3,3,0,0), family = "serif")
+    plot(res2$raster_intersect ~ res2$n, type = 'l', lwd = 2, col = cols[1], ylim = c(0,max(res2[,2:5])), xlab = 'Number of polygons', ylab = 'Time (s)')
+    lines(res2$rgeos_gIntersection ~ res2$n, lwd = 2, col = cols[2])
+    lines(res2$sf_st_intersects ~ res2$n, lwd = 2, col = cols[3])
+    lines(res2$sf_st_intersection ~ res2$n, lwd = 2, col = cols[4])
+    lines(res2$alternative_Intersect ~ res2$n, lwd = 2.5, lty = 2, col = cols[5])
+    # Legend
+    par(mar = c(0,0,0,0), family = "serif")
+    eplot()
+    legend(x = 'center', legend = as.character(colnames(res2)[-1]), bty = 'n', lty = 1, col = cols, seg.len = 2, cex = 0.8, title = expression(bold('Fonctions')))
+```
+
+Et voilà! This alternative intersect function performs significantly faster (almost 12x faster than the next best thing) and computational time increases much more slowly as the number of polygons increases. It is therefore likely that the comparative efficiency will keep increasing as more polygons considered.
