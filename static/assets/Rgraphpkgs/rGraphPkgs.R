@@ -9,6 +9,7 @@ addiconurl <- function(url, icon){
   paste0("<a href='", url, "'><i class='", icon, "'></i></a>")
 }
 
+
 ##
 pkg <- yaml::yaml.load_file("../../static/assets/Rgraphpkgs/Rpkgs.yml")
 sz <- length(pkg)

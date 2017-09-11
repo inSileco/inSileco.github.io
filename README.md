@@ -40,6 +40,13 @@ Rscript -e 'blogdown::new_post('MY_TITLE')'
 - Yellow-logo: "#ffdd55"
 - blue twitter: "#1b95e0"
 
+badges :
+
+![](https://img.shields.io/badge/inSileco-In Development-3fb3b2.svg)
+
+![](https://img.shields.io/badge/inSileco-Under Review-ffdd55.svg)
+
+
 
 
 ## TODO

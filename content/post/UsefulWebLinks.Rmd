@@ -1,0 +1,39 @@
+---
+title: "Useful web links"
+author: [kevin]
+date: 2017-09-11
+tags: [web links, wiki]
+draft: false
+tweet: "List of useful web links"
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+![](https://img.shields.io/badge/inSileco-In Development-3fb3b2.svg)
+<!-- ![](https://img.shields.io/badge/inSileco-Under Review-ffdd55.svg) -->
+
+
+<br/>
+
+The Internet... what an amazing network! So many websites, so many resources,
+how easy it is to get lost when navigating the vast digital ocean! Teaching how
+to identify credible online material is doubtlessly one of the biggest educational
+challenge of our time. As researchers with strong interests in computational
+methods in ecology, we spend a substantial amount of our time searching
+various kind of information online ranging from a small piece of code to
+massive ecological database. To keep track of the web resources we regard as
+helpful in our day to day work but quite inconspicuous, we have created the list below.
+
+<!-- Feel free to suggest other ressource in the Disqus section that fits well in the category and is worth being added. -->
+
+<br/>
+
+```{r rgrappkgs, echo=FALSE, results="asis", message=FALSE}
+  wdo <- getwd()
+  setwd("../../static/assets/usefulWebLinks")
+  source("usefulLinks.R")
+  setwd(wdo)
+```
