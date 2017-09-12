@@ -30,10 +30,6 @@ In this post, we compare four different methods to perform spatial intersects be
 
 # Initiate R
 
-```{r loadFiles, echo = F}
-res1 <- readRDS('../../static/assets/RIntersects/res1.rds')
-res2 <- readRDS('../../static/assets/RIntersects/res2.rds')
-```
 
 ```{r init}
 # R version
@@ -54,6 +50,11 @@ opts_chunk$set(fig.align='center')
     eplot <- function(x = 1, y = 1, xmin = 0, xmax = 1, ymin = 0, ymax = 1) {
       plot(x = x,y = y,bty = "n",ann = FALSE,xaxt = "n",yaxt = "n",type = "n",bg = 'grey',ylim = c(ymin,ymax),xlim = c(xmin,xmax))
         }
+```
+
+```{r loadFiles, echo = F}
+res1 <- readRDS('../../static/assets/RIntersects/res1.rds')
+res2 <- readRDS('../../static/assets/RIntersects/res2.rds')
 ```
 
 # Generate spatial objects for testing
