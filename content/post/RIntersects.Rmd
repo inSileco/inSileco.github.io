@@ -1,7 +1,7 @@
 ---
 title: Efficiency of spatial intersects in R
 author: [david,kevin,remi]
-date: 2017-04-14
+date: 2017-09-12
 tags: [R,spatial,intersection]
 draft: true
 tweet: R spatial intersects efficiency
@@ -30,6 +30,11 @@ In this post, we compare four different methods to perform spatial intersects be
 
 # Initiate R
 
+```{r loadFiles, echo = F}
+res1 <- readRDS('../../static/assets/RIntersects/res1.rds')
+res2 <- readRDS('../../static/assets/RIntersects/res2.rds')
+```
+
 ```{r init}
 # R version
 sessionInfo()[[1]]$version.string
@@ -49,7 +54,6 @@ opts_chunk$set(fig.align='center')
     eplot <- function(x = 1, y = 1, xmin = 0, xmax = 1, ymin = 0, ymax = 1) {
       plot(x = x,y = y,bty = "n",ann = FALSE,xaxt = "n",yaxt = "n",type = "n",bg = 'grey',ylim = c(ymin,ymax),xlim = c(xmin,xmax))
         }
-
 ```
 
 # Generate spatial objects for testing
@@ -105,7 +109,7 @@ Now we generate random points within the bounding box to test the intersects. Th
 
 <br/>
 
-```{r randomData}
+```{r randomData, eval = F}
 # Number of samples
 samp <- c(1, 10, 50, 100, 250, 500, 1000, 10000)
 nSamp <- length(samp)
@@ -138,7 +142,13 @@ for(i in 1:nSamp) {
     plot(bb, lwd = 2)
     points(get(sampNamesSP[i]), cex = 0.75, col = 'transparent', bg = '#1e6b7955', pch = 21)
 }
+```
 
+<center>![](assets/RIntersects/pts.png){width=75%}</center>
+
+
+
+```{r randomData2, eval = F}
 # Now we generate polygons from the point data using the `rgeos::gBuffer`  
 # `sf::st_buffer` is the equivalent for the `sf` package
 sampNamesPoly <- paste0('Poly',samp)
@@ -155,7 +165,11 @@ for(i in 1:nSamp) {
     plot(bb, lwd = 2)
     plot(get(sampNamesSPPoly[i]), border = 'transparent', col = '#1e6b7955', add = T)
 }
+```
 
+<center>![](assets/RIntersects/poly.png){width=75%}</center>
+
+```{r randomData3, eval = F}
 # Transform points and polygons for use with the `sf` package
 sampNamesSF <- paste0(sampNames, 'SF') # for points
 sampNamesSFPoly <- paste0(sampNamesPoly, 'SF') # for polygons
@@ -183,7 +197,7 @@ First, we will test the intersects only with the points.
 
 <br/>
 
-```{r ptIntersect}
+```{r ptIntersect1, eval = F}
 res1 <- data.frame(n = samp, raster_intersect = numeric(nSamp), rgeos_gIntersection = numeric(nSamp), sf_st_intersects = numeric(nSamp), sf_st_intersection = numeric(nSamp))
 
 for(i in 1:nSamp) {
@@ -192,7 +206,9 @@ for(i in 1:nSamp) {
     res1$sf_st_intersects[i] <- system.time(sf::st_intersects(gridSF, get(sampNamesSF[i])))['elapsed']
     res1$sf_st_intersection[i] <- system.time(sf::st_intersection(gridSF, get(sampNamesSF[i])))['elapsed']
 }
+```
 
+```{r ptIntersect2}
 # Visualize results table
 knitr::kable(res1, "html", digits = 2) %>% kable_styling(full_width = F)
 
@@ -234,7 +250,7 @@ Now let's take a look at intersects using polygons only.
 
 <br/>
 
-```{r polyIntersect}
+```{r polyIntersect1, eval = F}
 res2 <- data.frame(n = samp, raster_intersect = numeric(nSamp), rgeos_gIntersection = numeric(nSamp), sf_st_intersects = numeric(nSamp), sf_st_intersection = numeric(nSamp))
 
 for(i in 1:nSamp) {
@@ -243,7 +259,9 @@ for(i in 1:nSamp) {
     res2$sf_st_intersects[i] <- system.time(sf::st_intersects(gridSF, get(sampNamesSFPoly[i])))['elapsed']
     res2$sf_st_intersection[i] <- system.time(sf::st_intersection(gridSF, get(sampNamesSFPoly[i])))['elapsed']
 }
+```
 
+```{r polyIntersect2}
 # Visualize results table
 knitr::kable(res2, "html", digits = 2) %>% kable_styling(full_width = F)
 
