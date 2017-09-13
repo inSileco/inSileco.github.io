@@ -27,11 +27,12 @@ In this post, we compare four different methods to perform spatial intersects be
 - `sf::st_intersects`
 - `sf::st_intersection`
 
+<br/>
 
 # Initiate R
 
 
-```{r init}
+```{r init, include = F}
 # R version
 sessionInfo()[[1]]$version.string
 
@@ -47,15 +48,17 @@ library(kableExtra)
 opts_chunk$set(fig.align='center')
 
 # Empty plot function
-    eplot <- function(x = 1, y = 1, xmin = 0, xmax = 1, ymin = 0, ymax = 1) {
-      plot(x = x,y = y,bty = "n",ann = FALSE,xaxt = "n",yaxt = "n",type = "n",bg = 'grey',ylim = c(ymin,ymax),xlim = c(xmin,xmax))
-        }
+eplot <- function(x = 1, y = 1, xmin = 0, xmax = 1, ymin = 0, ymax = 1) {
+  plot(x = x,y = y,bty = "n",ann = FALSE,xaxt = "n",yaxt = "n",type = "n",bg = 'grey',ylim = c(ymin,ymax),xlim = c(xmin,xmax))
+}
 ```
 
 ```{r loadFiles, echo = F}
 res1 <- readRDS('../../static/assets/RIntersects/res1.rds')
 res2 <- readRDS('../../static/assets/RIntersects/res2.rds')
 ```
+
+<br/>
 
 # Generate spatial objects for testing
 
@@ -104,6 +107,8 @@ class(gridSP)
 class(gridSF)
 ```
 
+<br/>
+
 ## Points and Polygons
 
 Now we generate random points within the bounding box to test the intersects. This is done for `1, 10, 50, 100, 250, 500, 1000, 10000` points. Then, to get all data required to perform the tests, we also need to create polygons from the point data.
@@ -145,7 +150,7 @@ for(i in 1:nSamp) {
 }
 ```
 
-<center>![](assets/RIntersects/pts.png){width=75%}</center>
+<center>![](../../static/assets/RIntersects/pts.png){width=75%}</center>
 
 ```{r randomData2, eval = F}
 # Now we generate polygons from the point data using the `rgeos::gBuffer`  
@@ -166,7 +171,7 @@ for(i in 1:nSamp) {
 }
 ```
 
-<center>![](assets/RIntersects/poly.png){width=75%}</center>
+<center>![](../../static/assets/RIntersects/poly.png){width=75%}</center>
 
 ```{r randomData3, eval = F}
 # Transform points and polygons for use with the `sf` package
@@ -214,7 +219,7 @@ knitr::kable(res1, "html", digits = 2) %>% kable_styling(full_width = F)
 # Visualize results
 cols <- c('#a2154f','#c9a936','#5e99e8','#77d664')
 layout(matrix(c(1,2), ncol =2), widths = c(5,2), heights = 3)
-par(mar = c(3,3,0,0), family = "serif")
+par(mar = c(3,3,1,1), family = "serif")
 plot(res1$raster_intersect ~ res1$n, type = 'l', lwd = 2, col = cols[1], ylim = c(0,max(res1[,2:5])), xlab = 'Number of points', ylab = 'Time (s)')
 lines(res1$rgeos_gIntersection ~ res1$n, lwd = 2, col = cols[2])
 lines(res1$sf_st_intersects ~ res1$n, lwd = 2, col = cols[3])
@@ -227,7 +232,7 @@ legend(x = 'center', legend = as.character(colnames(res1)[-1]), bty = 'n', lty =
 # Visualize results without gIntersection
 cols <- c('#a2154f','#5e99e8','#77d664')
 layout(matrix(c(1,2), ncol =2), widths = c(5,2), heights = 3)
-par(mar = c(3,3,0,0), family = "serif")
+par(mar = c(3,3,1,1), family = "serif")
 plot(res1$raster_intersect ~ res1$n, type = 'l', lwd = 2, col = cols[1], ylim = c(0,max(res1[,c(2,4,5)])), xlab = 'Number of points', ylab = 'Time (s)')
 lines(res1$sf_st_intersects ~ res1$n, lwd = 2, col = cols[2])
 lines(res1$sf_st_intersection ~ res1$n, lwd = 2, col = cols[3])
@@ -267,7 +272,7 @@ knitr::kable(res2, "html", digits = 2) %>% kable_styling(full_width = F)
 # Visualize results
     cols <- c('#a2154f','#c9a936','#5e99e8','#77d664')
     layout(matrix(c(1,2), ncol =2), widths = c(5,2), heights = 3)
-    par(mar = c(3,3,0,0), family = "serif")
+    par(mar = c(3,3,1,1), family = "serif")
     plot(res2$raster_intersect ~ res2$n, type = 'l', lwd = 2, col = cols[1], ylim = c(0,max(res2[,2:5])), xlab = 'Number of polygons', ylab = 'Time (s)')
     lines(res2$rgeos_gIntersection ~ res2$n, lwd = 2, col = cols[2])
     lines(res2$sf_st_intersects ~ res2$n, lwd = 2, col = cols[3])
@@ -287,3 +292,5 @@ We see here that `sf::st_intersects` and `sf::st_intersection` are far more effi
 # Concluding remarks
 
 Et voilà! It is obvious from these simulation that the `sf` package provides the most efficient options to perform spatial intersects in R. Our recommendation: use `sf::st_intersects` for binary intersects and use `sf::st_intersection` for zonal intersects. However, be aware that the `sf` package evolves very rapidly and functions are likely to be modified, although one would hope that efficiency decrease will not be the price of further development.
+
+<br/>
