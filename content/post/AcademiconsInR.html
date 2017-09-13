@@ -161,10 +161,10 @@ included in this folder -->
 ## [87] &quot;/usr/share/fonts/X11/misc&quot;                                                   
 ## [88] &quot;/usr/share/fonts/X11/Type1&quot;                                                  
 ## [89] &quot;/usr/share/fonts/X11/util&quot;</code></pre>
-<p>Then, add <code>academicons.ttf</code>, <code>FontAwesome.otf</code> and <code>ionicons.ttf</code> fonts to your session with the <code>font_add()</code> function:</p>
-<pre class="r"><code>font_add(family = &#39;Academicons&#39;, regular = paste0(path,&#39;/Academicons.ttf&#39;))
-font_add(family = &#39;FontAwesome&#39;, regular = paste0(path,&#39;/FontAwesome.otf&#39;))
-font_add(family = &#39;Ionicons&#39;, regular = paste0(path,&#39;/Ionicons.ttf&#39;))</code></pre>
+<p>Then, add <code>academicons.ttf</code>, <code>FontAwesome.otf</code> and <code>ionicons.ttf</code> fonts to your session with the <code>font.add()</code> function:</p>
+<pre class="r"><code>font.add(family = &#39;Academicons&#39;, regular = paste0(path,&#39;/Academicons.ttf&#39;))
+font.add(family = &#39;FontAwesome&#39;, regular = paste0(path,&#39;/FontAwesome.otf&#39;))
+font.add(family = &#39;Ionicons&#39;, regular = paste0(path,&#39;/Ionicons.ttf&#39;))</code></pre>
 <p>Here, things are going to be a little bit trickier than they were in the <a href="./HylianStyle.html">Hylian blog post</a>, as we should first locate the unicode characters to be used. Fortunately, this is fairly doable:</p>
 <ol style="list-style-type: decimal">
 <li>FontAwesome provides a very <a href="http://fontawesome.io/cheatsheet/">helpful cheatsheet</a>;<br />
@@ -244,7 +244,7 @@ mtext(text=intToUtf8(&quot;59651&quot;), side=4, adj=1, line=3, cex=3)</code></p
 <div id="additional-remarks" class="section level2">
 <h2>Additional remarks</h2>
 <ol style="list-style-type: decimal">
-<li><p>Note that the steps described here are useful to include any kind of police you have on your computer or you may find online. Therefore this post should help you deal with font if you intend to publish a figure in a journal that requests a specific font. By the way, <code>showtext</code> allows you to search directly on google font (see the <code>font_add_google()</code> function).</p></li>
+<li><p>Note that the steps described here are useful to include any kind of police you have on your computer or you may find online. Therefore this post should help you deal with font if you intend to publish a figure in a journal that requests a specific font. By the way, <code>showtext</code> allows you to search directly on google font (see the <code>font.add.google()</code> function).</p></li>
 <li><p>As you may have realized reading this post there are different ways to write a character in unicode. Fortunately, many online converters help you get from one standard to another (<em>e.g.</em> <a href="http://www.endmemo.com/unicode/unicodeconverter.php">unicodeconverter</a> does the job).</p></li>
 <li><p>You may also want to use emoji to cheer your plot up! See the emojifont package available on <a href="https://cran.r-project.org/web/packages/emojifont/">CRAN</a> and <a href="https://guangchuangyu.github.io/emojifont/">Github</a>.</p></li>
 <li><p><a href="https://fontstruct.com">fontstruct</a> is a great web application that helps you creating your own font (you can save your font as a <code>.tff</code> on your computer and now you know how to deal with it!)</p></li>

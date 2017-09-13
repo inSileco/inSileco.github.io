@@ -99,12 +99,12 @@ font.paths(path)
 
 
 Then, add `academicons.ttf`, `FontAwesome.otf` and `ionicons.ttf` fonts to your
-session with the `font_add()` function:
+session with the `font.add()` function:
 
 ```{r addfont}
-font_add(family = 'Academicons', regular = paste0(path,'/Academicons.ttf'))
-font_add(family = 'FontAwesome', regular = paste0(path,'/FontAwesome.otf'))
-font_add(family = 'Ionicons', regular = paste0(path,'/Ionicons.ttf'))
+font.add(family = 'Academicons', regular = paste0(path,'/Academicons.ttf'))
+font.add(family = 'FontAwesome', regular = paste0(path,'/FontAwesome.otf'))
+font.add(family = 'Ionicons', regular = paste0(path,'/Ionicons.ttf'))
 ```
 
 Here, things are going to be a little bit trickier than they were in the
@@ -213,7 +213,7 @@ mtext(text=intToUtf8("59651"), side=4, adj=1, line=3, cex=3)
 
 ## Additional remarks
 
-1. Note that the steps described here are useful to include any kind of police you have on your computer or you may find online. Therefore this post should help you deal with font if you intend to publish a figure in a journal that requests a specific font. By the way, `showtext` allows you to search directly on google font (see the `font_add_google()` function).
+1. Note that the steps described here are useful to include any kind of police you have on your computer or you may find online. Therefore this post should help you deal with font if you intend to publish a figure in a journal that requests a specific font. By the way, `showtext` allows you to search directly on google font (see the `font.add.google()` function).
 
 2. As you may have realized reading this post there are different ways to write a character in unicode. Fortunately, many online converters help you get from one standard to another (*e.g.* [unicodeconverter](http://www.endmemo.com/unicode/unicodeconverter.php) does the job).
 
