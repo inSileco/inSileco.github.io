@@ -22,14 +22,13 @@ before_install:
   - sudo apt-get update
   - sudo apt-get install -y libgdal-dev libgeos-dev libproj-dev libudunits2-dev
   - sudo apt-get install -y libfreetype6-dev libpoppler-cpp-dev libssl-dev
-  - mkdir ~/pandoc
+  - mkdir -p ~/pandoc/1.19
   - wget https://github.com/jgm/pandoc/releases/download/1.19.2.1/pandoc-1.19.2.1-1-amd64.deb
   - ls
   - pwd
   - sudo dpkg -i pandoc-1.19.2.1-1-amd64.deb ~/pandoc/1.19
   - ls ~/pandoc/1.19
-  - export PATH=~/pandoc/$PANDOC/usr/bin/:$PATH
-  - echo $PANDOC
+  - export PATH=/pandoc/1.19/usr/bin/:$PATH
   - type -p pandoc
   - pandoc --version
 
