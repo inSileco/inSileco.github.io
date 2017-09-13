@@ -35,14 +35,18 @@ All of these academics framework propose either a `.ttf` (TrueType Font) or a `.
 
 #### R version used to build the last update of this post
 
+```{r init, echo = F}
+opts_chunk$set(fig.align='center')
+```
+
 ```{r infosession}
-path <- "../../static/assets/AcademiconsInR/"
+path <- "../../static/assets/AcademiconsInR"
 sessionInfo()[[1]]$version.string
 ```
 
 #### List of packages to be used
 
-- the `showtext` package and its dependency `sysfont` [see the <i class="fa fa-link" aria-hidden="true"></i>](https://cran.r-project.org/web/packages/showtext/index.html);      
+- the `showtext` package and its dependency `sysfont` (see details on line [<i class="fa fa-link" aria-hidden="true"></i>](https://cran.r-project.org/web/packages/showtext/index.html));      
 - the `magrittr` package for the pipes (see the [associated websites](http://magrittr.tidyverse.org)).    
 
 Here is line of code you need to install these packages:
@@ -56,6 +60,7 @@ Then, we load them:
 ```{r libraries, message=FALSE}
 library(magrittr)
 library(showtext)
+packageVersion("showtext")
 ```
 
 #### Material to be downloaded
@@ -69,13 +74,17 @@ at the [top of this page](#top) (*lazy searching*). -->
 2. [the *FontAwesome* font](https://github.com/FortAwesome/Font-Awesome/raw/master/fonts/FontAwesome.otf)   
 3. [the *Ionicons* font](https://github.com/driftyco/ionicons/raw/master/fonts/ionicons.ttf)
 
-Once downloaded, install them on your computer (there is most likely an application on your computer to do so but note that it is also possible to store the fonts in a dedicated folder and then provide the path to use them with `showtext`. See the `font.paths()` function.
+Once downloaded, install them on your computer (there is most likely an
+application on your computer to do so but note that it is also possible to
+store the fonts in a dedicated folder and then provide the path to use them
+with `showtext`. See the `font.paths()` function.
 
 
 
 ## Loading the fonts
 
-To activate the facilities `showtext` provide, it only requires  `showtext.auto()` (by the way, the author of the package deserves a medal!):
+To activate the facilities `showtext` provide, it only requires `showtext.auto()`
+(by the way, the author of the package deserves a medal!):
 
 ```{r showtext}
 showtext.auto()
@@ -89,25 +98,32 @@ font.paths(path)
 ```
 
 
-Then, add `academicons.ttf`, `FontAwesome.otf` and `ionicons.ttf` fonts to your session with the `font.add()` function:
+Then, add `academicons.ttf`, `FontAwesome.otf` and `ionicons.ttf` fonts to your
+session with the `font_add()` function:
 
 ```{r addfont}
-font.add(family = 'Academicons', regular = paste0(path,'/academicons.ttf'))
-font.add(family = 'FontAwesome', regular = paste0(path,'/FontAwesome.otf'))
-font.add(family = 'Ionicons', regular = paste0(path,'/ionicons.ttf'))
+font_add(family = 'Academicons', regular = paste0(path,'/Academicons.ttf'))
+font_add(family = 'FontAwesome', regular = paste0(path,'/FontAwesome.otf'))
+font_add(family = 'Ionicons', regular = paste0(path,'/Ionicons.ttf'))
 ```
 
-Here, things are going to be a little bit trickier than they were in the [Hylian blog post](./HylianStyle.html), as we should first locate the unicode characters to be used. Fortunately, this is fairly doable:
+Here, things are going to be a little bit trickier than they were in the
+[Hylian blog post](./HylianStyle.html), as we should first locate the
+unicode characters to be used. Fortunately, this is fairly doable:
 
   1. FontAwesome provides a very [helpful cheatsheet](http://fontawesome.io/cheatsheet/);     
   2. `.ttf` files are easy to explore, for instance using LibreOffice and inserting a special character (see the figure below).     
 
+<br>
 
-![Academics icon on LibreOffice](asset/AcadeiconsInR/academicsicon.png){width=95%}
+![Academicons on LibreOffice](/assets/AcademiconsInR/academicons.png){width=80%}
 
+<br>
+<br>
 
-To use unicode characters in R, there are several possibilities, this [blog post](https://www.r-bloggers.com/unicode-symbols-in-r/) explains it well.
-Below we use different way to deal with the unicode characters.
+To use unicode characters in R, there are several possibilities, this
+[blog post](https://www.r-bloggers.com/unicode-symbols-in-r/) explains it well.
+Below, we use different way to deal with the unicode characters.
 
 
 
@@ -118,11 +134,13 @@ Below we use different way to deal with the unicode characters.
 
 ### Academicons
 
-There are 36 unicode characters available. They are numbered like so: "E9" + all numbers from 00 to 35 (version 1.8.0). To use them we will create the sequence using `sprintf()` and `paste0()` function
+There are 36 unicode characters available. They are numbered like so: "E9" +
+all numbers from 00 to 35 (version 1.8.0). To use them, we create a
+sequence using `sprintf()` and `paste0()` function:
 
 ```{r academ, fig.width=9.5, fig.height=5}
 nb <- 35
-acs <- sprintf("%02d", 0:nb) %>% paste0("E9",.)
+acs <- sprintf("%02d", 5+1:nb) %>% paste0("E8",.)
 ```
 
 We now plot them as if they were on a regular grid and we add the decimal value
@@ -130,7 +148,7 @@ below:
 
 ```{r figacadem, fig.width=9.5, fig.height=5}
 coord <- expand.grid(1:9, 1:4)
-cols <- c("#3fb3b2", "#8059a7", "#ffdd55", "#1b95e0")
+cols <- c("#3fb3b2", "#8555b4", "#ffdd55", "#1b95e0")
 ##
 par(mar=c(0,0,0,0))
 plot(c(0,9), c(0,5), type="n", ann=FALSE, axes=FALSE)
@@ -195,7 +213,7 @@ mtext(text=intToUtf8("59651"), side=4, adj=1, line=3, cex=3)
 
 ## Additional remarks
 
-1. Note that the steps described here are useful to include any kind of police you have on your computer or you may find online. Therefore this post should help you deal with font if you intend to publish a figure in a journal that requests a specific font. By the way, `showtext` allows you to search directly on google font (see the `font.add.google()` function).
+1. Note that the steps described here are useful to include any kind of police you have on your computer or you may find online. Therefore this post should help you deal with font if you intend to publish a figure in a journal that requests a specific font. By the way, `showtext` allows you to search directly on google font (see the `font_add_google()` function).
 
 2. As you may have realized reading this post there are different ways to write a character in unicode. Fortunately, many online converters help you get from one standard to another (*e.g.* [unicodeconverter](http://www.endmemo.com/unicode/unicodeconverter.php) does the job).
 

@@ -31,14 +31,14 @@ output:
 <h2>Setting up R</h2>
 <div id="r-version-used-to-build-the-last-update-of-this-post" class="section level4">
 <h4>R version used to build the last update of this post</h4>
-<pre class="r"><code>path &lt;- &quot;../../static/assets/AcademiconsInR/&quot;
+<pre class="r"><code>path &lt;- &quot;../../static/assets/AcademiconsInR&quot;
 sessionInfo()[[1]]$version.string</code></pre>
 <pre><code>## [1] &quot;R version 3.4.1 (2017-06-30)&quot;</code></pre>
 </div>
 <div id="list-of-packages-to-be-used" class="section level4">
 <h4>List of packages to be used</h4>
 <ul>
-<li>the <code>showtext</code> package and its dependency <code>sysfont</code> <a href="https://cran.r-project.org/web/packages/showtext/index.html">see the <i class="fa fa-link" aria-hidden="true"></i></a>;<br />
+<li>the <code>showtext</code> package and its dependency <code>sysfont</code> (see details on line <a href="https://cran.r-project.org/web/packages/showtext/index.html"><i class="fa fa-link" aria-hidden="true"></i></a>);<br />
 </li>
 <li>the <code>magrittr</code> package for the pipes (see the <a href="http://magrittr.tidyverse.org">associated websites</a>).</li>
 </ul>
@@ -46,7 +46,9 @@ sessionInfo()[[1]]$version.string</code></pre>
 <pre class="r"><code>install.packages(c(&#39;magrittr&#39;, &#39;showtext&#39;))</code></pre>
 <p>Then, we load them:</p>
 <pre class="r"><code>library(magrittr)
-library(showtext)</code></pre>
+library(showtext)
+packageVersion(&quot;showtext&quot;)</code></pre>
+<pre><code>## [1] &#39;0.4.6&#39;</code></pre>
 </div>
 <div id="material-to-be-downloaded" class="section level4">
 <h4>Material to be downloaded</h4>
@@ -68,35 +70,125 @@ at the [top of this page](#top) (*lazy searching*). --></p>
 <pre class="r"><code>showtext.auto()</code></pre>
 <!-- help rebuilding the website without downloading font as they are
 included in this folder -->
-<pre><code>## [1] &quot;/Users/KevCaz/Codes/Github/Websites/inSileco.github.io/static/assets/AcademiconsInR&quot;
-## [2] &quot;/Library/Fonts&quot;                                                                     
-## [3] &quot;/Users/KevCaz/Library/Fonts&quot;</code></pre>
-<p>Then, add <code>academicons.ttf</code>, <code>FontAwesome.otf</code> and <code>ionicons.ttf</code> fonts to your session with the <code>font.add()</code> function:</p>
-<pre class="r"><code>font.add(family = &#39;Academicons&#39;, regular = paste0(path,&#39;/academicons.ttf&#39;))
-font.add(family = &#39;FontAwesome&#39;, regular = paste0(path,&#39;/FontAwesome.otf&#39;))
-font.add(family = &#39;Ionicons&#39;, regular = paste0(path,&#39;/ionicons.ttf&#39;))</code></pre>
+<pre><code>## &#39;fond.paths()&#39; is now renamed to &#39;font_paths()&#39;
+## The old version still works, but consider using the new function in future code</code></pre>
+<pre><code>##  [1] &quot;/home/kevcaz/Github/Websites/inSileco.github.io/static/assets/AcademiconsInR&quot;
+##  [2] &quot;/home/kevcaz/.local/share/fonts&quot;                                             
+##  [3] &quot;/usr/local/share/fonts&quot;                                                      
+##  [4] &quot;/usr/share/fonts&quot;                                                            
+##  [5] &quot;/usr/share/fonts/cmap&quot;                                                       
+##  [6] &quot;/usr/share/poppler/cMap/Adobe-CNS1&quot;                                          
+##  [7] &quot;/usr/share/poppler/cMap/Adobe-GB1&quot;                                           
+##  [8] &quot;/usr/share/poppler/cMap/Adobe-Japan1&quot;                                        
+##  [9] &quot;/usr/share/poppler/cMap/Adobe-Japan2&quot;                                        
+## [10] &quot;/usr/share/poppler/cMap/Adobe-Korea1&quot;                                        
+## [11] &quot;/usr/share/fonts/eot&quot;                                                        
+## [12] &quot;/usr/share/fonts/eot/font-awesome&quot;                                           
+## [13] &quot;/usr/share/fonts/opentype&quot;                                                   
+## [14] &quot;/usr/share/fonts/opentype/cabin&quot;                                             
+## [15] &quot;/usr/share/fonts/opentype/cantarell&quot;                                         
+## [16] &quot;/usr/share/fonts/opentype/ebgaramond&quot;                                        
+## [17] &quot;/usr/share/fonts/opentype/font-awesome&quot;                                      
+## [18] &quot;/usr/share/fonts/opentype/fonts-hosny-amiri&quot;                                 
+## [19] &quot;/usr/share/fonts/opentype/freefont&quot;                                          
+## [20] &quot;/usr/share/fonts/opentype/gentiumplus&quot;                                       
+## [21] &quot;/usr/share/fonts/opentype/ipaexfont-gothic&quot;                                  
+## [22] &quot;/usr/share/fonts/opentype/ipaexfont-mincho&quot;                                  
+## [23] &quot;/usr/share/fonts/opentype/ipafont-gothic&quot;                                    
+## [24] &quot;/usr/share/fonts/opentype/ipafont-mincho&quot;                                    
+## [25] &quot;/usr/share/fonts/opentype/linux-libertine&quot;                                   
+## [26] &quot;/usr/share/fonts/opentype/lobster&quot;                                           
+## [27] &quot;/usr/share/fonts/opentype/lobstertwo&quot;                                        
+## [28] &quot;/usr/share/javascript/mathjax/fonts/HTML-CSS/TeX/otf&quot;                        
+## [29] &quot;/usr/share/fonts/opentype/stix&quot;                                              
+## [30] &quot;/usr/share/fonts/opentype/stix-word&quot;                                         
+## [31] &quot;/usr/share/fonts/svg&quot;                                                        
+## [32] &quot;/usr/share/fonts/svg/font-awesome&quot;                                           
+## [33] &quot;/usr/share/fonts/truetype&quot;                                                   
+## [34] &quot;/usr/share/fonts/truetype/adf&quot;                                               
+## [35] &quot;/usr/share/fonts/truetype/arphic-bkai00mp&quot;                                   
+## [36] &quot;/usr/share/fonts/truetype/arphic-bsmi00lp&quot;                                   
+## [37] &quot;/usr/share/fonts/truetype/arphic-gbsn00lp&quot;                                   
+## [38] &quot;/usr/share/fonts/truetype/arphic-gkai00mp&quot;                                   
+## [39] &quot;/usr/share/fonts/truetype/artemisia&quot;                                         
+## [40] &quot;/usr/share/fonts/truetype/asana-math&quot;                                        
+## [41] &quot;/usr/share/fonts/truetype/baekmuk&quot;                                           
+## [42] &quot;/usr/share/fonts/truetype/baskerville&quot;                                       
+## [43] &quot;/usr/share/fonts/truetype/bodoni-classic&quot;                                    
+## [44] &quot;/usr/share/fonts/truetype/comfortaa&quot;                                         
+## [45] &quot;/usr/share/fonts/truetype/complutum&quot;                                         
+## [46] &quot;/usr/share/fonts/truetype/croscore&quot;                                          
+## [47] &quot;/usr/share/fonts/truetype/crosextra&quot;                                         
+## [48] &quot;/usr/share/fonts/truetype/dejavu&quot;                                            
+## [49] &quot;/usr/share/fonts/truetype/didot&quot;                                             
+## [50] &quot;/usr/share/fonts/truetype/didot-classic&quot;                                     
+## [51] &quot;/usr/share/fonts/truetype/droid&quot;                                             
+## [52] &quot;/usr/share/fonts/truetype/ebgaramond&quot;                                        
+## [53] &quot;/usr/share/fonts/truetype/font-awesome&quot;                                      
+## [54] &quot;/usr/share/fonts/truetype/freefont&quot;                                          
+## [55] &quot;/usr/share/fonts/truetype/gazis&quot;                                             
+## [56] &quot;/usr/share/fonts/truetype/gentium&quot;                                           
+## [57] &quot;/usr/share/fonts/truetype/gentium-basic&quot;                                     
+## [58] &quot;/usr/share/fonts/truetype/junicode&quot;                                          
+## [59] &quot;/usr/share/fonts/truetype/lato&quot;                                              
+## [60] &quot;/usr/share/fonts/truetype/liberation&quot;                                        
+## [61] &quot;/usr/share/fonts/truetype/lyx&quot;                                               
+## [62] &quot;/usr/share/fonts/truetype/neohellenic&quot;                                       
+## [63] &quot;/usr/share/fonts/truetype/noto&quot;                                              
+## [64] &quot;/usr/share/fonts/truetype/olga&quot;                                              
+## [65] &quot;/usr/share/fonts/truetype/openoffice&quot;                                        
+## [66] &quot;/usr/share/fonts/truetype/padauk&quot;                                            
+## [67] &quot;/usr/share/fonts/truetype/porson&quot;                                            
+## [68] &quot;/usr/share/fonts/truetype/roboto&quot;                                            
+## [69] &quot;/usr/share/fonts/truetype/roboto/hinted&quot;                                     
+## [70] &quot;/usr/share/fonts/truetype/solomos&quot;                                           
+## [71] &quot;/usr/share/fonts/truetype/theokritos&quot;                                        
+## [72] &quot;/usr/share/fonts/truetype/ttf-bitstream-vera&quot;                                
+## [73] &quot;/usr/share/fonts/truetype/unfonts-core&quot;                                      
+## [74] &quot;/usr/share/fonts/truetype/unfonts-extra&quot;                                     
+## [75] &quot;/usr/share/fonts/type1&quot;                                                      
+## [76] &quot;/usr/share/fonts/type1/gsfonts&quot;                                              
+## [77] &quot;/usr/share/fonts/type1/texlive-fonts-recommended&quot;                            
+## [78] &quot;/usr/share/fonts/woff&quot;                                                       
+## [79] &quot;/usr/share/fonts/woff/ebgaramond&quot;                                            
+## [80] &quot;/usr/share/fonts/woff/font-awesome&quot;                                          
+## [81] &quot;/usr/share/fonts/woff/gentiumplus&quot;                                           
+## [82] &quot;/usr/share/fonts/X11&quot;                                                        
+## [83] &quot;/usr/share/fonts/X11/100dpi&quot;                                                 
+## [84] &quot;/usr/share/fonts/X11/75dpi&quot;                                                  
+## [85] &quot;/usr/share/fonts/X11/encodings&quot;                                              
+## [86] &quot;/usr/share/fonts/X11/encodings/large&quot;                                        
+## [87] &quot;/usr/share/fonts/X11/misc&quot;                                                   
+## [88] &quot;/usr/share/fonts/X11/Type1&quot;                                                  
+## [89] &quot;/usr/share/fonts/X11/util&quot;</code></pre>
+<p>Then, add <code>academicons.ttf</code>, <code>FontAwesome.otf</code> and <code>ionicons.ttf</code> fonts to your session with the <code>font_add()</code> function:</p>
+<pre class="r"><code>font_add(family = &#39;Academicons&#39;, regular = paste0(path,&#39;/Academicons.ttf&#39;))
+font_add(family = &#39;FontAwesome&#39;, regular = paste0(path,&#39;/FontAwesome.otf&#39;))
+font_add(family = &#39;Ionicons&#39;, regular = paste0(path,&#39;/Ionicons.ttf&#39;))</code></pre>
 <p>Here, things are going to be a little bit trickier than they were in the <a href="./HylianStyle.html">Hylian blog post</a>, as we should first locate the unicode characters to be used. Fortunately, this is fairly doable:</p>
 <ol style="list-style-type: decimal">
 <li>FontAwesome provides a very <a href="http://fontawesome.io/cheatsheet/">helpful cheatsheet</a>;<br />
 </li>
 <li><code>.ttf</code> files are easy to explore, for instance using LibreOffice and inserting a special character (see the figure below).</li>
 </ol>
+<p><br></p>
 <div class="figure">
-<img src="asset/AcadeiconsInR/academicsicon.png" alt="Academics icon on LibreOffice" style="width:95.0%" />
-<p class="caption">Academics icon on LibreOffice</p>
+<img src="/assets/AcademiconsInR/academicons.png" alt="Academicons on LibreOffice" style="width:80.0%" />
+<p class="caption">Academicons on LibreOffice</p>
 </div>
-<p>To use unicode characters in R, there are several possibilities, this <a href="https://www.r-bloggers.com/unicode-symbols-in-r/">blog post</a> explains it well. Below we use different way to deal with the unicode characters.</p>
+<p><br> <br></p>
+<p>To use unicode characters in R, there are several possibilities, this <a href="https://www.r-bloggers.com/unicode-symbols-in-r/">blog post</a> explains it well. Below, we use different way to deal with the unicode characters.</p>
 </div>
 <div id="lets-add-icons-our-plot" class="section level2">
 <h2>Let’s add icons our plot</h2>
 <div id="academicons" class="section level3">
 <h3>Academicons</h3>
-<p>There are 36 unicode characters available. They are numbered like so: “E9” + all numbers from 00 to 35 (version 1.8.0). To use them we will create the sequence using <code>sprintf()</code> and <code>paste0()</code> function</p>
+<p>There are 36 unicode characters available. They are numbered like so: “E9” + all numbers from 00 to 35 (version 1.8.0). To use them, we create a sequence using <code>sprintf()</code> and <code>paste0()</code> function:</p>
 <pre class="r"><code>nb &lt;- 35
-acs &lt;- sprintf(&quot;%02d&quot;, 0:nb) %&gt;% paste0(&quot;E9&quot;,.)</code></pre>
+acs &lt;- sprintf(&quot;%02d&quot;, 5+1:nb) %&gt;% paste0(&quot;E8&quot;,.)</code></pre>
 <p>We now plot them as if they were on a regular grid and we add the decimal value below:</p>
 <pre class="r"><code>coord &lt;- expand.grid(1:9, 1:4)
-cols &lt;- c(&quot;#3fb3b2&quot;, &quot;#8059a7&quot;, &quot;#ffdd55&quot;, &quot;#1b95e0&quot;)
+cols &lt;- c(&quot;#3fb3b2&quot;, &quot;#8555b4&quot;, &quot;#ffdd55&quot;, &quot;#1b95e0&quot;)
 ##
 par(mar=c(0,0,0,0))
 plot(c(0,9), c(0,5), type=&quot;n&quot;, ann=FALSE, axes=FALSE)
@@ -104,7 +196,7 @@ text(coord[,1], coord[,2], labels= acs,  offset = 1.6, cex=.66, pos=1)
 ##
 par(family = &quot;Academicons&quot;)
 points(coord[,1], coord[,2], pch=-as.hexmode(acs), cex=3, col=cols)</code></pre>
-<p><img src="/post/AcademiconsInR_files/figure-html/figacadem-1.png" width="912" /></p>
+<p><img src="/post/AcademiconsInR_files/figure-html/figacadem-1.png" width="912" style="display: block; margin: auto;" /></p>
 </div>
 <div id="adding-fontawesomes-icons" class="section level3">
 <h3>Adding FontAwesome’s icons</h3>
@@ -114,7 +206,7 @@ fas &lt;- 1:(nsq*nsq) %&gt;% as.hexmode %&gt;% paste0(&quot;f0&quot;, .)
 coord &lt;- expand.grid(1:nsq, 1:nsq)
 par(mar=c(2,2,2,2), family = &#39;FontAwesome&#39;)
 plot(coord[,1], coord[,2], pch=-as.hexmode(fas), cex=2.5, col=cols, ann=FALSE, axes=FALSE)</code></pre>
-<p><img src="/post/AcademiconsInR_files/figure-html/figfontawe-1.png" width="912" /></p>
+<p><img src="/post/AcademiconsInR_files/figure-html/figfontawe-1.png" width="912" style="display: block; margin: auto;" /></p>
 </div>
 <div id="adding-ionicons" class="section level3">
 <h3>Adding Ionicons</h3>
@@ -125,7 +217,7 @@ coord &lt;- expand.grid(rev(1:11), 1:7)
 ##
 par(mar=c(2,2,2,2), family = &quot;Ionicons&quot;)
 plot(coord[,1], coord[,2], ann=FALSE, axes=FALSE, pch=ias, cex=2.5, col=cols)</code></pre>
-<p><img src="/post/AcademiconsInR_files/figure-html/figionic-1.png" width="912" /></p>
+<p><img src="/post/AcademiconsInR_files/figure-html/figionic-1.png" width="912" style="display: block; margin: auto;" /></p>
 </div>
 <div id="combining-them" class="section level3">
 <h3>Combining them</h3>
@@ -146,13 +238,13 @@ points(0.451, 0.091, pch=-as.hexmode(&quot;F448&quot;), col=&quot;#3fb3b2&quot;,
 ##
 par(family = &quot;Academicons&quot;)
 mtext(text=intToUtf8(&quot;59651&quot;), side=4, adj=1, line=3, cex=3)</code></pre>
-<p><img src="/post/AcademiconsInR_files/figure-html/volcano-1.png" width="912" /></p>
+<p><img src="/post/AcademiconsInR_files/figure-html/volcano-1.png" width="912" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="additional-remarks" class="section level2">
 <h2>Additional remarks</h2>
 <ol style="list-style-type: decimal">
-<li><p>Note that the steps described here are useful to include any kind of police you have on your computer or you may find online. Therefore this post should help you deal with font if you intend to publish a figure in a journal that requests a specific font. By the way, <code>showtext</code> allows you to search directly on google font (see the <code>font.add.google()</code> function).</p></li>
+<li><p>Note that the steps described here are useful to include any kind of police you have on your computer or you may find online. Therefore this post should help you deal with font if you intend to publish a figure in a journal that requests a specific font. By the way, <code>showtext</code> allows you to search directly on google font (see the <code>font_add_google()</code> function).</p></li>
 <li><p>As you may have realized reading this post there are different ways to write a character in unicode. Fortunately, many online converters help you get from one standard to another (<em>e.g.</em> <a href="http://www.endmemo.com/unicode/unicodeconverter.php">unicodeconverter</a> does the job).</p></li>
 <li><p>You may also want to use emoji to cheer your plot up! See the emojifont package available on <a href="https://cran.r-project.org/web/packages/emojifont/">CRAN</a> and <a href="https://guangchuangyu.github.io/emojifont/">Github</a>.</p></li>
 <li><p><a href="https://fontstruct.com">fontstruct</a> is a great web application that helps you creating your own font (you can save your font as a <code>.tff</code> on your computer and now you know how to deal with it!)</p></li>

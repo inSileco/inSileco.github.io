@@ -41,7 +41,8 @@ Rscript -e 'blogdown::new_post('MY_TITLE')'
 - Yellow-logo: "#ffdd55";
 - red code: "#c7254e";
 - blue twitter: "#1b95e0";
-- So the palette is `c("#3fb3b2". "#ffdd55", "#c7254e", "#1b95e0")`
+- purple kevcaz: "#8555b4"
+- So the palette is `c("#3fb3b2". "#ffdd55", "#c7254e", "#1b95e0", "#8555b4")`
 
 #### Badges
 
