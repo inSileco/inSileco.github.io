@@ -3,7 +3,7 @@ title: Efficiency of spatial intersects in R
 author: [david,kevin,remi]
 date: 2017-09-12
 tags: [R,spatial,intersection]
-draft: true
+draft: false
 tweet: R spatial intersects efficiency
 output:
   rmarkdown::html_page:
@@ -12,7 +12,7 @@ output:
     dev: svg
 ---
 
-![](https://img.shields.io/badge/inSileco-In Development-3fb3b2.svg)
+![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
 <br/>
 
@@ -146,8 +146,6 @@ for(i in 1:nSamp) {
 ```
 
 <center>![](assets/RIntersects/pts.png){width=75%}</center>
-
-
 
 ```{r randomData2, eval = F}
 # Now we generate polygons from the point data using the `rgeos::gBuffer`  
