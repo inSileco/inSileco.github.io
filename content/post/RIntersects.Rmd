@@ -8,6 +8,8 @@ tweet: R spatial intersects efficiency
 output:
   rmarkdown::html_page:
     toc: true
+    toc_float:
+      collapsed: false
     fig_width: 3
     dev: svg
 ---
@@ -18,14 +20,26 @@ output:
 
 # Intersects & R
 
-We are increasingly performing spatial analyses in R. The replicability and the efficiency of programming languages is much more appealing than using user friendly softwares like ArcGIS, even though you can still code your way through analyses when using those softwares. The performance of tools available for spatial analyses in R is however not completely certain.
+We are increasingly performing spatial analyses in R. The replicability and the
+efficiency of programming languages is much more appealing than using user
+friendly softwares like [ArcGIS](https://www.arcgis.com/features/index.html),
+even though you can still code your way through analyses when using those
+softwares (latter versions of [QGIS](http://qgis.org/fr/site/) do a fantastic
+job in that regard!). The performance of tools available for spatial analyses in
+R is however not completely certain.
 
-In this post, we compare four different methods to perform spatial intersects between objects in R, from three different packages. More specifically, we test how these methods fare when performing binary (TRUE/FALSE) and zonal or aeral intersects.
+In this post, we compare four different methods to perform spatial intersects
+between objects in R, from three different packages:
 
-- `raster::intersect`
-- `rgeos::gIntersection`
-- `sf::st_intersects`
-- `sf::st_intersection`
+1. `raster::intersect`
+2. `rgeos::gIntersection`
+3. `sf::st_intersects`
+4. `sf::st_intersection`
+
+More specifically, we test how these methods fare when performing binary
+(TRUE/FALSE) and zonal or aeral intersects.
+
+
 
 <br/>
 
@@ -35,7 +49,7 @@ In this post, we compare four different methods to perform spatial intersects be
 ```{r init, include = F}
 # R version
 sessionInfo()[[1]]$version.string
-
+#--
 rm(list=ls())
 library(sf)
 library(rgdal)
@@ -45,12 +59,21 @@ library(rgeos)
 library(magrittr)
 library(knitr)
 library(kableExtra)
+##--
 opts_chunk$set(fig.align='center')
-
+##--
 # Empty plot function
 eplot <- function(x = 1, y = 1, xmin = 0, xmax = 1, ymin = 0, ymax = 1) {
   plot(x = x,y = y,bty = "n",ann = FALSE,xaxt = "n",yaxt = "n",type = "n",bg = 'grey',ylim = c(ymin,ymax),xlim = c(xmin,xmax))
 }
+```
+
+Version of packages that have been used to build this post and are herein discussed:
+
+```{r pkgsversion, results="hold"}
+packageVersion("raster")
+packageVersion("rgeos")
+packageVersion("sf")
 ```
 
 ```{r loadFiles, echo = F}
@@ -58,17 +81,26 @@ res1 <- readRDS('../../static/assets/RIntersects/res1.rds')
 res2 <- readRDS('../../static/assets/RIntersects/res2.rds')
 ```
 
+
+
+
 <br/>
 
 # Generate spatial objects for testing
 
-We start be generating random spatial object in space. For the record, the area selected is within the St. Lawrence estuary in eastern Canada (see [online ecology series](./)), although the actual location really does not matter for this post!
+We start be generating random spatial object in space. For the record,
+the area selected is within the St. Lawrence estuary in eastern Canada
+(see [online ecology series](https://insileco.github.io/2017/06/19/online-ecology---individual-species-description/)),
+although the actual location really does not matter for this post!
+
 
 <br/>
 
 ## Grid
 
-We use a regular grid to intersect vectorized data, *i.e.* points and polygons for this post. This simulate the use of a grid used to extract environmental data (biotic and/or abiotic) from multiple sources to characterize a study area.
+We use a regular grid to intersect vectorized data, *i.e.* points and polygons
+for this post. This simulate the use of a grid used to extract environmental
+data (biotic and/or abiotic) from multiple sources to characterize a study area.
 
 <br/>
 
@@ -91,7 +123,7 @@ bb <- cbind(c(lonmin,lonmax,lonmax,lonmin,lonmin),
 
 
 # Create spatial grid that will be used for intersects
-A <- 5 * 1000000 # Surface of cells in m^2 (area in km^2 * 1000000)
+A <- 5*1000000 # Surface of cells in m^2 (area in km^2 * 1000000)
 cellsize <- sqrt(2*A)/3^(1/4) # value of the small diagonal
 grid <- sp::spsample(bb,type="hexagonal",cellsize=cellsize, offset=c(0,0)) %>% # Points for a hexagonal grid
         sp::HexPoints2SpatialPolygons() # creating polygons
@@ -107,11 +139,15 @@ class(gridSP)
 class(gridSF)
 ```
 
+
 <br/>
 
 ## Points and Polygons
 
-Now we generate random points within the bounding box to test the intersects. This is done for `1, 10, 50, 100, 250, 500, 1000, 10000` points. Then, to get all data required to perform the tests, we also need to create polygons from the point data.
+Now we generate random points within the bounding box to test the intersects.
+This is done for `1, 10, 50, 100, 250, 500, 1000, 10000` points. Then, to get
+all data required to perform the tests, we also need to create polygons from
+the point data.
 
 <br/>
 
@@ -137,8 +173,10 @@ ls()
 # Let's now create spatial objects with those coordinates for use with the `sp` package
 sampNamesSP <- paste0(sampNames, 'SP')
 for(i in 1:nSamp) {
-    assign(x = sampNamesSP[i],
-           value = SpatialPoints(coords = get(sampNames[i]), proj4string=CRS(projSpat)))
+    assign(
+      x = sampNamesSP[i],
+      value = SpatialPoints(coords = get(sampNames[i]), proj4string=CRS(projSpat))
+    )
 }
 
 # Visualize them
@@ -150,11 +188,13 @@ for(i in 1:nSamp) {
 }
 ```
 
-<center>![](../../static/assets/RIntersects/pts.png){width=75%}</center>
+<br/>
+<center>![](/assets/RIntersects/pts.png){width=70%}</center>
+<br/>
 
 ```{r randomData2, eval = F}
-# Now we generate polygons from the point data using the `rgeos::gBuffer`  
-# `sf::st_buffer` is the equivalent for the `sf` package
+# Now we generate polygons from the point data using the `rgeos::gBuffer`,
+# see `sf::st_buffer` is the equivalent for the `sf` package
 sampNamesPoly <- paste0('Poly',samp)
 sampNamesSPPoly <- paste0(sampNamesPoly, 'SP')
 for(i in 1:nSamp) {
@@ -171,13 +211,15 @@ for(i in 1:nSamp) {
 }
 ```
 
-<center>![](../../static/assets/RIntersects/poly.png){width=75%}</center>
+<br/>
+<center>![](/assets/RIntersects/poly.png){width=70%}</center>
+<br/>
+
 
 ```{r randomData3, eval = F}
 # Transform points and polygons for use with the `sf` package
 sampNamesSF <- paste0(sampNames, 'SF') # for points
 sampNamesSFPoly <- paste0(sampNamesPoly, 'SF') # for polygons
-
 
 for(i in 1:nSamp) {
     assign(x = sampNamesSF[i],
@@ -191,7 +233,8 @@ for(i in 1:nSamp) {
 
 # Benchmarking
 
-Now that the data is ready for use, we can perform the tests! But first, let's take a quick look at the type of results that are returned by each function.
+Now that the data is ready for use, we can perform the tests! But first, let's
+take a quick look at the type of results that are returned by each function.
 
 <br/>
 
@@ -217,22 +260,23 @@ for(i in 1:nSamp) {
 knitr::kable(res1, "html", digits = 2) %>% kable_styling(full_width = F)
 
 # Visualize results
-cols <- c('#a2154f','#c9a936','#5e99e8','#77d664')
+cols <- c("#3fb3b2", "#ffdd55", "#c7254e", "#1b95e0")
 layout(matrix(c(1,2), ncol =2), widths = c(5,2), heights = 3)
-par(mar = c(3,3,1,1), family = "serif")
+par(mar = c(3,3,1,1), family = "serif", las=1)
+#
 plot(res1$raster_intersect ~ res1$n, type = 'l', lwd = 2, col = cols[1], ylim = c(0,max(res1[,2:5])), xlab = 'Number of points', ylab = 'Time (s)')
 lines(res1$rgeos_gIntersection ~ res1$n, lwd = 2, col = cols[2])
 lines(res1$sf_st_intersects ~ res1$n, lwd = 2, col = cols[3])
 lines(res1$sf_st_intersection ~ res1$n, lwd = 2, col = cols[4])
 # Legend
-par(mar = c(0,0,0,0), family = "serif")
+par(mar = c(0,0,0,0), family = "serif", las = 1)
 eplot()
 legend(x = 'center', legend = as.character(colnames(res1)[-1]), bty = 'n', lty = 1, col = cols, seg.len = 2, cex = 0.8, title = expression(bold('Fonctions')))
 
 # Visualize results without gIntersection
-cols <- c('#a2154f','#5e99e8','#77d664')
 layout(matrix(c(1,2), ncol =2), widths = c(5,2), heights = 3)
-par(mar = c(3,3,1,1), family = "serif")
+par(mar = c(3,3,1,1), family = "serif", las = 1)
+#
 plot(res1$raster_intersect ~ res1$n, type = 'l', lwd = 2, col = cols[1], ylim = c(0,max(res1[,c(2,4,5)])), xlab = 'Number of points', ylab = 'Time (s)')
 lines(res1$sf_st_intersects ~ res1$n, lwd = 2, col = cols[2])
 lines(res1$sf_st_intersection ~ res1$n, lwd = 2, col = cols[3])
@@ -244,7 +288,10 @@ legend(x = 'center', legend = as.character(colnames(res1)[-c(1,3)]), bty = 'n', 
 
 <br/>
 
-In this analysis `rgeos::gIntersection` is clearly much less efficient than the alternative options. Using `raster::intersect`, `sf::st_intersects` or `sf::st_intersection` significantly decreases calculation time, with `sf::st_intersects` proving to be the most efficient option out of the three.
+In this analysis `rgeos::gIntersection` is clearly much less efficient than the
+alternative options. Using `raster::intersect`, `sf::st_intersects` or
+`sf::st_intersection` significantly decreases calculation time, with
+`sf::st_intersects` proving to be the most efficient option out of the three.
 
 <br/>
 
@@ -255,7 +302,9 @@ Now let's take a look at intersects using polygons only.
 <br/>
 
 ```{r polyIntersect1, eval = F}
-res2 <- data.frame(n = samp, raster_intersect = numeric(nSamp), rgeos_gIntersection = numeric(nSamp), sf_st_intersects = numeric(nSamp), sf_st_intersection = numeric(nSamp))
+res2 <- data.frame(n = samp, raster_intersect = numeric(nSamp),
+  rgeos_gIntersection = numeric(nSamp), sf_st_intersects = numeric(nSamp),
+  sf_st_intersection = numeric(nSamp))
 
 for(i in 1:nSamp) {
     res2$raster_intersect[i] <- system.time(raster::intersect(gridSP, get(sampNamesSPPoly[i])))['elapsed']
@@ -270,27 +319,35 @@ for(i in 1:nSamp) {
 knitr::kable(res2, "html", digits = 2) %>% kable_styling(full_width = F)
 
 # Visualize results
-    cols <- c('#a2154f','#c9a936','#5e99e8','#77d664')
-    layout(matrix(c(1,2), ncol =2), widths = c(5,2), heights = 3)
-    par(mar = c(3,3,1,1), family = "serif")
-    plot(res2$raster_intersect ~ res2$n, type = 'l', lwd = 2, col = cols[1], ylim = c(0,max(res2[,2:5])), xlab = 'Number of polygons', ylab = 'Time (s)')
+layout(matrix(c(1,2), ncol =2), widths = c(5,2), heights = 3)
+  par(mar = c(3,3,1,1), las =1, family = "serif")
+  ##
+  plot(res2$raster_intersect ~ res2$n, type = 'l', lwd = 2, col = cols[1], ylim = c(0,max(res2[,2:5])), xlab = 'Number of polygons', ylab = 'Time (s)')
     lines(res2$rgeos_gIntersection ~ res2$n, lwd = 2, col = cols[2])
     lines(res2$sf_st_intersects ~ res2$n, lwd = 2, col = cols[3])
     lines(res2$sf_st_intersection ~ res2$n, lwd = 2, col = cols[4])
     # Legend
-    par(mar = c(0,0,0,0), family = "serif")
-    eplot()
-    legend(x = 'center', legend = as.character(colnames(res2)[-1]), bty = 'n', lty = 1, col = cols, seg.len = 2, cex = 0.8, title = expression(bold('Fonctions')))
+  par(mar = c(0,0,0,0), family = "serif")
+  eplot()
+  legend(x = 'center', legend = as.character(colnames(res2)[-1]), bty = 'n', lty = 1, col = cols, seg.len = 2, cex = 0.8, title = expression(bold('Fonctions')))
 ```
 
 <br/>
 
-We see here that `sf::st_intersects` and `sf::st_intersection` are far more efficient when dealing with polygons only intersects. `raster::intersects` loses its previous efficiency, while `rgeos::gIntersection` remains stable whether you use points or polygons.
+We see here that `sf::st_intersects` and `sf::st_intersection` are far more
+efficient when dealing with polygons only intersects. `raster::intersects`
+loses its previous efficiency, while `rgeos::gIntersection` remains stable
+whether you use points or polygons.
 
 <br/>
 
 # Concluding remarks
 
-Et voilà! It is obvious from these simulation that the `sf` package provides the most efficient options to perform spatial intersects in R. Our recommendation: use `sf::st_intersects` for binary intersects and use `sf::st_intersection` for zonal intersects. However, be aware that the `sf` package evolves very rapidly and functions are likely to be modified, although one would hope that efficiency decrease will not be the price of further development.
+Et voilà! It is obvious from these simulation that the `sf` package provides
+the most efficient options to perform spatial intersects in R.
+Our recommendation: use `sf::st_intersects` for binary intersects and use `sf::st_intersection` for zonal intersects. However, be aware that the `sf`
+package evolves very rapidly and functions are likely to be modified,
+although one would hope that efficiency decrease will not be the price of
+further development.
 
 <br/>

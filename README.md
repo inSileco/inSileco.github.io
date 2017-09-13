@@ -37,9 +37,11 @@ Rscript -e 'blogdown::new_post('MY_TITLE')'
 
 #### Colors
 
-- Main : "#3fb3b2"
-- Yellow-logo: "#ffdd55"
-- blue twitter: "#1b95e0"
+- Main: "#3fb3b2";
+- Yellow-logo: "#ffdd55";
+- red code: "#c7254e";
+- blue twitter: "#1b95e0";
+- So the palette is `c("#3fb3b2". "#ffdd55", "#c7254e", "#1b95e0")`
 
 #### Badges
 
