@@ -26,7 +26,8 @@ before_install:
   - wget https://github.com/jgm/pandoc/releases/download/1.19.2.1/pandoc-1.19.2.1-1-amd64.deb
   - ls
   - pwd
-  - sudi dpkg -i pandoc-1.19.2.1-1-amd64.deb ~/pandoc/1.19
+  - sudo dpkg -i pandoc-1.19.2.1-1-amd64.deb ~/pandoc/1.19
+  - ls ~/pandoc/1.19
   - export PATH=~/pandoc/$PANDOC/usr/bin/:$PATH
   - echo $PANDOC
   - type -p pandoc
