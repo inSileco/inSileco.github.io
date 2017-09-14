@@ -44,7 +44,9 @@ can be used for both binary and zonal intersects:
 <br/>
 
 ```{r table, echo = F}
-
+library(magrittr)
+library(knitr)
+library(kableExtra)
 interFunction <- data.frame(Function = c('`raster::intersect`',
                                          '`rgeos::gIntersects`',
                                          '`rgeos::gIntersection`',
