@@ -96,7 +96,8 @@ showtext.auto()
 included in this folder -->
 
 ```{r, echo=FALSE}
-font.paths('./fonts')
+pth <- paste0(getwd(),'/../../static/assets/AcademiconsInR/fonts')
+font.paths(pth)
 ```
 
 
@@ -104,7 +105,7 @@ Then, add `academicons.ttf`, `FontAwesome.otf` and `ionicons.ttf` fonts to your
 session with the `font.add()` function:
 
 ```{r addfont}
-pth <- paste0(getwd(),'/../../static/assets/AcademiconsInR/fonts')
+
 font.add(family = 'Academicons', regular = paste0(pth,'/Academicons.ttf'))
 font.add(family = 'FontAwesome', regular = paste0(pth,'/Academicons.ttf'))
 font.add(family = 'Ionicons', regular = paste0(pth,'/Academicons.ttf'))
