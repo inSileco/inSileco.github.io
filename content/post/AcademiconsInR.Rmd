@@ -12,7 +12,7 @@ output:
     dev: svg
 ---
 
-
+*Last update*: September 14, 2017 -- Fix paths to icon files. 
 
 
 ## Introduction
@@ -35,12 +35,12 @@ All of these academics framework propose either a `.ttf` (TrueType Font) or a `.
 
 #### R version used to build the last update of this post
 
-```{r init, echo = F}
+```{r init}
 knitr::opts_chunk$set(fig.align='center')
 ```
 
 ```{r infosession}
-path <- "../../static/assets/AcademiconsInR"
+# path <- "../../static/assets/AcademiconsInR"
 sessionInfo()[[1]]$version.string
 ```
 
@@ -62,6 +62,7 @@ library(magrittr)
 library(showtext)
 packageVersion("showtext")
 ```
+
 
 #### Material to be downloaded
 
@@ -95,7 +96,7 @@ showtext.auto()
 included in this folder -->
 
 ```{r, echo=FALSE}
-font.paths(path)
+font.paths('./fonts')
 ```
 
 
@@ -103,9 +104,10 @@ Then, add `academicons.ttf`, `FontAwesome.otf` and `ionicons.ttf` fonts to your
 session with the `font.add()` function:
 
 ```{r addfont}
-font.add(family = 'Academicons', regular = paste0(path,'/Academicons.ttf'))
-font.add(family = 'FontAwesome', regular = paste0(path,'/FontAwesome.otf'))
-font.add(family = 'Ionicons', regular = paste0(path,'/Ionicons.ttf'))
+pth <- paste0(getwd(),'/../../static/assets/AcademiconsInR/fonts')
+font.add(family = 'Academicons', regular = paste0(pth,'/Academicons.ttf'))
+font.add(family = 'FontAwesome', regular = paste0(pth,'/Academicons.ttf'))
+font.add(family = 'Ionicons', regular = paste0(pth,'/Academicons.ttf'))
 ```
 
 Here, things are going to be a little bit trickier than they were in the
@@ -117,7 +119,7 @@ unicode characters to be used. Fortunately, this is fairly doable:
 
 <br>
 
-![Academicons on LibreOffice](/assets/AcademiconsInR/academicons.png){width=80%}
+<center> ![Academicons on LibreOffice](/assets/AcademiconsInR/academicons.png){width=70%} </center>
 
 <br>
 <br>
