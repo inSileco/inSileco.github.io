@@ -41,13 +41,22 @@ More specifically, we test how these methods fare when performing binary
 (TRUE/FALSE) and zonal or aerial intersects. Keep in mind, not all methods
 can be used for both binary and zonal intersects:
 
-| Function               | Binary   | Zonal |
-| :--------------------: | :------: | :---: |
-| `raster::intersect`    | X        | X     |
-| `rgeos::gIntersects`   | X        |       |
-| `rgeos::gIntersection` | X        | X     |
-| `sf::st_intersects`    | X        |       |
-| `sf::st_intersection`  | X        | X     |
+<br/>
+
+```{r table, echo = F}
+
+interFunction <- data.frame(Function = c('`raster::intersect`',
+                                         '`rgeos::gIntersects`',
+                                         '`rgeos::gIntersection`',
+                                         '`sf::st_intersects`',
+                                         '`sf::st_intersection`'),
+                            Binary = rep('X',5),
+                            Zonal = c('X','','X','','X'))
+
+knitr::kable(interFunction, "html", digits = 2) %>% kable_styling(full_width = F)
+```
+
+<br/>
 
 Obviously, if you mean to perform binary intersects only, the binary functions
 make more sense as they are built to include less calculations. We nonetheless
