@@ -18,7 +18,7 @@ install.packages(
     "showtext",
     "taxize",
     "tm",
-    "yaml"
+    "yaml",
     "tidyverse"
   ),
   repos = "https://cran.wu.ac.at/",
