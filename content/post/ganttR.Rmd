@@ -42,6 +42,7 @@ sessionInfo()[[1]]$version.string
 library(knitr)
 library(tidyverse)
 library(RColorBrewer)
+library(kableExtra)
 ```
 
 <br/>
@@ -71,7 +72,8 @@ df <- data.frame(milestones = rep('Manuscript', nTasks),
                  status = status,
                  stringsAsFactors = FALSE)
 
-kable(df)
+kable(df, "html") %>%
+    kable_styling(full_width = F)
 ```
 
 <br/>
@@ -216,8 +218,8 @@ abline(v = as.Date(format(Sys.time(), format = "%Y-%m-%d")), lwd = 2, lty = 2)
 
 Now that we have all the code, let's simply transform it into a reusable function. Let's also give it the choice to generate two types of graph: 1) all milestones and tasks or 2) only milestones.
 
-```{r, ganttR, fig.width = 10}
-ganttR <- function(df, type = 'all', warning = F) {
+```{r, ganttR, fig.width = 10, warning = F}
+ganttR <- function(df, type = 'all') {
 
     nameMilestones <- unique(df$milestones)
     nMilestones <- length(nameMilestones)
