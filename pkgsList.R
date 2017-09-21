@@ -19,6 +19,7 @@ install.packages(
     "taxize",
     "tm",
     "yaml"
+    "tidyverse"
   ),
   repos = "https://cran.wu.ac.at/",
   dependencies = TRUE
