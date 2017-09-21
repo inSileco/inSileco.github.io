@@ -1,10 +1,10 @@
 ---
-title: Simple gantt charts in R
+title: Gantt charts in R
 author: [david]
 date: 2017-09-20
 tags: [R,time management,gantt]
 draft: false
-tweet: Simple gantt charts in R
+tweet: Gantt charts in R
 output:
   rmarkdown::html_page:
     toc: true
@@ -26,6 +26,8 @@ rmarkdown::render('./ganttR.rmd', 'html_document')
 # Gantt charts
 
 Gantt charts are a very useful way to organize projects into milestones and tasks visually. They are also dead useful when comes the time to create a timeline for a project, whether it be for a research project, field work or grant applications. I recently wanted to create one, but was unsatisfied by what was available out there in terms of visuals (although there are neat R examples, see [here](https://www.r-bloggers.com/gantt-charts-in-r-using-plotly/), [here](https://stackoverflow.com/questions/3550341/gantt-charts-with-r) and [here](https://davetang.org/muse/2017/02/03/gantt-chart-using-r/)). So I came up with my own!
+
+For those who might be interested only in generating charts without all the code, jump to the end, copy the `ganttR` function I created and Gantt away!
 
 <br/>
 
