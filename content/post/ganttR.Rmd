@@ -220,10 +220,9 @@ Now that we have all the code, let's simply transform it into a reusable functio
 
 ```{r, ganttR, fig.width = 10, warning = F}
 ganttR <- function(df, type = 'all') {
-
     nameMilestones <- unique(df$milestones)
     nMilestones <- length(nameMilestones)
-    rbPal <- colorRampPalette(brewer.pal(8, "Dark2")) # Color palette
+    rbPal <- colorRampPalette(c("#3fb3b2", "#ffdd55", "#c7254e", "#1b95e0", "#8555b4")) # Color palette
     cols <- data.frame(milestones = nameMilestones,
                        col = rbPal(nMilestones),
                        stringsAsFactors = F)
@@ -252,16 +251,32 @@ ganttR <- function(df, type = 'all') {
 
     # We also need a date sequence that will be used as one of our axes
     # We select the date range divided into 7 days periods
-    dateSeq <- seq.Date(dateRange[1], dateRange[2], by = 7)
-
+    # dateSeq <- seq.Date(dateRange[1], dateRange[2], by = 7)
+    forced_start <- as.Date(paste0(format(dateRange[1], "%Y-%m"), "-01"))
+    yEnd <- format(dateRange[2], "%Y")
+    mEnd <- as.numeric(format(dateRange[2], "%m")) + 1
+    if(mEnd == 13) {
+        yEnd <- as.numeric(yEnd) + 1
+        mEnd <- 1
+    }
+    forced_end <- as.Date(paste0(yEnd, "-", mEnd,"-01"))
+    dateSeq <- seq.Date(forced_start, forced_end, by = "month")
+    lab <- format(dateSeq, "%B")
 
     # Gantt chart for 'all' type
     if(type == 'all') {
         nLines <- nrow(df)
         par(family = "serif", mar = c(6,9,2,0))
-        plot(x = 1, y = 1, col = 'transparent', xlim = dateRange, ylim = c(1,nLines), bty = "n",ann = FALSE, xaxt = "n",yaxt = "n",type = "n",bg = 'grey')
-        mtext(dateSeq, side = 1, at = dateSeq, las = 3, line = 1.5, cex = 0.75)
+        plot(x = 1, y = 1, col = 'transparent', xlim = c(min(dateSeq), max(dateSeq)), ylim = c(1,nLines), bty = "n",ann = FALSE, xaxt = "n",yaxt = "n",type = "n",bg = 'grey')
+        mtext(lab[-length(lab)], side = 1, at = dateSeq[-length(lab)], las = 0, line = 1.5, cex = 0.75, adj = 0)
         axis(1, dateSeq, labels = F, line = 0.5)
+        extra <- nLines * 0.03
+        for(i in seq(1,length(dateSeq-1), by = 2)) {
+            polygon(x = c(dateSeq[i],dateSeq[i+1],dateSeq[i+1],dateSeq[i]),
+                    y = c(1-extra,1-extra,nLines+extra,nLines+extra),
+                    border = 'transparent',
+                    col = '#f1f1f155')
+        }
 
         for(i in 1:nLines) {
             lines(c(i,i) ~ c(df$startDate[i],df$dueDate[i]),
@@ -286,9 +301,16 @@ ganttR <- function(df, type = 'all') {
         nLines <- nMilestones
         ms <- which(df$status == 'M')
         par(family = "serif", mar = c(6,9,2,0))
-        plot(x = 1, y = 1, col = 'transparent', xlim = dateRange, ylim = c(1,nLines), bty = "n",ann = FALSE, xaxt = "n",yaxt = "n",type = "n",bg = 'grey')
-        mtext(dateSeq, side = 1, at = dateSeq, las = 3, line = 1.5, cex = 0.75)
+        plot(x = 1, y = 1, col = 'transparent', xlim = c(min(dateSeq), max(dateSeq)), ylim = c(1,nLines), bty = "n",ann = FALSE, xaxt = "n",yaxt = "n",type = "n",bg = 'grey')
+        mtext(lab[-length(lab)], side = 1, at = dateSeq[-length(lab)], las = 0, line = 1.5, cex = 0.75, adj = 0)
         axis(1, dateSeq, labels = F, line = 0.5)
+        extra <- nLines * 0.03
+        for(i in seq(1,length(dateSeq-1), by = 2)) {
+            polygon(x = c(dateSeq[i],dateSeq[i+1],dateSeq[i+1],dateSeq[i]),
+                    y = c(1-extra,1-extra,nLines+extra,nLines+extra),
+                    border = 'transparent',
+                    col = '#f1f1f155')
+        }
 
         for(i in 1:nLines) {
             lines(c(i,i) ~ c(df$startDate[ms[i]],df$dueDate[ms[i]]),
