@@ -25,9 +25,17 @@ rmarkdown::render('./ganttR.rmd', 'html_document')
 
 # Gantt charts
 
-Gantt charts are a very useful way to organize projects into milestones and tasks visually. They are also dead useful when comes the time to create a timeline for a project, whether it be for a research project, field work or grant applications. I recently wanted to create one, but was unsatisfied by what was available out there in terms of visuals (although there are neat R examples, see [here](https://www.r-bloggers.com/gantt-charts-in-r-using-plotly/), [here](https://stackoverflow.com/questions/3550341/gantt-charts-with-r) and [here](https://davetang.org/muse/2017/02/03/gantt-chart-using-r/)). So I came up with my own!
+[Gantt charts](https://en.wikipedia.org/wiki/Gantt_chart) are a very useful way
+to organize projects into milestones and tasks visually. They are also dead
+useful when comes the time to create a timeline for a project, whether it be for
+a research project, field work or grant applications. I recently wanted to
+create one, but was unsatisfied by what was available out there in terms of
+visuals (although there are neat R examples, see [here](https://www.r-bloggers.com/gantt-charts-in-r-using-plotly/),
+[here](https://stackoverflow.com/questions/3550341/gantt-charts-with-r) and
+[here](https://davetang.org/muse/2017/02/03/gantt-chart-using-r/)). So I came up with my own!
 
-For those who might be interested only in generating charts without all the code, jump to the end, copy the `ganttR` function I created and Gantt away!
+For those who might be interested only in generating charts without all the code,
+jump to the end, copy the `ganttR` function I created and Gantt away!
 
 <br/>
 
@@ -49,7 +57,9 @@ library(kableExtra)
 
 # The code!
 
-I wanted to come up with something simple and visually appealing, so I created a figure that simply required the following elements: milestone, tasks, start date, due data and status.
+I wanted to come up with something simple and visually appealing, so I created
+a figure that simply required the following elements: milestone, tasks, start
+date, due data and status.
 
 ## Data
 
@@ -136,7 +146,8 @@ abline(v = as.Date(format(Sys.time(), format = "%Y-%m-%d")), lwd = 2, lty = 2)
 
 ## Multiple milestones
 
-Now Gantt charts are also useful to visualize and organize multiple projects together, so let's make this chart multi-milestony.
+Now Gantt charts are also useful to visualize and organize multiple projects
+together, so let's make this chart multi-milestony.
 
 <br/>
 

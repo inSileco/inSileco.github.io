@@ -12,19 +12,24 @@ output:
     dev: svg
 ---
 
+
 #### Below are presented the 6 steps you need to make your plot a Hylian one! **May the triforce be with you**!
+
 
 ### 0. R Version
 
 ```{r, echo = TRUE, eval = TRUE}
-sessionInfo()[[1]]$version.string
+sessionInfo()[[1L]]$version.string
 ```
+
+
 
 ### 1. Open R and download the font
 
-The [*Triforce* font](https://zeldauniverse.net/media/dir) is available on line.
-Alternatively, you may simply download and install it, if you proceed so,
-skip step 1.
+The [*Triforce* font](https://zeldauniverse.net/media/fonts/) is available on line.
+Below we download it using R! Alternatively, you may simply download and install
+it using a couple of clicks, if you proceed so, skip step 1.
+
 
 ```{r, echo = TRUE, eval = TRUE}
 # Create a directory < fonts >
@@ -44,14 +49,14 @@ file.remove(paste0(dr, basename(url)))
 
 ### 2. Install the `showtext` package
 
-```{r, echo = TRUE, eval = TRUE}
+```{r, echo = TRUE, eval = FALSE}
 install.packages("showtext", dependencies = TRUE)
-library(showtext)
 ```
 
 ###  3. Look at the list of fonts available locally
 
 ```{r, echo = TRUE, eval = TRUE, R.options=list(max.print=30)}
+library(showtext)
 showtext.auto()
 font.files()
 ```
@@ -93,7 +98,7 @@ font.families()
 par(family = "Triforce", las = 1, cex.lab = 2, cex.main = 2, mar = c(4, 5, 5, 0))
 plot(x = c(0, 1), y = c(0, 1), type = "n", xlab = "X-axis", ylab = "Y-axis")
 title(main = "Hylian Style - Link must be proud of us!")
-points(x = runif(7), y = runif(7), pch = "*", cex = 2)
-points(x = runif(7), y = runif(7), pch = "$", cex = 2, col = "#347AB7")
-points(x = 0.1, y = 0.1, pch = "%", cex = 6, col = "#347AB7")
+points(x = runif(7), y = runif(7), pch = "*", cex = 4)
+points(x = runif(7), y = runif(7), pch = "$", cex = 4, col = "#347AB7")
+points(x = 0.1, y = 0.1, pch = "%", cex = 10, col = "#347AB7")
 ```

@@ -17,15 +17,23 @@ output:
 
 ## Introduction
 
-Icons are very popular on websites to improve the visual grepping (*i.e.* visual optimization of *eyeball* search). We all know how to go at the top or the bottom of a website clicking on chevrons (<i class="fa fa-chevron-down" aria-hidden="true"></i> <i class="fa fa-chevron-up" aria-hidden="true"></i>). We are also familiar with simple symbols that allow us to click and edit the text we are typing (<i class="fa fa-align-left" aria-hidden="true"></i> <i class="fa fa-align-center" aria-hidden="true"></i> <i class="fa fa-align-right" aria-hidden="true"></i>). Moreover, some web applications are so widespread than their logo appears in thousands of websites (i.e Twitter <i class="fa fa-twitter" aria-hidden="true"></i> or Github <i class="fa fa-github" aria-hidden="true"></i>). Here, we explain how to use these icons in your R plots. Why use icons on an R plot? It simply increases the possibilities for the number of markers you could use and thus efficiently and usefully refine your plots.
+Icons are very popular on websites to improve the visual grepping (*i.e.* visual
+optimization of *eyeball* search). We all know how to go at the top or the
+bottom of a website clicking on chevrons (<i class="fa fa-chevron-down"
+aria-hidden="true"></i> <i class="fa fa-chevron-up" aria-hidden="true"></i>). We are also familiar with simple symbols that allow us to click and edit the text we are typing (<i class="fa fa-align-left" aria-hidden="true"></i> <i class="fa fa-align-center" aria-hidden="true"></i> <i class="fa fa-align-right" aria-hidden="true"></i>). Moreover, some web applications are so widespread than their logo appears in thousands of websites (i.e Twitter <i class="fa fa-twitter" aria-hidden="true"></i> or Github <i class="fa fa-github" aria-hidden="true"></i>). Here, we explain how to use these icons in your R plots. Why use icons on an R plot? It simply increases the possibilities for the number of markers you could use and thus efficiently and usefully refine your plots.
 
-There are two strategies to include icons on a R plot: 1- using icons as a font when possible or 2- using icons as images. Here, we exemplify the first strategy and leave the second one for another post (hopefully). We will use icons from three different iconic frameworks:
+There are two strategies to include icons on a R plot:
+
+  1- using icons as a font when possible;    
+  2- using icons as images.
+
+Here, we exemplify the first strategy and leave the second one for another post (hopefully). We will use icons from three different iconic frameworks:
 
   1. [Academicon](jpswalsh.github.io/academicons/);   
   2. [Font Awesome](http://fontawesome.io);        
   3. [Ionicons](http://ionicons.com).   
 
-All of these academics framework propose either a `.ttf` (TrueType Font) or a `.otf` file (OpenType Font) (or both). These files make our life very easy and we can make a direct **link** with a [previous blog post](./HylianStyle.html).
+All of these frameworks propose either a `.ttf` (TrueType Font) or a `.otf` file (OpenType Font) (or both). These files make our life very easy and we can make a direct **link** with a [previous blog post](./HylianStyle.html).
 
 
 
@@ -66,57 +74,73 @@ packageVersion("showtext")
 
 #### Material to be downloaded
 
-We have to download the 3 fonts to be used, which can easily be found on Github.
-You can simply click on the links below to get them one by one or [here](/assets/AcademiconsInR/fonts.zip)
-to get all on them.
- <!-- or used the zip file provided
-at the [top of this page](#top) (*lazy searching*). -->
+We first need to download the 3 fonts we will be using. Links to retrieve the
+font are available right below and the following code chunk describes how
+use the R to get these font.
 
 1. [the *Academicons* font](https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf)   
 2. [the *FontAwesome* font](https://github.com/FortAwesome/Font-Awesome/raw/master/fonts/FontAwesome.otf)   
 3. [the *Ionicons* font](https://github.com/driftyco/ionicons/raw/master/fonts/ionicons.ttf)
 
-Once downloaded, install them on your computer (there is most likely an
-application on your computer to do so but note that it is also possible to
-store the fonts in a dedicated folder and then provide the path to use them
-with `showtext`. See the `font.paths()` function.
+Below we download and put the font in a local folder:
+
+
+
+
+If you have downloaded the font by clicking, you can either install them on
+your computer (there is most likely an application on your computer to do so) or
+store them in a dedicated folder (which path is `pth` for the rest of the post).
+
+
+```{r downloads}
+pth <- "./AcademiconsInR_files"
+dir.create(pth, showWarnings = FALSE)
+urls <- c(
+  'https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf',
+  'https://github.com/FortAwesome/Font-Awesome/raw/master/fonts/FontAwesome.otf',
+  'https://github.com/driftyco/ionicons/raw/master/fonts/ionicons.ttf'
+  )   
+for (i in 1:3){
+  download.file(urls[i], destfile=paste0(pth, '/', gsub(urls[i], pattern = '.*/', replace = '')))
+}
+```
 
 
 
 ## Loading the fonts
 
-To activate the facilities `showtext` provide, it only requires `showtext.auto()`
+To activate the facilities `showtext` provides, use `showtext_auto()`
 (by the way, the author of the package deserves a medal!):
 
-```{r showtext}
-showtext.auto()
+```{r showtext, message = FALSE}
+showtext_auto()
 ```
-
 <!-- help rebuilding the website without downloading font as they are
 included in this folder -->
 
-```{r, echo=FALSE}
-pth <- paste0(getwd(),'/../../static/assets/AcademiconsInR/fonts')
-font.paths(pth)
+We add the path to our fonts:
+
+```{r}
+font_paths(pth)
 ```
 
 
-Then, add `academicons.ttf`, `FontAwesome.otf` and `ionicons.ttf` fonts to your
+Then, we add `academicons.ttf`, `FontAwesome.otf` and `ionicons.ttf` to our
 session with the `font.add()` function:
 
-```{r addfont}
-
-font.add(family = 'Academicons', regular = paste0(pth,'/Academicons.ttf'))
-font.add(family = 'FontAwesome', regular = paste0(pth,'/Academicons.ttf'))
-font.add(family = 'Ionicons', regular = paste0(pth,'/Academicons.ttf'))
+```{r addfonts}
+font_add(family = 'Academicons', regular = 'academicons.ttf')
+font_add(family = 'FontAwesome', regular = 'FontAwesome.otf')
+font_add(family = 'Ionicons', regular = 'ionicons.ttf')
 ```
 
 Here, things are going to be a little bit trickier than they were in the
-[Hylian blog post](./HylianStyle.html), as we should first locate the
+[Hylian blog post](content/post/HylianStyle.html), as we should first locate the
 unicode characters to be used. Fortunately, this is fairly doable:
 
   1. FontAwesome provides a very [helpful cheatsheet](http://fontawesome.io/cheatsheet/);     
-  2. `.ttf` files are easy to explore, for instance using LibreOffice and inserting a special character (see the figure below).     
+  2. `.ttf` files are easy to explore, for instance using LibreOffice and
+  inserting a special character (see the figure below).     
 
 <br>
 

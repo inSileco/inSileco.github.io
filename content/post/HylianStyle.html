@@ -1,0 +1,212 @@
+---
+title: Make your plot Hylian
+author: [david,kevin,nicolas]
+date: 2017-04-14
+tags: [plot,R,icon,zelda]
+draft: false
+tweet: Make your plot Hylian
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+
+
+<div id="below-are-presented-the-6-steps-you-need-to-make-your-plot-a-hylian-one-may-the-triforce-be-with-you" class="section level4">
+<h4>Below are presented the 6 steps you need to make your plot a Hylian one! <strong>May the triforce be with you</strong>!</h4>
+</div>
+<div id="r-version" class="section level3">
+<h3>0. R Version</h3>
+<pre class="r"><code>sessionInfo()[[1L]]$version.string</code></pre>
+<pre><code>## [1] &quot;R version 3.4.1 (2017-06-30)&quot;</code></pre>
+</div>
+<div id="open-r-and-download-the-font" class="section level3">
+<h3>1. Open R and download the font</h3>
+<p>The <a href="https://zeldauniverse.net/media/fonts/"><em>Triforce</em> font</a> is available on line. Below we download it using R! Alternatively, you may simply download and install it using a couple of clicks, if you proceed so, skip step 1.</p>
+<pre class="r"><code># Create a directory &lt; fonts &gt;
+dr &lt;- &quot;hylianStyle_files/&quot;
+dir.create(dr, showWarnings = FALSE)
+
+# Download Triforce font &lt; Triforce.ttf &gt;
+url &lt;- &quot;http://zeldauniverse.net/wp-content/uploads/2014/01/Triforce.ttf_.zip&quot;
+download.file(url, destfile=paste0(dr, basename(url)),method=&quot;libcurl&quot;)
+
+# Unzip the file
+unzip(paste0(dr, basename(url)), exdir = &quot;./hylianStyle_files&quot;)
+
+# Remove .zip
+file.remove(paste0(dr, basename(url)))</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+</div>
+<div id="install-the-showtext-package" class="section level3">
+<h3>2. Install the <code>showtext</code> package</h3>
+<pre class="r"><code>install.packages(&quot;showtext&quot;, dependencies = TRUE)</code></pre>
+</div>
+<div id="look-at-the-list-of-fonts-available-locally" class="section level3">
+<h3>3. Look at the list of fonts available locally</h3>
+<pre class="r"><code>library(showtext)</code></pre>
+<pre><code>## Loading required package: sysfonts</code></pre>
+<pre><code>## Loading required package: showtextdb</code></pre>
+<pre class="r"><code>showtext.auto()</code></pre>
+<pre><code>## &#39;showtext.auto()&#39; is now renamed to &#39;showtext_auto()&#39;
+## The old version still works, but consider using the new function in future code</code></pre>
+<pre class="r"><code>font.files()</code></pre>
+<pre><code>## &#39;font.files()&#39; is now renamed to &#39;font_files()&#39;
+## The old version still works, but consider using the new function in future code</code></pre>
+<pre><code>##  [1] &quot;3270Medium.ttf&quot;                     
+##  [2] &quot;3270Narrow.ttf&quot;                     
+##  [3] &quot;3270SemiNarrow.ttf&quot;                 
+##  [4] &quot;academicons.ttf&quot;                    
+##  [5] &quot;AccanthisADFStd-Bold.otf&quot;           
+##  [6] &quot;AccanthisADFStd-BoldItalic.otf&quot;     
+##  [7] &quot;AccanthisADFStd-Italic.otf&quot;         
+##  [8] &quot;AccanthisADFStd-Regular.otf&quot;        
+##  [9] &quot;AccanthisADFStdNo2-Bold.otf&quot;        
+## [10] &quot;AccanthisADFStdNo2-BoldItalic.otf&quot;  
+## [11] &quot;AccanthisADFStdNo2-Italic.otf&quot;      
+## [12] &quot;AccanthisADFStdNo2-Regular.otf&quot;     
+## [13] &quot;AccanthisADFStdNo3-Bold.otf&quot;        
+## [14] &quot;AccanthisADFStdNo3-BoldItalic.otf&quot;  
+## [15] &quot;AccanthisADFStdNo3-Italic.otf&quot;      
+## [16] &quot;AccanthisADFStdNo3-Regular.otf&quot;     
+## [17] &quot;amiri-bold.ttf&quot;                     
+## [18] &quot;amiri-boldslanted.ttf&quot;              
+## [19] &quot;amiri-quran.ttf&quot;                    
+## [20] &quot;amiri-regular.ttf&quot;                  
+## [21] &quot;amiri-slanted.ttf&quot;                  
+## [22] &quot;Anonymice Powerline Bold Italic.ttf&quot;
+## [23] &quot;Anonymice Powerline Bold.ttf&quot;       
+## [24] &quot;Anonymice Powerline Italic.ttf&quot;     
+## [25] &quot;Anonymice Powerline.ttf&quot;            
+## [26] &quot;Arimo Bold for Powerline.ttf&quot;       
+## [27] &quot;Arimo Bold Italic for Powerline.ttf&quot;
+## [28] &quot;Arimo for Powerline.ttf&quot;            
+## [29] &quot;Arimo Italic for Powerline.ttf&quot;     
+## [30] &quot;Arimo-Bold.ttf&quot;                     
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 576 entries ]</code></pre>
+<p>If you have installed the font on your computer, it should be in the list, then you can skip step 4.</p>
+</div>
+<div id="add-a-path-to-your-font" class="section level3">
+<h3>4. Add a path to your font</h3>
+<p>If you have downloaded the font using R, you must notify showtext about to folder <code>dir</code> where the font has been stored. To so do, use the <code>font.paths()</code> function:</p>
+<pre class="r"><code>font.paths(dr)</code></pre>
+<pre><code>## &#39;fond.paths()&#39; is now renamed to &#39;font_paths()&#39;
+## The old version still works, but consider using the new function in future code</code></pre>
+<pre><code>##  [1] &quot;/home/kevcaz/Github/Websites/inSileco.github.io/content/post/hylianStyle_files&quot;
+##  [2] &quot;/home/kevcaz/.local/share/fonts&quot;                                               
+##  [3] &quot;/usr/local/share/fonts&quot;                                                        
+##  [4] &quot;/usr/share/fonts&quot;                                                              
+##  [5] &quot;/usr/share/fonts/cmap&quot;                                                         
+##  [6] &quot;/usr/share/poppler/cMap/Adobe-CNS1&quot;                                            
+##  [7] &quot;/usr/share/poppler/cMap/Adobe-GB1&quot;                                             
+##  [8] &quot;/usr/share/poppler/cMap/Adobe-Japan1&quot;                                          
+##  [9] &quot;/usr/share/poppler/cMap/Adobe-Japan2&quot;                                          
+## [10] &quot;/usr/share/poppler/cMap/Adobe-Korea1&quot;                                          
+## [11] &quot;/usr/share/fonts/eot&quot;                                                          
+## [12] &quot;/usr/share/fonts/eot/font-awesome&quot;                                             
+## [13] &quot;/usr/share/fonts/opentype&quot;                                                     
+## [14] &quot;/usr/share/fonts/opentype/cabin&quot;                                               
+## [15] &quot;/usr/share/fonts/opentype/cantarell&quot;                                           
+## [16] &quot;/usr/share/fonts/opentype/ebgaramond&quot;                                          
+## [17] &quot;/usr/share/fonts/opentype/font-awesome&quot;                                        
+## [18] &quot;/usr/share/fonts/opentype/fonts-hosny-amiri&quot;                                   
+## [19] &quot;/usr/share/fonts/opentype/freefont&quot;                                            
+## [20] &quot;/usr/share/fonts/opentype/gentiumplus&quot;                                         
+## [21] &quot;/usr/share/fonts/opentype/ipaexfont-gothic&quot;                                    
+## [22] &quot;/usr/share/fonts/opentype/ipaexfont-mincho&quot;                                    
+## [23] &quot;/usr/share/fonts/opentype/ipafont-gothic&quot;                                      
+## [24] &quot;/usr/share/fonts/opentype/ipafont-mincho&quot;                                      
+## [25] &quot;/usr/share/fonts/opentype/linux-libertine&quot;                                     
+## [26] &quot;/usr/share/fonts/opentype/lobster&quot;                                             
+## [27] &quot;/usr/share/fonts/opentype/lobstertwo&quot;                                          
+## [28] &quot;/usr/share/javascript/mathjax/fonts/HTML-CSS/TeX/otf&quot;                          
+## [29] &quot;/usr/share/fonts/opentype/stix&quot;                                                
+## [30] &quot;/usr/share/fonts/opentype/stix-word&quot;                                           
+## [31] &quot;/usr/share/fonts/svg&quot;                                                          
+## [32] &quot;/usr/share/fonts/svg/font-awesome&quot;                                             
+## [33] &quot;/usr/share/fonts/truetype&quot;                                                     
+## [34] &quot;/usr/share/fonts/truetype/adf&quot;                                                 
+## [35] &quot;/usr/share/fonts/truetype/arphic-bkai00mp&quot;                                     
+## [36] &quot;/usr/share/fonts/truetype/arphic-bsmi00lp&quot;                                     
+## [37] &quot;/usr/share/fonts/truetype/arphic-gbsn00lp&quot;                                     
+## [38] &quot;/usr/share/fonts/truetype/arphic-gkai00mp&quot;                                     
+## [39] &quot;/usr/share/fonts/truetype/artemisia&quot;                                           
+## [40] &quot;/usr/share/fonts/truetype/asana-math&quot;                                          
+## [41] &quot;/usr/share/fonts/truetype/baekmuk&quot;                                             
+## [42] &quot;/usr/share/fonts/truetype/baskerville&quot;                                         
+## [43] &quot;/usr/share/fonts/truetype/bodoni-classic&quot;                                      
+## [44] &quot;/usr/share/fonts/truetype/comfortaa&quot;                                           
+## [45] &quot;/usr/share/fonts/truetype/complutum&quot;                                           
+## [46] &quot;/usr/share/fonts/truetype/croscore&quot;                                            
+## [47] &quot;/usr/share/fonts/truetype/crosextra&quot;                                           
+## [48] &quot;/usr/share/fonts/truetype/dejavu&quot;                                              
+## [49] &quot;/usr/share/fonts/truetype/didot&quot;                                               
+## [50] &quot;/usr/share/fonts/truetype/didot-classic&quot;                                       
+## [51] &quot;/usr/share/fonts/truetype/droid&quot;                                               
+## [52] &quot;/usr/share/fonts/truetype/ebgaramond&quot;                                          
+## [53] &quot;/usr/share/fonts/truetype/font-awesome&quot;                                        
+## [54] &quot;/usr/share/fonts/truetype/freefont&quot;                                            
+## [55] &quot;/usr/share/fonts/truetype/gazis&quot;                                               
+## [56] &quot;/usr/share/fonts/truetype/gentium&quot;                                             
+## [57] &quot;/usr/share/fonts/truetype/gentium-basic&quot;                                       
+## [58] &quot;/usr/share/fonts/truetype/junicode&quot;                                            
+## [59] &quot;/usr/share/fonts/truetype/lato&quot;                                                
+## [60] &quot;/usr/share/fonts/truetype/liberation&quot;                                          
+## [61] &quot;/usr/share/fonts/truetype/lyx&quot;                                                 
+## [62] &quot;/usr/share/fonts/truetype/neohellenic&quot;                                         
+## [63] &quot;/usr/share/fonts/truetype/noto&quot;                                                
+## [64] &quot;/usr/share/fonts/truetype/olga&quot;                                                
+## [65] &quot;/usr/share/fonts/truetype/openoffice&quot;                                          
+## [66] &quot;/usr/share/fonts/truetype/padauk&quot;                                              
+## [67] &quot;/usr/share/fonts/truetype/porson&quot;                                              
+## [68] &quot;/usr/share/fonts/truetype/roboto&quot;                                              
+## [69] &quot;/usr/share/fonts/truetype/roboto/hinted&quot;                                       
+## [70] &quot;/usr/share/fonts/truetype/solomos&quot;                                             
+## [71] &quot;/usr/share/fonts/truetype/theokritos&quot;                                          
+## [72] &quot;/usr/share/fonts/truetype/ttf-bitstream-vera&quot;                                  
+## [73] &quot;/usr/share/fonts/truetype/unfonts-core&quot;                                        
+## [74] &quot;/usr/share/fonts/truetype/unfonts-extra&quot;                                       
+## [75] &quot;/usr/share/fonts/type1&quot;                                                        
+## [76] &quot;/usr/share/fonts/type1/gsfonts&quot;                                                
+## [77] &quot;/usr/share/fonts/type1/texlive-fonts-recommended&quot;                              
+## [78] &quot;/usr/share/fonts/woff&quot;                                                         
+## [79] &quot;/usr/share/fonts/woff/ebgaramond&quot;                                              
+## [80] &quot;/usr/share/fonts/woff/font-awesome&quot;                                            
+## [81] &quot;/usr/share/fonts/woff/gentiumplus&quot;                                             
+## [82] &quot;/usr/share/fonts/X11&quot;                                                          
+## [83] &quot;/usr/share/fonts/X11/100dpi&quot;                                                   
+## [84] &quot;/usr/share/fonts/X11/75dpi&quot;                                                    
+## [85] &quot;/usr/share/fonts/X11/encodings&quot;                                                
+## [86] &quot;/usr/share/fonts/X11/encodings/large&quot;                                          
+## [87] &quot;/usr/share/fonts/X11/misc&quot;                                                     
+## [88] &quot;/usr/share/fonts/X11/Type1&quot;                                                    
+## [89] &quot;/usr/share/fonts/X11/util&quot;</code></pre>
+</div>
+<div id="add-the-triforce-font-to-your-session" class="section level3">
+<h3>5. Add the <em>Triforce</em> font to your session:</h3>
+<p>Either way, the Triforce font should now be available</p>
+<pre class="r"><code># Is the TTF present?
+font.files()[grep(&quot;Triforce&quot;, font.files())]</code></pre>
+<pre><code>## [1] &quot;Triforce.ttf&quot;</code></pre>
+<p>Let’s add it to our session:</p>
+<pre class="r"><code>font.add(family = &#39;Triforce&#39;, regular = &#39;Triforce.ttf&#39;)</code></pre>
+<pre><code>## &#39;font.add()&#39; is now renamed to &#39;font_add()&#39;
+## The old version still works, but consider using the new function in future code</code></pre>
+<pre class="r"><code>font.families()</code></pre>
+<pre><code>## &#39;font.families()&#39; is now renamed to &#39;font_families()&#39;
+## The old version still works, but consider using the new function in future code</code></pre>
+<pre><code>## [1] &quot;sans&quot;         &quot;serif&quot;        &quot;mono&quot;         &quot;wqy-microhei&quot;
+## [5] &quot;Triforce&quot;</code></pre>
+</div>
+<div id="finally-lets-make-our-hylian-plot" class="section level3">
+<h3>6. Finally, let’s make our Hylian plot!</h3>
+<pre class="r"><code>par(family = &quot;Triforce&quot;, las = 1, cex.lab = 2, cex.main = 2, mar = c(4, 5, 5, 0))
+plot(x = c(0, 1), y = c(0, 1), type = &quot;n&quot;, xlab = &quot;X-axis&quot;, ylab = &quot;Y-axis&quot;)
+title(main = &quot;Hylian Style - Link must be proud of us!&quot;)
+points(x = runif(7), y = runif(7), pch = &quot;*&quot;, cex = 4)
+points(x = runif(7), y = runif(7), pch = &quot;$&quot;, cex = 4, col = &quot;#347AB7&quot;)
+points(x = 0.1, y = 0.1, pch = &quot;%&quot;, cex = 10, col = &quot;#347AB7&quot;)</code></pre>
+<p><img src="/post/HylianStyle_files/figure-html/unnamed-chunk-8-1.png" width="912" /></p>
+</div>
