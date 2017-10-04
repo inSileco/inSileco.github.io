@@ -57,8 +57,8 @@ install.packages("showtext", dependencies = TRUE)
 
 ```{r, echo = TRUE, eval = TRUE, R.options=list(max.print=30)}
 library(showtext)
-showtext.auto()
-font.files()
+showtext_auto()
+font_files()
 ```
 
 If you have installed the font on your computer, it should be in the list,
@@ -68,11 +68,11 @@ then you can skip step 4.
 ### 4. Add a path to your font
 
 If you have downloaded the font using R, you must notify showtext about to
-folder `dir` where the font has been stored. To so do, use the `font.paths()`
+folder `dir` where the font has been stored. To so do, use the `font_paths()`
 function:
 
 ```{r, echo = TRUE, eval = TRUE}
-font.paths(dr)
+font_paths(dr)
 ```
 
 ### 5. Add the *Triforce* font to your session:
@@ -82,14 +82,14 @@ Either way, the Triforce font should now be available
 
 ```{r, echo = TRUE, eval = TRUE}
 # Is the TTF present?
-font.files()[grep("Triforce", font.files())]
+font_files()[grep("Triforce", font_files())]
 ```
 
 Let's add it to our session:
 
 ```{r, echo = TRUE, eval = TRUE}
-font.add(family = 'Triforce', regular = 'Triforce.ttf')
-font.families()
+font_add(family = 'Triforce', regular = 'Triforce.ttf')
+font_families()
 ```
 
 ### 6. Finally, let's make our Hylian plot!

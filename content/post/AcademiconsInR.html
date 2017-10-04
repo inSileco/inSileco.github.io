@@ -177,10 +177,14 @@ included in this folder -->
 ## [87] &quot;/usr/share/fonts/X11/misc&quot;                                                        
 ## [88] &quot;/usr/share/fonts/X11/Type1&quot;                                                       
 ## [89] &quot;/usr/share/fonts/X11/util&quot;</code></pre>
-<p>Then, we add <code>academicons.ttf</code>, <code>FontAwesome.otf</code> and <code>ionicons.ttf</code> to our session with the <code>font.add()</code> function:</p>
+<p>Then, we add <code>academicons.ttf</code>, <code>FontAwesome.otf</code> and <code>ionicons.ttf</code> to our session with the <code>font_add()</code> function:</p>
 <pre class="r"><code>font_add(family = &#39;Academicons&#39;, regular = &#39;academicons.ttf&#39;)
 font_add(family = &#39;FontAwesome&#39;, regular = &#39;FontAwesome.otf&#39;)
-font_add(family = &#39;Ionicons&#39;, regular = &#39;ionicons.ttf&#39;)</code></pre>
+font_add(family = &#39;Ionicons&#39;, regular = &#39;ionicons.ttf&#39;)
+##-- checke the font families available:
+font_families()</code></pre>
+<pre><code>## [1] &quot;sans&quot;         &quot;serif&quot;        &quot;mono&quot;         &quot;wqy-microhei&quot;
+## [5] &quot;Academicons&quot;  &quot;FontAwesome&quot;  &quot;Ionicons&quot;</code></pre>
 <p>Here, things are going to be a little bit trickier than they were in the <a href="content/post/HylianStyle.html">Hylian blog post</a>, as we should first locate the unicode characters to be used. Fortunately, this is fairly doable:</p>
 <ol style="list-style-type: decimal">
 <li>FontAwesome provides a very <a href="http://fontawesome.io/cheatsheet/">helpful cheatsheet</a>;<br />
