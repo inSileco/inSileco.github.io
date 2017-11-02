@@ -2,7 +2,7 @@
 title: Add icons on your plots
 author: [kevin, david]
 date: 2017-05-23
-tags: [R, plot, icon]
+tags: [R, plot, fonts, icons]
 tweet: "How to add icons on your R plots"
 draft: false
 output:
@@ -33,7 +33,7 @@ Here, we exemplify the first strategy and leave the second one for another post 
   2. [Font Awesome](http://fontawesome.io);        
   3. [Ionicons](http://ionicons.com).   
 
-All of these frameworks propose either a `.ttf` (TrueType Font) or a `.otf` file (OpenType Font) (or both). These files make our life very easy and we can make a direct **link** with a [previous blog post](./HylianStyle.html).
+All of these frameworks propose either a `.ttf` (TrueType Font) or a `.otf` file (OpenType Font) (or both). These files make our life very easy and we can make a direct **link** with a [previous blog post](/content/post/HylianStyle.html).
 
 
 
@@ -137,7 +137,7 @@ font_families()
 ```
 
 Here, things are going to be a little bit trickier than they were in the
-[Hylian blog post](content/post/HylianStyle.html), as we should first locate the
+[Hylian blog post](/content/post/HylianStyle.html), as we should first locate the
 unicode characters to be used. Fortunately, this is fairly doable:
 
   1. FontAwesome provides a very [helpful cheatsheet](http://fontawesome.io/cheatsheet/);     
@@ -165,7 +165,7 @@ Below, we use different way to deal with the unicode characters.
 ### Academicons
 
 There are 36 unicode characters available. They are numbered like so: "E9" +
-all numbers from 00 to 35 (version 1.8.0). To use them, we create a
+numbers ranging from 00 to 35 (version 1.8.0). To use them, we create a
 sequence using `sprintf()` and `paste0()` function:
 
 ```{r academ, fig.width=9.5, fig.height=5}

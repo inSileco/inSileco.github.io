@@ -2,7 +2,7 @@
 title: Add icons on your plots
 author: [kevin, david]
 date: 2017-05-23
-tags: [R, plot, icon]
+tags: [R, plot, fonts, icons]
 tweet: "How to add icons on your R plots"
 draft: false
 output:
@@ -30,7 +30,7 @@ aria-hidden="true"></i> <i class="fa fa-chevron-up" aria-hidden="true"></i>). We
 </li>
 <li><a href="http://ionicons.com">Ionicons</a>.</li>
 </ol>
-<p>All of these frameworks propose either a <code>.ttf</code> (TrueType Font) or a <code>.otf</code> file (OpenType Font) (or both). These files make our life very easy and we can make a direct <strong>link</strong> with a <a href="./HylianStyle.html">previous blog post</a>.</p>
+<p>All of these frameworks propose either a <code>.ttf</code> (TrueType Font) or a <code>.otf</code> file (OpenType Font) (or both). These files make our life very easy and we can make a direct <strong>link</strong> with a <a href="/content/post/HylianStyle.html">previous blog post</a>.</p>
 </div>
 <div id="setting-up-r" class="section level2">
 <h2>Setting up R</h2>
@@ -185,7 +185,7 @@ font_add(family = &#39;Ionicons&#39;, regular = &#39;ionicons.ttf&#39;)
 font_families()</code></pre>
 <pre><code>## [1] &quot;sans&quot;         &quot;serif&quot;        &quot;mono&quot;         &quot;wqy-microhei&quot;
 ## [5] &quot;Academicons&quot;  &quot;FontAwesome&quot;  &quot;Ionicons&quot;</code></pre>
-<p>Here, things are going to be a little bit trickier than they were in the <a href="content/post/HylianStyle.html">Hylian blog post</a>, as we should first locate the unicode characters to be used. Fortunately, this is fairly doable:</p>
+<p>Here, things are going to be a little bit trickier than they were in the <a href="/content/post/HylianStyle.html">Hylian blog post</a>, as we should first locate the unicode characters to be used. Fortunately, this is fairly doable:</p>
 <ol style="list-style-type: decimal">
 <li>FontAwesome provides a very <a href="http://fontawesome.io/cheatsheet/">helpful cheatsheet</a>;<br />
 </li>
@@ -202,7 +202,7 @@ font_families()</code></pre>
 <h2>Let’s add icons our plot</h2>
 <div id="academicons" class="section level3">
 <h3>Academicons</h3>
-<p>There are 36 unicode characters available. They are numbered like so: “E9” + all numbers from 00 to 35 (version 1.8.0). To use them, we create a sequence using <code>sprintf()</code> and <code>paste0()</code> function:</p>
+<p>There are 36 unicode characters available. They are numbered like so: “E9” + numbers ranging from 00 to 35 (version 1.8.0). To use them, we create a sequence using <code>sprintf()</code> and <code>paste0()</code> function:</p>
 <pre class="r"><code>nb &lt;- 35
 acs &lt;- sprintf(&quot;%02d&quot;, 5+1:nb) %&gt;% paste0(&quot;E8&quot;,.)</code></pre>
 <p>We now plot them as if they were on a regular grid and we add the decimal value below:</p>
@@ -263,7 +263,7 @@ mtext(text=intToUtf8(&quot;59651&quot;), side=4, adj=1, line=3, cex=3)</code></p
 <div id="additional-remarks" class="section level2">
 <h2>Additional remarks</h2>
 <ol style="list-style-type: decimal">
-<li><p>Note that the steps described here are useful to include any kind of police you have on your computer or you may find online. Therefore this post should help you deal with font if you intend to publish a figure in a journal that requests a specific font. By the way, <code>showtext</code> allows you to search directly on google font (see the <code>font.add.google()</code> function).</p></li>
+<li><p>Note that the steps described here are useful to include any kind of police you have on your computer or you may find online. Therefore this post should help you deal with font if you intend to publish a figure in a journal that requests a specific font. By the way, <code>showtext</code> allows you to search directly on google font (see the <code>font_add_google()</code> function).</p></li>
 <li><p>As you may have realized reading this post there are different ways to write a character in unicode. Fortunately, many online converters help you get from one standard to another (<em>e.g.</em> <a href="http://www.endmemo.com/unicode/unicodeconverter.php">unicodeconverter</a> does the job).</p></li>
 <li><p>You may also want to use emoji to cheer your plot up! See the emojifont package available on <a href="https://cran.r-project.org/web/packages/emojifont/">CRAN</a> and <a href="https://guangchuangyu.github.io/emojifont/">Github</a>.</p></li>
 <li><p><a href="https://fontstruct.com">fontstruct</a> is a great web application that helps you creating your own font (you can save your font as a <code>.tff</code> on your computer and now you know how to deal with it!)</p></li>

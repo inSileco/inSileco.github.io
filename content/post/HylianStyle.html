@@ -1,8 +1,8 @@
 ---
 title: Make your plot Hylian
-author: [david,kevin,nicolas]
+author: [kevin, david, nicolas]
 date: 2017-04-14
-tags: [plot,R,icon,zelda]
+tags: [R, plot, fonts, icons, zelda]
 draft: false
 tweet: Make your plot Hylian
 output:
@@ -20,7 +20,7 @@ output:
 <div id="r-version" class="section level3">
 <h3>0. R Version</h3>
 <pre class="r"><code>sessionInfo()[[1L]]$version.string</code></pre>
-<pre><code>## [1] &quot;R version 3.4.1 (2017-06-30)&quot;</code></pre>
+<pre><code>## [1] &quot;R version 3.4.2 (2017-09-28)&quot;</code></pre>
 </div>
 <div id="open-r-and-download-the-font" class="section level3">
 <h3>1. Open R and download the font</h3>
@@ -81,7 +81,7 @@ font_files()</code></pre>
 ## [28] &quot;Arimo for Powerline.ttf&quot;            
 ## [29] &quot;Arimo Italic for Powerline.ttf&quot;     
 ## [30] &quot;Arimo-Bold.ttf&quot;                     
-##  [ reached getOption(&quot;max.print&quot;) -- omitted 576 entries ]</code></pre>
+##  [ reached getOption(&quot;max.print&quot;) -- omitted 578 entries ]</code></pre>
 <p>If you have installed the font on your computer, it should be in the list, then you can skip step 4.</p>
 </div>
 <div id="add-a-path-to-your-font" class="section level3">
@@ -145,38 +145,39 @@ font_files()</code></pre>
 ## [55] &quot;/usr/share/fonts/truetype/gazis&quot;                                               
 ## [56] &quot;/usr/share/fonts/truetype/gentium&quot;                                             
 ## [57] &quot;/usr/share/fonts/truetype/gentium-basic&quot;                                       
-## [58] &quot;/usr/share/fonts/truetype/junicode&quot;                                            
-## [59] &quot;/usr/share/fonts/truetype/lato&quot;                                                
-## [60] &quot;/usr/share/fonts/truetype/liberation&quot;                                          
-## [61] &quot;/usr/share/fonts/truetype/lyx&quot;                                                 
-## [62] &quot;/usr/share/fonts/truetype/neohellenic&quot;                                         
-## [63] &quot;/usr/share/fonts/truetype/noto&quot;                                                
-## [64] &quot;/usr/share/fonts/truetype/olga&quot;                                                
-## [65] &quot;/usr/share/fonts/truetype/openoffice&quot;                                          
-## [66] &quot;/usr/share/fonts/truetype/padauk&quot;                                              
-## [67] &quot;/usr/share/fonts/truetype/porson&quot;                                              
-## [68] &quot;/usr/share/fonts/truetype/roboto&quot;                                              
-## [69] &quot;/usr/share/fonts/truetype/roboto/hinted&quot;                                       
-## [70] &quot;/usr/share/fonts/truetype/solomos&quot;                                             
-## [71] &quot;/usr/share/fonts/truetype/theokritos&quot;                                          
-## [72] &quot;/usr/share/fonts/truetype/ttf-bitstream-vera&quot;                                  
-## [73] &quot;/usr/share/fonts/truetype/unfonts-core&quot;                                        
-## [74] &quot;/usr/share/fonts/truetype/unfonts-extra&quot;                                       
-## [75] &quot;/usr/share/fonts/type1&quot;                                                        
-## [76] &quot;/usr/share/fonts/type1/gsfonts&quot;                                                
-## [77] &quot;/usr/share/fonts/type1/texlive-fonts-recommended&quot;                              
-## [78] &quot;/usr/share/fonts/woff&quot;                                                         
-## [79] &quot;/usr/share/fonts/woff/ebgaramond&quot;                                              
-## [80] &quot;/usr/share/fonts/woff/font-awesome&quot;                                            
-## [81] &quot;/usr/share/fonts/woff/gentiumplus&quot;                                             
-## [82] &quot;/usr/share/fonts/X11&quot;                                                          
-## [83] &quot;/usr/share/fonts/X11/100dpi&quot;                                                   
-## [84] &quot;/usr/share/fonts/X11/75dpi&quot;                                                    
-## [85] &quot;/usr/share/fonts/X11/encodings&quot;                                                
-## [86] &quot;/usr/share/fonts/X11/encodings/large&quot;                                          
-## [87] &quot;/usr/share/fonts/X11/misc&quot;                                                     
-## [88] &quot;/usr/share/fonts/X11/Type1&quot;                                                    
-## [89] &quot;/usr/share/fonts/X11/util&quot;</code></pre>
+## [58] &quot;/usr/share/fonts/truetype/inconsolata&quot;                                         
+## [59] &quot;/usr/share/fonts/truetype/junicode&quot;                                            
+## [60] &quot;/usr/share/fonts/truetype/lato&quot;                                                
+## [61] &quot;/usr/share/fonts/truetype/liberation&quot;                                          
+## [62] &quot;/usr/share/fonts/truetype/lyx&quot;                                                 
+## [63] &quot;/usr/share/fonts/truetype/neohellenic&quot;                                         
+## [64] &quot;/usr/share/fonts/truetype/noto&quot;                                                
+## [65] &quot;/usr/share/fonts/truetype/olga&quot;                                                
+## [66] &quot;/usr/share/fonts/truetype/openoffice&quot;                                          
+## [67] &quot;/usr/share/fonts/truetype/padauk&quot;                                              
+## [68] &quot;/usr/share/fonts/truetype/porson&quot;                                              
+## [69] &quot;/usr/share/fonts/truetype/roboto&quot;                                              
+## [70] &quot;/usr/share/fonts/truetype/roboto/hinted&quot;                                       
+## [71] &quot;/usr/share/fonts/truetype/solomos&quot;                                             
+## [72] &quot;/usr/share/fonts/truetype/theokritos&quot;                                          
+## [73] &quot;/usr/share/fonts/truetype/ttf-bitstream-vera&quot;                                  
+## [74] &quot;/usr/share/fonts/truetype/unfonts-core&quot;                                        
+## [75] &quot;/usr/share/fonts/truetype/unfonts-extra&quot;                                       
+## [76] &quot;/usr/share/fonts/type1&quot;                                                        
+## [77] &quot;/usr/share/fonts/type1/gsfonts&quot;                                                
+## [78] &quot;/usr/share/fonts/type1/texlive-fonts-recommended&quot;                              
+## [79] &quot;/usr/share/fonts/woff&quot;                                                         
+## [80] &quot;/usr/share/fonts/woff/ebgaramond&quot;                                              
+## [81] &quot;/usr/share/fonts/woff/font-awesome&quot;                                            
+## [82] &quot;/usr/share/fonts/woff/gentiumplus&quot;                                             
+## [83] &quot;/usr/share/fonts/X11&quot;                                                          
+## [84] &quot;/usr/share/fonts/X11/100dpi&quot;                                                   
+## [85] &quot;/usr/share/fonts/X11/75dpi&quot;                                                    
+## [86] &quot;/usr/share/fonts/X11/encodings&quot;                                                
+## [87] &quot;/usr/share/fonts/X11/encodings/large&quot;                                          
+## [88] &quot;/usr/share/fonts/X11/misc&quot;                                                     
+## [89] &quot;/usr/share/fonts/X11/Type1&quot;                                                    
+## [90] &quot;/usr/share/fonts/X11/util&quot;</code></pre>
 </div>
 <div id="add-the-triforce-font-to-your-session" class="section level3">
 <h3>5. Add the <em>Triforce</em> font to your session:</h3>
@@ -192,7 +193,7 @@ font_families()</code></pre>
 </div>
 <div id="finally-lets-make-our-hylian-plot" class="section level3">
 <h3>6. Finally, let’s make our Hylian plot!</h3>
-<pre class="r"><code>par(family = &quot;Triforce&quot;, las = 1, cex.lab = 2, cex.main = 2, mar = c(4, 5, 5, 0))
+<pre class="r"><code>par(family = &quot;Triforce&quot;, las = 1, cex.lab = 3, cex.main = 3, cex.axis=2, mar = c(4, 5, 5, 0))
 plot(x = c(0, 1), y = c(0, 1), type = &quot;n&quot;, xlab = &quot;X-axis&quot;, ylab = &quot;Y-axis&quot;)
 title(main = &quot;Hylian Style - Link must be proud of us!&quot;)
 points(x = runif(7), y = runif(7), pch = &quot;*&quot;, cex = 4)

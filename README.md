@@ -44,6 +44,7 @@ Rscript -e 'blogdown::new_post('MY_TITLE')'
 - purple kevcaz: "#8555b4"
 - So the palette is `c("#3fb3b2". "#ffdd55", "#c7254e", "#1b95e0", "#8555b4")`
 
+
 #### Badges
 
 ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
@@ -55,7 +56,7 @@ Rscript -e 'blogdown::new_post('MY_TITLE')'
 
 ## TODO
 
-[ ] Describe all YAML headers options;      
-[ ] KevCaz would like to know if we can add a custom yaml field;      
-[ ] Set a repository to include how the wordcloud was generated and link this
+- [ ] Describe all YAML headers options;      
+- [ ] KevCaz would like to know if we can add a custom yaml field;      
+- [ ] Set a repository to include how the wordcloud was generated and link this
 repo in the website.    
