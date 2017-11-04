@@ -1,6 +1,6 @@
 language: r
 dist: trusty
-sudo: false
+sudo: required
 
 branches:
   only:
@@ -14,8 +14,6 @@ cache:
   packages: yes
   directories:
     - $HOME/bin
-    - $TRAVIS_BUILD_DIR/*_files/
-    - $TRAVIS_BUILD_DIR/*_cache/
 
 apt_packages:
   - libgdal-dev
