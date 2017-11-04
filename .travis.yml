@@ -1,6 +1,6 @@
 language: r
 dist: trusty
-sudo: required
+sudo: false
 
 branches:
   only:
@@ -26,12 +26,12 @@ apt_packages:
   - libpoppler-cpp-dev
   - libssl-dev
   - pandoc
-
+before_install:
+  - Rscript -e 'update.packages(ask = FALSE)'
 before_script:
-  - "Rscript -e 'blogdown::install_hugo()'"
-
+  - Rscript -e 'blogdown::install_hugo()'
 script:
-  - "Rscript -e 'blogdown::build_site()'"
+  - Rscript -e 'blogdown::build_site()'
 
 deploy:
   provider: pages
