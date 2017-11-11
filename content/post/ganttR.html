@@ -16,38 +16,36 @@ output:
 
 
 
-<div class="figure">
-<img src="https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg" />
-
-</div>
+<p><img src="https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg" /></p>
 <!--
 setwd('/users/davidbeauchesne/dropbox/phd/insileco.github.io/content/post/')
 rmarkdown::render('./ganttR.rmd', 'html_document')
 -->
 <p><br/></p>
-<div id="gantt-charts" class="section level1">
+<section id="gantt-charts" class="level1">
 <h1>Gantt charts</h1>
 <p><a href="https://en.wikipedia.org/wiki/Gantt_chart">Gantt charts</a> are a very useful way to organize projects into milestones and tasks visually. They are also dead useful when comes the time to create a timeline for a project, whether it be for a research project, field work or grant applications. I recently wanted to create one, but was unsatisfied by what was available out there in terms of visuals (although there are neat R examples, see <a href="https://www.r-bloggers.com/gantt-charts-in-r-using-plotly/">here</a>, <a href="https://stackoverflow.com/questions/3550341/gantt-charts-with-r">here</a> and <a href="https://davetang.org/muse/2017/02/03/gantt-chart-using-r/">here</a>). So I came up with my own!</p>
 <p>For those who might be interested only in generating charts without all the code, jump to the end, copy the <code>ganttR</code> function I created and Gantt away!</p>
 <p><br/></p>
-</div>
-<div id="initiate-r" class="section level1">
+</section>
+<section id="initiate-r" class="level1">
 <h1>Initiate R</h1>
 <pre class="r"><code>rm(list=ls())
 # R version
-sessionInfo()[[1]]$version.string</code></pre>
-<pre><code>## [1] &quot;R version 3.4.1 (2017-06-30)&quot;</code></pre>
-<pre class="r"><code># Packages required
+sessionInfo()[[1]]$version.string
+R&gt;&gt; [1] &quot;R version 3.4.2 (2017-09-28)&quot;
+
+# Packages required
 library(knitr)
 library(tidyverse)
 library(RColorBrewer)
 library(kableExtra)</code></pre>
 <p><br/></p>
-</div>
-<div id="the-code" class="section level1">
+</section>
+<section id="the-code" class="level1">
 <h1>The code!</h1>
 <p>I wanted to come up with something simple and visually appealing, so I created a figure that simply required the following elements: milestone, tasks, start date, due data and status.</p>
-<div id="data" class="section level2">
+<section id="data" class="level2">
 <h2>Data</h2>
 <p><br/></p>
 <pre class="r"><code># Let&#39;s organize a fake manuscript project to generate the chart.
@@ -264,8 +262,8 @@ I
 <p><br/></p>
 <p>We can now create our Gantt chart!</p>
 <p><br/></p>
-</div>
-<div id="the-chart" class="section level2">
+</section>
+<section id="the-chart" class="level2">
 <h2>The chart</h2>
 <p><br/></p>
 <pre class="r"><code># Let&#39;s first organize our graph in order of tasks startDate
@@ -311,10 +309,10 @@ lines(c(nLines,nLines) ~ c(min(df$startDate), max(df$dueDate)), lwd = 8, col = c
 
 # Add today&#39;s date
 abline(v = as.Date(format(Sys.time(), format = &quot;%Y-%m-%d&quot;)), lwd = 2, lty = 2)</code></pre>
-<p><img src="/post/ganttR_files/figure-html/singleGantt-1.png" width="960" /></p>
+<p><img src="/post/ganttR_files/figure-html/singleGantt-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p><br/></p>
-</div>
-<div id="multiple-milestones" class="section level2">
+</section>
+<section id="multiple-milestones" class="level2">
 <h2>Multiple milestones</h2>
 <p>Now Gantt charts are also useful to visualize and organize multiple projects together, so let’s make this chart multi-milestony.</p>
 <p><br/></p>
@@ -387,11 +385,11 @@ for(i in 1:nLines) {
 
 abline(h = which(dfMulti$status == &#39;M&#39;) + 0.5, col = &#39;#634d42&#39;)
 abline(v = as.Date(format(Sys.time(), format = &quot;%Y-%m-%d&quot;)), lwd = 2, lty = 2)</code></pre>
-<p><img src="/post/ganttR_files/figure-html/multiGantt-1.png" width="960" /></p>
+<p><img src="/post/ganttR_files/figure-html/multiGantt-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p><br/></p>
-</div>
-</div>
-<div id="ganttr" class="section level1">
+</section>
+</section>
+<section id="ganttr" class="level1">
 <h1>ganttR()</h1>
 <p>Now that we have all the code, let’s simply transform it into a reusable function. Let’s also give it the choice to generate two types of graph: 1) all milestones and tasks or 2) only milestones.</p>
 <pre class="r"><code>ganttR &lt;- function(df, type = &#39;all&#39;) {
@@ -506,11 +504,13 @@ abline(v = as.Date(format(Sys.time(), format = &quot;%Y-%m-%d&quot;)), lwd = 2, 
 
 # Single milestone
 ganttR(df)</code></pre>
-<p><img src="/post/ganttR_files/figure-html/ganttR-1.png" width="960" /></p>
-<pre class="r"><code># Multiple milestones
+<p><img src="/post/ganttR_files/figure-html/ganttR-1.png" width="960" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>
+# Multiple milestones
 ganttR(dfM)</code></pre>
-<p><img src="/post/ganttR_files/figure-html/ganttR-2.png" width="960" /></p>
-<pre class="r"><code># Milestones only
+<p><img src="/post/ganttR_files/figure-html/ganttR-2.png" width="960" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>
+# Milestones only
 ganttR(dfM, &#39;milestones&#39;)</code></pre>
-<p><img src="/post/ganttR_files/figure-html/ganttR-3.png" width="960" /></p>
-</div>
+<p><img src="/post/ganttR_files/figure-html/ganttR-3.png" width="960" style="display: block; margin: auto;" /></p>
+</section>

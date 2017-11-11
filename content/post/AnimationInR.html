@@ -14,32 +14,32 @@ output:
 
 
 
-<div id="the-need-for-animations" class="section level2">
+<section id="the-need-for-animations" class="level2">
 <h2>The “<em>need</em>” for animations</h2>
 <p><br/></p>
 <p>As part of my PhD thesis, I am currently characterizing the intensity of multiple stressors in the estuary and gulf of St. Lawrence (see ResearchGate <a href="https://www.researchgate.net/project/Evaluating-the-cumulative-impacts-of-human-activities-on-the-structure-and-function-the-trophic-network-of-the-estuary-and-gulf-of-StLawrence">project</a> for more details). I have recently <em>needed</em> (read: <em>thought it would be cool</em>) to create an animation of the temporal variations in ultra-violet intensity in the St. Lawrence. Here is how I did it.</p>
 <p><br/></p>
-</div>
-<div id="setting-up-r" class="section level2">
+</section>
+<section id="setting-up-r" class="level2">
 <h2>Setting up R</h2>
-<div id="r-version-used-to-build-the-last-update-of-this-post" class="section level3">
+<section id="r-version-used-to-build-the-last-update-of-this-post" class="level3">
 <h3>R version used to build the last update of this post</h3>
-<pre class="r"><code>sessionInfo()[[1]]$version.string</code></pre>
-<pre><code>## [1] &quot;R version 3.4.1 (2017-06-30)&quot;</code></pre>
+<pre class="r"><code>sessionInfo()[[1]]$version.string
+R&gt;&gt; [1] &quot;R version 3.4.2 (2017-09-28)&quot;</code></pre>
 <p><br/></p>
-</div>
-<div id="installing-imagemagick" class="section level3">
+</section>
+<section id="installing-imagemagick" class="level3">
 <h3>Installing imagemagick</h3>
 <p>The package <code>animation</code>, which I used to create the animations in R, works with the application <a href="https://www.imagemagick.org/script/index.php"><code>imagemagick</code></a>, which can be installed using <a href="https://brew.sh/"><code>Homebrew</code></a>.</p>
 <pre class="bash"><code>brew install imagemagick</code></pre>
-</div>
-<div id="installing-the-package-animation" class="section level3">
+</section>
+<section id="installing-the-package-animation" class="level3">
 <h3>Installing the package animation</h3>
 <p><code>install.packages('animation', repos = 'http://yihui.name/xran')</code></p>
 <p><br/></p>
-</div>
-</div>
-<div id="data" class="section level2">
+</section>
+</section>
+<section id="data" class="level2">
 <h2>Data</h2>
 <p>There is a incredible amount of data available on the <a href="https://disc.gsfc.nasa.gov/uui/datasets?keywords=%22Aura%20OMI%22">NASA website</a>. For this post, we downloaded all available data from NASA’s Ozone Monitoring Instrument (OMI) aboard the Earth Observing System’s (EOS) Aura satellite. More specifically, we used <a href="https://disc.gsfc.nasa.gov/uui/datasets/OMUVBG_V003/summary?keywords=%22Aura%20OMI%22">OMI/Aura Surface UVB Irradiance and Erythemal Dose Daily at a scale of 0.25 x 0.25 degree</a> and selected the daily erythemal irradiance (mW/m<sup>2</sup>), <em>i.e.</em> the potentially harmful range of UV radiations, from October 1<sup>st</sup> 2004 to April 5<sup>th</sup> 2017. We then selected only the years with 12 months worth of data to create the following figures, <em>i.e.</em> from January 1<sup>st</sup> 2005 to December 31<sup>st</sup> 2016. <!-- The resulting dataset is available here in the [letiR github page](https://github.com/letiR/letir.github.io/blob/master/assets/AnimationInR/MonthOMI.rds). --></p>
 <p>The maps generated in this post require the user to load <a href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_ocean.zip"><code>ocean</code></a> shapefile from <a href="http://www.naturalearthdata.com/">Natural Earth</a>.</p>
@@ -52,18 +52,19 @@ output:
 
 # Ocean shapefile
   ocean &lt;- readOGR(dsn = &quot;../../static/assets/AnimationInR/shpfile/&quot;, layer = &quot;ne_10m_ocean&quot;) %&gt;%
-             spTransform(CRSobj = CRS(spatProj))</code></pre>
-<pre><code>## OGR data source with driver: ESRI Shapefile 
-## Source: &quot;../../static/assets/AnimationInR/shpfile/&quot;, layer: &quot;ne_10m_ocean&quot;
-## with 1 features
-## It has 2 fields</code></pre>
-<pre class="r"><code>  class(ocean)</code></pre>
-<pre><code>## [1] &quot;SpatialPolygonsDataFrame&quot;
-## attr(,&quot;package&quot;)
-## [1] &quot;sp&quot;</code></pre>
+             spTransform(CRSobj = CRS(spatProj))
+R&gt;&gt; OGR data source with driver: ESRI Shapefile 
+R&gt;&gt; Source: &quot;../../static/assets/AnimationInR/shpfile/&quot;, layer: &quot;ne_10m_ocean&quot;
+R&gt;&gt; with 1 features
+R&gt;&gt; It has 2 fields
+
+  class(ocean)
+R&gt;&gt; [1] &quot;SpatialPolygonsDataFrame&quot;
+R&gt;&gt; attr(,&quot;package&quot;)
+R&gt;&gt; [1] &quot;sp&quot;</code></pre>
 <p><br/></p>
-</div>
-<div id="set-parameters-and-functions" class="section level2">
+</section>
+<section id="set-parameters-and-functions" class="level2">
 <h2>Set parameters and functions</h2>
 <p>We start be setting the different parameters and functions required to build the animation.</p>
 <p><br/></p>
@@ -98,8 +99,8 @@ output:
         }
     }</code></pre>
 <p><br/></p>
-</div>
-<div id="create-first-animation" class="section level2">
+</section>
+<section id="create-first-animation" class="level2">
 <h2>Create first animation</h2>
 <p>Let’s start with a simple animation of erythemal irradiance for 2005.</p>
 <p><br/></p>
@@ -119,8 +120,8 @@ output:
 <img src="/img/UV2005animate.gif" style="width:50.0%" />
 </center>
 <p><br/></p>
-</div>
-<div id="create-complex-animation" class="section level2">
+</section>
+<section id="create-complex-animation" class="level2">
 <h2>Create complex animation</h2>
 <p>Now let’s make a more informative and complex animation that allows to visualize monthly erythemal irradiance through the years as well as annual trends.</p>
 <p><br/></p>
@@ -169,13 +170,10 @@ saveGIF({
     }
 }, movie.name = &quot;UVanimate.gif&quot;)</code></pre>
 <p><br/></p>
-<div class="figure">
-<img src="/img/UVanimate.gif" style="width:95.0%" />
-
-</div>
+<p><img src="/img/UVanimate.gif" style="width:95.0%" /></p>
 <p><br/></p>
-</div>
-<div id="concluding-remarks" class="section level2">
+</section>
+<section id="concluding-remarks" class="level2">
 <h2>Concluding remarks</h2>
 <p>As you can see, it is quite straightforward to create powerful and informative animations in R.</p>
-</div>
+</section>
