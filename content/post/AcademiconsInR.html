@@ -182,9 +182,9 @@ R&gt;&gt; [87] &quot;/usr/share/fonts/X11/misc&quot;
 R&gt;&gt; [88] &quot;/usr/share/fonts/X11/Type1&quot;                      
 R&gt;&gt; [89] &quot;/usr/share/fonts/X11/util&quot;</code></pre>
 <p>Then, we add <code>academicons.ttf</code>, <code>FontAwesome.otf</code> and <code>ionicons.ttf</code> to our session with the <code>font_add()</code> function:</p>
-<pre class="r"><code>font_add(family = &#39;academicons&#39;, regular = &#39;academicons.ttf&#39;)
-font_add(family = &#39;FontAwesome&#39;, regular = &#39;FontAwesome.otf&#39;)
-font_add(family = &#39;ionicons&#39;, regular = &#39;ionicons.ttf&#39;)
+<pre class="r"><code>font_add(family = &#39;academicons&#39;, regular = paste0(dr,&#39;academicons.ttf&#39;))
+font_add(family = &#39;FontAwesome&#39;, regular = paste0(dr,&#39;FontAwesome.otf&#39;))
+font_add(family = &#39;ionicons&#39;, regular = paste0(dr,&#39;ionicons.ttf&#39;))
 ##-- check the font families available on your computer.
 font_families()
 R&gt;&gt; [1] &quot;sans&quot;         &quot;serif&quot;        &quot;mono&quot;         &quot;wqy-microhei&quot;
