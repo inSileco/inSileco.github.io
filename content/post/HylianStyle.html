@@ -192,7 +192,8 @@ R&gt;&gt; [5] &quot;Triforce&quot;</code></pre>
 </section>
 <section id="finally-lets-make-our-hylian-plot" class="level3">
 <h3>6. Finally, let’s make our Hylian plot!</h3>
-<pre class="r"><code>par(family = &quot;Triforce&quot;, las = 1, cex.lab = 3, cex.main = 3, cex.axis=2, mar = c(4, 5, 5, 0))
+<pre class="r"><code>showtext_begin()
+par(family = &quot;Triforce&quot;, las = 1, cex.lab = 3, cex.main = 3, cex.axis=2, mar = c(4, 5, 5, 0))
 plot(x = c(0, 1), y = c(0, 1), type = &quot;n&quot;, xlab = &quot;X-axis&quot;, ylab = &quot;Y-axis&quot;)
 title(main = &quot;Hylian Style - Link must be proud of us!&quot;)
 ##-- triforce symbols / rubies / swords

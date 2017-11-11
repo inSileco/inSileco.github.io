@@ -179,7 +179,7 @@ There are 36 unicode characters available. They are numbered like so: "E9" +
 numbers ranging from 00 to 35 (version 1.8.0). To use them, we create a
 sequence using `sprintf()` and `paste0()` function:
 
-```{r academ, fig.width=9.5, fig.height=5}
+```{r academ, fig.width=9.5, fig.height=5, fig.showtext=TRUE}
 nb <- 35
 acs <- sprintf("%02d", 5+1:nb) %>% paste0("E8",.)
 ```
@@ -187,7 +187,7 @@ acs <- sprintf("%02d", 5+1:nb) %>% paste0("E8",.)
 We now plot them as if they were on a regular grid and we add the decimal value
 below:
 
-```{r figacadem, fig.width=9.5, fig.height=5}
+```{r figacadem, fig.width=9.5, fig.height=5, fig.showtext=TRUE}
 coord <- expand.grid(1:9, 1:4)
 cols <- c("#3fb3b2", "#8555b4", "#ffdd55", "#1b95e0")
 ##
@@ -206,7 +206,7 @@ The unicode hexadecimal for the FontAwesome's icons range from `f000`
 (<i class="fa fa-glass" aria-hidden="true"></i>) to `f2e0`
 (<i class="fa fa-meetup" aria-hidden="true"></i>) in version 4.7.
 
-```{r figfontawe, fig.width=9.5, fig.height=9}
+```{r figfontawe, fig.width=9.5, fig.height=9, fig.showtext=TRUE}
 nsq <- 12
 fas <- 1:(nsq*nsq) %>% as.hexmode %>% paste0("f0", .)
 coord <- expand.grid(1:nsq, 1:nsq)
@@ -221,7 +221,7 @@ There are 765 icons available (version 2.0.1), therefore some hexidecimal are
 not assigned. Here we'll use the `intToUtf8()` function to convert the decimal
 value into an unicode character.
 
-```{r figionic, fig.width=9.5, fig.height=8}
+```{r figionic, fig.width=9.5, fig.height=8, fig.showtext=TRUE}
 val <- 61970:62046
 ias <- sapply(val, FUN=intToUtf8)
 coord <- expand.grid(rev(1:11), 1:7)
@@ -237,7 +237,7 @@ plot(coord[,1], coord[,2], ann=FALSE, axes=FALSE, pch=ias, cex=2.5, col=cols)
 To combine, we have to switch from one font to another. Here is a simple
 example that combines the three icon frameworks.
 
-```{r volcano, fig.width=9.5, fig.height=7}
+```{r volcano, fig.width=9.5, fig.height=7, fig.showtext=TRUE}
 data(volcano)
 par(las=1, mar=c(4,5,4,4))
 image(volcano, col=colorRampPalette(c("grey10", "grey90"))(100))
