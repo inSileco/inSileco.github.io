@@ -60,10 +60,6 @@ make a direct **link** with a [previous blog post](/content/post/HylianStyle.htm
 
 #### R version used to build the last update of this post
 
-```{r init}
-knitr::opts_chunk$set(fig.align='center')
-```
-
 ```{r infosession}
 # path <- "../../static/assets/AcademiconsInR"
 sessionInfo()[[1]]$version.string
@@ -136,7 +132,7 @@ included in this folder -->
 We add the path to our fonts:
 
 ```{r}
-font_paths()
+font_paths(dr)
 ```
 
 
@@ -144,9 +140,9 @@ Then, we add `academicons.ttf`, `FontAwesome.otf` and `ionicons.ttf` to our
 session with the `font_add()` function:
 
 ```{r addfonts}
-font_add(family = 'academicons', regular = paste0(dr,'academicons.ttf'))
-font_add(family = 'FontAwesome', regular = paste0(dr,'FontAwesome.otf'))
-font_add(family = 'ionicons', regular = paste0(dr,'ionicons.ttf'))
+font_add(family = 'academicons', regular = 'academicons.ttf')
+font_add(family = 'FontAwesome', regular = 'FontAwesome.otf')
+font_add(family = 'ionicons', regular = 'ionicons.ttf')
 ##-- check the font families available on your computer.
 font_families()
 ```
