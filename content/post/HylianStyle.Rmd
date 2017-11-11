@@ -1,16 +1,19 @@
 ---
-title: Make your plot Hylian
+title: Make your R plot Hylian
 author: [kevin, david, nicolas]
 date: 2017-04-14
 tags: [R, plot, fonts, icons, zelda]
 draft: false
-tweet: Make your plot Hylian
+tweet: Make your R plot Hylian
 output:
   rmarkdown::html_page:
     toc: true
     fig_width: 3
     dev: svg
 ---
+
+
+*Last update*: November 11, 2017 -- Change paths to font files.
 
 ```{r codeChunkSetUp, echo=FALSE}
 source('../../static/Rscript/codeChunkSetUp.R')
@@ -34,7 +37,7 @@ it using a couple of clicks, if you proceed so, skip step 1.
 
 ```{r, echo = TRUE, eval = TRUE}
 # Create a directory < fonts >
-dr <- "hylianStyle_files/"
+dr <- "downloaded_fonts/"
 dir.create(dr, showWarnings = FALSE)
 
 # Download Triforce font < Triforce.ttf >
@@ -42,7 +45,7 @@ url <- "http://zeldauniverse.net/wp-content/uploads/2014/01/Triforce.ttf_.zip"
 download.file(url, destfile=paste0(dr, basename(url)),method="libcurl")
 
 # Unzip the file
-unzip(paste0(dr, basename(url)), exdir = "./hylianStyle_files")
+unzip(paste0(dr, basename(url)), exdir = dr)
 
 # Remove .zip
 file.remove(paste0(dr, basename(url)))
@@ -69,7 +72,7 @@ then you can skip step 4.
 ### 4. Add a path to your font
 
 If you have downloaded the font using R, you must notify showtext about to
-folder `dir` where the font has been stored. To so do, use the `font_paths()`
+folder `dr` where the font has been stored. To so do, use the `font_paths()`
 function:
 
 ```{r, echo = TRUE, eval = TRUE}
@@ -93,13 +96,20 @@ font_add(family = 'Triforce', regular = 'Triforce.ttf')
 font_families()
 ```
 
+
 ### 6. Finally, let's make our Hylian plot!
 
-```{r, echo = TRUE, eval = TRUE, fig.width = 9.5, fig.height = 7, fig.showtext = TRUE}
+```{r, echo = TRUE, eval = TRUE, fig.width = 9, fig.height = 7}
 par(family = "Triforce", las = 1, cex.lab = 3, cex.main = 3, cex.axis=2, mar = c(4, 5, 5, 0))
 plot(x = c(0, 1), y = c(0, 1), type = "n", xlab = "X-axis", ylab = "Y-axis")
 title(main = "Hylian Style - Link must be proud of us!")
-points(x = runif(7), y = runif(7), pch = "*", cex = 4)
-points(x = runif(7), y = runif(7), pch = "$", cex = 4, col = "#347AB7")
-points(x = 0.1, y = 0.1, pch = "%", cex = 10, col = "#347AB7")
+##-- triforce symbols / rubies / swords
+points(x = runif(5), y = runif(5), pch = "*", cex = 4)
+points(x = runif(5), y = runif(5), pch = "$", cex = 4, col = "#1b95e0")
+points(x = runif(5), y = runif(5), pch = "@", cex = 4, col = "#8555b4")
+##-- big Links
+points(x = 0.1, y = 0.1, pch = "%", cex = 10, col = "#3fb3b2", lwd=2)
+points(x = 0.9, y = 0.9, pch = "^", cex = 10, col = "#ffdd55", lwd=2)
 ```
+
+<br>

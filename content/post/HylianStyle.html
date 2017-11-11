@@ -1,10 +1,10 @@
 ---
-title: Make your plot Hylian
+title: Make your R plot Hylian
 author: [kevin, david, nicolas]
 date: 2017-04-14
 tags: [R, plot, fonts, icons, zelda]
 draft: false
-tweet: Make your plot Hylian
+tweet: Make your R plot Hylian
 output:
   rmarkdown::html_page:
     toc: true
@@ -14,6 +14,7 @@ output:
 
 
 
+<p><em>Last update</em>: November 11, 2017 – Change paths to icon files.</p>
 <section id="below-are-presented-the-6-steps-you-need-to-make-your-plot-a-hylian-one-may-the-triforce-be-with-you" class="level4">
 <h4>Below are presented the 6 steps you need to make your plot a Hylian one! <strong>May the triforce be with you</strong>!</h4>
 </section>
@@ -26,7 +27,7 @@ R&gt;&gt; [1] &quot;R version 3.4.2 (2017-09-28)&quot;</code></pre>
 <h3>1. Open R and download the font</h3>
 <p>The <a href="https://zeldauniverse.net/media/fonts/"><em>Triforce</em> font</a> is available on line. Below we download it using R! Alternatively, you may simply download and install it using a couple of clicks, if you proceed so, skip step 1.</p>
 <pre class="r"><code># Create a directory &lt; fonts &gt;
-dr &lt;- &quot;hylianStyle_files/&quot;
+dr &lt;- &quot;downloaded_fonts/&quot;
 dir.create(dr, showWarnings = FALSE)
 
 # Download Triforce font &lt; Triforce.ttf &gt;
@@ -34,7 +35,7 @@ url &lt;- &quot;http://zeldauniverse.net/wp-content/uploads/2014/01/Triforce.ttf
 download.file(url, destfile=paste0(dr, basename(url)),method=&quot;libcurl&quot;)
 
 # Unzip the file
-unzip(paste0(dr, basename(url)), exdir = &quot;./hylianStyle_files&quot;)
+unzip(paste0(dr, basename(url)), exdir = dr)
 
 # Remove .zip
 file.remove(paste0(dr, basename(url)))
@@ -79,102 +80,102 @@ R&gt;&gt; [27] &quot;Arimo Bold Italic for Powerline.ttf&quot;
 R&gt;&gt; [28] &quot;Arimo for Powerline.ttf&quot;            
 R&gt;&gt; [29] &quot;Arimo Italic for Powerline.ttf&quot;     
 R&gt;&gt; [30] &quot;Arimo-Bold.ttf&quot;                     
-R&gt;&gt;  [ reached getOption(&quot;max.print&quot;) -- omitted 578 entries ]</code></pre>
+R&gt;&gt;  [ reached getOption(&quot;max.print&quot;) -- omitted 579 entries ]</code></pre>
 <p>If you have installed the font on your computer, it should be in the list, then you can skip step 4.</p>
 </section>
 <section id="add-a-path-to-your-font" class="level3">
 <h3>4. Add a path to your font</h3>
-<p>If you have downloaded the font using R, you must notify showtext about to folder <code>dir</code> where the font has been stored. To so do, use the <code>font_paths()</code> function:</p>
+<p>If you have downloaded the font using R, you must notify showtext about to folder <code>dr</code> where the font has been stored. To so do, use the <code>font_paths()</code> function:</p>
 <pre class="r"><code>font_paths(dr)
-R&gt;&gt;  [1] &quot;/home/kevcaz/Github/Websites/inSileco.github.io/content/post/hylianStyle_files&quot;
-R&gt;&gt;  [2] &quot;/home/kevcaz/.local/share/fonts&quot;                                               
-R&gt;&gt;  [3] &quot;/usr/local/share/fonts&quot;                                                        
-R&gt;&gt;  [4] &quot;/usr/share/fonts&quot;                                                              
-R&gt;&gt;  [5] &quot;/usr/share/fonts/cmap&quot;                                                         
-R&gt;&gt;  [6] &quot;/usr/share/poppler/cMap/Adobe-CNS1&quot;                                            
-R&gt;&gt;  [7] &quot;/usr/share/poppler/cMap/Adobe-GB1&quot;                                             
-R&gt;&gt;  [8] &quot;/usr/share/poppler/cMap/Adobe-Japan1&quot;                                          
-R&gt;&gt;  [9] &quot;/usr/share/poppler/cMap/Adobe-Japan2&quot;                                          
-R&gt;&gt; [10] &quot;/usr/share/poppler/cMap/Adobe-Korea1&quot;                                          
-R&gt;&gt; [11] &quot;/usr/share/fonts/eot&quot;                                                          
-R&gt;&gt; [12] &quot;/usr/share/fonts/eot/font-awesome&quot;                                             
-R&gt;&gt; [13] &quot;/usr/share/fonts/opentype&quot;                                                     
-R&gt;&gt; [14] &quot;/usr/share/fonts/opentype/cabin&quot;                                               
-R&gt;&gt; [15] &quot;/usr/share/fonts/opentype/cantarell&quot;                                           
-R&gt;&gt; [16] &quot;/usr/share/fonts/opentype/ebgaramond&quot;                                          
-R&gt;&gt; [17] &quot;/usr/share/fonts/opentype/font-awesome&quot;                                        
-R&gt;&gt; [18] &quot;/usr/share/fonts/opentype/fonts-hosny-amiri&quot;                                   
-R&gt;&gt; [19] &quot;/usr/share/fonts/opentype/freefont&quot;                                            
-R&gt;&gt; [20] &quot;/usr/share/fonts/opentype/gentiumplus&quot;                                         
-R&gt;&gt; [21] &quot;/usr/share/fonts/opentype/ipaexfont-gothic&quot;                                    
-R&gt;&gt; [22] &quot;/usr/share/fonts/opentype/ipaexfont-mincho&quot;                                    
-R&gt;&gt; [23] &quot;/usr/share/fonts/opentype/ipafont-gothic&quot;                                      
-R&gt;&gt; [24] &quot;/usr/share/fonts/opentype/ipafont-mincho&quot;                                      
-R&gt;&gt; [25] &quot;/usr/share/fonts/opentype/linux-libertine&quot;                                     
-R&gt;&gt; [26] &quot;/usr/share/fonts/opentype/lobster&quot;                                             
-R&gt;&gt; [27] &quot;/usr/share/fonts/opentype/lobstertwo&quot;                                          
-R&gt;&gt; [28] &quot;/usr/share/javascript/mathjax/fonts/HTML-CSS/TeX/otf&quot;                          
-R&gt;&gt; [29] &quot;/usr/share/fonts/opentype/stix&quot;                                                
-R&gt;&gt; [30] &quot;/usr/share/fonts/opentype/stix-word&quot;                                           
-R&gt;&gt; [31] &quot;/usr/share/fonts/svg&quot;                                                          
-R&gt;&gt; [32] &quot;/usr/share/fonts/svg/font-awesome&quot;                                             
-R&gt;&gt; [33] &quot;/usr/share/fonts/truetype&quot;                                                     
-R&gt;&gt; [34] &quot;/usr/share/fonts/truetype/adf&quot;                                                 
-R&gt;&gt; [35] &quot;/usr/share/fonts/truetype/arphic-bkai00mp&quot;                                     
-R&gt;&gt; [36] &quot;/usr/share/fonts/truetype/arphic-bsmi00lp&quot;                                     
-R&gt;&gt; [37] &quot;/usr/share/fonts/truetype/arphic-gbsn00lp&quot;                                     
-R&gt;&gt; [38] &quot;/usr/share/fonts/truetype/arphic-gkai00mp&quot;                                     
-R&gt;&gt; [39] &quot;/usr/share/fonts/truetype/artemisia&quot;                                           
-R&gt;&gt; [40] &quot;/usr/share/fonts/truetype/asana-math&quot;                                          
-R&gt;&gt; [41] &quot;/usr/share/fonts/truetype/baekmuk&quot;                                             
-R&gt;&gt; [42] &quot;/usr/share/fonts/truetype/baskerville&quot;                                         
-R&gt;&gt; [43] &quot;/usr/share/fonts/truetype/bodoni-classic&quot;                                      
-R&gt;&gt; [44] &quot;/usr/share/fonts/truetype/comfortaa&quot;                                           
-R&gt;&gt; [45] &quot;/usr/share/fonts/truetype/complutum&quot;                                           
-R&gt;&gt; [46] &quot;/usr/share/fonts/truetype/croscore&quot;                                            
-R&gt;&gt; [47] &quot;/usr/share/fonts/truetype/crosextra&quot;                                           
-R&gt;&gt; [48] &quot;/usr/share/fonts/truetype/dejavu&quot;                                              
-R&gt;&gt; [49] &quot;/usr/share/fonts/truetype/didot&quot;                                               
-R&gt;&gt; [50] &quot;/usr/share/fonts/truetype/didot-classic&quot;                                       
-R&gt;&gt; [51] &quot;/usr/share/fonts/truetype/droid&quot;                                               
-R&gt;&gt; [52] &quot;/usr/share/fonts/truetype/ebgaramond&quot;                                          
-R&gt;&gt; [53] &quot;/usr/share/fonts/truetype/font-awesome&quot;                                        
-R&gt;&gt; [54] &quot;/usr/share/fonts/truetype/freefont&quot;                                            
-R&gt;&gt; [55] &quot;/usr/share/fonts/truetype/gazis&quot;                                               
-R&gt;&gt; [56] &quot;/usr/share/fonts/truetype/gentium&quot;                                             
-R&gt;&gt; [57] &quot;/usr/share/fonts/truetype/gentium-basic&quot;                                       
-R&gt;&gt; [58] &quot;/usr/share/fonts/truetype/inconsolata&quot;                                         
-R&gt;&gt; [59] &quot;/usr/share/fonts/truetype/junicode&quot;                                            
-R&gt;&gt; [60] &quot;/usr/share/fonts/truetype/lato&quot;                                                
-R&gt;&gt; [61] &quot;/usr/share/fonts/truetype/liberation&quot;                                          
-R&gt;&gt; [62] &quot;/usr/share/fonts/truetype/lyx&quot;                                                 
-R&gt;&gt; [63] &quot;/usr/share/fonts/truetype/neohellenic&quot;                                         
-R&gt;&gt; [64] &quot;/usr/share/fonts/truetype/noto&quot;                                                
-R&gt;&gt; [65] &quot;/usr/share/fonts/truetype/olga&quot;                                                
-R&gt;&gt; [66] &quot;/usr/share/fonts/truetype/openoffice&quot;                                          
-R&gt;&gt; [67] &quot;/usr/share/fonts/truetype/padauk&quot;                                              
-R&gt;&gt; [68] &quot;/usr/share/fonts/truetype/porson&quot;                                              
-R&gt;&gt; [69] &quot;/usr/share/fonts/truetype/roboto&quot;                                              
-R&gt;&gt; [70] &quot;/usr/share/fonts/truetype/roboto/hinted&quot;                                       
-R&gt;&gt; [71] &quot;/usr/share/fonts/truetype/solomos&quot;                                             
-R&gt;&gt; [72] &quot;/usr/share/fonts/truetype/theokritos&quot;                                          
-R&gt;&gt; [73] &quot;/usr/share/fonts/truetype/ttf-bitstream-vera&quot;                                  
-R&gt;&gt; [74] &quot;/usr/share/fonts/truetype/unfonts-core&quot;                                        
-R&gt;&gt; [75] &quot;/usr/share/fonts/truetype/unfonts-extra&quot;                                       
-R&gt;&gt; [76] &quot;/usr/share/fonts/type1&quot;                                                        
-R&gt;&gt; [77] &quot;/usr/share/fonts/type1/gsfonts&quot;                                                
-R&gt;&gt; [78] &quot;/usr/share/fonts/type1/texlive-fonts-recommended&quot;                              
-R&gt;&gt; [79] &quot;/usr/share/fonts/woff&quot;                                                         
-R&gt;&gt; [80] &quot;/usr/share/fonts/woff/ebgaramond&quot;                                              
-R&gt;&gt; [81] &quot;/usr/share/fonts/woff/font-awesome&quot;                                            
-R&gt;&gt; [82] &quot;/usr/share/fonts/woff/gentiumplus&quot;                                             
-R&gt;&gt; [83] &quot;/usr/share/fonts/X11&quot;                                                          
-R&gt;&gt; [84] &quot;/usr/share/fonts/X11/100dpi&quot;                                                   
-R&gt;&gt; [85] &quot;/usr/share/fonts/X11/75dpi&quot;                                                    
-R&gt;&gt; [86] &quot;/usr/share/fonts/X11/encodings&quot;                                                
-R&gt;&gt; [87] &quot;/usr/share/fonts/X11/encodings/large&quot;                                          
-R&gt;&gt; [88] &quot;/usr/share/fonts/X11/misc&quot;                                                     
-R&gt;&gt; [89] &quot;/usr/share/fonts/X11/Type1&quot;                                                    
+R&gt;&gt;  [1] &quot;/home/kevcaz/Github/Websites/inSileco.github.io/content/post/downloaded_fonts&quot;
+R&gt;&gt;  [2] &quot;/home/kevcaz/.local/share/fonts&quot;                                              
+R&gt;&gt;  [3] &quot;/usr/local/share/fonts&quot;                                                       
+R&gt;&gt;  [4] &quot;/usr/share/fonts&quot;                                                             
+R&gt;&gt;  [5] &quot;/usr/share/fonts/cmap&quot;                                                        
+R&gt;&gt;  [6] &quot;/usr/share/poppler/cMap/Adobe-CNS1&quot;                                           
+R&gt;&gt;  [7] &quot;/usr/share/poppler/cMap/Adobe-GB1&quot;                                            
+R&gt;&gt;  [8] &quot;/usr/share/poppler/cMap/Adobe-Japan1&quot;                                         
+R&gt;&gt;  [9] &quot;/usr/share/poppler/cMap/Adobe-Japan2&quot;                                         
+R&gt;&gt; [10] &quot;/usr/share/poppler/cMap/Adobe-Korea1&quot;                                         
+R&gt;&gt; [11] &quot;/usr/share/fonts/eot&quot;                                                         
+R&gt;&gt; [12] &quot;/usr/share/fonts/eot/font-awesome&quot;                                            
+R&gt;&gt; [13] &quot;/usr/share/fonts/opentype&quot;                                                    
+R&gt;&gt; [14] &quot;/usr/share/fonts/opentype/cabin&quot;                                              
+R&gt;&gt; [15] &quot;/usr/share/fonts/opentype/cantarell&quot;                                          
+R&gt;&gt; [16] &quot;/usr/share/fonts/opentype/ebgaramond&quot;                                         
+R&gt;&gt; [17] &quot;/usr/share/fonts/opentype/font-awesome&quot;                                       
+R&gt;&gt; [18] &quot;/usr/share/fonts/opentype/fonts-hosny-amiri&quot;                                  
+R&gt;&gt; [19] &quot;/usr/share/fonts/opentype/freefont&quot;                                           
+R&gt;&gt; [20] &quot;/usr/share/fonts/opentype/gentiumplus&quot;                                        
+R&gt;&gt; [21] &quot;/usr/share/fonts/opentype/ipaexfont-gothic&quot;                                   
+R&gt;&gt; [22] &quot;/usr/share/fonts/opentype/ipaexfont-mincho&quot;                                   
+R&gt;&gt; [23] &quot;/usr/share/fonts/opentype/ipafont-gothic&quot;                                     
+R&gt;&gt; [24] &quot;/usr/share/fonts/opentype/ipafont-mincho&quot;                                     
+R&gt;&gt; [25] &quot;/usr/share/fonts/opentype/linux-libertine&quot;                                    
+R&gt;&gt; [26] &quot;/usr/share/fonts/opentype/lobster&quot;                                            
+R&gt;&gt; [27] &quot;/usr/share/fonts/opentype/lobstertwo&quot;                                         
+R&gt;&gt; [28] &quot;/usr/share/javascript/mathjax/fonts/HTML-CSS/TeX/otf&quot;                         
+R&gt;&gt; [29] &quot;/usr/share/fonts/opentype/stix&quot;                                               
+R&gt;&gt; [30] &quot;/usr/share/fonts/opentype/stix-word&quot;                                          
+R&gt;&gt; [31] &quot;/usr/share/fonts/svg&quot;                                                         
+R&gt;&gt; [32] &quot;/usr/share/fonts/svg/font-awesome&quot;                                            
+R&gt;&gt; [33] &quot;/usr/share/fonts/truetype&quot;                                                    
+R&gt;&gt; [34] &quot;/usr/share/fonts/truetype/adf&quot;                                                
+R&gt;&gt; [35] &quot;/usr/share/fonts/truetype/arphic-bkai00mp&quot;                                    
+R&gt;&gt; [36] &quot;/usr/share/fonts/truetype/arphic-bsmi00lp&quot;                                    
+R&gt;&gt; [37] &quot;/usr/share/fonts/truetype/arphic-gbsn00lp&quot;                                    
+R&gt;&gt; [38] &quot;/usr/share/fonts/truetype/arphic-gkai00mp&quot;                                    
+R&gt;&gt; [39] &quot;/usr/share/fonts/truetype/artemisia&quot;                                          
+R&gt;&gt; [40] &quot;/usr/share/fonts/truetype/asana-math&quot;                                         
+R&gt;&gt; [41] &quot;/usr/share/fonts/truetype/baekmuk&quot;                                            
+R&gt;&gt; [42] &quot;/usr/share/fonts/truetype/baskerville&quot;                                        
+R&gt;&gt; [43] &quot;/usr/share/fonts/truetype/bodoni-classic&quot;                                     
+R&gt;&gt; [44] &quot;/usr/share/fonts/truetype/comfortaa&quot;                                          
+R&gt;&gt; [45] &quot;/usr/share/fonts/truetype/complutum&quot;                                          
+R&gt;&gt; [46] &quot;/usr/share/fonts/truetype/croscore&quot;                                           
+R&gt;&gt; [47] &quot;/usr/share/fonts/truetype/crosextra&quot;                                          
+R&gt;&gt; [48] &quot;/usr/share/fonts/truetype/dejavu&quot;                                             
+R&gt;&gt; [49] &quot;/usr/share/fonts/truetype/didot&quot;                                              
+R&gt;&gt; [50] &quot;/usr/share/fonts/truetype/didot-classic&quot;                                      
+R&gt;&gt; [51] &quot;/usr/share/fonts/truetype/droid&quot;                                              
+R&gt;&gt; [52] &quot;/usr/share/fonts/truetype/ebgaramond&quot;                                         
+R&gt;&gt; [53] &quot;/usr/share/fonts/truetype/font-awesome&quot;                                       
+R&gt;&gt; [54] &quot;/usr/share/fonts/truetype/freefont&quot;                                           
+R&gt;&gt; [55] &quot;/usr/share/fonts/truetype/gazis&quot;                                              
+R&gt;&gt; [56] &quot;/usr/share/fonts/truetype/gentium&quot;                                            
+R&gt;&gt; [57] &quot;/usr/share/fonts/truetype/gentium-basic&quot;                                      
+R&gt;&gt; [58] &quot;/usr/share/fonts/truetype/inconsolata&quot;                                        
+R&gt;&gt; [59] &quot;/usr/share/fonts/truetype/junicode&quot;                                           
+R&gt;&gt; [60] &quot;/usr/share/fonts/truetype/lato&quot;                                               
+R&gt;&gt; [61] &quot;/usr/share/fonts/truetype/liberation&quot;                                         
+R&gt;&gt; [62] &quot;/usr/share/fonts/truetype/lyx&quot;                                                
+R&gt;&gt; [63] &quot;/usr/share/fonts/truetype/neohellenic&quot;                                        
+R&gt;&gt; [64] &quot;/usr/share/fonts/truetype/noto&quot;                                               
+R&gt;&gt; [65] &quot;/usr/share/fonts/truetype/olga&quot;                                               
+R&gt;&gt; [66] &quot;/usr/share/fonts/truetype/openoffice&quot;                                         
+R&gt;&gt; [67] &quot;/usr/share/fonts/truetype/padauk&quot;                                             
+R&gt;&gt; [68] &quot;/usr/share/fonts/truetype/porson&quot;                                             
+R&gt;&gt; [69] &quot;/usr/share/fonts/truetype/roboto&quot;                                             
+R&gt;&gt; [70] &quot;/usr/share/fonts/truetype/roboto/hinted&quot;                                      
+R&gt;&gt; [71] &quot;/usr/share/fonts/truetype/solomos&quot;                                            
+R&gt;&gt; [72] &quot;/usr/share/fonts/truetype/theokritos&quot;                                         
+R&gt;&gt; [73] &quot;/usr/share/fonts/truetype/ttf-bitstream-vera&quot;                                 
+R&gt;&gt; [74] &quot;/usr/share/fonts/truetype/unfonts-core&quot;                                       
+R&gt;&gt; [75] &quot;/usr/share/fonts/truetype/unfonts-extra&quot;                                      
+R&gt;&gt; [76] &quot;/usr/share/fonts/type1&quot;                                                       
+R&gt;&gt; [77] &quot;/usr/share/fonts/type1/gsfonts&quot;                                               
+R&gt;&gt; [78] &quot;/usr/share/fonts/type1/texlive-fonts-recommended&quot;                             
+R&gt;&gt; [79] &quot;/usr/share/fonts/woff&quot;                                                        
+R&gt;&gt; [80] &quot;/usr/share/fonts/woff/ebgaramond&quot;                                             
+R&gt;&gt; [81] &quot;/usr/share/fonts/woff/font-awesome&quot;                                           
+R&gt;&gt; [82] &quot;/usr/share/fonts/woff/gentiumplus&quot;                                            
+R&gt;&gt; [83] &quot;/usr/share/fonts/X11&quot;                                                         
+R&gt;&gt; [84] &quot;/usr/share/fonts/X11/100dpi&quot;                                                  
+R&gt;&gt; [85] &quot;/usr/share/fonts/X11/75dpi&quot;                                                   
+R&gt;&gt; [86] &quot;/usr/share/fonts/X11/encodings&quot;                                               
+R&gt;&gt; [87] &quot;/usr/share/fonts/X11/encodings/large&quot;                                         
+R&gt;&gt; [88] &quot;/usr/share/fonts/X11/misc&quot;                                                    
+R&gt;&gt; [89] &quot;/usr/share/fonts/X11/Type1&quot;                                                   
 R&gt;&gt; [90] &quot;/usr/share/fonts/X11/util&quot;</code></pre>
 </section>
 <section id="add-the-triforce-font-to-your-session" class="level3">
@@ -182,7 +183,7 @@ R&gt;&gt; [90] &quot;/usr/share/fonts/X11/util&quot;</code></pre>
 <p>Either way, the Triforce font should now be available</p>
 <pre class="r"><code># Is the TTF present?
 font_files()[grep(&quot;Triforce&quot;, font_files())]
-R&gt;&gt; [1] &quot;Triforce.ttf&quot;</code></pre>
+R&gt;&gt; [1] &quot;Triforce.ttf&quot; &quot;Triforce.ttf&quot;</code></pre>
 <p>Let’s add it to our session:</p>
 <pre class="r"><code>font_add(family = &#39;Triforce&#39;, regular = &#39;Triforce.ttf&#39;)
 font_families()
@@ -194,8 +195,13 @@ R&gt;&gt; [5] &quot;Triforce&quot;</code></pre>
 <pre class="r"><code>par(family = &quot;Triforce&quot;, las = 1, cex.lab = 3, cex.main = 3, cex.axis=2, mar = c(4, 5, 5, 0))
 plot(x = c(0, 1), y = c(0, 1), type = &quot;n&quot;, xlab = &quot;X-axis&quot;, ylab = &quot;Y-axis&quot;)
 title(main = &quot;Hylian Style - Link must be proud of us!&quot;)
-points(x = runif(7), y = runif(7), pch = &quot;*&quot;, cex = 4)
-points(x = runif(7), y = runif(7), pch = &quot;$&quot;, cex = 4, col = &quot;#347AB7&quot;)
-points(x = 0.1, y = 0.1, pch = &quot;%&quot;, cex = 10, col = &quot;#347AB7&quot;)</code></pre>
-<p><img src="/post/HylianStyle_files/figure-html/unnamed-chunk-8-1.png" width="912" style="display: block; margin: auto;" /></p>
+##-- triforce symbols / rubies / swords
+points(x = runif(5), y = runif(5), pch = &quot;*&quot;, cex = 4)
+points(x = runif(5), y = runif(5), pch = &quot;$&quot;, cex = 4, col = &quot;#1b95e0&quot;)
+points(x = runif(5), y = runif(5), pch = &quot;@&quot;, cex = 4, col = &quot;#8555b4&quot;)
+##-- big Links
+points(x = 0.1, y = 0.1, pch = &quot;%&quot;, cex = 10, col = &quot;#3fb3b2&quot;, lwd=2)
+points(x = 0.9, y = 0.9, pch = &quot;^&quot;, cex = 10, col = &quot;#ffdd55&quot;, lwd=2)</code></pre>
+<p><img src="/post/HylianStyle_files/figure-html/unnamed-chunk-8-1.png" width="864" style="display: block; margin: auto;" /></p>
+<p><br></p>
 </section>

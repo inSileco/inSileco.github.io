@@ -1,9 +1,9 @@
 ---
-title: Add icons on your plots
+title: Add icons on your R plot
 author: [kevin, david]
 date: 2017-05-23
 tags: [R, plot, fonts, icons]
-tweet: "How to add icons on your R plots"
+tweet: "How to add icons on your R plot"
 draft: false
 output:
   rmarkdown::html_page:
@@ -38,8 +38,8 @@ efficiently and usefully refine your plots.
 
 There are two strategies to include icons on a R plot:
 
-  1- using icons as a font when possible;    
-  2- using icons as images.
+  1. using icons as a font when possible;    
+  2. using icons as images.
 
 Here, we exemplify the first strategy and leave the second one for another post
 (hopefully). We will use icons from three different iconic frameworks:
@@ -102,19 +102,21 @@ use the R to get these fonts.
 If you have decided to downloaded theses fonts, you can then either install them
 on your computer (there is most likely an application on your computer to do so
 and you will be able to use them in other softwares *e.g.* LibreOffice) or
-store them in a dedicated folder whose path will be denoted `pth` hereafter.
+store them in a dedicated folder whose path will be denoted `dr` hereafter.
 
 
 ```{r downloadFonts}
-pth <- "./AcademiconsInR_files"
-dir.create(pth, showWarnings = FALSE)
+dr <- "downloaded_fonts/"
+dir.create(dr, showWarnings = FALSE)
+##-- gather URLs
 urls <- c(
   'https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf',
   'https://github.com/FortAwesome/Font-Awesome/raw/master/fonts/FontAwesome.otf',
   'https://github.com/driftyco/ionicons/raw/master/fonts/ionicons.ttf'
   )   
+##-- download the fonts
 for (i in 1:3){
-  download.file(urls[i], destfile=paste0(pth, '/', gsub(urls[i], pattern = '.*/', replace = '')))
+  download.file(urls[i], destfile=paste0(dr, basename(urls[i]), method='libcurl'))
 }
 ```
 
@@ -134,7 +136,7 @@ included in this folder -->
 We add the path to our fonts:
 
 ```{r}
-font_paths(pth)
+font_paths()
 ```
 
 
@@ -197,7 +199,7 @@ par(mar=c(0,0,0,0))
 plot(c(0,9), c(0,5), type="n", ann=FALSE, axes=FALSE)
 text(coord[,1], coord[,2], labels= acs,  offset = 1.6, cex=.66, pos=1)
 ##
-par(family = "Academicons")
+par(family = "academicons")
 points(coord[,1], coord[,2], pch=-as.hexmode(acs), cex=3, col=cols)
 ```
 
