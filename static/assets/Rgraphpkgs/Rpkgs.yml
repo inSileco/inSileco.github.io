@@ -1,6 +1,4 @@
-################################################
-################################################
-## Main packages
+####------------------------------ Main packages
 
 - namepkg: plotrix
   text: "lots of plots, various labeling, axis and color scaling functions."
@@ -24,12 +22,16 @@
   category: "Main packages"
 
 
-################################################
-################################################
-## Colors
+
+####------------------------------ Colors
 
 - namepkg: colorspace
   text: "a package for color space manipulation."
+  category: Colors
+
+- namepkg: colourlovers
+  text: "Provides access to the COLOURlovers API, which offers color inspiration and color palettes."
+  github: leeper/colourlovers
   category: Colors
 
 - namepkg: dichromat
@@ -42,6 +44,10 @@
 
 - namepkg: RColorBrewer
   text: "provides color schemes for maps (and other graphics) designed by Cynthia Brewer."
+  category: Colors
+
+- namepkg: RImagePalette
+  text: " extracts the dominant colors from an image, and turns them into a scale for use in plots or for fun!"
   category: Colors
 
 - namepkg: scales
@@ -66,9 +72,8 @@
   category: Colors
 
 
-################################################
-################################################
-## Fonts / Emojis
+
+####------------------------------Fonts / Emojis
 
 - namepkg: extrafont
   text: "tools to using fonts other than the standard PostScript fonts."
@@ -94,9 +99,7 @@
 
 
 
-################################################
-################################################
-## "Extra plot functions"
+####------------------------------ Extra plot functions
 
 - namepkg: ade4
   text: "multivariate data analysis of ecological data and graphical display associated."
@@ -204,9 +207,7 @@
 
 
 
-################################################
-################################################
-## Clusters and Trees
+####------------------------------ Clusters and Trees
 
 - namepkg: ape
   text: "analyses of Phylogenetics and Evolution, to draw a tree see `plot.phylo()` and `plot.multiPhylo()` functions."
@@ -226,9 +227,7 @@
 
 
 
-################################################
-################################################
-## Plot3D
+####------------------------------ Plot3D
 
 - namepkg: plot3D
   text: "functions for viewing 2-D and 3-D data, including perspective plots, slice plots, surface plots, scatter plots, etc."
@@ -248,9 +247,8 @@
   category: "Plots in 3D"
 
 
-################################################
-################################################
-## Diagrams
+
+####------------------------------ Diagrams
 
 - namepkg: DiagrammeR
   text: "creates network graph diagrams."
@@ -262,10 +260,6 @@
   text: "network visualization, using 'vis.js' javascript library."
   github: atastorm-open/visNetwork
   website: https://cran.r-project.org/web/packages/visNetwork/vignettes/Introduction-to-visNetwork.html
-  category: Graph diagrams, flowcharts and networks
-
-- namepkg: shape
-  text: "functions for plotting graphical shapes, colors."
   category: Graph diagrams, flowcharts and networks
 
 - namepkg: diagram
@@ -280,16 +274,19 @@
 - namepkg: qgraph
   text: "visualizing data as networks as well as provides an interface for visualizing weighted graphical models."
   website: http://sachaepskamp.com/qgraph
-  category:  Graph diagrams, flowcharts and networks
+  category: Graph diagrams, flowcharts and networks
+
+- namepkg: shape
+  text: "functions for plotting graphical shapes, colors."
+  category: Graph diagrams, flowcharts and networks
 
 - namepkg: VennDiagram
   text : "a set of functions to generate high-resolution Venn and Euler plots."
   category: Graph diagrams, flowcharts and networks
 
 
-################################################
-################################################
-## Maps
+
+####------------------------------ Maps
 
 - namepkg: cartography
   text: "create and integrate maps in your R workflow."
@@ -328,6 +325,12 @@
   website: http://r-forge.r-project.org/projects/maptools/
   category: Maps
 
+- namepkg: mapview
+  text: "interactive viewing of spatial data in R."
+  github: r-spatial/mapview
+  website: https://r-spatial.github.io/mapview/
+  category: Maps
+
 - namepkg: micromap
   text: "a package for linked micromaps."
   doi: 10.18637/jss.v063.i02
@@ -346,9 +349,7 @@
 
 
 
-################################################
-################################################
-## Interactive graphics for R
+####------------------------------ Interactive graphics for R
 
 - namepkg: iplot
   text: "interactive graphics for R."
@@ -377,41 +378,44 @@
 
 
 
-################################################
-################################################
-## Importing Image
+####------------------------------ Importing Image
 
 - namepkg: bmp
   text: "reads Windows BMP format images"
-  category: "Image importation"
+  category: "Image importation and image processing"
 
 - namepkg: grImport
   text: "a set of functions for converting, importing, and drawing PostScript pictures in R plots."
   doi: 10.18637/jss.v030.i04
   pdf: https://cran.r-project.org/web/packages/grImport/vignettes/import.pdf
-  category: "Image importation"
+  category: "Image importation and image processing"
 
 # grimport2
+
+- namepkg: imager
+  text: "Image Processing Library Based on 'CImg"
+  website: http://dahtah.github.io/imager/
+  github: dahtah/imager
+  category: "Image importation and image processing"
 
 - namepkg: jpeg
   text: "reads bitmap images stored in the JPEG format."
   website: http://www.rforge.net/jpeg/
-  category: "Image importation"
+  category: "Image importation and image processing"
 
 - namepkg: pixmap
   text: "functions for import, export, plotting and other manipulations of bitmapped images."
-  category: "Image importation"
+  category: "Image importation and image processing"
 
 - namepkg: png
   text: "Reads bitmap images stored in the PNG format."
   website: http://www.rforge.net/png/
-  category: "Image importation"
+  category: "Image importation and image processing"
 
 
 
-################################################
-################################################
-## ggplot2 and extensions
+
+####------------------------------ ggplot2 and extensions
 
 - namepkg: ggplot2
   text: "an implementation of the grammar of graphics in R."
@@ -439,6 +443,12 @@
 - namepkg: ggbeeswarm
   text: "beeswarm-style plots with ggplot2."
   github: eclarke/ggbeeswarm
+  category: "ggplot2 and extensions"
+
+- namepkg: ggridges
+  text: "visualize changes in distributions over time or space."
+  website: https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html
+  github: clauswilke/ggridges
   category: "ggplot2 and extensions"
 
 - namepkg: ggcorrplot
@@ -564,9 +574,7 @@
 
 
 
-################################################
-################################################
-## Miscellaneous
+####------------------------------ Miscellaneous
 
 - namepkg: arulesViz
   text: "visualizing association rules and frequent itemsets."
@@ -616,16 +624,14 @@
   category: Miscellaneous
 
 - namepkg: wordcloud2
-  text: "creates word clouds."
+  text: "R interface to wordcloud for data visualization."
   category: Miscellaneous
   website: https://timdream.org/wordcloud2.js/#love
   github: Lchiffon/wordcloud2
 
 
 
-################################################
-################################################
-##  Web-based interactive charts
+####------------------------------ Web-based interactive charts
 
 - namepkg: dygraphs
   text: "Interface to 'Dygraphs' interactive time series charting library."
@@ -643,7 +649,6 @@
   website: http://jkunst.com/highcharter/
   github: jkunst.com/highcharter/
   category: "Web-based interactive charts"
-
 
 - namepkg: htmlwidgets
   text:  "a framework for easily creating R bindings to JavaScript libraries."

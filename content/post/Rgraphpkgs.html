@@ -16,21 +16,19 @@ output:
 
 <p>Note that the list of packages below would be updated as soon as we find a new package. If you know a package that should be in the list, please feel mention it in the disqus section that follows the list.</p>
 <p><br/></p>
-<div id="why-use-r-to-produce-graphics" class="section level2">
+<section id="why-use-r-to-produce-graphics" class="level2">
 <h2>Why use R to produce graphics?</h2>
-<p>S, R’s ancestor, was first designed to be an interactive interface for calling routines from the SCS (Statistical Computing Subroutines) FORTRAN library. It expanded to be a complete programming language dedicated to data manipulation, statistical analysis and data visualization (see <a href="http://www.lcg.unam.mx/~lcollado/R/resources/history_of_S.pdf">A brief History of S</a>). Today’s graphical system of R is directly derived from the one of S. When R is installed, you get from it two base packages, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html">‘graphics’</a> and <a href="https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html">‘grid’</a>, which produce graphics that are exported with the <a href="https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/00Index.html">grDevices</a> package. These packages are very complete and flexible. They allow users to efficiently create graphics that scientists use in their day to day operations, <em>i.e.</em> scatterplots, box plots, histograms, etc. We consider that the ‘graphics’ package is somewhat more user-friendly than the trickier ‘grid’ package which offers better facilities to develop new graphical functions (e.g. grid’ has been employed to build <a href="https://cran.r-project.org/web/packages/ggplot2">ggplot2</a>). Recently, the <a href="https://journal.r-project.org/archive/2015-1/murrell.pdf">gridGraphics</a> package has been developed to bridge the gap between ‘grid’ and ‘graphics’ packages.</p>
+<p>S, R’s ancestor, was first designed to be an interactive interface for calling routines from the SCS (Statistical Computing Subroutines) FORTRAN library. It expanded to be a complete programming language dedicated to data manipulation, statistical analysis and data visualization (see <a href="http://www.lcg.unam.mx/~lcollado/R/resources/history_of_S.pdf">A brief History of S</a>). Today’s graphical system of R is directly derived from the one of S. When R is installed, you get from it two base packages, <a href="https://stat.ethz.ch/R-manual/R-devel/library/graphics/html/00Index.html">‘graphics’</a> and <a href="https://stat.ethz.ch/R-manual/R-devel/library/grid/html/00Index.html">‘grid’</a>, which produce graphics that are exported with the <a href="https://stat.ethz.ch/R-manual/R-devel/library/grDevices/html/00Index.html">grDevices</a> package. These packages are very complete and flexible. They allow users to efficiently create graphics that scientists use in their day to day operations, <em>i.e.</em> scatterplots, box plots, histograms, etc. We consider that the ‘graphics’ package is somewhat more user-friendly than the trickier ‘grid’ package which offers better facilities to develop new graphical functions (e.g. grid’ has been employed to build <a href="https://cran.r-project.org/web/packages/ggplot2">ggplot2</a>). Recently, the <a href="https://journal.r-project.org/archive/2015-1/murrell.pdf">gridGraphics</a> package has been developed to bridge the gap between ‘grid’ and ‘graphics’ packages.</p>
 <p>That being said, the advantages are numerous and more can be built in. For instance:</p>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><p>You get all the advantages linked with using R, <em>i.e.</em> it is free, lot of documentation exists, a very large community of users, there are many packages, it is easy to learn.</p></li>
 <li><p>Any kind of graphics a scientist needs has already been implemented by many contributors (see the packages review below). If you find there is room for improvement or that we are mistaken, all information is available to further develop missing plotting functions or correct existing ones.</p></li>
 <li><p>Almost everything is possible. All graphics are fully customizable. Some time is required to learn the works, but it’s worth it.</p></li>
 <li><p>Although there may be many good reasons to use software to post-treat graphics R produces in WYSIWYG softwares, we contend that once you master R, you will never do so. When a graphics is done, it is associated with only a few lines of code. Changing solely the lines of code is a much more efficient way more efficient to solve any problem than reproducing and post-treating the graphics. As scientists, it is a victory to only modify a few lines of code when reviewers quibble about a figure.</p></li>
 <li><p>Once a graphics is created, we can export it in many formats: <code>.eps</code>, <code>.jpeg</code>, <code>.pdf</code>, <code>.bmp</code>, <code>.svg</code> with appropriate resolution and size. There is 100% guarantee that you will meet a journal’s requirements for figures publication.</p></li>
 </ol>
-<!-- This blog section is dedicated to help you realize these advantages. Examples will be provided with many parameters to ensure you can get exactly what you want (in term of graphics). We wish to show and assist you in making everything possible. Every tool is already available and we made some more accessible through this [graphicsutils](https://github.com/KevCaz/graphicsutils) package available on github.
- -->
-</div>
-<div id="documentation" class="section level2">
+</section>
+<section id="documentation" class="level2">
 <h2>Documentation</h2>
 <p>We will make the content below ‘evolving’ by collecting and indexing as many sources of documentation as possible. Please comment in the Disqus section below to suggest and/or provide your own sources:</p>
 <ul>
@@ -60,8 +58,8 @@ output:
 <li><a href="http://www.r-graph-gallery.com">A newer graph gallery</a></li>
 </ul></li>
 </ul>
-</div>
-<div id="list-of-packages" class="section level2">
+</section>
+<section id="list-of-packages" class="level2">
 <h2>List of packages</h2>
 <!-- Find package [here](http://rpackages.ianhowson.com) A comprehensive index of R packages and documentation from CRAN, Bioconductor, GitHub and R-Forge. (https://cran.r-project.org/web/packages/available_packages_by_name.html) -->
 <p>Many packages for graphics are indexed in a dedicated <a href="https://cran.r-project.org/web/views/Graphics.html">task view maintained by Nicholas Lewin-Koh</a>. We have indexed many of them and refer to more below. For each package, we provide :</p>
@@ -77,40 +75,42 @@ output:
 <li><a href=""><i class="fa fa-link"></i></a>: a link that goes to a dedicated website, a html vignette that describes well the package or a relevant publication,</li>
 <li><a href=""><i class="fa fa-file-pdf-o"></i></a>: a link that goes to an relevant pdf file (an R journal article for instance).</li>
 </ul>
-<div id="main-packages" class="section level3">
+<section id="main-packages" class="level3">
 <h3>Main packages</h3>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><strong>plotrix</strong> lots of plots, various labeling, axis and color scaling functions. <a href="https://cran.r-project.org/web/packages/plotrix">CRAN</a> <a href='https://r-forge.r-project.org/projects/plotrix'><i class='fa fa-link'></i></a> <a href='https://www.r-project.org/doc/Rnews/Rnews_2006-4.pdf'><i class='fa fa-file-pdf-o'></i></a></li>
 <li><strong>gplots</strong> various R Programming Tools for Plotting Data. <a href="https://cran.r-project.org/web/packages/gplots">CRAN</a></li>
 <li><strong>lattice</strong> R implementation of Trellis Graphics. <a href="https://cran.r-project.org/web/packages/lattice">CRAN</a> <a href='http://r-forge.r-project.org/projects/lattice/'><i class='fa fa-link'></i></a></li>
 <li><strong>ggplot2</strong> an implementation of the grammar of graphics in R (see below for extensions). <a href="https://cran.r-project.org/web/packages/ggplot2">CRAN</a> <a href='https://github.com/hadley/ggplot2'><i class='fa fa-github'></i></a> <a href='http://ggplot2.org'><i class='fa fa-link'></i></a> <br/></li>
 </ol>
-</div>
-<div id="colors" class="section level3">
+</section>
+<section id="colors" class="level3">
 <h3>Colors</h3>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><strong>colorspace</strong> a package for color space manipulation. <a href="https://cran.r-project.org/web/packages/colorspace">CRAN</a></li>
+<li><strong>colourlovers</strong> Provides access to the COLOURlovers API, which offers color inspiration and color palettes. <a href="https://cran.r-project.org/web/packages/colourlovers">CRAN</a> <a href='https://github.com/leeper/colourlovers'><i class='fa fa-github'></i></a></li>
 <li><strong>dichromat</strong> collapses red-green or green-blue distinctions to simulate the effects of different types of color-blindness. <a href="https://cran.r-project.org/web/packages/dichromat">CRAN</a></li>
 <li><strong>munsell</strong> provides easy access to, and manipulation of, the Munsell colours. <a href="https://cran.r-project.org/web/packages/munsell">CRAN</a></li>
 <li><strong>RColorBrewer</strong> provides color schemes for maps (and other graphics) designed by Cynthia Brewer. <a href="https://cran.r-project.org/web/packages/RColorBrewer">CRAN</a></li>
+<li><strong>RImagePalette</strong> extracts the dominant colors from an image, and turns them into a scale for use in plots or for fun! <a href="https://cran.r-project.org/web/packages/RImagePalette">CRAN</a></li>
 <li><strong>scales</strong> scale functions for visualization. <a href="https://cran.r-project.org/web/packages/scales">CRAN</a> <a href='https://github.com/hadley/scales'><i class='fa fa-github'></i></a></li>
 <li><strong>viridis</strong> port of the new ‘matplotlib’ color maps to ‘R’ <a href="https://cran.r-project.org/web/packages/viridis">CRAN</a> <a href='https://github.com/sjmgarnier/viridis'><i class='fa fa-github'></i></a> <a href='https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html'><i class='fa fa-link'></i></a></li>
 <li><strong>viridisLite</strong> viridis Lite version <a href="https://cran.r-project.org/web/packages/viridisLite">CRAN</a> <a href='https://github.com/sjmgarnier/viridisLite'><i class='fa fa-github'></i></a></li>
 <li><strong>wesanderson</strong> palettes generated mostly from Wes Anderson movies. <a href="https://cran.r-project.org/web/packages/wesanderson">CRAN</a> <a href='https://github.com/karthik/wesanderson'><i class='fa fa-github'></i></a> <br/></li>
 </ol>
-</div>
-<div id="fonts" class="section level3">
+</section>
+<section id="fonts" class="level3">
 <h3>Fonts</h3>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><strong>extrafont</strong> tools to using fonts other than the standard PostScript fonts. <a href="https://cran.r-project.org/web/packages/extrafont">CRAN</a> <a href='https://github.com/https://github.com/wch/extrafont'><i class='fa fa-github'></i></a></li>
 <li><strong>showtext</strong> eases the use of fonts in R graphs. <a href="https://cran.r-project.org/web/packages/showtext">CRAN</a> <a href='https://github.com/yixuan/showtext'><i class='fa fa-github'></i></a> <a href='https://journal.r-project.org/archive/2015-1/qiu.pdf'><i class='fa fa-file-pdf-o'></i></a></li>
 <li><strong>emojifont</strong> an implementation of using emoji font in both base and ‘ggplot2’ graphics. <a href="https://cran.r-project.org/web/packages/emojifont">CRAN</a> <a href='https://github.com/GuangchuangYu/emojifont'><i class='fa fa-github'></i></a> <a href='https://cran.r-project.org/web/packages/emojifont/vignettes/emojifont.html'><i class='fa fa-link'></i></a></li>
 <li><strong>hexSticker</strong> an implementation of using emoji font in both base and ‘ggplot2’ graphics. <a href="https://cran.r-project.org/web/packages/hexSticker">CRAN</a> <a href='https://github.com/GuangchuangYu/hexSticker'><i class='fa fa-github'></i></a> <br/></li>
 </ol>
-</div>
-<div id="extra-plot-functions" class="section level3">
+</section>
+<section id="extra-plot-functions" class="level3">
 <h3>Extra plot functions</h3>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><strong>ade4</strong> multivariate data analysis of ecological data and graphical display associated. <a href="https://cran.r-project.org/web/packages/ade4">CRAN</a> <a href='https://github.com//sdray/ade4'><i class='fa fa-github'></i></a> <a href='http://pbil.univ-lyon1.fr/ADE-4/'><i class='fa fa-link'></i></a></li>
 <li><strong>adegraphics</strong> graphical functionalities for the representation of multivariate data (complete re-implementation of the functions available in the ‘ade4’ package). <a href="https://cran.r-project.org/web/packages/adegraphics">CRAN</a> <a href='https://github.com/sdray/adegraphics'><i class='fa fa-github'></i></a> <a href='https://cran.r-project.org/web/packages/adegraphics/vignettes/adegraphics.html'><i class='fa fa-link'></i></a></li>
 <li><strong>aplpack</strong> a set of functions for drawing some special plots <a href="https://cran.r-project.org/web/packages/aplpack">CRAN</a></li>
@@ -132,40 +132,40 @@ output:
 <li><strong>Violin plot</strong> creates Violin plots. <a href="https://cran.r-project.org/web/packages/Violin%20plot">CRAN</a></li>
 <li><strong>visreg</strong> visualization of regression models. <a href="https://cran.r-project.org/web/packages/visreg">CRAN</a> <a href='https://github.com/pbreheny/visreg'><i class='fa fa-github'></i></a> <a href='http://myweb.uiowa.edu/pbreheny/publications/visreg.pdf'><i class='fa fa-file-pdf-o'></i></a> <br/></li>
 </ol>
-</div>
-<div id="clusters-and-trees" class="section level3">
+</section>
+<section id="clusters-and-trees" class="level3">
 <h3>Clusters and trees</h3>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><strong>ape</strong> analyses of Phylogenetics and Evolution, to draw a tree see <code>plot.phylo()</code> and <code>plot.multiPhylo()</code> functions. <a href="https://cran.r-project.org/web/packages/ape">CRAN</a></li>
 <li><strong>gclust</strong> orders panels in scatterplot matrices and parallel coordinate displays by some merit index. <a href="https://cran.r-project.org/web/packages/gclust">CRAN</a></li>
 <li><strong>biclust</strong> algorithms to find biclusters in two-dimensional data, visualisation solutions are included. <a href="https://cran.r-project.org/web/packages/biclust">CRAN</a></li>
 <li><strong>VisuClust</strong> visualisation of Clusters in Multivariate Data. <a href="https://cran.r-project.org/web/packages/VisuClust">CRAN</a> <br/></li>
 </ol>
-</div>
-<div id="plots-in-3d" class="section level3">
+</section>
+<section id="plots-in-3d" class="level3">
 <h3>Plots in 3D</h3>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><strong>plot3D</strong> functions for viewing 2-D and 3-D data, including perspective plots, slice plots, surface plots, scatter plots, etc. <a href="https://cran.r-project.org/web/packages/plot3D">CRAN</a></li>
 <li><strong>misc3d</strong> a collection of miscellaneous 3d plots, including isosurfaces. <a href="https://cran.r-project.org/web/packages/misc3d">CRAN</a></li>
 <li><strong>rgl</strong> implements 3D visualization using OpenGL. <a href="https://cran.r-project.org/web/packages/rgl">CRAN</a> <a href='https://cran.r-project.org/web/packages/rgl/vignettes/rgl.html'><i class='fa fa-link'></i></a></li>
 <li><strong>scatterplot3d</strong> plots a three dimensional (3D) point cloud. <a href="https://cran.r-project.org/web/packages/scatterplot3d">CRAN</a> <br/></li>
 </ol>
-</div>
-<div id="graph-diagrams-flowcharts-and-networks" class="section level3">
+</section>
+<section id="graph-diagrams-flowcharts-and-networks" class="level3">
 <h3>Graph diagrams, flowcharts and networks</h3>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><strong>DiagrammeR</strong> creates network graph diagrams. <a href="https://cran.r-project.org/web/packages/DiagrammeR">CRAN</a> <a href='https://github.com/rich-iannone/DiagrammeR'><i class='fa fa-github'></i></a> <a href='http://rich-iannone.github.io/DiagrammeR/'><i class='fa fa-link'></i></a></li>
 <li><strong>visNetwork</strong> network visualization, using ‘vis.js’ javascript library. <a href="https://cran.r-project.org/web/packages/visNetwork">CRAN</a> <a href='https://github.com/atastorm-open/visNetwork'><i class='fa fa-github'></i></a> <a href='https://cran.r-project.org/web/packages/visNetwork/vignettes/Introduction-to-visNetwork.html'><i class='fa fa-link'></i></a></li>
-<li><strong>shape</strong> functions for plotting graphical shapes, colors. <a href="https://cran.r-project.org/web/packages/shape">CRAN</a></li>
 <li><strong>diagram</strong> visualising simple graphs, flowcharts, and webs. <a href="https://cran.r-project.org/web/packages/diagram">CRAN</a></li>
 <li><strong>igraph</strong> network analysis and visualization. <a href="https://cran.r-project.org/web/packages/igraph">CRAN</a></li>
 <li><strong>qgraph</strong> visualizing data as networks as well as provides an interface for visualizing weighted graphical models. <a href="https://cran.r-project.org/web/packages/qgraph">CRAN</a> <a href='http://sachaepskamp.com/qgraph'><i class='fa fa-link'></i></a></li>
+<li><strong>shape</strong> functions for plotting graphical shapes, colors. <a href="https://cran.r-project.org/web/packages/shape">CRAN</a></li>
 <li><strong>VennDiagram</strong> a set of functions to generate high-resolution Venn and Euler plots. <a href="https://cran.r-project.org/web/packages/VennDiagram">CRAN</a> <br/></li>
 </ol>
-</div>
-<div id="maps" class="section level3">
+</section>
+<section id="maps" class="level3">
 <h3>Maps</h3>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><strong>cartography</strong> create and integrate maps in your R workflow. <a href="https://cran.r-project.org/web/packages/cartography">CRAN</a> <a href='https://github.com/Groupe-ElementR/cartography'><i class='fa fa-github'></i></a></li>
 <li><strong>leafletR</strong> creates interactive web-maps based on the Leaflet JavaScript library. <a href="https://cran.r-project.org/web/packages/leafletR">CRAN</a> <a href='https://github.com/chgrl/leafletR'><i class='fa fa-github'></i></a></li>
 <li><strong>leaflet</strong> creates interactive web maps with the JavaScript ‘Leaflet’ library <a href="https://cran.r-project.org/web/packages/leaflet">CRAN</a> <a href='https://github.com/rstudio/leaflet'><i class='fa fa-github'></i></a> <a href='http://rstudio.github.io/leaflet/'><i class='fa fa-link'></i></a></li>
@@ -173,38 +173,41 @@ output:
 <li><strong>plotGoogleMaps</strong> accesses high resolution raster maps using the OpenStreetMap protocol. <a href="https://cran.r-project.org/web/packages/plotGoogleMaps">CRAN</a> <a href='http://r-forge.r-project.org/projects/plotgooglemaps/'><i class='fa fa-link'></i></a></li>
 <li><strong>maps</strong> draws geographical maps. <a href="https://cran.r-project.org/web/packages/maps">CRAN</a> <a href='http://r-forge.r-project.org/projects/maptools/'><i class='fa fa-link'></i></a></li>
 <li><strong>maptools</strong> a set of tools for manipulating and reading geographic data, in particular ESRI shapefiles. <a href="https://cran.r-project.org/web/packages/maptools">CRAN</a> <a href='http://r-forge.r-project.org/projects/maptools/'><i class='fa fa-link'></i></a></li>
+<li><strong>mapview</strong> interactive viewing of spatial data in R. <a href="https://cran.r-project.org/web/packages/mapview">CRAN</a> <a href='https://github.com/r-spatial/mapview'><i class='fa fa-github'></i></a> <a href='https://r-spatial.github.io/mapview/'><i class='fa fa-link'></i></a></li>
 <li><strong>micromap</strong> a package for linked micromaps. <a href="https://cran.r-project.org/web/packages/micromap">CRAN</a> <a href='https://doi.org/10.18637/jss.v063.i02'><i class='ai ai-doi'></i></a></li>
 <li><strong>raster</strong> reading, writing, manipulating, analyzing and modeling of gridded spatial data. <a href="https://cran.r-project.org/web/packages/raster">CRAN</a> <a href='https://cran.r-project.org/web/packages/raster/vignettes/Raster.pdf'><i class='fa fa-file-pdf-o'></i></a></li>
 <li><strong>rgdal</strong> reads shapefiles and rasters using Frank Warmerdam’s Geospatial Data Abstraction Library. <a href="https://cran.r-project.org/web/packages/rgdal">CRAN</a> <a href='https://r-forge.r-project.org/projects/rgdal/'><i class='fa fa-link'></i></a> <br/></li>
 </ol>
-</div>
-<div id="interactive-graphics" class="section level3">
+</section>
+<section id="interactive-graphics" class="level3">
 <h3>Interactive graphics</h3>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><strong>iplot</strong> interactive graphics for R. <a href="https://cran.r-project.org/web/packages/iplot">CRAN</a> <a href='http://www.iPlots.org/'><i class='fa fa-link'></i></a></li>
 <li><strong>manipulate</strong> interactive plotting functions for use within RStudio. <a href="https://cran.r-project.org/web/packages/manipulate">CRAN</a> <a href='https://github.com/rstudio/manipulate'><i class='fa fa-github'></i></a> <a href='https://support.rstudio.com/hc/en-us/articles/200551906-Interactive-Plotting-with-Manipulate'><i class='fa fa-link'></i></a></li>
 <li><strong>playwith</strong> a GUI for interactive plots using GTK+ <a href="https://cran.r-project.org/web/packages/playwith">CRAN</a> <a href='http://playwith.googlecode.com/'><i class='fa fa-link'></i></a></li>
 <li><strong>rpanel</strong> simple interactive controls for R using the tcltk library. <a href="https://cran.r-project.org/web/packages/rpanel">CRAN</a> <a href='http://www.stats.gla.ac.uk/~adrian/rpanel/'><i class='fa fa-link'></i></a> <a href='https://doi.org/10.18637/jss.v017.i09'><i class='ai ai-doi'></i></a> <a href='https://cran.r-project.org/doc/Rnews/Rnews_2006-4.pdf'><i class='fa fa-file-pdf-o'></i></a> <br/></li>
 </ol>
-</div>
-<div id="image-importation" class="section level3">
-<h3>Image importation</h3>
-<ol style="list-style-type: decimal">
+</section>
+<section id="image-importation-and-image-processing" class="level3">
+<h3>Image importation and image processing</h3>
+<ol type="1">
 <li><strong>bmp</strong> reads Windows BMP format images <a href="https://cran.r-project.org/web/packages/bmp">CRAN</a></li>
 <li><strong>grImport</strong> a set of functions for converting, importing, and drawing PostScript pictures in R plots. <a href="https://cran.r-project.org/web/packages/grImport">CRAN</a> <a href='https://doi.org/10.18637/jss.v030.i04'><i class='ai ai-doi'></i></a> <a href='https://cran.r-project.org/web/packages/grImport/vignettes/import.pdf'><i class='fa fa-file-pdf-o'></i></a></li>
+<li><strong>imager</strong> Image Processing Library Based on ’CImg <a href="https://cran.r-project.org/web/packages/imager">CRAN</a> <a href='https://github.com/dahtah/imager'><i class='fa fa-github'></i></a> <a href='http://dahtah.github.io/imager/'><i class='fa fa-link'></i></a></li>
 <li><strong>jpeg</strong> reads bitmap images stored in the JPEG format. <a href="https://cran.r-project.org/web/packages/jpeg">CRAN</a> <a href='http://www.rforge.net/jpeg/'><i class='fa fa-link'></i></a></li>
 <li><strong>pixmap</strong> functions for import, export, plotting and other manipulations of bitmapped images. <a href="https://cran.r-project.org/web/packages/pixmap">CRAN</a></li>
 <li><strong>png</strong> Reads bitmap images stored in the PNG format. <a href="https://cran.r-project.org/web/packages/png">CRAN</a> <a href='http://www.rforge.net/png/'><i class='fa fa-link'></i></a> <br/></li>
 </ol>
-</div>
-<div id="ggplot2-and-extensions" class="section level3">
+</section>
+<section id="ggplot2-and-extensions" class="level3">
 <h3>ggplot2 and extensions</h3>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><strong>ggplot2</strong> an implementation of the grammar of graphics in R. <a href="https://cran.r-project.org/web/packages/ggplot2">CRAN</a> <a href='https://github.com/hadley/ggplot2'><i class='fa fa-github'></i></a> <a href='http://ggplot2.org'><i class='fa fa-link'></i></a></li>
 <li><strong>cowplot</strong> provide a publication-ready theme for ggplot2 <a href="https://cran.r-project.org/web/packages/cowplot">CRAN</a> <a href='https://github.com/wilkelab/cowplot'><i class='fa fa-github'></i></a> <a href='https://cran.r-project.org/web/packages/cowplot/vignettes/introduction.html'><i class='fa fa-link'></i></a></li>
 <li><strong>ggthemes</strong> some extra themes, geoms, and scales for ‘ggplot2’ <a href="https://cran.r-project.org/web/packages/ggthemes">CRAN</a> <a href='https://github.com//jrnold/ggthemes'><i class='fa fa-github'></i></a> <a href='https://cran.r-project.org/web/packages/ggthemes/vignettes/ggthemes.html'><i class='fa fa-link'></i></a></li>
 <li><strong>GGally</strong> extension to ggplot2. <a href="https://cran.r-project.org/web/packages/GGally">CRAN</a> <a href='http://ggobi.github.io/ggally/'><i class='fa fa-link'></i></a></li>
 <li><strong>ggbeeswarm</strong> beeswarm-style plots with ggplot2. <a href="https://cran.r-project.org/web/packages/ggbeeswarm">CRAN</a> <a href='https://github.com/eclarke/ggbeeswarm'><i class='fa fa-github'></i></a></li>
+<li><strong>ggridges</strong> visualize changes in distributions over time or space. <a href="https://cran.r-project.org/web/packages/ggridges">CRAN</a> <a href='https://github.com/clauswilke/ggridges'><i class='fa fa-github'></i></a> <a href='https://cran.r-project.org/web/packages/ggridges/vignettes/gallery.html'><i class='fa fa-link'></i></a></li>
 <li><strong>ggcorrplot</strong> visualization of a correlation matrix using ggplot2 <a href="https://cran.r-project.org/web/packages/ggcorrplot">CRAN</a> <a href='https://github.com/kassambara/ggcorrplot'><i class='fa fa-github'></i></a></li>
 <li><strong>ggdendro</strong> a set of tools for dendrograms and tree plots using ‘ggplot2’. <a href="https://cran.r-project.org/web/packages/ggdendro">CRAN</a> <a href='https://github.com/andrie/ggdendro'><i class='fa fa-github'></i></a> <a href='https://cran.r-project.org/web/packages/ggdendro/vignettes/ggdendro.html'><i class='fa fa-link'></i></a></li>
 <li><strong>gge</strong> creates biplots for GGE (genotype plus genotype-by-environment) and GGB (genotype plus genotype-by-block-of-environments) models. <a href="https://cran.r-project.org/web/packages/gge">CRAN</a></li>
@@ -229,10 +232,10 @@ output:
 <li><strong>ggvis</strong> an implementation of an interactive grammar of graphics. <a href="https://cran.r-project.org/web/packages/ggvis">CRAN</a> <a href='https://github.com/rstudio/ggvis'><i class='fa fa-github'></i></a> <a href='http://ggvis.rstudio.com'><i class='fa fa-link'></i></a></li>
 <li><strong>lemon</strong> functions for working with legends and axis lines of ‘ggplot2’, facets that repeat axis lines on all panels, and some ‘knitr’ extensions. <a href="https://cran.r-project.org/web/packages/lemon">CRAN</a> <a href='https://github.com/stefanedwards/lemon'><i class='fa fa-github'></i></a> <br/></li>
 </ol>
-</div>
-<div id="miscellaneous" class="section level3">
+</section>
+<section id="miscellaneous" class="level3">
 <h3>Miscellaneous</h3>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><strong>arulesViz</strong> visualizing association rules and frequent itemsets. <a href="https://cran.r-project.org/web/packages/arulesViz">CRAN</a> <a href='https://github.com/mhahsler/arules'><i class='fa fa-github'></i></a> <a href='https://doi.org/10.18637/jss.v014.i15'><i class='ai ai-doi'></i></a> <a href='https://cran.r-project.org/web/packages/arulesViz/vignettes/arulesViz.pdf'><i class='fa fa-file-pdf-o'></i></a></li>
 <li><strong>animation</strong> a gallery of animations in statistics and utilities to create animations. <a href="https://cran.r-project.org/web/packages/animation">CRAN</a> <a href='https://github.com/Yihui/animation'><i class='fa fa-github'></i></a></li>
 <li><strong>move</strong> visualizing and analyzing animal track data. <a href="https://cran.r-project.org/web/packages/move">CRAN</a> <a href='http://computational-ecology.com/main-move.html'><i class='fa fa-link'></i></a></li>
@@ -242,12 +245,12 @@ output:
 <li><strong>tikzDevice</strong> Provides a graphics output device for R that records plots in a LaTeX-friendly format. <a href="https://cran.r-project.org/web/packages/tikzDevice">CRAN</a> <a href='https://github.com/yihui/tikzDevice'><i class='fa fa-github'></i></a></li>
 <li><strong>tourr</strong> implements Tour methods in R code. <a href="https://cran.r-project.org/web/packages/tourr">CRAN</a> <a href='https://github.com/ggobi/tourr/'><i class='fa fa-github'></i></a> <a href='https://doi.org/10.18637/jss.v040.i02'><i class='ai ai-doi'></i></a></li>
 <li><strong>wordcloud</strong> creates word clouds. <a href="https://cran.r-project.org/web/packages/wordcloud">CRAN</a></li>
-<li><strong>wordcloud2</strong> creates word clouds. <a href="https://cran.r-project.org/web/packages/wordcloud2">CRAN</a> <a href='https://github.com/Lchiffon/wordcloud2'><i class='fa fa-github'></i></a> <a href='https://timdream.org/wordcloud2.js/#love'><i class='fa fa-link'></i></a> <br/></li>
+<li><strong>wordcloud2</strong> R interface to wordcloud for data visualization. <a href="https://cran.r-project.org/web/packages/wordcloud2">CRAN</a> <a href='https://github.com/Lchiffon/wordcloud2'><i class='fa fa-github'></i></a> <a href='https://timdream.org/wordcloud2.js/#love'><i class='fa fa-link'></i></a> <br/></li>
 </ol>
-</div>
-<div id="web-based-interactive-charts" class="section level3">
+</section>
+<section id="web-based-interactive-charts" class="level3">
 <h3>Web-based interactive charts</h3>
-<ol style="list-style-type: decimal">
+<ol type="1">
 <li><strong>dygraphs</strong> Interface to ‘Dygraphs’ interactive time series charting library. <a href="https://cran.r-project.org/web/packages/dygraphs">CRAN</a> <a href='https://github.com/rstudio/dygraphs'><i class='fa fa-github'></i></a> <a href='https://rstudio.github.io/dygraphs/'><i class='fa fa-link'></i></a></li>
 <li><strong>heatmaply</strong> Interactive Heat Maps Using ‘plotly’ <a href="https://cran.r-project.org/web/packages/heatmaply">CRAN</a> <a href='https://github.com/talgalili/heatmaply'><i class='fa fa-github'></i></a></li>
 <li><strong>highcharter</strong> R wrapper for highcharts. <a href="https://cran.r-project.org/web/packages/highcharter">CRAN</a> <a href='https://github.com/jkunst.com/highcharter/'><i class='fa fa-github'></i></a> <a href='http://jkunst.com/highcharter/'><i class='fa fa-link'></i></a></li>
@@ -264,5 +267,5 @@ output:
 <li><strong>shiny</strong> web application framework for R. <a href="https://cran.r-project.org/web/packages/shiny">CRAN</a> <a href='https://github.com/rstudio/shiny'><i class='fa fa-github'></i></a> <a href='http://shiny.rstudio.com'><i class='fa fa-link'></i></a></li>
 <li><strong>threeJS</strong> create interactive 3D scatter plots, network plots, and globes using the ‘three.js’ visualization library. <a href="https://cran.r-project.org/web/packages/threeJS">CRAN</a> <a href='https://github.com/bwlewis/rthreejs'><i class='fa fa-github'></i></a> <a href='http://bwlewis.github.io/rthreejs'><i class='fa fa-link'></i></a> <br/></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
