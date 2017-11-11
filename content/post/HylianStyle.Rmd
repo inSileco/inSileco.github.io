@@ -99,7 +99,8 @@ font_families()
 
 ### 6. Finally, let's make our Hylian plot!
 
-```{r, echo = TRUE, eval = TRUE, fig.width = 9, fig.height = 7}
+```{r, echo = TRUE, eval = TRUE, fig.width = 9, fig.height = 7, fig.showtext=TRUE}
+showtext_begin()
 par(family = "Triforce", las = 1, cex.lab = 3, cex.main = 3, cex.axis=2, mar = c(4, 5, 5, 0))
 plot(x = c(0, 1), y = c(0, 1), type = "n", xlab = "X-axis", ylab = "Y-axis")
 title(main = "Hylian Style - Link must be proud of us!")

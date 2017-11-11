@@ -14,7 +14,9 @@
             <hr>
             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
             <p style="margin-top:10px;">
-               {{ with .travis }} {{ . | markdownify }} {{ end }} {{ with .appveyor }} {{ . | markdownify }} {{ end }} {{ with .codecov }} {{ . | markdownify }} {{ end }}
+               {{ with .travis }} {{ . | markdownify }} {{ end }}
+               {{ with .appveyor }} {{ . | markdownify }} {{ end }}
+               {{ with .codecov }} {{ . | markdownify }} {{ end }}
             </p>
           </div>
         </div>
