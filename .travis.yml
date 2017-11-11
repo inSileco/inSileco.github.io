@@ -23,11 +23,14 @@ apt_packages:
   - libfreetype6-dev
   - libpoppler-cpp-dev
   - libssl-dev
-  - pandoc
 
 before_install:
   - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
   - sudo apt-get --yes --force-yes update -qq
+  - mkdir pandoc
+  - wget https://github.com/jgm/pandoc/releases/download/1.19.2.1/pandoc-1.19.2.1-1-amd64.deb
+  - sudo dpkg -i pandoc-1.19.2.1-1-amd64.deb
+  - export PATH=./pandoc/usr/bin/:$PATH
 
 before_script:
   - Rscript -e 'blogdown::install_hugo()'

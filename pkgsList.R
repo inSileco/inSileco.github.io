@@ -21,8 +21,7 @@ install.packages(
     "yaml",
     "tidyverse"
   ),
-  repos = "https://cran.wu.ac.at/",
-  dependencies = TRUE
+  repos = "https://cran.wu.ac.at/"
 )
 
 
