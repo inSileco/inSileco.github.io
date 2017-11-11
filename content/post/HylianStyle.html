@@ -14,15 +14,15 @@ output:
 
 
 
-<div id="below-are-presented-the-6-steps-you-need-to-make-your-plot-a-hylian-one-may-the-triforce-be-with-you" class="section level4">
+<section id="below-are-presented-the-6-steps-you-need-to-make-your-plot-a-hylian-one-may-the-triforce-be-with-you" class="level4">
 <h4>Below are presented the 6 steps you need to make your plot a Hylian one! <strong>May the triforce be with you</strong>!</h4>
-</div>
-<div id="r-version" class="section level3">
+</section>
+<section id="r-version" class="level3">
 <h3>0. R Version</h3>
 <pre class="r"><code>sessionInfo()[[1L]]$version.string</code></pre>
 <pre><code>## [1] &quot;R version 3.4.2 (2017-09-28)&quot;</code></pre>
-</div>
-<div id="open-r-and-download-the-font" class="section level3">
+</section>
+<section id="open-r-and-download-the-font" class="level3">
 <h3>1. Open R and download the font</h3>
 <p>The <a href="https://zeldauniverse.net/media/fonts/"><em>Triforce</em> font</a> is available on line. Below we download it using R! Alternatively, you may simply download and install it using a couple of clicks, if you proceed so, skip step 1.</p>
 <pre class="r"><code># Create a directory &lt; fonts &gt;
@@ -39,12 +39,12 @@ unzip(paste0(dr, basename(url)), exdir = &quot;./hylianStyle_files&quot;)
 # Remove .zip
 file.remove(paste0(dr, basename(url)))</code></pre>
 <pre><code>## [1] TRUE</code></pre>
-</div>
-<div id="install-the-showtext-package" class="section level3">
+</section>
+<section id="install-the-showtext-package" class="level3">
 <h3>2. Install the <code>showtext</code> package</h3>
-<pre class="r"><code>install.packages(&quot;showtext&quot;, dependencies = TRUE)</code></pre>
-</div>
-<div id="look-at-the-list-of-fonts-available-locally" class="section level3">
+<pre class="r"><code>install.packages(&quot;showtext&quot;)</code></pre>
+</section>
+<section id="look-at-the-list-of-fonts-available-locally" class="level3">
 <h3>3. Look at the list of fonts available locally</h3>
 <pre class="r"><code>library(showtext)</code></pre>
 <pre><code>## Loading required package: sysfonts</code></pre>
@@ -83,8 +83,8 @@ font_files()</code></pre>
 ## [30] &quot;Arimo-Bold.ttf&quot;                     
 ##  [ reached getOption(&quot;max.print&quot;) -- omitted 578 entries ]</code></pre>
 <p>If you have installed the font on your computer, it should be in the list, then you can skip step 4.</p>
-</div>
-<div id="add-a-path-to-your-font" class="section level3">
+</section>
+<section id="add-a-path-to-your-font" class="level3">
 <h3>4. Add a path to your font</h3>
 <p>If you have downloaded the font using R, you must notify showtext about to folder <code>dir</code> where the font has been stored. To so do, use the <code>font_paths()</code> function:</p>
 <pre class="r"><code>font_paths(dr)</code></pre>
@@ -178,8 +178,8 @@ font_files()</code></pre>
 ## [88] &quot;/usr/share/fonts/X11/misc&quot;                                                     
 ## [89] &quot;/usr/share/fonts/X11/Type1&quot;                                                    
 ## [90] &quot;/usr/share/fonts/X11/util&quot;</code></pre>
-</div>
-<div id="add-the-triforce-font-to-your-session" class="section level3">
+</section>
+<section id="add-the-triforce-font-to-your-session" class="level3">
 <h3>5. Add the <em>Triforce</em> font to your session:</h3>
 <p>Either way, the Triforce font should now be available</p>
 <pre class="r"><code># Is the TTF present?
@@ -190,8 +190,8 @@ font_files()[grep(&quot;Triforce&quot;, font_files())]</code></pre>
 font_families()</code></pre>
 <pre><code>## [1] &quot;sans&quot;         &quot;serif&quot;        &quot;mono&quot;         &quot;wqy-microhei&quot;
 ## [5] &quot;Triforce&quot;</code></pre>
-</div>
-<div id="finally-lets-make-our-hylian-plot" class="section level3">
+</section>
+<section id="finally-lets-make-our-hylian-plot" class="level3">
 <h3>6. Finally, let’s make our Hylian plot!</h3>
 <pre class="r"><code>par(family = &quot;Triforce&quot;, las = 1, cex.lab = 3, cex.main = 3, cex.axis=2, mar = c(4, 5, 5, 0))
 plot(x = c(0, 1), y = c(0, 1), type = &quot;n&quot;, xlab = &quot;X-axis&quot;, ylab = &quot;Y-axis&quot;)
@@ -200,4 +200,4 @@ points(x = runif(7), y = runif(7), pch = &quot;*&quot;, cex = 4)
 points(x = runif(7), y = runif(7), pch = &quot;$&quot;, cex = 4, col = &quot;#347AB7&quot;)
 points(x = 0.1, y = 0.1, pch = &quot;%&quot;, cex = 10, col = &quot;#347AB7&quot;)</code></pre>
 <p><img src="/post/HylianStyle_files/figure-html/unnamed-chunk-8-1.png" width="912" /></p>
-</div>
+</section>

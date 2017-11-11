@@ -13,6 +13,7 @@ output:
 ---
 
 
+
 #### Below are presented the 6 steps you need to make your plot a Hylian one! **May the triforce be with you**!
 
 
@@ -21,7 +22,6 @@ output:
 ```{r, echo = TRUE, eval = TRUE}
 sessionInfo()[[1L]]$version.string
 ```
-
 
 
 ### 1. Open R and download the font
@@ -50,7 +50,7 @@ file.remove(paste0(dr, basename(url)))
 ### 2. Install the `showtext` package
 
 ```{r, echo = TRUE, eval = FALSE}
-install.packages("showtext", dependencies = TRUE)
+install.packages("showtext")
 ```
 
 ###  3. Look at the list of fonts available locally
