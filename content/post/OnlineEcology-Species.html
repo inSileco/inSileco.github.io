@@ -1063,9 +1063,8 @@ Retrieved 1342 records of 1342 (100%)
 #R&gt; names       : BO_chlomean, BO_dissox,    BO_ph, BO_salinity, BO_sstmean, BO_bathymean 
 #R&gt; min values  :       0.400,     4.791,    7.688,      20.730,      2.982,     -524.000 
 #R&gt; max values  :      60.007,     7.762,    8.131,      32.298,      8.718,      616.000
-    envCov %&lt;&gt;% raster::stack()
-
-# Data description
+    envCov %&lt;&gt;% raster::stack()</code></pre>
+<pre class="r"><code># Data description
     knitr::kable(sdmpredictors::get_layers_info(layers)$current[,1:4])</code></pre>
 <table>
 <thead>

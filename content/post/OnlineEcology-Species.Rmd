@@ -301,6 +301,7 @@ could also be used.
     ##
     if (file.exists("../../_tmp/envCov.Rds")) {
       envCov <- readRDS("../../_tmp/envCov.Rds")
+      layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
     } else  {
       envCov <- sdmpredictors::load_layers(layers, datadir = paste0(getwd(), "/../../_tmp"), rasterstack = TRUE)
       saveRDS(envCov, "../../_tmp/envCov.Rds")
@@ -320,12 +321,14 @@ Clip them and plot them:
 
 <br/>
 
-```{r, cropEnvCov, eval = TRUE}
+```{r cropEnvCov, eval = TRUE}
 # Clip to study area extent
     envCov <- raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax))
     print(envCov)
     envCov %<>% raster::stack()
+```
 
+```{r cropEnvCov2, eval = TRUE}
 # Data description
     knitr::kable(sdmpredictors::get_layers_info(layers)$current[,1:4])
 ```
