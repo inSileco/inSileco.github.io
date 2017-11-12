@@ -179,24 +179,24 @@ There are 36 unicode characters available. They are numbered like so: "E9" +
 numbers ranging from 00 to 35 (version 1.8.0). To use them, we create a
 sequence using `sprintf()` and `paste0()` function:
 
-```{r academ, fig.width=9.5, fig.height=5, fig.showtext=TRUE}
-nb <- 35
+```{r academ}
+nb <- 54
 acs <- sprintf("%02d", 5+1:nb) %>% paste0("E8",.)
 ```
 
 We now plot them as if they were on a regular grid and we add the decimal value
 below:
 
-```{r figacadem, fig.width=9.5, fig.height=5, fig.showtext=TRUE}
-coord <- expand.grid(1:9, 1:4)
+```{r figacadem, fig.width=9.5, fig.height=6, fig.showtext=TRUE}
+coord <- expand.grid(1:9, 1:6)
 cols <- c("#3fb3b2", "#8555b4", "#ffdd55", "#1b95e0")
 ##
 par(mar=c(0,0,0,0))
-plot(c(0,9), c(0,5), type="n", ann=FALSE, axes=FALSE)
-text(coord[,1], coord[,2], labels= acs,  offset = 1.6, cex=.66, pos=1)
+plot(c(0,9), c(0,7), type="n", ann=FALSE, axes=FALSE)
+text(coord[,1], coord[,2], labels= acs,  offset = 1.6, cex=2, pos=1)
 ##
 par(family = "academicons")
-points(coord[,1], coord[,2], pch=-as.hexmode(acs), cex=3, col=cols)
+points(coord[,1], coord[,2], pch=-as.hexmode(acs), cex=5, col=cols)
 ```
 
 
@@ -211,7 +211,7 @@ nsq <- 12
 fas <- 1:(nsq*nsq) %>% as.hexmode %>% paste0("f0", .)
 coord <- expand.grid(1:nsq, 1:nsq)
 par(mar=c(2,2,2,2), family = 'FontAwesome')
-plot(coord[,1], coord[,2], pch=-as.hexmode(fas), cex=2.5, col=cols, ann=FALSE, axes=FALSE)
+plot(coord[,1], coord[,2], pch=-as.hexmode(fas), cex=5, col=cols, ann=FALSE, axes=FALSE)
 ```
 
 ### Adding Ionicons
@@ -226,8 +226,8 @@ val <- 61970:62046
 ias <- sapply(val, FUN=intToUtf8)
 coord <- expand.grid(rev(1:11), 1:7)
 ##
-par(mar=c(2,2,2,2), family = "Ionicons")
-plot(coord[,1], coord[,2], ann=FALSE, axes=FALSE, pch=ias, cex=2.5, col=cols)
+par(mar=c(2,2,2,2), family = "ionicons")
+plot(coord[,1], coord[,2], ann=FALSE, axes=FALSE, pch=ias, cex=5, col=cols)
 ```
 
 
@@ -240,20 +240,20 @@ example that combines the three icon frameworks.
 ```{r volcano, fig.width=9.5, fig.height=7, fig.showtext=TRUE}
 data(volcano)
 par(las=1, mar=c(4,5,4,4))
-image(volcano, col=colorRampPalette(c("grey10", "grey90"))(100))
+image(volcano, col=colorRampPalette(c("grey10", "grey90"))(100), axes=FALSE)
 contour(volcano, add=T, col="#ffdd55")
 title(main = toupper("My volcano"), cex.main=2)
 ##
 par(family="FontAwesome")
 title(ylab=intToUtf8(61552), cex.lab=2)
-points(0.336, 0.58, pch=-as.hexmode("F041"), col="#3fb3b2", cex=2.5)
+points(0.336, 0.58, pch=-as.hexmode("F041"), col="#3fb3b2", cex=5)
 ##
-par(family = "Ionicons")
-points(0.946, 0.943, pch=-as.hexmode("F203"), col="grey95", cex=4)
-points(0.451, 0.091, pch=-as.hexmode("F448"), col="#3fb3b2", cex=2)
+par(family = "ionicons")
+points(0.946, 0.943, pch=-as.hexmode("F203"), col="grey95", cex=5)
+points(0.451, 0.091, pch=-as.hexmode("F448"), col="#3fb3b2", cex=4)
 ##
-par(family = "Academicons")
-mtext(text=intToUtf8("59651"), side=4, adj=1, line=3, cex=3)
+par(family = "academicons")
+mtext(text=intToUtf8(59476), side=4, adj=1, line=3, col = "#8555b4", cex=6)
 ```
 
 
