@@ -125,7 +125,7 @@ through the package [`rfishbase`](https://github.com/ropensci/rfishbase)
 
 <br/>
 
-```{r, ecology, eval = TRUE}
+```{r ecology, eval = TRUE, results='asis'}
 # Species ecology
 ecol <- rfishbase::ecology(sp)
 ecol <- cbind(colnames(ecol), t(ecol))
@@ -134,7 +134,7 @@ ecol <- ecol[ecol[,2] != 0, ] # remove 0
 ecol <- ecol[!is.na(ecol[,2]), ] # remove NAs
 
 knitr::kable(ecol, col.names = c('Descriptors', 'Attributes'), "html") %>%
-    kable_styling(full_width = F)
+    kableExtra::kable_styling(full_width = FALSE)
 ```
 
 <br/>
@@ -148,22 +148,38 @@ databases accessible through their Application Programming Interface (API).
 
 <br/>
 
-```{r, taxonomy, eval = TRUE, message = FALSE}
+```{r taxonomy1, results='asis'}
 # Export the taxonomy of the species of interest
-    knitr::kable(taxize::classification(sp, db = 'worms', verbose = FALSE)[[1]], "html") %>%
-        kable_styling(full_width = F)
+taxize::classification(sp, db = 'worms', accepted = TRUE, verbose = FALSE)[[1]] %>%
+    knitr::kable("html") %>% kableExtra::kable_styling(full_width = FALSE)
+```
+<br>
 
+```{r taxonomy2, results='asis'}
+# Retrieve a tsn for Gadus morhua, i.e. an unique identifier from the itis db
+idtsn <- taxize::get_tsn(sp, accepted=TRUE, ask=FALSE, verbose = FALSE, row=1)[1]
+```
+
+
+```{r taxonomy3}
 # We can also extract the common or scientific names using sci2comm() & comm2sci(), respectively.
-    taxize::sci2comm(sp, db = 'itis')
+taxize::sci2comm(taxize::as.tsn(idtsn), db = 'itis', row=1)
 
 # Or find out whether there are other names under which the species is known
-    taxize::synonyms(sp, db = 'itis')
-
-# Another really interesting feature is to extract all known species at a given taxonomic scale.
-# Let's take the genus level and see the first 20 species that are part of that genus on the itis database
-    knitr::kable(taxize::children(strsplit(sp, ' ')[[1]][1], db = 'itis')[[1]], "html") %>%
-        kable_styling(full_width = F)
+taxize::synonyms(taxize::as.tsn(idtsn), db = 'itis')
 ```
+
+```{r taxonomy4, results='as.is'}
+# Another really interesting feature is to extract all known species at a given
+# taxonomic scale. With the itis db, you should first find the tsn associated
+# with Gadus. Using `taxize::get_tsn('gadus')` you'll find out that it is 164710
+knitr::kable(taxize::children(164710, db = 'itis')[[1]], "html") %>%
+  kableExtra::kable_styling(full_width = F)
+```
+
+Sounds like this is consistent with [what Wikipedia says](https://en.wikipedia.org/wiki/Gadus)!
+
+
 
 <br/>
 
@@ -176,11 +192,13 @@ of interactions, all over the world, and is accessible using the package [`rglob
 
 <br/>
 
-```{r, trophic, eval = TRUE}
+```{r trophic1, results='asis'}
 # There are multiple types of interactions available on GloBI
     knitr::kable(rglobi::get_interaction_types()[,1:3], 'html') %>%
         kable_styling(full_width = F)
+```
 
+```{r trophic2}
 # For now let's focus on predator-prey interactions
     prey <- rglobi::get_prey_of(sp)$target_taxon_name # Retrieve prey
     pred <- rglobi::get_predators_of(sp)$target_taxon_name # Retrieve predators
@@ -218,7 +236,7 @@ information on its use.
 
 <br/>
 
-```{r, OBIS data, eval=TRUE}
+```{r, OBIS data, eval=TRUE, fig.width=9.5}
 # Download occurrence data for species and area of interest between 2010 and 2017
     OBIS <- robis::occurrence(scientificname = sp, geometry=sf::st_as_text(bb$geometry), startdate = as.Date("2010-01-01"), enddate = as.Date("2017-01-01"), fields = c("species", "yearcollected","decimalLongitude", "decimalLatitude"))
 
@@ -267,7 +285,6 @@ Since our study area of interest is marine, we will select environmental
 variables accordingly from the `Bio-ORACLE` dataset, although data from `MARSPEC`
 could also be used.
 
-
 <br/>
 
 ```{r, importEnvVarhidden, echo = FALSE, eval = TRUE}
@@ -282,7 +299,7 @@ could also be used.
         "BO_salinity_lonlat.tif",  "BO_sstmean_lonlat.tif"
         ))
     ##
-    if (all(file.exists(c("../../_tmp/envCov.Rds", vec_fl)))) {
+    if (file.exists("../../_tmp/envCov.Rds")) {
       envCov <- readRDS("../../_tmp/envCov.Rds")
     } else  {
       envCov <- sdmpredictors::load_layers(layers, datadir = paste0(getwd(), "/../../_tmp"), rasterstack = TRUE)
@@ -290,7 +307,7 @@ could also be used.
     }
 ```
 
-```{r, importEnvVar, eval = TRUE}
+```{r, importEnvVar, eval = FALSE}
 # Import marine layers
     layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
     # layers <- 'BO_ph'

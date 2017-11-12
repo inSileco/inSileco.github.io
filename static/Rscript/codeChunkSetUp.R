@@ -1,5 +1,5 @@
 knitr::opts_chunk$set(
-  comment = "R>>",
+  comment = "#R>",
   collapse = TRUE,
   warning = FALSE,
   message = FALSE,
