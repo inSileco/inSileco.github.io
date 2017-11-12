@@ -207,18 +207,18 @@ font_families()
 <section id="academicons" class="level3">
 <h3>Academicons</h3>
 <p>There are 36 unicode characters available. They are numbered like so: “E9” + numbers ranging from 00 to 35 (version 1.8.0). To use them, we create a sequence using <code>sprintf()</code> and <code>paste0()</code> function:</p>
-<pre class="r"><code>nb &lt;- 35
+<pre class="r"><code>nb &lt;- 54
 acs &lt;- sprintf(&quot;%02d&quot;, 5+1:nb) %&gt;% paste0(&quot;E8&quot;,.)</code></pre>
 <p>We now plot them as if they were on a regular grid and we add the decimal value below:</p>
-<pre class="r"><code>coord &lt;- expand.grid(1:9, 1:4)
+<pre class="r"><code>coord &lt;- expand.grid(1:9, 1:6)
 cols &lt;- c(&quot;#3fb3b2&quot;, &quot;#8555b4&quot;, &quot;#ffdd55&quot;, &quot;#1b95e0&quot;)
 ##
 par(mar=c(0,0,0,0))
-plot(c(0,9), c(0,5), type=&quot;n&quot;, ann=FALSE, axes=FALSE)
-text(coord[,1], coord[,2], labels= acs,  offset = 1.6, cex=.66, pos=1)
+plot(c(0,9), c(0,7), type=&quot;n&quot;, ann=FALSE, axes=FALSE)
+text(coord[,1], coord[,2], labels= acs,  offset = 1.6, cex=2, pos=1)
 ##
 par(family = &quot;academicons&quot;)
-points(coord[,1], coord[,2], pch=-as.hexmode(acs), cex=3, col=cols)</code></pre>
+points(coord[,1], coord[,2], pch=-as.hexmode(acs), cex=5, col=cols)</code></pre>
 <p><img src="/post/AcademiconsInR_files/figure-html/figacadem-1.png" width="912" style="display: block; margin: auto;" /></p>
 </section>
 <section id="adding-fontawesomes-icons" class="level3">
@@ -228,7 +228,7 @@ points(coord[,1], coord[,2], pch=-as.hexmode(acs), cex=3, col=cols)</code></pre>
 fas &lt;- 1:(nsq*nsq) %&gt;% as.hexmode %&gt;% paste0(&quot;f0&quot;, .)
 coord &lt;- expand.grid(1:nsq, 1:nsq)
 par(mar=c(2,2,2,2), family = &#39;FontAwesome&#39;)
-plot(coord[,1], coord[,2], pch=-as.hexmode(fas), cex=2.5, col=cols, ann=FALSE, axes=FALSE)</code></pre>
+plot(coord[,1], coord[,2], pch=-as.hexmode(fas), cex=5, col=cols, ann=FALSE, axes=FALSE)</code></pre>
 <p><img src="/post/AcademiconsInR_files/figure-html/figfontawe-1.png" width="912" style="display: block; margin: auto;" /></p>
 </section>
 <section id="adding-ionicons" class="level3">
@@ -238,8 +238,8 @@ plot(coord[,1], coord[,2], pch=-as.hexmode(fas), cex=2.5, col=cols, ann=FALSE, a
 ias &lt;- sapply(val, FUN=intToUtf8)
 coord &lt;- expand.grid(rev(1:11), 1:7)
 ##
-par(mar=c(2,2,2,2), family = &quot;Ionicons&quot;)
-plot(coord[,1], coord[,2], ann=FALSE, axes=FALSE, pch=ias, cex=2.5, col=cols)</code></pre>
+par(mar=c(2,2,2,2), family = &quot;ionicons&quot;)
+plot(coord[,1], coord[,2], ann=FALSE, axes=FALSE, pch=ias, cex=5, col=cols)</code></pre>
 <p><img src="/post/AcademiconsInR_files/figure-html/figionic-1.png" width="912" style="display: block; margin: auto;" /></p>
 </section>
 <section id="combining-them" class="level3">
@@ -247,20 +247,20 @@ plot(coord[,1], coord[,2], ann=FALSE, axes=FALSE, pch=ias, cex=2.5, col=cols)</c
 <p>To combine, we have to switch from one font to another. Here is a simple example that combines the three icon frameworks.</p>
 <pre class="r"><code>data(volcano)
 par(las=1, mar=c(4,5,4,4))
-image(volcano, col=colorRampPalette(c(&quot;grey10&quot;, &quot;grey90&quot;))(100))
+image(volcano, col=colorRampPalette(c(&quot;grey10&quot;, &quot;grey90&quot;))(100), axes=FALSE)
 contour(volcano, add=T, col=&quot;#ffdd55&quot;)
 title(main = toupper(&quot;My volcano&quot;), cex.main=2)
 ##
 par(family=&quot;FontAwesome&quot;)
 title(ylab=intToUtf8(61552), cex.lab=2)
-points(0.336, 0.58, pch=-as.hexmode(&quot;F041&quot;), col=&quot;#3fb3b2&quot;, cex=2.5)
+points(0.336, 0.58, pch=-as.hexmode(&quot;F041&quot;), col=&quot;#3fb3b2&quot;, cex=5)
 ##
-par(family = &quot;Ionicons&quot;)
-points(0.946, 0.943, pch=-as.hexmode(&quot;F203&quot;), col=&quot;grey95&quot;, cex=4)
-points(0.451, 0.091, pch=-as.hexmode(&quot;F448&quot;), col=&quot;#3fb3b2&quot;, cex=2)
+par(family = &quot;ionicons&quot;)
+points(0.946, 0.943, pch=-as.hexmode(&quot;F203&quot;), col=&quot;grey95&quot;, cex=5)
+points(0.451, 0.091, pch=-as.hexmode(&quot;F448&quot;), col=&quot;#3fb3b2&quot;, cex=4)
 ##
-par(family = &quot;Academicons&quot;)
-mtext(text=intToUtf8(&quot;59651&quot;), side=4, adj=1, line=3, cex=3)</code></pre>
+par(family = &quot;academicons&quot;)
+mtext(text=intToUtf8(59476), side=4, adj=1, line=3, col = &quot;#8555b4&quot;, cex=6)</code></pre>
 <p><img src="/post/AcademiconsInR_files/figure-html/volcano-1.png" width="912" style="display: block; margin: auto;" /></p>
 </section>
 </section>
