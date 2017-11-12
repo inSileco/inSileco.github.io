@@ -994,50 +994,111 @@ Retrieved 1342 records of 1342 (100%)
 <p>There are multiple resources available to access environmental data directly through R. Bathymetry data can be accessed using the <a href="https://github.com/ericpante/marmap"><code>marmap</code></a> package. Other environmental data can also be accessed using other packages like <a href="https://cran.r-project.org/web/packages/raster/index.html"><code>raster</code></a> for terrestrial climatic data (<em>i.e.</em> bioclim) and <a href="https://github.com/ropensci/rnoaa"><code>rnoaa</code></a> for some environmental layers like sea surface temperature and sea ice cover. Finally, a precious resource is the recently published <a href="https://cran.r-project.org/web/packages/sdmpredictors/index.html"><code>sdmpredictors</code></a> package, which provides access to multiple important global environmental datasets for marine and terrestrial environments and a total of 448</p>
 <p><br/></p>
 <pre class="r"><code># List sdmpredictors datasets
-    knitr::kable(sdmpredictors::list_datasets())</code></pre>
-<table>
+    knitr::kable(sdmpredictors::list_datasets(), &#39;html&#39;) %&gt;%
+        kable_styling(full_width = F)</code></pre>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th style="text-align: left;">dataset_code</th>
-<th style="text-align: left;">terrestrial</th>
-<th style="text-align: left;">marine</th>
-<th style="text-align: left;">url</th>
-<th style="text-align: left;">description</th>
-<th style="text-align: left;">citation</th>
+<tr>
+<th style="text-align:left;">
+dataset_code
+</th>
+<th style="text-align:left;">
+terrestrial
+</th>
+<th style="text-align:left;">
+marine
+</th>
+<th style="text-align:left;">
+url
+</th>
+<th style="text-align:left;">
+description
+</th>
+<th style="text-align:left;">
+citation
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td style="text-align: left;">WorldClim</td>
-<td style="text-align: left;">TRUE</td>
-<td style="text-align: left;">FALSE</td>
-<td style="text-align: left;"><a href="http://www.worldclim.org/" class="uri">http://www.worldclim.org/</a></td>
-<td style="text-align: left;">WorldClim is a set of global climate layers (climate grids). Note that all data has been transformed back to real values, so there is no need to e.g. divide temperature layers by 10.</td>
-<td style="text-align: left;">Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.</td>
+<tr>
+<td style="text-align:left;">
+WorldClim
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+<a href="http://www.worldclim.org/" class="uri">http://www.worldclim.org/</a>
+</td>
+<td style="text-align:left;">
+WorldClim is a set of global climate layers (climate grids). Note that all data has been transformed back to real values, so there is no need to e.g. divide temperature layers by 10.
+</td>
+<td style="text-align:left;">
+Hijmans, R.J., S.E. Cameron, J.L. Parra, P.G. Jones and A. Jarvis, 2005. Very high resolution interpolated climate surfaces for global land areas. International Journal of Climatology 25: 1965-1978.
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">Bio-ORACLE</td>
-<td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">TRUE</td>
-<td style="text-align: left;">hhtp://bio-oracle.org/</td>
-<td style="text-align: left;">Bio-ORACLE is a set of GIS rasters providing geophysical, biotic and environmental data for surface and benthic marine realms at a spatial resolution 5 arcmin (9.2 km) in the ESRI ascii and tif format.</td>
-<td style="text-align: left;">Tyberghein L., Verbruggen H., Pauly K., Troupin C., Mineur F. &amp; De Clerck O. Bio-ORACLE: a global environmental dataset for marine species distribution modeling. Global Ecology and Biogeography. <a href="http://dx.doi.org/10.1111/j.1466-8238.2011.00656.x" class="uri">http://dx.doi.org/10.1111/j.1466-8238.2011.00656.x</a></td>
+<tr>
+<td style="text-align:left;">
+Bio-ORACLE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+hhtp://bio-oracle.org/
+</td>
+<td style="text-align:left;">
+Bio-ORACLE is a set of GIS rasters providing geophysical, biotic and environmental data for surface and benthic marine realms at a spatial resolution 5 arcmin (9.2 km) in the ESRI ascii and tif format.
+</td>
+<td style="text-align:left;">
+Tyberghein L., Verbruggen H., Pauly K., Troupin C., Mineur F. &amp; De Clerck O. Bio-ORACLE: a global environmental dataset for marine species distribution modeling. Global Ecology and Biogeography. <a href="http://dx.doi.org/10.1111/j.1466-8238.2011.00656.x" class="uri">http://dx.doi.org/10.1111/j.1466-8238.2011.00656.x</a>
+</td>
 </tr>
-<tr class="odd">
-<td style="text-align: left;">MARSPEC</td>
-<td style="text-align: left;">FALSE</td>
-<td style="text-align: left;">TRUE</td>
-<td style="text-align: left;"><a href="http://marspec.org/" class="uri">http://marspec.org/</a></td>
-<td style="text-align: left;">MARSPEC is a set of high resolution climatic and geophysical GIS data layers for the world ocean. Seven geophysical variables were derived from the SRTM30_PLUS high resolution bathymetry dataset. These layers characterize the horizontal orientation (aspect), slope, and curvature of the seafloor and the distance from shore. Ten “bioclimatic” variables were derived from NOAA’s World Ocean Atlas and NASA’s MODIS satellite imagery and characterize the inter-annual means, extremes, and variances in sea surface temperature and salinity. These variables will be useful to those interested in the spatial ecology of marine shallow-water and surface-associated pelagic organisms across the globe. Note that, in contrary to the original MARSPEC, all layers have unscaled values.</td>
-<td style="text-align: left;">Sbrocco, EJ and Barber, PH (2013) MARSPEC: Ocean climate layers for marine spatial ecology. Ecology 94: 979. <a href="http://dx.doi.org/10.1890/12-1358.1" class="uri">http://dx.doi.org/10.1890/12-1358.1</a></td>
+<tr>
+<td style="text-align:left;">
+MARSPEC
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+<a href="http://marspec.org/" class="uri">http://marspec.org/</a>
+</td>
+<td style="text-align:left;">
+MARSPEC is a set of high resolution climatic and geophysical GIS data layers for the world ocean. Seven geophysical variables were derived from the SRTM30_PLUS high resolution bathymetry dataset. These layers characterize the horizontal orientation (aspect), slope, and curvature of the seafloor and the distance from shore. Ten “bioclimatic” variables were derived from NOAA’s World Ocean Atlas and NASA’s MODIS satellite imagery and characterize the inter-annual means, extremes, and variances in sea surface temperature and salinity. These variables will be useful to those interested in the spatial ecology of marine shallow-water and surface-associated pelagic organisms across the globe. Note that, in contrary to the original MARSPEC, all layers have unscaled values.
+</td>
+<td style="text-align:left;">
+Sbrocco, EJ and Barber, PH (2013) MARSPEC: Ocean climate layers for marine spatial ecology. Ecology 94: 979. <a href="http://dx.doi.org/10.1890/12-1358.1" class="uri">http://dx.doi.org/10.1890/12-1358.1</a>
+</td>
 </tr>
-<tr class="even">
-<td style="text-align: left;">ENVIREM</td>
-<td style="text-align: left;">TRUE</td>
-<td style="text-align: left;">FALSE</td>
-<td style="text-align: left;"><a href="https://envirem.github.io/" class="uri">https://envirem.github.io/</a></td>
-<td style="text-align: left;">The ENVIREM dataset is a set of 16 climatic and 2 topographic variables that can be used in modeling species’ distributions. The strengths of this dataset include their close ties to ecological processes, and their availability at a global scale, at several spatial resolutions, and for several time periods. The underlying temperature and precipitation data that went into their construction comes from the WorldClim dataset (www.worldclim.org), and the solar radiation data comes from the Consortium for Spatial Information (www.cgiar-csi.org). The data are compatible with and expand the set of variables from WorldClim v1.4 (www.worldclim.org).</td>
-<td style="text-align: left;">Title, P.O., Bemmels, J.B. 2017. ENVIREM: An expanded set of bioclimatic and topographic variables increases flexibility and improves performance of ecological niche modeling. Ecography doi: 10.1111/ecog.02880.</td>
+<tr>
+<td style="text-align:left;">
+ENVIREM
+</td>
+<td style="text-align:left;">
+TRUE
+</td>
+<td style="text-align:left;">
+FALSE
+</td>
+<td style="text-align:left;">
+<a href="https://envirem.github.io/" class="uri">https://envirem.github.io/</a>
+</td>
+<td style="text-align:left;">
+The ENVIREM dataset is a set of 16 climatic and 2 topographic variables that can be used in modeling species’ distributions. The strengths of this dataset include their close ties to ecological processes, and their availability at a global scale, at several spatial resolutions, and for several time periods. The underlying temperature and precipitation data that went into their construction comes from the WorldClim dataset (www.worldclim.org), and the solar radiation data comes from the Consortium for Spatial Information (www.cgiar-csi.org). The data are compatible with and expand the set of variables from WorldClim v1.4 (www.worldclim.org).
+</td>
+<td style="text-align:left;">
+Title, P.O., Bemmels, J.B. 2017. ENVIREM: An expanded set of bioclimatic and topographic variables increases flexibility and improves performance of ecological niche modeling. Ecography doi: 10.1111/ecog.02880.
+</td>
 </tr>
 </tbody>
 </table>
@@ -1045,84 +1106,144 @@ Retrieved 1342 records of 1342 (100%)
 <p>We can then import environmental data using the <code>sdmpredictors()</code> function. Since our study area of interest is marine, we will select environmental variables accordingly from the <code>Bio-ORACLE</code> dataset, although data from <code>MARSPEC</code> could also be used.</p>
 <p><br/></p>
 <pre class="r"><code># Import marine layers
-    layers &lt;- c(&#39;BO_chlomean&#39;,&#39;BO_dissox&#39;,&#39;BO_ph&#39;,&#39;BO_salinity&#39;,&#39;BO_sstmean&#39;,&#39;BO_bathymean&#39;)
-    # layers &lt;- &#39;BO_ph&#39;
-    envCov &lt;- sdmpredictors::load_layers(layers, datadir = paste0(getwd(), &quot;/../../_tmp&quot;), rasterstack = TRUE)</code></pre>
+  layers &lt;- c(&#39;BO_chlomean&#39;,&#39;BO_dissox&#39;,&#39;BO_ph&#39;,&#39;BO_salinity&#39;,&#39;BO_sstmean&#39;,&#39;BO_bathymean&#39;)
+# layers &lt;- &#39;BO_ph&#39;
+  envCov &lt;- sdmpredictors::load_layers(layers, datadir = paste0(getwd(), &quot;/../../_tmp&quot;), rasterstack = TRUE)</code></pre>
 <p><br/></p>
 <p>Clip them and plot them:</p>
 <p><br/></p>
 <pre class="r"><code># Clip to study area extent
-    envCov &lt;- raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax))
-    print(envCov)
-#R&gt; class       : RasterBrick 
-#R&gt; dimensions  : 78, 184, 14352, 6  (nrow, ncol, ncell, nlayers)
-#R&gt; resolution  : 0.08333333, 0.08333333  (x, y)
-#R&gt; extent      : -71.08333, -55.75, 45.5, 52  (xmin, xmax, ymin, ymax)
-#R&gt; coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
-#R&gt; data source : in memory
-#R&gt; names       : BO_chlomean, BO_dissox,    BO_ph, BO_salinity, BO_sstmean, BO_bathymean 
-#R&gt; min values  :       0.400,     4.791,    7.688,      20.730,      2.982,     -524.000 
-#R&gt; max values  :      60.007,     7.762,    8.131,      32.298,      8.718,      616.000
-    envCov %&lt;&gt;% raster::stack()</code></pre>
+envCov &lt;- raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax)) %&gt;%
+  raster::stack()</code></pre>
 <pre class="r"><code># Data description
-    knitr::kable(sdmpredictors::get_layers_info(layers)$current[,1:4])</code></pre>
-<table>
+knitr::kable(sdmpredictors::get_layers_info(layers)$current[,1:4], &#39;html&#39;) %&gt;%
+  kable_styling()</code></pre>
+<table class="table" style="margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th></th>
-<th style="text-align: left;">dataset_code</th>
-<th style="text-align: left;">layer_code</th>
-<th style="text-align: left;">name</th>
-<th style="text-align: left;">description</th>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:left;">
+dataset_code
+</th>
+<th style="text-align:left;">
+layer_code
+</th>
+<th style="text-align:left;">
+name
+</th>
+<th style="text-align:left;">
+description
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td>71</td>
-<td style="text-align: left;">Bio-ORACLE</td>
-<td style="text-align: left;">BO_chlomean</td>
-<td style="text-align: left;">Chlorophyll A (mean)</td>
-<td style="text-align: left;">Chlorophyll A concentration indicates the concentration of photosynthetic pigment chlorophyll A (the most common “green” chlorophyll) in oceans. Please note that in shallow water these values may reflect any kind of autotrophic biomass.</td>
+<tr>
+<td style="text-align:left;">
+71
+</td>
+<td style="text-align:left;">
+Bio-ORACLE
+</td>
+<td style="text-align:left;">
+BO_chlomean
+</td>
+<td style="text-align:left;">
+Chlorophyll A (mean)
+</td>
+<td style="text-align:left;">
+Chlorophyll A concentration indicates the concentration of photosynthetic pigment chlorophyll A (the most common “green” chlorophyll) in oceans. Please note that in shallow water these values may reflect any kind of autotrophic biomass.
+</td>
 </tr>
-<tr class="even">
-<td>80</td>
-<td style="text-align: left;">Bio-ORACLE</td>
-<td style="text-align: left;">BO_dissox</td>
-<td style="text-align: left;">Dissolved oxygen</td>
-<td style="text-align: left;">Dissolved oxygen concentration [02]</td>
+<tr>
+<td style="text-align:left;">
+80
+</td>
+<td style="text-align:left;">
+Bio-ORACLE
+</td>
+<td style="text-align:left;">
+BO_dissox
+</td>
+<td style="text-align:left;">
+Dissolved oxygen
+</td>
+<td style="text-align:left;">
+Dissolved oxygen concentration [02]
+</td>
 </tr>
-<tr class="odd">
-<td>84</td>
-<td style="text-align: left;">Bio-ORACLE</td>
-<td style="text-align: left;">BO_ph</td>
-<td style="text-align: left;">pH</td>
-<td style="text-align: left;">Measure of acidity in the ocean.</td>
+<tr>
+<td style="text-align:left;">
+84
+</td>
+<td style="text-align:left;">
+Bio-ORACLE
+</td>
+<td style="text-align:left;">
+BO_ph
+</td>
+<td style="text-align:left;">
+pH
+</td>
+<td style="text-align:left;">
+Measure of acidity in the ocean.
+</td>
 </tr>
-<tr class="even">
-<td>86</td>
-<td style="text-align: left;">Bio-ORACLE</td>
-<td style="text-align: left;">BO_salinity</td>
-<td style="text-align: left;">Salinity</td>
-<td style="text-align: left;">Salinity indicates the dissolved salt content in the ocean.</td>
+<tr>
+<td style="text-align:left;">
+86
+</td>
+<td style="text-align:left;">
+Bio-ORACLE
+</td>
+<td style="text-align:left;">
+BO_salinity
+</td>
+<td style="text-align:left;">
+Salinity
+</td>
+<td style="text-align:left;">
+Salinity indicates the dissolved salt content in the ocean.
+</td>
 </tr>
-<tr class="odd">
-<td>89</td>
-<td style="text-align: left;">Bio-ORACLE</td>
-<td style="text-align: left;">BO_sstmean</td>
-<td style="text-align: left;">Sea surface temperature (mean)</td>
-<td style="text-align: left;">Sea surface temperature is the temperature of the water at the ocean surface. This parameter indicates the temperature of the topmost meter of the ocean water column.</td>
+<tr>
+<td style="text-align:left;">
+89
+</td>
+<td style="text-align:left;">
+Bio-ORACLE
+</td>
+<td style="text-align:left;">
+BO_sstmean
+</td>
+<td style="text-align:left;">
+Sea surface temperature (mean)
+</td>
+<td style="text-align:left;">
+Sea surface temperature is the temperature of the water at the ocean surface. This parameter indicates the temperature of the topmost meter of the ocean water column.
+</td>
 </tr>
-<tr class="even">
-<td>94</td>
-<td style="text-align: left;">Bio-ORACLE</td>
-<td style="text-align: left;">BO_bathymean</td>
-<td style="text-align: left;">Bathymetry (mean)</td>
-<td style="text-align: left;">Average depth of the seafloor</td>
+<tr>
+<td style="text-align:left;">
+94
+</td>
+<td style="text-align:left;">
+Bio-ORACLE
+</td>
+<td style="text-align:left;">
+BO_bathymean
+</td>
+<td style="text-align:left;">
+Bathymetry (mean)
+</td>
+<td style="text-align:left;">
+Average depth of the seafloor
+</td>
 </tr>
 </tbody>
 </table>
 <pre class="r"><code># Plot &#39;em!
-    raster::plot(envCov)</code></pre>
+  raster::plot(envCov)</code></pre>
 <p><img src="/post/OnlineEcology-Species_files/figure-html/plotEnvVar-1.png" width="912" style="display: block; margin: auto;" /></p>
 <p><br/></p>
 </section>
@@ -1143,10 +1264,10 @@ Retrieved 1342 records of 1342 (100%)
 <p>…use this object with the <code>biomod2</code> functions to generate a distribution model for your species of interest…</p>
 <p><br/></p>
 <pre class="r"><code># Basic options for modelling
-    SDMoption &lt;- biomod2::BIOMOD_ModelingOptions()
+  SDMoption &lt;- biomod2::BIOMOD_ModelingOptions()
 
 # SDM model
-    SDM &lt;- biomod2::BIOMOD_Modeling(data = SDMdata,
+  SDM &lt;- biomod2::BIOMOD_Modeling(data = SDMdata,
                                     models = &quot;MAXENT.Tsuruoka&quot;,
                                     model.options = SDMoption,
                                     SaveObj = FALSE)</code></pre>
@@ -1154,38 +1275,78 @@ Retrieved 1342 records of 1342 (100%)
 <p>…extract the evaluation of the fit of your model…</p>
 <p><br/></p>
 <pre class="r"><code># Model evaluation
-    knitr::kable(biomod2::get_evaluations(SDM))</code></pre>
-<table>
+  knitr::kable(biomod2::get_evaluations(SDM), &#39;html&#39;)  %&gt;%
+      kable_styling(full_width = F)</code></pre>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
-<tr class="header">
-<th></th>
-<th style="text-align: right;">Testing.data</th>
-<th style="text-align: right;">Cutoff</th>
-<th style="text-align: right;">Sensitivity</th>
-<th style="text-align: right;">Specificity</th>
+<tr>
+<th style="text-align:left;">
+</th>
+<th style="text-align:right;">
+Testing.data
+</th>
+<th style="text-align:right;">
+Cutoff
+</th>
+<th style="text-align:right;">
+Sensitivity
+</th>
+<th style="text-align:right;">
+Specificity
+</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td>KAPPA</td>
-<td style="text-align: right;">0.344</td>
-<td style="text-align: right;">495.0</td>
-<td style="text-align: right;">75.265</td>
-<td style="text-align: right;">58.4</td>
+<tr>
+<td style="text-align:left;">
+KAPPA
+</td>
+<td style="text-align:right;">
+0.344
+</td>
+<td style="text-align:right;">
+495.0
+</td>
+<td style="text-align:right;">
+75.265
+</td>
+<td style="text-align:right;">
+58.4
+</td>
 </tr>
-<tr class="even">
-<td>TSS</td>
-<td style="text-align: right;">0.341</td>
-<td style="text-align: right;">495.0</td>
-<td style="text-align: right;">75.265</td>
-<td style="text-align: right;">58.4</td>
+<tr>
+<td style="text-align:left;">
+TSS
+</td>
+<td style="text-align:right;">
+0.341
+</td>
+<td style="text-align:right;">
+495.0
+</td>
+<td style="text-align:right;">
+75.265
+</td>
+<td style="text-align:right;">
+58.4
+</td>
 </tr>
-<tr class="odd">
-<td>ROC</td>
-<td style="text-align: right;">0.705</td>
-<td style="text-align: right;">496.5</td>
-<td style="text-align: right;">75.184</td>
-<td style="text-align: right;">59.0</td>
+<tr>
+<td style="text-align:left;">
+ROC
+</td>
+<td style="text-align:right;">
+0.705
+</td>
+<td style="text-align:right;">
+496.5
+</td>
+<td style="text-align:right;">
+75.184
+</td>
+<td style="text-align:right;">
+59.0
+</td>
 </tr>
 </tbody>
 </table>
@@ -1193,16 +1354,16 @@ Retrieved 1342 records of 1342 (100%)
 <p>… and finally, once the models are calibrated and evaluated, you can project your species spatial distribution:</p>
 <p><br/></p>
 <pre class="r"><code># Model spatial projection
-    SDMproj &lt;- biomod2::BIOMOD_Projection(modeling.output = SDM,
-                                          new.env = envCov,
-                                          proj.name = &#39;Awesome!&#39;,
-                                          selected.models = &#39;all&#39;,
-                                          binary.meth = &#39;TSS&#39;,
-                                          compress = &#39;xz&#39;,
-                                          clamping.mask = F,
-                                          output.format = &#39;.grd&#39;)
+  SDMproj &lt;- biomod2::BIOMOD_Projection(modeling.output = SDM,
+                                        new.env = envCov,
+                                        proj.name = &#39;Awesome!&#39;,
+                                        selected.models = &#39;all&#39;,
+                                        binary.meth = &#39;TSS&#39;,
+                                        compress = &#39;xz&#39;,
+                                        clamping.mask = F,
+                                        output.format = &#39;.grd&#39;)
 # ... and visualize them!
-    biomod2::plot(SDMproj)</code></pre>
+  biomod2::plot(SDMproj)</code></pre>
 <p><img src="/post/OnlineEcology-Species_files/figure-html/sdmSpatial-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><br/></p>
 <p>Riveting!</p>
