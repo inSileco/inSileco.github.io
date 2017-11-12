@@ -1108,7 +1108,8 @@ Title, P.O., Bemmels, J.B. 2017. ENVIREM: An expanded set of bioclimatic and top
 <pre class="r"><code># Import marine layers
   layers &lt;- c(&#39;BO_chlomean&#39;,&#39;BO_dissox&#39;,&#39;BO_ph&#39;,&#39;BO_salinity&#39;,&#39;BO_sstmean&#39;,&#39;BO_bathymean&#39;)
 # layers &lt;- &#39;BO_ph&#39;
-  envCov &lt;- sdmpredictors::load_layers(layers, datadir = paste0(getwd(), &quot;/../../_tmp&quot;), rasterstack = TRUE)</code></pre>
+  dir.create(&quot;downloaded_files/&quot;, showWarnings = FALSE)
+  envCov &lt;- sdmpredictors::load_layers(layers, datadir = &quot;downloaded_files/&quot;, rasterstack = TRUE)</code></pre>
 <p><br/></p>
 <p>Clip them and plot them:</p>
 <p><br/></p>
