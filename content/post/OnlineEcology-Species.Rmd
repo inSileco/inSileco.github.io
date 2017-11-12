@@ -275,7 +275,8 @@ and terrestrial environments and a total of
 
 ```{r, sdmpredictors}
 # List sdmpredictors datasets
-    knitr::kable(sdmpredictors::list_datasets())
+    knitr::kable(sdmpredictors::list_datasets(), 'html') %>%
+        kable_styling(full_width = F)
 ```
 
 <br/>
@@ -287,32 +288,25 @@ could also be used.
 
 <br/>
 
-```{r, importEnvVarhidden, echo = FALSE, eval = TRUE}
+```{r importEnvVarhidden, echo = FALSE, eval = TRUE}
 # if following the tutorial, do not run this block and/or feel free to delete the entire block
 # this is only for saving/loading the data from our repository, the steps to download the data are in the next chunk
 # Import marine layers
-    layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
-    ##
-    vec_fl <- paste0("../../_tmp/", c(
-        "BO_bathymean_lonlat.tif", "BO_chlomean_lonlat.tif",
-        "BO_dissox_lonlat.tif",    "BO_ph_lonlat.tif",
-        "BO_salinity_lonlat.tif",  "BO_sstmean_lonlat.tif"
-        ))
-    ##
-    if (file.exists("../../_tmp/envCov.Rds")) {
-      envCov <- readRDS("../../_tmp/envCov.Rds")
-      layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
-    } else  {
-      envCov <- sdmpredictors::load_layers(layers, datadir = paste0(getwd(), "/../../_tmp"), rasterstack = TRUE)
-      saveRDS(envCov, "../../_tmp/envCov.Rds")
-    }
+layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
+##
+if (file.exists("../../_tmp/envCov.Rds")) {
+  envCov <- readRDS("../../_tmp/envCov.Rds")
+} else  {
+  envCov <- sdmpredictors::load_layers(layers, datadir = paste0(getwd(), "/../../_tmp"), rasterstack = TRUE)
+  saveRDS(envCov, "../../_tmp/envCov.Rds")
+}
 ```
 
 ```{r, importEnvVar, eval = FALSE}
 # Import marine layers
-    layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
-    # layers <- 'BO_ph'
-    envCov <- sdmpredictors::load_layers(layers, datadir = paste0(getwd(), "/../../_tmp"), rasterstack = TRUE)
+  layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
+# layers <- 'BO_ph'
+  envCov <- sdmpredictors::load_layers(layers, datadir = paste0(getwd(), "/../../_tmp"), rasterstack = TRUE)
 ```
 
 <br/>
@@ -323,19 +317,19 @@ Clip them and plot them:
 
 ```{r cropEnvCov, eval = TRUE}
 # Clip to study area extent
-    envCov <- raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax))
-    print(envCov)
-    envCov %<>% raster::stack()
+envCov <- raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax)) %>%
+  raster::stack()
 ```
 
 ```{r cropEnvCov2, eval = TRUE}
 # Data description
-    knitr::kable(sdmpredictors::get_layers_info(layers)$current[,1:4])
+knitr::kable(sdmpredictors::get_layers_info(layers)$current[,1:4], 'html') %>%
+  kable_styling()
 ```
 
 ```{r, plotEnvVar, eval = TRUE, fig.width = 9.5, fig.height = 6}
 # Plot 'em!
-    raster::plot(envCov)
+  raster::plot(envCov)
 ```
 
 
@@ -382,10 +376,10 @@ model for your species of interest...
 
 ```{r, SDM model, eval = TRUE, results = 'hide', warning = FALSE}
 # Basic options for modelling
-    SDMoption <- biomod2::BIOMOD_ModelingOptions()
+  SDMoption <- biomod2::BIOMOD_ModelingOptions()
 
 # SDM model
-    SDM <- biomod2::BIOMOD_Modeling(data = SDMdata,
+  SDM <- biomod2::BIOMOD_Modeling(data = SDMdata,
                                     models = "MAXENT.Tsuruoka",
                                     model.options = SDMoption,
                                     SaveObj = FALSE)
@@ -400,7 +394,8 @@ model for your species of interest...
 
 ```{r, modelEval}
 # Model evaluation
-    knitr::kable(biomod2::get_evaluations(SDM))
+  knitr::kable(biomod2::get_evaluations(SDM), 'html')  %>%
+      kable_styling(full_width = F)
 ```
 
 
@@ -413,16 +408,16 @@ species spatial distribution:
 
 ```{r, sdmSpatial, results = 'hide', fig.width = 7, fig.height = 7}
 # Model spatial projection
-    SDMproj <- biomod2::BIOMOD_Projection(modeling.output = SDM,
-                                          new.env = envCov,
-                                          proj.name = 'Awesome!',
-                                          selected.models = 'all',
-                                          binary.meth = 'TSS',
-                                          compress = 'xz',
-                                          clamping.mask = F,
-                                          output.format = '.grd')
+  SDMproj <- biomod2::BIOMOD_Projection(modeling.output = SDM,
+                                        new.env = envCov,
+                                        proj.name = 'Awesome!',
+                                        selected.models = 'all',
+                                        binary.meth = 'TSS',
+                                        compress = 'xz',
+                                        clamping.mask = F,
+                                        output.format = '.grd')
 # ... and visualize them!
-    biomod2::plot(SDMproj)
+  biomod2::plot(SDMproj)
 ```
 
 ```{r, unlink, echo = FALSE}
