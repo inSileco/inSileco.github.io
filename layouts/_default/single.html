@@ -28,23 +28,20 @@
     <!-- related posts with the same tags -->
     {{ $related := first 3 (where (where (where .Site.Pages.ByDate.Reverse ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }} {{ if $related }}
 
-    <h4 class="page-header">Related</h4> {{ range $related }} {{ partial "list-item" . }} {{ end }} {{ end }}
+    <h4 class="page-header">Comments on this post</h4>
 
     <div id="disqus_thread"></div>
+
+    <h4 class="page-header">Related</h4> {{ range $related }} {{ partial "list-item" . }} {{ end }} {{ end }}
+
     <script>
       /**
        *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
        *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
 
       var disqus_config = function() {
-        this.page.url = "https://insileco.github.io" + {
-          {.Permalink
-          }
-        }; // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = {
-          {.Title
-          }
-        }; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = "https://insileco.github.io" + {{ .Permalink }}; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = {{ .Title }}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
       };
 
       (function() { // DON'T EDIT BELOW THIS LINE
