@@ -294,12 +294,7 @@ could also be used.
 # Import marine layers
 layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
 ##
-if (file.exists("../../_tmp/envCov.Rds")) {
-  envCov <- readRDS("../../_tmp/envCov.Rds")
-} else  {
-  envCov <- sdmpredictors::load_layers(layers, datadir = paste0(getwd(), "/../../_tmp"), rasterstack = TRUE)
-  saveRDS(envCov, "../../_tmp/envCov.Rds")
-}
+envCov <- readRDS("downloaded_fonts/envCov.Rds")
 ```
 
 ```{r, importEnvVar, eval = FALSE}
