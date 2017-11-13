@@ -1,0 +1,242 @@
+---
+title: Fish and tips 002 {R}
+author: [kevin]
+date: 2017-11-12
+tags: [R,tips]
+tweet: Second post on Fish and Tips series
+draft: false
+output:
+  blogdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+
+<div id="TOC">
+<ul>
+<li><a href="#code-tips-you-said">Code tips you said?</a></li>
+<li><a href="#the-drop-argument-on-the-operator">The <code>drop</code> argument on the <code>[]</code> operator</a></li>
+<li><a href="#get-the-citation-of-a-package">Get the citation of a package</a></li>
+<li><a href="#using-namespace-and-more">Using namespace and more</a></li>
+<li><a href="#how-to-use-non-exported-functions">How to use non-exported functions?</a></li>
+<li><a href="#the-las-argument-of-par">The <code>las</code> argument of <code>par()</code></a></li>
+</ul>
+</div>
+
+<p><img src="https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg" /></p>
+<section id="code-tips-you-said" class="level2">
+<h2>Code tips you said?</h2>
+<p>Ever tumbled on a code chunk that made you say: “I should have known this <em>¶ø?!@~&amp;</em> piece of code long ago!”? Chances are you have, frustratingly, just like we have, and on multiple occasions too.</p>
+<p>In comes <em>Fish and tips</em>!</p>
+<p>Fish and tips is a series of blog posts that each present 5 – hopefully helpful – coding tips for a specific programming language.</p>
+<p>Posts should be short (<em>i.e.</em> no more than 5 lines of code, max 80 characters per line, except when appropriate) and provide tips of many kind: a function, a way of combining of functions, a single argument, a note about the philosophy of the language and practical consequences, tricks to improve the way you code, good practices, etc.</p>
+<p>Note that while some tips might be obvious for careful documentation readers (God bless them for their wisdom), almost all the tips we present constituted</p>
+<p>By the way, there are undoubtedly similar initiatives on the web (<em>e.g.</em> <a href="https://twitter.com/RLangTip">“One R Tip a Day” account</a>). Also, feel free to comment below tip ideas or a post of code tips of your own which we will be happy to incorporate to <em>Fish and tips</em>!</p>
+<p>Enjoy and get ready to frustratingly appreciate our tips!</p>
+<hr />
+<p><br></p>
+</section>
+<section id="the-drop-argument-on-the-operator" class="level2">
+<h2>The <code>drop</code> argument on the <code>[]</code> operator</h2>
+<p>This is something not obvious and poorly known but there is a logical argument<br />
+<code>drop</code> that can be passed to the <code>[]</code> operator and I’ll try to explain why it could be useful! Let’s first create a dataframe with ten rows and three columns:</p>
+<pre class="r"><code>df &lt;- data.frame(
+  var1 = runif(10),
+  var2 = runif(10),
+  var3 = runif(10)
+)</code></pre>
+<p>To extract the first column, I use the <code>[]</code> operator and either type the number of the column like so:</p>
+<pre class="r"><code>df[, 1]
+#R&gt;  [1] 0.09876419 0.80504843 0.60757396 0.38283221 0.99780371 0.99242618
+#R&gt;  [7] 0.38290775 0.23273107 0.59650867 0.34567095</code></pre>
+<p>or the name of the column to be extracted:</p>
+<pre class="r"><code>df[, &#39;var1&#39;]
+#R&gt;  [1] 0.09876419 0.80504843 0.60757396 0.38283221 0.99780371 0.99242618
+#R&gt;  [7] 0.38290775 0.23273107 0.59650867 0.34567095</code></pre>
+<p>Interestingly enough, this returns a <strong>vector</strong> not a data.frame</p>
+<pre class="r"><code>class(df)
+#R&gt; [1] &quot;data.frame&quot;
+class(df[, &#39;var1&#39;])
+#R&gt; [1] &quot;numeric&quot;</code></pre>
+<p>while if I extract two columns, I have a data frame:</p>
+<pre class="r"><code>class(df[, c(&#39;var1&#39;, &#39;var2&#39;)])
+#R&gt; [1] &quot;data.frame&quot;</code></pre>
+<p>This behavior is actually very useful in many cases as we often are happy to deal with a vector when we extract only one column. However this might become an issue when we do extractions without knowing the number of columns to be extracted beforehand (typically when extracting according to a request that can give any number of columns). In such case if the number is one then we end up with a vector instead of a data.frame. The argument <code>drop</code> provides a work around. By default it is set to <code>TRUE</code> and a 1-column data.frame becomes a vector, but using <code>drop=FALSE</code> prevents this from happening. Let’s try this:</p>
+<pre class="r"><code>df[, 1, drop=FALSE]
+#R&gt;          var1
+#R&gt; 1  0.09876419
+#R&gt; 2  0.80504843
+#R&gt; 3  0.60757396
+#R&gt; 4  0.38283221
+#R&gt; 5  0.99780371
+#R&gt; 6  0.99242618
+#R&gt; 7  0.38290775
+#R&gt; 8  0.23273107
+#R&gt; 9  0.59650867
+#R&gt; 10 0.34567095</code></pre>
+<p>Let’s check its class:</p>
+<pre class="r"><code>class(df[, 1, drop=FALSE])
+#R&gt; [1] &quot;data.frame&quot;</code></pre>
+<p>Now you know ;-)</p>
+<p><br></p>
+</section>
+<section id="get-the-citation-of-a-package" class="level2">
+<h2>Get the citation of a package</h2>
+<p>Many researchers (it is especially TRUE in eclogy) uses R and write paper and carry out analyses using R for their research. One cones the time of citing the package I guess they wonder how to citethe package. However authors of package actually provides this information in their package! Let’s have a look of the reference for the package <code>knitr</code> as of version 1.17 using function <code>citation</code></p>
+<pre class="r"><code>citation(&quot;knitr&quot;)
+#R&gt; 
+#R&gt; To cite the &#39;knitr&#39; package in publications use:
+#R&gt; 
+#R&gt;   Yihui Xie (2017). knitr: A General-Purpose Package for Dynamic
+#R&gt;   Report Generation in R. R package version 1.17.
+#R&gt; 
+#R&gt;   Yihui Xie (2015) Dynamic Documents with R and knitr. 2nd
+#R&gt;   edition. Chapman and Hall/CRC. ISBN 978-1498716963
+#R&gt; 
+#R&gt;   Yihui Xie (2014) knitr: A Comprehensive Tool for Reproducible
+#R&gt;   Research in R. In Victoria Stodden, Friedrich Leisch and Roger
+#R&gt;   D. Peng, editors, Implementing Reproducible Computational
+#R&gt;   Research. Chapman and Hall/CRC. ISBN 978-1466561595
+#R&gt; 
+#R&gt; To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;,
+#R&gt; bibtex=TRUE)&#39;, &#39;toBibtex(.)&#39;, or set
+#R&gt; &#39;options(citation.bibtex.max=999)&#39;.</code></pre>
+<p>As suggested in the message, we can even retrieve a reference list in bibtex format with the <code>toBibtex</code> function, let’s do this:</p>
+<pre class="r"><code>toBibtex(citation(&quot;knitr&quot;))
+#R&gt; @Manual{,
+#R&gt;   title = {knitr: A General-Purpose Package for Dynamic Report Generation in R},
+#R&gt;   author = {Yihui Xie},
+#R&gt;   year = {2017},
+#R&gt;   note = {R package version 1.17},
+#R&gt;   url = {https://yihui.name/knitr/},
+#R&gt; }
+#R&gt; 
+#R&gt; @Book{,
+#R&gt;   title = {Dynamic Documents with {R} and knitr},
+#R&gt;   author = {Yihui Xie},
+#R&gt;   publisher = {Chapman and Hall/CRC},
+#R&gt;   address = {Boca Raton, Florida},
+#R&gt;   year = {2015},
+#R&gt;   edition = {2nd},
+#R&gt;   note = {ISBN 978-1498716963},
+#R&gt;   url = {https://yihui.name/knitr/},
+#R&gt; }
+#R&gt; 
+#R&gt; @InCollection{,
+#R&gt;   booktitle = {Implementing Reproducible Computational Research},
+#R&gt;   editor = {Victoria Stodden and Friedrich Leisch and Roger D. Peng},
+#R&gt;   title = {knitr: A Comprehensive Tool for Reproducible Research in {R}},
+#R&gt;   author = {Yihui Xie},
+#R&gt;   publisher = {Chapman and Hall/CRC},
+#R&gt;   year = {2014},
+#R&gt;   note = {ISBN 978-1466561595},
+#R&gt;   url = {http://www.crcpress.com/product/isbn/9781466561595},
+#R&gt; }</code></pre>
+<p>Even if you are no a Latex user, this could be very helpful as this file can be read by references manager softwares such as <a href="https://www.zotero.org/">Zotero</a>. So now let’s say I use the following command line:</p>
+<pre class="r"><code>cat(toBibtex(citation(&quot;knitr&quot;)), file=&#39;biblio.bib&#39;, sep=&#39;\n&#39;)</code></pre>
+<p>Then the <code>biblio.bib</code> file just created can be imported in you favorite references manager softwares.</p>
+<p><br></p>
+</section>
+<section id="using-namespace-and-more" class="level2">
+<h2>Using namespace and more</h2>
+<p>In R, functions are stored in packages and adding a package is like adding a collection of functions. As you get more experienced with R you likely know and use more and more packages. You migh even come to the point where you have functions that have the same name but originate from different package. If not, let me show you something:</p>
+<pre class="r"><code>library(magrittr)
+df &lt;- data.frame(
+  var1 = runif(10),
+  var2 = runif(10)
+  )
+extract(df, &#39;var1&#39;)
+#R&gt;         var1
+#R&gt; 1  0.7165401
+#R&gt; 2  0.1990046
+#R&gt; 3  0.4424000
+#R&gt; 4  0.4360524
+#R&gt; 5  0.4034303
+#R&gt; 6  0.3283211
+#R&gt; 7  0.3590873
+#R&gt; 8  0.7868476
+#R&gt; 9  0.2820782
+#R&gt; 10 0.9474739</code></pre>
+<p>Here I use the function <code>extract()</code> fron the magrittr package that act as <code>[]</code> and I extract the column <code>var1</code> from <code>df</code>. This function is actually designed to be use with pipes (if this sounds weird, have a look at the <a href="http://magrittr.tidyverse.org/">magrittr</a> package), for instance when piping you can write <code>df %$% extract(var1)</code> or even <code>df %&gt;% '['('var1')</code> and this will do the same. So far, so good. Now I load the <a href="https://cran.r-project.org/web/packages/raster/index.html">raster</a> package:</p>
+<pre class="r"><code>library(raster)
+#R&gt; Loading required package: sp
+#R&gt; 
+#R&gt; Attaching package: &#39;raster&#39;
+#R&gt; The following object is masked from &#39;package:magrittr&#39;:
+#R&gt; 
+#R&gt;     extract</code></pre>
+<p>and try the same extraction.</p>
+<pre class="r"><code>extract(df, &#39;var1&#39;)
+#R&gt; Error in (function (classes, fdef, mtable) : unable to find an inherited method for function &#39;extract&#39; for signature &#39;&quot;data.frame&quot;, &quot;character&quot;&#39;</code></pre>
+<p>It does not work…Why?? Briefly, <code>extract()</code> from <code>raster</code> is now called (this was the warning message on load said) and it does not get well with data.frame (this is the meaning of the error message). To overcome this you can use a explicit namespace. To do so you put the names of the package followed by <code>::</code>, this is basically the unique identifier of the function. Indeed, within a specific package, functions have different names and on CRAN packages must have different names, so the combination of the two is unique (this holds true if you only package from the CRAN). Let’s use it:</p>
+<pre class="r"><code>magrittr::extract(df, &#39;var1&#39;)
+#R&gt;         var1
+#R&gt; 1  0.7165401
+#R&gt; 2  0.1990046
+#R&gt; 3  0.4424000
+#R&gt; 4  0.4360524
+#R&gt; 5  0.4034303
+#R&gt; 6  0.3283211
+#R&gt; 7  0.3590873
+#R&gt; 8  0.7868476
+#R&gt; 9  0.2820782
+#R&gt; 10 0.9474739</code></pre>
+<p>Using this is also very helpful when you develop a package and functions from different packages. Even if you script and use a large number of function from various packages, it could be better to remember from which package functions come from. Finally, note that this is not R specific at all, actually this something very common in programming languages.</p>
+<p><br></p>
+</section>
+<section id="how-to-use-non-exported-functions" class="level2">
+<h2>How to use non-exported functions?</h2>
+<p>Packages often contain functions that are not exported. There are often functions called by the functions exported thats helps structuring the code of the package. However, it happens that when you try to understand how a package work you may want to spend some time understanding how they do work (especially given that they are nit documented). There is actually a way to call them! Instead of using to <code>:</code> as for using the namespace, you use three! Let’s see the code cource of one of this function of <code>knitr</code> (again version 1.17):</p>
+<pre><code>knitr:::.color.block</code></pre>
+<p>Interesting, isn’t it! And actually in this packages they are 103 exported functions and 425 not-exported. Below are presented few examples of exported functions followed by not-exported ones.</p>
+<pre class="r"><code>##------------------------ Exported functions
+## knitr::pat_rnw             knitr::fig_path            knitr::all_patterns
+## knitr::fig_chunk           knitr::clean_cache         knitr::kable
+## knitr::knit_params_yaml    knitr::raw_output          knitr::render_sweave
+## knitr::stitch_rhtml        knitr::include_graphics    knitr::Sweave2knitr
+## knitr::hook_plot_asciidoc  knitr::hook_optipng        knitr::hook_plot_tex
+## knitr::knit_print          knitr::knit_watch          knitr::knit2html
+## knitr::render_html         knitr::knit2wp             knitr::rocco
+## knitr::opts_template       knitr::normal_print        knitr::include_url
+## knitr::combine_words       knitr::render_listings     knitr::current_input
+##------------------------ (27/103 displayed)
+##------------------------
+##------------------------ Not-exported functions
+## knitr:::.__NAMESPACE__.            knitr:::knit_expand
+## knitr:::.__S3MethodsTable__.       knitr:::knit_filter
+## knitr:::.base.pkgs                 knitr:::knit_global
+## knitr:::.chunk.hook.html           knitr:::knit_handlers
+## knitr:::.chunk.hook.tex            knitr:::knit_hooks
+## knitr:::.color.block               knitr:::knit_log
+## knitr:::.default.hooks             knitr:::knit_meta
+## knitr:::.fmt.pat                   knitr:::knit_meta_add
+## knitr:::.header.framed             knitr:::knit_params
+## knitr:::.header.hi.html            knitr:::knit_params_handlers
+## knitr:::.header.hi.tex             knitr:::knit_params_yaml
+## knitr:::.header.maxwidth           knitr:::knit_patterns
+## knitr:::.header.sweave.cmd         knitr:::knit_print
+## knitr:::.img.attr                  knitr:::knit_print.default
+##------------------------ (28/425 displayed)</code></pre>
+<p>I think that this could be very helpful when you want to understand exactly how a package works!</p>
+<p><br></p>
+</section>
+<section id="the-las-argument-of-par" class="level2">
+<h2>The <code>las</code> argument of <code>par()</code></h2>
+<p>I really enjoy using <code>graphics</code> to create plots in R. That being said the default values always puzzles me! One I specially do like is that values on the y-axis are perpendicular…</p>
+<pre class="r"><code>vec &lt;- runif(10)
+plot(vec)</code></pre>
+<p><img src="/post/fish-and-tips02_files/figure-html/las0-1.svg" width="384" style="display: block; margin: auto;" /></p>
+<p>Fortunately this can readily be changed using the the <code>las</code> argument of the <code>par()</code> function which can take 3 values: 0 (default), 1 or 2. Let’s plot and see the differences:</p>
+<pre class="r"><code>par(mfrow=c(1,3), las=0)
+plot(vec, main=&#39;las=0 (default)&#39;)
+par(las=1)
+plot(vec, main=&#39;las=1&#39;)
+par(las=2)
+plot(vec, main=&#39;las=2&#39;)</code></pre>
+<p><img src="/post/fish-and-tips02_files/figure-html/las-1.svg" width="960" style="display: block; margin: auto;" /></p>
+<p>So, I personally prefer and use <code>las=1</code>!</p>
+<p><br></p>
+<p><strong>That’s all for number 2 of this series, see you for the next tips!</strong></p>
+<p><br><br></p>
+</section>
