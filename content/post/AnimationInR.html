@@ -1,8 +1,8 @@
 ---
 title: "Animations in R: Time series of erythemal irradiance in the St. Lawrence"
 author: [david, kevin]
-date: 2017-06-19
-tags: [R, plot, aniamtion, NASA, raditation, St. Lawrence]
+date: 2017-07-05
+tags: [R, plot, animation, NASA, radiation, St. Lawrence]
 tweet: "Animations in R: Time series of erythemal irradiance in the St. Lawrence"
 draft: false
 output:
@@ -25,7 +25,7 @@ output:
 <section id="r-version-used-to-build-the-last-update-of-this-post" class="level3">
 <h3>R version used to build the last update of this post</h3>
 <pre class="r"><code>sessionInfo()[[1]]$version.string
-R&gt;&gt; [1] &quot;R version 3.4.2 (2017-09-28)&quot;</code></pre>
+#R&gt; [1] &quot;R version 3.4.2 (2017-09-28)&quot;</code></pre>
 <p><br/></p>
 </section>
 <section id="installing-imagemagick" class="level3">
@@ -53,15 +53,15 @@ R&gt;&gt; [1] &quot;R version 3.4.2 (2017-09-28)&quot;</code></pre>
 # Ocean shapefile
   ocean &lt;- readOGR(dsn = &quot;../../static/assets/AnimationInR/shpfile/&quot;, layer = &quot;ne_10m_ocean&quot;) %&gt;%
              spTransform(CRSobj = CRS(spatProj))
-R&gt;&gt; OGR data source with driver: ESRI Shapefile 
-R&gt;&gt; Source: &quot;../../static/assets/AnimationInR/shpfile/&quot;, layer: &quot;ne_10m_ocean&quot;
-R&gt;&gt; with 1 features
-R&gt;&gt; It has 2 fields
+#R&gt; OGR data source with driver: ESRI Shapefile 
+#R&gt; Source: &quot;../../static/assets/AnimationInR/shpfile/&quot;, layer: &quot;ne_10m_ocean&quot;
+#R&gt; with 1 features
+#R&gt; It has 2 fields
 
   class(ocean)
-R&gt;&gt; [1] &quot;SpatialPolygonsDataFrame&quot;
-R&gt;&gt; attr(,&quot;package&quot;)
-R&gt;&gt; [1] &quot;sp&quot;</code></pre>
+#R&gt; [1] &quot;SpatialPolygonsDataFrame&quot;
+#R&gt; attr(,&quot;package&quot;)
+#R&gt; [1] &quot;sp&quot;</code></pre>
 <p><br/></p>
 </section>
 <section id="set-parameters-and-functions" class="level2">

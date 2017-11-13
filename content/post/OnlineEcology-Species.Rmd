@@ -155,13 +155,13 @@ taxize::classification(sp, db = 'worms', accepted = TRUE, verbose = FALSE)[[1]] 
 ```
 <br>
 
-```{r taxonomy2, results='asis'}
+```{r taxonomy2, eval=F}
 # Retrieve a tsn for Gadus morhua, i.e. an unique identifier from the itis db
-idtsn <- taxize::get_tsn(sp, accepted=TRUE, ask=FALSE, verbose = FALSE, row=1)[1]
+idtsn <- taxize::get_tsn(sp, accepted=TRUE, ask=FALSE, verbose = FALSE)[1]
 ```
 
 
-```{r taxonomy3}
+```{r taxonomy3, eval=F}
 # We can also extract the common or scientific names using sci2comm() & comm2sci(), respectively.
 taxize::sci2comm(taxize::as.tsn(idtsn), db = 'itis', row=1)
 
@@ -169,7 +169,7 @@ taxize::sci2comm(taxize::as.tsn(idtsn), db = 'itis', row=1)
 taxize::synonyms(taxize::as.tsn(idtsn), db = 'itis')
 ```
 
-```{r taxonomy4, results='as.is'}
+```{r taxonomy4, results='as.is', eval=F}
 # Another really interesting feature is to extract all known species at a given
 # taxonomic scale. With the itis db, you should first find the tsn associated
 # with Gadus. Using `taxize::get_tsn('gadus')` you'll find out that it is 164710
