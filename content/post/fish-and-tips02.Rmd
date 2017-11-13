@@ -1,0 +1,277 @@
+---
+title: Fish and tips 002 {R}
+author: [kevin]
+date: 2017-11-12
+tags: [R,tips]
+tweet: Second post on Fish and Tips series
+draft: false
+output:
+  blogdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+
+
+```{r codeChunkSetUp, echo=FALSE}
+source('../../static/Rscript/codeChunkSetUp.R')
+```
+
+![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
+
+```{r trick, echo=FALSE, results='asis'}
+source('../../static/Rscript/trickTweak.R')
+```
+
+
+---
+
+
+<br>
+
+## The `drop` argument on the `[]` operator   
+
+This is something not obvious and poorly known but there is a logical argument  
+`drop` that can be passed to the `[]` operator and I'll try to explain why it
+could be useful! Let's first create a dataframe with ten rows and three
+columns:
+
+```{r dataframe0}
+df <- data.frame(
+  var1 = runif(10),
+  var2 = runif(10),
+  var3 = runif(10)
+)
+```
+
+To extract the first column, I use the `[]` operator and either type the number
+of the column like so:
+
+```{r col1}
+df[, 1]
+```
+
+or the name of the column to be extracted:
+
+```{r col2}
+df[, 'var1']
+```
+
+Interestingly enough, this returns a **vector** not a data.frame
+
+```{r classes}
+class(df)
+class(df[, 'var1'])
+```
+
+while if I extract two columns, I have a data frame:
+
+```{r classesb}
+class(df[, c('var1', 'var2')])
+```
+
+This behavior is actually very useful in many cases as we often are happy to
+deal with a vector when we extract only one column. However this might become
+an issue when we do extractions without knowing the number of columns
+to be extracted beforehand (typically when extracting according to a request
+that can give any number of columns). In such case if the number is one then
+we end up with a vector instead of a data.frame. The argument `drop` provides
+a work around. By default it is set to `TRUE` and a 1-column data.frame becomes
+a vector, but using `drop=FALSE` prevents this from happening. Let's try this:
+
+```{r dropfalse}
+df[, 1, drop=FALSE]
+```
+Let's check its class:
+
+```{r classes2}
+class(df[, 1, drop=FALSE])
+```
+
+Now you know ;-)
+
+
+<br>
+
+## Get the citation of a package   
+
+Many researchers (it is especially TRUE in eclogy) uses R and write paper and
+carry out analyses using R for their research. One cones the time of citing the
+package I guess they wonder how to citethe package. However authors of
+package actually provides this information in their package! Let's have a look
+of the reference for the package `knitr` as of version 1.17 using function
+`citation`
+
+
+```{r citation}
+citation("knitr")
+```
+
+As suggested in the message, we can even retrieve a reference list in bibtex
+format with the `toBibtex` function, let's do this:
+
+```{r citation2}
+toBibtex(citation("knitr"))
+```
+
+Even if you are no a Latex user, this could be very helpful as this file
+can be read by references manager softwares such as [Zotero](https://www.zotero.org/).
+So now let's say I use the following command line:
+
+```r
+cat(toBibtex(citation("knitr")), file='biblio.bib', sep='\n')
+```
+
+Then the `biblio.bib` file just created can be imported in you favorite
+references manager softwares.
+
+
+<br>
+
+## Using namespace and more  
+
+In R, functions are stored in packages and adding a package is like adding
+a collection of functions. As you get more experienced with R you likely
+know and use more and more packages. You migh even come to the point
+where you have functions that have the same name but originate from different package.
+If not, let me show you something:
+
+```{r pbpkg}
+library(magrittr)
+df <- data.frame(
+  var1 = runif(10),
+  var2 = runif(10)
+  )
+extract(df, 'var1')
+```
+
+Here I use the function `extract()` fron the magrittr package that act as `[]`
+and I extract the column `var1` from `df`. This function is actually designed
+to be use with pipes (if this sounds weird, have a look at the
+[magrittr](http://magrittr.tidyverse.org/) package), for instance when piping
+you can write `df %$% extract(var1)` or even `df %>% '['('var1')` and this will
+do the same. So far, so good. Now I load the
+[raster](https://cran.r-project.org/web/packages/raster/index.html) package:
+
+```{r pbpkg2, message=T}
+library(raster)
+```
+
+and try the same extraction.
+
+```{r createdf, error=TRUE}
+extract(df, 'var1')
+```
+
+It does not work...Why?? Briefly, `extract()` from `raster` is now called (this
+was the warning message on load said) and it does not get well with data.frame
+(this is the meaning of the error message). To overcome this you can use a
+explicit namespace. To do so you put the names of the package followed by `::`,
+this is basically the unique identifier of the function. Indeed, within a
+specific package, functions have different names and on CRAN packages must have
+different names, so the combination of the two is unique (this holds true if you
+only package from the CRAN). Let's use it:
+
+```{r namespace1}
+magrittr::extract(df, 'var1')
+```
+
+Using this is also very helpful when you develop a package and functions from
+different packages. Even if you script and use a large number
+of function from various packages, it could be better to remember
+from which package functions come from. Finally, note that this is not R specific
+at all, actually this something very common in programming languages.
+
+
+
+<br>
+
+## How to use non-exported functions?
+
+Packages often contain functions that are not exported. There are often functions
+called by the functions exported thats helps structuring the code of the package.
+However, it happens that when you try to understand how a package work you may
+want to spend some time understanding how they do work (especially given that
+they are nit documented). There is actually a way to call them! Instead of using
+to `:` as for using the namespace, you use three! Let's see the code cource of one
+of this function of `knitr` (again version 1.17):
+
+```
+knitr:::.color.block
+```
+
+Interesting, isn't it! And actually in this packages they are 103 exported
+functions and 425 not-exported. Below are presented few examples of exported
+functions followed by not-exported ones.
+
+
+```r
+##------------------------ Exported functions
+## knitr::pat_rnw             knitr::fig_path            knitr::all_patterns
+## knitr::fig_chunk           knitr::clean_cache         knitr::kable
+## knitr::knit_params_yaml    knitr::raw_output          knitr::render_sweave
+## knitr::stitch_rhtml        knitr::include_graphics    knitr::Sweave2knitr
+## knitr::hook_plot_asciidoc  knitr::hook_optipng        knitr::hook_plot_tex
+## knitr::knit_print          knitr::knit_watch          knitr::knit2html
+## knitr::render_html         knitr::knit2wp             knitr::rocco
+## knitr::opts_template       knitr::normal_print        knitr::include_url
+## knitr::combine_words       knitr::render_listings     knitr::current_input
+##------------------------ (27/103 displayed)
+##------------------------
+##------------------------ Not-exported functions
+## knitr:::.__NAMESPACE__.            knitr:::knit_expand
+## knitr:::.__S3MethodsTable__.       knitr:::knit_filter
+## knitr:::.base.pkgs                 knitr:::knit_global
+## knitr:::.chunk.hook.html           knitr:::knit_handlers
+## knitr:::.chunk.hook.tex            knitr:::knit_hooks
+## knitr:::.color.block               knitr:::knit_log
+## knitr:::.default.hooks             knitr:::knit_meta
+## knitr:::.fmt.pat                   knitr:::knit_meta_add
+## knitr:::.header.framed             knitr:::knit_params
+## knitr:::.header.hi.html            knitr:::knit_params_handlers
+## knitr:::.header.hi.tex             knitr:::knit_params_yaml
+## knitr:::.header.maxwidth           knitr:::knit_patterns
+## knitr:::.header.sweave.cmd         knitr:::knit_print
+## knitr:::.img.attr                  knitr:::knit_print.default
+##------------------------ (28/425 displayed)
+```
+
+I think that this could be very helpful when you want to understand exactly
+how a package works!
+
+
+<br>
+
+## The `las` argument of `par()`     
+
+I really enjoy using `graphics` to create plots in R. That being said the default
+values always puzzles me! One I specially do like is that values on the y-axis
+are perpendicular...
+
+```{r las0, fig.width=4, fig.height=4}
+vec <- runif(10)
+plot(vec)
+```
+
+Fortunately this can readily be changed using the the `las` argument of the
+`par()` function which can take 3 values: 0 (default), 1 or 2. Let's plot
+and see the differences:
+
+```{r las, fig.width=10, fig.height=4}
+par(mfrow=c(1,3), las=0)
+plot(vec, main='las=0 (default)')
+par(las=1)
+plot(vec, main='las=1')
+par(las=2)
+plot(vec, main='las=2')
+```
+
+So, I personally prefer and use `las=1`!
+
+
+<br>
+
+**That's all for number 2 of this series, see you for the next tips!**
+
+<br><br>
