@@ -8,7 +8,6 @@ draft: false
 output:
   blogdown::html_page:
     toc: true
-    fig_width: 3
     dev: svg
 ---
 
@@ -43,6 +42,7 @@ df <- data.frame(
   var2 = runif(10),
   var3 = runif(10)
 )
+head(df)
 ```
 
 To extract the first column, I use the `[]` operator and either type the number
@@ -89,6 +89,20 @@ Let's check its class:
 class(df[, 1, drop=FALSE])
 ```
 
+You can actually obtain the same result using the name of the column or its
+number without comma.
+
+
+```{r justnb}
+df[1]
+```
+
+But if you need a specific selection of rows, you better use `drop`!
+
+```{r classes3}
+df[2:5, 1, drop=F]
+```
+
 Now you know ;-)
 
 
@@ -96,9 +110,9 @@ Now you know ;-)
 
 ## Get the citation of a package   
 
-Many researchers (it is especially TRUE in eclogy) uses R and write paper and
+Many researchers (it is especially TRUE in ecology) uses R and write paper and
 carry out analyses using R for their research. One cones the time of citing the
-package I guess they wonder how to citethe package. However authors of
+package I guess they wonder how to cite the package. However authors of
 package actually provides this information in their package! Let's have a look
 of the reference for the package `knitr` as of version 1.17 using function
 `citation`
@@ -133,7 +147,7 @@ references manager softwares.
 
 In R, functions are stored in packages and adding a package is like adding
 a collection of functions. As you get more experienced with R you likely
-know and use more and more packages. You migh even come to the point
+know and use more and more packages. You might even come to the point
 where you have functions that have the same name but originate from different package.
 If not, let me show you something:
 
@@ -146,7 +160,7 @@ df <- data.frame(
 extract(df, 'var1')
 ```
 
-Here I use the function `extract()` fron the magrittr package that act as `[]`
+Here I use the function `extract()` from the magrittr package that act as `[]`
 and I extract the column `var1` from `df`. This function is actually designed
 to be use with pipes (if this sounds weird, have a look at the
 [magrittr](http://magrittr.tidyverse.org/) package), for instance when piping
@@ -194,16 +208,16 @@ called by the functions exported thats helps structuring the code of the package
 However, it happens that when you try to understand how a package work you may
 want to spend some time understanding how they do work (especially given that
 they are nit documented). There is actually a way to call them! Instead of using
-to `:` as for using the namespace, you use three! Let's see the code cource of one
-of this function of `knitr` (again version 1.17):
+tow colons (`:`), use three! Let's have a look to the code of one of this function
+from the `knitr` package (again version 1.17):
 
 ```
 knitr:::.color.block
 ```
 
-Interesting, isn't it! And actually in this packages they are 103 exported
-functions and 425 not-exported. Below are presented few examples of exported
-functions followed by not-exported ones.
+Interesting, isn't it! To give you an idea about how frequent this can be, in
+this packages there are 103 exported functions and 425 not-exported. Below
+are presented few examples of exported functions followed by not-exported ones.
 
 
 ```r
