@@ -1,5 +1,5 @@
 ---
-title: Fish and tips 01 {R}
+title: Fish and tips 001 {R}
 author: [kevin]
 date: 2017-06-30
 tags: [R,tips]
@@ -16,17 +16,17 @@ output:
 
 <section id="code-tips-you-said" class="level2">
 <h2>Code tips you said?</h2>
-<p>Ever tumbled on a code chunk that made you say: “I should have known this <em>¶ø?!@~:&amp;</em> piece of code long ago!”? Chances are you have, frustratingly, just like we have, and on multiple occasions too.</p>
-<p>In comes <em>blogPostSeriesName</em>!</p>
-<p><em>blogPostSeriesName</em> is a series of blog posts that each present 5 – hopefully helpful – coding tips for a specific programming language.</p>
+<p>Ever tumbled on a code chunk that made you say: “I should have known this <em>¶ø?!@~&amp;</em> piece of code long ago!”? Chances are you have, frustratingly, just like we have, and on multiple occasions too.</p>
+<p>In comes <em>Fish and tips</em>!</p>
+<p>Fish and tips is a series of blog posts that each present 5 – hopefully helpful – coding tips for a specific programming language.</p>
 <p>Posts should be short (<em>i.e.</em> no more than 5 lines of code, max 80 characters per line, except when appropriate) and provide tips of many kind: a function, a way of combining of functions, a single argument, a note about the philosophy of the language and practical consequences, tricks to improve the way you code, good practices, etc.</p>
-<p>Note that while some tips might be obvious for careful documentation readers (God bless them for their wisdom), almost all the tips we present constituted some sort of eureka moments for us.</p>
-<p>By the way, there are undoubtedly similar initiatives on the web (<em>e.g.</em> <a href="https://twitter.com/RLangTip">‘One R Tip a Day’ account</a>). Also, feel free to <a href="mailto:kevin.cazelles@gmail.com">send us</a> tip ideas or a post of code tips of your own which we will be happy to incorporate to <em>blogPostSeriesName</em>!</p>
+<p>Note that while some tips might be obvious for careful documentation readers (God bless them for their wisdom), almost all the tips we present constituted</p>
+<p>By the way, there are undoubtedly similar initiatives on the web (<em>e.g.</em> <a href="https://twitter.com/RLangTip">“One R Tip a Day” account</a>). Also, feel free to comment below tip ideas or a post of code tips of your own which we will be happy to incorporate to <em>Fish and tips</em>!</p>
 <p>Enjoy and get ready to frustratingly appreciate our tips!</p>
 <hr />
 </section>
-<section id="blogpostseriesname-0001" class="level2">
-<h2><em>blogPostSeriesName</em> 0001</h2>
+<section id="fish-and-tips-0001" class="level2">
+<h2><em>Fish and tips</em> 0001</h2>
 <p>For the first post of the series, let’s introduce 5 <strong>R</strong> tips:</p>
 <ol type="1">
 <li>The %in% operator<br />
@@ -46,24 +46,24 @@ output:
 <pre class="r"><code>vecA &lt;- c(&quot;a&quot;, &quot;d&quot;, &quot;2&quot;, &quot;4&quot;, &quot;e&quot;, &quot;;&quot;)
 vecB &lt;- letters # vector of lower case letters the Roman alphabet
 vecA%in%vecB
-R&gt;&gt; [1]  TRUE  TRUE FALSE FALSE  TRUE FALSE</code></pre>
+#R&gt; [1]  TRUE  TRUE FALSE FALSE  TRUE FALSE</code></pre>
 <p>the i<sup>th</sup> element of the output vector is <code>TRUE</code> if the i<sup>th</sup> element of <code>vecA</code> is among the elements of <code>vecB</code>. Note that you can have a similar result calling the <code>intersect()</code> functions which returns elements that <code>vecA</code> and <code>vecB</code> are sharing.</p>
 <pre class="r"><code>intersect(vecA, vecB)
-R&gt;&gt; [1] &quot;a&quot; &quot;d&quot; &quot;e&quot;</code></pre>
+#R&gt; [1] &quot;a&quot; &quot;d&quot; &quot;e&quot;</code></pre>
 <p>By the way, you should have a look to the documentation of <code>intersect()</code>.</p>
 </section>
 <section id="the-paste0-function" class="level2">
 <h2>The <code>paste0()</code> function</h2>
 <p>I often concatenate strings. The natural way to do this is to use the <code>paste()</code> function. Let’s say I need to create a set of original file names such as: “myfile1”, “myfile2”, “myfile3”, etc. I can call <code>paste()</code> like so:</p>
 <pre class="r"><code>paste(&quot;myfile&quot;, 1:7)
-R&gt;&gt; [1] &quot;myfile 1&quot; &quot;myfile 2&quot; &quot;myfile 3&quot; &quot;myfile 4&quot; &quot;myfile 5&quot; &quot;myfile 6&quot;
-R&gt;&gt; [7] &quot;myfile 7&quot;</code></pre>
+#R&gt; [1] &quot;myfile 1&quot; &quot;myfile 2&quot; &quot;myfile 3&quot; &quot;myfile 4&quot; &quot;myfile 5&quot; &quot;myfile 6&quot;
+#R&gt; [7] &quot;myfile 7&quot;</code></pre>
 <p>BUT, there is a annoying space between “myfile” and the number, to remove the space, <code>sep</code> argument is needed:</p>
 <pre class="r"><code>paste(&quot;myfile&quot;, 1:3, sep=&quot;&quot;)
-R&gt;&gt; [1] &quot;myfile1&quot; &quot;myfile2&quot; &quot;myfile3&quot;</code></pre>
+#R&gt; [1] &quot;myfile1&quot; &quot;myfile2&quot; &quot;myfile3&quot;</code></pre>
 <p>UNLESS you use the <code>paste0()</code> that is the version of <code>paste()</code> with the desired default parameters:</p>
 <pre class="r"><code>paste0(&quot;myfile&quot;, 1:3)
-R&gt;&gt; [1] &quot;myfile1&quot; &quot;myfile2&quot; &quot;myfile3&quot;</code></pre>
+#R&gt; [1] &quot;myfile1&quot; &quot;myfile2&quot; &quot;myfile3&quot;</code></pre>
 <p>I know… this means you’ll save 5 previous characters each time you call <code>paste0()</code>!</p>
 </section>
 <section id="using-argument-r-in-cat" class="level2">
@@ -125,32 +125,32 @@ for (i in 1:nmx) {
 <pre class="r"><code>sprintf(&quot;%d&quot;, 1)
 sprintf(&quot;%f&quot;, pi)
 sprintf(&quot;%s&quot;, &quot;A&quot;)
-R&gt;&gt; [1] &quot;1&quot;
-R&gt;&gt; [1] &quot;3.141593&quot;
-R&gt;&gt; [1] &quot;A&quot;</code></pre>
+#R&gt; [1] &quot;1&quot;
+#R&gt; [1] &quot;3.141593&quot;
+#R&gt; [1] &quot;A&quot;</code></pre>
 <ol start="2" type="1">
 <li>Combine different variables:</li>
 </ol>
 <pre class="r"><code>sprintf(&quot;An integer: %d, a double: %f, a string: %s&quot;, 1, pi, &quot;A&quot;)
-R&gt;&gt; [1] &quot;An integer: 1, a double: 3.141593, a string: A&quot;</code></pre>
+#R&gt; [1] &quot;An integer: 1, a double: 3.141593, a string: A&quot;</code></pre>
 <ol start="3" type="1">
 <li>Tune the field width:</li>
 </ol>
 <pre class="r"><code>sprintf(&quot;%10f&quot;, pi)
-R&gt;&gt; [1] &quot;  3.141593&quot;</code></pre>
+#R&gt; [1] &quot;  3.141593&quot;</code></pre>
 <ol start="4" type="1">
 <li>Zero-padding:</li>
 </ol>
 <pre class="r"><code>sprintf(&quot;%010f&quot;, pi)
-R&gt;&gt; [1] &quot;003.141593&quot;</code></pre>
+#R&gt; [1] &quot;003.141593&quot;</code></pre>
 <ol start="5" type="1">
 <li>Tune the precision:</li>
 </ol>
 <pre class="r"><code>sprintf(&quot;%.50f&quot;, pi)
-R&gt;&gt; [1] &quot;3.14159265358979311599796346854418516159057617187500&quot;</code></pre>
+#R&gt; [1] &quot;3.14159265358979311599796346854418516159057617187500&quot;</code></pre>
 <p>Pretty cool, isn’t it? To conclude two questions. Question 1: do you remember the file naming example using to showcase <code>paste0()</code>? I assume your answer if yes. Let’s say you now have more than 100 files to name and you want to use zero-padding and a constant field width of 3 (e.g. “myfile001”, “myfile010”, “myfile100”). This leads me to question 2: what do you do? =&gt; Go <code>sprintf()</code>!</p>
 <pre class="r"><code>paste0(&quot;myfile&quot;, sprintf(&quot;%03d&quot;, c(1,10,100)))
-R&gt;&gt; [1] &quot;myfile001&quot; &quot;myfile010&quot; &quot;myfile100&quot;</code></pre>
+#R&gt; [1] &quot;myfile001&quot; &quot;myfile010&quot; &quot;myfile100&quot;</code></pre>
 </section>
 <section id="the-xaxs-and-yaxs-arguments-of-par" class="level2">
 <h2>The <code>xaxs</code> and <code>yaxs</code> arguments of <code>par()</code></h2>
