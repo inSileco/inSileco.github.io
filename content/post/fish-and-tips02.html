@@ -8,6 +8,10 @@ draft: false
 output:
   blogdown::html_page:
     toc: true
+<<<<<<< HEAD
+=======
+    fig_width: 3
+>>>>>>> dev
     dev: svg
 ---
 
@@ -44,6 +48,7 @@ output:
   var1 = runif(10),
   var2 = runif(10),
   var3 = runif(10)
+<<<<<<< HEAD
 )
 head(df)
 #R&gt;         var1      var2       var3
@@ -53,6 +58,9 @@ head(df)
 #R&gt; 4 0.38283221 0.1781357 0.55153146
 #R&gt; 5 0.99780371 0.2969795 0.49755827
 #R&gt; 6 0.99242618 0.4673813 0.29241863</code></pre>
+=======
+)</code></pre>
+>>>>>>> dev
 <p>To extract the first column, I use the <code>[]</code> operator and either type the number of the column like so:</p>
 <pre class="r"><code>df[, 1]
 #R&gt;  [1] 0.09876419 0.80504843 0.60757396 0.38283221 0.99780371 0.99242618
@@ -85,6 +93,7 @@ class(df[, &#39;var1&#39;])
 <p>Let’s check its class:</p>
 <pre class="r"><code>class(df[, 1, drop=FALSE])
 #R&gt; [1] &quot;data.frame&quot;</code></pre>
+<<<<<<< HEAD
 <p>You can actually obtain the same result using the name of the column or its number without comma.</p>
 <pre class="r"><code>df[1]
 #R&gt;          var1
@@ -105,12 +114,18 @@ class(df[, &#39;var1&#39;])
 #R&gt; 3 0.6075740
 #R&gt; 4 0.3828322
 #R&gt; 5 0.9978037</code></pre>
+=======
+>>>>>>> dev
 <p>Now you know ;-)</p>
 <p><br></p>
 </section>
 <section id="get-the-citation-of-a-package" class="level2">
 <h2>Get the citation of a package</h2>
+<<<<<<< HEAD
 <p>Many researchers (it is especially TRUE in ecology) uses R and write paper and carry out analyses using R for their research. One cones the time of citing the package I guess they wonder how to cite the package. However authors of package actually provides this information in their package! Let’s have a look of the reference for the package <code>knitr</code> as of version 1.17 using function <code>citation</code></p>
+=======
+<p>Many researchers (it is especially TRUE in eclogy) uses R and write paper and carry out analyses using R for their research. One cones the time of citing the package I guess they wonder how to citethe package. However authors of package actually provides this information in their package! Let’s have a look of the reference for the package <code>knitr</code> as of version 1.17 using function <code>citation</code></p>
+>>>>>>> dev
 <pre class="r"><code>citation(&quot;knitr&quot;)
 #R&gt; 
 #R&gt; To cite the &#39;knitr&#39; package in publications use:
@@ -167,7 +182,11 @@ class(df[, &#39;var1&#39;])
 </section>
 <section id="using-namespace-and-more" class="level2">
 <h2>Using namespace and more</h2>
+<<<<<<< HEAD
 <p>In R, functions are stored in packages and adding a package is like adding a collection of functions. As you get more experienced with R you likely know and use more and more packages. You might even come to the point where you have functions that have the same name but originate from different package. If not, let me show you something:</p>
+=======
+<p>In R, functions are stored in packages and adding a package is like adding a collection of functions. As you get more experienced with R you likely know and use more and more packages. You migh even come to the point where you have functions that have the same name but originate from different package. If not, let me show you something:</p>
+>>>>>>> dev
 <pre class="r"><code>library(magrittr)
 df &lt;- data.frame(
   var1 = runif(10),
@@ -185,7 +204,11 @@ extract(df, &#39;var1&#39;)
 #R&gt; 8  0.7868476
 #R&gt; 9  0.2820782
 #R&gt; 10 0.9474739</code></pre>
+<<<<<<< HEAD
 <p>Here I use the function <code>extract()</code> from the magrittr package that act as <code>[]</code> and I extract the column <code>var1</code> from <code>df</code>. This function is actually designed to be use with pipes (if this sounds weird, have a look at the <a href="http://magrittr.tidyverse.org/">magrittr</a> package), for instance when piping you can write <code>df %$% extract(var1)</code> or even <code>df %&gt;% '['('var1')</code> and this will do the same. So far, so good. Now I load the <a href="https://cran.r-project.org/web/packages/raster/index.html">raster</a> package:</p>
+=======
+<p>Here I use the function <code>extract()</code> fron the magrittr package that act as <code>[]</code> and I extract the column <code>var1</code> from <code>df</code>. This function is actually designed to be use with pipes (if this sounds weird, have a look at the <a href="http://magrittr.tidyverse.org/">magrittr</a> package), for instance when piping you can write <code>df %$% extract(var1)</code> or even <code>df %&gt;% '['('var1')</code> and this will do the same. So far, so good. Now I load the <a href="https://cran.r-project.org/web/packages/raster/index.html">raster</a> package:</p>
+>>>>>>> dev
 <pre class="r"><code>library(raster)
 #R&gt; Loading required package: sp
 #R&gt; 
@@ -214,9 +237,15 @@ extract(df, &#39;var1&#39;)
 </section>
 <section id="how-to-use-non-exported-functions" class="level2">
 <h2>How to use non-exported functions?</h2>
+<<<<<<< HEAD
 <p>Packages often contain functions that are not exported. There are often functions called by the functions exported thats helps structuring the code of the package. However, it happens that when you try to understand how a package work you may want to spend some time understanding how they do work (especially given that they are nit documented). There is actually a way to call them! Instead of using tow colons (<code>:</code>), use three! Let’s have a look to the code of one of this function from the <code>knitr</code> package (again version 1.17):</p>
 <pre><code>knitr:::.color.block</code></pre>
 <p>Interesting, isn’t it! To give you an idea about how frequent this can be, in this packages there are 103 exported functions and 425 not-exported. Below are presented few examples of exported functions followed by not-exported ones.</p>
+=======
+<p>Packages often contain functions that are not exported. There are often functions called by the functions exported thats helps structuring the code of the package. However, it happens that when you try to understand how a package work you may want to spend some time understanding how they do work (especially given that they are nit documented). There is actually a way to call them! Instead of using to <code>:</code> as for using the namespace, you use three! Let’s see the code cource of one of this function of <code>knitr</code> (again version 1.17):</p>
+<pre><code>knitr:::.color.block</code></pre>
+<p>Interesting, isn’t it! And actually in this packages they are 103 exported functions and 425 not-exported. Below are presented few examples of exported functions followed by not-exported ones.</p>
+>>>>>>> dev
 <pre class="r"><code>##------------------------ Exported functions
 ## knitr::pat_rnw             knitr::fig_path            knitr::all_patterns
 ## knitr::fig_chunk           knitr::clean_cache         knitr::kable
