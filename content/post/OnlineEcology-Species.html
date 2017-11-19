@@ -549,17 +549,114 @@ Species
 </table>
 <p><br></p>
 <pre class="r"><code># Retrieve a tsn for Gadus morhua, i.e. an unique identifier from the itis db
-idtsn &lt;- taxize::get_tsn(sp, accepted=TRUE, ask=FALSE, verbose = FALSE)[1]</code></pre>
+idtsn &lt;- taxize::get_tsn(sp, accepted=TRUE, verbose = FALSE, row=1)[1]</code></pre>
 <pre class="r"><code># We can also extract the common or scientific names using sci2comm() &amp; comm2sci(), respectively.
-taxize::sci2comm(taxize::as.tsn(idtsn), db = &#39;itis&#39;, row=1)
+taxize::sci2comm(taxize::as.tsn(idtsn), db = &#39;itis&#39;)
+#R&gt; $`164712`
+#R&gt; [1] &quot;morue de l&#39;Atlantique&quot; &quot;bacalao del Atlántico&quot; &quot;cod&quot;                  
+#R&gt; [4] &quot;rock cod&quot;              &quot;morue franche&quot;         &quot;Atlantic cod&quot;
 
 # Or find out whether there are other names under which the species is known
-taxize::synonyms(taxize::as.tsn(idtsn), db = &#39;itis&#39;)</code></pre>
+taxize::synonyms(taxize::as.tsn(idtsn), db = &#39;itis&#39;)
+#R&gt; $`164712`
+#R&gt;   sub_tsn acc_tsn       message
+#R&gt; 1  164712  164712 no syns found</code></pre>
 <pre class="r"><code># Another really interesting feature is to extract all known species at a given
 # taxonomic scale. With the itis db, you should first find the tsn associated
 # with Gadus. Using `taxize::get_tsn(&#39;gadus&#39;)` you&#39;ll find out that it is 164710
 knitr::kable(taxize::children(164710, db = &#39;itis&#39;)[[1]], &quot;html&quot;) %&gt;%
   kableExtra::kable_styling(full_width = F)</code></pre>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+parentname
+</th>
+<th style="text-align:left;">
+parenttsn
+</th>
+<th style="text-align:left;">
+rankname
+</th>
+<th style="text-align:left;">
+taxonname
+</th>
+<th style="text-align:left;">
+tsn
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Gadus
+</td>
+<td style="text-align:left;">
+164710
+</td>
+<td style="text-align:left;">
+Species
+</td>
+<td style="text-align:left;">
+Gadus macrocephalus
+</td>
+<td style="text-align:left;">
+164711
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gadus
+</td>
+<td style="text-align:left;">
+164710
+</td>
+<td style="text-align:left;">
+Species
+</td>
+<td style="text-align:left;">
+Gadus morhua
+</td>
+<td style="text-align:left;">
+164712
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gadus
+</td>
+<td style="text-align:left;">
+164710
+</td>
+<td style="text-align:left;">
+Species
+</td>
+<td style="text-align:left;">
+Gadus ogac
+</td>
+<td style="text-align:left;">
+164717
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Gadus
+</td>
+<td style="text-align:left;">
+164710
+</td>
+<td style="text-align:left;">
+Species
+</td>
+<td style="text-align:left;">
+Gadus chalcogrammus
+</td>
+<td style="text-align:left;">
+934083
+</td>
+</tr>
+</tbody>
+</table>
 <p>Sounds like this is consistent with <a href="https://en.wikipedia.org/wiki/Gadus">what Wikipedia says</a>!</p>
 <p><br/></p>
 </section>
