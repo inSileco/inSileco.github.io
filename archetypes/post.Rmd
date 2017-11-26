@@ -1,0 +1,18 @@
+---
+title: "{{ replace .TranslationBaseName "-" "" | title }}"
+author: [yourshortname]
+date: 2017-07-05
+tags: [tag1, tag2]
+tweet: "{{ replace .TranslationBaseName "-" "" | title }}"
+draft: false
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+
+```{r codeChunkSetUp, echo=FALSE}
+source('../../static/Rscript/codeChunkSetUp.R')
+```
