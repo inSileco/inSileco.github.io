@@ -220,7 +220,7 @@ deb http://cran.utstat.utoronto.ca/bin/linux/debian stretch-cran34/
 deb http://qgis.org/debian stretch main
 deb-src http://qgis.org/debian stretch main
 
-# Papirus icon
+# Papirus icons
 deb http://ppa.launchpad.net/papirus/papirus/ubuntu xenial main
 deb-src http://ppa.launchpad.net/papirus/papirus/ubuntu xenial main
 ```
