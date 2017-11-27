@@ -261,7 +261,7 @@ stable. I use the same strategy:
 1. `wget` and save the `.deb` file in the temporary folder `/tmp/`
 2. install them with `dpkg` `sudo dpkg -i xxxx.deb`
 
-Pandoc and hugo 
+Pandoc and hugo
 
 <!-- test whether the download work -->
 
@@ -293,23 +293,3 @@ that's something I really like with that it has forced me to understand and even
 if my problem is not solved I found a solution and I make few step further
 towards understand I can potentielly contrubuted to debian at sone point (the
   journey is still long) the dmesag command
-
-
-
-
-
-## A note about github password
-
-https://confluence.atlassian.com/bitbucketserver/permanently-authenticating-with-git-repositories-776639846.html
-
-We can only cache...
-
-
-
-
-
-## Firefox
-CRON Jobber
-sudo crontab -e  
-stay tune // stop update by and cron it
-Extension manager... in Tools + img
