@@ -29,7 +29,7 @@ source('../../static/Rscript/trickTweak.R')
 
 <br>
 
-## The `drop` argument on the `[]` operator   
+## The `drop` argument of the `[]` operator   
 
 This is something not obvious and poorly known but there is a logical argument  
 `drop` that can be passed to the `[]` operator and I'll try to explain why it
@@ -77,7 +77,7 @@ an issue when we do extractions without knowing the number of columns
 to be extracted beforehand (typically when extracting according to a request
 that can give any number of columns). In such case if the number is one then
 we end up with a vector instead of a data.frame. The argument `drop` provides
-a work around. By default it is set to `TRUE` and a 1-column data.frame becomes
+a work around. By default it is set to `TRUE` and a 1-column dataframe becomes
 a vector, but using `drop=FALSE` prevents this from happening. Let's try this:
 
 ```{r dropfalse}
@@ -143,7 +143,7 @@ references manager softwares.
 
 <br>
 
-## Using namespace and more  
+## Using namespace
 
 In R, functions are stored in packages and adding a package is like adding
 a collection of functions. As you get more experienced with R you likely
@@ -260,7 +260,7 @@ how a package works!
 ## The `las` argument of `par()`     
 
 I really enjoy using `graphics` to create plots in R. That being said the default
-values always puzzles me! One I specially do like is that values on the y-axis
+values always puzzles me! One I specially dislike is that values on the y-axis
 are perpendicular...
 
 ```{r las0, fig.width=4, fig.height=4}
