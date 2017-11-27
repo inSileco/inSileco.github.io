@@ -15,9 +15,9 @@ output:
 <div id="TOC">
 <ul>
 <li><a href="#code-tips-you-said">Code tips you said?</a></li>
-<li><a href="#the-drop-argument-on-the-operator">The <code>drop</code> argument on the <code>[]</code> operator</a></li>
+<li><a href="#the-drop-argument-of-the-operator">The <code>drop</code> argument of the <code>[]</code> operator</a></li>
 <li><a href="#get-the-citation-of-a-package">Get the citation of a package</a></li>
-<li><a href="#using-namespace-and-more">Using namespace and more</a></li>
+<li><a href="#using-namespace">Using namespace</a></li>
 <li><a href="#how-to-use-non-exported-functions">How to use non-exported functions?</a></li>
 <li><a href="#the-las-argument-of-par">The <code>las</code> argument of <code>par()</code></a></li>
 </ul>
@@ -36,8 +36,8 @@ output:
 <hr />
 <p><br></p>
 </section>
-<section id="the-drop-argument-on-the-operator" class="level2">
-<h2>The <code>drop</code> argument on the <code>[]</code> operator</h2>
+<section id="the-drop-argument-of-the-operator" class="level2">
+<h2>The <code>drop</code> argument of the <code>[]</code> operator</h2>
 <p>This is something not obvious and poorly known but there is a logical argument<br />
 <code>drop</code> that can be passed to the <code>[]</code> operator and I’ll try to explain why it could be useful! Let’s first create a dataframe with ten rows and three columns:</p>
 <pre class="r"><code>df &lt;- data.frame(
@@ -69,7 +69,7 @@ class(df[, &#39;var1&#39;])
 <p>while if I extract two columns, I have a data frame:</p>
 <pre class="r"><code>class(df[, c(&#39;var1&#39;, &#39;var2&#39;)])
 #R&gt; [1] &quot;data.frame&quot;</code></pre>
-<p>This behavior is actually very useful in many cases as we often are happy to deal with a vector when we extract only one column. However this might become an issue when we do extractions without knowing the number of columns to be extracted beforehand (typically when extracting according to a request that can give any number of columns). In such case if the number is one then we end up with a vector instead of a data.frame. The argument <code>drop</code> provides a work around. By default it is set to <code>TRUE</code> and a 1-column data.frame becomes a vector, but using <code>drop=FALSE</code> prevents this from happening. Let’s try this:</p>
+<p>This behavior is actually very useful in many cases as we often are happy to deal with a vector when we extract only one column. However this might become an issue when we do extractions without knowing the number of columns to be extracted beforehand (typically when extracting according to a request that can give any number of columns). In such case if the number is one then we end up with a vector instead of a data.frame. The argument <code>drop</code> provides a work around. By default it is set to <code>TRUE</code> and a 1-column dataframe becomes a vector, but using <code>drop=FALSE</code> prevents this from happening. Let’s try this:</p>
 <pre class="r"><code>df[, 1, drop=FALSE]
 #R&gt;          var1
 #R&gt; 1  0.09876419
@@ -165,8 +165,8 @@ class(df[, &#39;var1&#39;])
 <p>Then the <code>biblio.bib</code> file just created can be imported in you favorite references manager softwares.</p>
 <p><br></p>
 </section>
-<section id="using-namespace-and-more" class="level2">
-<h2>Using namespace and more</h2>
+<section id="using-namespace" class="level2">
+<h2>Using namespace</h2>
 <p>In R, functions are stored in packages and adding a package is like adding a collection of functions. As you get more experienced with R you likely know and use more and more packages. You might even come to the point where you have functions that have the same name but originate from different package. If not, let me show you something:</p>
 <pre class="r"><code>library(magrittr)
 df &lt;- data.frame(
@@ -250,7 +250,7 @@ extract(df, &#39;var1&#39;)
 </section>
 <section id="the-las-argument-of-par" class="level2">
 <h2>The <code>las</code> argument of <code>par()</code></h2>
-<p>I really enjoy using <code>graphics</code> to create plots in R. That being said the default values always puzzles me! One I specially do like is that values on the y-axis are perpendicular…</p>
+<p>I really enjoy using <code>graphics</code> to create plots in R. That being said the default values always puzzles me! One I specially dislike is that values on the y-axis are perpendicular…</p>
 <pre class="r"><code>vec &lt;- runif(10)
 plot(vec)</code></pre>
 <p><img src="/post/fish-and-tips02_files/figure-html/las0-1.svg" width="384" style="display: block; margin: auto;" /></p>
