@@ -1,0 +1,46 @@
+---
+title: R Package Metacommunity {R}
+author: [kevin, david]
+date: 2017-12-01
+tags: [R,packages,network,metacommunity]
+tweet: R Package Metacommunity!
+draft: true
+output:
+  blogdown::html_page:
+    toc: true
+    dev: svg
+---
+
+
+
+```{r codeChunkSetUp, echo=FALSE}
+source('../../static/Rscript/codeChunkSetUp.R')
+```
+
+![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
+
+
+---
+
+
+<br>
+
+```{r packageNetwork}
+  packDep <-tools::package_dependencies()
+  nPack <- length(packDep)
+  packNames <- names(packDep)
+  packNet <- matrix(0, nPack, nPack, dimnames = list(packNames, packNames))
+  for(i in 1:nPack) packNet[packNames %in% packDep[[i]], i] <- 1
+```
+
+```{r igraph}
+
+# netw2 <-  graph_from_adjacency_matrix(t(packNet))
+#
+# plot(netw2,
+#     vertex.color = '#000000',
+#     vertex.frame.color = "transparent",
+#     vertex.label.color = "black",
+#     edge.arrow.size = 0,
+#     edge.color = 'black')
+```
