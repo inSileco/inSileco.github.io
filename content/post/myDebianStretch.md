@@ -13,14 +13,18 @@ output:
 ---
 
 
+
 ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
 
-This post details my Debian Stretch setup on my Lenovo Think Pad T470p. I take
-this opportunity to give the reasons why I moved from MacOS to Debian as well as
+
+This post details my Debian Stretch setup on my Lenovo Think Pad T470p.
+I got this new machine in August 2017 so I have a 5 month experience and I have already learn a lot. I thought is was a good moment  to give the reasons why I moved from MacOS to Debian as well as
 some elements regarding my hardware and the set of software I installed. Any
-comments/questions about what follows? Feel free to use the Disqus section at
-the bottom.
+comments/questions about what follows? Feel free to use the Disqus following the
+post.
+
+
 
 # Go Debian
 
@@ -28,22 +32,24 @@ the bottom.
 
 I have been a MacOS user for a long time mainly because my father was
 a MacOS user him-self. I remember back to 2005 how weird it sounded to be a
-Mac aficionado compare to how trendy it is nowadays. Well according to me, Apple
-still make good computers and the money spend on a them is worth the performance.
+Mac aficionado compare to how trendy it is nowadays. According to me, Apple
+still makes good computers and the money spend on them is worth the performance.
 However, given the trend of making computer as thin as possible, a Mac user has
 less and less
 [control over his hardware](https://www.theinquirer.net/inquirer/news/2404318/ifixit-apples-12in-macbook-is-near-impossible-to-repair)
 and given the costs associated with having a Mac (adapters, repair costs, etc.)
-owning a Mac progressively became way less appealing to me. Moreover, I noticed
-how rarely I used Apple's softwares and use as many freeware as possible instead
+owning a Mac progressively became way less appealing to me. Moreover, since I
+started to do more and more coding I realized how rarely I used Apple's
+softwares and use as many freeware as possible instead
 (the list of [softwares](https://gist.github.com/KevCaz/e89f5584d4c5c9c92c4e) I
-used on MacOs was actually very similar to the one I present below). Therefore,
-it occurs to me that I had no valid reason to keep using MacOS and I decided
-to go Linux. So far soooo good :smile:.
+used on my MacOS is actually very similar to the one I use on Debian and that
+I present below). It therefore occurs to me that I had no valid reason
+to keep using MacOS and I decided to go Linux. So far soooooo good :smile:.
 
 
 ## Why Debian?
 
+<<<<<<< HEAD
 The choice of Linux distribution is pretty wide as you can see on the
 [wikipedia page](https://en.wikipedia.org/wiki/List_of_Linux_distributions).
 As I had only a little experience with Linux, mainly Ubuntu (on university's
@@ -70,15 +76,63 @@ new debian package first entered the Debian process throught the instabke
 A new package or a new version forst enter thorugh the unstable release
 before testeing, I was not awawre and decided to install the stable released
 and released recenlty.
+=======
+The choice of Linux distribution is **huge** as you can see on the
+[wikipedia page](https://en.wikipedia.org/wiki/List_of_Linux_distributions) .
+As I had only a little experience with Linux, mainly Ubuntu (on university's
+computers) and Raspbian (on my [Raspberry Pi](https://www.raspberrypi.org/)),
+I had no strong opinion. After a couple of readings comparing Linux distributions
+I concluded that what matters the most was my motivation to learn more and
+I decided to go Debian *the mother of many Linux distributions*.
+
+I do not want to go into much details about Debian. First because I am no
+expert (and afraid I could be wrong) and second because you will learn way more
+by searching on the web by yourself especially on the [official website](https://www.debian.org/).
+I think it is nonetheless useful to have broad ideas about its development.
+Basically there are [four different kind of Debian releases](https://www.debian.org/releases/)
+named after Toy Story's characters:
+
+- **unstable**: always named [Sid](http://pixar.wikia.com/wiki/Sid_Phillips);
+- **testing**: currently [Buster](http://pixar.wikia.com/wiki/Buster);  
+- **stable**: currently [Stretch](http://pixar.wikia.com/wiki/Buster) (Debian 9);   
+- **old stable**: [Jessie](http://pixar.wikia.com/wiki/Jessie), [Wheezy](http://pixar.wikia.com/wiki/Wheezy) and previous.
+
+
+As explained in [this post by J.A. Watson](http://www.zdnet.com/article/debian-stable-or-debian-testing-which-linux-is-right-for-you/)
+all new Debian packages (including new versions of existing packages) first
+entered the Debian testing process through the instable release.
+After a couple of tests it goes to the testing release where it stays longer.
+Depending on the kind of package it may or may not spread to stable and old stable
+relases (see https://wiki.debian.org/StableUpdates). Let say that the majority
+of new version of package do not spread and are accumulated in the testing.
+Actually soft freeze and full freeze to prepare the next stable release
+therefore during that time dedicate to solidify the nex release no update
+which explain that old version but using testing
+A new package or a new version first enter through the unstable release
+before testing, I was not aware and decided to install the stable released
+and released recently. Block not allowed does not mean people stop developping
+make not be included in the stable release so you will not be able to install
+using stabel release but you know thta extensively been tested it a choice.
+
+Debian package I said?
+Where Debian dev occur?
+Let's now consider the Debian packages found on the [Debian mirrors]()
+>>>>>>> dev
 
 https://www.debian.org/mirror/list
 https://wiki.debian.org/StableUpdates
 
 To illustrate
-In the video below I go to a morror and show you were are store package I did for
+In the video below I go to a mirror and show you were are store package I did for
 Pandoc
 
+Want know more and even be involved... well just go on the website!
+https://www.debian.org/devel/
 
+<video width="100%" controls>
+ <source src="/assets/myDebianStretch/mirror.webm" type="video/webm">
+ Your browser does not support the video tag.
+</video>
 
 
 ## My hardware
@@ -90,13 +144,14 @@ and constantly make good computers. One of them is Lenovo and after looking a
 on the Internet claiming that Lenovo have a good Linux compatibility and decided
 to go for a Lenovo computer. Once I made my mind regarding the brand, I have
 spend some time to think about my general expectations: a laptop, medium-size
-screen (13-15"), a good i7 processor, no less than 8Go of RAM, and at least
+screen (13"-15"), a good i7 processor, no less than 8Go of RAM, and at least
 500Go SSD storage for less than 3000$CAN, warranty included. I finally made
-my mind and bought a customized [Lenovo T470p]() and below are a couple of detail about this
-computer I gather using `inxi` (one of the software I have installed; if you are
+my mind and bought a customized [Lenovo ThinkPad T470p](https://www.notebookcheck.net/Lenovo-ThinkPad-T470p-Core-i7-GeForce-940MX-Laptop-Review.226802.0.html) and below are a couple of details about this
+computer I gather using `inxi` (one of the freeware I have installed; if you are
 interested in free command line tools that returns information about your
 hardware I recommend [this post on binarytides](http://www.binarytides.com/linux-commands-hardware-info/)));
 the command `inxi -SMGCADP` entered in my terminal returns:
+
 
 
 ```
@@ -124,15 +179,16 @@ Partition: ID-1: / size: 922G used: 61G (7%) fs: ext4 dev: /dev/nvme0n1p2
 
 ## Hello and good bye Windows 10
 
-The Lenovo came with was furnished with Windows 10 (note that for that model
-I did not have the choice of the OS, sadly). Well, I am no Windows
-user and do not intend to become one, so I got rid of Windows and
-installed Debian Stretch, let me explain how!
+The Lenovo ThinkPad T470p was furnished with Windows 10 (note that was reelaes on June 2017) at model
+I did not have the choice of the OS, sadly :smile:). Well, I am no Windows
+user and do not intend to become one, so I got rid of Windows (I obviously took
+a selfie of me using windows first) and installed Debian Stretch, let me now
+explain how!
 
 
 ### Get a bootable USB stick
 
-The Debian version you need is doubtlessly available on the [official website]( https://www.debian.org/releases/stretch/debian-installer/). I downloaded the
+I decided to go with the stable release of Debian so 2017 was Stretch ()on Debian version you need is doubtlessly available on the [official website]( https://www.debian.org/releases/stretch/debian-installer/). I downloaded the
 the debian-installer for **amd64** architecture that can be used on bootable
 USB stick. I was quite familiar with installing Ubuntu or MacOS with USB stick
 but I was unable to remember the command lines required, so I googled
@@ -224,7 +280,7 @@ deb-src http://security.debian.org/debian-security stretch/updates main
 deb http://debian.mirror.rafal.ca/debian/ stretch-updates main
 deb-src http://debian.mirror.rafal.ca/debian/ stretch-updates main
 
-# R verison 3.4.x repositories
+# R version 3.4.x repositories
 deb http://cran.utstat.utoronto.ca/bin/linux/debian stretch-cran34/
 
 # Qgis repositories
@@ -236,6 +292,19 @@ deb http://ppa.launchpad.net/papirus/papirus/ubuntu xenial main
 deb-src http://ppa.launchpad.net/papirus/papirus/ubuntu xenial main
 ```
 
+To get the wifi working, I needed non-free repo so I first edited the /etc/apt/sources.list as su:
+I add 'contrib non-free' after 'main'
+https://cran.r-project.org/bin/linux/debian/
+To get 3.4.1, I follow the instruction here https://cloud.r-project.org/bin/linux/debian/#supported-branches and add:
+deb http://cran.utstat.utoronto.ca/bin/linux/debian stretch-cran34/
+in /etc/apt/sources.list then I add the key using apt-key
+To get 3.4.1, I follow the instruction here https://cloud.r-project.org/bin/linux/debian/#supported-branches and add:
+deb http://cran.utstat.utoronto.ca/bin/linux/debian stretch-cran34/
+in /etc/apt/sources.list then I add the key using apt-key
+----- Zotero config
+http://vk5tu.livejournal.com/54476.html and https://www.zotero.org/support/pdf_fulltext_indexing
+
+
 
 If you are a [Homebrew](https://brew.sh/) user, having different repositories
 in your source list is like using different taps. For further information about
@@ -243,7 +312,7 @@ non-free software you should have a look at the official
 website about [unofficial repositories](https://wiki.debian.org/fr/UnofficialRepositories),
 [Skype](https://wiki.debian.org/skype) and [Dropbox](https://wiki.debian.org/dropbox).
 Furthermore, if you wonder what is the difference between `deb` and `deb-src` go on
-[stackexachange](https://unix.stackexchange.com/questions/20504/the-difference-between-deb-versus-deb-src-in-sources-list). Once you are aware about this, have a look at my gist (version
+[stackexchange](https://unix.stackexchange.com/questions/20504/the-difference-between-deb-versus-deb-src-in-sources-list). Once you are aware about this, have a look at my gist (version
 125 when I first shared this post).
 
 <br>
