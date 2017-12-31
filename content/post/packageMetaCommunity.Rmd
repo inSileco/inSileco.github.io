@@ -35,7 +35,7 @@ source('../../static/Rscript/codeChunkSetUp.R')
 
 ```{r igraph}
 
-# netw2 <-  graph_from_adjacency_matrix(t(packNet))
+# netw2 <-  igraph::graph_from_adjacency_matrix(t(packNet))
 #
 # plot(netw2,
 #     vertex.color = '#000000',
