@@ -8,7 +8,12 @@ branches:
     - master
 
 notifications:
-  slack: insileco:bSFo4jHeKnaM4WobzJJ8DTPj
+  slack:
+      rooms: insileco:bSFo4jHeKnaM4WobzJJ8DTPj
+      template:
+        - "%{repository} (%{commit}) : %{message} %{foo} "
+        - "Build: %{build_url}"
+        - "website: https://insileco.github.io/"
 
 cache:
   packages: yes

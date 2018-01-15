@@ -1,9 +1,9 @@
 ---
-title: Fish and tips 001 {R}
+title: Trick or tips 001 {R}
 author: [kevin]
 date: 2017-06-30
 tags: [R,tips]
-tweet: First post on Fish and Tips series
+tweet: First post of the Fish and Tips series
 draft: false
 output:
   rmarkdown::html_page:
@@ -17,9 +17,8 @@ source('../../static/Rscript/codeChunkSetUp.R')
 ```
 
 ```{r trick, echo=FALSE, results='asis'}
-source('../../static/Rscript/trickTweak.R')
+source('../../static/Rscript/trickOrTips.R')
 ```
-
 
 
 
@@ -227,7 +226,7 @@ par(xaxs="i", yaxs="i")
 plot(0:10, 0:10, pch=20)   
 ```
 
-Can you the see the difference? Let me add two extra code lines to stress the differences out.
+Can you tell the difference? I now add two extra lines to stress the differences out.
 
 ```{r xaxsYaxsV2, fig.width=9.5}
 par(mfrow=c(1,2), bty="l")
@@ -238,4 +237,4 @@ plot(0:10, 0:10, pch=20)
 abline(v=c(0,10), h=c(0,10), col=2)
 ```
 
-**That's all folks, until next time!**
+**That's all folks... until next time!**
