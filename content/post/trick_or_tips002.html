@@ -1,9 +1,9 @@
 ---
-title: Fish and tips 002 {R}
+title: Trick or Tips 002 {R}
 author: [kevin]
 date: 2017-11-12
 tags: [R,tips]
-tweet: Second post on Fish and Tips series
+tweet: Second post o the 'Trick or Tips' series
 draft: false
 output:
   blogdown::html_page:
@@ -26,12 +26,12 @@ output:
 <p><img src="https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg" /></p>
 <section id="code-tips-you-said" class="level2">
 <h2>Code tips you said?</h2>
-<p>Ever tumbled on a code chunk that made you say: “I should have known this <em>¶ø?!@~&amp;</em> piece of code long ago!”? Chances are you have, frustratingly, just like we have, and on multiple occasions too.</p>
-<p>In comes <em>Fish and tips</em>!</p>
-<p>Fish and tips is a series of blog posts that each present 5 – hopefully helpful – coding tips for a specific programming language.</p>
+<p>Ever tumbled on a code chunk that made you say: ’<em>I should have known this </em>¶ø?!@~&amp;* piece of code long ago!?*’ Chances are you have, frustratingly, just like we have, and on multiple occasions too.</p>
+<p>In comes <strong><code>Trick or Tips</code></strong>!</p>
+<p><code>Trick or Tips</code>is a series of blog posts that each present 5 – hopefully helpful – coding tips for a specific programming language.</p>
 <p>Posts should be short (<em>i.e.</em> no more than 5 lines of code, max 80 characters per line, except when appropriate) and provide tips of many kind: a function, a way of combining of functions, a single argument, a note about the philosophy of the language and practical consequences, tricks to improve the way you code, good practices, etc.</p>
 <p>Note that while some tips might be obvious for careful documentation readers (God bless them for their wisdom), almost all the tips we present constituted</p>
-<p>By the way, there are undoubtedly similar initiatives on the web (<em>e.g.</em> <a href="https://twitter.com/RLangTip">“One R Tip a Day” account</a>). Also, feel free to comment below tip ideas or a post of code tips of your own which we will be happy to incorporate to <em>Fish and tips</em>!</p>
+<p>By the way, there are undoubtedly similar initiatives on the web (<em>e.g.</em> <a href="https://twitter.com/RLangTip">‘One R Tip a Day’ Twitter account</a>). Also, feel free to comment below tip ideas or a post of code tips of your own which we will be happy to incorporate to <em><code>Trick or Tips</code></em>!</p>
 <p>Enjoy and get ready to frustratingly appreciate our tips!</p>
 <hr />
 <p><br></p>
@@ -116,7 +116,7 @@ class(df[, &#39;var1&#39;])
 #R&gt; To cite the &#39;knitr&#39; package in publications use:
 #R&gt; 
 #R&gt;   Yihui Xie (2017). knitr: A General-Purpose Package for Dynamic
-#R&gt;   Report Generation in R. R package version 1.17.
+#R&gt;   Report Generation in R. R package version 1.18.
 #R&gt; 
 #R&gt;   Yihui Xie (2015) Dynamic Documents with R and knitr. 2nd
 #R&gt;   edition. Chapman and Hall/CRC. ISBN 978-1498716963
@@ -135,7 +135,7 @@ class(df[, &#39;var1&#39;])
 #R&gt;   title = {knitr: A General-Purpose Package for Dynamic Report Generation in R},
 #R&gt;   author = {Yihui Xie},
 #R&gt;   year = {2017},
-#R&gt;   note = {R package version 1.17},
+#R&gt;   note = {R package version 1.18},
 #R&gt;   url = {https://yihui.name/knitr/},
 #R&gt; }
 #R&gt; 
@@ -253,7 +253,7 @@ extract(df, &#39;var1&#39;)
 <p>I really enjoy using <code>graphics</code> to create plots in R. That being said the default values always puzzles me! One I specially dislike is that values on the y-axis are perpendicular…</p>
 <pre class="r"><code>vec &lt;- runif(10)
 plot(vec)</code></pre>
-<p><img src="/post/fish-and-tips02_files/figure-html/las0-1.svg" width="384" style="display: block; margin: auto;" /></p>
+<p><img src="/post/trick_or_tips002_files/figure-html/las0-1.svg" width="384" style="display: block; margin: auto;" /></p>
 <p>Fortunately this can readily be changed using the the <code>las</code> argument of the <code>par()</code> function which can take 3 values: 0 (default), 1 or 2. Let’s plot and see the differences:</p>
 <pre class="r"><code>par(mfrow=c(1,3), las=0)
 plot(vec, main=&#39;las=0 (default)&#39;)
@@ -261,7 +261,7 @@ par(las=1)
 plot(vec, main=&#39;las=1&#39;)
 par(las=2)
 plot(vec, main=&#39;las=2&#39;)</code></pre>
-<p><img src="/post/fish-and-tips02_files/figure-html/las-1.svg" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/post/trick_or_tips002_files/figure-html/las-1.svg" width="960" style="display: block; margin: auto;" /></p>
 <p>So, I personally prefer and use <code>las=1</code>!</p>
 <p><br></p>
 <p><strong>That’s all for number 2 of this series, see you for the next tips!</strong></p>
