@@ -1,0 +1,8 @@
+<ul class="list-group row">
+
+  {{ range .Site.Data.posts.softwareskevcaz }}
+
+     <li class="list-group-item col-xs-3"><b>{{ .name }}</b> <a href="{{.website}}" style="display:inline;"><i class="fa fa-1x fa-link" aria-hidden="true"></i></a> <a href="https://github.com/{{.github}}" style="display:inline;"><i class="fa fa-1x fa-github" aria-hidden="true"></i></a></li>
+
+  {{ end }}
+</ul>
