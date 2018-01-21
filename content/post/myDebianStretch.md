@@ -1,10 +1,10 @@
 ---
-title: My Debian Stretch setup
+title: Setting my Debian Stretch up
 author: [kevin]
-date: 2018-01-20
+date: 2018-01-21
 tags: [Linux, Debian, setup]
-draft: true
-tweet: My Debian Stretch setup
+draft: false
+tweet: Setting my Debian Stretch up
 output:
   rmarkdown::html_page:
     toc: true
@@ -13,17 +13,19 @@ output:
 ---
 
 
-
-![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
-
+![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
 
-This post details my Debian Stretch setup on my Lenovo Think Pad T470p.
-I got this new machine in August 2017 so I have a 5 months experience on
-Debian and  thought it was a good timing to give the reasons why I moved from
-MacOS to Debian, how I set my computer up and what's my feeling about working
-on Debian. Any comments/questions about what follows? Feel free to use the
-Disqus following the post.
+<!-- python -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)' < data/posts/softwareKK.yaml > data/posts/softwareskev
+caz.json -->
+
+
+This post details my Debian Stretch setup on my Lenovo ThinkPad T470p.
+I got this machine in early August 2017 so I now have almost a 6 months experience on
+Debian and I thought it was a good time to 1- develop the reasons why I moved from
+MacOS to Debian 2- explain how I set my computer up and 3- what's my feeling about
+working on Debian. Any comments/questions about what follows? Please, feel free
+to use the Disqus following the post.
 
 
 
@@ -102,7 +104,7 @@ Pandoc is stored.
 
 First, there are [different repositories](https://wiki.debian.org/DebianRepository),
 for instance, I use a repository to use [icons from the papirus team](https://launchpad.net/~papirus/+archive/ubuntu/papirus). Second there is
-an upcoming collaborative development server, [Salsa](https://wiki.debian.org/Salsa)
+an upcoming collaborative development server named [Salsa](https://wiki.debian.org/Salsa)
 based on [<i class="fa fa-gitlab" aria-hidden="true"></i>](https://about.gitlab.com/).
 
 
@@ -113,18 +115,19 @@ based on [<i class="fa fa-gitlab" aria-hidden="true"></i>](https://about.gitlab.
 ### About my hardware
 
 Unfortunately, I do not have strong knowledge about hardware and the choice that
-follows is basically the result of discussions with other non-expert people and
+I made was based on discussions with other non-expert people and
 a couple of searches on the web. Several brands of computer have a high reputation
-and constantly make good computers. One of them is [Lenovo](https://www3.lenovo.com/ca/en/) and after looking a
+and constantly make good computers. One of them is
+[Lenovo](https://www3.lenovo.com/ca/en/) and after looking a
 on the Internet claiming that Lenovo have a good Linux compatibility and decided
-to go for a Lenovo computer. Once I made my mind regarding the brand, I have
-spend some time to think about my general expectations: a laptop, medium-size
+to go for a Lenovo computer. Once I made my mind regarding the brand, I spent
+some time to think about my general expectations: a laptop, medium-size
 screen (13"-15"), a good i7 processor, no less than 8Go of RAM, and at least
 500Go SSD storage for less than 3000$CAN, warranty included. I finally made
 my mind and bought a customized [Lenovo ThinkPad T470p](https://www.notebookcheck.net/Lenovo-ThinkPad-T470p-Core-i7-GeForce-940MX-Laptop-Review.226802.0.html).
 Below are a couple of details about my gather that I display using the command
-`inxi`. `inxi` is one of the freeware I installed to retrieve information about
-my hardware using command lines; if you are
+`inxi`. Note that `inxi` is one of the freeware I installed to retrieve
+information about my hardware using command lines; if you are
 interested in free command line tools that returns information about your
 hardware I recommend [this post on *binarytides*](http://www.binarytides.com/linux-commands-hardware-info/).
 The command `inxi -SGCADP` entered in my terminal returns the following:
@@ -153,16 +156,16 @@ Partition: ID-1: / size: 922G used: 80G (10%) fs: ext4 dev: /dev/nvme0n1p2
 The Lenovo ThinkPad T470p was furnished with Windows 10 at model and
 I did not have the choice of the OS, sadly :disappointed:). Well, I am no Windows
 user and do not intend to become one, so I got rid of Windows asap (I obviously took
-a selfie: '*Me using windows*') and installed Debian Stretch, let me now
+a selfie... '*Me using windows*' ) and installed Debian Stretch, let me now
 explain how!
 
 
 #### 1- Get a bootable USB stick
 
 I decided to go with the stable release of Debian so, in August, 2017, it means
-Stretch that was actually release. To get the Debian installer, you should
-simply know your architecture (on a recent laptop using an intel processor is
-is should be **amd64**) and visit the
+Stretch (actually released om June 17<sup>th</sup>, 2017). To get the Debian installer, you should
+simply know your architecture (on a recent laptop using an intel processor it
+must be **amd64**) and visit the
 [official website](https://www.debian.org/releases/stretch/debian-installer/).
 So, I downloaded the debian-installer for **amd64** architecture. I was quite
 familiar with installing Ubuntu or MacOS with USB stick
@@ -177,22 +180,20 @@ similar to [this conversation on stackexchange](https://unix.stackexchange.com/q
  > BIOS ([...] an acronym for Basic Input/Output System and also known as the System BIOS, ROM BIOS or PC BIOS) is non-volatile firmware used to perform hardware initialization during the booting process (power-on startup), and to provide runtime services for operating systems and programs. (https://en.wikipedia.org/wiki/BIOS)
 
 Before you can install a new OS on your new computer, you may have to change some
-settings in the BIOS. In my case, I had to do so. On a Lenovo ThinkPad, when
-booting the labtop, the first image you get is the Lenovo logo and the
-following message:
+settings in the BIOS. In my case, I had to do so. When booting a Lenovo ThinkPad,
+the first image that pops up is the Lenovo logo and the following message:
 
 > To interrupt normal startup press Enter
 
-I pressed `Enter` and then `F1` to access the BIOS. I opened the *Security* table and
+So I pressed `Enter` and then `F1` to access the BIOS. I opened the *Security* table and
 disable the *Secure Boot* option to be able to boot on the USB stick. As I needed
 a non-free firmware to use the Wi-Fi I plugged my device on an Ethernet Cable
 and seamlessly followed the different steps to successfully install Debian
 Stretch. Unfortunately, I did not record all I did but basically is what is
 described in [*The Debian Administrator's Handbook*](https://debian-handbook.info/browse/stable/sect.installation-steps.html).
 I chose an installation that includes [Gnome](https://www.gnome.org/)
-and a collection of very useful freewares including [LibreOffice](https://www.libreoffice.org/),
-[Inkscape](https://inkscape.org/en/), [Octave](https://www.gnu.org/software/octave/)
-and a couple of funny old-school games (*i.e.* Nibbles, Mines).
+and a collection of very useful freewares such as [LibreOffice](https://www.libreoffice.org/),
+[Inkscape](https://inkscape.org/en/) and [Octave](https://www.gnu.org/software/octave/).
 
 <br>
 
@@ -293,13 +294,12 @@ For further information about non-free software I install, have a look at the of
 website about [unofficial repositories](https://wiki.debian.org/fr/UnofficialRepositories),
 [Skype](https://wiki.debian.org/skype) and [Dropbox](https://wiki.debian.org/dropbox).
 Also, if you wonder what is the difference between `deb` and `deb-src` go on
-[stackexchange](https://unix.stackexchange.com/questions/20504/the-difference-between-deb-versus-deb-src-in-sources-list). Once you are aware about this, have a look at my gist below (as version 138 when
+[stackexchange](https://unix.stackexchange.com/questions/20504/the-difference-between-deb-versus-deb-src-in-sources-list). Once you are aware about this, have a look at my gist below (as version `138` when
 I first shared this post).
 
+
 <br>
-
 <script src="https://gist.github.com/KevCaz/29536740b9150383a9d543ec1be96103.js"></script>
-
 <br>
 
 For some of the softwares listed, I do not use `sudo apt-get package` and
@@ -315,26 +315,28 @@ for the stable release. I do so for Pandoc, Atom and Hugo.
 
 ### Few details
 
-
-In order to give you valuable links regarding the above list of software, I've built
-the following list:
-
-
-{{< loadyaml >}}
+For some of the above-mentioned packages, I have added a relevant link in the
+table below:
 
 
-A last note to assert that I have benefited from reading
+{{< softwareskevcaz >}}
+
+<br>
+
+Also, for all the atom packages I install using the `apm` command, the
+package documentation is online and the URL is formed as follows:
+`https://atom.io/packages/` **+** `pkgname`. For instance, the URL for the
+**pigments** package is [https://atom.io/packages/pigments](https://atom.io/packages/pigmnents).
+A last note to mention that I have benefited from reading
 [this](http://vk5tu.livejournal.com/54476.html) and
 [this](https://www.zotero.org/support/pdf_fulltext_indexing) to set Zotero up.
-
-
 
 
 ### Issues
 
 Did I face a couple of issues? Of course I did, but I have learned a lot solving them.
-Do I still have some issues? Yes I do, (1) a couple of error messages on startup
-and (2) an issue with the back light of my screen! **But** regarding (1) everything
+Do I still have some issues? Yes I do: (1) a couple of error messages on startup
+and (2) an issue with the back light of my screen! **BUT** regarding (1) everything
 works fine so I do not complain especially that some of they might be kernels
 issues that may be solve when I use a more recent release and regarding
 (2) I found a work around :smile_cat:.
@@ -376,12 +378,11 @@ this for another post !
 
 ### Future
 
-I am very happy with my actual setup. My guess is that I would have been happy
-on my Linux distribution. I acknowledge I require some time to get used to
-Linux and how it works. That being said, the time spend on this is really
-rewarding and I have already learned tons of tips. I am now considering
-switching to Debian testing and read [*The Debian Administrator's Handbook*](https://www.debian.org/doc/manuals/debian-handbook/) very carefully!
-
+I am very satisfied with my actual setup. My guess is that I would have been happy
+on many Linux distribution. I acknowledge that it requires some time to get used to
+Linux and how it works. That being said, the time spent to make your laptop
+working is really rewarding and I have already learned tons of tips. I am now
+considering switching to Debian testing and read [*The Debian Administrator's Handbook*](https://www.debian.org/doc/manuals/debian-handbook/) very carefully!
 
 
 <br>
