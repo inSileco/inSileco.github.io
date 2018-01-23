@@ -1,6 +1,7 @@
 ---
 title: Setting my Debian Stretch up
 author: [kevin]
+reviewer: [david]
 date: 2018-01-21
 tags: [Linux, Debian, setup]
 draft: false
@@ -15,17 +16,19 @@ output:
 
 ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
+Reviewer: David Beauchesne
 
+<br/>
 <!-- python -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)' < data/posts/softwareKK.yaml > data/posts/softwareskev
 caz.json -->
 
 
 This post details my Debian Stretch setup on my Lenovo ThinkPad T470p.
-I got this machine in early August 2017 so I now have almost a 6 months experience on
-Debian and I thought it was a good time to 1- develop the reasons why I moved from
-MacOS to Debian 2- explain how I set my computer up and 3- what's my feeling about
+I got this machine in early August 2017, so I now have almost 6 months worth of experience on
+Debian and I thought it was a good time to 1- document the rationale behind my move from
+MacOS to Debian 2- explain how I set my computer up and 3- how I rate my appreciation of
 working on Debian. Any comments/questions about what follows? Please, feel free
-to use the Disqus following the post.
+to use the Disqus section at the end of the post.
 
 
 
@@ -33,40 +36,42 @@ to use the Disqus following the post.
 
 ### From MacOS to Linux
 
-I have been a MacOS user for a long time mainly because my father was
-a MacOS user him-self. I remember back to 2005 how weird it sounded to be a
-Mac aficionado compare to how trendy it is nowadays. According to me, Apple
-still makes good computers and the money spend on them is worth the performance.
-However, given the trend of making computer as thin as possible, a Mac user has
-less and less
+I have been a MacOS user for a long time mainly because my father was himself
+a MacOS user. I remember back to 2005 how weird it sounded to be a
+Mac aficionado compared to how trendy it is nowadays. According to me, Apple
+still makes good computers and the money spent on their products if generally worth the performance.
+However, given the trend of making computers as thin as possible, a Mac user has less and less
 [control over his hardware](https://www.theinquirer.net/inquirer/news/2404318/ifixit-apples-12in-macbook-is-near-impossible-to-repair)
-and given the costs associated with having a Mac (adapters, repair costs, etc.)
-owning a Mac progressively became way less appealing to me (and even less since
-the [suspicions of planned obsolescence](https://www.theguardian.com/technology/2018/jan/08/france-investigates-apple-over-claims-of-planned-obsolescence). Moreover, since I
-started to do more and more coding, I realized how rarely I was using Apple's
-softwares and many freewares instead (the list of [softwares](https://gist.github.com/KevCaz/e89f5584d4c5c9c92c4e) I
+and given the costs associated with having a Mac (adapters, repair costs, etc.),
+owning a Mac progressively became much less appealing to me. Even less so since
+[suspicions of planned obsolescence](https://www.theguardian.com/technology/2018/jan/08/france-investigates-apple-over-claims-of-planned-obsolescence).
+surfaced. Moreover, since I started doing more and more coding, I realized how rarely I was using Apple's
+softwares in favor of many freewares. The list of [softwares](https://gist.github.com/KevCaz/e89f5584d4c5c9c92c4e) I
 used on my MacOS is actually very similar to the one I use on Debian and that
-I present below). It therefore occurs to me that I had no valid reason
+I present below. It therefore occured to me that I really had no valid reason
 to keep using MacOS and I decided to go Linux. So far soooooo good :smile:.
 
 
 ### Why Debian?
 
-The choice of Linux distribution is **huge** as you can see on the
-[wikipedia page](https://en.wikipedia.org/wiki/List_of_Linux_distributions) .
-As I had only a little experience with Linux, mainly Ubuntu (on university's
-computers) and Raspbian (on my [Raspberry Pi](https://www.raspberrypi.org/)),
-I hadn strong opinion. After a couple of readings comparing Linux distributions
+The choice of Linux distribution is **huge**, as you can see on the dedicated
+[wikipedia page](https://en.wikipedia.org/wiki/List_of_Linux_distributions).
+As I had only a little experience with Linux, mainly Ubuntu on university
+computers and Raspbian on my [Raspberry Pi](https://www.raspberrypi.org/),
+I had no strong opinion or inclination to any particular distribution.
+After spending some time reading comparisons of Linux distributions
 I concluded that what matters the most was my motivation to learn more and
-I decided to go Debian *the mother of many Linux distributions*.
+I decided to go Debian, a.k.a. *the mother of many Linux distributions*.
 
-I do not want to go into much details about Debian. First, because I still am
-a beginner and afraid I could be wrong. Second because you will learn way more
+I do not want to go into much details about Debian. First, because I am still very much
+a beginner and I do not want to make any glaring mistake and offend anyone! Second because you will learn way more
 by searching on the web, especially on the [official website](https://www.debian.org/)
-and reading exhaustive manuals (such as the [Debian Developer's Reference](https://www.debian.org/doc/manuals/developers-reference/)
-and have a look at [*The Debian Administrator's Handbook*](https://www.debian.org/doc/manuals/debian-handbook/)).
-It is nonetheless useful to have broad ideas about its development.
-Basically there are [four different kind of Debian releases](https://www.debian.org/releases/)
+and reading exhaustive manuals such as [Debian Developer's Reference](https://www.debian.org/doc/manuals/developers-reference/)
+and [*The Debian Administrator's Handbook*](https://www.debian.org/doc/manuals/debian-handbook/).
+
+
+It is nonetheless useful to have a broad understanding of Debian's development.
+Basically there are [four different kinds of Debian releases](https://www.debian.org/releases/)
 named after Toy Story's characters:
 
 - **unstable**: always named [Sid](http://pixar.wikia.com/wiki/Sid_Phillips);
@@ -75,25 +80,31 @@ named after Toy Story's characters:
 - **old stable**: [Jessie](http://pixar.wikia.com/wiki/Jessie), [Wheezy](http://pixar.wikia.com/wiki/Wheezy) (oldold stable) and previous.
 
 
-As explained in [this post by J.A. Watson](http://www.zdnet.com/article/debian-stable-or-debian-testing-which-linux-is-right-for-you/)
-all new Debian packages (including new versions of existing packages) first
-entered the Debian testing process through the instable release.
-After a couple of tests, a new package goes to the testing release where it stays longer.
-Depending on the kind of package it may or may not spread to stable and old stable
-releases (see https://wiki.debian.org/StableUpdates). Let say that the majority
-of new version of package do not spread and are accumulated in the testing release.
-Then comes the time to prepare a new stable release and so the testing version is frozen
-(softly first then definitely frozen). This is the time to perform test and address
-bugs is needed to make the new release stable.
+As explained in [this post by J.A. Watson](http://www.zdnet.com/article/debian-stable-or-debian-testing-which-linux-is-right-for-you/),
+all new Debian packages, including new versions of existing packages, first
+enter the Debian testing process through the unstable release.
+After a couple of tests, a new package goes to the testing release where it stays for a longer period.
+Depending on the kind of package, it may or may not spread to stable and old stable
+releases (see https://wiki.debian.org/StableUpdates). In reality, the majority
+of new package versions do not spread further and are instead accumulated as testing releases.
+
+When developing the next stable Debian release, the latest version of packages are
+frozen, softly at first and then permanently, meaning that new developments for
+the next stable Debian release are gradually stopped. This frozen period is the
+time to perform tests and address bugs, necessary developments in order to release
+a stable version. Essentially, all this means is that package versions included
+in a new stable Debian release are slightly outdated at the time of the stable
+version release, which does not preclude packages from being further developed or
+render new development inaccessible. One simply has to install the testing version
+of Debian to access up-to-date packages.
 
 Debian packages I said? Well they basically are softwares for Debian. Let's say
 that they are non-random sets of files that Debian can install using `dpkg -i`.
-Many packages are available on line and you can readily install them using a
-single line of command that to the package manager `apt-get`. If you want have
-a look where are store the packages made available on line on the main Debian
-repository, you should have a look at the [list of mirrors](https://www.debian.org/mirror/list).
-To illustrate this, in the video below I navigate to a mirror and show were
-Pandoc is stored.
+Many packages are available online and you can readily install them using a
+single line of command to the package manager `apt-get`. If you are interested, I invite
+you to have a look at the [list of mirrors](https://www.debian.org/mirror/list) forming
+the main Debian package repository available online. To illustrate this, in the
+video below I navigate to a mirror and show where Pandoc is stored.
 
 <video width="100%" controls>
  <source src="/assets/myDebianStretch/mirror.webm" type="video/webm">
@@ -102,9 +113,10 @@ Pandoc is stored.
 
 ### Two additional comments
 
-First, there are [different repositories](https://wiki.debian.org/DebianRepository),
-for instance, I use a repository to use [icons from the papirus team](https://launchpad.net/~papirus/+archive/ubuntu/papirus). Second there is
-an upcoming collaborative development server named [Salsa](https://wiki.debian.org/Salsa)
+1. There are [different repositories](https://wiki.debian.org/DebianRepository).
+For instance, I use a repository to use [icons from the papirus team](https://launchpad.net/~papirus/+archive/ubuntu/papirus).
+
+2. There is an upcoming collaborative development server named [Salsa](https://wiki.debian.org/Salsa)
 based on [<i class="fa fa-gitlab" aria-hidden="true"></i>](https://about.gitlab.com/).
 
 
@@ -114,21 +126,22 @@ based on [<i class="fa fa-gitlab" aria-hidden="true"></i>](https://about.gitlab.
 
 ### About my hardware
 
-Unfortunately, I do not have strong knowledge about hardware and the choice that
-I made was based on discussions with other non-expert people and
-a couple of searches on the web. Several brands of computer have a high reputation
-and constantly make good computers. One of them is
-[Lenovo](https://www3.lenovo.com/ca/en/) and after looking a
-on the Internet claiming that Lenovo have a good Linux compatibility and decided
-to go for a Lenovo computer. Once I made my mind regarding the brand, I spent
-some time to think about my general expectations: a laptop, medium-size
+Unfortunately, I do not have strong knowledge of hardware and the choice that
+I made was based on discussions with other non-experts and research on the web
+Several brands of computer have a high reputation and constantly make good computers.
+One of them is [Lenovo](https://www3.lenovo.com/ca/en/), which is supposed to have
+a good Linux compatibility. I guess that was enough for me, so there my adventure
+with a Lenovo computer began!
+
+Once I chose which brand I would buy, I spent
+some time thinking about my general expectations: a laptop, medium-sized
 screen (13"-15"), a good i7 processor, no less than 8Go of RAM, and at least
-500Go SSD storage for less than 3000$CAN, warranty included. I finally made
-my mind and bought a customized [Lenovo ThinkPad T470p](https://www.notebookcheck.net/Lenovo-ThinkPad-T470p-Core-i7-GeForce-940MX-Laptop-Review.226802.0.html).
-Below are a couple of details about my gather that I display using the command
+500Go SSD storage for less than 3000$CAN, warranty included. I finally zeroed in on
+a customized [Lenovo ThinkPad T470p](https://www.notebookcheck.net/Lenovo-ThinkPad-T470p-Core-i7-GeForce-940MX-Laptop-Review.226802.0.html).
+Below are a couple of details about my computer that I can display using the command
 `inxi`. Note that `inxi` is one of the freeware I installed to retrieve
 information about my hardware using command lines; if you are
-interested in free command line tools that returns information about your
+interested in free command line tools that return information about your
 hardware I recommend [this post on *binarytides*](http://www.binarytides.com/linux-commands-hardware-info/).
 The command `inxi -SGCADP` entered in my terminal returns the following:
 
@@ -153,26 +166,25 @@ Partition: ID-1: / size: 922G used: 80G (10%) fs: ext4 dev: /dev/nvme0n1p2
 
 ### Hello and good bye Windows 10
 
-The Lenovo ThinkPad T470p was furnished with Windows 10 at model and
-I did not have the choice of the OS, sadly :disappointed:). Well, I am no Windows
-user and do not intend to become one, so I got rid of Windows asap (I obviously took
-a selfie... '*Me using windows*' ) and installed Debian Stretch, let me now
+The factory settings of my new Lenovo ThinkPad T470p was running on Windows 10 and
+I did not have the choice of the OS, sadly :disappointed:. Well, I am no Windows
+user and do not intend to become one, so I got rid of Windows ASAP (I obviously took
+a selfie... '*Me using windows*' ) and installed Debian Stretch. Let me now
 explain how!
 
 
 #### 1- Get a bootable USB stick
 
-I decided to go with the stable release of Debian so, in August, 2017, it means
-Stretch (actually released om June 17<sup>th</sup>, 2017). To get the Debian installer, you should
-simply know your architecture (on a recent laptop using an intel processor it
-must be **amd64**) and visit the
-[official website](https://www.debian.org/releases/stretch/debian-installer/).
+I decided to go with the stable release of Debian so, in August, 2017, that meant installing
+Stretch (actually released on June 17<sup>th</sup>, 2017). To get the Debian installer, you should
+simply know your architecture and visit the [official website](https://www.debian.org/releases/stretch/debian-installer/).
+On a recent laptop using an intel processor, it must be **amd64**.
 So, I downloaded the debian-installer for **amd64** architecture. I was quite
 familiar with installing Ubuntu or MacOS with USB stick
 but I was unable to remember the command lines required, so I googled
 something like "bootable USB stick Debian Stretch" and got an answer
-similar to [this conversation on stackexchange](https://unix.stackexchange.com/questions/293969/how-to-make-bootable-debian-usb-on-mac)
-(remember that I was on MacOS before).
+similar to [this conversation on stackexchange](https://unix.stackexchange.com/questions/293969/how-to-make-bootable-debian-usb-on-mac).
+Keep in mind that I was on MacOS before!
 
 
 #### 2- A small modification in the BIOS
@@ -180,16 +192,16 @@ similar to [this conversation on stackexchange](https://unix.stackexchange.com/q
  > BIOS ([...] an acronym for Basic Input/Output System and also known as the System BIOS, ROM BIOS or PC BIOS) is non-volatile firmware used to perform hardware initialization during the booting process (power-on startup), and to provide runtime services for operating systems and programs. (https://en.wikipedia.org/wiki/BIOS)
 
 Before you can install a new OS on your new computer, you may have to change some
-settings in the BIOS. In my case, I had to do so. When booting a Lenovo ThinkPad,
+settings in the BIOS. In my case, I certainly did! When booting a Lenovo ThinkPad,
 the first image that pops up is the Lenovo logo and the following message:
 
 > To interrupt normal startup press Enter
 
 So I pressed `Enter` and then `F1` to access the BIOS. I opened the *Security* table and
-disable the *Secure Boot* option to be able to boot on the USB stick. As I needed
+disabled the *Secure Boot* option to be able to boot on the USB stick. As I needed
 a non-free firmware to use the Wi-Fi I plugged my device on an Ethernet Cable
 and seamlessly followed the different steps to successfully install Debian
-Stretch. Unfortunately, I did not record all I did but basically is what is
+Stretch. Unfortunately, I did not record everything I did, but it is essentially what is
 described in [*The Debian Administrator's Handbook*](https://debian-handbook.info/browse/stable/sect.installation-steps.html).
 I chose an installation that includes [Gnome](https://www.gnome.org/)
 and a collection of very useful freewares such as [LibreOffice](https://www.libreoffice.org/),
@@ -202,10 +214,11 @@ and a collection of very useful freewares such as [LibreOffice](https://www.libr
 
 I made three short videos to show you:
 
-1. how to get the gnome version you are using with the GUI;   
+1. How to get the gnome version you are using with the GUI;   
 
-2. how to tweak your gnome even more, I personally added the [papirus icons](https://launchpad.net/~papirus/+archive/ubuntu/papirus)
-and [Vimix dark them](https://github.com/vinceliuice/vimix-gtk-themes) you can find many good-looking them on [gnome-look](https://www.gnome-look.org/);
+2. how to tweak your gnome even more. I personally added the [papirus icons](https://launchpad.net/~papirus/+archive/ubuntu/papirus)
+and [Vimix dark them](https://github.com/vinceliuice/vimix-gtk-themes). you can find
+many good-looking themes on [gnome-look](https://www.gnome-look.org/);
 
 3. where to find and add keyboard bindings (for instance to record the screencasts
 below `ctrl+alt+shift+R`).    
@@ -244,9 +257,9 @@ below `ctrl+alt+shift+R`).
 
 I use a fair number of softwares and using a package manager is extremely useful
 to install them properly (*e.g.* the package manager takes care of all dependencies)
-and to keep track of what is installed. Once Debian installed, I install my collection
-of software and I have recorder this list in a bash script that is actually provided
-below as a [gist](https://gist.github.com/).
+and to keep track of what is installed. Once Debian was installed, I proceeded to
+install my collection of softwares, which is recorded as a list in a bash script
+and provided below as a [gist](https://gist.github.com/).
 To be able to fully reproduce this you need to change a few lines in the
 [sources list](https://wiki.debian.org/SourcesList). I edited `/etc/apt/sources.list`
 in the super user mode `su` with the text editor [nano](https://www.nano-editor.org/).
@@ -286,15 +299,16 @@ deb-src http://ppa.launchpad.net/papirus/papirus/ubuntu xenial main
 ```
 
 The first line indicates that I subscribe to a non-free repository (I needed this
-for the WI-fi). The six following line indicates the official repository I
-use and the rest of the changes are made so I subscribe to other repositories
+for the Wi-Fi). The six following lines indicate the official repository I
+use and the rest of the changes are made so that I subscribe to other repositories
 (R, Qgis and papirus icons). Note that if you are a [Homebrew](https://brew.sh/) user,
 having different repositories in your source list is like using different taps.
-For further information about non-free software I install, have a look at the official
-website about [unofficial repositories](https://wiki.debian.org/fr/UnofficialRepositories),
+For further information about non-free softwares I installed, have a look at the official
+website on [unofficial repositories](https://wiki.debian.org/fr/UnofficialRepositories),
 [Skype](https://wiki.debian.org/skype) and [Dropbox](https://wiki.debian.org/dropbox).
-Also, if you wonder what is the difference between `deb` and `deb-src` go on
-[stackexchange](https://unix.stackexchange.com/questions/20504/the-difference-between-deb-versus-deb-src-in-sources-list). Once you are aware about this, have a look at my gist below (as version `138` when
+Also, if you wonder what is the difference between `deb` and `deb-src`, go on
+[stackexchange](https://unix.stackexchange.com/questions/20504/the-difference-between-deb-versus-deb-src-in-sources-list).
+Once you are aware of this, have a look at my gist below (as version `138` when
 I first shared this post).
 
 
@@ -313,9 +327,9 @@ This allows me to retrieve a newer version of the software than the one availabl
 for the stable release. I do so for Pandoc, Atom and Hugo.
 
 
-### Few details
+### A few details
 
-For some of the above-mentioned packages, I have added a relevant link in the
+For some of the above-mentioned packages, I added a relevant link in the
 table below:
 
 
@@ -327,19 +341,21 @@ Also, for all the atom packages I install using the `apm` command, the
 package documentation is online and the URL is formed as follows:
 `https://atom.io/packages/` **+** `pkgname`. For instance, the URL for the
 **pigments** package is [https://atom.io/packages/pigments](https://atom.io/packages/pigmnents).
-A last note to mention that I have benefited from reading
+
+
+A last note to mention is that I greatly benefited from reading
 [this](http://vk5tu.livejournal.com/54476.html) and
 [this](https://www.zotero.org/support/pdf_fulltext_indexing) to set Zotero up.
 
 
 ### Issues
 
-Did I face a couple of issues? Of course I did, but I have learned a lot solving them.
-Do I still have some issues? Yes I do: (1) a couple of error messages on startup
-and (2) an issue with the back light of my screen! **BUT** regarding (1) everything
-works fine so I do not complain especially that some of they might be kernels
-issues that may be solve when I use a more recent release and regarding
-(2) I found a work around :smile_cat:.
+Did I face a couple of issues? Of course I did, but I have learned a lot through solving them.
+Do I still encounter issues? Yes I do: (1) a couple of error messages on startup
+and (2) an issue with the back light of my screen! **BUT** regarding (1), everything
+works fine so I do not complain, especially since some of the message I get might be kernel
+issues that may be solved when I use a more recent release, and regarding
+(2), I found a work around :smile_cat:!
 
 #### Various messages on startup
 
@@ -348,30 +364,32 @@ is `sudo dmesg -l err`):
 
 <img src="/assets/myDebianStretch/errors.png" width="100%"></img>
 
-Well from what I understood nothing too bad. For instance, `kvm: disabled by bios`
-is more a warning message than an error message. My WI-fi works great despite
+Well from what I understood this is nothing too bad. For instance, `kvm: disabled by bios`
+is more of a warning message than an error message. My Wi-fi works great despite
 the `firmware: failed to load iwlwifi-8265-26.ucode` message. The ACIP errors
-are [triggered because of firmware errors](https://unix.stackexchange.com/questions/92366/acpi-errors-exeptions-why-they-spam-how-to-know-and-fix-it). Well so far everything work well and fixing such errors sounds far beyond my
-expertise (for the moment :smile:).
+are [triggered because of firmware errors](https://unix.stackexchange.com/questions/92366/acpi-errors-exeptions-why-they-spam-how-to-know-and-fix-it).
+Well so far everything works well and fixing such errors sounds far beyond my
+expertise (for the moment :smile:) and motivation level.
 
 #### Back light
 
 After the fresh install, I was able to change the brightness of my screen using
 `F5` and `F6` but I am no longer able to do so. I guess at some point my
-computer hibernated and this cause the issue. Many posts on line addressing this issue
-and I have tried in vain to follow the procedures described to fix this (note that it is likely that I misinterpreted the
-procedure). However, I took some time to read thorough [posts](https://techoverflow.net/2014/07/27/how-i-solved-my-toshiba-linux-backlight-issues/)
+computer hibernated and this caused the issue. Many posts address this issue
+and I have tried in vain to follow the procedures described to fix this
+(note that it is likely that I misinterpreted the procedure). However, I took some
+time to read thorough [posts](https://techoverflow.net/2014/07/27/how-i-solved-my-toshiba-linux-backlight-issues/)
 and [bug reports](https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=651741)
 reporting the same issue and I have learned a lot. That's something I really
-enjoy with Debian: it forces me to understand how things works and even
-if my problem is not solved and I can no longer use `F5` and `F6`, I have found
+enjoy with Debian: it forces me to understand how things works, and even
+if my problem is not solved and I can no longer use `F5` and `F6`, I still found
 a workaround. I have appended a bash alias in my **.zprofile**:
 
     alias mybl='sudo tee /sys/class/backlight/intel_backlight/brightness <<<'
 
 so now if `mybl 500` (mine is between 0 and 1060, that I've leaned too!)
 my backlight is changed accordingly! **.zprofile** I said? Well, let's keep
-this for another post !
+this for another post!
 
 <br>
 
@@ -382,7 +400,8 @@ I am very satisfied with my actual setup. My guess is that I would have been hap
 on many Linux distribution. I acknowledge that it requires some time to get used to
 Linux and how it works. That being said, the time spent to make your laptop
 working is really rewarding and I have already learned tons of tips. I am now
-considering switching to Debian testing and read [*The Debian Administrator's Handbook*](https://www.debian.org/doc/manuals/debian-handbook/) very carefully!
+considering switching to Debian testing and reading [*The Debian Administrator's Handbook*](https://www.debian.org/doc/manuals/debian-handbook/)
+very carefully!
 
 
 <br>
