@@ -8,7 +8,6 @@ draft: true
 layout: "single"
 ---
 
-yes it is dedef flspde pde kdepkde pdke pdkep de
 
 J'ai récemment discuté avec une journaliste à propose de mon expérience de doctorat
 ce qui a débouché sur [l'article suivant publié sur le site du **Devoir**](http://www.ledevoir.com/socie dpkg-reconfigure locales te/education/518374/les-deux-derniers-laureats-de-l-acfas-reviennent-sur-leur-experience). Ce fut l'occasion de prendre un peu de recul vis à vis de mon experience.
@@ -60,14 +59,13 @@ yes it is
 
 http://www.canada.campusfrance.org/fr/dossier/doctorat-en-cotutelles-et-programmes-doctoraux-europeens
 
-version [{{< faic fa-file-pdf-o >}}](https://ressources.campusfrance.org/catalogues_recherche/diplomes/fr/cotutelle_fr.pdf)
+version [](https://ressources.campusfrance.org/catalogues_recherche/diplomes/fr/cotutelle_fr.pdf)
 
 
 
 Reteennons ceci:
 
 
-> fa-link fa-file-pdf-o
 
 
 les différences modealié n a l'impression que,

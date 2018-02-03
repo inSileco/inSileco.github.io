@@ -5,14 +5,14 @@
 <div class="container">
 
   <div class="col-sm-12">
-    <h1 style="margin-top:50px;margin-bottom:20px;">Software developments</h1> {{ range $.Site.Data.softwares }}
+    <h1 style="margin-top:50px;margin-bottom:20px;">Softwares developments</h1> {{ range $.Site.Data.softwares }}
     <div class="col-sm-6 text-left">
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="col-sm-12">
-            {{ with .github }} <a href="https://github.com/{{.}}" style="display:inline;"><i class="fa fa-2x fa-github" aria-hidden="true"></i></a>  {{ end }}<h3 style="font-weight:bold;display:inline;"> {{ .name }} </h3>
+            {{ if .github }} <a href="https://github.com/{{.}}" style="display:inline;"><i class="fa fa-2x fa-github" aria-hidden="true"></i></a>  {{ end }}<h3 style="font-weight:bold;display:inline;"> {{ .name }} </h3>
             <hr>
-            <p> to be changed </p>
+            <p> {{ .description }} </p>
             <p style="margin-top:10px;">
                {{ with .travis }} {{ . | markdownify }} {{ end }}
                {{ with .appveyor }} {{ . | markdownify }} {{ end }}
