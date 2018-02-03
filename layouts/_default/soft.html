@@ -5,7 +5,7 @@
 <div class="container">
 
   <div class="col-sm-12">
-    <h1 style="margin-top:50px;margin-bottom:20px;">Softwares developments</h1> {{ range $.Site.Data.softwares }}
+    <h1 style="margin-top:50px;margin-bottom:20px;">Softwares</h1> {{ range $.Site.Data.softwares }}
     <div class="col-sm-6 text-left">
       <div class="panel panel-default">
         <div class="panel-body">
@@ -14,8 +14,6 @@
             <hr>
             <p> {{ .description }} </p>
             <p style="margin-top:10px;">
-               {{ with .travis }} {{ . | markdownify }} {{ end }}
-               {{ with .appveyor }} {{ . | markdownify }} {{ end }}
                {{ with .codecov }} {{ . | markdownify }} {{ end }}
             </p>
           </div>
@@ -23,6 +21,7 @@
       </div>
     </div>
     {{ end }}
+
 
   </div>
 </div>
