@@ -61,7 +61,7 @@ http://www.canada.campusfrance.org/fr/dossier/doctorat-en-cotutelles-et-programm
 
 version [](https://ressources.campusfrance.org/catalogues_recherche/diplomes/fr/cotutelle_fr.pdf)
 
-
+<img src="https://api.travis-ci.org/inSileco/inSileco.github.io.svg?branch=dev"></img>
 
 Reteennons ceci:
 
