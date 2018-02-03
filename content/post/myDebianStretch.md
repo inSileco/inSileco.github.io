@@ -6,21 +6,15 @@ date: 2018-01-21
 tags: [Linux, Debian, setup]
 draft: false
 tweet: Setting my Debian Stretch up
-output:
-  rmarkdown::html_page:
-    toc: true
-    fig_width: 3
-    dev: svg
+layout: "single"
 ---
 
 
-![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
-Reviewer: David Beauchesne
+**Reviewer**: David Beauchesne
 
 <br/>
-<!-- python -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)' < data/posts/softwareKK.yaml > data/posts/softwareskev
-caz.json -->
+
 
 
 This post details my Debian Stretch setup on my Lenovo ThinkPad T470p.
