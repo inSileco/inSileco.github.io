@@ -6,15 +6,10 @@ date: 2018-01-21
 tags: [Linux, Debian, setup]
 draft: false
 tweet: Setting my Debian Stretch up
-estime: 20
+estime: 14
 layout: "single"
 ---
 
-
-
-**Reviewer**: David Beauchesne
-
-<br/>
 
 
 

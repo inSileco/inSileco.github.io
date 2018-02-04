@@ -61,5 +61,4 @@ which will use the archetype `post.Rmd`.
 #### Badges
 
 ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
-
 ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
