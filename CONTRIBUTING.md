@@ -50,9 +50,10 @@ fields to be used.
 
 - **title**: title of the blog post;
 - **author**: who wrote the post (may be a list of co-authors);
-- **reviewer**: to be implemented;
+- **reviewer**: reviewer(s) of the post;
 - **date**: when the post was written (YYYY-MM-DD fornat);
 - **tags**: keywords used to index posts;
+- **estime**: estimated time to read the post;
 - **tweet**: text associated with the tweet button;
 - **draft**: if `true` the post will not be made `public`, *i.e.* not available on the online version of the website; the post will however be rendered locally;
 - **output**: rmarkdown options;
@@ -70,4 +71,4 @@ to be added
 
 ## Issues
 
-Opening new issues is a very useful way to start a discussion about bugs (obviously) but also to discuss new features, new posts, new series of post. We strongly encourage the authors that come up with a new idea to open a new issue so we can discuss it. Once the issue is solved, it should be closed (obviously) and if the issue is address via a new commit then we encourage to [close it via commit message](https://help.github.com/articles/closing-issues-using-keywords/). 
+Opening new issues is a very useful way to start a discussion about bugs (obviously) but also to discuss new features, new posts, new series of post. We strongly encourage the authors that come up with a new idea to open a new issue so we can discuss it. Once the issue is solved, it should be closed (obviously) and if the issue is address via a new commit then we encourage to [close it via commit message](https://help.github.com/articles/closing-issues-using-keywords/).

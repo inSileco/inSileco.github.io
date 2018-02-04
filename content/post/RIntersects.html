@@ -1,6 +1,7 @@
 ---
 title: Efficiency of spatial intersects in R
-author: [david,kevin,remi]
+author: [david,remi]
+reviewer: [kevin]
 date: 2017-09-12
 tags: [R, spatial, intersection]
 draft: false
@@ -16,20 +17,28 @@ output:
 
 
 
-<p><img src="https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg" /></p>
 <p><br/></p>
-<section id="intersects-r" class="level1">
+<div id="intersects-r" class="section level1">
 <h1>Intersects &amp; R</h1>
-<p>We are increasingly performing spatial analyses in R. The replicability and the efficiency of programming languages is much more appealing than using user friendly softwares like <a href="https://www.arcgis.com/features/index.html">ArcGIS</a>, even though you can still code your way through analyses when using those softwares (latter versions of <a href="http://qgis.org/fr/site/">QGIS</a> do a fantastic job in that regard!). The performance of tools available for spatial analyses in R is however not completely certain.</p>
-<p>In this post, we compare four different methods to perform spatial intersects between objects in R, from three different packages:</p>
-<ol type="1">
+<p>We are increasingly performing spatial analyses in R. The replicability and the
+efficiency of programming languages is much more appealing than using user
+friendly softwares like <a href="https://www.arcgis.com/features/index.html">ArcGIS</a>,
+even though you can still code your way through analyses when using those
+softwares (latter versions of <a href="http://qgis.org/fr/site/">QGIS</a> do a fantastic
+job in that regard!). The performance of tools available for spatial analyses in
+R is however not completely certain.</p>
+<p>In this post, we compare four different methods to perform spatial intersects
+between objects in R, from three different packages:</p>
+<ol style="list-style-type: decimal">
 <li><code>raster::intersect</code></li>
 <li><code>rgeos::gIntersects</code></li>
 <li><code>rgeos::gIntersection</code></li>
 <li><code>sf::st_intersects</code></li>
 <li><code>sf::st_intersection</code></li>
 </ol>
-<p>More specifically, we test how these methods fare when performing binary (TRUE/FALSE) and zonal or aerial intersects. Keep in mind, not all methods can be used for both binary and zonal intersects:</p>
+<p>More specifically, we test how these methods fare when performing binary
+(TRUE/FALSE) and zonal or aerial intersects. Keep in mind, not all methods
+can be used for both binary and zonal intersects:</p>
 <p><br/></p>
 <table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
 <thead>
@@ -102,14 +111,16 @@ X
 </tbody>
 </table>
 <p><br/></p>
-<p>Obviously, if you mean to perform binary intersects only, the binary functions make more sense as they are built to include less calculations. We nonetheless compare all the functions together for the sake of comparison in this post.</p>
+<p>Obviously, if you mean to perform binary intersects only, the binary functions
+make more sense as they are built to include less calculations. We nonetheless
+compare all the functions together for the sake of comparison in this post.</p>
 <p><br/></p>
-</section>
-<section id="initiate-r" class="level1">
+</div>
+<div id="initiate-r" class="section level1">
 <h1>Initiate R</h1>
 <pre class="r"><code># R version
 sessionInfo()[[1]]$version.string
-#R&gt; [1] &quot;R version 3.4.2 (2017-09-28)&quot;
+#R&gt; [1] &quot;R version 3.4.3 (2017-11-30)&quot;
 #--
 rm(list=ls())
 library(sf)
@@ -131,18 +142,23 @@ eplot &lt;- function(x = 1, y = 1, xmin = 0, xmax = 1, ymin = 0, ymax = 1) {
 <pre class="r"><code>packageVersion(&quot;raster&quot;)
 packageVersion(&quot;rgeos&quot;)
 packageVersion(&quot;sf&quot;)
-#R&gt; [1] &#39;2.5.8&#39;
+#R&gt; [1] &#39;2.6.7&#39;
 #R&gt; [1] &#39;0.3.26&#39;
-#R&gt; [1] &#39;0.5.5&#39;</code></pre>
+#R&gt; [1] &#39;0.6.0&#39;</code></pre>
 <p><br/></p>
-</section>
-<section id="generate-spatial-objects-for-testing" class="level1">
+</div>
+<div id="generate-spatial-objects-for-testing" class="section level1">
 <h1>Generate spatial objects for testing</h1>
-<p>We start be generating random spatial object in space. For the record, the area selected is within the St. Lawrence estuary in eastern Canada (see <a href="https://insileco.github.io/2017/06/19/online-ecology---individual-species-description/">online ecology series</a>), although the actual location really does not matter for this post!</p>
+<p>We start be generating random spatial object in space. For the record,
+the area selected is within the St. Lawrence estuary in eastern Canada
+(see <a href="https://insileco.github.io/2017/06/19/online-ecology---individual-species-description/">online ecology series</a>),
+although the actual location really does not matter for this post!</p>
 <p><br/></p>
-<section id="grid" class="level2">
+<div id="grid" class="section level2">
 <h2>Grid</h2>
-<p>We use a regular grid to intersect vectorized data, <em>i.e.</em> points and polygons for this post. This simulate the use of a grid used to extract environmental data (biotic and/or abiotic) from multiple sources to characterize a study area.</p>
+<p>We use a regular grid to intersect vectorized data, <em>i.e.</em> points and polygons
+for this post. This simulate the use of a grid used to extract environmental
+data (biotic and/or abiotic) from multiple sources to characterize a study area.</p>
 <p><br/></p>
 <pre class="r"><code># Projection in lambers
 projSpat &lt;- &quot;+proj=lcc +lat_1=46 +lat_2=60 +lat_0=44 +lon_0=-68.5 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs +ellps=GRS80 +towgs84=0,0,0&quot;
@@ -170,7 +186,7 @@ grid &lt;- sp::spsample(bb,type=&quot;hexagonal&quot;,cellsize=cellsize, offset=
 # We now have a grid of polygons to work with!
 plot(grid)
 lines(bb, col = &#39;blue&#39;, lwd = 2)</code></pre>
-<p><img src="/post/RIntersects_files/figure-html/grid-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/rmarkdown-libs/figure-html4/grid-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>
 # We need this grid in `sp` and `sf` usable formats
 gridSP &lt;- grid
@@ -182,10 +198,13 @@ class(gridSP)
 class(gridSF)
 #R&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
 <p><br/></p>
-</section>
-<section id="points-and-polygons" class="level2">
+</div>
+<div id="points-and-polygons" class="section level2">
 <h2>Points and Polygons</h2>
-<p>Now we generate random points within the bounding box to test the intersects. This is done for <code>1, 10, 50, 100, 250, 500, 1000, 10000</code> points. Then, to get all data required to perform the tests, we also need to create polygons from the point data.</p>
+<p>Now we generate random points within the bounding box to test the intersects.
+This is done for <code>1, 10, 50, 100, 250, 500, 1000, 10000</code> points. Then, to get
+all data required to perform the tests, we also need to create polygons from
+the point data.</p>
 <p><br/></p>
 <pre class="r"><code># Number of samples
 samp &lt;- c(1, 10, 50, 100, 250, 500, 1000, 10000)
@@ -258,13 +277,14 @@ for(i in 1:nSamp) {
            sf::st_as_sf(get(sampNamesSPPoly[i]))) # polygons
 }</code></pre>
 <p><br/></p>
-</section>
-</section>
-<section id="benchmarking" class="level1">
+</div>
+</div>
+<div id="benchmarking" class="section level1">
 <h1>Benchmarking</h1>
-<p>Now that the data is ready for use, we can perform the tests! But first, let’s take a quick look at the type of results that are returned by each function.</p>
+<p>Now that the data is ready for use, we can perform the tests! But first, let’s
+take a quick look at the type of results that are returned by each function.</p>
 <p><br/></p>
-<section id="points-intersections" class="level2">
+<div id="points-intersections" class="section level2">
 <h2>Points intersections</h2>
 <p>First, we will test the intersects only with the points.</p>
 <p><br/></p>
@@ -485,7 +505,7 @@ lines(res1$sf_st_intersection ~ res1$n, lwd = 2, col = cols[5])
 par(mar = c(0,0,0,0), family = &quot;serif&quot;, las = 1)
 eplot()
 legend(x = &#39;center&#39;, legend = as.character(colnames(res1)[-1]), bty = &#39;n&#39;, lty = 1, col = cols, seg.len = 2, cex = 0.8, title = expression(bold(&#39;Fonctions&#39;)))</code></pre>
-<p><img src="/post/RIntersects_files/figure-html/ptIntersect2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/rmarkdown-libs/figure-html4/ptIntersect2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>
 # Visualize results without gIntersection
 layout(matrix(c(1,2), ncol =2), widths = c(5,2), heights = 3)
@@ -499,12 +519,15 @@ lines(res1$sf_st_intersection ~ res1$n, lwd = 2, col = cols[5])
 par(mar = c(0,0,0,0), family = &quot;serif&quot;)
 eplot()
 legend(x = &#39;center&#39;, legend = as.character(colnames(res1)[-c(1,4)]), bty = &#39;n&#39;, lty = 1, col = cols[-3], seg.len = 2, cex = 0.8, title = expression(bold(&#39;Fonctions&#39;)))</code></pre>
-<p><img src="/post/RIntersects_files/figure-html/ptIntersect2-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/rmarkdown-libs/figure-html4/ptIntersect2-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p><br/></p>
-<p>In this analysis <code>rgeos::gIntersection</code> is clearly much less efficient than the alternative options. Using <code>raster::intersect</code>, <code>rgeos::gIntersects</code>, <code>sf::st_intersects</code> or <code>sf::st_intersection</code> significantly decreases calculation time, with <code>sf::st_intersects</code> proving to be the most efficient option.</p>
+<p>In this analysis <code>rgeos::gIntersection</code> is clearly much less efficient than the
+alternative options. Using <code>raster::intersect</code>, <code>rgeos::gIntersects</code>,
+<code>sf::st_intersects</code> or <code>sf::st_intersection</code> significantly decreases calculation
+time, with <code>sf::st_intersects</code> proving to be the most efficient option.</p>
 <p><br/></p>
-</section>
-<section id="polygons-intersections" class="level2">
+</div>
+<div id="polygons-intersections" class="section level2">
 <h2>Polygons intersections</h2>
 <p>Now let’s take a look at intersects using polygons only.</p>
 <p><br/></p>
@@ -724,7 +747,7 @@ lines(res2$sf_st_intersection ~ res2$n, lwd = 2, col = cols[5])
 par(mar = c(0,0,0,0), family = &quot;serif&quot;)
 eplot()
 legend(x = &#39;center&#39;, legend = as.character(colnames(res2)[-1]), bty = &#39;n&#39;, lty = 1, col = cols, seg.len = 2, cex = 0.8, title = expression(bold(&#39;Fonctions&#39;)))</code></pre>
-<p><img src="/post/RIntersects_files/figure-html/polyIntersect2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/rmarkdown-libs/figure-html4/polyIntersect2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>
 # Visualize results without gIntersection
 layout(matrix(c(1,2), ncol =2), widths = c(5,2), heights = 3)
@@ -737,16 +760,30 @@ lines(res2$sf_st_intersection ~ res2$n, lwd = 2, col = cols[5])
 par(mar = c(0,0,0,0), family = &quot;serif&quot;)
 eplot()
 legend(x = &#39;center&#39;, legend = as.character(colnames(res1)[-c(1,2,4)]), bty = &#39;n&#39;, lty = 1, col = cols[-c(1,3)], seg.len = 2, cex = 0.8, title = expression(bold(&#39;Fonctions&#39;)))</code></pre>
-<p><img src="/post/RIntersects_files/figure-html/polyIntersect2-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/rmarkdown-libs/figure-html4/polyIntersect2-2.png" width="672" style="display: block; margin: auto;" /></p>
 <p><br/></p>
-<p>We see here that <code>rgeos::gIntersects</code>, <code>sf::st_intersects</code>, <code>sf::st_intersection</code> are far more efficient when dealing with polygons only intersects, with <code>rgeos::gIntersects</code> the most efficient option. <code>raster::intersects</code> loses its previous efficiency, while the efficiency of <code>rgeos::gIntersection</code> decreases even further.</p>
+<p>We see here that <code>rgeos::gIntersects</code>, <code>sf::st_intersects</code>, <code>sf::st_intersection</code>
+are far more efficient when dealing with polygons only intersects, with
+<code>rgeos::gIntersects</code> the most efficient option. <code>raster::intersects</code> loses its
+previous efficiency, while the efficiency of <code>rgeos::gIntersection</code> decreases
+even further.</p>
 <p><br/></p>
-</section>
-</section>
-<section id="concluding-remarks" class="level1">
+</div>
+</div>
+<div id="concluding-remarks" class="section level1">
 <h1>Concluding remarks</h1>
-<p>Et voilà! It is obvious from these simulations that the <code>sf</code> package overall provides the most efficient options to perform spatial intersects in R. <code>rgeos</code> is also very efficient when it comes to binary intersects, especially with polygons on polygons intersects where it edges <code>st_intersects</code> by decreasing calculation time in half.</p>
-<p>Our recommendation: use <code>sf::st_intersects</code> for binary intersects and use <code>sf::st_intersection</code> for zonal intersects. However, be aware that the <code>sf</code> package evolves very rapidly and functions are likely to be modified, although one would hope that efficiency decrease will not be the price of further development.</p>
-<p>If you wish to stick with the older packages, then binary intersects could be done quite efficiently, but if you need zonal intersects, we recommend that you start considering changing your ways!</p>
+<p>Et voilà! It is obvious from these simulations that the <code>sf</code> package overall
+provides the most efficient options to perform spatial intersects in R.
+<code>rgeos</code> is also very efficient when it comes to binary intersects, especially
+with polygons on polygons intersects where it edges <code>st_intersects</code> by
+decreasing calculation time in half.</p>
+<p>Our recommendation: use <code>sf::st_intersects</code> for binary intersects and
+use <code>sf::st_intersection</code> for zonal intersects. However, be aware that the <code>sf</code>
+package evolves very rapidly and functions are likely to be modified,
+although one would hope that efficiency decrease will not be the price of
+further development.</p>
+<p>If you wish to stick with the older packages, then binary intersects could be
+done quite efficiently, but if you need zonal intersects, we recommend that you
+start considering changing your ways!</p>
 <p><br/></p>
-</section>
+</div>
