@@ -1,9 +1,10 @@
 ## Who can write a blogpost?
 
 Members of the `inSileco` team. However there is a extra step: it is quite simple,
-members need to fill in a separate `yaml` file per author in the `./data/authors/`
-of this repository. The easiest way is to copy/paste one example and to change
-the information. For instance let see the information about @KevCaz:
+members need to fill in a separate `yaml` file per author in the `data/authors/`
+of this repository. The easiest way to proceed is to copy/paste one existing
+file of this kind and to replace the information. For the sake of clarity, below
+is what the `data/authors/kevin.yaml` looks like:
 
 ```yaml
 given_name: Kevin
@@ -20,7 +21,9 @@ publons: publons_id
 gscholar: https://scholar.google.co.uk/citations?user=xzvcu7cAAAAJ&hl=fr
 ```
 
-Note that avatars are retrieved from Github accounts.
+Note that avatars are retrieved from Github accounts. Also names of these files
+can be used as a shortcut to add author's info on posts.
+
 
 ## How to use Github to publish a post?
 
@@ -57,8 +60,12 @@ fields to be used.
 - **tweet**: text associated with the tweet button;
 - **draft**: if `true` the post will not be made `public`, *i.e.* not available on the online version of the website; the post will however be rendered locally;
 - **output**: rmarkdown options;
-- **layout**: which layout must be used; this should be used **only** with `md` posts and should be set to `single` so the Disqus section is added to the post; notet that the layout is properly handled for `.Rmd` posts.
+- **layout**: which layout must be used; this should be used **only** with `md` posts and should be set to `single` so the Disqus section is added to the post; note that the layout is properly handled for `.Rmd` posts.
 
+Given the kind of posts found of the blog (that could be tricky), the estimated
+time to read the post (`estime`) should better be estimated roughly by ourselves.
+300 words read per minute for a post not too trick and less for other. Also the
+author(s) of the post should take the time to read the code, figures, etc.
 
 
 ## Naming files
