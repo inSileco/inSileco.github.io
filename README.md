@@ -70,5 +70,5 @@ which will use the archetype `post.Rmd`.
 ## ToDo
 
 - [ ] Describe all YAML headers options (note we can create as much options as we want).   
-- [ ] Set a repository to include how the wordcloud was generated and link this
+- [X] Set a repository to include how the wordcloud was generated and link this
 repo in the website.    
