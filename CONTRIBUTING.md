@@ -31,8 +31,33 @@ is handled by Travis, see `.travis.yml` and the travis settings for more informa
 
 For substantial changes in the features of the website we strongly encourage to
 create a new branch and create a pull request to add feature. Depending on your
-skills you may benefit from a review.
-Creating a new branch is also encouraged for new upcoming posts, 
+skills you may benefit from a review. Creating a new branch is also encouraged
+for new upcoming posts
+
+
+## Writing a new post
+
+A new post is either a `md` or a `rmd` file added in the `content/post` folder.
+There are no limitation in terms of number of character per post, we should
+however be aware that readers rarely (if ever) spend hours reading the same post.
+Regarding the topic of the post, it should deal with computational ecology at large.
+Meaning that it may deal with ecology, your experience as an ecologist, computational
+tools and in the best case scenario computational ecology.
+
+The author of the must take advantage of the `yaml` front matter to edit the
+meta-data associated with his post. Below, is a description of the different
+fields to be used.
+
+- **title**: title of the blog post;
+- **author**: who wrote the post (may be a list of co-authors);
+- **reviewer**: to be implemented;
+- **date**: when the post was written (YYYY-MM-DD fornat);
+- **tags**: keywords used to index posts;
+- **tweet**: text associated with the tweet button;
+- **draft**: if `true` the post will not be made `public`, *i.e.* not available on the online version of the website; the post will however be rendered locally;
+- **output**: rmarkdown options;
+- **layout**: which layout must be used; this should be used **only** with `md` posts and should be set to `single` so the Disqus section is added to the post; notet that the layout is properly handled for `.Rmd` posts.
+
 
 
 ## Naming files
@@ -42,3 +67,7 @@ to be added
 ## Media files format
 
 to be added
+
+## Issues
+
+Opening new issues is a very useful way to start a discussion about bugs (obviously) but also to discuss new features, new posts, new series of post. We strongly encourage the authors that come up with a new idea to open a new issue so we can discuss it. Once the issue is solved, it should be closed (obviously) and if the issue is address via a new commit then we encourage to [close it via commit message](https://help.github.com/articles/closing-issues-using-keywords/). 

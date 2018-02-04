@@ -63,12 +63,3 @@ which will use the archetype `post.Rmd`.
 ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
 ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
-
-
-
-
-## ToDo
-
-- [ ] Describe all YAML headers options (note we can create as much options as we want).   
-- [X] Set a repository to include how the wordcloud was generated and link this
-repo in the website.    
