@@ -11,16 +11,14 @@ output:
     dev: svg
 ---
 
+<br>
 
+`r htmltools::HTML("{{< trickortips >}}")`
 
 ```{r codeChunkSetUp, echo=FALSE}
 source('../../static/Rscript/codeChunkSetUp.R')
 ```
 
-
-```{r trick, echo=FALSE, results='asis'}
-source('../../static/Rscript/trickOrTips.R')
-```
 
 
 ---

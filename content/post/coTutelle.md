@@ -9,6 +9,8 @@ layout: "single"
 ---
 
 
+
+
 J'ai récemment discuté avec une journaliste à propose de mon expérience de doctorat
 ce qui a débouché sur [l'article suivant publié sur le site du **Devoir**](http://www.ledevoir.com/socie dpkg-reconfigure locales te/education/518374/les-deux-derniers-laureats-de-l-acfas-reviennent-sur-leur-experience). Ce fut l'occasion de prendre un peu de recul vis à vis de mon experience.
 C'est vrai que c'est une expérience enrichissant et c'est vrai que la prise en
