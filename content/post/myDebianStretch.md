@@ -297,7 +297,7 @@ website on [unofficial repositories](https://wiki.debian.org/fr/UnofficialReposi
 Also, if you wonder what is the difference between `deb` and `deb-src`, go on
 [stackexchange](https://unix.stackexchange.com/questions/20504/the-difference-between-deb-versus-deb-src-in-sources-list).
 Once you are aware of this, have a look at my gist below (as version `138` when
-I first shared this post).
+I first shared this post and version `146` after review).
 
 
 <br>
