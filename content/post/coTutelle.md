@@ -5,7 +5,6 @@ date: 2018-02-03
 tags: [R, plot]
 tweet: "Faire une thèse cotutelle"
 draft: true
-layout: "single"
 ---
 
 

@@ -3,13 +3,11 @@ title: Setting my Debian Stretch up
 author: [kevin]
 reviewer: [david]
 date: 2018-01-21
-tags: [Linux, Debian, setup]
+tags: [Linux, Debian]
 draft: false
-tweet: Setting my Debian Stretch up
+tweet: "Setting my Debian Stretch up"
 estime: 14
-layout: "single"
 ---
-
 
 
 
@@ -394,9 +392,8 @@ considering switching to Debian testing and reading [*The Debian Administrator's
 very carefully!
 
 
-<br>
+</br>
 
+### :arrow_right: **SEE YOU NEXT POST!!** :boom:
 
-### :arrow_right: **SEE YOU NEXT POST!!** :smile: :fire:
-
-<br>
+</br>

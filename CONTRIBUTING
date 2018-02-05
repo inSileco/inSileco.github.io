@@ -60,12 +60,15 @@ fields to be used.
 - **tweet**: text associated with the tweet button;
 - **draft**: if `true` the post will not be made `public`, *i.e.* not available on the online version of the website; the post will however be rendered locally;
 - **output**: rmarkdown options;
-- **layout**: which layout must be used; this should be used **only** with `md` posts and should be set to `single` so the Disqus section is added to the post; note that the layout is properly handled for `.Rmd` posts.
+- **layout**: which layout must be used; note the default layout is the one required for
+posts. 
 
 Given the kind of posts found of the blog (that could be tricky), the estimated
 time to read the post (`estime`) should better be estimated roughly by ourselves.
 300 words read per minute for a post not too trick and less for other. Also the
-author(s) of the post should take the time to read the code, figures, etc.
+author(s) of the post should take the time to read the code, figures, etc. Finally
+the authors should do his best ti select the `tags` so the reader easily access
+posts with similar content.
 
 
 ## Naming files
