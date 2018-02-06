@@ -15,7 +15,8 @@ output:
 
 
 
-<p><em>Last update</em>: November 11, 2017 – Fix paths to icon files.</p>
+<p><i class="fa fa-edit" aria-hidden="true"></i>November 11, 2017 – Fix paths to icon files.
+<i class="fa fa-edit" aria-hidden="true"></i>February 14, 2017 – Make it work woth version 5 of Fontawesome</p>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>Icons are very popular on websites to improve the visual grepping (<em>i.e.</em> visual
@@ -56,7 +57,7 @@ make a direct <strong>link</strong> with a <a href="/content/post/HylianStyle.ht
 <div id="r-version-used-to-build-the-last-update-of-this-post" class="section level4">
 <h4>R version used to build the last update of this post</h4>
 <pre class="r"><code># path &lt;- &quot;../../static/assets/AcademiconsInR&quot;
-sessionInfo()[[1]]$version.string
+sessionInfo()[[1L]]$version.string
 #R&gt; [1] &quot;R version 3.4.3 (2017-11-30)&quot;</code></pre>
 </div>
 <div id="list-of-packages-to-be-used" class="section level4">
@@ -82,7 +83,7 @@ use the R to get these fonts.</p>
 <ol style="list-style-type: decimal">
 <li><a href="https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf">the <em>Academicons</em> font</a><br />
 </li>
-<li><a href="https://github.com/FortAwesome/Font-Awesome/raw/master/fonts/FontAwesome.otf">the <em>FontAwesome</em> font</a><br />
+<li><a href="https://github.com/FortAwesome/Font-Awesome/blob/master/web-fonts-with-css/webfonts/fa-regular-400.ttf">the <em>FontAwesome</em> font</a><br />
 </li>
 <li><a href="https://github.com/driftyco/ionicons/raw/master/fonts/ionicons.ttf">the <em>Ionicons</em> font</a></li>
 </ol>
@@ -95,7 +96,7 @@ dir.create(dr, showWarnings = FALSE)
 ##-- gather URLs
 urls &lt;- c(
   &#39;https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf&#39;,
-  &#39;https://github.com/FortAwesome/Font-Awesome/raw/master/fonts/FontAwesome.otf&#39;,
+  &#39;https://github.com/FortAwesome/Font-Awesome/blob/master/web-fonts-with-css/webfonts/fa-regular-400.ttf&#39;,
   &#39;https://github.com/driftyco/ionicons/raw/master/fonts/ionicons.ttf&#39;
   )   
 ##-- download the fonts
@@ -259,7 +260,7 @@ points(coord[,1], coord[,2], pch=-as.hexmode(acs), cex=5, col=cols)</code></pre>
 <h3>Adding FontAwesome’s icons</h3>
 <p>The unicode hexadecimal for the FontAwesome’s icons range from <code>f000</code>
 (<i class="fa fa-glass" aria-hidden="true"></i>) to <code>f2e0</code>
-(<i class="fa fa-meetup" aria-hidden="true"></i>) in version 4.7.</p>
+(<i class="fa fa-meetup" aria-hidden="true"></i>) in version 4.7. Version</p>
 <pre class="r"><code>nsq &lt;- 12
 fas &lt;- 1:(nsq*nsq) %&gt;% as.hexmode %&gt;% paste0(&quot;f0&quot;, .)
 coord &lt;- expand.grid(1:nsq, 1:nsq)
@@ -318,7 +319,8 @@ one standard to another (<em>e.g.</em>
 <a href="http://www.endmemo.com/unicode/unicodeconverter.php">unicodeconverter</a> does the job).</p></li>
 <li><p>You may also want to use emoji to cheer your plot up! See the emojifont
 package available on <a href="https://cran.r-project.org/web/packages/emojifont/">CRAN</a>
-and <a href="https://guangchuangyu.github.io/emojifont/">Github</a>.</p></li>
+and <a href="https://guangchuangyu.github.io/emojifont/">Github</a>. It now support
+fontawsome <a href="https://guangchuangyu.github.io/2016/03/font-awesome-supported-in-emojifont/">as explained here</a>.</p></li>
 <li><p><a href="https://fontstruct.com">fontstruct</a> is a great web application that helps
 you creating your own font (you can save your font as a <code>.tff</code> on your computer
 and now you know how to deal with it!)</p></li>
