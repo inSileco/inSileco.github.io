@@ -13,7 +13,8 @@ output:
     dev: svg
 ---
 
-*Last update*: November 11, 2017 -- Fix paths to icon files.
+<i class="fa fa-edit" aria-hidden="true"></i>November 11, 2017 -- Fix paths to icon files.
+<i class="fa fa-edit" aria-hidden="true"></i>February 14, 2017 -- Make it work with version 5 of Fontawesome
 
 ```{r codeChunkSetUp, echo=FALSE}
 source('../../static/Rscript/codeChunkSetUp.R')
@@ -63,7 +64,7 @@ make a direct **link** with a [previous blog post](/content/post/HylianStyle.htm
 
 ```{r infosession}
 # path <- "../../static/assets/AcademiconsInR"
-sessionInfo()[[1]]$version.string
+sessionInfo()[[1L]]$version.string
 ```
 
 #### List of packages to be used
@@ -93,7 +94,7 @@ are available below and the next code chunk describes how
 use the R to get these fonts.
 
 1. [the *Academicons* font](https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf)   
-2. [the *FontAwesome* font](https://github.com/FortAwesome/Font-Awesome/raw/master/fonts/FontAwesome.otf)   
+2. [the *FontAwesome* font](https://github.com/FortAwesome/Font-Awesome/blob/master/web-fonts-with-css/webfonts/fa-regular-400.ttf)   
 3. [the *Ionicons* font](https://github.com/driftyco/ionicons/raw/master/fonts/ionicons.ttf)
 
 If you have decided to downloaded theses fonts, you can then either install them
@@ -108,7 +109,7 @@ dir.create(dr, showWarnings = FALSE)
 ##-- gather URLs
 urls <- c(
   'https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf',
-  'https://github.com/FortAwesome/Font-Awesome/raw/master/fonts/FontAwesome.otf',
+  'https://github.com/FortAwesome/Font-Awesome/blob/master/web-fonts-with-css/webfonts/fa-regular-400.ttf',
   'https://github.com/driftyco/ionicons/raw/master/fonts/ionicons.ttf'
   )   
 ##-- download the fonts
@@ -170,7 +171,6 @@ Below, we use different way to deal with the unicode characters.
 
 
 
-
 ## Let's add icons our plot
 
 
@@ -205,7 +205,7 @@ points(coord[,1], coord[,2], pch=-as.hexmode(acs), cex=5, col=cols)
 
 The unicode hexadecimal for the FontAwesome's icons range from `f000`
 (<i class="fa fa-glass" aria-hidden="true"></i>) to `f2e0`
-(<i class="fa fa-meetup" aria-hidden="true"></i>) in version 4.7.
+(<i class="fa fa-meetup" aria-hidden="true"></i>) in version 4.7. Version
 
 ```{r figfontawe, fig.width=9.5, fig.height=9, fig.showtext=TRUE}
 nsq <- 12
@@ -274,7 +274,8 @@ one standard to another (*e.g.*
 
 3. You may also want to use emoji to cheer your plot up! See the emojifont
 package available on [CRAN](https://cran.r-project.org/web/packages/emojifont/)
-and [Github](https://guangchuangyu.github.io/emojifont/).
+and [Github](https://guangchuangyu.github.io/emojifont/). It now support
+fontawsome [as explained here](https://guangchuangyu.github.io/2016/03/font-awesome-supported-in-emojifont/).
 
 4. [fontstruct](https://fontstruct.com) is a great web application that helps
 you creating your own font (you can save your font as a `.tff` on your computer
