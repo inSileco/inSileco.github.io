@@ -6,6 +6,11 @@ tags: [R, plot, fonts, icons]
 tweet: "How to add icons on your R plot"
 draft: false
 estime: 10
+edits:
+  - date: 2017-11-11
+    comment: "Fix paths to icon files"
+  - date: 2018-02-04
+    comment: "Work with version 5 of Fontawesome"
 output:
   rmarkdown::html_page:
     toc: true
@@ -13,8 +18,7 @@ output:
     dev: svg
 ---
 
-<i class="fa fa-edit" aria-hidden="true"></i>November 11, 2017 -- Fix paths to icon files.
-<i class="fa fa-edit" aria-hidden="true"></i>February 14, 2017 -- Make it work with version 5 of Fontawesome
+
 
 ```{r codeChunkSetUp, echo=FALSE}
 source('../../static/Rscript/codeChunkSetUp.R')

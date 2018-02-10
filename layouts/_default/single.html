@@ -21,7 +21,6 @@
     {{ end }}
 
 
-
     {{ if .Params.reviewer }}
       <p> <i class="fa fa-check-square" aria-hidden="true"></i>
       {{ range $rev := .Params.reviewer }} {{ $info := index $.Site.Data.authors $rev }}
@@ -36,19 +35,36 @@
       <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     </p>
 
+
+    <div class="text-justify">
+      <p>
+      {{ if .Params.edits }}
+        {{ range .Params.edits }}
+          <i class="fa fa-edit" aria-hidden="true"></i> {{ dateFormat "Jan 2, 2006" .date }} -- {{ .comment }} <br>
+        {{ end }}
+      {{ end }}
+      </p>
+    </div>
+
+
     <br>
+
     <div class="text-justify">{{ .Content }}</div>
+
+
 
     <h4 class="page-header">Comments on this post</h4>
 
     <div id="disqus_thread"></div>
 
     <!-- related posts with the same tags -->
-    {{ $related := first 3 (where (where (where .Site.Pages.ByDate.Reverse ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }} {{ if $related }}
+    {{ $related := first 3 (where (where (where .Site.Pages.ByDate.Reverse ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }}
 
+    {{ if $related }}
+      <h4 class="page-header">Related posts</h4>
+      {{ range $related }} {{ partial "list-item" . }} {{ end }}
+    {{ end }}
 
-
-    <h4 class="page-header">Related</h4> {{ range $related }} {{ partial "list-item" . }} {{ end }} {{ end }}
 
     <script>
       /**
