@@ -1,10 +1,10 @@
 ## Who can write a blogpost?
 
-Members of the `inSileco` team. However there is a extra step: it is quite simple,
-members need to fill in a separate `yaml` file per author in the `data/authors/`
-of this repository. The easiest way to proceed is to copy/paste one existing
-file of this kind and to replace the information. For the sake of clarity, below
-is what the `data/authors/kevin.yaml` looks like:
+All members of the `inSileco` team. However an extra step is required: a member
+must first fill out a separate `yaml` file in the `data/authors/` folder
+to provide some details about his-self. The easiest way to proceed is to
+copy/paste one existing file of this kind and to replace the information.
+For the sake of clarity, below is what the `data/authors/kevin.yaml` looks like:
 
 ```yaml
 given_name: Kevin
@@ -27,15 +27,15 @@ can be used as a shortcut to add author's info on posts.
 
 ## How to use Github to publish a post?
 
-All the changes must be added in the `dev` branch which is the default one.
-The master branch is where the public version of the website is stored. The
-deployment of the website from the `dev` branch to the `master` branch
-is handled by Travis, see `.travis.yml` and the travis settings for more information.
+The defaul branch is the `dev` branch, the master branch is where the public
+version of the website is stored. The deployment of the website from the `dev`
+branch to the `master` branch is handled by Travis, see `.travis.yml` and the
+travis settings for more information.
 
 For substantial changes in the features of the website we strongly encourage to
-create a new branch and create a pull request to add feature. Depending on your
-skills you may benefit from a review. Creating a new branch is also encouraged
-for new upcoming posts
+create a new branch and create a pull request to add the desired feature.
+Depending on your skills you may benefit from a review. Creating a new branch
+is also encouraged for new posts.
 
 
 ## Writing a new post
@@ -45,35 +45,36 @@ There are no limitation in terms of number of character per post, we should
 however be aware that readers rarely (if ever) spend hours reading the same post.
 Regarding the topic of the post, it should deal with computational ecology at large.
 Meaning that it may deal with ecology, your experience as an ecologist, computational
-tools and in the best case scenario computational ecology.
+tools and in the best case scenario, computational ecology.
 
-The author of the must take advantage of the `yaml` front matter to edit the
+The author of the post, must take advantage of the `yaml` front matter to edit the
 meta-data associated with his post. Below, is a description of the different
 fields to be used.
 
-- **title**: title of the blog post;
 - **author**: who wrote the post (may be a list of co-authors);
-- **reviewer**: reviewer(s) of the post;
-- **date**: when the post was written (YYYY-MM-DD fornat);
-- **tags**: keywords used to index posts;
-- **estime**: estimated time to read the post;
-- **tweet**: text associated with the tweet button;
+- **date**: when the post was written (YYYY-MM-DD format);
 - **draft**: if `true` the post will not be made `public`, *i.e.* not available on the online version of the website; the post will however be rendered locally;
-- **output**: rmarkdown options;
+- **edits**: a list of maps of two elements: *date* and *comment* that are used to describe edits on the post; 
+- **estime**: estimated time to read the post;
 - **layout**: which layout must be used; note the default layout is the one required for
-posts. 
+posts;
+- **output**: rmarkdown options;
+- **reviewer**: reviewer(s) of the post;
+- **tags**: keywords used to index posts;
+- **title**: title of the blog post;
+- **tweet**: text associated with the tweet button.
 
 Given the kind of posts found of the blog (that could be tricky), the estimated
 time to read the post (`estime`) should better be estimated roughly by ourselves.
-300 words read per minute for a post not too trick and less for other. Also the
-author(s) of the post should take the time to read the code, figures, etc. Finally
-the authors should do his best ti select the `tags` so the reader easily access
-posts with similar content.
+300 words read per minute for a post that is reasonably tricky and less for
+other. Also, the author(s) of the post should take the time to read the code,
+figures, etc. Finally, the author should do his best to select the `tags` so the
+reader easily access posts with similar content.
 
 
 ## Naming files
 
-to be added
+So far, it should reflect the content of the post and its length should be less than 255 characters.  
 
 ## Media files format
 
