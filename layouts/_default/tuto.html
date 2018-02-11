@@ -1,0 +1,60 @@
+{{ partial "header" . }}
+
+<img class="full-width" width="100%" src="/img/banner2.png"></img>
+
+<div class="container">
+
+  <div class="col-sm-12">
+    <h1 style="margin-top:50px;margin-bottom:20px;">{{ .Title }}</h1>
+
+    <div class="text-justify">{{ .Content }}</div>
+
+  {{ range $.Site.Data.tutorials }}
+    <div class="col-sm-6 text-left">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="col-sm-12">
+            <h3 style="font-weight:bold;display:inline;"> {{ .name }} </h3>
+            <h4 style="font-weight:bold;display:inline;"> &nbsp;-&nbsp; {{ .category }} </h4>
+            <hr>
+            <p> {{ .description }} </p>
+            {{ if .github }}
+              <a href="https://github.com/{{.}}" style="display:inline;"><i class="fa fa-2x fa-github" aria-hidden="true"></i>&nbsp;&nbsp;</a>
+            {{ end }}
+            {{ if .pres_html }}
+              <a href="{{ .pres_html }}" style="display:inline;"><i class="fa fa-2x fa-globe" aria-hidden="true"></i>&nbsp;&nbsp;</a>
+            {{ end }}
+            <p style="margin-top:10px;">
+               {{ with .travis }} <a href="https://travis-ci.org/{{ .repo }}">
+               <img alt = "Build Status"  src="https://travis-ci.org/{{ .repo }}.svg?branch={{ .branch }}"></img></a> {{ end }}
+               {{ with .appveyor }} {{ . | markdownify }} {{ end }}
+               {{ with .codecov }} {{ . | markdownify }} {{ end }}
+               {{ with .zenodo }} {{ . | markdownify }} {{ end }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    {{ end }}
+
+
+  </div>
+
+  <br>
+
+  {{ if .Params.updates }}
+  <div class="text-justify">
+    <h4> Updates: </h4>
+    <p>
+      {{ range .Params.updates }}
+        <i class="fa fa-edit" aria-hidden="true"></i> {{ dateFormat "Jan 2, 2006" .date }} -- {{ .comment }} <br>
+      {{ end }}
+    </p>
+  </div>
+  {{ end }}
+
+</div>
+
+
+
+{{ partial "footer.html" . }}
