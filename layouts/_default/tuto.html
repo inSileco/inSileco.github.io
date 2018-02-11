@@ -15,7 +15,7 @@
         <div class="panel-body">
           <div class="col-sm-12">
             <h3 style="font-weight:bold;display:inline;"> {{ .name }} </h3>
-            <h4 style="font-weight:bold;display:inline;"> &nbsp;-&nbsp; {{ .category }} </h4>
+            <h4 style="font-weight:bold;display:inline;"> &nbsp;-&nbsp; {{ .category }}</h4>
             <hr>
             <p> {{ .description }} </p>
             {{ if .github }}
@@ -24,6 +24,7 @@
             {{ if .pres_html }}
               <a href="{{ .pres_html }}" style="display:inline;"><i class="fa fa-2x fa-globe" aria-hidden="true"></i>&nbsp;&nbsp;</a>
             {{ end }}
+            <h4 style="font-weight:bold;display:inline;"> &nbsp;-&nbsp; {{ .lang }}</h4>
             <p style="margin-top:10px;">
                {{ with .travis }} <a href="https://travis-ci.org/{{ .repo }}">
                <img alt = "Build Status"  src="https://travis-ci.org/{{ .repo }}.svg?branch={{ .branch }}"></img></a> {{ end }}
