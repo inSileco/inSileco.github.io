@@ -25,20 +25,20 @@ source('../../static/Rscript/codeChunkSetUp.R')
 
 ## The `apropos()` function
 
-A very useful way to look for a function you barely remember the names without
+A very useful way to look for a function you can barely remember the names of without
 googling it.
 
 ```{r apropos1}
 apropos('Sys')
 ```
 
-You can also take advantage from the regular expression to narrow down you research:
+You can also take advantage of regular expressions to narrow down you research:
 
 ```{r apropos2}
 apropos('^Sys')
 ```
 
-even better:
+Or even better:
 
 ```{r apropos3}
 apropos('^Sys.*time$', ignore.case = FALSE)
@@ -107,7 +107,7 @@ In R when performing a logical test, every numeric is considered as `TRUE` but
 !7.45
 ```
 
-This could actually be very helpful. For instance when we are tested whether
+This can actually be very helpful, for instance when we are testing whether
 or not a vector is empty!
 
 ```{r test2, results = "hold"}
@@ -125,23 +125,23 @@ vec2 <- vec0[vec0>7]
 
 ## `expand.grid()` vs.`combn()`
 
-If you often create empty data.frame, you very likely about the about the
-`expand.grid()` function:
+If you often create empty data.frame, you are very likely already familiar
+with the `expand.grid()` function:
 
 
 ```{r expand1}
 expand.grid(LETTERS[1:4], LETTERS[5:6])
 ```
 
-But if you are looking for unique combinations (think about all combination of
+But if you are looking for unique combinations (think about all combinations of
 games in a tournament of four team), you may feel that `expand.grid()` is not
-what you want:
+what you need:
 
 ```{r expand2}
 expand.grid(LETTERS[1:4], LETTERS[1:4])
 ```
 
-Here comes `combn`:
+In comes `combn`:
 
 ```{r expand3}
 combn(LETTERS[1:5], 2)
@@ -159,13 +159,6 @@ Also if you want a dataframe, a small extra step is required:
 ```{r expand5}
 as.data.frame(t(combn(LETTERS[1:5], 2)))
 ```
-
-
-
-
-do.call(rbind, combn(LETTERS[1:5], 2, simplify=F))
-
-
 
 
 <br>
