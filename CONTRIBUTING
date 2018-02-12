@@ -45,7 +45,9 @@ There are no limitation in terms of number of character per post, we should
 however be aware that readers rarely (if ever) spend hours reading the same post.
 Regarding the topic of the post, it should deal with computational ecology at large.
 Meaning that it may deal with ecology, your experience as an ecologist, computational
-tools and in the best case scenario, computational ecology.
+tools and in the best case scenario, computational ecology. The table of
+content is generated using `tocify` and only records title of level 2 and 3.
+Level 1 should be used **only** for the title of the posts.
 
 The author of the post, must take advantage of the `yaml` front matter to edit the
 meta-data associated with his post. Below, is a description of the different
@@ -54,7 +56,7 @@ fields to be used.
 - **author**: who wrote the post (may be a list of co-authors);
 - **date**: when the post was written (YYYY-MM-DD format);
 - **draft**: if `true` the post will not be made `public`, *i.e.* not available on the online version of the website; the post will however be rendered locally;
-- **edits**: a list of maps of two elements: *date* and *comment* that are used to describe edits on the post; 
+- **edits**: a list of maps of two elements: *date* and *comment* that are used to describe edits on the post;
 - **estime**: estimated time to read the post;
 - **layout**: which layout must be used; note the default layout is the one required for
 posts;
@@ -72,9 +74,11 @@ figures, etc. Finally, the author should do his best to select the `tags` so the
 reader easily access posts with similar content.
 
 
+
+
 ## Naming files
 
-So far, it should reflect the content of the post and its length should be less than 255 characters.  
+So far, it should reflect the content of the post and its length should be less than 255 characters.
 
 ## Media files format
 
