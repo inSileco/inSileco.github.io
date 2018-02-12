@@ -1,0 +1,194 @@
+---
+title: Trick or Tips 003 {R}
+author: [kevin, david]
+date: 2018-02-11
+tags: [R, tips, trickortips]
+tweet: Third post of the 'Trick or Tips' series
+draft: true
+output:
+  blogdown::html_page:
+    dev: svg
+---
+
+![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+
+
+`r htmltools::HTML("{{< trickortips >}}")`
+
+
+```{r codeChunkSetUp, echo=FALSE}
+source('../../static/Rscript/codeChunkSetUp.R')
+```
+
+
+<br>
+
+## The `apropos()` function
+
+A very useful way to look for a function you barely remember the names without
+googling it.
+
+```{r apropos1}
+apropos('Sys')
+```
+
+You can also take advantage from the regular expression to narrow down you research:
+
+```{r apropos2}
+apropos('^Sys')
+```
+
+even better:
+
+```{r apropos3}
+apropos('^Sys.*time$', ignore.case = FALSE)
+```
+
+
+<br>
+
+## The `table()` function
+
+Oftentimes we wish to extract the frequency of certain elements in a dataset.
+There is a very useful function that allows us to achieve this quite efficiently:
+`table()`. Let's see how this works:
+
+```{r table1}
+df <- data.frame(data = sample(1:5, 20, replace = T))
+table(df$data)
+```
+
+You can also get the frequency for a data.frame with multiple columns. For example,
+if you observed species at a site throughout multiple years and wanted to know
+the frequency of observations per species per year:
+
+
+```{r table2}
+df <- data.frame(observations = paste0('species', sample(1:5, 50, replace = T)),
+                 year = sort(sample(2015:2018, 50, replace = T)))
+table(df)
+```
+
+You can actually do so for more than two columns.
+
+```{r table3}
+df$atr1 <- rep(c("val1", "val2"), each = 25)
+tb <- table(df)
+tb
+```
+
+As you can see, in such case, you will have to deal with arrays:
+
+```{r table4}
+tb[, , 1]
+```
+
+With further development and by combining `table()` with `paste0()` (see
+[fish and tips 001](https://insileco.github.io/2017/06/30/trick-or-tips-001-r/)
+for an explanation of this useful function!), you can create your desired data.frame:
+
+```{r table5}
+as.data.frame(table(paste0(df$year,'_',df$observations)))
+```
+
+
+<br>
+
+## Everything but 0
+
+This is a well-known trick for developers that may be useful for many beginners.
+In R when performing a logical test, every numeric is considered as `TRUE` but
+`0` (which is `FALSE`):
+
+```{r test1, results = "hold"}
+0 == FALSE
+!0
+!1
+!7.45
+```
+
+This could actually be very helpful. For instance when we are tested whether
+or not a vector is empty!
+
+```{r test2, results = "hold"}
+vec0 <- 1:7
+vec1 <- vec0[vec0>5]
+vec2 <- vec0[vec0>7]
+!(length(vec1))
+!(length(vec2))
+```
+
+
+
+
+<br>
+
+## `expand.grid()` vs.`combn()`
+
+If you often create empty data.frame, you very likely about the about the
+`expand.grid()` function:
+
+
+```{r expand1}
+expand.grid(LETTERS[1:4], LETTERS[5:6])
+```
+
+But if you are looking for unique combinations (think about all combination of
+games in a tournament of four team), you may feel that `expand.grid()` is not
+what you want:
+
+```{r expand2}
+expand.grid(LETTERS[1:4], LETTERS[1:4])
+```
+
+Here comes `combn`:
+
+```{r expand3}
+combn(LETTERS[1:5], 2)
+```
+
+As you can see you need to specify the number of elements in the combination as
+`combn` can compute all combination
+
+```{r expand4}
+combn(LETTERS[1:5], 4)
+```
+
+Also if you want a dataframe, a small extra step is required:
+
+```{r expand5}
+as.data.frame(t(combn(LETTERS[1:5], 2)))
+```
+
+
+
+
+do.call(rbind, combn(LETTERS[1:5], 2, simplify=F))
+
+
+
+
+<br>
+
+## Writing outside the margins
+
+If you are always thinking outside the box you may want to learn how to plot
+something outside the margins! This is possible using the `xpd` parameter of
+the `par()` function.
+
+
+```{r xpd2}
+par(mfrow = c(1, 2))
+plot(c(0, 2), c(0, 2))
+lines(c(-1,3), c(1,1), lwd = 4)
+##
+par(xpd = TRUE)
+plot(c(0, 2), c(0, 2))
+lines(c(-1,3), c(1,1), lwd = 4)
+```
+
+<br>
+
+### See you next post post!
+
+<br>

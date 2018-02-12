@@ -64,7 +64,7 @@ which will use the archetype `post.Rmd`.
 ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
 
-#### JS/CSS library added
+#### JS/CSS libraries added
 
 - [jQuerryUI](https://jqueryui.com/)
 - [Disqus](https://disqus.com/)

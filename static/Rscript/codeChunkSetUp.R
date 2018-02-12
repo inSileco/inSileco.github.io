@@ -5,5 +5,6 @@ knitr::opts_chunk$set(
   message = FALSE,
   #fig.width = 7.5,
   #fig.height = 6,
-  fig.align = 'center'
+  fig.align = 'center',
+  width = 120
 )
