@@ -1,13 +1,13 @@
 ---
 title: Gantt charts in R
 author: [david]
+reviewer: [kevin]
 date: 2017-09-20
 tags: [R, time management, gantt]
 draft: false
 tweet: Gantt charts in R
 output:
   blogdown::html_page:
-    toc: true
     fig_width: 3
     dev: svg
 ---
@@ -18,7 +18,6 @@ output:
 source('../../static/Rscript/codeChunkSetUp.R')
 ```
 
-![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
 <!--
 setwd('/users/davidbeauchesne/dropbox/phd/insileco.github.io/content/post/')
@@ -27,7 +26,7 @@ rmarkdown::render('./ganttR.rmd', 'html_document')
 
 <br/>
 
-# Gantt charts
+## Gantt charts
 
 [Gantt charts](https://en.wikipedia.org/wiki/Gantt_chart) are a very useful way
 to organize projects into milestones and tasks visually. They are also dead
@@ -43,7 +42,7 @@ jump to the end, copy the `ganttR` function I created and Gantt away!
 
 <br/>
 
-# Initiate R
+## Initiate R
 
 ```{r init, message = F, warnings = F}
 rm(list=ls())
@@ -59,13 +58,13 @@ library(kableExtra)
 
 <br/>
 
-# The code!
+## The code!
 
 I wanted to come up with something simple and visually appealing, so I created
 a figure that simply required the following elements: milestone, tasks, start
 date, due data and status.
 
-## Data
+### Data
 
 <br/>
 
@@ -96,7 +95,7 @@ We can now create our Gantt chart!
 
 <br/>
 
-## The chart
+### The chart
 
 <br/>
 
@@ -148,7 +147,7 @@ abline(v = as.Date(format(Sys.time(), format = "%Y-%m-%d")), lwd = 2, lty = 2)
 
 <br/>
 
-## Multiple milestones
+### Multiple milestones
 
 Now Gantt charts are also useful to visualize and organize multiple projects
 together, so let's make this chart multi-milestony.
@@ -229,7 +228,7 @@ abline(v = as.Date(format(Sys.time(), format = "%Y-%m-%d")), lwd = 2, lty = 2)
 
 <br/>
 
-# ganttR()
+## ganttR()
 
 Now that we have all the code, let's simply transform it into a reusable function. Let's also give it the choice to generate two types of graph: 1) all milestones and tasks or 2) only milestones.
 

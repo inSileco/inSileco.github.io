@@ -7,21 +7,16 @@ tweet: Second post o the 'Trick or Tips' series
 draft: false
 output:
   blogdown::html_page:
-    toc: true
     dev: svg
 ---
 
-<br>
 
 `r htmltools::HTML("{{< trickortips >}}")`
+
 
 ```{r codeChunkSetUp, echo=FALSE}
 source('../../static/Rscript/codeChunkSetUp.R')
 ```
-
-
-
----
 
 
 <br>

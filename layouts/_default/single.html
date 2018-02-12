@@ -2,10 +2,19 @@
 
 <img class="full-width" width="100%" src="/img/banner2.png"></img>
 
-<div class="container">
-  <div class="col-sm-12">
 
-    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+
+
+<div>
+
+
+  <div class="col-sm-3">
+    <div id="toc"></div>
+  </div>
+
+  <div class="col-sm-8">
+
+    <h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
 
     <h5>{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</h5>
 
@@ -49,22 +58,42 @@
 
     <br>
 
-    <div class="text-justify">{{ .Content }}</div>
+    <div class="text-justify">
+
+      {{ .Content }}
+
+    </div>
 
 
 
-    <h4 class="page-header">Comments on this post</h4>
+    <h3 class="page-header">Comments on this post</h3>
 
     <div id="disqus_thread"></div>
+
 
     <!-- related posts with the same tags -->
     {{ $related := first 3 (where (where (where .Site.Pages.ByDate.Reverse ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }}
 
+
     {{ if $related }}
-      <h4 class="page-header">Related posts</h4>
+      <h3 class="page-header">Related posts</h3>
       {{ range $related }} {{ partial "list-item" . }} {{ end }}
     {{ end }}
 
+
+    <script>
+        $(function() {
+
+            var toc = $("#toc").tocify({
+              selectors: "h2,h3",
+              scrollTo: 50
+            }).data("toc-tocify");
+
+            prettyPrint();
+            $(".optionName").popover({ trigger: "hover" });
+
+        });
+    </script>
 
     <script>
       /**
