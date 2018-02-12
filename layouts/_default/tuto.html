@@ -19,7 +19,7 @@
             <hr>
             <p> {{ .description }} </p>
             {{ if .github }}
-              <a href="https://github.com/{{.}}" style="display:inline;"><i class="fa fa-2x fa-github" aria-hidden="true"></i>&nbsp;&nbsp;</a>
+              <a href="https://github.com/{{ .github }}" style="display:inline;"><i class="fa fa-2x fa-github" aria-hidden="true"></i>&nbsp;&nbsp;</a>
             {{ end }}
             {{ if .pres_html }}
               <a href="{{ .pres_html }}" style="display:inline;"><i class="fa fa-2x fa-globe" aria-hidden="true"></i>&nbsp;&nbsp;</a>

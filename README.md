@@ -62,3 +62,12 @@ which will use the archetype `post.Rmd`.
 
 ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
+
+
+#### JS/CSS library added
+
+- [jQuerryUI](https://jqueryui.com/)
+- [Disqus](https://disqus.com/)
+- [Tocify](http://gregfranko.com/jquery.tocify.js/)
+- [Academicons](https://jpswalsh.github.io/academicons/)
+- [Font Awesome 4.7](https://fontawesome.com/v4.7.0/)
