@@ -12,13 +12,12 @@ output:
 
 
 
-<p><img src="https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg" /></p>
 {{< trickortips >}}
 <p><br></p>
 <div id="the-apropos-function" class="section level2">
 <h2>The <code>apropos()</code> function</h2>
-<p>A very useful way to look for a function you barely remember the names without
-googling it.</p>
+<p>A powerful way to look for a function you can barely remember the name of
+directly in R, <em>i.e</em> without googling!</p>
 <pre class="r"><code>apropos(&#39;Sys&#39;)
 #R&gt;  [1] &quot;.First.sys&quot;       &quot;R_system_version&quot; &quot;sys.call&quot;        
 #R&gt;  [4] &quot;sys.calls&quot;        &quot;Sys.chmod&quot;        &quot;Sys.Date&quot;        
@@ -33,7 +32,7 @@ googling it.</p>
 #R&gt; [31] &quot;Sys.umask&quot;        &quot;Sys.unsetenv&quot;     &quot;Sys.which&quot;       
 #R&gt; [34] &quot;system&quot;           &quot;system_check&quot;     &quot;system_output&quot;   
 #R&gt; [37] &quot;system.file&quot;      &quot;system.time&quot;      &quot;system2&quot;</code></pre>
-<p>You can also take advantage from the regular expression to narrow down you research:</p>
+<p>You can also take advantage of regular expressions to narrow down you research:</p>
 <pre class="r"><code>apropos(&#39;^Sys&#39;)
 #R&gt;  [1] &quot;sys.call&quot;        &quot;sys.calls&quot;       &quot;Sys.chmod&quot;      
 #R&gt;  [4] &quot;Sys.Date&quot;        &quot;sys.frame&quot;       &quot;sys.frames&quot;     
@@ -48,7 +47,7 @@ googling it.</p>
 #R&gt; [31] &quot;Sys.which&quot;       &quot;system&quot;          &quot;system_check&quot;   
 #R&gt; [34] &quot;system_output&quot;   &quot;system.file&quot;     &quot;system.time&quot;    
 #R&gt; [37] &quot;system2&quot;</code></pre>
-<p>even better:</p>
+<p>Or even better:</p>
 <pre class="r"><code>apropos(&#39;^Sys.*time$&#39;, ignore.case = FALSE)
 #R&gt; [1] &quot;Sys.time&quot;</code></pre>
 <p><br></p>
@@ -147,7 +146,7 @@ In R when performing a logical test, every numeric is considered as <code>TRUE</
 #R&gt; [1] TRUE
 #R&gt; [1] FALSE
 #R&gt; [1] FALSE</code></pre>
-<p>This could actually be very helpful. For instance when we are tested whether
+<p>This can actually be very helpful, for instance when we are testing whether
 or not a vector is empty!</p>
 <pre class="r"><code>vec0 &lt;- 1:7
 vec1 &lt;- vec0[vec0&gt;5]
@@ -160,8 +159,8 @@ vec2 &lt;- vec0[vec0&gt;7]
 </div>
 <div id="expand.grid-vs.combn" class="section level2">
 <h2><code>expand.grid()</code> vs.<code>combn()</code></h2>
-<p>If you often create empty data.frame, you very likely about the about the
-<code>expand.grid()</code> function:</p>
+<p>If you often create empty data.frame, you are very likely already familiar
+with the <code>expand.grid()</code> function:</p>
 <pre class="r"><code>expand.grid(LETTERS[1:4], LETTERS[5:6])
 #R&gt;   Var1 Var2
 #R&gt; 1    A    E
@@ -172,9 +171,9 @@ vec2 &lt;- vec0[vec0&gt;7]
 #R&gt; 6    B    F
 #R&gt; 7    C    F
 #R&gt; 8    D    F</code></pre>
-<p>But if you are looking for unique combinations (think about all combination of
+<p>But if you are looking for unique combinations (think about all combinations of
 games in a tournament of four team), you may feel that <code>expand.grid()</code> is not
-what you want:</p>
+what you need:</p>
 <pre class="r"><code>expand.grid(LETTERS[1:4], LETTERS[1:4])
 #R&gt;    Var1 Var2
 #R&gt; 1     A    A
@@ -193,7 +192,7 @@ what you want:</p>
 #R&gt; 14    B    D
 #R&gt; 15    C    D
 #R&gt; 16    D    D</code></pre>
-<p>Here comes <code>combn</code>:</p>
+<p>In comes <code>combn</code>:</p>
 <pre class="r"><code>combn(LETTERS[1:5], 2)
 #R&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
 #R&gt; [1,] &quot;A&quot;  &quot;A&quot;  &quot;A&quot;  &quot;A&quot;  &quot;B&quot;  &quot;B&quot;  &quot;B&quot;  &quot;C&quot;  &quot;C&quot;  &quot;D&quot;  
@@ -219,7 +218,6 @@ what you want:</p>
 #R&gt; 8   C  D
 #R&gt; 9   C  E
 #R&gt; 10  D  E</code></pre>
-<p>do.call(rbind, combn(LETTERS[1:5], 2, simplify=F))</p>
 <p><br></p>
 </div>
 <div id="writing-outside-the-margins" class="section level2">
