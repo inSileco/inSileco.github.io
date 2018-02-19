@@ -10,7 +10,6 @@ output:
     dev: svg
 ---
 
-![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
 
 `r htmltools::HTML("{{< trickortips >}}")`
@@ -25,8 +24,8 @@ source('../../static/Rscript/codeChunkSetUp.R')
 
 ## The `apropos()` function
 
-A very useful way to look for a function you can barely remember the names of without
-googling it.
+A powerful way to look for a function you can barely remember the name of
+directly in R, *i.e* without googling!
 
 ```{r apropos1}
 apropos('Sys')
