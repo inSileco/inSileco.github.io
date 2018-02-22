@@ -18,8 +18,8 @@ output:
 
 
 <p><br/></p>
-<div id="intersects-r" class="section level1">
-<h1>Intersects &amp; R</h1>
+<div id="intersects-r" class="section level2">
+<h2>Intersects &amp; R</h2>
 <p>We are increasingly performing spatial analyses in R. The replicability and the
 efficiency of programming languages is much more appealing than using user
 friendly softwares like <a href="https://www.arcgis.com/features/index.html">ArcGIS</a>,
@@ -116,8 +116,8 @@ make more sense as they are built to include less calculations. We nonetheless
 compare all the functions together for the sake of comparison in this post.</p>
 <p><br/></p>
 </div>
-<div id="initiate-r" class="section level1">
-<h1>Initiate R</h1>
+<div id="initiate-r" class="section level2">
+<h2>Initiate R</h2>
 <pre class="r"><code># R version
 sessionInfo()[[1]]$version.string
 #R&gt; [1] &quot;R version 3.4.3 (2017-11-30)&quot;
@@ -147,13 +147,14 @@ packageVersion(&quot;sf&quot;)
 #R&gt; [1] &#39;0.6.0&#39;</code></pre>
 <p><br/></p>
 </div>
-<div id="generate-spatial-objects-for-testing" class="section level1">
-<h1>Generate spatial objects for testing</h1>
+<div id="generate-spatial-objects-for-testing" class="section level2">
+<h2>Generate spatial objects for testing</h2>
 <p>We start be generating random spatial object in space. For the record,
 the area selected is within the St. Lawrence estuary in eastern Canada
 (see <a href="https://insileco.github.io/2017/06/19/online-ecology---individual-species-description/">online ecology series</a>),
 although the actual location really does not matter for this post!</p>
 <p><br/></p>
+</div>
 <div id="grid" class="section level2">
 <h2>Grid</h2>
 <p>We use a regular grid to intersect vectorized data, <em>i.e.</em> points and polygons
@@ -278,14 +279,13 @@ for(i in 1:nSamp) {
 }</code></pre>
 <p><br/></p>
 </div>
-</div>
-<div id="benchmarking" class="section level1">
-<h1>Benchmarking</h1>
+<div id="benchmarking" class="section level2">
+<h2>Benchmarking</h2>
 <p>Now that the data is ready for use, we can perform the tests! But first, let’s
 take a quick look at the type of results that are returned by each function.</p>
 <p><br/></p>
-<div id="points-intersections" class="section level2">
-<h2>Points intersections</h2>
+<div id="points-intersections" class="section level3">
+<h3>Points intersections</h3>
 <p>First, we will test the intersects only with the points.</p>
 <p><br/></p>
 <pre class="r"><code>res1 &lt;- data.frame(n = samp,
@@ -527,8 +527,8 @@ alternative options. Using <code>raster::intersect</code>, <code>rgeos::gInterse
 time, with <code>sf::st_intersects</code> proving to be the most efficient option.</p>
 <p><br/></p>
 </div>
-<div id="polygons-intersections" class="section level2">
-<h2>Polygons intersections</h2>
+<div id="polygons-intersections" class="section level3">
+<h3>Polygons intersections</h3>
 <p>Now let’s take a look at intersects using polygons only.</p>
 <p><br/></p>
 <pre class="r"><code>res2 &lt;- data.frame(n = samp,
@@ -770,8 +770,8 @@ even further.</p>
 <p><br/></p>
 </div>
 </div>
-<div id="concluding-remarks" class="section level1">
-<h1>Concluding remarks</h1>
+<div id="concluding-remarks" class="section level2">
+<h2>Concluding remarks</h2>
 <p>Et voilà! It is obvious from these simulations that the <code>sf</code> package overall
 provides the most efficient options to perform spatial intersects in R.
 <code>rgeos</code> is also very efficient when it comes to binary intersects, especially
