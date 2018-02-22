@@ -292,12 +292,25 @@ We can do this using the `xspline` function.
 
   par(mar = c(0,0,0,0))
   plot0()
-  boxGroup(metanetwork)
-  points(metanetwork$nodes$x, metanetwork$nodes$y, pch = 20, cex = 2)
-  plotLinks(metanetwork, cols = '#000000')
+  plotLinks(metanetwork, col = 'black')
+  points(metanetwork$nodes$x, metanetwork$nodes$y)
 ```
 
 </br>
+
+# Plot metanetwork
+
+```{r metanetwork, fig.width = 6, fig.height = 6, fig.align = 'center'}
+# The plot
+  par(mar = c(0,0,0,0))
+  plot0()
+  boxGroup(metanetwork)
+  plotLinks(metanetwork, col = 'black')
+  points(metanetwork$nodes$x, metanetwork$nodes$y, pch = 20, cex = 2)
+```
+
+<br/>
+
 
 ## Customize graph functions
 
@@ -436,41 +449,11 @@ head(metanetwork$networkGroup)
 
 <br/>
 
-# Plot metanetwork
-
-```{r metanetwork, fig.width = 6, fig.height = 6, fig.align = 'center'}
-# plot
-  par(mar = c(0,0,0,0))
-  plot0()
-  boxGroup(metanetwork,
-           rad1 = .925,
-           colBox = metanetwork$networkGroup$cols,
-           border = 'transparent')
-  plotLinks(metanetwork,
-            col = '#e4c39155')
-  points(metanetwork$nodes$x,
-         metanetwork$nodes$y,
-         pch = 20,
-         cex = metanetwork$nodes$cex * 5,
-         col = '#d7d7d7')
-  points(metanetwork$nodes$x,
-         metanetwork$nodes$y,
-         pch = 20,
-         cex = metanetwork$nodes$cex * 3,
-         col = metanetwork$nodes$cols)
-```
-
-<br/>
-
 # Metanetwork function
 
 Now we could wrap all of this in a single function.
 
 ```{r function, fig.width = 10, fig.height = 10, fig.align = 'center'}
-metanetwork <- vector('list', 0)
-metanetwork$nodes <- nodes
-metanetwork$links <- links
-
 plotMetanetwork <- function(metanetwork,
                             rad1 = .925,
                             rad2 = 1,
@@ -530,6 +513,12 @@ plotMetanetwork <- function(metanetwork,
            col = metanetwork$nodes$cols)
 }
 
+# The data
+metanetwork <- vector('list', 0)
+metanetwork$nodes <- nodes
+metanetwork$links <- links
+
+# The plot
 par(mfrow = c(2,2))
 plotMetanetwork(metanetwork)
 plotMetanetwork(metanetwork, type = 'focus', focus = 'Species')
