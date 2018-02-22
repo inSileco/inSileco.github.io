@@ -1,22 +1,18 @@
 ---
 title: Hierarchical edge bundling using base plot
 author: [david]
-reviewer: []
-date: 2018-01-21
-tags: [R, Viz]
-draft: true
+reviewer: [kevin]
+date: 2018-02-21
+tags: [R, Viz, network]
+package: [graphicsutils, dplyr, plotrix]
+draft: false
 tweet: "Hierarchical edge bundling using base plot"
-estime: 14
+estime: 10
 ---
 
-<!--
 
-setwd("/users/davidbeauchesne/dropbox/phd/inSileco.github.io/content/post")
-rmarkdown::render('./metanetwork.rmd', 'html_document')
 
--->
-
-So In my thesis I work extensively with networks and coming up with meaningful and
+So, in my thesis I work extensively with networks and coming up with meaningful and
 useful visualization can be a bit of a challenge. I've recently begun toying with
 the notion of using hierarchical edge bundling to represent the complexity of the
 networks I work with and the different types of networks I am attempting to link
@@ -27,9 +23,10 @@ the overall arrangements of links within networks.
 With that in mind, I began going through the material available to make hierarchical
 edge bundling in R. There is quite a bit of material already available on R, but
 what I found was always through `ggraph` and `ggplot`, which I personally don't
-enjoy using all that much (*e.g.* [this](https://www.r-graph-gallery.com/hierarchical-edge-bundling/)).
+enjoy using all that much (*e.g.*
+[this](https://www.r-graph-gallery.com/hierarchical-edge-bundling/)).
 I rather prefer having full control and understanding of what I am doing with my
-visualizations. So is here the product of this work to generate the figure I wished to
+visualizations. So, is here the product of this work to generate the figure I wished to
 create for my thesis!
 
 # Libraries
@@ -48,19 +45,20 @@ between those nodes.
 
 ```{r data}
 # Individual network nodes
-  drivers <- data.frame(network = 'Drivers', name = paste0('driver_',1:15), stringsAsFactors = F)
-  species <- data.frame(network = 'Species', name = paste0('species_',1:30), stringsAsFactors = F)
-  actions <- data.frame(network = 'Actions', name = paste0('action_',1:9), stringsAsFactors = F)
-  managers <- data.frame(network = 'Managers', name = paste0('manager_',1:9), stringsAsFactors = F)
-  beneficiaries <- data.frame(network = 'Beneficiaries', name = paste0('beneficiary_',1:9), stringsAsFactors = F)
+  opt <- options()
+  options(stringsAsFactors = FALSE)
+  drivers <- data.frame(network = 'Drivers', name = paste0('driver_',1:15))
+  species <- data.frame(network = 'Species', name = paste0('species_',1:30))
+  actions <- data.frame(network = 'Actions', name = paste0('action_',1:9))
+  managers <- data.frame(network = 'Managers', name = paste0('manager_',1:9))
+  beneficiaries <- data.frame(network = 'Beneficiaries', name = paste0('beneficiary_',1:9))
 
 # Nodes dataframe
   nodes <- rbind(drivers, species, actions, managers, beneficiaries)
 
 # Simulate links
   links <- data.frame(from = sample(nodes$name, 300, replace = T),
-                      to = sample(nodes$name, 300, replace = T),
-                      stringsAsFactors = F)
+                      to = sample(nodes$name, 300, replace = T))
   links <- links[!duplicated(links), ]   # Remove duplicates
   links <- links[!links$from == links$to, ] # Remove "cannibalism"
 
@@ -82,8 +80,8 @@ that will allow us to position our data on a circular graph.
 
 ## Circle coordinates
 
-The first function we need will be used to generate the x and y coordinates of a circle for a given angle and
-circle radius, which we can obtain with some circle trigonometry.
+The first function we need will be used to generate the x and y coordinates of a
+circle for a given angle and circle radius, which we can obtain with some circle trigonometry.
 
 ```{r coordCircle}
 # Let's begin by creating a function that will give us the x and y coordinates
@@ -95,6 +93,7 @@ coordCircle <- function(theta = NULL, radius = 1) {
 
 coordCircle(theta = pi, radius = 1)
 ```
+
 
 <br/>
 
@@ -119,12 +118,12 @@ bound <- function(metanetwork, gap = .025, addGap = T) {
   for(i in 2:nrow(nGroup)) nGroup$lower[i] <- nGroup$lower[i-1] + nGroup$spanDeg[i-1]
   nGroup$upper <- nGroup$lower + nGroup$spanDeg
 
-  if (isTRUE(addGap)) {
+  if (addGap) {
     nGroup$lower <- nGroup$lower + gap/2
     nGroup$upper <- nGroup$upper - gap/2
   }
 
-  return(nGroup)
+  nGroup
 }
 
 # Add to metanetworks list
@@ -176,7 +175,7 @@ for visual differentiation between the group.
           metanetwork$networkGroup$y[i] <- groupPos$y
       }
 
-    return(metanetwork)
+    metanetwork
   }
 
   metanetwork <- nodePos(metanetwork, edgeRad = .875, groupRad = .5)
@@ -191,6 +190,7 @@ for visual differentiation between the group.
     points(metanetwork$nodes$x, metanetwork$nodes$y, pch = 20, cex = 2)
     points(metanetwork$networkGroup$x, metanetwork$networkGroup$y, pch = 20, cex = 2)
 ```
+
 
 # Visualization functions
 
@@ -232,9 +232,9 @@ boxGroup <- function(metanetwork, rad1 = .95, rad2 = 1, colBox = NULL, names = N
                              length = 200),
                      radius = rad2)
 
-    polygon(rbind(a, b, a[1,]), col = colBox[i], ...)
+    polygon(rbind(a, b, a[1L,]), col = colBox[i], ...)
 
-    if (isTRUE(addNames)) {
+    if (addNames) {
       middle <- mean(c(metanetwork$networkGroup$lower[i],
                        metanetwork$networkGroup$upper[i]))
       clockwise <- if (middle > pi) F else T
@@ -316,7 +316,8 @@ colGroups <- function(metanetwork, colPal = gpu$insileco) {
     for(i in 1:nrow(metanetwork$networkGroup)) {
       metanetwork$nodes$cols[metanetwork$nodes$network == metanetwork$networkGroup$Var1[i]] <- metanetwork$networkGroup$cols[i]
     }
-  return(metanetwork)
+
+  metanetwork
 }
 
 metanetwork <- colGroups(metanetwork, colPal = gpu$insileco)
@@ -327,7 +328,7 @@ head(metanetwork$networkGroup)
 
 </br>
 
-Second, a function to give a size to nodes based on link frequency
+Second, a function to give a size to nodes based on link frequency.
 
 <br/>
 
@@ -336,7 +337,7 @@ Second, a function to give a size to nodes based on link frequency
 nodeSize <- function(metanetwork, freq = T) {  
     if (isTRUE(freq)) {
       nLink <- as.data.frame(table(c(metanetwork$links$from, metanetwork$links$to)), stringsAsFactors = F)
-      colnames(nLink)[1] <- 'name'
+      colnames(nLink)[1L] <- 'name'
       metanetwork$nodes <- dplyr::left_join(metanetwork$nodes, nLink, by = 'name')
       metanetwork$nodes$cex <- (metanetwork$nodes$Freq / max(metanetwork$nodes$Freq))  
     } else {
@@ -423,9 +424,9 @@ linkCol <- function(metanetwork, type = 'all', focus = NULL, colLinks = '#876b40
   }
 
   # Add transparency
-    metanetwork$links$cols <- paste0(metanetwork$links$cols, '66')
+  metanetwork$links$cols <- paste0(metanetwork$links$cols, '66')
 
-  return(metanetwork)
+  metanetwork
 }
 
 metanetwork <- linkCol(metanetwork, type = 'focus', focus = c('Species','Drivers'))
@@ -450,12 +451,12 @@ head(metanetwork$networkGroup)
   points(metanetwork$nodes$x,
          metanetwork$nodes$y,
          pch = 20,
-         cex = (metanetwork$nodes$cex * 5),
+         cex = metanetwork$nodes$cex * 5,
          col = '#d7d7d7')
   points(metanetwork$nodes$x,
          metanetwork$nodes$y,
          pch = 20,
-         cex = (metanetwork$nodes$cex * 3),
+         cex = metanetwork$nodes$cex * 3,
          col = metanetwork$nodes$cols)
 ```
 
@@ -514,7 +515,7 @@ plotMetanetwork <- function(metanetwork,
              border = 'transparent')
     plotLinks(metanetwork,
               col = metanetwork$links$cols)
-    if (isTRUE(shadowEdge)) {
+    if (shadowEdge) {
       points(metanetwork$nodes$x,
              metanetwork$nodes$y,
              pch = 20,
@@ -534,4 +535,5 @@ plotMetanetwork(metanetwork)
 plotMetanetwork(metanetwork, type = 'focus', focus = 'Species')
 plotMetanetwork(metanetwork, type = 'focus', focus = c('Species', 'Drivers'))
 plotMetanetwork(metanetwork, type = 'focus', focus = c('Species', 'Drivers', 'Managers'))
+opt <- options()
 ```
