@@ -29,14 +29,14 @@ I rather prefer having full control and understanding of what I am doing with my
 visualizations. So, is here the product of this work to generate the figure I wished to
 create for my thesis!
 
-# Libraries
+## Libraries
 
 ```{r param}
 library(graphicsutils)
 data(gpu)
 ```
 
-# Data
+## Data
 
 Let's start by simulating data for a metanetwork (*i.e.* a network composed of
 multiple networks). To make this as simple as possible, I will simply simulate
@@ -71,14 +71,14 @@ head(nodes)
 head(links)
 ```
 
-# Circle functions
+## Circle functions
 
 Now that we have the nodes and links, we need to create the necessary functions
 that will allow us to position our data on a circular graph.
 
 <br/>
 
-## Circle coordinates
+### Circle coordinates
 
 The first function we need will be used to generate the x and y coordinates of a
 circle for a given angle and circle radius, which we can obtain with some circle trigonometry.
@@ -97,7 +97,7 @@ coordCircle(theta = pi, radius = 1)
 
 <br/>
 
-## Group boundaries
+### Group boundaries
 
 The second function that we need is one that will allow us to distribute groups
 on the circular plot according to the number of elements composing that group.
@@ -134,7 +134,7 @@ metanetwork$networkGroup
 
 <br/>
 
-## Nodes coordinates
+### Nodes coordinates
 
 Now we need to get the coordinates of the edges so that we can position them
 on the graph. We also need to get coordinates for each network so that we can
@@ -192,12 +192,12 @@ for visual differentiation between the group.
 ```
 
 
-# Visualization functions
+## Visualization functions
 
 Now we need a few functions to automate the visualization of a few components of
 the circular plot.
 
-## Plot groups
+### Plot groups
 
 I actually wish to have a box around the edge of my graph identifying each
 individual network and their name. To do this, we can use the `polygon`
@@ -256,7 +256,7 @@ boxGroup <- function(metanetwork, rad1 = .95, rad2 = 1, colBox = NULL, names = N
   boxGroup(metanetwork, rad1 = .5)
 ```
 
-## Plot connections
+### Plot connections
 
 Now we can plot the links between the nodes in our graph using the underlying
 hierarchical structure identified using the `nodePos` function created earlier.
@@ -298,7 +298,7 @@ We can do this using the `xspline` function.
 
 </br>
 
-# Plot metanetwork
+## Plot metanetwork
 
 ```{r metanetwork, fig.width = 6, fig.height = 6, fig.align = 'center'}
 # The plot
@@ -312,7 +312,7 @@ We can do this using the `xspline` function.
 <br/>
 
 
-## Customize graph functions
+### Customize graph functions
 
 Now we can build functions to customize the graph a little bit, *e.g.* add colors
 to links and nodes and change the size of the nodes.
@@ -449,7 +449,7 @@ head(metanetwork$networkGroup)
 
 <br/>
 
-# Metanetwork function
+## Metanetwork function
 
 Now we could wrap all of this in a single function.
 

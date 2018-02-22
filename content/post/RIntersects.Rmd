@@ -22,7 +22,7 @@ source('../../static/Rscript/codeChunkSetUp.R')
 
 <br/>
 
-# Intersects & R
+## Intersects & R
 
 We are increasingly performing spatial analyses in R. The replicability and the
 efficiency of programming languages is much more appealing than using user
@@ -70,7 +70,7 @@ compare all the functions together for the sake of comparison in this post.
 
 <br/>
 
-# Initiate R
+## Initiate R
 
 
 ```{r init, message = F, warnings = F}
@@ -113,7 +113,7 @@ res2 <- readRDS('../../static/assets/RIntersects/res2.rds')
 
 <br/>
 
-# Generate spatial objects for testing
+## Generate spatial objects for testing
 
 We start be generating random spatial object in space. For the record,
 the area selected is within the St. Lawrence estuary in eastern Canada
@@ -258,14 +258,14 @@ for(i in 1:nSamp) {
 
 <br/>
 
-# Benchmarking
+## Benchmarking
 
 Now that the data is ready for use, we can perform the tests! But first, let's
 take a quick look at the type of results that are returned by each function.
 
 <br/>
 
-## Points intersections
+### Points intersections
 
 First, we will test the intersects only with the points.
 
@@ -330,7 +330,7 @@ time, with `sf::st_intersects` proving to be the most efficient option.
 
 <br/>
 
-## Polygons intersections
+### Polygons intersections
 
 Now let's take a look at intersects using polygons only.
 
@@ -395,7 +395,7 @@ even further.
 
 <br/>
 
-# Concluding remarks
+## Concluding remarks
 
 Et voilà! It is obvious from these simulations that the `sf` package overall
 provides the most efficient options to perform spatial intersects in R.
