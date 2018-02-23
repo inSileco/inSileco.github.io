@@ -2,8 +2,8 @@
 
 All members of the `inSileco` team. However an extra step is required: a member
 must first fill out a separate `yaml` file in the `data/authors/` folder
-to provide some details about his-self. The easiest way to proceed is to
-copy/paste one existing file of this kind and to replace the information.
+to provide some details about himself/herself. The easiest way to proceed is to
+copy/paste one existing file of this kind (see below) and to replace the information.
 For the sake of clarity, below is what the `data/authors/kevin.yaml` looks like:
 
 ```yaml
@@ -21,38 +21,45 @@ publons: publons_id
 gscholar: https://scholar.google.co.uk/citations?user=xzvcu7cAAAAJ&hl=fr
 ```
 
-Note that avatars are retrieved from Github accounts. Also names of these files
-can be used as a shortcut to add author's info on posts.
+Note that avatars are retrieved from Github accounts. Also, names of these files
+can be used as a shortcut to add author's info on posts, so keep them short and
+simple.
 
 
 ## How to use Github to publish a post?
 
-The defaul branch is the `dev` branch, the master branch is where the public
+The default branch is the `dev` branch, the master branch is where the public
 version of the website is stored. The deployment of the website from the `dev`
-branch to the `master` branch is handled by Travis, see `.travis.yml` and the
-travis settings for more information.
+branch to the `master` branch is handled by Travis (see `.travis.yml` and the
+travis settings for more information).
 
 For substantial changes in the features of the website we strongly encourage to
-create a new branch and create a pull request to add the desired feature.
+create a new branch and create a pull request to add the desired features.
 Depending on your skills you may benefit from a review. Creating a new branch
 is also encouraged for new posts.
 
 
 ## Writing a new post
 
+### Subject matter
+
+The blog is geared towards computational ecology at large. This means that it
+can be directly related to computational ecology, but does not have to be
+explicitly expanding on the subject. For example, it may also deal with ecology,
+your experience as an ecologist and computational tools. It may include
+code, but it may also be an opinion piece or even a short concise literature
+review on a specific subject you may wish to expand on.
+
 ### How to create and add a new post
 
 A new post is either a `md` or a `rmd` file added in the `content/post` folder.
-There are no limitation in terms of number of character per post, we should
+There are no limitation in terms of number of character per post. We should
 however be aware that readers rarely (if ever) spend hours reading the same post.
-Regarding the topic of the post, it should deal with computational ecology at large.
-Meaning that it may deal with ecology, your experience as an ecologist, computational
-tools and in the best case scenario, computational ecology. The table of
-content is generated using `tocify` and only records title of level 2 and 3.
-Level 1 should be used **only** for the title of the posts.
+The table of content is generated using `tocify` and only records title of
+level 2 and 3. Level 1 should be used **only** for the title of the posts.
 
 The author of the post, must take advantage of the `yaml` front matter to edit the
-meta-data associated with his post. Below, is a description of the different
+meta-data associated with his post. Below is a description of the different
 fields to be used.
 
 - **author**: who wrote the post (may be a list of co-authors);
