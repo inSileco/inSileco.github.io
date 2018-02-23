@@ -7,18 +7,25 @@ tags: [R, Viz, network]
 package: [graphicsutils, dplyr, plotrix]
 draft: false
 tweet: "Hierarchical edge bundling using base plot"
-estime: 10
+estime: 15
 ---
 
+I recently came across a very interesting paper from Laura Dee and collaborators
+focused on the concept of metanetworks and entitled "*Operationalizing Network
+Theory for Ecosystem Service Assessments*"
+([Dee *et al* 2017, TREE 32(2):118-130](http://www.cell.com/trends/ecology-evolution/fulltext/S0169-5347(16)30192-6)).
+After reading that article I have begun to revamp the context of my thesis around
+the concept of metanetworks to include environmental impact assessment and
+cumulative impacts assessment within such a framework.
 
 
-So, in my thesis I work extensively with networks and coming up with meaningful and
-useful visualization can be a bit of a challenge. I've recently begun toying with
-the notion of using hierarchical edge bundling to represent the complexity of the
-networks I work with and the different types of networks I am attempting to link
-together. While this type of visualization can be close to useless at a fine scale
-to study individual connections, it can be pretty useful to glean insights as to
-the overall arrangements of links within networks.
+Work extensively with networks, you quickly realize that coming up with
+meaningful and useful visualization can be a bit of a challenge. Thinking about
+which type of visualization to use for this, the notion of using
+hierarchical edge bundling became very appealing to capture the complexity of
+network structure at a glance. While this type of visualization can be close to
+useless at a fine scale to study individual connections, it can be pretty useful
+to glean insights as to the overall arrangements of links within networks.
 
 With that in mind, I began going through the material available to make hierarchical
 edge bundling in R. There is quite a bit of material already available on R, but
@@ -28,6 +35,7 @@ enjoy using all that much (*e.g.*
 I rather prefer having full control and understanding of what I am doing with my
 visualizations. So, is here the product of this work to generate the figure I wished to
 create for my thesis!
+
 
 ## Libraries
 
