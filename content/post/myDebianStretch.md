@@ -3,6 +3,9 @@ title: Setting my Debian Stretch up
 author: [kevin]
 reviewer: [david]
 date: 2018-01-21
+edits:
+  - date: 2018-02-24
+    comment: "add a seflfie"
 tags: [Linux, Debian]
 draft: false
 tweet: "Setting my Debian Stretch up"
@@ -99,7 +102,8 @@ video below I navigate to a mirror and show where Pandoc is stored.
  Your browser does not support the video tag.
 </video>
 
-### Two additional comments
+
+#### Two additional comments
 
 1. There are [different repositories](https://wiki.debian.org/DebianRepository).
 For instance, I use a repository to use [icons from the papirus team](https://launchpad.net/~papirus/+archive/ubuntu/papirus).
@@ -157,9 +161,12 @@ Partition: ID-1: / size: 922G used: 80G (10%) fs: ext4 dev: /dev/nvme0n1p2
 The factory settings of my new Lenovo ThinkPad T470p was running on Windows 10 and
 I did not have the choice of the OS, sadly :disappointed:. Well, I am no Windows
 user and do not intend to become one, so I got rid of Windows ASAP (I obviously took
-a selfie... '*Me using windows*' ) and installed Debian Stretch. Let me now
+a selfie 😈) and installed Debian Stretch. Let me now
 explain how!
 
+<br>
+<center><img  alt="me on windows" width="35%" src = "/assets/myDebianStretch/meonwindows.png"></img></center>
+<br>
 
 #### 1- Get a bootable USB stick
 
