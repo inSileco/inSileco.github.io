@@ -12,18 +12,39 @@ estime: 15
 
 
 
-<p>I recently came across a very interesting paper from Laura Dee and collaborators focused on the concept of metanetworks and entitled “<em>Operationalizing Network Theory for Ecosystem Service Assessments</em>” (<a href="http://www.cell.com/trends/ecology-evolution/fulltext/S0169-5347(16)30192-6">Dee <em>et al</em> 2017, TREE 32(2):118-130</a>). After reading that article I have begun to revamp the context of my thesis around the concept of metanetworks to include environmental impact assessment and cumulative impacts assessment within such a framework.</p>
-<p>Work extensively with networks, you quickly realize that coming up with meaningful and useful visualization can be a bit of a challenge. Thinking about which type of visualization to use for this, the notion of using hierarchical edge bundling became very appealing to capture the complexity of network structure at a glance. While this type of visualization can be close to useless at a fine scale to study individual connections, it can be pretty useful to glean insights as to the overall arrangements of links within networks.</p>
-<p>With that in mind, I began going through the material available to make hierarchical edge bundling in R. There is quite a bit of material already available on R, but what I found was always through <code>ggraph</code> and <code>ggplot</code>, which I personally don’t enjoy using all that much (<em>e.g.</em> <a href="https://www.r-graph-gallery.com/hierarchical-edge-bundling/">this</a>). I rather prefer having full control and understanding of what I am doing with my visualizations. So, is here the product of this work to generate the figure I wished to create for my thesis!</p>
+<p>I recently came across a very interesting paper from Laura Dee and collaborators
+focused on the concept of metanetworks and entitled “<em>Operationalizing Network
+Theory for Ecosystem Service Assessments</em>”
+(<a href="http://www.cell.com/trends/ecology-evolution/fulltext/S0169-5347(16)30192-6">Dee <em>et al</em> 2017, TREE 32(2):118-130</a>).
+After reading that article I have begun to revamp the context of my thesis around
+the concept of metanetworks to include environmental impact assessment and
+cumulative impacts assessment within such a framework.</p>
+<p>Work extensively with networks, you quickly realize that coming up with
+meaningful and useful visualization can be a bit of a challenge. Thinking about
+which type of visualization to use for this, the notion of using
+hierarchical edge bundling became very appealing to capture the complexity of
+network structure at a glance. While this type of visualization can be close to
+useless at a fine scale to study individual connections, it can be pretty useful
+to glean insights as to the overall arrangements of links within networks.</p>
+<p>With that in mind, I began going through the material available to make hierarchical
+edge bundling in R. There is quite a bit of material already available on R, but
+what I found was always through <code>ggraph</code> and <code>ggplot</code>, which I personally don’t
+enjoy using all that much (<em>e.g.</em>
+<a href="https://www.r-graph-gallery.com/hierarchical-edge-bundling/">this</a>).
+I rather prefer having full control and understanding of what I am doing with my
+visualizations. So, is here the product of this work to generate the figure I wished to
+create for my thesis!</p>
 <div id="libraries" class="section level2">
 <h2>Libraries</h2>
-<pre class="r"><code>library(graphicsutils)</code></pre>
-<pre><code>##  --&gt; graphicsutils version 1.1.2</code></pre>
-<pre class="r"><code>data(gpu)</code></pre>
+<pre class="r"><code>library(graphicsutils)
+pal_insileco &lt;- gpuPalette(&quot;insileco&quot;)</code></pre>
 </div>
 <div id="data" class="section level2">
 <h2>Data</h2>
-<p>Let’s start by simulating data for a metanetwork (<em>i.e.</em> a network composed of multiple networks). To make this as simple as possible, I will simply simulate a dataset composed of hierarchical nodes and another one identifying the links between those nodes.</p>
+<p>Let’s start by simulating data for a metanetwork (<em>i.e.</em> a network composed of
+multiple networks). To make this as simple as possible, I will simply simulate
+a dataset composed of hierarchical nodes and another one identifying the links
+between those nodes.</p>
 <pre class="r"><code># Individual network nodes
   opt &lt;- options()
   options(stringsAsFactors = FALSE)
@@ -56,21 +77,23 @@ head(nodes)</code></pre>
 ## 5 Drivers driver_5
 ## 6 Drivers driver_6</code></pre>
 <pre class="r"><code>head(links)</code></pre>
-<pre><code>##            from         to
-## 1    species_16   action_6
-## 2      action_4  driver_15
-## 3    species_27   action_3
-## 5      action_6   driver_2
-## 6 beneficiary_5 species_21
-## 7 beneficiary_8   driver_1</code></pre>
+<pre><code>##            from            to
+## 1      driver_8    species_17
+## 2     manager_4     species_3
+## 3    species_29 beneficiary_3
+## 4    species_13    species_27
+## 5 beneficiary_9    species_24
+## 6 beneficiary_9     manager_6</code></pre>
 </div>
 <div id="circle-functions" class="section level2">
 <h2>Circle functions</h2>
-<p>Now that we have the nodes and links, we need to create the necessary functions that will allow us to position our data on a circular graph.</p>
+<p>Now that we have the nodes and links, we need to create the necessary functions
+that will allow us to position our data on a circular graph.</p>
 <p><br/></p>
 <div id="circle-coordinates" class="section level3">
 <h3>Circle coordinates</h3>
-<p>The first function we need will be used to generate the x and y coordinates of a circle for a given angle and circle radius, which we can obtain with some circle trigonometry.</p>
+<p>The first function we need will be used to generate the x and y coordinates of a
+circle for a given angle and circle radius, which we can obtain with some circle trigonometry.</p>
 <pre class="r"><code># Let&#39;s begin by creating a function that will give us the x and y coordinates
 # of the outside of a circle given a certain radius
 coordCircle &lt;- function(theta = NULL, radius = 1) {
@@ -85,7 +108,12 @@ coordCircle(theta = pi, radius = 1)</code></pre>
 </div>
 <div id="group-boundaries" class="section level3">
 <h3>Group boundaries</h3>
-<p>The second function that we need is one that will allow us to distribute groups on the circular plot according to the number of elements composing that group. In essence, we wish to provide the upper and lower boundaries of each individual network composing the metanetwork. We may also want to add a gap between the individual networks on the graph. This will make the visual aspect of the graph more appealing.</p>
+<p>The second function that we need is one that will allow us to distribute groups
+on the circular plot according to the number of elements composing that group.
+In essence, we wish to provide the upper and lower boundaries of each individual
+network composing the metanetwork. We may also want to add a gap between the
+individual networks on the graph. This will make the visual aspect of the graph
+more appealing.</p>
 <pre class="r"><code>bound &lt;- function(metanetwork, gap = .025, addGap = T) {
   # Metanetwork list composed of &quot;nodes&quot; and &quot;links&quot;
   # Size of gap between groups on the graph
@@ -119,7 +147,13 @@ metanetwork$networkGroup</code></pre>
 </div>
 <div id="nodes-coordinates" class="section level3">
 <h3>Nodes coordinates</h3>
-<p>Now we need to get the coordinates of the edges so that we can position them on the graph. We also need to get coordinates for each network so that we can build an internal, hierarchical structure to the distribution of edges on the graph that can be used to plot links between edges. These should be distributed as the user wish within the circle using different radius values. As with the groups, we can add a gap between the edges at the beginning and end of the group for visual differentiation between the group.</p>
+<p>Now we need to get the coordinates of the edges so that we can position them
+on the graph. We also need to get coordinates for each network so that we can
+build an internal, hierarchical structure to the distribution of edges on the
+graph that can be used to plot links between edges. These should be distributed
+as the user wish within the circle using different radius values. As with the
+groups, we can add a gap between the edges at the beginning and end of the group
+for visual differentiation between the group.</p>
 <pre class="r"><code>  nodePos &lt;- function(metanetwork, edgeRad = 0.975, groupRad = 0.5, gapEdge = 0.1, addGap = T) {
     # Add x and y columns to nodes and networkGroup data
       metanetwork$nodes$y &lt;- metanetwork$nodes$x &lt;- 0
@@ -182,15 +216,18 @@ metanetwork$networkGroup</code></pre>
     plot0()    
     points(metanetwork$nodes$x, metanetwork$nodes$y, pch = 20, cex = 2)
     points(metanetwork$networkGroup$x, metanetwork$networkGroup$y, pch = 20, cex = 2)</code></pre>
-<p><img src="/post/metanetwork_files/figure-html/nodePos-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="/rmarkdown-libs/figure-html4/nodePos-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="visualization-functions" class="section level2">
 <h2>Visualization functions</h2>
-<p>Now we need a few functions to automate the visualization of a few components of the circular plot.</p>
+<p>Now we need a few functions to automate the visualization of a few components of
+the circular plot.</p>
 <div id="plot-groups" class="section level3">
 <h3>Plot groups</h3>
-<p>I actually wish to have a box around the edge of my graph identifying each individual network and their name. To do this, we can use the <code>polygon</code> and <code>plotrix::arctext</code> function.</p>
+<p>I actually wish to have a box around the edge of my graph identifying each
+individual network and their name. To do this, we can use the <code>polygon</code>
+and <code>plotrix::arctext</code> function.</p>
 <pre class="r"><code># We can now use both functions to generate a box for each group on the plot
 boxGroup &lt;- function(metanetwork, rad1 = .95, rad2 = 1, colBox = NULL, names = NULL, colNames = NULL, addNames = T, ...) {
   # metanetwork = data list composed of &#39;nodes&#39;, &#39;links&#39; &amp; &#39;networkGroup&#39;
@@ -241,11 +278,13 @@ boxGroup &lt;- function(metanetwork, rad1 = .95, rad2 = 1, colBox = NULL, names 
   boxGroup(metanetwork, addNames = F)
   plot0()
   boxGroup(metanetwork, rad1 = .5)</code></pre>
-<p><img src="/post/metanetwork_files/figure-html/plotGroups-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/rmarkdown-libs/figure-html4/plotGroups-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="plot-connections" class="section level3">
 <h3>Plot connections</h3>
-<p>Now we can plot the links between the nodes in our graph using the underlying hierarchical structure identified using the <code>nodePos</code> function created earlier. We can do this using the <code>xspline</code> function.</p>
+<p>Now we can plot the links between the nodes in our graph using the underlying
+hierarchical structure identified using the <code>nodePos</code> function created earlier.
+We can do this using the <code>xspline</code> function.</p>
 <pre class="r"><code>  plotLinks &lt;- function(metanetwork, cols = NULL, ...) {
     if (!is.null(cols) &amp; length(cols) == 1) {
       cols &lt;- rep(cols, nrow(metanetwork$links))
@@ -277,7 +316,7 @@ boxGroup &lt;- function(metanetwork, rad1 = .95, rad2 = 1, colBox = NULL, names 
   plot0()
   plotLinks(metanetwork, col = &#39;black&#39;)
   points(metanetwork$nodes$x, metanetwork$nodes$y)</code></pre>
-<p><img src="/post/metanetwork_files/figure-html/plotLinks-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/rmarkdown-libs/figure-html4/plotLinks-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p></br></p>
 </div>
 </div>
@@ -289,13 +328,14 @@ boxGroup &lt;- function(metanetwork, rad1 = .95, rad2 = 1, colBox = NULL, names 
   boxGroup(metanetwork)
   plotLinks(metanetwork, col = &#39;black&#39;)
   points(metanetwork$nodes$x, metanetwork$nodes$y, pch = 20, cex = 2)</code></pre>
-<p><img src="/post/metanetwork_files/figure-html/metanetwork-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="/rmarkdown-libs/figure-html4/metanetwork-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p><br/></p>
 <div id="customize-graph-functions" class="section level3">
 <h3>Customize graph functions</h3>
-<p>Now we can build functions to customize the graph a little bit, <em>e.g.</em> add colors to links and nodes and change the size of the nodes.</p>
+<p>Now we can build functions to customize the graph a little bit, <em>e.g.</em> add colors
+to links and nodes and change the size of the nodes.</p>
 <p>First, let’s give a color to individual networks.</p>
-<pre class="r"><code>colGroups &lt;- function(metanetwork, colPal = gpu$insileco) {
+<pre class="r"><code>colGroups &lt;- function(metanetwork, colPal = pal_insileco) {
   # Group colors
     metanetwork$networkGroup$cols &lt;- colPal[1:nrow(metanetwork$networkGroup)]
 
@@ -308,7 +348,7 @@ boxGroup &lt;- function(metanetwork, rad1 = .95, rad2 = 1, colBox = NULL, names 
   metanetwork
 }
 
-metanetwork &lt;- colGroups(metanetwork, colPal = gpu$insileco)
+metanetwork &lt;- colGroups(metanetwork, colPal = pal_insileco)
 
 head(metanetwork$nodes)</code></pre>
 <pre><code>##   network     name          x         y    cols
@@ -351,14 +391,15 @@ nodeSize &lt;- function(metanetwork, freq = T) {
 metanetwork &lt;- nodeSize(metanetwork)
 head(metanetwork$nodes)</code></pre>
 <pre><code>##   network     name          x         y    cols Freq       cex
-## 1 Drivers driver_1 -0.0546519 0.8732916 #ffdd55    8 0.5333333
-## 2 Drivers driver_2 -0.1282239 0.8655539 #ffdd55    7 0.4666667
-## 3 Drivers driver_3 -0.2008793 0.8516293 #ffdd55    4 0.2666667
-## 4 Drivers driver_4 -0.2720989 0.8316172 #ffdd55   13 0.8666667
-## 5 Drivers driver_5 -0.3413735 0.8056607 #ffdd55    3 0.2000000
-## 6 Drivers driver_6 -0.4082079 0.7739453 #ffdd55    6 0.4000000</code></pre>
+## 1 Drivers driver_1 -0.0546519 0.8732916 #ffdd55   11 0.8461538
+## 2 Drivers driver_2 -0.1282239 0.8655539 #ffdd55    9 0.6923077
+## 3 Drivers driver_3 -0.2008793 0.8516293 #ffdd55    8 0.6153846
+## 4 Drivers driver_4 -0.2720989 0.8316172 #ffdd55    9 0.6923077
+## 5 Drivers driver_5 -0.3413735 0.8056607 #ffdd55    5 0.3846154
+## 6 Drivers driver_6 -0.4082079 0.7739453 #ffdd55   12 0.9230769</code></pre>
 <p><br/></p>
-<p>Finally, we can give a color to links or focus on certain individual networks in the metanetwork, or focus on all the links for a single network.</p>
+<p>Finally, we can give a color to links or focus on certain individual networks in
+the metanetwork, or focus on all the links for a single network.</p>
 <p><br/></p>
 <pre class="r"><code>linkCol &lt;- function(metanetwork, type = &#39;all&#39;, focus = NULL, colLinks = &#39;#876b40&#39;, colShadow = &#39;#f4f4f4&#39;) {
   # metanetwork = list composed of &#39;nodes&#39;, &#39;links&#39; and &#39;networkGroup&#39;
@@ -432,13 +473,13 @@ head(metanetwork$nodes)</code></pre>
 
 metanetwork &lt;- linkCol(metanetwork, type = &#39;focus&#39;, focus = c(&#39;Species&#39;,&#39;Drivers&#39;))
 head(metanetwork$links)</code></pre>
-<pre><code>##            from         to      cols
-## 1    species_16   action_6 #f4f4f466
-## 2      action_4  driver_15 #f4f4f466
-## 3    species_27   action_3 #f4f4f466
-## 5      action_6   driver_2 #f4f4f466
-## 6 beneficiary_5 species_21 #f4f4f466
-## 7 beneficiary_8   driver_1 #f4f4f466</code></pre>
+<pre><code>##            from            to      cols
+## 1      driver_8    species_17 #876b4066
+## 2     manager_4     species_3 #f4f4f466
+## 3    species_29 beneficiary_3 #f4f4f466
+## 4    species_13    species_27 #876b4066
+## 5 beneficiary_9    species_24 #f4f4f466
+## 6 beneficiary_9     manager_6 #f4f4f466</code></pre>
 <pre class="r"><code>head(metanetwork$networkGroup)</code></pre>
 <pre><code>##            Var1 Freq      Prop   spanDeg     lower     upper          x
 ## 1       Actions    9 0.1250000 0.7853982 0.0125000 0.7728982  0.4619398
@@ -462,7 +503,7 @@ head(metanetwork$links)</code></pre>
                             rad1 = .925,
                             rad2 = 1,
                             sizeEdge = T,
-                            colPal = gpu$insileco,
+                            colPal = pal_insileco,
                             type = &#39;all&#39;,
                             focus = NULL,
                             colLinks = &#39;#876b40&#39;,
@@ -528,6 +569,6 @@ plotMetanetwork(metanetwork)
 plotMetanetwork(metanetwork, type = &#39;focus&#39;, focus = &#39;Species&#39;)
 plotMetanetwork(metanetwork, type = &#39;focus&#39;, focus = c(&#39;Species&#39;, &#39;Drivers&#39;))
 plotMetanetwork(metanetwork, type = &#39;focus&#39;, focus = c(&#39;Species&#39;, &#39;Drivers&#39;, &#39;Managers&#39;))</code></pre>
-<p><img src="/post/metanetwork_files/figure-html/function-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/rmarkdown-libs/figure-html4/function-1.png" width="960" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>opt &lt;- options()</code></pre>
 </div>

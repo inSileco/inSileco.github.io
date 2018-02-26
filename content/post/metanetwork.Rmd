@@ -41,7 +41,7 @@ create for my thesis!
 
 ```{r param}
 library(graphicsutils)
-data(gpu)
+pal_insileco <- gpuPalette("insileco")
 ```
 
 ## Data
@@ -328,7 +328,7 @@ to links and nodes and change the size of the nodes.
 First, let's give a color to individual networks.
 
 ```{r colGroups, fig.width = 7, fig.height = 7, fig.align = 'center'}
-colGroups <- function(metanetwork, colPal = gpu$insileco) {
+colGroups <- function(metanetwork, colPal = pal_insileco) {
   # Group colors
     metanetwork$networkGroup$cols <- colPal[1:nrow(metanetwork$networkGroup)]
 
@@ -341,7 +341,7 @@ colGroups <- function(metanetwork, colPal = gpu$insileco) {
   metanetwork
 }
 
-metanetwork <- colGroups(metanetwork, colPal = gpu$insileco)
+metanetwork <- colGroups(metanetwork, colPal = pal_insileco)
 
 head(metanetwork$nodes)
 head(metanetwork$networkGroup)
@@ -466,7 +466,7 @@ plotMetanetwork <- function(metanetwork,
                             rad1 = .925,
                             rad2 = 1,
                             sizeEdge = T,
-                            colPal = gpu$insileco,
+                            colPal = pal_insileco,
                             type = 'all',
                             focus = NULL,
                             colLinks = '#876b40',
