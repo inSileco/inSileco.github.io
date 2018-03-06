@@ -10,7 +10,7 @@
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="col-sm-12">
-            {{ if .github }} <a href="https://github.com/{{.}}" style="display:inline;"><i class="fa fa-2x fa-github" aria-hidden="true"></i>&nbsp;&nbsp;</a>{{ end }}<h3 style="font-weight:bold;display:inline;"> {{ .name }} </h3>
+            {{ with .github }} <a href="https://github.com/{{.}}" style="display:inline;"><i class="fa fa-2x fa-github" aria-hidden="true"></i>&nbsp;&nbsp;</a>{{ end }}<h3 style="font-weight:bold;display:inline;"> {{ .name }} </h3>
             <h4 style="font-weight:bold;display:inline;"> &nbsp;-&nbsp; {{ .category }} </h4>
             <hr>
             <p> {{ .description }} </p>
