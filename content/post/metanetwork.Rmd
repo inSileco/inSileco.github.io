@@ -527,7 +527,7 @@ metanetwork$nodes <- nodes
 metanetwork$links <- links
 
 # The plot
-par(mfrow = c(2,2))
+par(mfrow = c(2,2), bg = "transparent")
 plotMetanetwork(metanetwork)
 plotMetanetwork(metanetwork, type = 'focus', focus = 'Species')
 plotMetanetwork(metanetwork, type = 'focus', focus = c('Species', 'Drivers'))
