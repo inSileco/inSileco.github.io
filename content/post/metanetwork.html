@@ -10,8 +10,6 @@ tweet: "Hierarchical edge bundling using base plot"
 estime: 15
 ---
 
-
-
 <p>I recently came across a very interesting paper from Laura Dee and collaborators
 focused on the concept of metanetworks and entitled “<em>Operationalizing Network
 Theory for Ecosystem Service Assessments</em>”
@@ -117,7 +115,7 @@ more appealing.</p>
 <pre class="r"><code>bound &lt;- function(metanetwork, gap = .025, addGap = T) {
   # Metanetwork list composed of &quot;nodes&quot; and &quot;links&quot;
   # Size of gap between groups on the graph
-  # addGap logical whether to add gap or not  
+  # addGap logical whether to add gap or not
   nGroup &lt;- as.data.frame(table(metanetwork$nodes$network))
   nGroup$Prop &lt;- nGroup$Freq / sum(nGroup$Freq)
   nGroup$spanDeg &lt;- 2 * pi * nGroup$Prop
@@ -166,7 +164,7 @@ for visual differentiation between the group.</p>
                          (metanetwork$networkGroup$upper[i] - (gapEdge/2)),
                          length = metanetwork$networkGroup$Freq[i])
 
-        # Get position for each edge   
+        # Get position for each edge
           nodePos &lt;- coordCircle(theta = edgeDeg, radius = edgeRad)
 
         # Add to nodes data
@@ -213,7 +211,7 @@ for visual differentiation between the group.</p>
 <pre class="r"><code>  # Visualize the positions of the nodes
   # Plot
     par(mar = c(0,0,0,0))
-    plot0()    
+    plot0()
     points(metanetwork$nodes$x, metanetwork$nodes$y, pch = 20, cex = 2)
     points(metanetwork$networkGroup$x, metanetwork$networkGroup$y, pch = 20, cex = 2)</code></pre>
 <p><img src="/rmarkdown-libs/figure-html4/nodePos-1.png" width="480" style="display: block; margin: auto;" /></p>
@@ -267,7 +265,7 @@ boxGroup &lt;- function(metanetwork, rad1 = .95, rad2 = 1, colBox = NULL, names 
                        middle = middle,
                        col = colNames[i],
                        clockwise = clockwise,
-                       font = 2)    
+                       font = 2)
     }
   }
 }
@@ -366,7 +364,7 @@ head(metanetwork$nodes)</code></pre>
 ## 4      Managers    9 0.1250000 0.7853982 2.8922933 3.6526914 -0.4957224
 ## 5       Species   30 0.4166667 2.6179939 3.6776914 6.2706853  0.1294095
 ##            y    cols
-## 1  0.1913417 #777777
+## 1  0.1913417 #212121
 ## 2  0.4619398 #3fb3b2
 ## 3  0.3966767 #ffdd55
 ## 4 -0.0652631 #c7254e
@@ -375,12 +373,12 @@ head(metanetwork$nodes)</code></pre>
 <p>Second, a function to give a size to nodes based on link frequency.</p>
 <p><br/></p>
 <pre class="r"><code># Add size to nodes based on frequency of links to each node
-nodeSize &lt;- function(metanetwork, freq = T) {  
+nodeSize &lt;- function(metanetwork, freq = T) {
     if (isTRUE(freq)) {
       nLink &lt;- as.data.frame(table(c(metanetwork$links$from, metanetwork$links$to)), stringsAsFactors = F)
       colnames(nLink)[1L] &lt;- &#39;name&#39;
       metanetwork$nodes &lt;- dplyr::left_join(metanetwork$nodes, nLink, by = &#39;name&#39;)
-      metanetwork$nodes$cex &lt;- (metanetwork$nodes$Freq / max(metanetwork$nodes$Freq))  
+      metanetwork$nodes$cex &lt;- (metanetwork$nodes$Freq / max(metanetwork$nodes$Freq))
     } else {
       metanetwork$nodes$cex &lt;- .33
     }
@@ -488,7 +486,7 @@ head(metanetwork$links)</code></pre>
 ## 4      Managers    9 0.1250000 0.7853982 2.8922933 3.6526914 -0.4957224
 ## 5       Species   30 0.4166667 2.6179939 3.6776914 6.2706853  0.1294095
 ##            y    cols colNames
-## 1  0.1913417 #f4f4f4  #777777
+## 1  0.1913417 #f4f4f4  #212121
 ## 2  0.4619398 #f4f4f4  #3fb3b2
 ## 3  0.3966767 #ffdd55  #f4f4f4
 ## 4 -0.0652631 #f4f4f4  #c7254e
@@ -548,7 +546,7 @@ head(metanetwork$links)</code></pre>
              metanetwork$nodes$y,
              pch = 20,
              cex = (metanetwork$nodes$cex * 5),
-             col = &#39;#d7d7d7&#39;)  
+             col = &#39;#d7d7d7&#39;)
     }
 
     points(metanetwork$nodes$x,
@@ -564,7 +562,7 @@ metanetwork$nodes &lt;- nodes
 metanetwork$links &lt;- links
 
 # The plot
-par(mfrow = c(2,2))
+par(mfrow = c(2,2), bg = &quot;transparent&quot;)
 plotMetanetwork(metanetwork)
 plotMetanetwork(metanetwork, type = &#39;focus&#39;, focus = &#39;Species&#39;)
 plotMetanetwork(metanetwork, type = &#39;focus&#39;, focus = c(&#39;Species&#39;, &#39;Drivers&#39;))
