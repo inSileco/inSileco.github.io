@@ -1,0 +1,112 @@
+{{ partial "header" . }}
+
+<img class="full-width" width="100%" src="/img/banner2.png"></img>
+
+
+
+
+<div>
+
+
+  <div class="col-md-3">
+    <div class="hidden-sm hidden-xs">
+      <div id="toc"></div>
+    </div>
+  </div>
+
+  <div class="col-md-8">
+
+    <h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
+
+    <h1><small>{{ range .Params.categories }} <a href="/categories/{{ . | urlize }}"> <i class="fa fa-tag" aria-hidden="true"></i> {{ . }}</a> {{ end }}</small></h1>
+
+
+    <h5>
+      <i class="fa fa-calendar" aria-hidden="true"></i> Creation: {{ dateFormat "Jan 2, 2006" .Params.date }}
+      &nbsp;&nbsp;&nbsp;
+    <i class="fa fa-calendar-plus-o" aria-hidden="true"></i> Last update: {{ dateFormat "Jan 2, 2006" .Params.update }}
+    </h5>
+
+    <p>{{ range .Params.tags }} <a href="/tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}</p>
+
+
+    <p> <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true" data-text="{{ .Params.tweet }}">Tweet</a>
+      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </p>
+
+
+    <div class="text-justify">
+      <p>
+      {{ if .Params.edits }}
+        {{ range .Params.edits }}
+          <i class="fa fa-edit" aria-hidden="true"></i> {{ dateFormat "Jan 2, 2006" .date }} -- {{ .comment }} <br>
+        {{ end }}
+      {{ end }}
+      </p>
+    </div>
+
+
+    <br>
+
+    <div class="text-justify">
+
+      {{ .Content }}
+
+    </div>
+
+    <br><br>
+
+
+    <h3 class="page-header">Comments on this post</h3>
+
+    <div id="disqus_thread"></div>
+
+
+    <!-- related posts with the same tags -->
+    {{ $related := first 3 (where (where (where .Site.Pages.ByDate.Reverse ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }}
+
+
+    {{ if $related }}
+      <h3 class="page-header">Related posts</h3>
+      {{ range $related }} {{ partial "list-item" . }} {{ end }}
+    {{ end }}
+
+
+    <script>
+        $(function() {
+
+            var toc = $("#toc").tocify({
+              selectors: "h2,h3",
+              scrollTo: 60
+            }).data("toc-tocify");
+
+            prettyPrint();
+            $(".optionName").popover({ trigger: "hover" });
+
+        });
+    </script>
+
+    <script>
+      /**
+       *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+       *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+
+      var disqus_config = function() {
+        this.page.url = "https://insileco.github.io" + {{ .Permalink }}; // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = {{ .Title }}; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+      };
+
+      (function() { // DON'T EDIT BELOW THIS LINE
+        var d = document,
+          s = d.createElement('script');
+        s.src = 'https://insileco.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+      })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+  </div>
+</div>
+
+{{ partial "footer.html" . }}
