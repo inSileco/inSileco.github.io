@@ -4,7 +4,7 @@ author: [kevin, steve]
 date: 2018-03-30
 tags: [static website, continuous deployment, blog, R, inSileco]
 tweet: "Empty your R plots!"
-draft: true
+draft: false
 estime: 12
 ---
 
@@ -239,7 +239,7 @@ associated to a Github repository used, for example, to document a package. To s
 the repository then `Options`, then scroll down to `GitHub Pages` and activate
 a gh-page. You have two choices: use the `master` branch or a subfolder `docs/`.
 As explained above we used the `master` branch. Once set up the URL
-associate is basically:  
+associate is basically:
 
 - `http://` + `user name` + `.github.io/` + name of the repository.
 
