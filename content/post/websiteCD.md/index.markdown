@@ -10,8 +10,6 @@ estime: 12
 ---
 
 
-![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
-
 
 
 I (Kevin) recently rebuilt [my personal website](http://kevincazelles.fr/) and
@@ -99,7 +97,7 @@ an online service that "[automates] the build and testing of code every time a t
 member commits changes to version" (Sam Guckenheimer on [Visual studio](https://www.visualstudio.com/learn/what-is-continuous-integration/?rr=https%3A%2F%2Fwww.google.ca%2F).
 Note that there are subtle semantic differences between CI and CD, [as explained
 by Sten Pittet on Atlassian](https://www.atlassian.com/continuous-delivery/ci-vs-ci-vs-cd).
-In practice, as soon as we [push a new commit]((https://help.github.com/articles/adding-a-file-to-a-repository-using-the-command-line/)
+In practice, as soon as we [push a new commit](https://help.github.com/articles/adding-a-file-to-a-repository-using-the-command-line/)
 on the Github repository of our website, Travis rebuilds an environment
 on one of his Linux server, *i.e.* all softwares required are installed (*e.g.*
 Hugo), builds the website and reports whether or not the build has

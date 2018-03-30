@@ -1,7 +1,9 @@
 ---
 title: "List of R packages to create and edit plots"
-author: [kevin, nicolas, steve, david]
+wikitheme: R
 date: 2015-12-04
+update: 2018-03-30
+categories: [about R]
 tags: [plot, R, wiki]
 draft: false
 tweet: "List of R packages to create and edit plots"
@@ -14,9 +16,9 @@ output:
 
 
 
-Note that the list of packages below would be updated as soon as we find a new package.
-If you know a package that should be in the list, please feel mention it in the
-disqus section that follows the list.  
+Note that the list of packages below would be updated as soon as we find a new
+package. If you know a package that should be in the list, please feel mention
+it in the disqus section below.  
 
 
 <br/>
@@ -90,5 +92,6 @@ when available, we also provide :
 
 
 ```{r rgrappkgs, echo=FALSE, results="asis", message=FALSE}
-  source("../../static/assets/Rgraphpkgs/rGraphPkgs.R")
+  print(getwd())
+  source("assets/rGraphPkgs.R")
 ```

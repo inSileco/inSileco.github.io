@@ -1,6 +1,5 @@
 library(magrittr)
 
-
 addurl <- function(url, txt){
   paste0("<a href='", url, "'>", txt,"</a>")
 }
@@ -10,8 +9,7 @@ addiconurl <- function(url, icon){
 }
 
 
-##
-pkg <- yaml::yaml.load_file("../../static/assets/Rgraphpkgs/Rpkgs.yml")
+pkg <- yaml::yaml.load_file("assets/Rpkgs.yml")
 sz <- length(pkg)
 txt <- ""
 ##
