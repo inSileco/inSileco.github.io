@@ -4,7 +4,9 @@
 
 <div class="container">
 
-<h1> Wiki to be added </h1>
+<h1> inSileco's Wiki </h1>
+
+{{ range (readDir "content/wiki") }}{{ .Name }}{{ end }}
 
   </div>
 </div>

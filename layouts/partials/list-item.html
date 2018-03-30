@@ -10,4 +10,16 @@
 
   {{ end }}
 
+
+
+  {{ if eq .Type "wiki" }}
+
+  <h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
+
+  <h5>{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</h5>
+
+  <p>{{ range .Params.tags }} <a href="/tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}</p>
+
+  {{ end }}
+
 </div>
