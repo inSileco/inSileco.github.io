@@ -17,40 +17,23 @@ output:
 
 <div id="data-visualization-in-r" class="section level2">
 <h2>Data visualization in R</h2>
-<p>We do love creating plots with R and we think R offers a fantastic set of tools
-to make beautiful graphics. Many websites and blog posts show what you can
-be capable with R. Have a look at what <a href="http://www.gastonsanchez.com/Rtist/">Gaston Sanchez created</a>
-and <a href="https://www.r-graph-gallery.com/">The R graph Gallery developed by Yan Holtz</a>.
-The power is even more with all the package that take advanage from the JS
-ibrabry, for instance <a href="https://plot.ly/r/">plotly</a>, <a href="http://rich-iannone.github.io/DiagrammeR/">DiagrammR</a>, <a href="https://christophergandrud.github.io/networkD3/">NetworkD3</a>, <a href="https://cran.r-project.org/web/packages/wordcloud2/vignettes/wordcloud.html">Wordcloud2</a>, etc.</p>
-<p>There are many many different solutions to create graph <a href="/content/post/Rgraphpkgs.html">see our wiki page
-on this topic</a>. Some prefer to use base plots
-some other prefer to use ggplot and in some context it could be very valuable to
-use interactive plot such the one that can be drawn with packages that actually
-turn your R code into a JS code.</p>
-<p>Setting apart web-based graphics, core graphics feature is two fold:
-the <code>grid</code> system and the <code>graphics</code> system, both are core packages. We took
-the image below from <a href="https://journal.r-project.org/archive/2015/RJ-2015-012/index.html">Paul Murrell’s paper presenting</a>
-a package making the a partial conversion from the two core package.</p>
+<p>We do love creating plots with R and we think R offers a fantastic set of tools to make beautiful graphics. Many websites and blog posts show what you can be capable with R. Have a look at what <a href="http://www.gastonsanchez.com/Rtist/">Gaston Sanchez created</a> and <a href="https://www.r-graph-gallery.com/">The R graph Gallery developed by Yan Holtz</a>. The power is even more with all the package that take advanage from the JS ibrabry, for instance <a href="https://plot.ly/r/">plotly</a>, <a href="http://rich-iannone.github.io/DiagrammeR/">DiagrammR</a>, <a href="https://christophergandrud.github.io/networkD3/">NetworkD3</a>, <a href="https://cran.r-project.org/web/packages/wordcloud2/vignettes/wordcloud.html">Wordcloud2</a>, etc.</p>
+<p>There are many many different solutions to create graph <a href="/content/post/Rgraphpkgs.html">see our wiki page on this topic</a>. Some prefer to use base plots some other prefer to use ggplot and in some context it could be very valuable to use interactive plot such the one that can be drawn with packages that actually turn your R code into a JS code.</p>
+<p>Setting apart web-based graphics, core graphics feature is two fold: the <code>grid</code> system and the <code>graphics</code> system, both are core packages. We took the image below from <a href="https://journal.r-project.org/archive/2015/RJ-2015-012/index.html">Paul Murrell’s paper presenting</a> a package making the a partial conversion from the two core package.</p>
 <center>
 <img src="core_graphics.png" style="width:75.0%" />
 </center>
-<p>To illustrate how to start a plot from the scratch and ready to be further customized we will
-produce an empty plot with ten points whose coordinates will be <code>(0:10, 0:10)</code>.</p>
+<p>To illustrate how to start a plot from the scratch and ready to be further customized we will produce an empty plot with ten points whose coordinates will be <code>(0:10, 0:10)</code>.</p>
 </div>
 <div id="graphics-based-plots" class="section level2">
 <h2><code>graphics</code>-based plots</h2>
-<p>We think that when using <code>graphics</code> the need for emptying your plot is strong if
-you intend at creating a empty plot. When using graphics you cannot refresh the
-viewer and update it unless you re-execute all the lines. Therefore to cutomize
-easer if you start with and emply plot</p>
+<p>We think that when using <code>graphics</code> the need for emptying your plot is strong if you intend at creating a empty plot. When using graphics you cannot refresh the viewer and update it unless you re-execute all the lines. Therefore to cutomize easer if you start with and emply plot</p>
 <pre class="r"><code>plot(0:10, 0:10)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/emptyYourPlots/index_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To empty it</p>
 <pre class="r"><code>plot(0:10, 0:10)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>if you have a careful look at the code behind <code>plot.default()</code> (the one we
-actually call here) you will concclure</p>
+<p><img src="/post/emptyYourPlots/index_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>if you have a careful look at the code behind <code>plot.default()</code> (the one we actually call here) you will concclure</p>
 </div>
 <div id="grid-based-plots" class="section level2">
 <h2><code>grid</code>-based plots</h2>
@@ -60,34 +43,27 @@ actually call here) you will concclure</p>
 <p>Before starting a plot actually to customized, remove everything you need…</p>
 <p>easy to make your own function</p>
 <p>from that to that easier to add something rather that fixing everything and when extremely customized see explicitely what desired.</p>
-<p>So…
-Let’s use a basic plot
-and wrote every single peace of code we need.</p>
+<p>So… Let’s use a basic plot and wrote every single peace of code we need.</p>
 <p>Note we also made a function for that available here …</p>
 <p>It could be a bit different</p>
-<p>There are various way of doing an emply plot, If you google empty plot and
-R you should end uo in Stack over flower with different answers that are actually all goodé <a href="https://stackoverflow.com/questions/4785657/r-how-to-draw-an-empty-plot" class="uri">https://stackoverflow.com/questions/4785657/r-how-to-draw-an-empty-plot</a></p>
+<p>There are various way of doing an emply plot, If you google empty plot and R you should end uo in Stack over flower with different answers that are actually all goodé <a href="https://stackoverflow.com/questions/4785657/r-how-to-draw-an-empty-plot" class="uri">https://stackoverflow.com/questions/4785657/r-how-to-draw-an-empty-plot</a></p>
 <p>Let’s review some of them</p>
 <p>plot.new()</p>
-<p>pushViewport(vp)
-grid.rect(gp=gpar(fill=“grey”))</p>
-<p>This is something I used a lot to start a new plot but also I like using
-here is the duncion I used.</p>
+<p>pushViewport(vp) grid.rect(gp=gpar(fill=“grey”))</p>
+<p>This is something I used a lot to start a new plot but also I like using here is the duncion I used.</p>
 <p>in my package</p>
 <!-- ggplot(mtcars, aes(x = wt, y = mpg)) + geom_blank() + theme_void() -->
 <!-- ggplot() + geom_area (data=economics, aes(x = date, y = unemploy), linetype=0) +
   scale_x_date(expand = c(0,0)) + scale_y_continuous(expand = c(0,0)) +
  theme_void()
  -->
-<p>We mostly often do <code>graphics</code>-based plots and so we often do the same combination.
-Therefore, we created a function <code>plot0()</code> in our package <code>graphicsutils</code> available
-on <a href="https://github.com/inSileco/graphicsutils"><i class = "fa fa-github"></i></a>. We add few extra parameters make it easier.</p>
+<p>We mostly often do <code>graphics</code>-based plots and so we often do the same combination. Therefore, we created a function <code>plot0()</code> in our package <code>graphicsutils</code> available on <a href="https://github.com/inSileco/graphicsutils"><i class = "fa fa-github"></i></a>. We add few extra parameters make it easier.</p>
 <pre class="r"><code>install_github(&quot;inSileco/graphicsutils&quot;)</code></pre>
 <pre class="r"><code>library(graphicsutils)
 plot0(c(0,10))
 points(1:9, 1:9)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/emptyYourPlots/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>plot0(c(0,10), fill=&#39;#ebebeb&#39;, grid.col = &#39;white&#39;)
 points(1:9, 1:9)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/emptyYourPlots/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>

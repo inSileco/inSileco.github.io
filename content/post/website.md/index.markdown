@@ -1,8 +1,8 @@
 ---
-title: "Hugo, Github, Travis, go with the workflow!"
+title: "Hugo, Github, Travis: a step in continuous deployment workflow!"
 author: [kevin, steve]
 date: 2018-03-26
-tags: [website, blog, R, inSileco]
+tags: [static, website,continuous deployment, blog, R, inSileco]
 tweet: "Empty your R plots!"
 draft: true
 estime: 12
@@ -20,14 +20,26 @@ and we did our best to complement them.
 <br>
 
 
-## The big picture
+## The big picture: continuous deployment for static website
 
-Briefly, the workflow we are using for our blog and that Kevin used
+Continuous deployment (CD) is a set of automated procedures testing and building your program when
+changes has been made. When a push/modification on your code has been done, the CD service connected
+to your repository (via a web API) is triggered to test and build your modified program. Then, the CD service
+notify the lead developper if one test or the build of your program has failed. CD services are
+originaly design for softwares engineers.
+
+The beauty of the microservices world today is that you can easily
+adapt services such as CI service to solved a problem. The problem with static generator website is
+that every time you modified the information on your website, you have to push those edits to your
+hosting server. I (Steve) hate repetive tasks, so why not using CI service to automaticaly build
+and send the new modified webiste to the hosting server (in that case Github Pages).
+
+The continuous deployment workflow we are using for our blog and that Kevin used
 for his personnal website is a combination of the tools above-mentioned: Hugo, Github and
-Travis.  Let us have a few words about those three.
+Travis.  Let's explore those three.
 
 
-### Hugo: generate web pages
+### Hugo: static web generator
 
 According to the official website, [Hugo](https://gohugo.io/) is "is one of the
 most popular open-source static site generators" written in
@@ -37,16 +49,17 @@ Markdown and then Hugo takes care of generating you website for you! Obviously
 there is *way* more to say about Hugo, if you are interested in knowing more
 about Hugo, go to the exhaustive official documentation and watch the great
 [Giraffe Academy tutorials](http://www.giraffeacademy.com/static-site-generators/hugo/).
+
 For Kevin's personal website pure Hugo was used and for our blog we are
 using [blogdown](https://bookdown.org/yihui/blogdown/) that allows us to write
 our blogposts in [R Markdown](https://rmarkdown.rstudio.com/), in other words we can
 directly integrate R outputs (results/figures) in our posts.
+
 On a side note, if you are interested in static site generators at large, have a
 look at this [awesome list](https://github.com/myles/awesome-static-generators).
 Most of them are good subistitue of Hugo in the workflow we are describing, *e.g.*
-Steve used [Harp](https://harpjs.com/) and [pugjs](https://pugjs.org/api/getting-started.html)
+Steve used [Harp](https://harpjs.com/) combined with [pugjs](https://pugjs.org/api/getting-started.html)
 for [his personal website](https://github.com/SteveViss/steveviss.github.com).
-
 
 
 ### Github to track the code and host the website
@@ -84,14 +97,11 @@ Linux environment, the very same environment for all authors of the blog.
 Therefore, even though we develop our website and write posts in different environments,
 we can verify that local configurations are not affecting the visual rendering
 of the website. Furthermore, Travis allows us to deploy our website on a gh-page,
-after any chnages in the code behing our website, the code is checked and the
+after any changes in the code behing our website, the code is checked and the
 new version of the website is online if the built is passing. By the way, Travis
 CI is really convenient when working with Github (and R as R is a community
 supported language on Travis), there are however a lot of different CI services,
 have a look at this [awesome list](https://github.com/ligurio/awesome-ci).
-
-
-
 
 
 ## Let Travis and Github work together

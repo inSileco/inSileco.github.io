@@ -32,32 +32,26 @@ output:
 </div>
 <div id="the-in-operator" class="section level2">
 <h2>The ‘%in%’ operator</h2>
-<p>I have known this for a while, but I keep remembering how it eases my pain when I
-learned how to use it. Let’s consider two vector <code>vecA</code> and <code>vecB</code>, the
-<code>vecA%in%vecB</code> returns a vector of logical of the length <code>vecA</code> stating whether
-the elements of <code>vecA</code> are in <code>vecB</code>:</p>
+<p>I have known this for a while, but I keep remembering how it eases my pain when I learned how to use it. Let’s consider two vector <code>vecA</code> and <code>vecB</code>, the <code>vecA%in%vecB</code> returns a vector of logical of the length <code>vecA</code> stating whether the elements of <code>vecA</code> are in <code>vecB</code>:</p>
 <pre class="r"><code>vecA &lt;- c(&quot;a&quot;, &quot;d&quot;, &quot;2&quot;, &quot;4&quot;, &quot;e&quot;, &quot;;&quot;)
 vecB &lt;- letters # vector of lower case letters the Roman alphabet
 vecA%in%vecB
 #R&gt; [1]  TRUE  TRUE FALSE FALSE  TRUE FALSE</code></pre>
-<p>the i<sup>th</sup> element of the output vector is <code>TRUE</code> if the i<sup>th</sup> element of <code>vecA</code> is
-among the elements of <code>vecB</code>. Note that you can have a similar result calling the <code>intersect()</code> functions which returns elements that <code>vecA</code> and <code>vecB</code> are sharing.</p>
+<p>the i<sup>th</sup> element of the output vector is <code>TRUE</code> if the i<sup>th</sup> element of <code>vecA</code> is among the elements of <code>vecB</code>. Note that you can have a similar result calling the <code>intersect()</code> functions which returns elements that <code>vecA</code> and <code>vecB</code> are sharing.</p>
 <pre class="r"><code>intersect(vecA, vecB)
 #R&gt; [1] &quot;a&quot; &quot;d&quot; &quot;e&quot;</code></pre>
 <p>By the way, you should have a look to the documentation of <code>intersect()</code>.</p>
 </div>
 <div id="the-paste0-function" class="section level2">
 <h2>The <code>paste0()</code> function</h2>
-<p>I often concatenate strings. The natural way to do this is to use the <code>paste()</code> function. Let’s say I need to create a set of original file names such as: “myfile1”, “myfile2”, “myfile3”, etc. I can call <code>paste()</code> like so:</p>
+<p>I often concatenate strings. The natural way to do this is to use the <code>paste()</code> function. Let’s say I need to create a set of original file names such as: “myfile1”, “myfile2”, “myfile3”, etc. I can call <code>paste()</code> like so:</p>
 <pre class="r"><code>paste(&quot;myfile&quot;, 1:7)
 #R&gt; [1] &quot;myfile 1&quot; &quot;myfile 2&quot; &quot;myfile 3&quot; &quot;myfile 4&quot; &quot;myfile 5&quot; &quot;myfile 6&quot;
 #R&gt; [7] &quot;myfile 7&quot;</code></pre>
-<p>BUT, there is a annoying space between “myfile” and the number, to remove the
-space, <code>sep</code> argument is needed:</p>
+<p>BUT, there is a annoying space between “myfile” and the number, to remove the space, <code>sep</code> argument is needed:</p>
 <pre class="r"><code>paste(&quot;myfile&quot;, 1:3, sep=&quot;&quot;)
 #R&gt; [1] &quot;myfile1&quot; &quot;myfile2&quot; &quot;myfile3&quot;</code></pre>
-<p>UNLESS you use the <code>paste0()</code> that is the version of <code>paste()</code> with the desired
-default parameters:</p>
+<p>UNLESS you use the <code>paste0()</code> that is the version of <code>paste()</code> with the desired default parameters:</p>
 <pre class="r"><code>paste0(&quot;myfile&quot;, 1:3)
 #R&gt; [1] &quot;myfile1&quot; &quot;myfile2&quot; &quot;myfile3&quot;</code></pre>
 <p>I know… this means you’ll save 5 previous characters each time you call <code>paste0()</code>!</p>
@@ -66,19 +60,16 @@ default parameters:</p>
 <h2>Using argument ‘\r’ in <code>cat()</code></h2>
 <p><em>Note that for this tip, you should execute the code-chunk in your own R console</em></p>
 <p>When programming we often need to monitor what we are doing, especially for<br />
-time-consuming calculation. Using <code>cat()</code> with all its default is very helpful
-to report information on progress:</p>
+time-consuming calculation. Using <code>cat()</code> with all its default is very helpful to report information on progress:</p>
 <pre class="r"><code>for (i in 1:10) {
   cat(&quot;iteration n°&quot;, i, &quot;\n&quot;)
 }</code></pre>
-<p>Here <code>&quot;\n&quot;</code> is what breaks the line! Instead of breaking the line, we can erase
-the line, i.e. using <code>&quot;\r&quot;</code>:</p>
+<p>Here <code>&quot;\n&quot;</code> is what breaks the line! Instead of breaking the line, we can erase the line, i.e. using <code>&quot;\r&quot;</code>:</p>
 <pre class="r"><code>for (i in 1:10) {
   Sys.sleep(.25) # I added a pause so you can see what&#39;s happening
   cat(&quot;iteration n°&quot;, i, &quot;\r&quot;)
 }</code></pre>
-<p>I hope this gives you some ideas :). If you are thinking “where the <em>!&amp;)@(</em> is
-he going with this!” let me give you two extra way to monitor a for loop:</p>
+<p>I hope this gives you some ideas :). If you are thinking “where the <em>!&amp;)@(</em> is he going with this!” let me give you two extra way to monitor a for loop:</p>
 <ol style="list-style-type: decimal">
 <li>Use percentage:</li>
 </ol>
@@ -102,15 +93,8 @@ for (i in 1:nmx) {
 </div>
 <div id="the-sprintf-function" class="section level2">
 <h2>The <code>sprintf()</code> function</h2>
-<p>The function is a wrapper for a well-known C function <code>sprintf()</code>. There are
-so much to say about it and I won’t (so please have a careful look at the
-documentation) but I think it is worth a tip to present the most used features
-of this function.</p>
-<p>The first argument of <code>sprintf()</code> is a string that includes tag to be replaced
-by the extra arguments. A tag starts with a <code>%</code>, is followed by a
-couple of optional characters tuning the display and ends with a letter
-specifying the nature of the variable(s) to be displayed (number or string). The
-most common letters are:</p>
+<p>The function is a wrapper for a well-known C function <code>sprintf()</code>. There are so much to say about it and I won’t (so please have a careful look at the documentation) but I think it is worth a tip to present the most used features of this function.</p>
+<p>The first argument of <code>sprintf()</code> is a string that includes tag to be replaced by the extra arguments. A tag starts with a <code>%</code>, is followed by a couple of optional characters tuning the display and ends with a letter specifying the nature of the variable(s) to be displayed (number or string). The most common letters are:</p>
 <ul>
 <li>“d” for integer value;<br />
 </li>
@@ -154,25 +138,18 @@ sprintf(&quot;%s&quot;, &quot;A&quot;)
 </ol>
 <pre class="r"><code>sprintf(&quot;%.50f&quot;, pi)
 #R&gt; [1] &quot;3.14159265358979311599796346854418516159057617187500&quot;</code></pre>
-<p>Pretty cool, isn’t it? To conclude two questions. Question 1: do you remember the file naming example using to showcase <code>paste0()</code>? I assume your answer if yes. Let’s say you now have more than 100 files to name and you want to use zero-padding and a constant field width of 3 (e.g. “myfile001”, “myfile010”, “myfile100”). This leads
-me to question 2: what do you do? =&gt; Go <code>sprintf()</code>!</p>
+<p>Pretty cool, isn’t it? To conclude two questions. Question 1: do you remember the file naming example using to showcase <code>paste0()</code>? I assume your answer if yes. Let’s say you now have more than 100 files to name and you want to use zero-padding and a constant field width of 3 (e.g. “myfile001”, “myfile010”, “myfile100”). This leads me to question 2: what do you do? =&gt; Go <code>sprintf()</code>!</p>
 <pre class="r"><code>paste0(&quot;myfile&quot;, sprintf(&quot;%03d&quot;, c(1,10,100)))
 #R&gt; [1] &quot;myfile001&quot; &quot;myfile010&quot; &quot;myfile100&quot;</code></pre>
 </div>
 <div id="the-xaxs-and-yaxs-arguments-of-par" class="section level2">
 <h2>The <code>xaxs</code> and <code>yaxs</code> arguments of <code>par()</code></h2>
-<p>This is also something I learnt years ago and keep using for almost all my
-plots ever since. Default values of graphical parameters generate plot that
-add and extra 4% to the axes limits. This is actually useful to ensure that
-all graphical symbols are entirely displayed. However, I prefer using round
-values as axes limits and handling myself their values so that all symbols stay visible. In order to get rid of the extra 4% added on the x-axis (y-axis), you
-have to pass <code>xaxs=&quot;i&quot;</code> (<code>yaxs=&quot;i&quot;</code>) to the <code>par()</code> function. I compare below
-a plot using the default parameters’ values and the same plot using the tip:</p>
+<p>This is also something I learnt years ago and keep using for almost all my plots ever since. Default values of graphical parameters generate plot that add and extra 4% to the axes limits. This is actually useful to ensure that all graphical symbols are entirely displayed. However, I prefer using round values as axes limits and handling myself their values so that all symbols stay visible. In order to get rid of the extra 4% added on the x-axis (y-axis), you have to pass <code>xaxs=&quot;i&quot;</code> (<code>yaxs=&quot;i&quot;</code>) to the <code>par()</code> function. I compare below a plot using the default parameters’ values and the same plot using the tip:</p>
 <pre class="r"><code>par(mfrow=c(1,2), bty=&quot;l&quot;)
 plot(0:10, 0:10, pch=20)     
 par(xaxs=&quot;i&quot;, yaxs=&quot;i&quot;)   
 plot(0:10, 0:10, pch=20)   </code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/xaxsYaxs-1.png" width="912" style="display: block; margin: auto;" /></p>
+<p><img src="/post/trick_or_tips001_files/figure-html/xaxsYaxs-1.png" width="912" style="display: block; margin: auto;" /></p>
 <p>Can you tell the difference? I now add two extra lines to stress the differences out.</p>
 <pre class="r"><code>par(mfrow=c(1,2), bty=&quot;l&quot;)
 plot(0:10, 0:10, pch=20)  
@@ -180,6 +157,6 @@ abline(v=c(0,10), h=c(0,10), col=2)
 par(xaxs=&quot;i&quot;, yaxs=&quot;i&quot;)   
 plot(0:10, 0:10, pch=20)   
 abline(v=c(0,10), h=c(0,10), col=2)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/xaxsYaxsV2-1.png" width="912" style="display: block; margin: auto;" /></p>
+<p><img src="/post/trick_or_tips001_files/figure-html/xaxsYaxsV2-1.png" width="912" style="display: block; margin: auto;" /></p>
 <p><strong>That’s all folks… until next time!</strong></p>
 </div>
