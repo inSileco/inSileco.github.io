@@ -1,42 +1,49 @@
 ---
-title: "Hugo, Github, Travis: a step in continuous deployment workflow!"
+title: "Hugo, Github, Travis: a step in continuous deployment!"
 author: [kevin, steve]
-date: 2018-03-26
-tags: [static, website,continuous deployment, blog, R, inSileco]
+date: 2018-03-30
+tags: [static website, continuous deployment, blog, R, inSileco]
 tweet: "Empty your R plots!"
 draft: true
 estime: 12
 ---
 
 
+![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
+
+
+
 I (Kevin) recently rebuilt [my personal website](http://kevincazelles.fr/) and
-I was eager to set up the same workflow as Steve did for this blog, *i.e.* a
-combination of Hugo, Github and Travis. I though it was a good opportunity
+I was eager to set up the same workflow as Steve did for our blog (this blog!),
+*i.e.* a combination of Hugo, Github and Travis. I though this was a good opportunity
 to detail how it works and wrote this post with Steve. Note that there are
-several blogpost on the topic available on line, for instance [here](https://medium.com/zendesk-engineering/how-to-create-a-website-like-freshswift-net-using-hugo-travis-ci-and-github-pages-67be6f480298)
+several blog posts on the topic available on line, for instance
+[here](https://medium.com/zendesk-engineering/how-to-create-a-website-like-freshswift-net-using-hugo-travis-ci-and-github-pages-67be6f480298)
 and [here](https://www.metachris.com/2017/04/continuous-deployment-hugo---travis-ci--github-pages/),
-and we did our best to complement them.
+we did our best to complement them in what follows.
 
 <br>
 
 
-## The big picture: continuous deployment for static website
+## The big picture :camera:: continuous deployment for static website
 
-Continuous deployment (CD) is a set of automated procedures testing and building your program when
-changes has been made. When a push/modification on your code has been done, the CD service connected
-to your repository (via a web API) is triggered to test and build your modified program. Then, the CD service
-notify the lead developper if one test or the build of your program has failed. CD services are
-originaly design for softwares engineers.
+Continuous deployment (CD) is a set of automated procedures to build a
+environment from scratch and test a software within as soon as code has been
+committed. Basically, following a push/modification on the code, the CD service
+connected to your repository (via a web API) and trigger the build of the modified
+code. Optionally, the CD service notifies the developers whether or not the build
+has passed. CD services have originally been designed for softwares engineers.
 
-The beauty of the microservices world today is that you can easily
-adapt services such as CI service to solved a problem. The problem with static generator website is
-that every time you modified the information on your website, you have to push those edits to your
-hosting server. I (Steve) hate repetive tasks, so why not using CI service to automaticaly build
-and send the new modified webiste to the hosting server (in that case Github Pages).
+The beauty of the micro services world today is that you can easily adapt
+services such as CD service to solved a problem. The problem with static
+generator website is that every time you modify the information on your website,
+you need to push those edits to your hosting server. I (Steve) hate repetitive
+tasks, so I decided to use a CD service to automatically build and send the new
+modified website to the hosting server.
 
-The continuous deployment workflow we are using for our blog and that Kevin used
-for his personnal website is a combination of the tools above-mentioned: Hugo, Github and
-Travis.  Let's explore those three.
+We detail below how we use CD for this blog and http://kevincazelles.fr/. As
+mentioned above, we used  Hugo, Github and Travis. Let's have a few words about
+those three.
 
 
 ### Hugo: static web generator
@@ -46,7 +53,7 @@ most popular open-source static site generators" written in
 [GO](https://golang.org/). Basically, once Hugo is installed, you first pick up
 a theme, add your data using either YAML, TOML or JSON, write content in
 Markdown and then Hugo takes care of generating you website for you! Obviously
-there is *way* more to say about Hugo, if you are interested in knowing more
+there is *way* more to say about Hugo :smirk_cat:, if you are interested in knowing more
 about Hugo, go to the exhaustive official documentation and watch the great
 [Giraffe Academy tutorials](http://www.giraffeacademy.com/static-site-generators/hugo/).
 
@@ -57,76 +64,76 @@ directly integrate R outputs (results/figures) in our posts.
 
 On a side note, if you are interested in static site generators at large, have a
 look at this [awesome list](https://github.com/myles/awesome-static-generators).
-Most of them are good subistitue of Hugo in the workflow we are describing, *e.g.*
+Most of them are good substitute of Hugo in the workflow we are describing, *e.g.*
 Steve used [Harp](https://harpjs.com/) combined with [pugjs](https://pugjs.org/api/getting-started.html)
 for [his personal website](https://github.com/SteveViss/steveviss.github.com).
 
 
 ### Github to track the code and host the website
 
-As Wikipedia says:
+As you could read on Wikipedia:
 
 > GitHub is a web-based hosting service for version control using git.
 
 [Github](https://github.com/) <i class="fa fa-github" aria-hidden="true"></i>
 (and similar services like Gitlab <i class="fa fa-gitlab" aria-hidden="true"></i>
 and Bitbucket <i class="fa fa-bitbucket" aria-hidden="true"></i>) are wonderful/essential
-tools to host, version, *share* your code. For instance, our blog is available
+tools to host, version, and *share* your code. For instance, our blog is available
 at https://github.com/inSileco/inSileco.github.io, if you want to get the
 code behind, you can [clone it](https://help.github.com/articles/cloning-a-repository/)
 or [fork it](https://help.github.com/articles/fork-a-repo/). Also, if you find
 any issue/bug, you can easily [report an issue](https://help.github.com/articles/about-issues/).
 On top of these services, Github proposes to host website through the [Github
-pages a.k.a. gh-pages](https://pages.github.com/) service. Basically, if your
-repo or part of the repo (a subfolder `docs` or a dedicated branch) is a website,
+pages *a.k.a.* gh-pages](https://pages.github.com/) service. Basically, if your
+repository or part of it (a subfolder `docs` or a dedicated branch) is a website,
 Github will assign an URL to it and so your website will be put on line.
-We used this service to host our blog (https://insileco.github.io/).
+We used this service to host our blog at https://insileco.github.io/.
 
 
 ### Travis CI: check and deploy the website
 
-[Travis CI](https://travis-ci.org/) is a Continuous Integration service, *i.e.*
+[Travis CI](https://travis-ci.org/) is a Continuous Integration (CI) service, *i.e.*
 an on line service that "[automates] the build and testing of code every time a team
 member commits changes to version" (Sam Guckenheimer on [Visual studio](https://www.visualstudio.com/learn/what-is-continuous-integration/?rr=https%3A%2F%2Fwww.google.ca%2F).
-In other words, each time we modify the code of our website (*i.e.* we [push a commit](https://help.github.com/articles/adding-a-file-to-a-repository-using-the-command-line/)
-in <i class="fa fa-git" aria-hidden="true"></i> terminology), Travis re-built
-the website on one of his Linux server and report whether or not the build
+Note that there are subtle semantic differences between CI and CD [as explained
+by Sten Pittet on Atlassian](https://www.atlassian.com/continuous-delivery/ci-vs-ci-vs-cd).
+In practice, as soon as we [push a new commit]((https://help.github.com/articles/adding-a-file-to-a-repository-using-the-command-line/)
+on the Github repository of our website, Travis re-builds an environment
+on one of his Linux server, *i.e.* all softwares required are installed (*e.g.*
+Hugo), builds the website and reports whether or not the build has
 passed or not (note that the user can write unit testings for additional checks).
 Using Travis for our blog ensures that our website can be rebuilt in a specific
 Linux environment, the very same environment for all authors of the blog.
-Therefore, even though we develop our website and write posts in different environments,
-we can verify that local configurations are not affecting the visual rendering
-of the website. Furthermore, Travis allows us to deploy our website on a gh-page,
-after any changes in the code behing our website, the code is checked and the
-new version of the website is online if the built is passing. By the way, Travis
+Therefore, even though we develop our website and write posts in different environments
+(and even different Operating Systems), we can verify that local configurations
+are not affecting the visual rendering of our website. Furthermore, Travis
+allows us to deploy our website on a gh-page, after any changes in the code
+behind our website, the code is checked and the new version of the website is
+online if the built is passing. Travis is the key to our CD. By the way, Travis
 CI is really convenient when working with Github (and R as R is a community
 supported language on Travis), there are however a lot of different CI services,
 have a look at this [awesome list](https://github.com/ligurio/awesome-ci).
 
 
-## Let Travis and Github work together
+## Make Travis and Github work together
 
 Once you have an account on Github you can easily sign up to Travis. By doing
 so, you will actually allow Travis CI to access certain information of your Github
 account through the [OAuth protocol](https://en.wikipedia.org/wiki/OAuth) (to
 see the application you have granted such access, go to `settings -> Applications -> Authorized OAuth Apps`
-on your Github account). Travis will then have access to all your public Github repository (and you can also
-access to private repository if you want to, but only public repository are
-free for an unlimited number of built). The access granted thhrough the OAuth
+on your Github account). Travis will then have access to all your public Github
+repositories (note that you can also access to private repository if you want to, but only public repository are
+free for an unlimited number of built). The access granted through the OAuth
 protocol is actually enough to trigger a build of your website on Travis after
-once you push a commit on the Githu repository associated. It is however not enough to
-let Travis deploy your website, an authentication token is required. Below are the
-steps required illustrated with the set up for Kevin's personal website.
+a push on the Github repository associated. It is however not enough to
+let Travis deploy your website: an authentication token is required. Below we
+detail the steps required illustrated with the set up for Kevin's personal website.
 
 #### 1- Generate a token on Github
 
   - Go to `Settings -> Developer setting -> Personal access tokens` on your Github account,
-  click on `Generate new token` (see video below).
-
-  <video width="100%" controls>
-   <source src="setupghtoken.webm" type="video/webm">
-   Your browser does not support the video tag.
-  </video>
+  click on `Generate new token`, have a look at the [documentation](https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/)
+  for further details.
 
   - Enter your password and then select the kind of token you need and name it:
 
@@ -134,7 +141,7 @@ steps required illustrated with the set up for Kevin's personal website.
 
 <br>
 
-#### 2- Add your token to the repo
+#### 2- Add your token to the repository
 
   - Go to the settings of your website repository and add Travis in `Integration and services`
   as shown in the screencast below:
@@ -152,9 +159,9 @@ steps required illustrated with the set up for Kevin's personal website.
 
 #### 3- Use the token on Travis CI
 
-- Got to the associated Travis repository, then open the setting and add
-and environment variables. Pick up a name that actually makes sense to you, we
-named it `$GH_TOKEN` as it is short and crystal clear.
+- Go to the associated Travis repository, then open the settings and add
+and environment variable. Pick up a name that actually makes sense to you and
+enter the token, we named it `$GH_TOKEN` as it is short and crystal clear.
 
 <div style="text-align:center"><img src="addtokenontravis.png" width="75%"></img></div>
 
@@ -184,7 +191,7 @@ script:
 ```
 
 For our blog, we used [blogdown](https://bookdown.org/yihui/blogdown/) and here
-are what we used in `.travis.yaml` :
+are what we used in `.travis.yaml`:
 
 ```yaml
 before_install:
@@ -218,6 +225,8 @@ deploy:
 
 Note that for both websites, the default branch is `dev` where all development
 occur and we deploy the websites on the `master` branch (see image below).
+Also we [bypass Jekyll processing on gh-pages](https://blog.github.com/2009-12-29-bypassing-jekyll-on-github-pages/)
+adding a `.nojekyll` file in our repository.
 
 
 
@@ -225,22 +234,30 @@ occur and we deploy the websites on the `master` branch (see image below).
 ## About Domain Name System (DSN)
 
 Before reading what follows, note that everything about gh-pages is well
-explained on https://pages.github.com/ where everything is well-explained.
-Basically, a gh-page is a website associated to a Github repository used, for
-example, to document a package. To set up a gh-page, go to the setting of
+explained on https://pages.github.com/. Basically, a gh-page is a website
+associated to a Github repository used, for example, to document a package. To set up a gh-page, go to the setting of
 the repository then `Options`, then scroll down to `GitHub Pages` and activate
-a gh-page. You have two choice: use the `master` branch or a subfolder `docs/`.
+a gh-page. You have two choices: use the `master` branch or a subfolder `docs/`.
 As explained above we used the `master` branch. Once set up the URL
-associate is basically:  `http://` + `user name` + `.github.io/` + Name of the repository.
-For instance for my repo `mapsWithR` I used a gh-page: http://kevcaz.github.io/mapsWithR
-However you can have a special website using associate with your account (or
-  an organization account), see https://guides.github.com/features/pages/. That
-was we used for our blog  https://github.com/inSileco/inSileco.github.io.
-last but not least, if you already own a domain, you can use it, as explained
-[here](https://help.github.com/articles/about-supported-custom-domains/#apex-domains).
+associate is basically:  
+
+- `http://` + `user name` + `.github.io/` + name of the repository.
+
+For instance for Kevin's repo `mapsWithR` a gh-page has been used and its
+URL is http://kevcaz.github.io/mapsWithR. Note that you can also have a specific
+repository for the website associated to your Github account, see https://guides.github.com/features/pages/. That
+was we used for our blog  https://github.com/inSileco/inSileco.github.io (see the
+URL do not follow the URL rule described above). Last but not least, if you
+already own a domain, you can use it, as explained [here](https://help.github.com/articles/about-supported-custom-domains/#apex-domains).
 You will have to deal with your DSN provider though. Kevin used is domain
-`kevincazelles.fr` (see image below) for his personal website now hosted on Github pages (and I
-  (Kevin) would like to thank my friend [Johnathan Lubin](https://www.linkedin.com/in/jonathan-l-48425024/)
- for having handled the DSN properly for me :smile_cat:).
+`kevincazelles.fr` (see image below) for his personal website now hosted on Github pages.
+I (Kevin) would like to thank my friend [Johnathan Lubin](https://www.linkedin.com/in/jonathan-l-48425024/)
+for having handled the DSN properly for me :smile_cat:, *i.e.* for having set the
+[A record](https://wiki.gandi.net/en/dns/zone/a-record) properly on [always data](https://www.alwaysdata.com/en/)
+my DSN provider.
 
 <div style="text-align:center"><img src="setghpage.png" width="75%"></img></div>
+
+<br>
+
+#### See you next post :soon:

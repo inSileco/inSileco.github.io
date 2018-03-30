@@ -17,28 +17,31 @@ output:
 <div id="the-drop-argument-of-the-operator" class="section level2">
 <h2>The <code>drop</code> argument of the <code>[]</code> operator</h2>
 <p>This is something not obvious and poorly known but there is a logical argument<br />
-<code>drop</code> that can be passed to the <code>[]</code> operator and I’ll try to explain why it could be useful! Let’s first create a dataframe with ten rows and three columns:</p>
+<code>drop</code> that can be passed to the <code>[]</code> operator and I’ll try to explain why it
+could be useful! Let’s first create a dataframe with ten rows and three
+columns:</p>
 <pre class="r"><code>df &lt;- data.frame(
   var1 = runif(10),
   var2 = runif(10),
   var3 = runif(10)
 )
 head(df)
-#R&gt;        var1      var2      var3
-#R&gt; 1 0.1912321 0.4260815 0.1421109
-#R&gt; 2 0.8685044 0.7334515 0.2861779
-#R&gt; 3 0.2969487 0.2892985 0.5602096
-#R&gt; 4 0.9371056 0.9865859 0.7831220
-#R&gt; 5 0.3401605 0.4550304 0.6367086
-#R&gt; 6 0.5688279 0.2904751 0.3642491</code></pre>
-<p>To extract the first column, I use the <code>[]</code> operator and either type the number of the column like so:</p>
+#R&gt;         var1      var2       var3
+#R&gt; 1 0.09876419 0.6058819 0.30504116
+#R&gt; 2 0.80504843 0.7437177 0.01303912
+#R&gt; 3 0.60757396 0.7183557 0.54210987
+#R&gt; 4 0.38283221 0.1781357 0.55153146
+#R&gt; 5 0.99780371 0.2969795 0.49755827
+#R&gt; 6 0.99242618 0.4673813 0.29241863</code></pre>
+<p>To extract the first column, I use the <code>[]</code> operator and either type the number
+of the column like so:</p>
 <pre class="r"><code>df[, 1]
-#R&gt;  [1] 0.19123212 0.86850440 0.29694868 0.93710561 0.34016051 0.56882791
-#R&gt;  [7] 0.57055004 0.75535576 0.03390963 0.77626961</code></pre>
+#R&gt;  [1] 0.09876419 0.80504843 0.60757396 0.38283221 0.99780371 0.99242618
+#R&gt;  [7] 0.38290775 0.23273107 0.59650867 0.34567095</code></pre>
 <p>or the name of the column to be extracted:</p>
 <pre class="r"><code>df[, &#39;var1&#39;]
-#R&gt;  [1] 0.19123212 0.86850440 0.29694868 0.93710561 0.34016051 0.56882791
-#R&gt;  [7] 0.57055004 0.75535576 0.03390963 0.77626961</code></pre>
+#R&gt;  [1] 0.09876419 0.80504843 0.60757396 0.38283221 0.99780371 0.99242618
+#R&gt;  [7] 0.38290775 0.23273107 0.59650867 0.34567095</code></pre>
 <p>Interestingly enough, this returns a <strong>vector</strong> not a data.frame</p>
 <pre class="r"><code>class(df)
 #R&gt; [1] &quot;data.frame&quot;
@@ -47,54 +50,67 @@ class(df[, &#39;var1&#39;])
 <p>while if I extract two columns, I have a data frame:</p>
 <pre class="r"><code>class(df[, c(&#39;var1&#39;, &#39;var2&#39;)])
 #R&gt; [1] &quot;data.frame&quot;</code></pre>
-<p>This behavior is actually very useful in many cases as we often are happy to deal with a vector when we extract only one column. However this might become an issue when we do extractions without knowing the number of columns to be extracted beforehand (typically when extracting according to a request that can give any number of columns). In such case if the number is one then we end up with a vector instead of a data.frame. The argument <code>drop</code> provides a work around. By default it is set to <code>TRUE</code> and a 1-column dataframe becomes a vector, but using <code>drop=FALSE</code> prevents this from happening. Let’s try this:</p>
+<p>This behavior is actually very useful in many cases as we often are happy to
+deal with a vector when we extract only one column. However this might become
+an issue when we do extractions without knowing the number of columns
+to be extracted beforehand (typically when extracting according to a request
+that can give any number of columns). In such case if the number is one then
+we end up with a vector instead of a data.frame. The argument <code>drop</code> provides
+a work around. By default it is set to <code>TRUE</code> and a 1-column dataframe becomes
+a vector, but using <code>drop=FALSE</code> prevents this from happening. Let’s try this:</p>
 <pre class="r"><code>df[, 1, drop=FALSE]
 #R&gt;          var1
-#R&gt; 1  0.19123212
-#R&gt; 2  0.86850440
-#R&gt; 3  0.29694868
-#R&gt; 4  0.93710561
-#R&gt; 5  0.34016051
-#R&gt; 6  0.56882791
-#R&gt; 7  0.57055004
-#R&gt; 8  0.75535576
-#R&gt; 9  0.03390963
-#R&gt; 10 0.77626961</code></pre>
+#R&gt; 1  0.09876419
+#R&gt; 2  0.80504843
+#R&gt; 3  0.60757396
+#R&gt; 4  0.38283221
+#R&gt; 5  0.99780371
+#R&gt; 6  0.99242618
+#R&gt; 7  0.38290775
+#R&gt; 8  0.23273107
+#R&gt; 9  0.59650867
+#R&gt; 10 0.34567095</code></pre>
 <p>Let’s check its class:</p>
 <pre class="r"><code>class(df[, 1, drop=FALSE])
 #R&gt; [1] &quot;data.frame&quot;</code></pre>
-<p>You can actually obtain the same result using the name of the column or its number without comma.</p>
+<p>You can actually obtain the same result using the name of the column or its
+number without comma.</p>
 <pre class="r"><code>df[1]
 #R&gt;          var1
-#R&gt; 1  0.19123212
-#R&gt; 2  0.86850440
-#R&gt; 3  0.29694868
-#R&gt; 4  0.93710561
-#R&gt; 5  0.34016051
-#R&gt; 6  0.56882791
-#R&gt; 7  0.57055004
-#R&gt; 8  0.75535576
-#R&gt; 9  0.03390963
-#R&gt; 10 0.77626961</code></pre>
+#R&gt; 1  0.09876419
+#R&gt; 2  0.80504843
+#R&gt; 3  0.60757396
+#R&gt; 4  0.38283221
+#R&gt; 5  0.99780371
+#R&gt; 6  0.99242618
+#R&gt; 7  0.38290775
+#R&gt; 8  0.23273107
+#R&gt; 9  0.59650867
+#R&gt; 10 0.34567095</code></pre>
 <p>But if you need a specific selection of rows, you better use <code>drop</code>!</p>
 <pre class="r"><code>df[2:5, 1, drop=F]
 #R&gt;        var1
-#R&gt; 2 0.8685044
-#R&gt; 3 0.2969487
-#R&gt; 4 0.9371056
-#R&gt; 5 0.3401605</code></pre>
+#R&gt; 2 0.8050484
+#R&gt; 3 0.6075740
+#R&gt; 4 0.3828322
+#R&gt; 5 0.9978037</code></pre>
 <p>Now you know ;-)</p>
 <p><br></p>
 </div>
 <div id="get-the-citation-of-a-package" class="section level2">
 <h2>Get the citation of a package</h2>
-<p>Many researchers (it is especially TRUE in ecology) uses R and write paper and carry out analyses using R for their research. One cones the time of citing the package I guess they wonder how to cite the package. However authors of package actually provides this information in their package! Let’s have a look of the reference for the package <code>knitr</code> as of version 1.17 using function <code>citation</code></p>
+<p>Many researchers (it is especially TRUE in ecology) uses R and write paper and
+carry out analyses using R for their research. One cones the time of citing the
+package I guess they wonder how to cite the package. However authors of
+package actually provides this information in their package! Let’s have a look
+of the reference for the package <code>knitr</code> as of version 1.17 using function
+<code>citation</code></p>
 <pre class="r"><code>citation(&quot;knitr&quot;)
 #R&gt; 
 #R&gt; To cite the &#39;knitr&#39; package in publications use:
 #R&gt; 
-#R&gt;   Yihui Xie (2017). knitr: A General-Purpose Package for Dynamic
-#R&gt;   Report Generation in R. R package version 1.18.
+#R&gt;   Yihui Xie (2018). knitr: A General-Purpose Package for Dynamic
+#R&gt;   Report Generation in R. R package version 1.20.
 #R&gt; 
 #R&gt;   Yihui Xie (2015) Dynamic Documents with R and knitr. 2nd
 #R&gt;   edition. Chapman and Hall/CRC. ISBN 978-1498716963
@@ -107,13 +123,14 @@ class(df[, &#39;var1&#39;])
 #R&gt; To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;,
 #R&gt; bibtex=TRUE)&#39;, &#39;toBibtex(.)&#39;, or set
 #R&gt; &#39;options(citation.bibtex.max=999)&#39;.</code></pre>
-<p>As suggested in the message, we can even retrieve a reference list in bibtex format with the <code>toBibtex</code> function, let’s do this:</p>
+<p>As suggested in the message, we can even retrieve a reference list in bibtex
+format with the <code>toBibtex</code> function, let’s do this:</p>
 <pre class="r"><code>toBibtex(citation(&quot;knitr&quot;))
 #R&gt; @Manual{,
 #R&gt;   title = {knitr: A General-Purpose Package for Dynamic Report Generation in R},
 #R&gt;   author = {Yihui Xie},
-#R&gt;   year = {2017},
-#R&gt;   note = {R package version 1.18},
+#R&gt;   year = {2018},
+#R&gt;   note = {R package version 1.20},
 #R&gt;   url = {https://yihui.name/knitr/},
 #R&gt; }
 #R&gt; 
@@ -138,14 +155,21 @@ class(df[, &#39;var1&#39;])
 #R&gt;   note = {ISBN 978-1466561595},
 #R&gt;   url = {http://www.crcpress.com/product/isbn/9781466561595},
 #R&gt; }</code></pre>
-<p>Even if you are no a Latex user, this could be very helpful as this file can be read by references manager softwares such as <a href="https://www.zotero.org/">Zotero</a>. So now let’s say I use the following command line:</p>
+<p>Even if you are no a Latex user, this could be very helpful as this file
+can be read by references manager softwares such as <a href="https://www.zotero.org/">Zotero</a>.
+So now let’s say I use the following command line:</p>
 <pre class="r"><code>cat(toBibtex(citation(&quot;knitr&quot;)), file=&#39;biblio.bib&#39;, sep=&#39;\n&#39;)</code></pre>
-<p>Then the <code>biblio.bib</code> file just created can be imported in you favorite references manager softwares.</p>
+<p>Then the <code>biblio.bib</code> file just created can be imported in you favorite
+references manager softwares.</p>
 <p><br></p>
 </div>
 <div id="using-namespace" class="section level2">
 <h2>Using namespace</h2>
-<p>In R, functions are stored in packages and adding a package is like adding a collection of functions. As you get more experienced with R you likely know and use more and more packages. You might even come to the point where you have functions that have the same name but originate from different package. If not, let me show you something:</p>
+<p>In R, functions are stored in packages and adding a package is like adding
+a collection of functions. As you get more experienced with R you likely
+know and use more and more packages. You might even come to the point
+where you have functions that have the same name but originate from different package.
+If not, let me show you something:</p>
 <pre class="r"><code>library(magrittr)
 df &lt;- data.frame(
   var1 = runif(10),
@@ -153,48 +177,78 @@ df &lt;- data.frame(
   )
 extract(df, &#39;var1&#39;)
 #R&gt;         var1
-#R&gt; 1  0.6110885
-#R&gt; 2  0.6991817
-#R&gt; 3  0.6344619
-#R&gt; 4  0.6494529
-#R&gt; 5  0.3196661
-#R&gt; 6  0.9600946
-#R&gt; 7  0.1759545
-#R&gt; 8  0.8919520
-#R&gt; 9  0.2541443
-#R&gt; 10 0.6866175</code></pre>
-<p>Here I use the function <code>extract()</code> from the magrittr package that act as <code>[]</code> and I extract the column <code>var1</code> from <code>df</code>. This function is actually designed to be use with pipes (if this sounds weird, have a look at the <a href="http://magrittr.tidyverse.org/">magrittr</a> package), for instance when piping you can write <code>df %$% extract(var1)</code> or even <code>df %&gt;% '['('var1')</code> and this will do the same. So far, so good. Now I load the <a href="https://cran.r-project.org/web/packages/raster/index.html">raster</a> package:</p>
+#R&gt; 1  0.7165401
+#R&gt; 2  0.1990046
+#R&gt; 3  0.4424000
+#R&gt; 4  0.4360524
+#R&gt; 5  0.4034303
+#R&gt; 6  0.3283211
+#R&gt; 7  0.3590873
+#R&gt; 8  0.7868476
+#R&gt; 9  0.2820782
+#R&gt; 10 0.9474739</code></pre>
+<p>Here I use the function <code>extract()</code> from the magrittr package that act as <code>[]</code>
+and I extract the column <code>var1</code> from <code>df</code>. This function is actually designed
+to be use with pipes (if this sounds weird, have a look at the
+<a href="http://magrittr.tidyverse.org/">magrittr</a> package), for instance when piping
+you can write <code>df %$% extract(var1)</code> or even <code>df %&gt;% '['('var1')</code> and this will
+do the same. So far, so good. Now I load the
+<a href="https://cran.r-project.org/web/packages/raster/index.html">raster</a> package:</p>
 <pre class="r"><code>library(raster)
-#R&gt; Le chargement a nécessité le package : sp
+#R&gt; Loading required package: sp
 #R&gt; 
-#R&gt; Attachement du package : &#39;raster&#39;
+#R&gt; Attaching package: &#39;sp&#39;
+#R&gt; The following object is masked from &#39;package:graphicsutils&#39;:
+#R&gt; 
+#R&gt;     compassRose
+#R&gt; 
+#R&gt; Attaching package: &#39;raster&#39;
 #R&gt; The following object is masked from &#39;package:magrittr&#39;:
 #R&gt; 
 #R&gt;     extract</code></pre>
 <p>and try the same extraction.</p>
 <pre class="r"><code>extract(df, &#39;var1&#39;)
 #R&gt; Error in (function (classes, fdef, mtable) : unable to find an inherited method for function &#39;extract&#39; for signature &#39;&quot;data.frame&quot;, &quot;character&quot;&#39;</code></pre>
-<p>It does not work…Why?? Briefly, <code>extract()</code> from <code>raster</code> is now called (this was the warning message on load said) and it does not get well with data.frame (this is the meaning of the error message). To overcome this you can use a explicit namespace. To do so you put the names of the package followed by <code>::</code>, this is basically the unique identifier of the function. Indeed, within a specific package, functions have different names and on CRAN packages must have different names, so the combination of the two is unique (this holds true if you only package from the CRAN). Let’s use it:</p>
+<p>It does not work…Why?? Briefly, <code>extract()</code> from <code>raster</code> is now called (this
+was the warning message on load said) and it does not get well with data.frame
+(this is the meaning of the error message). To overcome this you can use a
+explicit namespace. To do so you put the names of the package followed by <code>::</code>,
+this is basically the unique identifier of the function. Indeed, within a
+specific package, functions have different names and on CRAN packages must have
+different names, so the combination of the two is unique (this holds true if you
+only package from the CRAN). Let’s use it:</p>
 <pre class="r"><code>magrittr::extract(df, &#39;var1&#39;)
 #R&gt;         var1
-#R&gt; 1  0.6110885
-#R&gt; 2  0.6991817
-#R&gt; 3  0.6344619
-#R&gt; 4  0.6494529
-#R&gt; 5  0.3196661
-#R&gt; 6  0.9600946
-#R&gt; 7  0.1759545
-#R&gt; 8  0.8919520
-#R&gt; 9  0.2541443
-#R&gt; 10 0.6866175</code></pre>
-<p>Using this is also very helpful when you develop a package and functions from different packages. Even if you script and use a large number of function from various packages, it could be better to remember from which package functions come from. Finally, note that this is not R specific at all, actually this something very common in programming languages.</p>
+#R&gt; 1  0.7165401
+#R&gt; 2  0.1990046
+#R&gt; 3  0.4424000
+#R&gt; 4  0.4360524
+#R&gt; 5  0.4034303
+#R&gt; 6  0.3283211
+#R&gt; 7  0.3590873
+#R&gt; 8  0.7868476
+#R&gt; 9  0.2820782
+#R&gt; 10 0.9474739</code></pre>
+<p>Using this is also very helpful when you develop a package and functions from
+different packages. Even if you script and use a large number
+of function from various packages, it could be better to remember
+from which package functions come from. Finally, note that this is not R specific
+at all, actually this something very common in programming languages.</p>
 <p><br></p>
 </div>
 <div id="how-to-use-non-exported-functions" class="section level2">
 <h2>How to use non-exported functions?</h2>
-<p>Packages often contain functions that are not exported. There are often functions called by the functions exported thats helps structuring the code of the package. However, it happens that when you try to understand how a package work you may want to spend some time understanding how they do work (especially given that they are nit documented). There is actually a way to call them! Instead of using tow colons (<code>:</code>), use three! Let’s have a look to the code of one of this function from the <code>knitr</code> package (again version 1.17):</p>
+<p>Packages often contain functions that are not exported. There are often functions
+called by the functions exported thats helps structuring the code of the package.
+However, it happens that when you try to understand how a package work you may
+want to spend some time understanding how they do work (especially given that
+they are nit documented). There is actually a way to call them! Instead of using
+tow colons (<code>:</code>), use three! Let’s have a look to the code of one of this function
+from the <code>knitr</code> package (again version 1.17):</p>
 <pre><code>knitr:::.color.block</code></pre>
-<p>Interesting, isn’t it! To give you an idea about how frequent this can be, in this packages there are 103 exported functions and 425 not-exported. Below are presented few examples of exported functions followed by not-exported ones.</p>
+<p>Interesting, isn’t it! To give you an idea about how frequent this can be, in
+this packages there are 103 exported functions and 425 not-exported. Below
+are presented few examples of exported functions followed by not-exported ones.</p>
 <pre class="r"><code>##------------------------ Exported functions
 ## knitr::pat_rnw             knitr::fig_path            knitr::all_patterns
 ## knitr::fig_chunk           knitr::clean_cache         knitr::kable
@@ -223,25 +277,29 @@ extract(df, &#39;var1&#39;)
 ## knitr:::.header.sweave.cmd         knitr:::knit_print
 ## knitr:::.img.attr                  knitr:::knit_print.default
 ##------------------------ (28/425 displayed)</code></pre>
-<p>I think that this could be very helpful when you want to understand exactly how a package works!</p>
+<p>I think that this could be very helpful when you want to understand exactly
+how a package works!</p>
 <p><br></p>
 </div>
 <div id="the-las-argument-of-par" class="section level2">
 <h2>The <code>las</code> argument of <code>par()</code></h2>
-<p>I really enjoy using <code>graphics</code> to create plots in R. That being said the default values always puzzles me! One I specially dislike is that values on the y-axis are perpendicular…</p>
+<p>I really enjoy using <code>graphics</code> to create plots in R. That being said the default
+values always puzzles me! One I specially dislike is that values on the y-axis
+are perpendicular…</p>
 <pre class="r"><code>vec &lt;- runif(10)
 plot(vec)</code></pre>
-<p><img src="/post/trick_or_tips002_files/figure-html/las0-1.svg" width="384" style="display: block; margin: auto;" /></p>
-<p>Fortunately this can readily be changed using the the <code>las</code> argument of the <code>par()</code> function which can take 3 values: 0 (default), 1 or 2. Let’s plot and see the differences:</p>
+<p><img src="/rmarkdown-libs/figure-html4/las0-1.svg" width="384" style="display: block; margin: auto;" /></p>
+<p>Fortunately this can readily be changed using the the <code>las</code> argument of the
+<code>par()</code> function which can take 3 values: 0 (default), 1 or 2. Let’s plot
+and see the differences:</p>
 <pre class="r"><code>par(mfrow=c(1,3), las=0)
 plot(vec, main=&#39;las=0 (default)&#39;)
 par(las=1)
 plot(vec, main=&#39;las=1&#39;)
 par(las=2)
 plot(vec, main=&#39;las=2&#39;)</code></pre>
-<p><img src="/post/trick_or_tips002_files/figure-html/las-1.svg" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/rmarkdown-libs/figure-html4/las-1.svg" width="960" style="display: block; margin: auto;" /></p>
 <p>So, I personally prefer and use <code>las=1</code>!</p>
 <p><br></p>
 <p><strong>That’s all for number 2 of this series, see you for the next tips!</strong></p>
-<p><br><br></p>
 </div>

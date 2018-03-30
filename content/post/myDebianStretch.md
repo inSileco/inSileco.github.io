@@ -402,5 +402,3 @@ very carefully!
 </br>
 
 ### :arrow_right: **SEE YOU NEXT POST!!** :boom:
-
-</br>
