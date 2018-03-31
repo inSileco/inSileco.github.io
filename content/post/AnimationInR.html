@@ -3,6 +3,7 @@ title: "Animations in R: Time series of erythemal irradiance in the St. Lawrence
 author: [david, kevin]
 date: 2017-07-05
 tags: [R, plot, animation, NASA, radiation, St. Lawrence]
+rpkgs: [animation, magrittr, graphics, plyr, raster]
 tweet: "Animations in R: Time series of erythemal irradiance in the St. Lawrence"
 draft: false
 output:
@@ -41,7 +42,8 @@ output:
 </div>
 <div id="data" class="section level2">
 <h2>Data</h2>
-<p>There is a incredible amount of data available on the <a href="https://disc.gsfc.nasa.gov/uui/datasets?keywords=%22Aura%20OMI%22">NASA website</a>. For this post, we downloaded all available data from NASA’s Ozone Monitoring Instrument (OMI) aboard the Earth Observing System’s (EOS) Aura satellite. More specifically, we used <a href="https://disc.gsfc.nasa.gov/uui/datasets/OMUVBG_V003/summary?keywords=%22Aura%20OMI%22">OMI/Aura Surface UVB Irradiance and Erythemal Dose Daily at a scale of 0.25 x 0.25 degree</a> and selected the daily erythemal irradiance (mW/m<sup>2</sup>), <em>i.e.</em> the potentially harmful range of UV radiations, from October 1<sup>st</sup> 2004 to April 5<sup>th</sup> 2017. We then selected only the years with 12 months worth of data to create the following figures, <em>i.e.</em> from January 1<sup>st</sup> 2005 to December 31<sup>st</sup> 2016. <!-- The resulting dataset is available here in the [letiR github page](https://github.com/letiR/letir.github.io/blob/master/assets/AnimationInR/MonthOMI.rds). --></p>
+<p>There is a incredible amount of data available on the <a href="https://disc.gsfc.nasa.gov/uui/datasets?keywords=%22Aura%20OMI%22">NASA website</a>. For this post, we downloaded all available data from NASA’s Ozone Monitoring Instrument (OMI) aboard the Earth Observing System’s (EOS) Aura satellite. More specifically, we used <a href="https://disc.gsfc.nasa.gov/uui/datasets/OMUVBG_V003/summary?keywords=%22Aura%20OMI%22">OMI/Aura Surface UVB Irradiance and Erythemal Dose Daily at a scale of 0.25 x 0.25 degree</a> and selected the daily erythemal irradiance (mW/m<sup>2</sup>), <em>i.e.</em> the potentially harmful range of UV radiations, from October 1<sup>st</sup> 2004 to April 5<sup>th</sup> 2017. We then selected only the years with 12 months worth of data to create the following figures, <em>i.e.</em> from January 1<sup>st</sup> 2005 to December 31<sup>st</sup> 2016.
+<!-- The resulting dataset is available here in the [letiR github page](https://github.com/letiR/letir.github.io/blob/master/assets/AnimationInR/MonthOMI.rds). --></p>
 <p>The maps generated in this post require the user to load <a href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_ocean.zip"><code>ocean</code></a> shapefile from <a href="http://www.naturalearthdata.com/">Natural Earth</a>.</p>
 <p><br/></p>
 <pre class="r"><code># UV data
@@ -54,7 +56,7 @@ output:
   ocean &lt;- readOGR(dsn = &quot;../../static/assets/AnimationInR/shpfile/&quot;, layer = &quot;ne_10m_ocean&quot;) %&gt;%
              spTransform(CRSobj = CRS(spatProj))
 #R&gt; OGR data source with driver: ESRI Shapefile 
-#R&gt; Source: &quot;/home/local/USHERBROOKE/viss2501/Documents/Git/inSileco.github.io/static/assets/AnimationInR/shpfile&quot;, layer: &quot;ne_10m_ocean&quot;
+#R&gt; Source: &quot;/home/kevcaz/Github/Websites/inSileco.github.io/static/assets/AnimationInR/shpfile&quot;, layer: &quot;ne_10m_ocean&quot;
 #R&gt; with 1 features
 #R&gt; It has 2 fields
 
@@ -170,10 +172,7 @@ saveGIF({
     }
 }, movie.name = &quot;UVanimate.gif&quot;)</code></pre>
 <p><br/></p>
-<div class="figure">
-<img src="/img/UVanimate.gif" style="width:95.0%" />
-
-</div>
+<p><img src="/img/UVanimate.gif" style="width:95.0%" /></p>
 <p><br/></p>
 </div>
 <div id="concluding-remarks" class="section level2">

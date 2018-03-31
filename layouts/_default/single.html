@@ -22,6 +22,8 @@
 
     <p>{{ range .Params.tags }} <a href="/tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}</p>
 
+    <p> <img src = "/img/Rlogo.svg", width=25></img> &nbsp; {{ range .Params.rpkgs }} <a href="/rpkgs/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}</p>
+
 
     {{ if .Params.author }}
       <p style = "font-size: 1.6em; margin-top: 20px"> <i class="fa fa-pencil" aria-hidden="true"></i>

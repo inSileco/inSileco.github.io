@@ -3,6 +3,7 @@ title: Trick or Tips 003 {R}
 author: [kevin, david]
 date: 2018-02-11
 tags: [R, tips, trickortips]
+rpkgs: [base, utils, graphics]
 tweet: Third post of the 'Trick or Tips' series
 draft: false
 output:
@@ -16,7 +17,8 @@ output:
 <p><br></p>
 <div id="the-apropos-function" class="section level2">
 <h2>The <code>apropos()</code> function</h2>
-<p>A powerful way to look for a function you can barely remember the name of directly in R, <em>i.e</em> without googling!</p>
+<p>A powerful way to look for a function you can barely remember the name of
+directly in R, <em>i.e</em> without googling!</p>
 <pre class="r"><code>apropos(&#39;Sys&#39;)
 #R&gt;  [1] &quot;.First.sys&quot;       &quot;R_system_version&quot; &quot;sys.call&quot;        
 #R&gt;  [4] &quot;sys.calls&quot;        &quot;Sys.chmod&quot;        &quot;Sys.Date&quot;        
@@ -27,10 +29,10 @@ output:
 #R&gt; [19] &quot;sys.parent&quot;       &quot;sys.parents&quot;      &quot;Sys.readlink&quot;    
 #R&gt; [22] &quot;sys.save.image&quot;   &quot;Sys.setenv&quot;       &quot;Sys.setFileTime&quot; 
 #R&gt; [25] &quot;Sys.setlocale&quot;    &quot;Sys.sleep&quot;        &quot;sys.source&quot;      
-#R&gt; [28] &quot;sys.status&quot;       &quot;system&quot;           &quot;system2&quot;         
-#R&gt; [31] &quot;system.file&quot;      &quot;system.time&quot;      &quot;Sys.time&quot;        
-#R&gt; [34] &quot;Sys.timezone&quot;     &quot;Sys.umask&quot;        &quot;Sys.unsetenv&quot;    
-#R&gt; [37] &quot;Sys.which&quot;</code></pre>
+#R&gt; [28] &quot;sys.status&quot;       &quot;Sys.time&quot;         &quot;Sys.timezone&quot;    
+#R&gt; [31] &quot;Sys.umask&quot;        &quot;Sys.unsetenv&quot;     &quot;Sys.which&quot;       
+#R&gt; [34] &quot;system&quot;           &quot;system_check&quot;     &quot;system_output&quot;   
+#R&gt; [37] &quot;system.file&quot;      &quot;system.time&quot;      &quot;system2&quot;</code></pre>
 <p>You can also take advantage of regular expressions to narrow down you research:</p>
 <pre class="r"><code>apropos(&#39;^Sys&#39;)
 #R&gt;  [1] &quot;sys.call&quot;        &quot;sys.calls&quot;       &quot;Sys.chmod&quot;      
@@ -41,10 +43,11 @@ output:
 #R&gt; [16] &quot;sys.on.exit&quot;     &quot;sys.parent&quot;      &quot;sys.parents&quot;    
 #R&gt; [19] &quot;Sys.readlink&quot;    &quot;sys.save.image&quot;  &quot;Sys.setenv&quot;     
 #R&gt; [22] &quot;Sys.setFileTime&quot; &quot;Sys.setlocale&quot;   &quot;Sys.sleep&quot;      
-#R&gt; [25] &quot;sys.source&quot;      &quot;sys.status&quot;      &quot;system&quot;         
-#R&gt; [28] &quot;system2&quot;         &quot;system.file&quot;     &quot;system.time&quot;    
-#R&gt; [31] &quot;Sys.time&quot;        &quot;Sys.timezone&quot;    &quot;Sys.umask&quot;      
-#R&gt; [34] &quot;Sys.unsetenv&quot;    &quot;Sys.which&quot;</code></pre>
+#R&gt; [25] &quot;sys.source&quot;      &quot;sys.status&quot;      &quot;Sys.time&quot;       
+#R&gt; [28] &quot;Sys.timezone&quot;    &quot;Sys.umask&quot;       &quot;Sys.unsetenv&quot;   
+#R&gt; [31] &quot;Sys.which&quot;       &quot;system&quot;          &quot;system_check&quot;   
+#R&gt; [34] &quot;system_output&quot;   &quot;system.file&quot;     &quot;system.time&quot;    
+#R&gt; [37] &quot;system2&quot;</code></pre>
 <p>Or even better:</p>
 <pre class="r"><code>apropos(&#39;^Sys.*time$&#39;, ignore.case = FALSE)
 #R&gt; [1] &quot;Sys.time&quot;</code></pre>
@@ -52,23 +55,27 @@ output:
 </div>
 <div id="the-table-function" class="section level2">
 <h2>The <code>table()</code> function</h2>
-<p>Oftentimes we wish to extract the frequency of certain elements in a dataset. There is a very useful function that allows us to achieve this quite efficiently: <code>table()</code>. Let’s see how this works:</p>
+<p>Oftentimes we wish to extract the frequency of certain elements in a dataset.
+There is a very useful function that allows us to achieve this quite efficiently:
+<code>table()</code>. Let’s see how this works:</p>
 <pre class="r"><code>df &lt;- data.frame(data = sample(1:5, 20, replace = T))
 table(df$data)
 #R&gt; 
-#R&gt; 1 2 3 5 
-#R&gt; 7 3 5 5</code></pre>
-<p>You can also get the frequency for a data.frame with multiple columns. For example, if you observed species at a site throughout multiple years and wanted to know the frequency of observations per species per year:</p>
+#R&gt; 1 2 3 4 5 
+#R&gt; 3 6 2 5 4</code></pre>
+<p>You can also get the frequency for a data.frame with multiple columns. For example,
+if you observed species at a site throughout multiple years and wanted to know
+the frequency of observations per species per year:</p>
 <pre class="r"><code>df &lt;- data.frame(observations = paste0(&#39;species&#39;, sample(1:5, 50, replace = T)),
                  year = sort(sample(2015:2018, 50, replace = T)))
 table(df)
 #R&gt;             year
 #R&gt; observations 2015 2016 2017 2018
-#R&gt;     species1    0    4    1    4
-#R&gt;     species2    1    5    2    1
-#R&gt;     species3    4    3    1    3
-#R&gt;     species4    1    0    3    3
-#R&gt;     species5    1    2    5    6</code></pre>
+#R&gt;     species1    3    1    2    4
+#R&gt;     species2    4    3    4    1
+#R&gt;     species3    7    2    3    4
+#R&gt;     species4    2    3    1    3
+#R&gt;     species5    0    1    1    1</code></pre>
 <p>You can actually do so for more than two columns.</p>
 <pre class="r"><code>df$atr1 &lt;- rep(c(&quot;val1&quot;, &quot;val2&quot;), each = 25)
 tb &lt;- table(df)
@@ -77,56 +84,61 @@ tb
 #R&gt; 
 #R&gt;             year
 #R&gt; observations 2015 2016 2017 2018
-#R&gt;     species1    0    4    1    0
-#R&gt;     species2    1    5    0    0
-#R&gt;     species3    4    3    1    0
-#R&gt;     species4    1    0    0    0
-#R&gt;     species5    1    2    2    0
+#R&gt;     species1    3    0    0    0
+#R&gt;     species2    4    3    0    0
+#R&gt;     species3    7    2    0    0
+#R&gt;     species4    2    3    0    0
+#R&gt;     species5    0    1    0    0
 #R&gt; 
 #R&gt; , , atr1 = val2
 #R&gt; 
 #R&gt;             year
 #R&gt; observations 2015 2016 2017 2018
-#R&gt;     species1    0    0    0    4
-#R&gt;     species2    0    0    2    1
-#R&gt;     species3    0    0    0    3
-#R&gt;     species4    0    0    3    3
-#R&gt;     species5    0    0    3    6</code></pre>
+#R&gt;     species1    0    1    2    4
+#R&gt;     species2    0    0    4    1
+#R&gt;     species3    0    0    3    4
+#R&gt;     species4    0    0    1    3
+#R&gt;     species5    0    0    1    1</code></pre>
 <p>As you can see, in such case, you will have to deal with arrays:</p>
 <pre class="r"><code>tb[, , 1]
 #R&gt;             year
 #R&gt; observations 2015 2016 2017 2018
-#R&gt;     species1    0    4    1    0
-#R&gt;     species2    1    5    0    0
-#R&gt;     species3    4    3    1    0
-#R&gt;     species4    1    0    0    0
-#R&gt;     species5    1    2    2    0</code></pre>
-<p>With further development and by combining <code>table()</code> with <code>paste0()</code> (see <a href="https://insileco.github.io/2017/06/30/trick-or-tips-001-r/">fish and tips 001</a> for an explanation of this useful function!), you can create your desired data.frame:</p>
+#R&gt;     species1    3    0    0    0
+#R&gt;     species2    4    3    0    0
+#R&gt;     species3    7    2    0    0
+#R&gt;     species4    2    3    0    0
+#R&gt;     species5    0    1    0    0</code></pre>
+<p>With further development and by combining <code>table()</code> with <code>paste0()</code> (see
+<a href="https://insileco.github.io/2017/06/30/trick-or-tips-001-r/">fish and tips 001</a>
+for an explanation of this useful function!), you can create your desired data.frame:</p>
 <pre class="r"><code>as.data.frame(table(paste0(df$year,&#39;_&#39;,df$observations)))
 #R&gt;             Var1 Freq
-#R&gt; 1  2015_species2    1
-#R&gt; 2  2015_species3    4
-#R&gt; 3  2015_species4    1
-#R&gt; 4  2015_species5    1
-#R&gt; 5  2016_species1    4
-#R&gt; 6  2016_species2    5
-#R&gt; 7  2016_species3    3
-#R&gt; 8  2016_species5    2
-#R&gt; 9  2017_species1    1
-#R&gt; 10 2017_species2    2
-#R&gt; 11 2017_species3    1
-#R&gt; 12 2017_species4    3
-#R&gt; 13 2017_species5    5
-#R&gt; 14 2018_species1    4
-#R&gt; 15 2018_species2    1
-#R&gt; 16 2018_species3    3
-#R&gt; 17 2018_species4    3
-#R&gt; 18 2018_species5    6</code></pre>
+#R&gt; 1  2015_species1    3
+#R&gt; 2  2015_species2    4
+#R&gt; 3  2015_species3    7
+#R&gt; 4  2015_species4    2
+#R&gt; 5  2016_species1    1
+#R&gt; 6  2016_species2    3
+#R&gt; 7  2016_species3    2
+#R&gt; 8  2016_species4    3
+#R&gt; 9  2016_species5    1
+#R&gt; 10 2017_species1    2
+#R&gt; 11 2017_species2    4
+#R&gt; 12 2017_species3    3
+#R&gt; 13 2017_species4    1
+#R&gt; 14 2017_species5    1
+#R&gt; 15 2018_species1    4
+#R&gt; 16 2018_species2    1
+#R&gt; 17 2018_species3    4
+#R&gt; 18 2018_species4    3
+#R&gt; 19 2018_species5    1</code></pre>
 <p><br></p>
 </div>
 <div id="everything-but-0" class="section level2">
 <h2>Everything but 0</h2>
-<p>This is a well-known trick for developers that may be useful for many beginners. In R when performing a logical test, every numeric is considered as <code>TRUE</code> but <code>0</code> (which is <code>FALSE</code>):</p>
+<p>This is a well-known trick for developers that may be useful for many beginners.
+In R when performing a logical test, every numeric is considered as <code>TRUE</code> but
+<code>0</code> (which is <code>FALSE</code>):</p>
 <pre class="r"><code>0 == FALSE
 !0
 !1
@@ -135,7 +147,8 @@ tb
 #R&gt; [1] TRUE
 #R&gt; [1] FALSE
 #R&gt; [1] FALSE</code></pre>
-<p>This can actually be very helpful, for instance when we are testing whether or not a vector is empty!</p>
+<p>This can actually be very helpful, for instance when we are testing whether
+or not a vector is empty!</p>
 <pre class="r"><code>vec0 &lt;- 1:7
 vec1 &lt;- vec0[vec0&gt;5]
 vec2 &lt;- vec0[vec0&gt;7]
@@ -147,7 +160,8 @@ vec2 &lt;- vec0[vec0&gt;7]
 </div>
 <div id="expand.grid-vs.combn" class="section level2">
 <h2><code>expand.grid()</code> vs.<code>combn()</code></h2>
-<p>If you often create empty data.frame, you are very likely already familiar with the <code>expand.grid()</code> function:</p>
+<p>If you often create empty data.frame, you are very likely already familiar
+with the <code>expand.grid()</code> function:</p>
 <pre class="r"><code>expand.grid(LETTERS[1:4], LETTERS[5:6])
 #R&gt;   Var1 Var2
 #R&gt; 1    A    E
@@ -158,7 +172,9 @@ vec2 &lt;- vec0[vec0&gt;7]
 #R&gt; 6    B    F
 #R&gt; 7    C    F
 #R&gt; 8    D    F</code></pre>
-<p>But if you are looking for unique combinations (think about all combinations of games in a tournament of four team), you may feel that <code>expand.grid()</code> is not what you need:</p>
+<p>But if you are looking for unique combinations (think about all combinations of
+games in a tournament of four team), you may feel that <code>expand.grid()</code> is not
+what you need:</p>
 <pre class="r"><code>expand.grid(LETTERS[1:4], LETTERS[1:4])
 #R&gt;    Var1 Var2
 #R&gt; 1     A    A
@@ -182,7 +198,8 @@ vec2 &lt;- vec0[vec0&gt;7]
 #R&gt;      [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10]
 #R&gt; [1,] &quot;A&quot;  &quot;A&quot;  &quot;A&quot;  &quot;A&quot;  &quot;B&quot;  &quot;B&quot;  &quot;B&quot;  &quot;C&quot;  &quot;C&quot;  &quot;D&quot;  
 #R&gt; [2,] &quot;B&quot;  &quot;C&quot;  &quot;D&quot;  &quot;E&quot;  &quot;C&quot;  &quot;D&quot;  &quot;E&quot;  &quot;D&quot;  &quot;E&quot;  &quot;E&quot;</code></pre>
-<p>As you can see you need to specify the number of elements in the combination as <code>combn</code> can compute all combination</p>
+<p>As you can see you need to specify the number of elements in the combination as
+<code>combn</code> can compute all combination</p>
 <pre class="r"><code>combn(LETTERS[1:5], 4)
 #R&gt;      [,1] [,2] [,3] [,4] [,5]
 #R&gt; [1,] &quot;A&quot;  &quot;A&quot;  &quot;A&quot;  &quot;A&quot;  &quot;B&quot; 
@@ -206,7 +223,9 @@ vec2 &lt;- vec0[vec0&gt;7]
 </div>
 <div id="writing-outside-the-margins" class="section level2">
 <h2>Writing outside the margins</h2>
-<p>If you are always thinking outside the box you may want to learn how to plot something outside the margins! This is possible using the <code>xpd</code> parameter of the <code>par()</code> function.</p>
+<p>If you are always thinking outside the box you may want to learn how to plot
+something outside the margins! This is possible using the <code>xpd</code> parameter of
+the <code>par()</code> function.</p>
 <pre class="r"><code>par(mfrow = c(1, 2))
 plot(c(0, 2), c(0, 2))
 lines(c(-1,3), c(1,1), lwd = 4)
@@ -214,7 +233,7 @@ lines(c(-1,3), c(1,1), lwd = 4)
 par(xpd = TRUE)
 plot(c(0, 2), c(0, 2))
 lines(c(-1,3), c(1,1), lwd = 4)</code></pre>
-<p><img src="/post/trick_or_tips003_files/figure-html/xpd2-1.svg" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/rmarkdown-libs/figure-html4/xpd2-1.svg" width="672" style="display: block; margin: auto;" /></p>
 <p><br></p>
 <div id="see-you-next-post-post" class="section level3">
 <h3>See you next post post!</h3>

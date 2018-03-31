@@ -3,6 +3,7 @@ title: "Animations in R: Time series of erythemal irradiance in the St. Lawrence
 author: [david, kevin]
 date: 2017-07-05
 tags: [R, plot, animation, NASA, radiation, St. Lawrence]
+rpkgs: [animation, magrittr, graphics, plyr, raster]
 tweet: "Animations in R: Time series of erythemal irradiance in the St. Lawrence"
 draft: false
 output:
@@ -20,10 +21,10 @@ source('../../static/Rscript/codeChunkSetUp.R')
 
 ```{r, include = FALSE}
 rm(list=ls())
-library(raster)
-library(magrittr)
-library(plyr)
 library(animation)
+library(magrittr)
+library(raster)
+library(plyr)
 library(rgdal)
 ```
 
