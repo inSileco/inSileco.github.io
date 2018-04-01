@@ -20,9 +20,11 @@
 
     <h5>{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</h5>
 
-    <p>{{ range .Params.tags }} <a href="/tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}</p>
+    <p> <i class="fa fa-tags" aria-hidden="true"></i> &nbsp; {{ range .Params.tags }} <a href="/tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}</p>
 
+    {{ if .Params.rpkgs }}
     <p> <img src = "/img/Rlogo.svg", width=25></img> &nbsp; {{ range .Params.rpkgs }} <a href="/rpkgs/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}</p>
+    {{ end }}
 
 
     {{ if .Params.author }}
