@@ -1,8 +1,9 @@
 ---
 title: R in Space - Spatial Objects in R
 author: [david, marieh, nicolas, kevin, elliot, steve]
-tags: [R in Space, R, Spatial]
 date: 2018-04-03
+tags: [R in Space, R, Spatial]
+rpkgs: [sp, sf, raster]
 draft: true
 tweet: "R in Space - Spatial Objects in R"
 estime: 10
@@ -15,10 +16,12 @@ output:
 
 
 <p><img src="https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg" /></p>
-<div id="package-sp" class="section level2">
-<h2>Package <code>sp</code></h2>
-<div id="classes" class="section level3">
-<h3>Classes</h3>
+<div id="vector-object-in-r" class="section level2">
+<h2>vector object in R</h2>
+<div id="package-sp" class="section level3">
+<h3>Package <code>sp</code></h3>
+<div id="classes" class="section level4">
+<h4>Classes</h4>
 <table>
 <thead>
 <tr class="header">
@@ -57,11 +60,181 @@ output:
 </tr>
 </tbody>
 </table>
+<pre class="r"><code>mydata &lt;- data.frame(
+  long = -82+2*runif(20),
+  lat = 42+2*runif(20),
+  var1 = rnorm(20),
+  var2 = 10*runif(20)
+)</code></pre>
+<pre class="r"><code>knitr::kable(head(mydata))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">long</th>
+<th align="right">lat</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">-81.80247</td>
+<td align="right">42.61008</td>
+<td align="right">0.4903868</td>
+<td align="right">1.075007</td>
+</tr>
+<tr class="even">
+<td align="right">-80.38990</td>
+<td align="right">42.02608</td>
+<td align="right">-0.3728839</td>
+<td align="right">4.172873</td>
+</tr>
+<tr class="odd">
+<td align="right">-80.78485</td>
+<td align="right">43.08422</td>
+<td align="right">-0.2509555</td>
+<td align="right">5.859953</td>
+</tr>
+<tr class="even">
+<td align="right">-81.23434</td>
+<td align="right">43.10306</td>
+<td align="right">-0.7129443</td>
+<td align="right">9.746547</td>
+</tr>
+<tr class="odd">
+<td align="right">-80.00439</td>
+<td align="right">42.99512</td>
+<td align="right">1.0514086</td>
+<td align="right">1.311865</td>
+</tr>
+<tr class="even">
+<td align="right">-80.01515</td>
+<td align="right">42.58484</td>
+<td align="right">0.2805270</td>
+<td align="right">6.302691</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<div id="package-sf" class="section level2">
-<h2>Package <code>sf</code></h2>
+<div id="spatialpointsdataframe" class="section level3">
+<h3><code>SpatialPointsDataFrame</code></h3>
+<pre class="r"><code>library(sp)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;sp&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:graphicsutils&#39;:
+## 
+##     compassRose</code></pre>
+<pre class="r"><code>mysp &lt;- SpatialPointsDataFrame(
+  coords = mydata[,1:2],
+  data = mydata[,3:4],
+  proj4string = CRS(
+    &quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0&quot;
+  )
+)</code></pre>
+<pre class="r"><code>class(mysp)</code></pre>
+<pre><code>## [1] &quot;SpatialPointsDataFrame&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;sp&quot;</code></pre>
+<pre class="r"><code>isS4(mysp)</code></pre>
+<pre><code>## [1] TRUE</code></pre>
+<pre class="r"><code>slotNames(mysp)</code></pre>
+<pre><code>## [1] &quot;data&quot;        &quot;coords.nrs&quot;  &quot;coords&quot;      &quot;bbox&quot;        &quot;proj4string&quot;</code></pre>
 </div>
-<div id="package-raster" class="section level2">
-<h2>Package <code>raster</code></h2>
+</div>
+<div id="spatialpointsdataframe-1" class="section level2">
+<h2><code>SpatialPointsDataFrame</code></h2>
+<pre class="r"><code>mysp@proj4string</code></pre>
+<pre><code>## CRS arguments:
+##  +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0</code></pre>
+<pre class="r"><code>head(mysp@data)</code></pre>
+<pre><code>##         var1     var2
+## 1  0.4903868 1.075007
+## 2 -0.3728839 4.172873
+## 3 -0.2509555 5.859953
+## 4 -0.7129443 9.746547
+## 5  1.0514086 1.311865
+## 6  0.2805270 6.302691</code></pre>
+</div>
+<div id="change-projection-sptransform" class="section level2">
+<h2>Change projection: <code>spTransform</code></h2>
+<pre class="r"><code>(mysp2 &lt;- spTransform(mysp, CRS=CRS(&quot;+proj=merc +ellps=GRS80&quot;)))</code></pre>
+<pre><code>##            coordinates       var1      var2
+## 1  (-9106209, 5223873)  0.4903868 1.0750068
+## 2  (-8948963, 5136273) -0.3728839 4.1728729
+## 3  (-8992929, 5295604) -0.2509555 5.8599533
+## 4  (-9042965, 5298466) -0.7129443 9.7465468
+## 5  (-8906048, 5282081)  1.0514086 1.3118647
+## 6  (-8907245, 5220070)  0.2805270 6.3026912
+## 7  (-9042948, 5145204) -0.1555556 9.2233957
+## 8  (-9076383, 5196514) -1.5763767 3.2794677
+## 9  (-8995392, 5335434) -0.9360012 6.2511890
+## 10 (-9051238, 5313169) -1.9618193 9.6358048
+## 11 (-8993305, 5348739)  0.6875291 9.6784056
+## 12 (-8962618, 5191968) -2.5792279 6.3402616
+## 13 (-8968264, 5265367)  0.5132591 0.9199481
+## 14 (-9088538, 5263445) -0.1029454 9.8287148
+## 15 (-9062079, 5253576)  2.9264774 2.7262909
+## 16 (-9024141, 5230893) -1.3888945 5.4826402
+## 17 (-9097535, 5240177)  0.3080607 6.9272324
+## 18 (-8982077, 5370244) -0.7809782 7.5838168
+## 19 (-8946075, 5216955) -0.7165933 7.9745811
+## 20 (-9043602, 5419564) -0.1517392 7.4660745</code></pre>
+</div>
+<div id="raster-objects" class="section level1">
+<h1>#Raster objects</h1>
+<div id="classes-1" class="section level3">
+<h3>Classes</h3>
+<p>Package <code>raster</code></p>
+</div>
+<div id="classes-2" class="section level2">
+<h2>Classes</h2>
+<div id="spatialgrid-spatialpixel-package-sp" class="section level3">
+<h3>1- SpatialGrid / SpatialPixel (package <code>sp</code>)</h3>
+</div>
+<div id="rasterlayer-package-raster" class="section level3">
+<h3>2- RasterLayer (package <code>raster</code>)</h3>
+</div>
+<div id="rasterstack-package-raster" class="section level3">
+<h3>3- RasterStack (package <code>raster</code>)</h3>
+</div>
+<div id="rasterbrick-package-raster" class="section level3">
+<h3>4- RasterBrick (package <code>raster</code>)</h3>
+</div>
+</div>
+<div id="example-raster" class="section level2">
+<h2>Example: <code>raster</code></h2>
+<pre class="r"><code>library(raster)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;raster&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:magrittr&#39;:
+## 
+##     extract</code></pre>
+<pre class="r"><code>ras1 &lt;- raster(matrix(runif(100*100,0,10),ncol=100,nrow=100),
+    crs=CRS(&quot;+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0&quot;),
+    xmn=-82, xmx=+80, ymn=+42, ymx=+44)</code></pre>
+</div>
+<div id="example-raster-1" class="section level2">
+<h2>Example: <code>raster</code></h2>
+<pre class="r"><code>ras1</code></pre>
+<pre><code>## class       : RasterLayer 
+## dimensions  : 100, 100, 10000  (nrow, ncol, ncell)
+## resolution  : 1.62, 0.02  (x, y)
+## extent      : -82, 80, 42, 44  (xmin, xmax, ymin, ymax)
+## coord. ref. : +proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0 
+## data source : in memory
+## names       : layer 
+## values      : 0.0006217882, 9.999094  (min, max)</code></pre>
+</div>
+<div id="retrieving-free-gis-data-getdata" class="section level2">
+<h2>Retrieving free GIS data: <code>getData</code></h2>
+<pre class="r"><code>head(getData(&quot;ISO3&quot;))</code></pre>
+<pre><code>##   ISO3        NAME
+## 1  ABW       Aruba
+## 2  AFG Afghanistan
+## 3  AGO      Angola
+## 4  AIA    Anguilla
+## 5  ALA       Åland
+## 6  ALB     Albania</code></pre>
+</div>
 </div>
