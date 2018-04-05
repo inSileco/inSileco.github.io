@@ -1,0 +1,28 @@
+/* Custom CSS overwriting part of the minimal css theme  */
+
+table {
+  margin-left: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+th {
+    text-align: left;
+}
+
+td {
+    vertical-align: bottom;
+    text-align: left;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+    padding-right: 20px!important;
+}
+
+tr:hover {
+   background-color: #3fb3b2;
+ }
+
+tr:nth-child(even) {background-color: #f2f2f2;}

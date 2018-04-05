@@ -1,18 +1,20 @@
 {{ partial "header" . }}
 
-<img class="full-width" width="100%" src="/img/banner2.png"></img>
 
-
+<img class="full-width" width="100%" src="/img/banner4.png"></img>
 
 
 <div>
 
-
   <div class="col-md-3">
-    <div class="hidden-sm hidden-xs">
-      <div id="toc"></div>
-    </div>
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+        <div id="toc"></div>
+      </div>
   </div>
+</div>
+
+
 
   <div class="col-md-8">
 
@@ -93,7 +95,7 @@
 
             var toc = $("#toc").tocify({
               selectors: "h2,h3",
-              scrollTo: 60
+              scrollTo: 50
             }).data("toc-tocify");
 
             prettyPrint();
