@@ -1,5 +1,5 @@
 ---
-title: R in Space - useful resources
+title: R in Space - Useful resources
 author: [david, elliot, kevin, nicolas, marieh, steve]
 date: 2018-04-04
 tags: [R, Viz, Spatial, R in Space]
@@ -7,6 +7,9 @@ draft: true
 tweet: "R in Space - A Series"
 estime: 10
 ---
+
+
+![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
 
 ## The mapping landscape has changed!
@@ -66,16 +69,9 @@ available:
 - [geopy](https://github.com/geopy/geopy);
 - more information [here](http://geopandas.org/).
 
-#### R packages
 
-- [sp](https://cran.r-project.org/web/packages/sp);
-- [sf](https://cran.r-project.org/web/packages/sf);
-- [raster](https://cran.r-project.org/web/packages/raster);
-- more information [here](https://cran.r-project.org/web/views/Spatial.html) and [here](http://rspatial.org/).  
-
-
-
-And if you want to see MORE, look at the [awesome-gis list](https://github.com/sshuair/awesome-gis) and the [awesome-Geospatial list](https://github.com/sacridini/Awesome-Geospatial) :fire:!
+And if you want to see MORE, look at the Awesome GIS [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sshuair/awesome-gis) and the Awesome Geospatial
+[![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sacridini/Awesome-Geospatial) :fire:!
 
 
 
@@ -83,19 +79,49 @@ And if you want to see MORE, look at the [awesome-gis list](https://github.com/s
 
 Given the number of tools dedicated to visualization and analyses of spatial
 data, it is important that users ask this question and take some time to balance
-pros and cons of mapping with R. According to us, the choice strongly
+pros and cons of using R for mapping. According to us, the choice strongly
 relies on:
 
 1. your ambition in terms of mapping;
 2. your skills in R.
 
-If you aim at creating a good-looking map without any spatial analysis and
-if you are not familiar with R at all, well, it may not be worth learning R
-from scratch. However if you are already familiar with R or plan on building up
-your R skills to perform and replicate spatial analyses, you can
-quickly get a good-looking map (a R plot basically :smile:). Finally, if you need
-tricky spatial analysis for your project, even if you are not familiar with R,
-you should consider learning R :wink:!
+If you aim at creating a good-looking map without analysis and you are not
+familiar with R, it does not make sense to use R only for mapping. But if
+you are familiar with R or plan on becoming familiar with it to perform and
+replicate spatial analyses in R, you can quickly get a good-looking map (a R
+plot basically) and then benefit from the plot system you already know. Also,
+when you need tricky spatial analysis, even if you are not familiar with R,
+you will doubtlessly may benefit from learning it.
+
+Using R to create your maps and perform spatial analyses also means
+that you will write your data pipeline in a specific language and thus create
+scripts. Such scripts are easy to share and key element to make your analyses
+transparent and reproducible. Last but not least, the vast and active R
+community, which explains the incredible richness of packages, the abundance
+of documentation and tutorials available on line as well as the massive stack
+of answered questions on question and answer sites such as
+[StackOverflow](https://stackoverflow.com/questions/tagged/r).
+To give you something more tangible regarding the abundance of R packages,
+we propose below a curated list of R packages you will doubtlessly find very helpful:
+
+{{< rsppkgs >}}
+
+For a more detailed list of packages, have a look at the
+[CRAN task view "Spatial"](https://cran.r-project.org/web/views/Spatial.html).
+Note that there is a quick way to install all packages listed in the task view
+through the [package](https://cran.r-project.org/web/packages/ctv):
+
+```r
+install.packages("ctv")
+ctv::install.views("Spatial")
+```
+
+Also, according to us, a good set of tutorials to start with is:
+
+- [r-spatial.org](http://r-spatial.org/)
+- [rspatial.org](http://www.rspatial.org/)
+- [tutorial on DataCamp](https://www.datacamp.com/courses/spatial-analysis-in-r-with-sf-and-raster)
+
 
 <br>
 
