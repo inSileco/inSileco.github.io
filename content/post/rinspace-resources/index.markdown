@@ -1,0 +1,102 @@
+---
+title: R in Space - useful resources
+author: [david, elliot, kevin, nicolas, marieh, steve]
+date: 2018-04-04
+tags: [R, Viz, Spatial, R in Space]
+draft: true
+tweet: "R in Space - A Series"
+estime: 10
+---
+
+
+## The mapping landscape has changed!
+
+Over the last decade it has become increasingly easy to create and edit maps.
+As explained by Mark Zastrow in [“Science on the Map"](http://www.nature.com/news/data-visualization-science-on-the-map-1.17024),
+the mapping landscape has dramatically changed over the last decade.
+Scientists can now readily draw valuable spatial representations
+of their work, even with large data sets and perform powerful analyses
+using specific packages of programming languages such as R and Python.
+In order to give you a taste of the diversity of tool to manipulate,
+analyze and visualize geographic information, we listed a few software
+available:
+
+
+### Geographic Information System (GIS)
+
+- [Quantum GIS](http://qgis.org/en/site/);
+- [ArcGIS](http://www.arcgis.com/features/);
+- [DIVA-GIS](http://www.diva-gis.org);
+- [GRASS GIS](http://grass.osgeo.org);
+- [PostGIS](http://www.postgis.org);
+- [SAGA GIS](http://www.saga-gis.org/en/index.html).
+
+### Web mapping tools  
+
+- [CartoDB](http://cartodb.com);
+- [GeoJson](http://geojson.io/#map=2/20.0/0.0);
+- [Google Map](https://www.google.fr/maps);
+- [Goole Earth](http://www.google.fr/intl/eng/earth/index.html);
+- [OpenStreetmap](https://www.openstreetmap.org/);
+- [Mapbox](https://www.mapbox.com/).
+
+
+
+### Specific packages of various programming languages
+
+#### C/C++ libraries:
+
+- [proj4](http://proj4.org/);
+- [gdal](http://www.gdal.org/index.html);
+- [geos](https://trac.osgeo.org/geosc).
+
+#### JavaScript:
+
+- [Leaflet](http://leafletjs.com)
+- [Turf](http://turfjs.org/)
+- more information [here](https://codepen.io/stevepepple/post/javascript-geospatial-examples)
+
+#### Julia packages
+
+- [JuliaGeo](https://github.com/JuliaGeo).
+
+#### Python packages
+
+- [cartopy](http://scitools.org.uk/cartopy/);
+- [geopy](https://github.com/geopy/geopy);
+- more information [here](http://geopandas.org/).
+
+#### R packages
+
+- [sp](https://cran.r-project.org/web/packages/sp);
+- [sf](https://cran.r-project.org/web/packages/sf);
+- [raster](https://cran.r-project.org/web/packages/raster);
+- more information [here](https://cran.r-project.org/web/views/Spatial.html) and [here](http://rspatial.org/).  
+
+
+
+And if you want to see MORE, look at the [awesome-gis list](https://github.com/sshuair/awesome-gis) and the [awesome-Geospatial list](https://github.com/sacridini/Awesome-Geospatial) :fire:!
+
+
+
+## So... why use R for mapping?
+
+Given the number of tools dedicated to visualization and analyses of spatial
+data, it is important that users ask this question and take some time to balance
+pros and cons of mapping with R. According to us, the choice strongly
+relies on:
+
+1. your ambition in terms of mapping;
+2. your skills in R.
+
+If you aim at creating a good-looking map without any spatial analysis and
+if you are not familiar with R at all, well, it may not be worth learning R
+from scratch. However if you are already familiar with R or plan on building up
+your R skills to perform and replicate spatial analyses, you can
+quickly get a good-looking map (a R plot basically :smile:). Finally, if you need
+tricky spatial analysis for your project, even if you are not familiar with R,
+you should consider learning R :wink:!
+
+<br>
+
+#### See you next post [:house:]({{< ref "rinspace-homepage" >}}) [:point_right:]({{< ref "rinspace-resources" >}})
