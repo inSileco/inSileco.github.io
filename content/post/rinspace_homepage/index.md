@@ -34,16 +34,17 @@ We must mention Quebec Ocean...
 
 ## Outline
 
-To navigate through the post series, use the three following symbols <i class="fa fa-home fa-2x" aria-hidden="true"></i> to go (back) to this home page, <i class="fa fa-arrow-circle-o-right fa-2x" aria-hidden="true"></i> to go to the previous post and <i class="fa fa-arrow-circle-o-right fa-2x" aria-hidden="true"></i> to go to the next post (or to go to a specific post below)
+To navigate through the post series, use the three following symbols <i class="fa fa-home fa-2x" aria-hidden="true"></i> to go (back) to this home page, <i class="fa fa-arrow-circle-o-right fa-2x" aria-hidden="true"></i> to go to the previous post and <i class="fa fa-arrow-circle-o-right fa-2x" aria-hidden="true"></i> to go to the next post (or to go to a specific post below).
+Also to access the full list of post of the series, click on the tag [R in space](http://127.0.0.1:4321/tags/r-in-space/).
 
 
-### Basic course
+### Beginner course
 
 #### **Useful resources**: curated list of valuable resources [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_resources" >}}) ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
 #### **Spatial objects**: ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
-#### **Defining and transforming projections in R**: ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+#### **Defining and transforming projections in R**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_spobjinr" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
 #### **Transforming objects**: ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 

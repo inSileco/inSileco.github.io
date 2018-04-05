@@ -116,7 +116,8 @@ install.packages("ctv")
 ctv::install.views("Spatial")
 ```
 
-Also, according to us, a good set of tutorials to start with is:
+Also, according to us, a good set of tutorials/documentation to start with
+spatial data in R is:
 
 - [r-spatial.org](http://r-spatial.org/)
 - [rspatial.org](http://www.rspatial.org/)
@@ -126,7 +127,7 @@ Also, according to us, a good set of tutorials to start with is:
 <br><br>
 
 <center>
-  [<i class="fa fa-arrow-circle-o-left fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_resources" >}})
+  [<i class="fa fa-arrow-circle-o-left fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_homepage" >}})
   &nbsp; &nbsp;
   [<i class="fa fa-home fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_homepage" >}})
   &nbsp; &nbsp;
