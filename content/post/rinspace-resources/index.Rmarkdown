@@ -1,15 +1,18 @@
 ---
-title: R in Space - useful resources
+title: R in Space - Useful resources
 author: [david, elliot, kevin, nicolas, marieh, steve]
 date: 2018-04-04
 tags: [R, Viz, Spatial, R in Space]
 draft: true
 tweet: "R in Space - A Series"
-estime: 14
+estime: 10
 ---
 
 
-## The mapping landscape has chnaged!
+![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
+
+
+## The mapping landscape has changed!
 
 Over the last decade it has become increasingly easy to create and edit maps.
 As explained by Mark Zastrow in [“Science on the Map"](http://www.nature.com/news/data-visualization-science-on-the-map-1.17024),
@@ -66,16 +69,9 @@ available:
 - [geopy](https://github.com/geopy/geopy);
 - more information [here](http://geopandas.org/).
 
-#### R packages
 
-- [sp](https://cran.r-project.org/web/packages/sp);
-- [sf](https://cran.r-project.org/web/packages/sf);
-- [raster](https://cran.r-project.org/web/packages/raster);
-- more information [here](https://cran.r-project.org/web/views/Spatial.html) and [here](http://rspatial.org/).  
-
-
-
-And if you want to see MORE, look at the [awesome-gis list](https://github.com/sshuair/awesome-gis) and the [awesome-Geospatial list](https://github.com/sacridini/Awesome-Geospatial) :fire:!
+And if you want to see MORE, look at the Awesome GIS [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sshuair/awesome-gis) and the Awesome Geospatial
+[![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sacridini/Awesome-Geospatial) :fire:!
 
 
 
@@ -97,5 +93,36 @@ plot basically) and then benefit from the plot system you already know. Also,
 when you need tricky spatial analysis, even if you are not familiar with R,
 you will doubtlessly may benefit from learning it.
 
+Using R to create your maps and perform spatial analyses also means
+that you will write your data pipeline in a specific language and thus create
+scripts. Such scripts are easy to share and key element to make your analyses
+transparent and reproducible. Last but not least, the vast and active R
+community, which explains the incredible richness of packages, the abundance
+of documentation and tutorials available on line as well as the massive stack
+of answered questions on question and answer sites such as
+[StackOverflow](https://stackoverflow.com/questions/tagged/r).
+To give you something more tangible regarding the abundance of R packages,
+we propose below a curated list of R packages you will doubtlessly find very helpful:
+
+{{< rsppkgs >}}
+
+For a more detailed list of packages, have a look at the
+[CRAN task view "Spatial"](https://cran.r-project.org/web/views/Spatial.html).
+Note that there is a quick way to install all packages listed in the task view
+through the [package](https://cran.r-project.org/web/packages/ctv):
+
+```r
+install.packages("ctv")
+ctv::install.views("Spatial")
+```
+
+Also, according to us, a good set of tutorials to start with is:
+
+- [r-spatial.org](http://r-spatial.org/)
+- [rspatial.org](http://www.rspatial.org/)
+- [tutorial on DataCamp](https://www.datacamp.com/courses/spatial-analysis-in-r-with-sf-and-raster)
+
+
+<br>
 
 #### See you next post [:house:]({{< ref "rinspace-homepage" >}}) [:point_right:]({{< ref "rinspace-resources" >}})
