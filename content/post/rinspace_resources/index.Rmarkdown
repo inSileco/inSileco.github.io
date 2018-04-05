@@ -1,8 +1,8 @@
 ---
 title: R in Space - Useful resources
-author: [david, elliot, kevin, nicolas, marieh, steve]
+author: [marieh, nicolas, kevin, david, elliot, steve]
 date: 2018-04-04
-tags: [R, Viz, Spatial, R in Space]
+tags: [R in Space, R, Spatial, wiki]
 draft: true
 tweet: "R in Space - A Series"
 estime: 10
@@ -34,7 +34,7 @@ available:
 - [PostGIS](http://www.postgis.org);
 - [SAGA GIS](http://www.saga-gis.org/en/index.html).
 
-### Web mapping tools  
+### Web mapping tools
 
 - [CartoDB](http://cartodb.com);
 - [GeoJson](http://geojson.io/#map=2/20.0/0.0);
@@ -123,6 +123,12 @@ Also, according to us, a good set of tutorials to start with is:
 - [tutorial on DataCamp](https://www.datacamp.com/courses/spatial-analysis-in-r-with-sf-and-raster)
 
 
-<br>
+<br><br>
 
-#### See you next post [:house:]({{< ref "rinspace-homepage" >}}) [:point_right:]({{< ref "rinspace-resources" >}})
+<center>
+  [<i class="fa fa-arrow-circle-o-left fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_resources" >}})
+  &nbsp; &nbsp;
+  [<i class="fa fa-home fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_homepage" >}})
+  &nbsp; &nbsp;
+  [<i class="fa fa-arrow-circle-o-right fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_resources" >}})
+</center>
