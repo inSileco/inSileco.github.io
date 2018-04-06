@@ -1,0 +1,123 @@
+---
+title: R in Space - Spatial Objects in R
+author: [david, marieh, nicolas, kevin, elliot, steve]
+date: 2018-04-03
+tags: [R in Space, R, Spatial]
+rpkgs: [sp, sf, raster]
+draft: true
+tweet: "R in Space - Spatial Objects in R"
+estime: 10
+output:
+  rmarkdown::html_page:
+    fig_width: 3
+    dev: svg
+---
+
+![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+
+
+## vector object in R
+
+### Package `sp`
+
+#### Classes
+
+Classes and functions       | Contents
+--------------------------- | ---------------
+Points                      | list of points (set of coordinates)
+SpatialPoints               | list of points + CRS
+SpatialPointsDataPoints     | list of points + CRS + attribute table
+Line                        | a line (set of coordinates)
+Lines                       | list of lines
+SpatialLines                | list of lines + CRS
+SpatialLinesDataFrame       | list of lines + CRS + attribute table
+
+
+```{r sim_points, results='asis'}
+mydata <- data.frame(
+  long = -82+2*runif(20),
+  lat = 42+2*runif(20),
+  var1 = rnorm(20),
+  var2 = 10*runif(20)
+)
+```
+
+```{r show_points, results='asis'}
+knitr::kable(head(mydata))
+```
+
+### `SpatialPointsDataFrame`
+
+```{r sppoint}
+library(sp)
+mysp <- SpatialPointsDataFrame(
+  coords = mydata[,1:2],
+  data = mydata[,3:4],
+  proj4string = CRS(
+    "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"
+  )
+)
+```
+
+
+```{r sppoint2}
+class(mysp)
+isS4(mysp)
+slotNames(mysp)
+```
+
+## `SpatialPointsDataFrame`
+
+```{r sppoint3}
+mysp@proj4string
+head(mysp@data)
+```
+
+
+## Change projection: `spTransform`
+
+```{r spTransform}
+(mysp2 <- spTransform(mysp, CRS=CRS("+proj=merc +ellps=GRS80")))
+```
+
+
+
+
+# #Raster objects 
+
+
+### Classes
+
+Package `raster`
+
+## Classes
+
+### 1- SpatialGrid / SpatialPixel (package `sp`)
+
+### 2- RasterLayer (package `raster`)
+
+### 3- RasterStack (package `raster`)
+
+### 4- RasterBrick (package `raster`)
+
+
+## Example: `raster`
+
+```{r raster}
+library(raster)
+ras1 <- raster(matrix(runif(100*100,0,10),ncol=100,nrow=100),
+    crs=CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"),
+    xmn=-82, xmx=+80, ymn=+42, ymx=+44)
+```
+
+## Example: `raster`
+
+```{r raster2}
+ras1
+```
+
+## Retrieving free GIS data: `getData`
+
+```{r getDat1}
+head(getData("ISO3"))
+```
