@@ -1,0 +1,157 @@
+---
+title: R in Space - Import spatial objects
+author: [david, elliot, kevin, nicolas, marieh, remi, steve]
+reviewer: []
+date: 2018-04-02
+tags: [R, Viz, Spatial, R in Space]
+rpkgs: [sf, raster]
+draft: true
+estime: 16
+---
+
+## Reading and writing spatial objects with sf and raster
+
+The `st_read` function can be used to read a wide range of vector formats, such as Shapefiles (.shp), Geodatabase (.gdb), GeoPackage (.gpkg), GeoJSON (.geojson). For the illustration of vector concepts, we will use different datasets available from the [Portail de données ouvertes of Montreal](http://donnees.ville.montreal.qc.ca/dataset); csv for points, shp for polgyons and geojson for lines .
+
+
+The raster package supports raster objects in R. It provides an extensive set of functions to create, read, export, manipulate and process raster datasets. Rasters can be read with `raster`.
+
+## Packages required
+
+We will use the `sf` and `raster` libraries in this tutorial.
+
+```{r packages}
+library(sf)
+library(raster)
+```
+
+## Import point data from csv file
+
+Spatial point data are sometimes stored in a text file format (.txt or .csv). If the text file has an associated x and y location column, then we can convert it into an sf spatial object. The sf object allows us to store both the x,y values that represent the coordinate location of each point and the associated attribute data - or columns describing each feature in the spatial object.
+
+The point dataset represents sampling points of a monitoring program of water quality in Montreal (available [here](http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4)).
+
+```{r read_points}
+# Create a new directory to download data
+dir.create("data")
+
+# Download csv file from web page in your working directory
+download.file("http://donnees.ville.montreal.qc.ca/dataset/86843d31-4251-4002-b10d-620aaa751092/resource/adad6c48-fb48-40fc-a031-1ac870d978b4/download/scri03.-infor03.02-informatique03.02.07-donneesouvertesrsmaruissostationsstations_ruisso.csv", destfile = "data/ruisso.csv")
+
+# Read csv file in R
+pts <- read.csv("data/ruisso.csv", header = T, dec = ",")
+
+head(pts)
+
+dim(pts)
+# The pts data frame has 66 locations and 7 attributes
+```
+### Convert data frame to simple features
+
+The data frame containing sampling points can be converted into simple feature objects using `st_as_sf`. We need to specify the columns containing the coordinate values (here `LATITUDE` and `LONGITUDE`) and the coordinate reference system, CRS, of these coordinates (here we know that the datum is WGS84 and the EPSG is 4326 from the [metadata](http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4)). It is important to know the CRS of your point data, or any other spatial data, prior to converting to a spatial object in order to place correctly your coordinates on the Earth’s surface. In sf, the reference system can be define using the `proj4` format or directly with the EPSG code.
+
+
+```{r convert_to_sf, eval=T}
+pts_sf <- st_as_sf(x = pts,
+  coords = c("LONGITUDE", "LATITUDE"),
+  crs = 4326)
+head(pts_sf)
+```
+
+As you can see, we now have a `MULTIPOINT` geometry, and the spatial information is now stored in a simple feature list-column (`sfc`). The other columns contain all the attributes related to the sample points.
+
+The default plot of a simple features object is a multi-facet of all attributes.
+
+```{r plot_pts, eval=T}
+plot(pts_sf)  
+```
+
+As you can see, instead of creating a single map, as with sp object, the default plot of sf object creates multiple maps, one for each attribute, which can sometime be useful for exploring the spatial distribution of different variables.
+
+### Export your points in a Shapefile
+
+We can write a simple features object to a file (e.g. a shapefile) using the `st_write` function in `sf`, which needs at least two arguments, the object and a filename:
+
+```{r export}
+st_write(pts_sf, "data/pts_sf.shp", delete_dsn = T)
+
+# Here st_write had to guess the driver from the datasource name extension, but we can also specify it:
+# st_write(pts_sf, "data/pts_sf.shp", driver = "ESRI Shapefile")
+```
+
+## Import Shapefile data
+
+The shapefile contains polygons delimiting the woods of the Montreal agglomeration and information about the forest composition (found [here](http://donnees.ville.montreal.qc.ca/dataset/29791562-f050-401e-b405-5c1fbf427f65)).
+
+```{r read_poly}
+# Download shapefile from web page in your working directory
+
+download.file("http://donnees.ville.montreal.qc.ca/dataset/29791562-f050-401e-b405-5c1fbf427f65/resource/9fa20d3a-5dee-43d6-9bc9-5d86fe225e16/download/bois.zip", destfile = "data/bois.zip")
+
+unzip("data/bois.zip", exdir = "data")
+
+# Read shapefile in R
+
+bois <- st_read(dsn = "data/", layer = "bois")
+
+head(bois)
+```
+The `bois` dataset is a `MULTIPOLYGON` object and has the same CRS (EPSG: 4326) than the sample points. If that had not been the case, it would have been necessary to transform one of the `sf` objects (see post about Projection) because to perform any spatial operations on two spatial objects requires that they have the same coordinate reference system.
+
+To plot only the geometry and not all attributes, we can retrieve the geometry list-column using `st_geometry`:
+
+```{r plot_poly_geom}
+plot(st_geometry(bois))
+```
+
+To plot the polygons with a thematic color scale according to one attribute of interest:
+
+```{r plot_poly_area}
+plot(bois["Shape_Area"])
+```
+
+## Import GeoJSON file
+
+This GeoJSON dataset contains watercourses (stream, river) and main ditches of the Montreal agglomeration (found [here](http://donnees.ville.montreal.qc.ca/dataset/c128aff5-325c-4599-ab66-1c9d0b3abc94)). Hence, it is a `MULTILINE` object.
+
+```{r read_geojson}
+# Download shapefile from web page in your working directory
+
+download.file("http://donnees.ville.montreal.qc.ca/dataset/c128aff5-325c-4599-ab66-1c9d0b3abc94/resource/0f64976e-19c1-4d29-bcc5-4b663a392617/download/courseau.geojson", destfile="data/courseau.geojson")
+
+# For GeoJSON, dsn may be the character string holding the geojson data
+
+courseau <- st_read(dsn = "data/courseau.geojson")
+
+head(courseau)
+
+plot(st_geometry(courseau))
+```
+
+## Import raster data from tif file
+
+For the illustration of raster concepts, we will use a tif file of a canopy index from Montreal (found [here](http://cmm.qc.ca/donnees-et-territoire/observatoire-grand-montreal/produits-cartographiques/donnees-georeferencees/)). The canopy index, computed by the Montreal Metropolitain Community (CMM) from an NDVI index and an elevation surface model, represents the low vegetation cover, the high vegetation cover of more than 3 meters (the canopy), the low mineral surfaces and the high mineral surfaces more than 3 meters (roof).
+
+
+```{r read_tif, warning=F}
+# Download tif file from web page in your working directory
+download.file("http://cmm.qc.ca/fileadmin/user_upload/geomatique/IndiceCanopee/2015/660_Canopee2015_3m.zip", destfile="data/canopee.zip")
+
+unzip("data/canopee.zip", exdir = "data")
+
+# Read tif in R using raster
+# The file named "660_CLASS_3m.tif" contains the canopy index for all the Montreal area, so we can read this file only
+
+canopee_mtl <- raster("data/660_CLASS_3m.tif")
+```
+
+The canopy index raster has values from 1 to 5, has `nrow(canopee_mtl)` pixels by row and `ncol(canopee_mtl)` pixels by column.  Note that in contrast to the sf package, raster uses the `proj4string` representation of the coordinate reference system.
+
+```{r info_tif, warning=F}
+canopee_mtl
+```
+
+Similar to the sf package, raster also provides `plot` methods for its own classes.
+```{r plot_tif}
+plot(canopee_mtl)
+```
