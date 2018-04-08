@@ -9,16 +9,17 @@ draft: true
 estime: 16
 ---
 
+
 ## Reading and writing spatial objects with `sf` and `raster`
 
-Spatial data are encoded in various [GIS file formats](https://en.wikipedia.org/wiki/GIS_file_formats) such as Shapefiles (.shp),
-Geodatabase (.gdb), GeoPackage (.gpkg) and GeoJSON (.geojson), GeoTIFF (.tiff).
-In this post we show how to read commonly used formats and import the data
-they include in you R session. We start by describing the steps to turn
-a set of coordinates included in a `.csv` file into a spatial object and write it
-to a GIS file format. We then exemplify the use of two functions: `st_read()` from the
-`sf` package and `raster()` from the `raster` package and import different
-GIS file available on the [Portail de données ouvertes of
+Spatial data are encoded in various [GIS file formats](https://en.wikipedia.org/wiki/GIS_file_formats)
+such as Shapefiles (.shp), Geodatabase (.gdb), GeoPackage (.gpkg) and GeoJSON (.geojson),
+GeoTIFF (.tiff). In this post we show how to read commonly used formats and
+import the data they include in you R session. We start by describing the steps
+to turn a set of coordinates included in a `.csv` file into a spatial object and
+write it to a GIS file format. We then exemplify the use of two functions:
+`st_read()` from the `sf` package and `raster()` from the `raster` package and
+import different GIS file available on the [Portail de données ouvertes of
 Montreal](http://donnees.ville.montreal.qc.ca/dataset).
 
 Let us start by loading the packages required:
@@ -31,11 +32,15 @@ library(raster)
 ## Import spatial data from .csv file
 
 Spatial data are sometimes stored in a text file format (.txt or .csv), in such
-case, the file must include columns that provides the coordinates and the
-user must know the CRS (Coordinate Reference System).
-be also provided then we can convert it into an sf spatial object. The sf object allows us to store both the x,y values that represent the coordinate location of each point and the associated attribute data - or columns describing each feature in the spatial object.
+case columns providing the coordinates must be included abd the user must know
+the CRS (Coordinate Reference System). The sf object allows us to store both
+the x and y values that represent the coordinate location of each point and the
+associated attribute data - or columns describing each feature in the spatial
+object.
 
-The point dataset represents sampling points of a monitoring program of water quality in Montreal (available [here](http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4)).
+The point dataset we work with below represents sampling points of a monitoring
+program of water quality in Montreal (available [here](http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4)).
+
 
 ```{r read_points}
 # Create a new directory to download data
@@ -53,7 +58,13 @@ pts <- read.csv("data/ruisso.csv", header = T, dec = ",")
 ### Convert data frame to simple features
 
 The data frame containing sampling points can be converted into simple feature
-objects using `st_as_sf()`. We need to specify the columns containing the coordinate values (here `LATITUDE` and `LONGITUDE`) and the coordinate reference system, CRS, of these coordinates (here we know that the datum is WGS84 and the EPSG is 4326 from the [metadata](http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4)). It is important to know the CRS of your point data, or any other spatial data, prior to converting to a spatial object in order to place correctly your coordinates on the Earth’s surface. In sf, the reference system can be define using the `proj4` format or directly with the EPSG code.
+objects using `st_as_sf()`. We need to specify the columns containing the
+coordinate values (here `LATITUDE` and `LONGITUDE`) and the CRS (here we know
+that the datum is WGS84 and the [EPSG](http://www.epsg.org/) is 4326 from the [metadata](http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4)).
+It is important to know the CRS of your point data, or any other spatial data,
+prior to converting to a spatial object in order to place correctly your
+coordinates on the Earth’s surface. In sf, the reference system can be define
+using the `proj4` format or directly with the EPSG code.
 
 
 ```{r convert_to_sf, eval=T}
@@ -63,7 +74,9 @@ pts_sf <- st_as_sf(x = pts,
 head(pts_sf)
 ```
 
-As you can see, we now have a `MULTIPOINT` geometry, and the spatial information is now stored in a simple feature list-column (`sfc`). The other columns contain all the attributes related to the sample points.
+As you can see, we now have a `MULTIPOINT` geometry, and the spatial information
+is now stored in a simple feature list-column (`sfc`). The other columns contain
+all the attributes related to the sample points.
 
 The default plot of a simple features object is a multi-facet of all attributes.
 
@@ -90,13 +103,12 @@ The shapefile contains polygons delimiting the woods of the Montreal agglomerati
 
 ```{r read_poly}
 # Download shapefile from web page in your working directory
-
-download.file("http://donnees.ville.montreal.qc.ca/dataset/29791562-f050-401e-b405-5c1fbf427f65/resource/9fa20d3a-5dee-43d6-9bc9-5d86fe225e16/download/bois.zip", destfile = "data/bois.zip")
+if (!file.exists("data/bois.zip"))
+  download.file("http://donnees.ville.montreal.qc.ca/dataset/29791562-f050-401e-b405-5c1fbf427f65/resource/9fa20d3a-5dee-43d6-9bc9-5d86fe225e16/download/bois.zip", destfile = "data/bois.zip")
 
 unzip("data/bois.zip", exdir = "data")
 
 # Read shapefile in R
-
 bois <- st_read(dsn = "data/", layer = "bois")
 
 head(bois)
@@ -115,14 +127,15 @@ To plot the polygons with a thematic color scale according to one attribute of i
 plot(bois["Shape_Area"])
 ```
 
+
 ## Import GeoJSON file
 
 This GeoJSON dataset contains watercourses (stream, river) and main ditches of the Montreal agglomeration (found [here](http://donnees.ville.montreal.qc.ca/dataset/c128aff5-325c-4599-ab66-1c9d0b3abc94)). Hence, it is a `MULTILINE` object.
 
 ```{r read_geojson}
 # Download shapefile from web page in your working directory
-
-download.file("http://donnees.ville.montreal.qc.ca/dataset/c128aff5-325c-4599-ab66-1c9d0b3abc94/resource/0f64976e-19c1-4d29-bcc5-4b663a392617/download/courseau.geojson", destfile="data/courseau.geojson")
+if (!file.exists("data/courseau.geojson"))
+  download.file("http://donnees.ville.montreal.qc.ca/dataset/c128aff5-325c-4599-ab66-1c9d0b3abc94/resource/0f64976e-19c1-4d29-bcc5-4b663a392617/download/courseau.geojson", destfile="data/courseau.geojson")
 
 # For GeoJSON, dsn may be the character string holding the geojson data
 
@@ -140,7 +153,8 @@ For the illustration of raster concepts, we will use a tif file of a canopy inde
 
 ```{r read_tif, warning=F}
 # Download tif file from web page in your working directory
-download.file("http://cmm.qc.ca/fileadmin/user_upload/geomatique/IndiceCanopee/2015/660_Canopee2015_3m.zip", destfile="data/canopee.zip")
+if (!file.exists("data/canopee.zip"))
+  download.file("http://cmm.qc.ca/fileadmin/user_upload/geomatique/IndiceCanopee/2015/660_Canopee2015_3m.zip", destfile="data/canopee.zip")
 
 unzip("data/canopee.zip", exdir = "data")
 
