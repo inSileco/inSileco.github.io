@@ -32,7 +32,7 @@ library(raster)
 
 Spatial data are sometimes stored in a text file format (.txt or .csv), in such
 case, the file must include columns that provides the coordinates and the
-user must know the CRS (Coordinate Reference System). 
+user must know the CRS (Coordinate Reference System).
 be also provided then we can convert it into an sf spatial object. The sf object allows us to store both the x,y values that represent the coordinate location of each point and the associated attribute data - or columns describing each feature in the spatial object.
 
 The point dataset represents sampling points of a monitoring program of water quality in Montreal (available [here](http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4)).
