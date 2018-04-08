@@ -1,6 +1,6 @@
 ---
 title: R in Space - Import spatial objects
-author: [david, elliot, kevin, nicolas, marieh, remi, steve]
+author: [david, marieh, nicolas, kevin, elliot, steve]
 reviewer: []
 date: 2018-04-02
 tags: [R, Viz, Spatial, R in Space]
@@ -9,25 +9,31 @@ draft: true
 estime: 16
 ---
 
-## Reading and writing spatial objects with sf and raster
+## Reading and writing spatial objects with `sf` and `raster`
 
-The `st_read` function can be used to read a wide range of vector formats, such as Shapefiles (.shp), Geodatabase (.gdb), GeoPackage (.gpkg), GeoJSON (.geojson). For the illustration of vector concepts, we will use different datasets available from the [Portail de données ouvertes of Montreal](http://donnees.ville.montreal.qc.ca/dataset); csv for points, shp for polgyons and geojson for lines .
+Spatial data are encoded in various [GIS file formats](https://en.wikipedia.org/wiki/GIS_file_formats) such as Shapefiles (.shp),
+Geodatabase (.gdb), GeoPackage (.gpkg) and GeoJSON (.geojson), GeoTIFF (.tiff).
+In this post we show how to read commonly used formats and import the data
+they include in you R session. We start by describing the steps to turn
+a set of coordinates included in a `.csv` file into a spatial object and write it
+to a GIS file format. We then exemplify the use of two functions: `st_read()` from the
+`sf` package and `raster()` from the `raster` package and import different
+GIS file available on the [Portail de données ouvertes of
+Montreal](http://donnees.ville.montreal.qc.ca/dataset).
 
-
-The raster package supports raster objects in R. It provides an extensive set of functions to create, read, export, manipulate and process raster datasets. Rasters can be read with `raster`.
-
-## Packages required
-
-We will use the `sf` and `raster` libraries in this tutorial.
+Let us start by loading the packages required:
 
 ```{r packages}
 library(sf)
 library(raster)
 ```
 
-## Import point data from csv file
+## Import spatial data from .csv file
 
-Spatial point data are sometimes stored in a text file format (.txt or .csv). If the text file has an associated x and y location column, then we can convert it into an sf spatial object. The sf object allows us to store both the x,y values that represent the coordinate location of each point and the associated attribute data - or columns describing each feature in the spatial object.
+Spatial data are sometimes stored in a text file format (.txt or .csv), in such
+case, the file must include columns that provides the coordinates and the
+user must know the CRS (Coordinate Reference System). 
+be also provided then we can convert it into an sf spatial object. The sf object allows us to store both the x,y values that represent the coordinate location of each point and the associated attribute data - or columns describing each feature in the spatial object.
 
 The point dataset represents sampling points of a monitoring program of water quality in Montreal (available [here](http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4)).
 
@@ -36,19 +42,18 @@ The point dataset represents sampling points of a monitoring program of water qu
 dir.create("data")
 
 # Download csv file from web page in your working directory
-download.file("http://donnees.ville.montreal.qc.ca/dataset/86843d31-4251-4002-b10d-620aaa751092/resource/adad6c48-fb48-40fc-a031-1ac870d978b4/download/scri03.-infor03.02-informatique03.02.07-donneesouvertesrsmaruissostationsstations_ruisso.csv", destfile = "data/ruisso.csv")
+if (!file.exists("data/ruisso.csv"))
+  download.file("http://donnees.ville.montreal.qc.ca/dataset/86843d31-4251-4002-b10d-620aaa751092/resource/adad6c48-fb48-40fc-a031-1ac870d978b4/download/scri03.-infor03.02-informatique03.02.07-donneesouvertesrsmaruissostationsstations_ruisso.csv", destfile = "data/ruisso.csv")
 
 # Read csv file in R
 pts <- read.csv("data/ruisso.csv", header = T, dec = ",")
-
-head(pts)
-
-dim(pts)
-# The pts data frame has 66 locations and 7 attributes
 ```
+
+
 ### Convert data frame to simple features
 
-The data frame containing sampling points can be converted into simple feature objects using `st_as_sf`. We need to specify the columns containing the coordinate values (here `LATITUDE` and `LONGITUDE`) and the coordinate reference system, CRS, of these coordinates (here we know that the datum is WGS84 and the EPSG is 4326 from the [metadata](http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4)). It is important to know the CRS of your point data, or any other spatial data, prior to converting to a spatial object in order to place correctly your coordinates on the Earth’s surface. In sf, the reference system can be define using the `proj4` format or directly with the EPSG code.
+The data frame containing sampling points can be converted into simple feature
+objects using `st_as_sf()`. We need to specify the columns containing the coordinate values (here `LATITUDE` and `LONGITUDE`) and the coordinate reference system, CRS, of these coordinates (here we know that the datum is WGS84 and the EPSG is 4326 from the [metadata](http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4)). It is important to know the CRS of your point data, or any other spatial data, prior to converting to a spatial object in order to place correctly your coordinates on the Earth’s surface. In sf, the reference system can be define using the `proj4` format or directly with the EPSG code.
 
 
 ```{r convert_to_sf, eval=T}
@@ -155,3 +160,13 @@ Similar to the sf package, raster also provides `plot` methods for its own class
 ```{r plot_tif}
 plot(canopee_mtl)
 ```
+
+<br><br>
+
+<center>
+  [<i class="fa fa-arrow-circle-o-left fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_homepage" >}})
+  &nbsp; &nbsp;
+  [<i class="fa fa-home fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_homepage" >}})
+  &nbsp; &nbsp;
+  [<i class="fa fa-arrow-circle-o-right fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_resources" >}})
+</center>

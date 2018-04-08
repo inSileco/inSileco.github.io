@@ -20,18 +20,28 @@ estime: 16
 <h2>Packages required</h2>
 <p>We will use the <code>sf</code> and <code>raster</code> libraries in this tutorial.</p>
 <pre class="r"><code>library(sf)</code></pre>
-<pre><code>## Linking to GEOS 3.6.2, GDAL 2.2.3, proj.4 4.9.3</code></pre>
+<pre><code>## Linking to GEOS 3.6.2, GDAL 2.2.4, proj.4 5.0.0</code></pre>
 <pre class="r"><code>library(raster)</code></pre>
 <pre><code>## Loading required package: sp</code></pre>
+<pre><code>## 
+## Attaching package: &#39;sp&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:graphicsutils&#39;:
+## 
+##     compassRose</code></pre>
+<pre><code>## 
+## Attaching package: &#39;raster&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:magrittr&#39;:
+## 
+##     extract</code></pre>
 </div>
 <div id="import-point-data-from-csv-file" class="section level2">
 <h2>Import point data from csv file</h2>
 <p>Spatial point data are sometimes stored in a text file format (.txt or .csv). If the text file has an associated x and y location column, then we can convert it into an sf spatial object. The sf object allows us to store both the x,y values that represent the coordinate location of each point and the associated attribute data - or columns describing each feature in the spatial object.</p>
 <p>The point dataset represents sampling points of a monitoring program of water quality in Montreal (available <a href="http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4">here</a>).</p>
 <pre class="r"><code># Create a new directory to download data
-dir.create(&quot;data&quot;)</code></pre>
-<pre><code>## Warning in dir.create(&quot;data&quot;): &#39;data&#39; already exists</code></pre>
-<pre class="r"><code># Download csv file from web page in your working directory
+dir.create(&quot;data&quot;)
+
+# Download csv file from web page in your working directory
 download.file(&quot;http://donnees.ville.montreal.qc.ca/dataset/86843d31-4251-4002-b10d-620aaa751092/resource/adad6c48-fb48-40fc-a031-1ac870d978b4/download/scri03.-infor03.02-informatique03.02.07-donneesouvertesrsmaruissostationsstations_ruisso.csv&quot;, destfile = &quot;data/ruisso.csv&quot;)
 
 # Read csv file in R
@@ -110,8 +120,11 @@ head(pts_sf)</code></pre>
 ## ASCII chars</code></pre>
 <pre><code>## Warning in abbreviate_shapefile_names(obj): Field names abbreviated for
 ## ESRI Shapefile driver</code></pre>
-<pre><code>## Deleting source `/Users/mariehbrice/Documents/GitHub/inSileco.github.io/content/post/rinspace-import-spatial/data/pts_sf.shp&#39; using driver `ESRI Shapefile&#39;
-## Writing layer `pts_sf&#39; to data source `/Users/mariehbrice/Documents/GitHub/inSileco.github.io/content/post/rinspace-import-spatial/data/pts_sf.shp&#39; using driver `ESRI Shapefile&#39;
+<pre><code>## Warning in CPL_write_ogr(obj, dsn, layer, driver,
+## as.character(dataset_options), : GDAL Error 1: data/pts_sf.shp does not
+## appear to be a file or directory.</code></pre>
+<pre><code>## Deleting source `data/pts_sf.shp&#39; failed
+## Writing layer `pts_sf&#39; to data source `data/pts_sf.shp&#39; using driver `ESRI Shapefile&#39;
 ## features:       66
 ## fields:         5
 ## geometry type:  Point</code></pre>
@@ -131,7 +144,7 @@ unzip(&quot;data/bois.zip&quot;, exdir = &quot;data&quot;)
 # Read shapefile in R
 
 bois &lt;- st_read(dsn = &quot;data/&quot;, layer = &quot;bois&quot;)</code></pre>
-<pre><code>## Reading layer `bois&#39; from data source `/Users/mariehbrice/Documents/GitHub/inSileco.github.io/content/post/rinspace-import-spatial/data&#39; using driver `ESRI Shapefile&#39;
+<pre><code>## Reading layer `bois&#39; from data source `/home/kevcaz/Github/Websites/inSileco.github.io/content/post/rinspace-import-spatial/data&#39; using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 2716 features and 4 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
@@ -170,7 +183,7 @@ download.file(&quot;http://donnees.ville.montreal.qc.ca/dataset/c128aff5-325c-45
 # For GeoJSON, dsn may be the character string holding the geojson data
 
 courseau &lt;- st_read(dsn = &quot;data/courseau.geojson&quot;)</code></pre>
-<pre><code>## Reading layer `courseau&#39; from data source `/Users/mariehbrice/Documents/GitHub/inSileco.github.io/content/post/rinspace-import-spatial/data/courseau.geojson&#39; using driver `GeoJSON&#39;
+<pre><code>## Reading layer `courseau&#39; from data source `/home/kevcaz/Github/Websites/inSileco.github.io/content/post/rinspace-import-spatial/data/courseau.geojson&#39; using driver `GeoJSON&#39;
 ## Simple feature collection with 1306 features and 5 fields
 ## geometry type:  MULTILINESTRING
 ## dimension:      XY
@@ -220,10 +233,18 @@ canopee_mtl &lt;- raster(&quot;data/660_CLASS_3m.tif&quot;)</code></pre>
 ## resolution  : 1, 1  (x, y)
 ## extent      : 265961, 306815, 5027324, 5063078  (xmin, xmax, ymin, ymax)
 ## coord. ref. : +proj=tmerc +lat_0=0 +lon_0=-73.5 +k=0.9999 +x_0=304800 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
-## data source : /Users/mariehbrice/Documents/GitHub/inSileco.github.io/content/post/rinspace-import-spatial/data/660_CLASS_3m.tif 
+## data source : /home/kevcaz/Github/Websites/inSileco.github.io/content/post/rinspace-import-spatial/data/660_CLASS_3m.tif 
 ## names       : X660_CLASS_3m 
 ## values      : 1, 5  (min, max)</code></pre>
 <p>Similar to the sf package, raster also provides <code>plot</code> methods for its own classes.</p>
 <pre class="r"><code>plot(canopee_mtl)</code></pre>
 <p><img src="/rmarkdown-libs/figure-html4/plot_tif-1.png" width="672" /></p>
+<br><br>
+<center>
+[<i class="fa fa-arrow-circle-o-left fa-3x" aria-hidden="true"></i>]({{&lt; ref “rinspace_homepage” &gt;}})
+   
+[<i class="fa fa-home fa-3x" aria-hidden="true"></i>]({{&lt; ref “rinspace_homepage” &gt;}})
+   
+[<i class="fa fa-arrow-circle-o-right fa-3x" aria-hidden="true"></i>]({{&lt; ref “rinspace_resources” &gt;}})
+</center>
 </div>
