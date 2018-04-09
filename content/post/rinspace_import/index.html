@@ -24,32 +24,19 @@ import the data they include in you R session. We start by describing the steps
 to turn a set of coordinates included in a <code>.csv</code> file into a spatial object and
 write it to a GIS file format. We then exemplify the use of two functions:
 <code>st_read()</code> from the <code>sf</code> package and <code>raster()</code> from the <code>raster</code> package and
-import different GIS file available on the <a href="http://donnees.ville.montreal.qc.ca/dataset">Portail de données ouvertes of
+import different GIS file available on the <a href="http://donnees.ville.montreal.qc.ca/dataset">Portail de données ouvertes de
 Montreal</a>.</p>
 <p>Let us start by loading the packages required:</p>
-<pre class="r"><code>library(sf)</code></pre>
-<pre><code>## Linking to GEOS 3.6.2, GDAL 2.2.4, proj.4 5.0.0</code></pre>
-<pre class="r"><code>library(raster)</code></pre>
-<pre><code>## Loading required package: sp</code></pre>
-<pre><code>## 
-## Attaching package: &#39;sp&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:graphicsutils&#39;:
-## 
-##     compassRose</code></pre>
-<pre><code>## 
-## Attaching package: &#39;raster&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:magrittr&#39;:
-## 
-##     extract</code></pre>
+<pre class="r"><code>library(sf)
+library(raster)</code></pre>
 </div>
 <div id="import-spatial-data-from-.csv-file" class="section level2">
 <h2>Import spatial data from .csv file</h2>
 <p>Spatial data are sometimes stored in a text file format (.txt or .csv), in such
 case columns providing the coordinates must be included and the user must know
-the CRS (Coordinate Reference System). The sf object allows us to store both
-the x and y values that represent the coordinate location of each point and the
-associated attribute data - or columns describing each feature in the spatial
-object.</p>
+the CRS (Coordinate Reference System). A <code>sf</code> object allows us to store both
+the coordinates of each point as well as associated attribute data, <em>i.e.</em>
+columns describing each feature in the spatial object.</p>
 <p>The dataset we work with below represents sampling points of a monitoring
 program of water quality in Montreal (available <a href="http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4">here</a>).</p>
 <pre class="r"><code># Create a new directory to download data
@@ -64,14 +51,12 @@ pts &lt;- read.csv(&quot;data/ruisso.csv&quot;, header = T, dec = &quot;,&quot;)
 <div id="convert-a-data-frame-to-simple-feature-objects" class="section level3">
 <h3>Convert a data frame to simple feature objects</h3>
 <p>The data frame containing sampling points can be converted into simple feature
-objects using <code>st_as_sf()</code>. To do do, we need to specify the columns containing
-the coordinate values, <em>i.e.</em> columns <code>LATITUDE</code> and <code>LONGITUDE</code> and the CRS
-(here we know that the datum is WGS84 and the <a href="http://www.epsg.org/">EPSG</a> is
-4326 from the <a href="http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4">metadata</a>).
-It is important to know the CRS of your point data, or any other spatial data,
-prior to converting to a spatial object in order to place correctly your
-coordinates on the Earth’s surface. In sf, the reference system can be define
-using the <code>proj4</code> format or directly with the EPSG code.</p>
+objects using <code>st_as_sf()</code>. To do so, we need to specify where coordinates are,
+<em>i.e.</em> columns <code>LATITUDE</code> and <code>LONGITUDE</code> as well as the CRS. In our example,
+the CRS is specified in the <a href="http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4">metadata of the data set</a>: the <a href="http://www.nrcan.gc.ca/node/9791">datum</a> is WGS84 and the <a href="http://www.epsg.org/">EPSG</a> is <strong>4326</strong>.
+Remember that without the CRS, you cannot locate correctly your coordinates on the
+Earth’s surface. In the package <code>sf</code>, the reference system can be define using
+the <code>proj4</code> format or directly with the EPSG code.</p>
 <pre class="r"><code>pts_sf &lt;- st_as_sf(x = pts,
   coords = c(&quot;LONGITUDE&quot;, &quot;LATITUDE&quot;),
   crs = 4326)
@@ -117,7 +102,8 @@ variables.</p>
 <div id="export-your-points-in-a-shapefile" class="section level3">
 <h3>Export your points in a Shapefile</h3>
 <p>We can write a simple features object to a file (<em>e.g.</em> a shapefile) using the
-<code>st_write()</code> function in <code>sf</code>, which needs at least two arguments, the object and a filename:</p>
+<code>st_write()</code> function in <code>sf</code>, which needs at least two arguments, the object
+and a filename:</p>
 <pre class="r"><code>st_write(pts_sf, &quot;data/pts_sf.shp&quot;, delete_dsn = T)</code></pre>
 <pre><code>## Warning in abbreviate(fld_names, minlength = 7): abbreviate used with non-
 ## ASCII chars</code></pre>
@@ -128,13 +114,18 @@ variables.</p>
 ## features:       66
 ## fields:         5
 ## geometry type:  Point</code></pre>
-<pre class="r"><code># Here st_write had to guess the driver from the datasource name extension, but we can also specify it:
-# st_write(pts_sf, &quot;data/pts_sf.shp&quot;, driver = &quot;ESRI Shapefile&quot;)</code></pre>
+<p>Note that <code>st_write()</code> selected one driver base on the file extension provided.
+The driver can also be made explicit using the <code>driver</code> argument like so:
+<code>st_write(pts_sf, &quot;data/pts_sf.shp&quot;, driver = &quot;ESRI Shapefile&quot;)</code>. Last but not
+least, in order to have details about drivers available, have a look at the data
+frame <code>st_drivers()</code> returns.</p>
 </div>
 </div>
 <div id="import-shapefile-data" class="section level2">
 <h2>Import Shapefile data</h2>
-<p>The shapefile contains polygons delimiting the woods of the Montreal agglomeration and information about the forest composition (found <a href="http://donnees.ville.montreal.qc.ca/dataset/29791562-f050-401e-b405-5c1fbf427f65">here</a>).</p>
+<p>The shapefile contains polygons delimiting the woods of the Montreal
+agglomeration and information about the forest composition (found
+<a href="http://donnees.ville.montreal.qc.ca/dataset/29791562-f050-401e-b405-5c1fbf427f65">here</a>).</p>
 <pre class="r"><code># Download shapefile from web page in your working directory
 if (!file.exists(&quot;data/bois.zip&quot;))
   download.file(&quot;http://donnees.ville.montreal.qc.ca/dataset/29791562-f050-401e-b405-5c1fbf427f65/resource/9fa20d3a-5dee-43d6-9bc9-5d86fe225e16/download/bois.zip&quot;, destfile = &quot;data/bois.zip&quot;)
@@ -164,17 +155,22 @@ bois &lt;- st_read(dsn = &quot;data/&quot;, layer = &quot;bois&quot;)</code></pr
 ## 4        6  Feuillus   336.2568   4222.548 MULTIPOLYGON (((-73.4967 45...
 ## 5        8  Feuillus   510.9489   5168.669 MULTIPOLYGON (((-73.85932 4...
 ## 6        9  Feuillus   605.2992  10936.294 MULTIPOLYGON (((-73.85413 4...</code></pre>
-<p>The <code>bois</code> dataset is a <code>MULTIPOLYGON</code> object and has the same CRS (EPSG: 4326) than the sample points. If that had not been the case, it would have been necessary to transform one of the <code>sf</code> objects (see post about Projection) because to perform any spatial operations on two spatial objects requires that they have the same coordinate reference system.</p>
-<p>To plot only the geometry and not all attributes, we can retrieve the geometry list-column using <code>st_geometry</code>:</p>
+<p>The <code>bois</code> dataset has been turned into a <code>MULTIPOLYGON</code> object and has the same
+CRS (EPSG: 4326) than the sample points we have manipulated above. This allows
+us to work directly with the two objects otherwise we should have transformed
+one dataset using the CRS of the other. To plot only the geometry and not all
+attributes, we retrieve the geometry list-column using <code>st_geometry()</code>:</p>
 <pre class="r"><code>plot(st_geometry(bois))</code></pre>
 <p><img src="/rmarkdown-libs/figure-html4/plot_poly_geom-1.png" width="672" /></p>
-<p>To plot the polygons with a thematic color scale according to one attribute of interest:</p>
+<p>To plot the polygons with a thematic color scale according to one attribute of
+interest, we actually subset the object (here we use the name of the column):</p>
 <pre class="r"><code>plot(bois[&quot;Shape_Area&quot;])</code></pre>
 <p><img src="/rmarkdown-libs/figure-html4/plot_poly_area-1.png" width="672" /></p>
 </div>
 <div id="import-geojson-file" class="section level2">
 <h2>Import GeoJSON file</h2>
-<p>This GeoJSON dataset contains watercourses (stream, river) and main ditches of the Montreal agglomeration (found <a href="http://donnees.ville.montreal.qc.ca/dataset/c128aff5-325c-4599-ab66-1c9d0b3abc94">here</a>). Hence, it is a <code>MULTILINE</code> object.</p>
+<p>This GeoJSON dataset contains watercourses (stream, river) and main ditches of
+the Montreal agglomeration (available <a href="http://donnees.ville.montreal.qc.ca/dataset/c128aff5-325c-4599-ab66-1c9d0b3abc94">here</a>). Hence, it is a <code>MULTILINE</code> object.</p>
 <pre class="r"><code># Download shapefile from web page in your working directory
 if (!file.exists(&quot;data/courseau.geojson&quot;))
   download.file(&quot;http://donnees.ville.montreal.qc.ca/dataset/c128aff5-325c-4599-ab66-1c9d0b3abc94/resource/0f64976e-19c1-4d29-bcc5-4b663a392617/download/courseau.geojson&quot;, destfile=&quot;data/courseau.geojson&quot;)
@@ -215,7 +211,8 @@ courseau &lt;- st_read(dsn = &quot;data/courseau.geojson&quot;)</code></pre>
 </div>
 <div id="import-raster-data" class="section level2">
 <h2>Import raster data</h2>
-<p>We now import raster data use a tif file of a canopy index from Montreal (found <a href="http://cmm.qc.ca/donnees-et-territoire/observatoire-grand-montreal/produits-cartographiques/donnees-georeferencees/">here</a>).
+<p>We now import raster data use a <a href="https://en.wikipedia.org/wiki/TIFF">.tif file</a>
+file of a canopy index from Montreal (found <a href="http://cmm.qc.ca/donnees-et-territoire/observatoire-grand-montreal/produits-cartographiques/donnees-georeferencees/">here</a>).
 The canopy index, computed by the Montreal Metropolitain Community (CMM) from
 an NDVI index and an elevation surface model, represents the low vegetation
 cover, the high vegetation cover of more than 3 meters (the canopy), the low
@@ -230,7 +227,9 @@ unzip(&quot;data/canopee.zip&quot;, exdir = &quot;data&quot;)
 # The file named &quot;660_CLASS_3m.tif&quot; contains the canopy index for all the Montreal area, so we can read this file only
 
 canopee_mtl &lt;- raster(&quot;data/660_CLASS_3m.tif&quot;)</code></pre>
-<p>The canopy index raster has values from 1 to 5, has <code>nrow(canopee_mtl)</code> pixels by row and <code>ncol(canopee_mtl)</code> pixels by column. Note that in contrast to the sf package, raster uses the <code>proj4string</code> representation of the coordinate reference system.</p>
+<p>The canopy index raster has values from 1 to 5, has <code>nrow(canopee_mtl)</code> pixels
+by row and <code>ncol(canopee_mtl)</code> pixels by column. Note that raster uses the
+<code>proj4string</code> representation of the coordinate reference system.</p>
 <pre class="r"><code>canopee_mtl</code></pre>
 <pre><code>## class       : RasterLayer 
 ## dimensions  : 35754, 40854, 1460693916  (nrow, ncol, ncell)
@@ -243,13 +242,4 @@ canopee_mtl &lt;- raster(&quot;data/660_CLASS_3m.tif&quot;)</code></pre>
 <p>Similar to the sf package, raster also provides <code>plot</code> methods for its own classes.</p>
 <pre class="r"><code>plot(canopee_mtl)</code></pre>
 <p><img src="/rmarkdown-libs/figure-html4/plot_tif-1.png" width="672" /></p>
-<p>coucou
-<br><br></p>
-<center>
-[<i class="fa fa-arrow-circle-o-left fa-3x" aria-hidden="true"></i>]({{&lt; ref “rinspace_homepage” &gt;}})
-   
-[<i class="fa fa-home fa-3x" aria-hidden="true"></i>]({{&lt; ref “rinspace_homepage” &gt;}})
-   
-[<i class="fa fa-arrow-circle-o-right fa-3x" aria-hidden="true"></i>]({{&lt; ref “rinspace_resources” &gt;}})
-</center>
 </div>

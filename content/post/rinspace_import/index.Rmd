@@ -23,12 +23,12 @@ import the data they include in you R session. We start by describing the steps
 to turn a set of coordinates included in a `.csv` file into a spatial object and
 write it to a GIS file format. We then exemplify the use of two functions:
 `st_read()` from the `sf` package and `raster()` from the `raster` package and
-import different GIS file available on the [Portail de données ouvertes of
+import different GIS file available on the [Portail de données ouvertes de
 Montreal](http://donnees.ville.montreal.qc.ca/dataset).
 
 Let us start by loading the packages required:
 
-```{r packages}
+```{r packages, message=F}
 library(sf)
 library(raster)
 ```
@@ -37,10 +37,9 @@ library(raster)
 
 Spatial data are sometimes stored in a text file format (.txt or .csv), in such
 case columns providing the coordinates must be included and the user must know
-the CRS (Coordinate Reference System). The sf object allows us to store both
-the x and y values that represent the coordinate location of each point and the
-associated attribute data - or columns describing each feature in the spatial
-object.
+the CRS (Coordinate Reference System). A `sf` object allows us to store both
+the coordinates of each point as well as associated attribute data, *i.e.*
+columns describing each feature in the spatial object.
 
 The dataset we work with below represents sampling points of a monitoring
 program of water quality in Montreal (available [here](http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4)).
@@ -63,17 +62,15 @@ pts <- read.csv("data/ruisso.csv", header = T, dec = ",")
 ### Convert a data frame to simple feature objects
 
 The data frame containing sampling points can be converted into simple feature
-objects using `st_as_sf()`. To do do, we need to specify the columns containing
-the coordinate values, *i.e.* columns `LATITUDE` and `LONGITUDE` and the CRS
-(here we know that the datum is WGS84 and the [EPSG](http://www.epsg.org/) is
-4326 from the [metadata](http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4)).
-It is important to know the CRS of your point data, or any other spatial data,
-prior to converting to a spatial object in order to place correctly your
-coordinates on the Earth’s surface. In sf, the reference system can be define
-using the `proj4` format or directly with the EPSG code.
+objects using `st_as_sf()`. To do so, we need to specify where coordinates are,
+*i.e.* columns `LATITUDE` and `LONGITUDE` as well as the CRS. In our example,
+the CRS is specified in the [metadata of the data set](http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4): the [datum](http://www.nrcan.gc.ca/node/9791) is WGS84 and the [EPSG](http://www.epsg.org/) is **4326**.
+Remember that without the CRS, you cannot locate correctly your coordinates on the
+Earth’s surface. In the package `sf`, the reference system can be define using
+the `proj4` format or directly with the EPSG code.
 
 
-```{r convert_to_sf, eval=T}
+```{r convert_to_sf, eval=T, message = F}
 pts_sf <- st_as_sf(x = pts,
   coords = c("LONGITUDE", "LATITUDE"),
   crs = 4326)
@@ -99,18 +96,27 @@ variables.
 ### Export your points in a Shapefile
 
 We can write a simple features object to a file (*e.g.* a shapefile) using the
-`st_write()` function in `sf`, which needs at least two arguments, the object and a filename:
+`st_write()` function in `sf`, which needs at least two arguments, the object
+and a filename:
 
-```{r export}
+```{r export, warnings = F}
 st_write(pts_sf, "data/pts_sf.shp", delete_dsn = T)
-
-# Here st_write had to guess the driver from the datasource name extension, but we can also specify it:
-# st_write(pts_sf, "data/pts_sf.shp", driver = "ESRI Shapefile")
 ```
+
+Note that `st_write()` selected one driver base on the file extension provided.
+The driver can also be made explicit using the `driver` argument like so:
+`st_write(pts_sf, "data/pts_sf.shp", driver = "ESRI Shapefile")`. Last but not
+least, in order to have details about drivers available, have a look at the data
+frame `st_drivers()` returns.
+
+
 
 ## Import Shapefile data
 
-The shapefile contains polygons delimiting the woods of the Montreal agglomeration and information about the forest composition (found [here](http://donnees.ville.montreal.qc.ca/dataset/29791562-f050-401e-b405-5c1fbf427f65)).
+The shapefile contains polygons delimiting the woods of the Montreal
+agglomeration and information about the forest composition (found
+[here](http://donnees.ville.montreal.qc.ca/dataset/29791562-f050-401e-b405-5c1fbf427f65)).
+
 
 ```{r read_poly}
 # Download shapefile from web page in your working directory
@@ -124,15 +130,19 @@ bois <- st_read(dsn = "data/", layer = "bois")
 
 head(bois)
 ```
-The `bois` dataset is a `MULTIPOLYGON` object and has the same CRS (EPSG: 4326) than the sample points. If that had not been the case, it would have been necessary to transform one of the `sf` objects (see post about Projection) because to perform any spatial operations on two spatial objects requires that they have the same coordinate reference system.
 
-To plot only the geometry and not all attributes, we can retrieve the geometry list-column using `st_geometry`:
+The `bois` dataset has been turned into a `MULTIPOLYGON` object and has the same
+CRS (EPSG: 4326) than the sample points we have manipulated above. This allows
+us to work directly with the two objects otherwise we should have transformed
+one dataset using the CRS of the other. To plot only the geometry and not all
+attributes, we retrieve the geometry list-column using `st_geometry()`:
 
 ```{r plot_poly_geom}
 plot(st_geometry(bois))
 ```
 
-To plot the polygons with a thematic color scale according to one attribute of interest:
+To plot the polygons with a thematic color scale according to one attribute of
+interest, we actually subset the object (here we use the name of the column):
 
 ```{r plot_poly_area}
 plot(bois["Shape_Area"])
@@ -141,7 +151,8 @@ plot(bois["Shape_Area"])
 
 ## Import GeoJSON file
 
-This GeoJSON dataset contains watercourses (stream, river) and main ditches of the Montreal agglomeration (found [here](http://donnees.ville.montreal.qc.ca/dataset/c128aff5-325c-4599-ab66-1c9d0b3abc94)). Hence, it is a `MULTILINE` object.
+This GeoJSON dataset contains watercourses (stream, river) and main ditches of
+the Montreal agglomeration (available [here](http://donnees.ville.montreal.qc.ca/dataset/c128aff5-325c-4599-ab66-1c9d0b3abc94)). Hence, it is a `MULTILINE` object.
 
 ```{r read_geojson}
 # Download shapefile from web page in your working directory
@@ -161,7 +172,8 @@ plot(st_geometry(courseau))
 
 ## Import raster data
 
-We now import raster data use a tif file of a canopy index from Montreal (found [here](http://cmm.qc.ca/donnees-et-territoire/observatoire-grand-montreal/produits-cartographiques/donnees-georeferencees/)).
+We now import raster data use a [.tif file](https://en.wikipedia.org/wiki/TIFF)
+file of a canopy index from Montreal (found [here](http://cmm.qc.ca/donnees-et-territoire/observatoire-grand-montreal/produits-cartographiques/donnees-georeferencees/)).
 The canopy index, computed by the Montreal Metropolitain Community (CMM) from
 an NDVI index and an elevation surface model, represents the low vegetation
 cover, the high vegetation cover of more than 3 meters (the canopy), the low
@@ -181,7 +193,9 @@ unzip("data/canopee.zip", exdir = "data")
 canopee_mtl <- raster("data/660_CLASS_3m.tif")
 ```
 
-The canopy index raster has values from 1 to 5, has `nrow(canopee_mtl)` pixels by row and `ncol(canopee_mtl)` pixels by column.  Note that in contrast to the sf package, raster uses the `proj4string` representation of the coordinate reference system.
+The canopy index raster has values from 1 to 5, has `nrow(canopee_mtl)` pixels
+by row and `ncol(canopee_mtl)` pixels by column. Note that raster uses the
+`proj4string` representation of the coordinate reference system.
 
 ```{r info_tif, warning=F}
 canopee_mtl
@@ -192,15 +206,3 @@ Similar to the sf package, raster also provides `plot` methods for its own class
 ```{r plot_tif}
 plot(canopee_mtl)
 ```
-
-coucou
-<br><br>
-
-
-<center>
-  [<i class="fa fa-arrow-circle-o-left fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_homepage" >}})
-  &nbsp; &nbsp;
-  [<i class="fa fa-home fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_homepage" >}})
-  &nbsp; &nbsp;
-  [<i class="fa fa-arrow-circle-o-right fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_resources" >}})
-</center>
