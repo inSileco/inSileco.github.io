@@ -5,6 +5,10 @@ date: 2018-04-04
 tags: [R in Space, R, Spatial, wiki]
 draft: true
 tweet: "R in Space - A Series"
+navposts:
+  prev: rinspace_homepage
+  home: rinspace_homepage
+  next: rinspace_spobjinr
 estime: 10
 ---
 
@@ -119,17 +123,9 @@ ctv::install.views("Spatial")
 Also, according to us, a good set of tutorials/documentation to start with
 spatial data in R is:
 
-- [r-spatial.org](http://r-spatial.org/)
-- [rspatial.org](http://www.rspatial.org/)
-- [tutorial on DataCamp](https://www.datacamp.com/courses/spatial-analysis-in-r-with-sf-and-raster)
-
-
+- [r-spatial.org](http://r-spatial.org/);
+- [rspatial.org](http://www.rspatial.org/);
+- [tutorial on DataCamp](https://www.datacamp.com/courses/spatial-analysis-in-r-with-sf-and-raster);
+- [Geocomputation with R](https://geocompr.robinlovelace.net/intro.html);
+- [Analyses spatiale sous R](https://qcbs.ca/wiki/_media/gisonr.pdf) (fr).
 <br><br>
-
-<center>
-  [<i class="fa fa-arrow-circle-o-left fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_homepage" >}})
-  &nbsp; &nbsp;
-  [<i class="fa fa-home fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_homepage" >}})
-  &nbsp; &nbsp;
-  [<i class="fa fa-arrow-circle-o-right fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_resources" >}})
-</center>

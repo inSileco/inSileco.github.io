@@ -3,9 +3,13 @@ title: R in Space - Import spatial objects
 author: [david, marieh, nicolas, kevin, elliot, steve]
 reviewer: []
 date: 2018-04-02
-tags: [R, Viz, Spatial, R in Space]
+tags: [R in Space, R, Spatial]
 rpkgs: [sf, raster]
 draft: true
+navposts:
+  prev: rinspace_spobjinr
+  home: rinspace_homepage
+  next: rinspace_basicmapping
 estime: 16
 ---
 
@@ -32,13 +36,13 @@ library(raster)
 ## Import spatial data from .csv file
 
 Spatial data are sometimes stored in a text file format (.txt or .csv), in such
-case columns providing the coordinates must be included abd the user must know
+case columns providing the coordinates must be included and the user must know
 the CRS (Coordinate Reference System). The sf object allows us to store both
 the x and y values that represent the coordinate location of each point and the
 associated attribute data - or columns describing each feature in the spatial
 object.
 
-The point dataset we work with below represents sampling points of a monitoring
+The dataset we work with below represents sampling points of a monitoring
 program of water quality in Montreal (available [here](http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4)).
 
 
@@ -55,12 +59,14 @@ pts <- read.csv("data/ruisso.csv", header = T, dec = ",")
 ```
 
 
-### Convert data frame to simple features
+
+### Convert a data frame to simple feature objects
 
 The data frame containing sampling points can be converted into simple feature
-objects using `st_as_sf()`. We need to specify the columns containing the
-coordinate values (here `LATITUDE` and `LONGITUDE`) and the CRS (here we know
-that the datum is WGS84 and the [EPSG](http://www.epsg.org/) is 4326 from the [metadata](http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4)).
+objects using `st_as_sf()`. To do do, we need to specify the columns containing
+the coordinate values, *i.e.* columns `LATITUDE` and `LONGITUDE` and the CRS
+(here we know that the datum is WGS84 and the [EPSG](http://www.epsg.org/) is
+4326 from the [metadata](http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4)).
 It is important to know the CRS of your point data, or any other spatial data,
 prior to converting to a spatial object in order to place correctly your
 coordinates on the Earth’s surface. In sf, the reference system can be define
@@ -84,11 +90,16 @@ The default plot of a simple features object is a multi-facet of all attributes.
 plot(pts_sf)  
 ```
 
-As you can see, instead of creating a single map, as with sp object, the default plot of sf object creates multiple maps, one for each attribute, which can sometime be useful for exploring the spatial distribution of different variables.
+As you can see, instead of creating a single map, as with sp object, the
+default plot of sf object creates multiple maps, one for each attribute,
+which can sometimes be useful for exploring the spatial distribution of different
+variables.
+
 
 ### Export your points in a Shapefile
 
-We can write a simple features object to a file (e.g. a shapefile) using the `st_write` function in `sf`, which needs at least two arguments, the object and a filename:
+We can write a simple features object to a file (*e.g.* a shapefile) using the
+`st_write()` function in `sf`, which needs at least two arguments, the object and a filename:
 
 ```{r export}
 st_write(pts_sf, "data/pts_sf.shp", delete_dsn = T)
@@ -146,9 +157,15 @@ head(courseau)
 plot(st_geometry(courseau))
 ```
 
-## Import raster data from tif file
 
-For the illustration of raster concepts, we will use a tif file of a canopy index from Montreal (found [here](http://cmm.qc.ca/donnees-et-territoire/observatoire-grand-montreal/produits-cartographiques/donnees-georeferencees/)). The canopy index, computed by the Montreal Metropolitain Community (CMM) from an NDVI index and an elevation surface model, represents the low vegetation cover, the high vegetation cover of more than 3 meters (the canopy), the low mineral surfaces and the high mineral surfaces more than 3 meters (roof).
+
+## Import raster data
+
+We now import raster data use a tif file of a canopy index from Montreal (found [here](http://cmm.qc.ca/donnees-et-territoire/observatoire-grand-montreal/produits-cartographiques/donnees-georeferencees/)).
+The canopy index, computed by the Montreal Metropolitain Community (CMM) from
+an NDVI index and an elevation surface model, represents the low vegetation
+cover, the high vegetation cover of more than 3 meters (the canopy), the low
+mineral surfaces and the high mineral surfaces more than 3 meters (roof).
 
 
 ```{r read_tif, warning=F}
@@ -171,11 +188,14 @@ canopee_mtl
 ```
 
 Similar to the sf package, raster also provides `plot` methods for its own classes.
+
 ```{r plot_tif}
 plot(canopee_mtl)
 ```
 
+coucou
 <br><br>
+
 
 <center>
   [<i class="fa fa-arrow-circle-o-left fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_homepage" >}})

@@ -64,16 +64,47 @@
     </div>
 
 
+
+
     <br>
 
     <div class="text-justify">
 
       {{ .Content }}
 
+
+    {{ if .Params.navposts }}
+
+    <center>
+
+      <br><br>
+
+      {{ if .Params.navposts.prev }}
+        <a href = "{{ ref . .Params.navposts.prev }}"><i class="fa fa-arrow-circle-left fa-3x" aria-hidden="true"></i></a>
+      {{ else }}
+      &nbsp;&nbsp;
+      {{ end }}
+
+      &nbsp;&nbsp;
+      {{ if .Params.navposts.home }}
+        <a href = "{{ ref . .Params.navposts.home }}"><i class="fa fa-home fa-3x" aria-hidden="true"></i></a>
+      {{ else }}
+        &nbsp;&nbsp;
+      {{ end }}
+
+      &nbsp;&nbsp;
+      {{ if .Params.navposts.next }}
+        <a href = "{{ ref . .Params.navposts.next }}"><i class="fa fa-arrow-circle-right fa-3x" aria-hidden="true"></i></a>
+      {{ end }}
+    {{ end }}
+
+    </center>
+
     </div>
 
-    <br><br>
 
+
+    <br><br>
 
     <h3 class="page-header">Comments on this post</h3>
 

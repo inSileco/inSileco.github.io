@@ -7,6 +7,10 @@ rpkgs: [sp, sf, raster]
 draft: true
 tweet: "R in Space - Spatial Objects in R"
 estime: 10
+navposts:
+  prev: rinspace_spobjinr
+  home: rinspace_homepage
+  next: rinspace_import
 output:
   rmarkdown::html_page:
     fig_width: 3
@@ -83,7 +87,7 @@ head(mysp@data)
 
 
 
-# #Raster objects 
+# #Raster objects
 
 
 ### Classes
@@ -121,3 +125,12 @@ ras1
 ```{r getDat1}
 head(getData("ISO3"))
 ```
+
+
+<center>
+  [<i class="fa fa-arrow-circle-o-left fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_homepage" >}})
+  &nbsp; &nbsp;
+  [<i class="fa fa-home fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_homepage" >}})
+  &nbsp; &nbsp;
+  [<i class="fa fa-arrow-circle-o-right fa-3x" aria-hidden="true"></i>]({{< ref "rinspace_resources" >}})
+</center>

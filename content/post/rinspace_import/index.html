@@ -3,9 +3,13 @@ title: R in Space - Import spatial objects
 author: [david, marieh, nicolas, kevin, elliot, steve]
 reviewer: []
 date: 2018-04-02
-tags: [R, Viz, Spatial, R in Space]
+tags: [R in Space, R, Spatial]
 rpkgs: [sf, raster]
 draft: true
+navposts:
+  prev: rinspace_spobjinr
+  home: rinspace_homepage
+  next: rinspace_basicmapping
 estime: 16
 ---
 
@@ -41,12 +45,12 @@ Montreal</a>.</p>
 <div id="import-spatial-data-from-.csv-file" class="section level2">
 <h2>Import spatial data from .csv file</h2>
 <p>Spatial data are sometimes stored in a text file format (.txt or .csv), in such
-case columns providing the coordinates must be included abd the user must know
+case columns providing the coordinates must be included and the user must know
 the CRS (Coordinate Reference System). The sf object allows us to store both
 the x and y values that represent the coordinate location of each point and the
 associated attribute data - or columns describing each feature in the spatial
 object.</p>
-<p>The point dataset we work with below represents sampling points of a monitoring
+<p>The dataset we work with below represents sampling points of a monitoring
 program of water quality in Montreal (available <a href="http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4">here</a>).</p>
 <pre class="r"><code># Create a new directory to download data
 dir.create(&quot;data&quot;)</code></pre>
@@ -57,12 +61,13 @@ if (!file.exists(&quot;data/ruisso.csv&quot;))
 
 # Read csv file in R
 pts &lt;- read.csv(&quot;data/ruisso.csv&quot;, header = T, dec = &quot;,&quot;)</code></pre>
-<div id="convert-data-frame-to-simple-features" class="section level3">
-<h3>Convert data frame to simple features</h3>
+<div id="convert-a-data-frame-to-simple-feature-objects" class="section level3">
+<h3>Convert a data frame to simple feature objects</h3>
 <p>The data frame containing sampling points can be converted into simple feature
-objects using <code>st_as_sf()</code>. We need to specify the columns containing the
-coordinate values (here <code>LATITUDE</code> and <code>LONGITUDE</code>) and the CRS (here we know
-that the datum is WGS84 and the <a href="http://www.epsg.org/">EPSG</a> is 4326 from the <a href="http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4">metadata</a>).
+objects using <code>st_as_sf()</code>. To do do, we need to specify the columns containing
+the coordinate values, <em>i.e.</em> columns <code>LATITUDE</code> and <code>LONGITUDE</code> and the CRS
+(here we know that the datum is WGS84 and the <a href="http://www.epsg.org/">EPSG</a> is
+4326 from the <a href="http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4">metadata</a>).
 It is important to know the CRS of your point data, or any other spatial data,
 prior to converting to a spatial object in order to place correctly your
 coordinates on the Earth’s surface. In sf, the reference system can be define
@@ -104,18 +109,22 @@ all the attributes related to the sample points.</p>
 <p>The default plot of a simple features object is a multi-facet of all attributes.</p>
 <pre class="r"><code>plot(pts_sf)  </code></pre>
 <p><img src="/rmarkdown-libs/figure-html4/plot_pts-1.png" width="672" /></p>
-<p>As you can see, instead of creating a single map, as with sp object, the default plot of sf object creates multiple maps, one for each attribute, which can sometime be useful for exploring the spatial distribution of different variables.</p>
+<p>As you can see, instead of creating a single map, as with sp object, the
+default plot of sf object creates multiple maps, one for each attribute,
+which can sometimes be useful for exploring the spatial distribution of different
+variables.</p>
 </div>
 <div id="export-your-points-in-a-shapefile" class="section level3">
 <h3>Export your points in a Shapefile</h3>
-<p>We can write a simple features object to a file (e.g. a shapefile) using the <code>st_write</code> function in <code>sf</code>, which needs at least two arguments, the object and a filename:</p>
+<p>We can write a simple features object to a file (<em>e.g.</em> a shapefile) using the
+<code>st_write()</code> function in <code>sf</code>, which needs at least two arguments, the object and a filename:</p>
 <pre class="r"><code>st_write(pts_sf, &quot;data/pts_sf.shp&quot;, delete_dsn = T)</code></pre>
 <pre><code>## Warning in abbreviate(fld_names, minlength = 7): abbreviate used with non-
 ## ASCII chars</code></pre>
 <pre><code>## Warning in abbreviate_shapefile_names(obj): Field names abbreviated for
 ## ESRI Shapefile driver</code></pre>
-<pre><code>## Deleting source `/home/kevcaz/Github/Websites/inSileco.github.io/content/post/rinspace-import-spatial/data/pts_sf.shp&#39; using driver `ESRI Shapefile&#39;
-## Writing layer `pts_sf&#39; to data source `/home/kevcaz/Github/Websites/inSileco.github.io/content/post/rinspace-import-spatial/data/pts_sf.shp&#39; using driver `ESRI Shapefile&#39;
+<pre><code>## Deleting source `/home/kevcaz/Github/Websites/inSileco.github.io/content/post/rinspace_import/data/pts_sf.shp&#39; using driver `ESRI Shapefile&#39;
+## Writing layer `pts_sf&#39; to data source `/home/kevcaz/Github/Websites/inSileco.github.io/content/post/rinspace_import/data/pts_sf.shp&#39; using driver `ESRI Shapefile&#39;
 ## features:       66
 ## fields:         5
 ## geometry type:  Point</code></pre>
@@ -134,7 +143,7 @@ unzip(&quot;data/bois.zip&quot;, exdir = &quot;data&quot;)
 
 # Read shapefile in R
 bois &lt;- st_read(dsn = &quot;data/&quot;, layer = &quot;bois&quot;)</code></pre>
-<pre><code>## Reading layer `bois&#39; from data source `/home/kevcaz/Github/Websites/inSileco.github.io/content/post/rinspace-import-spatial/data&#39; using driver `ESRI Shapefile&#39;
+<pre><code>## Reading layer `bois&#39; from data source `/home/kevcaz/Github/Websites/inSileco.github.io/content/post/rinspace_import/data&#39; using driver `ESRI Shapefile&#39;
 ## Simple feature collection with 2716 features and 4 fields
 ## geometry type:  MULTIPOLYGON
 ## dimension:      XY
@@ -173,7 +182,7 @@ if (!file.exists(&quot;data/courseau.geojson&quot;))
 # For GeoJSON, dsn may be the character string holding the geojson data
 
 courseau &lt;- st_read(dsn = &quot;data/courseau.geojson&quot;)</code></pre>
-<pre><code>## Reading layer `courseau&#39; from data source `/home/kevcaz/Github/Websites/inSileco.github.io/content/post/rinspace-import-spatial/data/courseau.geojson&#39; using driver `GeoJSON&#39;
+<pre><code>## Reading layer `courseau&#39; from data source `/home/kevcaz/Github/Websites/inSileco.github.io/content/post/rinspace_import/data/courseau.geojson&#39; using driver `GeoJSON&#39;
 ## Simple feature collection with 1306 features and 5 fields
 ## geometry type:  MULTILINESTRING
 ## dimension:      XY
@@ -204,9 +213,13 @@ courseau &lt;- st_read(dsn = &quot;data/courseau.geojson&quot;)</code></pre>
 <pre class="r"><code>plot(st_geometry(courseau))</code></pre>
 <p><img src="/rmarkdown-libs/figure-html4/read_geojson-1.png" width="672" /></p>
 </div>
-<div id="import-raster-data-from-tif-file" class="section level2">
-<h2>Import raster data from tif file</h2>
-<p>For the illustration of raster concepts, we will use a tif file of a canopy index from Montreal (found <a href="http://cmm.qc.ca/donnees-et-territoire/observatoire-grand-montreal/produits-cartographiques/donnees-georeferencees/">here</a>). The canopy index, computed by the Montreal Metropolitain Community (CMM) from an NDVI index and an elevation surface model, represents the low vegetation cover, the high vegetation cover of more than 3 meters (the canopy), the low mineral surfaces and the high mineral surfaces more than 3 meters (roof).</p>
+<div id="import-raster-data" class="section level2">
+<h2>Import raster data</h2>
+<p>We now import raster data use a tif file of a canopy index from Montreal (found <a href="http://cmm.qc.ca/donnees-et-territoire/observatoire-grand-montreal/produits-cartographiques/donnees-georeferencees/">here</a>).
+The canopy index, computed by the Montreal Metropolitain Community (CMM) from
+an NDVI index and an elevation surface model, represents the low vegetation
+cover, the high vegetation cover of more than 3 meters (the canopy), the low
+mineral surfaces and the high mineral surfaces more than 3 meters (roof).</p>
 <pre class="r"><code># Download tif file from web page in your working directory
 if (!file.exists(&quot;data/canopee.zip&quot;))
   download.file(&quot;http://cmm.qc.ca/fileadmin/user_upload/geomatique/IndiceCanopee/2015/660_Canopee2015_3m.zip&quot;, destfile=&quot;data/canopee.zip&quot;)
@@ -224,13 +237,14 @@ canopee_mtl &lt;- raster(&quot;data/660_CLASS_3m.tif&quot;)</code></pre>
 ## resolution  : 1, 1  (x, y)
 ## extent      : 265961, 306815, 5027324, 5063078  (xmin, xmax, ymin, ymax)
 ## coord. ref. : +proj=tmerc +lat_0=0 +lon_0=-73.5 +k=0.9999 +x_0=304800 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
-## data source : /home/kevcaz/Github/Websites/inSileco.github.io/content/post/rinspace-import-spatial/data/660_CLASS_3m.tif 
+## data source : /home/kevcaz/Github/Websites/inSileco.github.io/content/post/rinspace_import/data/660_CLASS_3m.tif 
 ## names       : X660_CLASS_3m 
 ## values      : 1, 5  (min, max)</code></pre>
 <p>Similar to the sf package, raster also provides <code>plot</code> methods for its own classes.</p>
 <pre class="r"><code>plot(canopee_mtl)</code></pre>
 <p><img src="/rmarkdown-libs/figure-html4/plot_tif-1.png" width="672" /></p>
-<p><br><br></p>
+<p>coucou
+<br><br></p>
 <center>
 [<i class="fa fa-arrow-circle-o-left fa-3x" aria-hidden="true"></i>]({{&lt; ref “rinspace_homepage” &gt;}})
    
