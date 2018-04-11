@@ -3,7 +3,7 @@ title: R in Space - Attribute manipulations
 author: [david, marieh, nicolas, kevin, elliot, steve]
 tags: [R in Space, R, Spatial]
 date: 2018-04-05
-draft: true
+draft: false
 tweet: "R in Space - Attribute manipulations"
 estime: 10
 output:
@@ -117,9 +117,9 @@ the rows that we wish to view. In this instance, let's say we only wish to
 use the first 10 rows of our data.
 
 ```{r manualSub}
-spatDataSub <- spatData[1:10, ]
-plot(spatData[, 'var1'], col = 'blue')
-plot(spatDataSub[, 'var1'], col = 'black', add = T, pch = 4, cex = 2, lwd = 2)
+selectID <- 1:10
+plot(spatData[, 1], col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData[selectID, 1], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
 ```
 
 <br/>
@@ -132,29 +132,29 @@ like [StackOverflow](https://stackoverflow.com/) for more specific questions.
 
 ```{r autoSub, result = 'asis'}
 # Select all values for var1 greater to or equal to 0
-spatDataSub <- spatData[spatData$var1 >= 0, ]
-plot(spatData[, 1], col = 'blue')
-plot(spatDataSub[, 1], col = 'black', add = T, pch = 4, cex = 2, lwd = 2)
+selectID <- spatData$var1 >= 0
+plot(spatData[, 1], col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData[selectID, 1], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
 
 # var1 smaller than 0 and var2 higher than 5
-spatDataSub <- spatData[spatData$var1 < 0 & spatData$var2 < 5, ]
-plot(spatData[, 1], col = 'blue')
-plot(spatDataSub[, 1], col = 'black', add = T, pch = 4, cex = 2, lwd = 2)
+selectID <- spatData$var1 < 0 & spatData$var2 < 5
+plot(spatData[, 1], col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData[selectID, 1], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
 
 # fact1 equal to a1
-spatDataSub <- spatData[spatData$fact1 == 'a1', ]
-plot(spatData[, 1], col = 'blue')
-plot(spatDataSub[, 1], col = 'black', add = T, pch = 4, cex = 2, lwd = 2)
+selectID <- spatData$fact1 == 'a1'
+plot(spatData[, 1], col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData[selectID, 1], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
 
 # fact1 equal to a1 or var1 greater than 0
-spatDataSub <- spatData[spatData$fact1 == 'a1' | spatData$var1 > 0, ]
-plot(spatData[, 1], col = 'blue')
-plot(spatDataSub[, 1], col = 'black', add = T, pch = 4, cex = 2, lwd = 2)
+selectID <- spatData$fact1 == 'a1' | spatData$var1 > 0
+plot(spatData[, 1], col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData[selectID, 1], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
 
 # fact2 equal to b3 or b4
-spatDataSub <- spatData[spatData$fact2 %in% c('b3','b4'), ]
-plot(spatData[, 1], col = 'blue')
-plot(spatDataSub[, 1], col = 'black', add = T, pch = 4, cex = 2, lwd = 2)
+selectID <- spatData$fact2 %in% c('b3','b4')
+plot(spatData[, 1], col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData[selectID, 1], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
 ```
 
 <br/>
