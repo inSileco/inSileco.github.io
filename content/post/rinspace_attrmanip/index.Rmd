@@ -3,7 +3,7 @@ title: R in Space - Attribute manipulations
 author: [david, marieh, nicolas, kevin, elliot, steve]
 tags: [R in Space, R, Spatial]
 date: 2018-04-05
-draft: false
+draft: true
 tweet: "R in Space - Attribute manipulations"
 estime: 10
 output:
@@ -118,9 +118,6 @@ use the first 10 rows of our data.
 
 ```{r manualSub}
 selectID <- 1:10
-plot(spatData[, 1], col = '#00000055', pch = 20, cex = 1.25, main = '')
-plot(spatData[selectID, 1], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
-
 plot(spatData$geometry, col = '#00000055', pch = 20, cex = 1.25, main = '')
 plot(spatData$geometry[selectID], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
 ```
@@ -136,28 +133,28 @@ like [StackOverflow](https://stackoverflow.com/) for more specific questions.
 ```{r autoSub, result = 'asis'}
 # Select all values for var1 greater to or equal to 0
 selectID <- spatData$var1 >= 0
-plot(spatData[, 1], col = '#00000055', pch = 20, cex = 1.25, main = '')
-plot(spatData[selectID, 1], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
+plot(spatData$geometry, col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData$geometry[selectID], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
 
 # var1 smaller than 0 and var2 higher than 5
 selectID <- spatData$var1 < 0 & spatData$var2 < 5
-plot(spatData[, 1], col = '#00000055', pch = 20, cex = 1.25, main = '')
-plot(spatData[selectID, 1], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
+plot(spatData$geometry, col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData$geometry[selectID], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
 
 # fact1 equal to a1
 selectID <- spatData$fact1 == 'a1'
-plot(spatData[, 1], col = '#00000055', pch = 20, cex = 1.25, main = '')
-plot(spatData[selectID, 1], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
+plot(spatData$geometry, col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData$geometry[selectID], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
 
 # fact1 equal to a1 or var1 greater than 0
 selectID <- spatData$fact1 == 'a1' | spatData$var1 > 0
-plot(spatData[, 1], col = '#00000055', pch = 20, cex = 1.25, main = '')
-plot(spatData[selectID, 1], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
+plot(spatData$geometry, col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData$geometry[selectID], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
 
 # fact2 equal to b3 or b4
 selectID <- spatData$fact2 %in% c('b3','b4')
-plot(spatData[, 1], col = '#00000055', pch = 20, cex = 1.25, main = '')
-plot(spatData[selectID, 1], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
+plot(spatData$geometry, col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData$geometry[selectID], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
 ```
 
 <br/>
