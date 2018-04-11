@@ -120,6 +120,9 @@ use the first 10 rows of our data.
 selectID <- 1:10
 plot(spatData[, 1], col = '#00000055', pch = 20, cex = 1.25, main = '')
 plot(spatData[selectID, 1], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
+
+plot(spatData$geometry, col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData$geometry[selectID], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
 ```
 
 <br/>
