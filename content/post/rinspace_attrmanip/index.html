@@ -1,0 +1,725 @@
+---
+title: R in Space - Attribute manipulations
+author: [david, marieh, nicolas, kevin, elliot, steve]
+tags: [R in Space, R, Spatial]
+date: 2018-04-05
+draft: true
+tweet: "R in Space - Attribute manipulations"
+estime: 10
+output:
+  rmarkdown::html_page:
+    fig_width: 3
+    dev: svg
+---
+
+
+
+<div class="figure">
+<img src="https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg" />
+
+</div>
+<div id="spatial-objects-attributes-manipulations" class="section level2">
+<h2>Spatial objects attributes manipulations</h2>
+<p>Now that we know how to import and transform different classes of spatial objects in R, we can start manipulating their attributes. In this post, we will make a brief overview of some useful basic manipulations that we can perform on spatial object attributes. By no means are those examples exhaustive, but they constitute common manipulations that are made with spatial objects.</p>
+<p><br/></p>
+<div id="vector-objects" class="section level3">
+<h3>Vector objects</h3>
+<p>For this part, we discuss how to manipulate attributes of objects from the <code>sf</code> package. <code>sf</code> objects have the advantage of being structured like data frames, making their manipulations more intuitive than for objects of class <code>sp</code>. However, if the structure of <code>sp</code> objects is well understood, then the same principles will mostly apply.</p>
+<p>Let’s begin by creating an <code>sf</code> points object as seen in the post on <a href="">Spatial objects in R</a> <!-- to add --></p>
+<pre class="r"><code>mydata &lt;- data.frame(
+  id = 1:20,
+  long = -82+2*runif(20),
+  lat = 42+2*runif(20),
+  var1 = rnorm(20),
+  var2 = 10*runif(20)
+)
+
+library(sf)</code></pre>
+<pre><code>## Linking to GEOS 3.4.2, GDAL 2.1.2, proj.4 4.9.1</code></pre>
+<pre class="r"><code>spatData &lt;- st_as_sf(mydata,
+                     coords = c(&quot;long&quot;, &quot;lat&quot;),
+                     crs = &quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0&quot;)
+
+knitr::kable(head(spatData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">0.6691956</td>
+<td align="right">5.5713549</td>
+<td align="left">-80.56672, 43.85765</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-1.1392552</td>
+<td align="right">3.8103797</td>
+<td align="left">-81.81512, 42.88395</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.2234516</td>
+<td align="right">9.5508924</td>
+<td align="left">-80.43484, 43.69511</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">0.2774601</td>
+<td align="right">5.9499196</td>
+<td align="left">-80.78507, 42.39481</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.9636727</td>
+<td align="right">9.1074248</td>
+<td align="left">-80.38025, 42.81079</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">-0.0283743</td>
+<td align="right">0.0691366</td>
+<td align="left">-81.90320, 43.75098</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>plot(spatData)</code></pre>
+<p><img src="/post/rinspace_attrmanip/index_files/figure-html/sim_points-1.png" width="672" /></p>
+</div>
+<div id="adding-and-removing-attributes" class="section level3">
+<h3>Adding and removing attributes</h3>
+<p>The object we currently have has to variables <code>var1</code> and <code>var2</code>. Additional attributes can quickly be added to the attributes table of our objects.</p>
+<pre class="r"><code>spatData$var3 &lt;- runif(20)
+spatData$var4 &lt;- spatData$var1 * spatData$var2
+knitr::kable(head(spatData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="right">var3</th>
+<th align="right">var4</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">0.6691956</td>
+<td align="right">5.5713549</td>
+<td align="right">0.5175307</td>
+<td align="right">3.7283263</td>
+<td align="left">-80.56672, 43.85765</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-1.1392552</td>
+<td align="right">3.8103797</td>
+<td align="right">0.8957340</td>
+<td align="right">-4.3409948</td>
+<td align="left">-81.81512, 42.88395</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.2234516</td>
+<td align="right">9.5508924</td>
+<td align="right">0.2594869</td>
+<td align="right">-2.1341617</td>
+<td align="left">-80.43484, 43.69511</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">0.2774601</td>
+<td align="right">5.9499196</td>
+<td align="right">0.9394404</td>
+<td align="right">1.6508654</td>
+<td align="left">-80.78507, 42.39481</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.9636727</td>
+<td align="right">9.1074248</td>
+<td align="right">0.6491545</td>
+<td align="right">8.7765765</td>
+<td align="left">-80.38025, 42.81079</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">-0.0283743</td>
+<td align="right">0.0691366</td>
+<td align="right">0.4404250</td>
+<td align="right">-0.0019617</td>
+<td align="left">-81.90320, 43.75098</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<p>Similarly, unwanted columns can be removed.</p>
+<pre class="r"><code>spatData$var3 &lt;- spatData$var4 &lt;- NULL
+knitr::kable(head(spatData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">0.6691956</td>
+<td align="right">5.5713549</td>
+<td align="left">-80.56672, 43.85765</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-1.1392552</td>
+<td align="right">3.8103797</td>
+<td align="left">-81.81512, 42.88395</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.2234516</td>
+<td align="right">9.5508924</td>
+<td align="left">-80.43484, 43.69511</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">0.2774601</td>
+<td align="right">5.9499196</td>
+<td align="left">-80.78507, 42.39481</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.9636727</td>
+<td align="right">9.1074248</td>
+<td align="left">-80.38025, 42.81079</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">-0.0283743</td>
+<td align="right">0.0691366</td>
+<td align="left">-81.90320, 43.75098</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<p>However, if you have a very big dataset, you may want to remove columns without having to write all column names manually! You could do this based on the names of the columns you wish to remove or, alternatively, on the names of the attributes you wish to keep.</p>
+<pre class="r"><code># Remove last 20 attributes
+for(i in 1:5) spatData &lt;- cbind(spatData, varSup = runif(20))
+knitr::kable(head(spatData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="right">varSup</th>
+<th align="right">varSup.1</th>
+<th align="right">varSup.2</th>
+<th align="right">varSup.3</th>
+<th align="right">varSup.4</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">0.6691956</td>
+<td align="right">5.5713549</td>
+<td align="right">0.9757760</td>
+<td align="right">0.0773718</td>
+<td align="right">0.8000299</td>
+<td align="right">0.9005270</td>
+<td align="right">0.1845594</td>
+<td align="left">-80.56672, 43.85765</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-1.1392552</td>
+<td align="right">3.8103797</td>
+<td align="right">0.7034420</td>
+<td align="right">0.9428657</td>
+<td align="right">0.7945099</td>
+<td align="right">0.8148867</td>
+<td align="right">0.7598286</td>
+<td align="left">-81.81512, 42.88395</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.2234516</td>
+<td align="right">9.5508924</td>
+<td align="right">0.2491643</td>
+<td align="right">0.1721519</td>
+<td align="right">0.7069035</td>
+<td align="right">0.2938924</td>
+<td align="right">0.7813329</td>
+<td align="left">-80.43484, 43.69511</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">0.2774601</td>
+<td align="right">5.9499196</td>
+<td align="right">0.6688767</td>
+<td align="right">0.2159751</td>
+<td align="right">0.2365557</td>
+<td align="right">0.4504459</td>
+<td align="right">0.9231122</td>
+<td align="left">-80.78507, 42.39481</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.9636727</td>
+<td align="right">9.1074248</td>
+<td align="right">0.2776583</td>
+<td align="right">0.1390351</td>
+<td align="right">0.2281139</td>
+<td align="right">0.1901256</td>
+<td align="right">0.9102959</td>
+<td align="left">-80.38025, 42.81079</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">-0.0283743</td>
+<td align="right">0.0691366</td>
+<td align="right">0.2456030</td>
+<td align="right">0.1501664</td>
+<td align="right">0.8584966</td>
+<td align="right">0.9921067</td>
+<td align="right">0.9691988</td>
+<td align="left">-81.90320, 43.75098</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>rem &lt;- colnames(spatData)[4:8]
+spatData &lt;- spatData[, !colnames(spatData) %in% rem]
+knitr::kable(head(spatData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">0.6691956</td>
+<td align="right">5.5713549</td>
+<td align="left">-80.56672, 43.85765</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-1.1392552</td>
+<td align="right">3.8103797</td>
+<td align="left">-81.81512, 42.88395</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.2234516</td>
+<td align="right">9.5508924</td>
+<td align="left">-80.43484, 43.69511</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">0.2774601</td>
+<td align="right">5.9499196</td>
+<td align="left">-80.78507, 42.39481</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.9636727</td>
+<td align="right">9.1074248</td>
+<td align="left">-80.38025, 42.81079</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">-0.0283743</td>
+<td align="right">0.0691366</td>
+<td align="left">-81.90320, 43.75098</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># Keep id, var1 and var2
+for(i in 1:5) spatData &lt;- cbind(spatData, varSup = runif(20))
+knitr::kable(head(spatData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="right">varSup</th>
+<th align="right">varSup.1</th>
+<th align="right">varSup.2</th>
+<th align="right">varSup.3</th>
+<th align="right">varSup.4</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">0.6691956</td>
+<td align="right">5.5713549</td>
+<td align="right">0.5559481</td>
+<td align="right">0.4297759</td>
+<td align="right">0.7151412</td>
+<td align="right">0.7934202</td>
+<td align="right">0.9365311</td>
+<td align="left">-80.56672, 43.85765</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-1.1392552</td>
+<td align="right">3.8103797</td>
+<td align="right">0.4710555</td>
+<td align="right">0.9360464</td>
+<td align="right">0.5110593</td>
+<td align="right">0.8891493</td>
+<td align="right">0.3089492</td>
+<td align="left">-81.81512, 42.88395</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.2234516</td>
+<td align="right">9.5508924</td>
+<td align="right">0.0819676</td>
+<td align="right">0.0325159</td>
+<td align="right">0.3706346</td>
+<td align="right">0.9552769</td>
+<td align="right">0.4528970</td>
+<td align="left">-80.43484, 43.69511</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">0.2774601</td>
+<td align="right">5.9499196</td>
+<td align="right">0.4547771</td>
+<td align="right">0.3280010</td>
+<td align="right">0.2835696</td>
+<td align="right">0.6317859</td>
+<td align="right">0.9662650</td>
+<td align="left">-80.78507, 42.39481</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.9636727</td>
+<td align="right">9.1074248</td>
+<td align="right">0.8830801</td>
+<td align="right">0.8591671</td>
+<td align="right">0.2426204</td>
+<td align="right">0.7583166</td>
+<td align="right">0.4053772</td>
+<td align="left">-80.38025, 42.81079</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">-0.0283743</td>
+<td align="right">0.0691366</td>
+<td align="right">0.3655325</td>
+<td align="right">0.6756256</td>
+<td align="right">0.5980049</td>
+<td align="right">0.0262691</td>
+<td align="right">0.2036586</td>
+<td align="left">-81.90320, 43.75098</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>keep &lt;- c(&#39;id&#39;,&#39;var1&#39;,&#39;var2&#39;)
+spatData &lt;- spatData[, keep]
+knitr::kable(head(spatData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">0.6691956</td>
+<td align="right">5.5713549</td>
+<td align="left">-80.56672, 43.85765</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-1.1392552</td>
+<td align="right">3.8103797</td>
+<td align="left">-81.81512, 42.88395</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.2234516</td>
+<td align="right">9.5508924</td>
+<td align="left">-80.43484, 43.69511</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">0.2774601</td>
+<td align="right">5.9499196</td>
+<td align="left">-80.78507, 42.39481</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.9636727</td>
+<td align="right">9.1074248</td>
+<td align="left">-80.38025, 42.81079</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">-0.0283743</td>
+<td align="right">0.0691366</td>
+<td align="left">-81.90320, 43.75098</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+</div>
+<div id="subsets" class="section level3">
+<h3>Subsets</h3>
+<p>You may also wish to subset your object based on certain attribute values. We will begin by adding some factorial attributes to our spatial object to discuss this in more detail.</p>
+<pre class="r"><code>spatData$fact1 &lt;- paste0(&#39;a&#39;, 1:2) # Create factor with 2 levels
+spatData$fact2 &lt;- paste0(&#39;b&#39;, 1:5) # Create factor with 5 levels
+knitr::kable(head(spatData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="left">fact1</th>
+<th align="left">fact2</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">0.6691956</td>
+<td align="right">5.5713549</td>
+<td align="left">a1</td>
+<td align="left">b1</td>
+<td align="left">-80.56672, 43.85765</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-1.1392552</td>
+<td align="right">3.8103797</td>
+<td align="left">a2</td>
+<td align="left">b2</td>
+<td align="left">-81.81512, 42.88395</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.2234516</td>
+<td align="right">9.5508924</td>
+<td align="left">a1</td>
+<td align="left">b3</td>
+<td align="left">-80.43484, 43.69511</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">0.2774601</td>
+<td align="right">5.9499196</td>
+<td align="left">a2</td>
+<td align="left">b4</td>
+<td align="left">-80.78507, 42.39481</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.9636727</td>
+<td align="right">9.1074248</td>
+<td align="left">a1</td>
+<td align="left">b5</td>
+<td align="left">-80.38025, 42.81079</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">-0.0283743</td>
+<td align="right">0.0691366</td>
+<td align="left">a2</td>
+<td align="left">b1</td>
+<td align="left">-81.90320, 43.75098</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<p>The most simple way to subset an attributes table would be to manually select the rows that we wish to view. In this instance, let’s say we only wish to use the first 10 rows of our data.</p>
+<pre class="r"><code>spatDataSub &lt;- spatData[1:10, ]
+plot(spatData[, &#39;var1&#39;], col = &#39;blue&#39;)
+plot(spatDataSub[, &#39;var1&#39;], col = &#39;black&#39;, add = T, pch = 4, cex = 2, lwd = 2)</code></pre>
+<p><img src="/post/rinspace_attrmanip/index_files/figure-html/manualSub-1.png" width="672" /></p>
+<p><br/></p>
+<p>However, subsets based on certain criteria, <em>e.g.</em> all values greater to or equal to 0, can be much more efficient to create subsets. These are conditional statements and there is a vast body of material available discussing them, so we will only present a few examples and invite you to consult other resources like <a href="https://stackoverflow.com/">StackOverflow</a> for more specific questions.</p>
+<pre class="r"><code># Select all values for var1 greater to or equal to 0
+spatDataSub &lt;- spatData[spatData$var1 &gt;= 0, ]
+plot(spatData[, 1], col = &#39;blue&#39;)
+plot(spatDataSub[, 1], col = &#39;black&#39;, add = T, pch = 4, cex = 2, lwd = 2)</code></pre>
+<p><img src="/post/rinspace_attrmanip/index_files/figure-html/autoSub-1.png" width="672" /></p>
+<pre class="r"><code># var1 smaller than 0 and var2 higher than 5
+spatDataSub &lt;- spatData[spatData$var1 &lt; 0 &amp; spatData$var2 &lt; 5, ]
+plot(spatData[, 1], col = &#39;blue&#39;)
+plot(spatDataSub[, 1], col = &#39;black&#39;, add = T, pch = 4, cex = 2, lwd = 2)</code></pre>
+<p><img src="/post/rinspace_attrmanip/index_files/figure-html/autoSub-2.png" width="672" /></p>
+<pre class="r"><code># fact1 equal to a1
+spatDataSub &lt;- spatData[spatData$fact1 == &#39;a1&#39;, ]
+plot(spatData[, 1], col = &#39;blue&#39;)
+plot(spatDataSub[, 1], col = &#39;black&#39;, add = T, pch = 4, cex = 2, lwd = 2)</code></pre>
+<p><img src="/post/rinspace_attrmanip/index_files/figure-html/autoSub-3.png" width="672" /></p>
+<pre class="r"><code># fact1 equal to a1 or var1 greater than 0
+spatDataSub &lt;- spatData[spatData$fact1 == &#39;a1&#39; | spatData$var1 &gt; 0, ]
+plot(spatData[, 1], col = &#39;blue&#39;)
+plot(spatDataSub[, 1], col = &#39;black&#39;, add = T, pch = 4, cex = 2, lwd = 2)</code></pre>
+<p><img src="/post/rinspace_attrmanip/index_files/figure-html/autoSub-4.png" width="672" /></p>
+<pre class="r"><code># fact2 equal to b3 or b4
+spatDataSub &lt;- spatData[spatData$fact2 %in% c(&#39;b3&#39;,&#39;b4&#39;), ]
+plot(spatData[, 1], col = &#39;blue&#39;)
+plot(spatDataSub[, 1], col = &#39;black&#39;, add = T, pch = 4, cex = 2, lwd = 2)</code></pre>
+<p><img src="/post/rinspace_attrmanip/index_files/figure-html/autoSub-5.png" width="672" /></p>
+<p><br/></p>
+</div>
+<div id="join" class="section level3">
+<h3>Join</h3>
+<p>Joining tables based on their shared id is another common manipulation. This can be quickly accomplished using the <code>left_join</code> function from the <code>dplyr</code> package.</p>
+<pre class="r"><code># Create data.frame with id field similar to that in the spatial object
+joinData &lt;- data.frame(id = seq(1, 20, by = 2),
+                       var3 = rnorm(10))
+
+# Join with attributes table of spatial object
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>spatData &lt;- left_join(spatData, joinData)</code></pre>
+<pre><code>## Joining, by = &quot;id&quot;</code></pre>
+<pre class="r"><code>knitr::kable(head(spatData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="left">fact1</th>
+<th align="left">fact2</th>
+<th align="right">var3</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">0.6691956</td>
+<td align="right">5.5713549</td>
+<td align="left">a1</td>
+<td align="left">b1</td>
+<td align="right">0.7382075</td>
+<td align="left">-80.56672, 43.85765</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-1.1392552</td>
+<td align="right">3.8103797</td>
+<td align="left">a2</td>
+<td align="left">b2</td>
+<td align="right">NA</td>
+<td align="left">-81.81512, 42.88395</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.2234516</td>
+<td align="right">9.5508924</td>
+<td align="left">a1</td>
+<td align="left">b3</td>
+<td align="right">-1.1915982</td>
+<td align="left">-80.43484, 43.69511</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">0.2774601</td>
+<td align="right">5.9499196</td>
+<td align="left">a2</td>
+<td align="left">b4</td>
+<td align="right">NA</td>
+<td align="left">-80.78507, 42.39481</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.9636727</td>
+<td align="right">9.1074248</td>
+<td align="left">a1</td>
+<td align="left">b5</td>
+<td align="right">-0.6824849</td>
+<td align="left">-80.38025, 42.81079</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">-0.0283743</td>
+<td align="right">0.0691366</td>
+<td align="left">a2</td>
+<td align="left">b1</td>
+<td align="right">NA</td>
+<td align="left">-81.90320, 43.75098</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+</div>
+<div id="aggregate" class="section level3">
+<h3>Aggregate</h3>
+<p>Information contained in a table can also be used to aggregate</p>
+<pre class="r"><code>aggData &lt;- aggregate(spatData[&#39;var1&#39;], by = list(spatData$fact1), FUN = sum)
+knitr::kable(head(aggData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Group.1</th>
+<th align="right">var1</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">a1</td>
+<td align="right">3.036573</td>
+<td align="left">-81.67100, -81.53063, -81.52354, -81.46891, -81.19607, -81.11762, -80.56672, -80.43484, -80.38025, -80.20602, 43.52795, 42.17156, 42.11143, 43.69398, 42.83132, 42.93473, 43.85765, 43.69511, 42.81079, 42.69012</td>
+</tr>
+<tr class="even">
+<td align="left">a2</td>
+<td align="right">-5.849750</td>
+<td align="left">-81.97407, -81.90320, -81.81512, -81.52354, -80.88797, -80.84442, -80.83676, -80.78507, -80.29392, -80.04053, 42.28311, 43.75098, 42.88395, 42.81347, 43.33051, 43.28746, 42.18789, 42.39481, 42.44609, 42.23840</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>plot(aggData, cex = abs(aggData$var1))</code></pre>
+<pre><code>## Warning in classInt::classIntervals(values, nbreaks, breaks): n greater
+## than number of different finite values\nn reset to number of different
+## finite values</code></pre>
+<pre><code>## Warning in classInt::classIntervals(values, nbreaks, breaks): n same
+## as number of different finite values\neach different finite value is a
+## separate class</code></pre>
+<p><img src="/post/rinspace_attrmanip/index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+</div>
+<div id="raster-objects" class="section level2">
+<h2>Raster objects</h2>
+</div>
