@@ -3,7 +3,7 @@ title: R in Space - Attribute manipulations
 author: [david, marieh, nicolas, kevin, elliot, steve]
 tags: [R in Space, R, Spatial]
 date: 2018-04-05
-draft: false
+draft: true
 tweet: "R in Space - Attribute manipulations"
 estime: 10
 output:
@@ -53,39 +53,39 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">0.9611087</td>
-<td align="right">3.585815</td>
-<td align="left">-81.92308, 43.62751</td>
+<td align="right">-0.1864982</td>
+<td align="right">3.172740</td>
+<td align="left">-80.83680, 43.67492</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">-0.5283123</td>
-<td align="right">7.122170</td>
-<td align="left">-81.13174, 42.94059</td>
+<td align="right">0.1889541</td>
+<td align="right">2.789303</td>
+<td align="left">-81.46436, 43.78236</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">0.3123749</td>
-<td align="right">3.785435</td>
-<td align="left">-80.9225, 42.0042</td>
+<td align="right">-0.5840048</td>
+<td align="right">4.230312</td>
+<td align="left">-81.45391, 42.99025</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">-0.3766192</td>
-<td align="right">1.576984</td>
-<td align="left">-81.98015, 42.46440</td>
+<td align="right">-0.3210170</td>
+<td align="right">6.535849</td>
+<td align="left">-80.45575, 43.55552</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.5209434</td>
-<td align="right">2.882952</td>
-<td align="left">-81.83393, 43.28784</td>
+<td align="right">1.8327090</td>
+<td align="right">1.940238</td>
+<td align="left">-81.16849, 42.69108</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">-1.3160303</td>
-<td align="right">8.571470</td>
-<td align="left">-81.82225, 42.41958</td>
+<td align="right">1.0289829</td>
+<td align="right">6.543631</td>
+<td align="left">-81.87747, 43.79671</td>
 </tr>
 </tbody>
 </table>
@@ -112,51 +112,51 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">0.9611087</td>
-<td align="right">3.585815</td>
-<td align="right">0.3039990</td>
-<td align="right">3.4463583</td>
-<td align="left">-81.92308, 43.62751</td>
+<td align="right">-0.1864982</td>
+<td align="right">3.172740</td>
+<td align="right">0.4186864</td>
+<td align="right">-0.5917103</td>
+<td align="left">-80.83680, 43.67492</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">-0.5283123</td>
-<td align="right">7.122170</td>
-<td align="right">0.1993685</td>
-<td align="right">-3.7627301</td>
-<td align="left">-81.13174, 42.94059</td>
+<td align="right">0.1889541</td>
+<td align="right">2.789303</td>
+<td align="right">0.9793017</td>
+<td align="right">0.5270503</td>
+<td align="left">-81.46436, 43.78236</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">0.3123749</td>
-<td align="right">3.785435</td>
-<td align="right">0.5512916</td>
-<td align="right">1.1824748</td>
-<td align="left">-80.9225, 42.0042</td>
+<td align="right">-0.5840048</td>
+<td align="right">4.230312</td>
+<td align="right">0.6743693</td>
+<td align="right">-2.4705224</td>
+<td align="left">-81.45391, 42.99025</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">-0.3766192</td>
-<td align="right">1.576984</td>
-<td align="right">0.6754297</td>
-<td align="right">-0.5939226</td>
-<td align="left">-81.98015, 42.46440</td>
+<td align="right">-0.3210170</td>
+<td align="right">6.535849</td>
+<td align="right">0.9321362</td>
+<td align="right">-2.0981188</td>
+<td align="left">-80.45575, 43.55552</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.5209434</td>
-<td align="right">2.882952</td>
-<td align="right">0.1468490</td>
-<td align="right">1.5018548</td>
-<td align="left">-81.83393, 43.28784</td>
+<td align="right">1.8327090</td>
+<td align="right">1.940238</td>
+<td align="right">0.6423429</td>
+<td align="right">3.5558924</td>
+<td align="left">-81.16849, 42.69108</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">-1.3160303</td>
-<td align="right">8.571470</td>
-<td align="right">0.4575942</td>
-<td align="right">-11.2803147</td>
-<td align="left">-81.82225, 42.41958</td>
+<td align="right">1.0289829</td>
+<td align="right">6.543631</td>
+<td align="right">0.2004309</td>
+<td align="right">6.7332840</td>
+<td align="left">-81.87747, 43.79671</td>
 </tr>
 </tbody>
 </table>
@@ -176,39 +176,39 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">0.9611087</td>
-<td align="right">3.585815</td>
-<td align="left">-81.92308, 43.62751</td>
+<td align="right">-0.1864982</td>
+<td align="right">3.172740</td>
+<td align="left">-80.83680, 43.67492</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">-0.5283123</td>
-<td align="right">7.122170</td>
-<td align="left">-81.13174, 42.94059</td>
+<td align="right">0.1889541</td>
+<td align="right">2.789303</td>
+<td align="left">-81.46436, 43.78236</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">0.3123749</td>
-<td align="right">3.785435</td>
-<td align="left">-80.9225, 42.0042</td>
+<td align="right">-0.5840048</td>
+<td align="right">4.230312</td>
+<td align="left">-81.45391, 42.99025</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">-0.3766192</td>
-<td align="right">1.576984</td>
-<td align="left">-81.98015, 42.46440</td>
+<td align="right">-0.3210170</td>
+<td align="right">6.535849</td>
+<td align="left">-80.45575, 43.55552</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.5209434</td>
-<td align="right">2.882952</td>
-<td align="left">-81.83393, 43.28784</td>
+<td align="right">1.8327090</td>
+<td align="right">1.940238</td>
+<td align="left">-81.16849, 42.69108</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">-1.3160303</td>
-<td align="right">8.571470</td>
-<td align="left">-81.82225, 42.41958</td>
+<td align="right">1.0289829</td>
+<td align="right">6.543631</td>
+<td align="left">-81.87747, 43.79671</td>
 </tr>
 </tbody>
 </table>
@@ -234,69 +234,69 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">0.9611087</td>
-<td align="right">3.585815</td>
-<td align="right">0.1824141</td>
-<td align="right">0.2141007</td>
-<td align="right">0.1452400</td>
-<td align="right">0.0901947</td>
-<td align="right">0.3997859</td>
-<td align="left">-81.92308, 43.62751</td>
+<td align="right">-0.1864982</td>
+<td align="right">3.172740</td>
+<td align="right">0.9051644</td>
+<td align="right">0.0203802</td>
+<td align="right">0.2571530</td>
+<td align="right">0.4813458</td>
+<td align="right">0.3816497</td>
+<td align="left">-80.83680, 43.67492</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">-0.5283123</td>
-<td align="right">7.122170</td>
-<td align="right">0.3433435</td>
-<td align="right">0.2696879</td>
-<td align="right">0.3138313</td>
-<td align="right">0.7849011</td>
-<td align="right">0.3273998</td>
-<td align="left">-81.13174, 42.94059</td>
+<td align="right">0.1889541</td>
+<td align="right">2.789303</td>
+<td align="right">0.8659594</td>
+<td align="right">0.1090736</td>
+<td align="right">0.3739663</td>
+<td align="right">0.1999950</td>
+<td align="right">0.5240028</td>
+<td align="left">-81.46436, 43.78236</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">0.3123749</td>
-<td align="right">3.785435</td>
-<td align="right">0.2606751</td>
-<td align="right">0.4560818</td>
-<td align="right">0.0024703</td>
-<td align="right">0.9371308</td>
-<td align="right">0.6393730</td>
-<td align="left">-80.9225, 42.0042</td>
+<td align="right">-0.5840048</td>
+<td align="right">4.230312</td>
+<td align="right">0.7708703</td>
+<td align="right">0.1074053</td>
+<td align="right">0.5933158</td>
+<td align="right">0.6657355</td>
+<td align="right">0.9204926</td>
+<td align="left">-81.45391, 42.99025</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">-0.3766192</td>
-<td align="right">1.576984</td>
-<td align="right">0.8035273</td>
-<td align="right">0.3982278</td>
-<td align="right">0.6156779</td>
-<td align="right">0.9756697</td>
-<td align="right">0.8981297</td>
-<td align="left">-81.98015, 42.46440</td>
+<td align="right">-0.3210170</td>
+<td align="right">6.535849</td>
+<td align="right">0.8100007</td>
+<td align="right">0.3205739</td>
+<td align="right">0.6355700</td>
+<td align="right">0.2383997</td>
+<td align="right">0.8074085</td>
+<td align="left">-80.45575, 43.55552</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.5209434</td>
-<td align="right">2.882952</td>
-<td align="right">0.5227899</td>
-<td align="right">0.4771793</td>
-<td align="right">0.8500819</td>
-<td align="right">0.2263262</td>
-<td align="right">0.6984368</td>
-<td align="left">-81.83393, 43.28784</td>
+<td align="right">1.8327090</td>
+<td align="right">1.940238</td>
+<td align="right">0.3291753</td>
+<td align="right">0.0562133</td>
+<td align="right">0.3893532</td>
+<td align="right">0.8942664</td>
+<td align="right">0.4819655</td>
+<td align="left">-81.16849, 42.69108</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">-1.3160303</td>
-<td align="right">8.571470</td>
-<td align="right">0.8810976</td>
-<td align="right">0.4647999</td>
-<td align="right">0.4015342</td>
-<td align="right">0.2921970</td>
-<td align="right">0.8771954</td>
-<td align="left">-81.82225, 42.41958</td>
+<td align="right">1.0289829</td>
+<td align="right">6.543631</td>
+<td align="right">0.7318865</td>
+<td align="right">0.5359659</td>
+<td align="right">0.3134585</td>
+<td align="right">0.9197127</td>
+<td align="right">0.6276375</td>
+<td align="left">-81.87747, 43.79671</td>
 </tr>
 </tbody>
 </table>
@@ -315,39 +315,39 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">0.9611087</td>
-<td align="right">3.585815</td>
-<td align="left">-81.92308, 43.62751</td>
+<td align="right">-0.1864982</td>
+<td align="right">3.172740</td>
+<td align="left">-80.83680, 43.67492</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">-0.5283123</td>
-<td align="right">7.122170</td>
-<td align="left">-81.13174, 42.94059</td>
+<td align="right">0.1889541</td>
+<td align="right">2.789303</td>
+<td align="left">-81.46436, 43.78236</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">0.3123749</td>
-<td align="right">3.785435</td>
-<td align="left">-80.9225, 42.0042</td>
+<td align="right">-0.5840048</td>
+<td align="right">4.230312</td>
+<td align="left">-81.45391, 42.99025</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">-0.3766192</td>
-<td align="right">1.576984</td>
-<td align="left">-81.98015, 42.46440</td>
+<td align="right">-0.3210170</td>
+<td align="right">6.535849</td>
+<td align="left">-80.45575, 43.55552</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.5209434</td>
-<td align="right">2.882952</td>
-<td align="left">-81.83393, 43.28784</td>
+<td align="right">1.8327090</td>
+<td align="right">1.940238</td>
+<td align="left">-81.16849, 42.69108</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">-1.3160303</td>
-<td align="right">8.571470</td>
-<td align="left">-81.82225, 42.41958</td>
+<td align="right">1.0289829</td>
+<td align="right">6.543631</td>
+<td align="left">-81.87747, 43.79671</td>
 </tr>
 </tbody>
 </table>
@@ -371,69 +371,69 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">0.9611087</td>
-<td align="right">3.585815</td>
-<td align="right">0.3220136</td>
-<td align="right">0.7214277</td>
-<td align="right">0.4100332</td>
-<td align="right">0.6297775</td>
-<td align="right">0.1379422</td>
-<td align="left">-81.92308, 43.62751</td>
+<td align="right">-0.1864982</td>
+<td align="right">3.172740</td>
+<td align="right">0.5638731</td>
+<td align="right">0.7282918</td>
+<td align="right">0.5164203</td>
+<td align="right">0.8639003</td>
+<td align="right">0.8208390</td>
+<td align="left">-80.83680, 43.67492</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">-0.5283123</td>
-<td align="right">7.122170</td>
-<td align="right">0.2597678</td>
-<td align="right">0.7306484</td>
-<td align="right">0.6712337</td>
-<td align="right">0.5982710</td>
-<td align="right">0.0771625</td>
-<td align="left">-81.13174, 42.94059</td>
+<td align="right">0.1889541</td>
+<td align="right">2.789303</td>
+<td align="right">0.5665293</td>
+<td align="right">0.5922207</td>
+<td align="right">0.3698689</td>
+<td align="right">0.6255389</td>
+<td align="right">0.6396705</td>
+<td align="left">-81.46436, 43.78236</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">0.3123749</td>
-<td align="right">3.785435</td>
-<td align="right">0.7429629</td>
-<td align="right">0.6261439</td>
-<td align="right">0.3021856</td>
-<td align="right">0.5259329</td>
-<td align="right">0.8652161</td>
-<td align="left">-80.9225, 42.0042</td>
+<td align="right">-0.5840048</td>
+<td align="right">4.230312</td>
+<td align="right">0.9805239</td>
+<td align="right">0.3458063</td>
+<td align="right">0.9793298</td>
+<td align="right">0.4870232</td>
+<td align="right">0.2861267</td>
+<td align="left">-81.45391, 42.99025</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">-0.3766192</td>
-<td align="right">1.576984</td>
-<td align="right">0.3575977</td>
-<td align="right">0.5562253</td>
-<td align="right">0.0814409</td>
-<td align="right">0.1385676</td>
-<td align="right">0.0905653</td>
-<td align="left">-81.98015, 42.46440</td>
+<td align="right">-0.3210170</td>
+<td align="right">6.535849</td>
+<td align="right">0.8338612</td>
+<td align="right">0.3713730</td>
+<td align="right">0.7251596</td>
+<td align="right">0.9455542</td>
+<td align="right">0.6490119</td>
+<td align="left">-80.45575, 43.55552</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.5209434</td>
-<td align="right">2.882952</td>
-<td align="right">0.8224104</td>
-<td align="right">0.4564368</td>
-<td align="right">0.0205706</td>
-<td align="right">0.7171542</td>
-<td align="right">0.9549588</td>
-<td align="left">-81.83393, 43.28784</td>
+<td align="right">1.8327090</td>
+<td align="right">1.940238</td>
+<td align="right">0.4624875</td>
+<td align="right">0.5456444</td>
+<td align="right">0.5854366</td>
+<td align="right">0.1743138</td>
+<td align="right">0.0169288</td>
+<td align="left">-81.16849, 42.69108</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">-1.3160303</td>
-<td align="right">8.571470</td>
-<td align="right">0.6508549</td>
-<td align="right">0.8684848</td>
-<td align="right">0.2119702</td>
-<td align="right">0.2266126</td>
-<td align="right">0.5774274</td>
-<td align="left">-81.82225, 42.41958</td>
+<td align="right">1.0289829</td>
+<td align="right">6.543631</td>
+<td align="right">0.4041219</td>
+<td align="right">0.0815107</td>
+<td align="right">0.1399118</td>
+<td align="right">0.2919782</td>
+<td align="right">0.2128965</td>
+<td align="left">-81.87747, 43.79671</td>
 </tr>
 </tbody>
 </table>
@@ -452,39 +452,39 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">0.9611087</td>
-<td align="right">3.585815</td>
-<td align="left">-81.92308, 43.62751</td>
+<td align="right">-0.1864982</td>
+<td align="right">3.172740</td>
+<td align="left">-80.83680, 43.67492</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">-0.5283123</td>
-<td align="right">7.122170</td>
-<td align="left">-81.13174, 42.94059</td>
+<td align="right">0.1889541</td>
+<td align="right">2.789303</td>
+<td align="left">-81.46436, 43.78236</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">0.3123749</td>
-<td align="right">3.785435</td>
-<td align="left">-80.9225, 42.0042</td>
+<td align="right">-0.5840048</td>
+<td align="right">4.230312</td>
+<td align="left">-81.45391, 42.99025</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">-0.3766192</td>
-<td align="right">1.576984</td>
-<td align="left">-81.98015, 42.46440</td>
+<td align="right">-0.3210170</td>
+<td align="right">6.535849</td>
+<td align="left">-80.45575, 43.55552</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.5209434</td>
-<td align="right">2.882952</td>
-<td align="left">-81.83393, 43.28784</td>
+<td align="right">1.8327090</td>
+<td align="right">1.940238</td>
+<td align="left">-81.16849, 42.69108</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">-1.3160303</td>
-<td align="right">8.571470</td>
-<td align="left">-81.82225, 42.41958</td>
+<td align="right">1.0289829</td>
+<td align="right">6.543631</td>
+<td align="left">-81.87747, 43.79671</td>
 </tr>
 </tbody>
 </table>
@@ -510,89 +510,86 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">0.9611087</td>
-<td align="right">3.585815</td>
+<td align="right">-0.1864982</td>
+<td align="right">3.172740</td>
 <td align="left">a1</td>
 <td align="left">b1</td>
-<td align="left">-81.92308, 43.62751</td>
+<td align="left">-80.83680, 43.67492</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">-0.5283123</td>
-<td align="right">7.122170</td>
+<td align="right">0.1889541</td>
+<td align="right">2.789303</td>
 <td align="left">a2</td>
 <td align="left">b2</td>
-<td align="left">-81.13174, 42.94059</td>
+<td align="left">-81.46436, 43.78236</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">0.3123749</td>
-<td align="right">3.785435</td>
+<td align="right">-0.5840048</td>
+<td align="right">4.230312</td>
 <td align="left">a1</td>
 <td align="left">b3</td>
-<td align="left">-80.9225, 42.0042</td>
+<td align="left">-81.45391, 42.99025</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">-0.3766192</td>
-<td align="right">1.576984</td>
+<td align="right">-0.3210170</td>
+<td align="right">6.535849</td>
 <td align="left">a2</td>
 <td align="left">b4</td>
-<td align="left">-81.98015, 42.46440</td>
+<td align="left">-80.45575, 43.55552</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.5209434</td>
-<td align="right">2.882952</td>
+<td align="right">1.8327090</td>
+<td align="right">1.940238</td>
 <td align="left">a1</td>
 <td align="left">b5</td>
-<td align="left">-81.83393, 43.28784</td>
+<td align="left">-81.16849, 42.69108</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">-1.3160303</td>
-<td align="right">8.571470</td>
+<td align="right">1.0289829</td>
+<td align="right">6.543631</td>
 <td align="left">a2</td>
 <td align="left">b1</td>
-<td align="left">-81.82225, 42.41958</td>
+<td align="left">-81.87747, 43.79671</td>
 </tr>
 </tbody>
 </table>
 <p><br/></p>
 <p>The most simple way to subset an attributes table would be to manually select the rows that we wish to view. In this instance, let’s say we only wish to use the first 10 rows of our data.</p>
 <pre class="r"><code>selectID &lt;- 1:10
-plot(spatData[, 1], col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
-plot(spatData[selectID, 1], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="/post/rinspace_attrmanip/index_files/figure-html/manualSub-1.png" width="672" /></p>
-<pre class="r"><code>plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
+plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="/post/rinspace_attrmanip/index_files/figure-html/manualSub-2.png" width="672" /></p>
+<p><img src="/post/rinspace_attrmanip/index_files/figure-html/manualSub-1.png" width="672" /></p>
 <p><br/></p>
 <p>However, subsets based on certain criteria, <em>e.g.</em> all values greater to or equal to 0, can be much more efficient to create subsets. These are conditional statements and there is a vast body of material available discussing them, so we will only present a few examples and invite you to consult other resources like <a href="https://stackoverflow.com/">StackOverflow</a> for more specific questions.</p>
 <pre class="r"><code># Select all values for var1 greater to or equal to 0
 selectID &lt;- spatData$var1 &gt;= 0
-plot(spatData[, 1], col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
-plot(spatData[selectID, 1], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
+plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
+plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
 <p><img src="/post/rinspace_attrmanip/index_files/figure-html/autoSub-1.png" width="672" /></p>
 <pre class="r"><code># var1 smaller than 0 and var2 higher than 5
 selectID &lt;- spatData$var1 &lt; 0 &amp; spatData$var2 &lt; 5
-plot(spatData[, 1], col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
-plot(spatData[selectID, 1], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
+plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
+plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
 <p><img src="/post/rinspace_attrmanip/index_files/figure-html/autoSub-2.png" width="672" /></p>
 <pre class="r"><code># fact1 equal to a1
 selectID &lt;- spatData$fact1 == &#39;a1&#39;
-plot(spatData[, 1], col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
-plot(spatData[selectID, 1], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
+plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
+plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
 <p><img src="/post/rinspace_attrmanip/index_files/figure-html/autoSub-3.png" width="672" /></p>
 <pre class="r"><code># fact1 equal to a1 or var1 greater than 0
 selectID &lt;- spatData$fact1 == &#39;a1&#39; | spatData$var1 &gt; 0
-plot(spatData[, 1], col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
-plot(spatData[selectID, 1], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
+plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
+plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
 <p><img src="/post/rinspace_attrmanip/index_files/figure-html/autoSub-4.png" width="672" /></p>
 <pre class="r"><code># fact2 equal to b3 or b4
 selectID &lt;- spatData$fact2 %in% c(&#39;b3&#39;,&#39;b4&#39;)
-plot(spatData[, 1], col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
-plot(spatData[selectID, 1], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
+plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
+plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
 <p><img src="/post/rinspace_attrmanip/index_files/figure-html/autoSub-5.png" width="672" /></p>
 <p><br/></p>
 </div>
@@ -631,57 +628,57 @@ library(dplyr)</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">0.9611087</td>
-<td align="right">3.585815</td>
+<td align="right">-0.1864982</td>
+<td align="right">3.172740</td>
 <td align="left">a1</td>
 <td align="left">b1</td>
-<td align="right">0.8629550</td>
-<td align="left">-81.92308, 43.62751</td>
+<td align="right">0.6119682</td>
+<td align="left">-80.83680, 43.67492</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">-0.5283123</td>
-<td align="right">7.122170</td>
+<td align="right">0.1889541</td>
+<td align="right">2.789303</td>
 <td align="left">a2</td>
 <td align="left">b2</td>
 <td align="right">NA</td>
-<td align="left">-81.13174, 42.94059</td>
+<td align="left">-81.46436, 43.78236</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">0.3123749</td>
-<td align="right">3.785435</td>
+<td align="right">-0.5840048</td>
+<td align="right">4.230312</td>
 <td align="left">a1</td>
 <td align="left">b3</td>
-<td align="right">0.1458425</td>
-<td align="left">-80.9225, 42.0042</td>
+<td align="right">0.1469455</td>
+<td align="left">-81.45391, 42.99025</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">-0.3766192</td>
-<td align="right">1.576984</td>
+<td align="right">-0.3210170</td>
+<td align="right">6.535849</td>
 <td align="left">a2</td>
 <td align="left">b4</td>
 <td align="right">NA</td>
-<td align="left">-81.98015, 42.46440</td>
+<td align="left">-80.45575, 43.55552</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.5209434</td>
-<td align="right">2.882952</td>
+<td align="right">1.8327090</td>
+<td align="right">1.940238</td>
 <td align="left">a1</td>
 <td align="left">b5</td>
-<td align="right">1.2006158</td>
-<td align="left">-81.83393, 43.28784</td>
+<td align="right">-0.9156343</td>
+<td align="left">-81.16849, 42.69108</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">-1.3160303</td>
-<td align="right">8.571470</td>
+<td align="right">1.0289829</td>
+<td align="right">6.543631</td>
 <td align="left">a2</td>
 <td align="left">b1</td>
 <td align="right">NA</td>
-<td align="left">-81.82225, 42.41958</td>
+<td align="left">-81.87747, 43.79671</td>
 </tr>
 </tbody>
 </table>
@@ -703,13 +700,13 @@ knitr::kable(head(aggData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left">a1</td>
-<td align="right">1.737499</td>
-<td align="left">-81.93640, -81.92308, -81.83393, -81.51175, -81.49423, -81.47338, -80.92250, -80.41372, -80.24786, -80.20705, 43.66946, 43.62751, 43.28784, 42.16241, 42.87762, 43.77715, 42.00420, 43.03974, 43.72960, 43.14069</td>
+<td align="right">2.557220</td>
+<td align="left">-81.94740, -81.94366, -81.45391, -81.16849, -81.15869, -81.06822, -80.83680, -80.79430, -80.65733, -80.60109, 42.11777, 43.18014, 42.99025, 42.69108, 42.64942, 43.23221, 43.67492, 42.53314, 43.49665, 43.18336</td>
 </tr>
 <tr class="even">
 <td align="left">a2</td>
-<td align="right">-1.229899</td>
-<td align="left">-81.98015, -81.91928, -81.82225, -81.81566, -81.73420, -81.29270, -81.13174, -80.56011, -80.39814, -80.12993, 42.46440, 42.01263, 42.41958, 43.08618, 43.98255, 43.69821, 42.94059, 43.00948, 43.59598, 43.39345</td>
+<td align="right">-4.943231</td>
+<td align="left">-81.98699, -81.87747, -81.68098, -81.65136, -81.46436, -81.09061, -80.45575, -80.24426, -80.21636, -80.17976, 42.10767, 43.79671, 43.42571, 42.90996, 43.78236, 42.88396, 43.55552, 43.38048, 42.76331, 42.48783</td>
 </tr>
 </tbody>
 </table>
@@ -725,4 +722,14 @@ knitr::kable(head(aggData))</code></pre>
 </div>
 <div id="raster-objects" class="section level2">
 <h2>Raster objects</h2>
+<p>Attributes tables associated with raster objects can also be manipulated, although the data attached to a raster will typically be less amenable to changes and multiple parameters.</p>
+<div id="setting-values" class="section level3">
+<h3>Setting values</h3>
+</div>
+<div id="subsets-1" class="section level3">
+<h3>Subsets</h3>
+</div>
+<div id="section" class="section level3">
+<h3></h3>
+</div>
 </div>
