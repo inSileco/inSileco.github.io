@@ -164,7 +164,13 @@ class(pts_sfc)
 class(x)
 ```
 
+#### How to import a `sp` object
 
+`st_as_sf()` can also be used to convert a `sp` object into a `sf` one.
+
+```{r sf4}
+st_as_sf(mysp)
+```
 
 
 ## Raster objects

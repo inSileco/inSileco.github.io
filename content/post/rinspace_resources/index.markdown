@@ -125,7 +125,9 @@ spatial data in R is:
 
 - [r-spatial.org](http://r-spatial.org/);
 - [rspatial.org](http://www.rspatial.org/);
-- [tutorial on DataCamp](https://www.datacamp.com/courses/spatial-analysis-in-r-with-sf-and-raster);
+- [Tutorial on DataCamp](https://www.datacamp.com/courses/spatial-analysis-in-r-with-sf-and-raster);
 - [Geocomputation with R](https://geocompr.robinlovelace.net/intro.html);
 - [Analyses spatiale sous R](https://qcbs.ca/wiki/_media/gisonr.pdf) (fr).
+- [Another tutorial by Claudia Engel](https://cengel.github.io/rspatial)
+
 <br><br>

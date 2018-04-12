@@ -244,6 +244,29 @@ class(pts_sfc)</code></pre>
 <pre class="r"><code>class(x)</code></pre>
 <pre><code>## [1] &quot;XY&quot;    &quot;POINT&quot; &quot;sfg&quot;</code></pre>
 </div>
+<div id="how-to-import-a-sp-object" class="section level4">
+<h4>How to import a <code>sp</code> object</h4>
+<p><code>st_as_sf()</code> can also be used to convert a <code>sp</code> object into a <code>sf</code> one.</p>
+<pre class="r"><code>st_as_sf(mysp)</code></pre>
+<pre><code>## Simple feature collection with 20 features and 2 fields
+## geometry type:  POINT
+## dimension:      XY
+## bbox:           xmin: -81.80247 ymin: 42.02608 xmax: -80.00439 ymax: 43.89495
+## epsg (SRID):    4326
+## proj4string:    +proj=longlat +datum=WGS84 +no_defs
+## First 10 features:
+##          var1     var2                   geometry
+## 1   0.4903868 1.075007 POINT (-81.80247 42.61008)
+## 2  -0.3728839 4.172873  POINT (-80.3899 42.02608)
+## 3  -0.2509555 5.859953 POINT (-80.78485 43.08422)
+## 4  -0.7129443 9.746547 POINT (-81.23434 43.10306)
+## 5   1.0514086 1.311865 POINT (-80.00439 42.99512)
+## 6   0.2805270 6.302691 POINT (-80.01515 42.58484)
+## 7  -0.1555556 9.223396 POINT (-81.23418 42.08587)
+## 8  -1.5763767 3.279468 POINT (-81.53454 42.42827)
+## 9  -0.9360012 6.251189 POINT (-80.80698 43.34591)
+## 10 -1.9618193 9.635805 POINT (-81.30866 43.19977)</code></pre>
+</div>
 </div>
 </div>
 <div id="raster-objects" class="section level2">
@@ -284,7 +307,7 @@ class(sta1)</code></pre>
 <pre><code>## [1] &quot;RasterStack&quot;
 ## attr(,&quot;package&quot;)
 ## [1] &quot;raster&quot;</code></pre>
-<p>Let’s <code>brick()</code> them</p>
+<p>Let’s <code>brick()</code> them:</p>
 <pre class="r"><code>bri1 &lt;- brick(ras1, ras2)
 class(bri1)</code></pre>
 <pre><code>## [1] &quot;RasterBrick&quot;
