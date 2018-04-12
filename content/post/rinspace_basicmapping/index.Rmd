@@ -74,23 +74,73 @@ Let's try a simple plot.
 plot(bel1_sf)
 ```
 
-It actually plot one map per variables and color the polygon according
+It actually plots one map per variable and colors the polygon according
 to the values. To obtain something similar to what is found in `sp`,
 an `sfc` object must be used:
 
 
 ```{r map_sf2, message = F}
 plot(st_geometry(bel1_sf), lwd = 1.5, col = "grey85")
+# same as :
+# plot(bel1_sf$geometry, lwd = 1.5, col = "grey85")
 plot(st_geometry(bel2_sf), lwd = .5, add = T)
 ```
 
 
-
-
 ## plot methods for `raster` objects
 
+Let's get a raster layer of altitude in Belgium using again `getData()`.
 
-## Using ggmap
+```{r getdata_alt, message = F}
+alt <- getData("alt", country = "Belgium", path = "data/")
+```
+
+```{r plot_alt, message = F}
+plot(alt)
+```
+We can also add different layers of information on this maps
+
+```{r plot_alt2, message = F}
+plot(alt)
+contour(alt, add = T)
+```
+
+... Or reclassify and change the color palette
+
+```{r plot_alt3, message = F}
+# Assign color to a object
+myCol <- terrain.colors(3)
+plot(alt,
+     breaks = c(0, 200, 400, 700),
+     col = myCol,
+     main = "Altitude map of Belgium")
+```
+
+## plotting together `sf` and `raster` objects
+
+```{r plot_alt_sf, message = F}
+# Create a new color palette
+library(RColorBrewer)
+myPal <- brewer.pal(n = 9, name = "Greens")
+
+# Plot the altitude raster
+plot(alt,
+  col = myPal,
+  xlab = "Longitude",
+  ylab = "Latitude")
+
+# Add Belgium boundary map
+plot(st_geometry(bel2_sf), add = T)
+
+# Add a point at the centroid of Bruxelles
+brux <- bel2_sf[bel2_sf$NAME_1 == "Bruxelles",]
+
+plot(st_geometry(st_centroid(brux)), pch = 20, add = T)
+
+# Add a label for Bruxelles on the map
+text(st_coordinates(st_centroid(brux)), labels = "Bruxelles", pos = 3, col = "#9728eb")
+
+```
 
 
 ## mapview
