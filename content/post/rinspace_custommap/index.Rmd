@@ -22,10 +22,8 @@ So, first, we import 2 vector layers readily available in R, the Canadian countr
 ```{r getdata, message = F}
 library(sf)
 library(raster)
-#dir.create("data")
-
-#can1 <- getData("GADM", country = "CAN", level = 1, path = "data/")
-can1 <- readRDS("data/GADM_2.8_CAN_adm1.rds")
+dir.create("data")
+can1 <- getData("GADM", country = "CAN", level = 1, path = "data")
 ```
 
 Transform to `sf` objects to facilitate manipulation
@@ -51,8 +49,8 @@ It would take a while to plot because there is a lot of unnecessary details, so 
 can simplify the shape of the polygons using `st_simplify()`.
 
 ```{r simplify, message = F}
-can1_simple <- st_simplify(can1_sf, dTolerance = 0.01, preserveTopology = TRUE)
-qc_simple <- st_simplify(qc, dTolerance = 0.01, preserveTopology = TRUE)
+can1_simple <- st_simplify(can1_sf, dTolerance = 0.02, preserveTopology = F)
+qc_simple <- st_simplify(qc, dTolerance = 0.02, preserveTopology = F)
 ```
 
 Let's look at what we have
@@ -66,11 +64,11 @@ there is a warning... that we will ignore for now...
 Let's say we sampled vegetation in 100 plots in Quebec; we now want to plot them with points proportional to their species richness. We will now create a data frame containing coordinates and random values from 5 to 50.
 
 ```{r points}
-# Sample random points from Quebec
+# Sample random points from our study area
 sample_pts <- st_sample(x = qc_simple, size = 100)
 
 # Add an attribute of fake species richness
-sample_pts$richness <- sample(x = 5:50, size = 100, replace = TRUE)
+#sample_pts$richness <- sample(x = 5:50, size = 100, replace = TRUE)
 ```
 
 If we were interested in the latitudinal temperature gradient, we could add a
@@ -96,29 +94,34 @@ my.layout <- layout(matrix(1:2, 2), heights = c(1,.14))
 layout.show(my.layout)
 ```
 
-– `mar` controls the margins of the plot area ;
+– `mar` controls the margins of the plot area;
 – `xaxs` and `yaxs` controls axis style.
 
-```{r}
-# layout(matrix(1:2, 2), heights = c(1,.14))
-# par(las = 1, xaxs='i', yaxs='i', mar = rep(c(2.5,3),2))
+```{r, eval=T}
+library(RColorBrewer)
+layout(matrix(1:2, 2), heights = c(1,.14))
+par(las = 1, xaxs='i', yaxs='i', mar = rep(c(2.5,3),2))
 # #
 myblu <- '#6da6c2'
 mygre <- 'grey50'
-mypal <- colorRampPalette(rev(brewer.pal(11, "RdYlBu")))
+mypal <- colorRampPalette(rev(brewer.pal(11, "RdYlBu")))(124)
 
 # plot0(c(-96,-74), c(41,57), fill=myblu)
-plot(st_geometry(can1_simple), add = T, col ='#b5cfbd', border = mygre,
+plot(st_geometry(can1_simple), col ='#b5cfbd', border = mygre,
 xlim = c(-82,-56), ylim = c(43, 64))
-image(temp_crop, add = T, col = mypal)
-plot(st_geometry(qc_simple), add = T, col = NA, border ='grey15', lwd =1.4, add = T)
-plot(st_geometry(sample_pts), cex = sample_pts$richness)
-
-legend
+# image(temp_crop[[1]], add = T, col = mypal)
+plot(st_geometry(qc_simple), add = T, col = NA, border ='grey15', lwd =1.4)
+plot(st_geometry(sample_pts), add = T, pch = 21, bg = "grey85", col = "grey15", lwd = 1.4)
+axis(1)
+axis(2)
+axis(3)
+axis(4)
+box(lwd=1.2)
+sp::compassRose(-54, 62)
+# legend
 par(mar = c(3.2, 5, .5, 5), mgp = c(2,.5,0))
-val <- range(values(temp_crop), na.rm =T)
-image(as.matrix(seq(val[1], val[2], length = 512)), col = mypal, axes = F)
+val <- range(values(temp_crop[[1]]), na.rm =T)
+# image(as.matrix(seq(val[1], val[2], length = 512)), col = mypal, axes = F)
 axis(1, at = seq(0.001, .999, length = 6), labels = seq(0, 650, length = 6))
 mtext(side = 1, line = 1.8, text = 'Mean annual temperature (°C)')
-
 ```
