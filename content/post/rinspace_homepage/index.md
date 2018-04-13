@@ -60,7 +60,7 @@ Also to access the full list of post of the series, click on the tag [R in space
 
 #### **2- Attribute manipulation**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_attrmanip" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
-#### **3- Geometry manipulation**: ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+#### **3- Geometry manipulation**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_geomanipulation" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
 #### **4- R spatial data resources**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_rdataresources" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
