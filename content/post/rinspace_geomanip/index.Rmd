@@ -19,24 +19,38 @@ output:
 
 ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
+```{r codeChunkSetUp, echo=FALSE}
+source('../../../static/Rscript/codeChunkSetUp.R')
+```
 
-## `sp` objects
 
-For spatial objects defined with `sp` there is a specific package to manipulate
-vector objects: `rgeos`
 
+To manipulate geometries, there are few options. For spatial objects defined
+with `sp`, there is a specific package to manipulate vector objects: `rgeos`.
+The equivalent of most common functions in `sp` are found in `sf`.
+Finally, there are a set of interesting functions in `raster` to handle
+the manipulation of rasters with vector objects.  
+
+
+Let's first load the packages required and download a simple shapefile.
 
 ```{r, message = F}
 library(sp)
+library(sf)
 library(rgeos)
 library(raster)
 bel2 <- getData(name="GADM", country="BEL", path="data", level = 2)
 plot(bel2)
 ```
 
+
+## `sp` objects
+
+
+
 ### Subset
 
-A quick subset
+A quick subset:
 
 ```{r, message = F}
 ## Create a subset (A sub-shapefile)
@@ -52,66 +66,88 @@ plot(bel_slc)
 ```
 
 
-### Union
+### Unions
+
+Let's do the union of a selection of spatial polygons:
 
 ```{r, message = F}
 bel_south <- gUnionCascaded(bel_slc)
 bel_north <- gUnionCascaded(bel2[-slc,])
-mapBELSN <- gUnionCascaded(bel2[c(slc,2),])
+bel_one <- gUnionCascaded(bel2)
 par(mfrow=c(1,3), mar=c(1,1,1,1))
 plot(bel_south)
 plot(bel_north)
-plot(mapBELSN)
+plot(bel_one)
 ```
 
+Let's combine them on one plot:
 
 ```{r, message = F}
 plot(bel2, lwd = .1)
 plot(bel_south, add=T, col=2)
 plot(bel_north, add=T, col=4)
 plot(bel2, lwd = .5, add = T)
+plot(bel_one, lwd = 2, add = T, border = "grey55")
 ```
 
-```
-plot(mapBEL2)
-plot(mapBELSN, add=T, col=3)
-```
 
-### Intersection
-
-par(mfrow=c(1,2))
-plot(mapBEL1)
-plot(gIntersection(mapBELSN, mapBELS), col=5, add=T)
-plot(mapBEL1)
-plot(gIntersection(mapBELSN, mapBELN), col=6, add=T)
 
 
 ### Buffers
 
+Buffer must be done on planar coordinates.
 
-par(mfrow=c(1,1))
-plot(mapBEL1)
-plot(gBuffer(mapBELS, width=0.5), add=T, lwd=2, lty=2)
-plot(gBuffer(mapBELS, width=0.1), add=T, lwd=3)
-plot(mapBELS, add=T, col=2)
+```{r, message = F}
+plot(bel2)
+bufs <- gBuffer(bel_south, width=0.4)
+bufn <- gBuffer(bel_north, width=0.1)
+plot(bufs, add=T, lwd=2, lty=2)
+plot(bufn, add=T, lwd=3)
+```
 
-### Difference
+### Intersections
+
+Intersections between `bel_south` and `bel_north`:
+
+```{r, message = F}
+par(mfrow = c(1,2))
+plot(bel_one)
+plot(gIntersection(bel_south, bel_north), col=5, add=T, lwd=2)
+plot(bel_one)
+plot(gIntersection(bufs, bufn), col=5, add=T, lwd=2)
+```
 
 
-Diff <- gDifference(gBuffer(mapBELS, width=0.5), gBuffer(mapBELS, width=0.1))
-plot(mapBEL1)
-plot(mapBELS, add=T, col=4)
-plot(Diff, add=T, lwd=2, lty=3, col=2)
-plot(mapBELS, add=T, col=2)
 
+### Differences
+
+```{r}
+bel_diff <- gDifference(bufs, bufn)
+plot(bel_one)
+plot(bel_diff, add=T, lwd=2, lty=3, col=2)
+plot(bel_south, add=T, col=2)
+```
 
 
 ## Overlays
 
-One very useful tool is the **over()** function which provides a consistent spatial overlay. For instance, here, I have defined points and one grid, in order to get the identities of cells  my points belong to, I can use the **over** function.  
+One very useful tool is the **over()** function which provides a consistent
+spatial overlay. For instance, here, I create a set of random points and
+look which one are in `bel2`, `bel_north` and `bel_south`:
 
-```{r, eval =F}
-over(ptspd,grdsp) # or ptspd%over%grdsp
+```{r}
+pts <- SpatialPoints(
+  coords = cbind(
+    runif(50, bel2@bbox[1,1], bel2@bbox[1,2]),
+    runif(50, bel2@bbox[2,1], bel2@bbox[2,2])
+  ),
+  proj4string = bel2@proj4string
+)
+# Make a SpatialPolygons
+bel2_geom <- SpatialPolygons(bel2@polygons, proj4string = bel2@proj4string)
+# plots
+plot(bel2_geom)
+points(pts, col = is.na(over(pts, bel2_geom))+2, pch =19)
 ```
 
 
