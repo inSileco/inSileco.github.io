@@ -1,0 +1,127 @@
+---
+title: R in Space - Custom maps
+author: [david, marieh, nicolas, kevin, elliot, steve]
+tags: [R in Space, R, Spatial]
+draft: true
+tweet: "R in Space - Custom maps"
+estime: 10
+date: 2018-04-03
+output:
+  rmarkdown::html_page:
+    fig_width: 3
+    dev: svg
+---
+
+
+## Creating a map for a paper
+
+In this post, we go through all the steps required to produce a complete good-looking map. We will see how to add a title, a legend, a scale, axis and a North arrow and choose a good color palette. To do so, we will use the Quebec province as our sampled area.
+
+So, first, we import 2 vector layers readily available in R, the Canadian country boundary and provincial boundaries.
+
+```{r getdata, message = F}
+library(sf)
+library(raster)
+dir.create("data")
+can1 <- getData("GADM", country = "CAN", level = 1, path = "data")
+```
+
+Transform to `sf` objects to facilitate manipulation
+
+```{r st_sf, message = F}
+can1_sf <- st_as_sf(can1)
+```
+
+Retrieve Quebec polygon
+
+```{r getQc, message = F}
+qc <- can1_sf[can1_sf$NAME_1 == "Québec",]
+```
+
+
+Change the CRS for 4249, which looks better for Quebec
+```{r crs}
+can1_sf <- st_transform(can1_sf, 4249)
+qc <- st_transform(qc, 4249)
+```
+
+It would take a while to plot because there is a lot of unnecessary details, so we
+can simplify the shape of the polygons using `st_simplify()`.
+
+```{r simplify, message = F}
+can1_simple <- st_simplify(can1_sf, dTolerance = 0.02, preserveTopology = F)
+qc_simple <- st_simplify(qc, dTolerance = 0.02, preserveTopology = F)
+```
+
+Let's look at what we have
+
+```{r map_1, message = F}
+plot(st_geometry(can1_simple), lwd = 1.5, col = "grey85")
+plot(st_geometry(qc_simple), lwd = .5, col = "blue3", add = T)
+```
+there is a warning... that we will ignore for now...
+
+Let's say we sampled vegetation in 100 plots in Quebec; we now want to plot them with points proportional to their species richness. We will now create a data frame containing coordinates and random values from 5 to 50.
+
+```{r points}
+# Sample random points from our study area
+sample_pts <- st_sample(x = qc_simple, size = 100)
+
+# Add an attribute of fake species richness
+#sample_pts$richness <- sample(x = 5:50, size = 100, replace = TRUE)
+```
+
+If we were interested in the latitudinal temperature gradient, we could add a
+raster of mean temperature as a background to our map.
+
+```{r temp, message = F}
+temp <- getData("worldclim", var = "tmean", res = 10)
+```
+
+
+Crop the temperature raster using quebec boundary. Because `crop()` from `raster`
+expects a vector of the form `c(xmin, xmax, ymin, ymax)` as given by `extent()`,
+we have to add `as.vector()` before `st_bbox()`.
+
+```{r crop, message = F}
+temp_crop <- crop(temp, as.vector(st_bbox(qc_simple)))
+```
+
+# Creating a layout
+
+```{r layout}
+my.layout <- layout(matrix(1:2, 2), heights = c(1,.14))
+layout.show(my.layout)
+```
+
+– `mar` controls the margins of the plot area;
+– `xaxs` and `yaxs` controls axis style.
+
+```{r, eval=T}
+library(RColorBrewer)
+layout(matrix(1:2, 2), heights = c(1,.14))
+par(las = 1, xaxs='i', yaxs='i', mar = rep(c(2.5,3),2))
+# #
+myblu <- '#6da6c2'
+mygre <- 'grey50'
+mypal <- colorRampPalette(rev(brewer.pal(11, "RdYlBu")))(124)
+
+# plot0(c(-96,-74), c(41,57), fill=myblu)
+plot(st_geometry(can1_simple), col ='#b5cfbd', border = mygre,
+xlim = c(-82,-56), ylim = c(43, 64))
+# image(temp_crop[[1]], add = T, col = mypal)
+plot(st_geometry(qc_simple), add = T, col = NA, border ='grey15', lwd =1.4)
+plot(st_geometry(sample_pts), add = T, pch = 21, bg = "grey85", col = "grey15", lwd = 1.4)
+axis(1)
+axis(2)
+axis(3)
+axis(4)
+box(lwd=1.2)
+sp::compassRose(-54, 62)
+# legend
+par(mar = c(3.2, 5, .5, 5), mgp = c(2,.5,0))
+val <- range(values(temp_crop[[1]]), na.rm =T)
+# image(as.matrix(seq(val[1], val[2], length = 512)), col = mypal, axes = F)
+axis(1, at = seq(0.001, .999, length = 6), labels = seq(0, 650, length = 6))
+mtext(side = 1, line = 1.8, text = 'Mean annual temperature (°C)')
+```
