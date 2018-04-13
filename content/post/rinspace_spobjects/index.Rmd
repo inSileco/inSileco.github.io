@@ -1,7 +1,7 @@
 ---
 title: "R in Space - Spatial data"
 author: [david, marieh, nicolas, kevin, elliot, steve]
-date: 2018-04-13
+date: 2018-04-11
 tags: [R in Space, R, Spatial]
 tweet: "R in Space - Spatial data"
 draft: true
@@ -24,17 +24,40 @@ source("../../../static/Rscript/codeChunkSetUp.R")
 
 <br><br>
 
-Spatial data refer to phenomenon or information that can be observed geographically. What a definition! In short spatial data concern every information that could be reported on a map, i.e. on a two-dimensions geographical coordinates system. Two kinds of spatial data exist: **vector data** and **raster data**. Generally vector refer to discrete locations, i.e. objects with boundaries (for instance a city, a road, a country) whereas raster data refer to continuous phenomenon that can be observed everywhere, but without natural boundaries (for instance the surface temperature). Let's take a look at their characteristics.
+Spatial data refer to phenomenon or information that can be observed geographically.
+What a definition! In short spatial data concern every information that could
+be reported on a map, *i.e.* on a two-dimensions geographical coordinates system.
+Two kinds of spatial data exist: **vector data** and **raster data**. Generally
+vectors refer to discrete locations, *i.e.* objects with boundaries (for
+instance a city, a road, a country) whereas raster data refer to continuous
+phenomenon that can be observed everywhere, but without natural boundaries (for
+instance the surface temperature). Let's take a look at their characteristics.
+
 
 ## Vector data
 
-Vector data consist of the description of a spatially explicit phenomenon geometry (position and coordinates of its boundaries in a specific spatial referential). In addition to this geometry, vector data may contain variables (or attributes) with additional information about the phenomenon at each location. For instance, cities of a country are vector data (points) and attributes could be cities names, population sizes, etc. Borders of a country are also vector data (polygons) and could contain the name of the country, the population for a given year, and the mean number of crimes as attributes.
+Vector data consist of the description of a spatially explicit phenomenon
+geometry (position and coordinates of its boundaries in a specific spatial
+referential). In addition to this geometry, vector data may contain variables
+(or attributes) with additional information about the phenomenon at each
+location. For instance, cities of a country are vector data (points) and
+attributes could be cities names, population sizes, etc. Borders of a country
+are also vector data (polygons) and could contain the name of the country,
+the population for a given year, and the mean number of crimes as attributes.
 
-Three symbol types for vector data exist: **points**, **lines** and **polygons**. The geometry of these data structures consists of sets of geographical coordinate pairs (longitude, latitude) in a specific coordinate reference system.
+There are main symbol types for vector data: **points**, **lines** and **polygons**.
+The geometry of these data structures consists of sets of geographical
+coordinate pairs (longitude, latitude) in a specific Coordinate Reference System
+(CRS).
+
 
 ### Points data
 
-Points are the simplest vector object. Each point has one two-dimensional coordinates, and several associated variables. For instance, a point might represent a location where an animal was trapped, and the attributes could include the capture date, the size, the sex, and information about the physical environment.
+Points are the simplest vector object. Each point has one two-dimensional
+coordinates, and several associated variables. For instance, a point might
+represent a location where an animal was trapped, and the attributes could
+include the capture date, the size, the sex, and information about the physical
+environment.
 
 <br />
 
@@ -95,31 +118,64 @@ mtext(side = 3, line = .15, "Longitude (°East)", font = 1, col = par()$col.axis
 box(col = par()$col.axis)
 ```
 
+
+
 <br />
 
 ### Lines data
 
-Lines are the second type of vector data. A line is a shape consisting of one or several segments (or paths) and each segment has two noteworthy points (or vertex): a starting point and an ending point. Note that the ending point of a segment will have the same coordinates as the starting point of the following segment in the case of a line consisting of connected segments. In other words, a line with one segment is defined by two coordinates pairs (longitude and latitude). A line with two connected segments is defined by three coordinates pairs and a line with two isolated segments is defined by four coordinates pairs. Thus, the representation of a line is very similar to that of a serie of points. The main difference is that the ordering of the points is important, because we need to know which points should be connected two-by-two.
+Lines are the second type of vector data. A line is a shape consisting of one
+or several segments (or paths) and each segment has two noteworthy points
+(or vertex): a starting point and an ending point. Note that the ending point of
+a segment will have the same coordinates as the starting point of the following
+segment in the case of a line consisting of connected segments. In other words,
+a line with one segment is defined by two coordinates pairs (longitude and
+latitude). A line with two connected segments is defined by three coordinates
+pairs and a line with two isolated segments is defined by four coordinates pairs.
+Thus, the representation of a line is very similar to that of a collection of
+points. The main difference is that the ordering of the points is important,
+because we need to know which points should be connected two-by-two.
+
 
 ### Polygons data
 
-Polygons are closed spatial lines where the coordinates of the starting point of the first segment is identical to the ending point of the last segment. The geometry of a polygon is very similar to that of a line but polygons have three characteristics:
+Polygons are closed spatial lines where the coordinates of the starting point of
+the first segment is identical to the ending point of the last segment. The
+geometry of a polygon is very similar to that of a line but polygons have three
+characteristics:
 
-- a polygon can not self-intersect (whereas a line can),
-- a polygon can contain hole (think about the state of Vatican overlapping the country of Italy but considered as a separated polygon),
-- as a closed feature, a polygon has an inside and a border.
+1. a polygon cannot self-intersect (whereas a line can),
+
+2. a polygon can contain hole (think about the state of Vatican overlapping the
+  country of Italy but considered as a separated polygon),
+
+3. as a closed feature, a polygon has an inside and a border.
 
 <br />
 
-Vector data are generally stored in **ESRI Shapefile**, **GeoJSON**, **KML** or **Simple Features** files. In R, two main packages exist to handle spatial vector data: `sp` and `sf`. Note that the package `rgdal` will be used to import/export vector data.
+Vector data are generally stored in **ESRI Shapefile**, **GeoJSON**, **KML**
+or **Simple Features** files. In R, two main packages exist to handle spatial
+vector data: `sp` and `sf`. Note that the package `rgdal` will be used to
+import/export vector data (go next post to learn more).
+
 
 ## Raster data
 
-Raster data are commonly used to represent _continuous_ phenomenon that can be observed everywhere, but without natural boundaries (but with artificial boundaries defined by the user). A raster consists of a grid of equally sized cells (or pixels) that all have a values (or a missing value) for one single variable.
+Raster data are commonly used to represent _continuous_ phenomenon that can be
+observed everywhere, but without natural boundaries (but with artificial
+boundaries defined by the user). A raster consists of a grid of equally sized
+cells (or pixels) that all have a values (or a missing value) for one single
+variable.
 
-Unlike vector data, the geometry of raster data is not explicitly stored as coordinates. It is implicitly set by setting the spatial extent and the number of rows and columns of the grid. From this spatial information, the size of the raster cells (spatial resolution) can be derivated. Due to this, working with raster data will be more efficient than working with polygons data.
+Unlike vector data, the geometry of raster data is not explicitly stored as
+coordinates. Rather it is implicitly set by setting the spatial extent and the
+number of rows and columns of a regular grid. From this spatial information,
+the size of the raster cells (spatial resolution) can be computed. Working with
+raster data will therefore be more efficient than working with polygons data.
 
-Raster can represent continuous (temperature values), discrete (habitat classes) or binary (species occurrence) variable.
+Raster can be used to represent a very broad range of data: continuous
+(temperature values), discrete (habitat classes) or even binary (species occurrence)
+variables.
 
 
 ```{r raster-data, echo=FALSE, eval=TRUE, fig.width=8.6, fig.height=2.86, dpi=300, out.width=810, out.height=270, fig.align='center'}
@@ -185,11 +241,11 @@ box(col = par()$col.axis)
 <br />
 
 
-The R package `raster` provides three main classes of raster object: **RasterLayer**, **RasterBrick**, and **RasterStack**:
+The R package `raster` provides three main classes of raster object:
 
-- **RasterLayer** imports a single-layer (variable) raster,
-- **RasterStack** imports in one single object several single-layer (variable) rasters stored in one or different files,
-- **RasterBrick** imports in one single object several single-layer (variable) rasters stored in one single file.
+1. **RasterLayer** imports a single-layer (variable) raster,
+2. **RasterStack** imports in one single object several single-layer (variable) rasters stored in one or different files,
+3. **RasterBrick** imports in one single object several single-layer (variable) rasters stored in one single file.
 
 Using **RasterStack** and **RasterBrick** requires that the geometry of all raster data is equal.
 

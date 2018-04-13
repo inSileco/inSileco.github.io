@@ -1,14 +1,14 @@
 ---
 title: R in Space - Spatial Objects in R
 author: [david, marieh, nicolas, kevin, elliot, steve]
-date: 2018-04-03
+date: 2018-04-10
 tags: [R in Space, R, Spatial]
 rpkgs: [sp, sf, raster]
 draft: true
 tweet: "R in Space - Spatial Objects in R"
 estime: 10
 navposts:
-  prev: rinspace_spobjinr
+  prev: rinspace_spobjects
   home: rinspace_homepage
   next: rinspace_import
 output:
@@ -174,7 +174,7 @@ st_as_sf(mysp)
 ```
 
 
-## Raster objects in R 
+## Raster objects in R
 
 Package `raster` define three classes of rater object we detail below.
 
@@ -192,6 +192,9 @@ ras1 <- raster(
     xmn = -82, xmx = +80, ymn = +42, ymx = +44
   )
 class(ras1)
+dim(ras1)
+head(values(ras1))
+projection(ras1)
 ```
 
 

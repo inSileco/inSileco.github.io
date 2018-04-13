@@ -1,14 +1,14 @@
 ---
 title: R in Space - Spatial Objects in R
 author: [david, marieh, nicolas, kevin, elliot, steve]
-date: 2018-04-03
+date: 2018-04-10
 tags: [R in Space, R, Spatial]
 rpkgs: [sp, sf, raster]
 draft: true
 tweet: "R in Space - Spatial Objects in R"
 estime: 10
 navposts:
-  prev: rinspace_spobjinr
+  prev: rinspace_spobjects
   home: rinspace_homepage
   next: rinspace_import
 output:
@@ -288,6 +288,12 @@ class(ras1)</code></pre>
 <pre><code>## [1] &quot;RasterLayer&quot;
 ## attr(,&quot;package&quot;)
 ## [1] &quot;raster&quot;</code></pre>
+<pre class="r"><code>dim(ras1)</code></pre>
+<pre><code>## [1] 100 100   1</code></pre>
+<pre class="r"><code>head(values(ras1))</code></pre>
+<pre><code>## [1] 6.544016 3.900609 4.368254 3.970687 8.061125 8.084684</code></pre>
+<pre class="r"><code>projection(ras1)</code></pre>
+<pre><code>## [1] &quot;+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0&quot;</code></pre>
 </div>
 <div id="rasterstack-and-rasterbrick" class="section level3">
 <h3>RasterStack and RasterBrick</h3>

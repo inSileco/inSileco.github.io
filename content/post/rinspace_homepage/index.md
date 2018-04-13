@@ -56,12 +56,10 @@ Also to access the full list of post of the series, click on the tag [R in space
 
 ### Advanced course
 
-#### **1- Create spatial objects**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_import" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+#### **1- Attribute manipulation**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_attrmanip" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
-#### **2- Attribute manipulation**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_attrmanip" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+#### **2- Geometry manipulation**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_geomanip" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
-#### **3- Geometry manipulation**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_geomanip" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+#### **3- R spatial data resources**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_rdataresources" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
-#### **4- R spatial data resources**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_rdataresources" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
-
-#### **5- Custom maps**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_custommaps" >}})  ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+#### **4- Custom maps**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_custommaps" >}})  ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
