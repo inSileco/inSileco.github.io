@@ -44,7 +44,7 @@ Also to access the full list of post of the series, click on the tag [R in space
 
 #### **1- Useful resources**: curated list of valuable resources [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_resources" >}}) ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
-#### **2- Spatial objects**: ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+#### **2- Spatial objects**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_spobjects" >}}) ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
 #### **3- Spatial objects in R**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_spobjinr" >}}) ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 

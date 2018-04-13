@@ -1,8 +1,8 @@
 ---
-title: "Spatial data"
-author: [nicolas, kevin, david, marie-helene, elliot]
-date: 2018-04-02
-tags: [Spatial, R]
+title: "R in Space - Spatial data"
+author: [david, marieh, nicolas, kevin, elliot, steve]
+date: 2018-04-09
+tags: [Spatial, R, Spatial]
 tweet: "R in Space - Spatial data"
 draft: false
 output:
@@ -18,23 +18,13 @@ source("../../../static/Rscript/codeChunkSetUp.R")
 ```
 
 <!--
-
-cd ~/Documents/inSileco.github.io/
-Rscript -e 'blogdown::serve_site()'
-
--->
-
-<!--
-
 http://www.rspatial.org/spatial/rst/2-spatialdata.html
 https://gisgeography.com/spatial-data-types-vector-raster/
 https://gisgeography.com/latitude-longitude-coordinates/
-https://en.wikipedia.org/wiki/GIS_file_formats
-
- -->
+https://en.wikipedia.org/wiki/GIS_file_formats -->
 
 
-<br /><br />
+<br><br>
 
 Spatial data refer to phenomenon or information that can be observed geographically. What a definition! In short spatial data concern every information that could be reported on a map, i.e. on a two-dimensions geographical coordinates system. Two kinds of spatial data exist: **vector data** and **raster data**. Generally vector refer to discrete locations, i.e. objects with boundaries (for instance a city, a road, a country) whereas raster data refer to continuous phenomenon that can be observed everywhere, but without natural boundaries (for instance the surface temperature). Let's take a look at their characteristics.
 
@@ -53,9 +43,9 @@ Points are the simplest vector object. Each point has one two-dimensional coordi
 ```{r vector-data, echo=FALSE, eval=TRUE, fig.width=8.6, fig.height=2.86, dpi=300, out.width=810, out.height=270, fig.align='center'}
 library(raster)
 
-corse  <- readRDS("corse-admin.rds")
-rivers <- readRDS("corse-rivers.rds")
-cities <- readRDS("corse-cities.rds")
+corse  <- readRDS("data/corse-admin.rds")
+rivers <- readRDS("data/corse-rivers.rds")
+cities <- readRDS("data/corse-cities.rds")
 
 par(
   mar      = rep(1.5, 4),
@@ -137,10 +127,10 @@ Raster can represent continuous (temperature values), discrete (habitat classes)
 ```{r raster-data, echo=FALSE, eval=TRUE, fig.width=8.6, fig.height=2.86, dpi=300, out.width=810, out.height=270, fig.align='center'}
 library(rgdal)
 
-corse      <- readRDS("corse-admin.rds")
-elevation  <- readRDS("corse-elevation.rds")
-landcover  <- readRDS("corse-landcover.rds")
-occurrence <- readRDS("corse-occurrence.rds")
+corse      <- readRDS("data/corse-admin.rds")
+elevation  <- readRDS("data/corse-elevation.rds")
+landcover  <- readRDS("data/corse-landcover.rds")
+occurrence <- readRDS("data/corse-occurrence.rds")
 
 par(
   mar      = rep(1.5, 4),
