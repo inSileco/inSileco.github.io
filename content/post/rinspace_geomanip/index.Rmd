@@ -32,7 +32,7 @@ Finally, there are a set of interesting functions in `raster` to handle
 the manipulation of rasters with vector objects.  
 
 
-Let's first load the packages required and download a simple shapefile.
+Let's first load the packages required and download a simple shapefile of Belgium.
 
 ```{r, message = F}
 library(sp)
@@ -138,8 +138,8 @@ look which one are in `bel2`, `bel_north` and `bel_south`:
 ```{r}
 pts <- SpatialPoints(
   coords = cbind(
-    runif(50, bel2@bbox[1,1], bel2@bbox[1,2]),
-    runif(50, bel2@bbox[2,1], bel2@bbox[2,2])
+    runif(50, bel2@bbox[1, 1], bel2@bbox[1, 2]),
+    runif(50, bel2@bbox[2, 1], bel2@bbox[2, 2])
   ),
   proj4string = bel2@proj4string
 )
@@ -153,7 +153,21 @@ points(pts, col = is.na(over(pts, bel2_geom))+2, pch =19)
 
 ## `sf` objects
 
-https://cran.r-project.org/web/packages/sf/vignettes/sf3.html
+Have a look at the dedicated vignette https://cran.r-project.org/web/packages/sf/vignettes/sf3.html
 
 
 ## `raster` objects
+
+Let's now download a simple raster of eleveation.
+
+
+```{r, message = F}
+bel_elv <- getData(name="alt", country="BEL", path="data", level = 2)
+plot(bel_elv)
+```
+
+
+### Extract
+
+
+### Mask
