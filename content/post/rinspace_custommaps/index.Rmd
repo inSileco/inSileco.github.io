@@ -16,6 +16,11 @@ output:
 ---
 
 
+```{r codeChunkSetUp, echo=FALSE}
+source('../../../static/Rscript/codeChunkSetUp.R')
+```
+
+
 ## Creating a map for a paper
 
 In this post, we go through all the steps required to produce a complete good-looking map. We will see how to add a title, a legend, a scale, axis and a North arrow and choose a good color palette. To do so, we will use the Quebec province as our sampled area.
@@ -28,6 +33,7 @@ library(lwgeom)
 library(raster)
 dir.create("data")
 can1 <- getData("GADM", country = "CAN", level = 1, path = "data")
+usa0 <- getData("GADM", country = "USA", level = 0, path = "data")
 ```
 
 Transform to `sf` objects to facilitate manipulation
@@ -55,7 +61,7 @@ can simplify the shape of the polygons using `st_simplify()`.
 ```{r simplify, message = F}
 can1_simple <- st_simplify(can1_sf, dTolerance = .01, preserveTopology = F) # We lose the provinces that are really simple with this
 manitoba <- st_simplify(can1_sf$geometry[can1_sf$NAME_1 == 'Manitoba'], dTolerance = .00001, preserveTopology = F)
-qc_simple <- st_simplify(qc, dTolerance = .02, preserveTopology = F)
+qc_simple <- st_simplify(qc, dTolerance = .01, preserveTopology = F)
 ```
 
 Let's look at what we have
@@ -105,9 +111,9 @@ layout.show(my.layout)
 – `mar` controls the margins of the plot area;
 – `xaxs` and `yaxs` controls axis style.
 
-```{r, eval=T}
+```{r, eval=T, fig.width = 7, fig.height = 6}
 library(RColorBrewer)
-layout(matrix(1:2, 2), heights = c(1,.14))
+layout(matrix(1:2, 2), heights = c(1,.16))
 par(las = 1, xaxs='i', yaxs='i', mar = rep(c(2.5,3),2))
 # #
 myblu <- '#6da6c2'
@@ -120,6 +126,7 @@ xlim = c(-82,-56), ylim = c(43, 64))
 image(temp_crop[[1]], add = T, col = mypal)
 plot(st_geometry(qc_simple), add = T, col = NA, border ='grey15', lwd =1.4)
 plot(st_geometry(sample_pts), add = T, pch = 21, bg = "#63636388", col = "grey15", lwd = 1.4, cex = sample_richness/25)
+plot(st_geometry(st_as_sf(usa0)), col = "#b5cfbd", border = "grey15", add = T)
 axis(1)
 axis(2)
 axis(3)
