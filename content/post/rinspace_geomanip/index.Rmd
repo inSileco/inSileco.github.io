@@ -167,7 +167,23 @@ plot(bel_elv)
 ```
 
 
-### Extract
+### Extract values
 
+```{r, message = F}
+val_south <- extract(bel_elv, bel_south)
+val_north <- extract(bel_elv, bel_north)
+#
+par(mfrow = c(1,2))
+hist(val_south[[1]])
+hist(val_north[[1]])
+```
 
 ### Mask
+
+```{r, message = F}
+elv_south <- rasterize(bel_south, bel_elv, mask = T)
+elv_north <- rasterize(bel_north, bel_elv, mask = T)
+par(mfrow = c(1,2))
+plot(elv_south)
+plot(elv_north)
+```
