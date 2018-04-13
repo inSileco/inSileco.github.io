@@ -20,8 +20,8 @@ output:
 
 
 <p><img src="https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg" /></p>
-<div id="vector-object-in-r" class="section level2">
-<h2>Vector object in R</h2>
+<div id="vector-objects-in-r" class="section level2">
+<h2>Vector objects in R</h2>
 <p>In this section we present two packges: <code>sp</code> and <code>sf</code>. The <code>sp</code> package actualy
 defines classes for both vector and raster objects. Below, we
 however focus on the vector ones and so we do not detail <code>SpatialGrid</code> and
@@ -168,12 +168,14 @@ wrote a string that describes the CRS and that proj4 understands. Below are
 listed some properties of the object we have defined.</p>
 <pre class="r"><code>isS4(mysp)
 class(mysp)
-slotNames(mysp)</code></pre>
+slotNames(mysp)
+dim(mysp)</code></pre>
 <pre><code>## [1] TRUE
 ## [1] &quot;SpatialPointsDataFrame&quot;
 ## attr(,&quot;package&quot;)
 ## [1] &quot;sp&quot;
-## [1] &quot;data&quot;        &quot;coords.nrs&quot;  &quot;coords&quot;      &quot;bbox&quot;        &quot;proj4string&quot;</code></pre>
+## [1] &quot;data&quot;        &quot;coords.nrs&quot;  &quot;coords&quot;      &quot;bbox&quot;        &quot;proj4string&quot;
+## [1] 20  2</code></pre>
 <p>Basically, it is a <a href="http://adv-r.had.co.nz/S4.html">S4 object</a> of class
 <code>SpatialPointsDataFrame</code>. All slot names refer to attribute that are accessible
 <em>via</em> and <code>@</code>:</p>
@@ -269,8 +271,8 @@ class(pts_sfc)</code></pre>
 </div>
 </div>
 </div>
-<div id="raster-objects" class="section level2">
-<h2>Raster objects</h2>
+<div id="raster-objects-in-r" class="section level2">
+<h2>Raster objects in R</h2>
 <p>Package <code>raster</code> define three classes of rater object we detail below.</p>
 <div id="rasterlayer" class="section level3">
 <h3>RasterLayer</h3>

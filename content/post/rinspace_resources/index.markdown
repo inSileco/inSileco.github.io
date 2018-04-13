@@ -1,7 +1,7 @@
 ---
 title: R in Space - Useful resources
 author: [marieh, nicolas, kevin, david, elliot, steve]
-date: 2018-04-04
+date: 2018-04-11
 tags: [R in Space, R, Spatial, wiki]
 draft: true
 tweet: "R in Space - A Series"
@@ -78,6 +78,15 @@ And if you want to see MORE, look at the Awesome GIS [![Awesome](https://cdn.raw
 [![Awesome](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/sacridini/Awesome-Geospatial) :fire:!
 
 
+### Free GIS data
+
+If you are looking for free GIS data, you should definitively start by carefully
+examine the resources listed on this page: https://freegisdata.rtwilson.com/.
+Note that in R the function `getData()` from the raster package is fantastic and
+some R packages are great data provider, for instance, `osmdata` (see below).
+
+
+
 
 ## So... why use R for mapping?
 
@@ -125,9 +134,7 @@ spatial data in R is:
 
 - [r-spatial.org](http://r-spatial.org/);
 - [rspatial.org](http://www.rspatial.org/);
-- [Tutorial on DataCamp](https://www.datacamp.com/courses/spatial-analysis-in-r-with-sf-and-raster);
+- [A  DataCamp tutorial](https://www.datacamp.com/courses/spatial-analysis-in-r-with-sf-and-raster);
 - [Geocomputation with R](https://geocompr.robinlovelace.net/intro.html);
 - [Analyses spatiale sous R](https://qcbs.ca/wiki/_media/gisonr.pdf) (fr).
 - [Another tutorial by Claudia Engel](https://cengel.github.io/rspatial)
-
-<br><br>

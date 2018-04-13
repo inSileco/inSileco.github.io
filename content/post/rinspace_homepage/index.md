@@ -1,7 +1,7 @@
 ---
 title: R in Space - A Series
 author: [david, marieh, nicolas, kevin, elliot, steve]
-date: 2018-04-09
+date: 2018-04-12
 tags: [R in Space, R, Spatial]
 tweet: "R in Space - A Series"
 draft: true
@@ -46,22 +46,22 @@ Also to access the full list of post of the series, click on the tag [R in space
 
 #### **2- Spatial objects**: ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
-#### **3- Spatial objects in R**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_spobjinr" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+#### **3- Spatial objects in R**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_spobjinr" >}}) ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
 #### **4- Importing spatial objects**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_import" >}}) ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
-#### **5- Basic mapping**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_basicmapping" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+#### **5- Basic mapping**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_basicmapping" >}}) ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
 
 
-### Advanced course 
+### Advanced course
 
-#### **1- Create spatial objects**: ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+#### **1- Create spatial objects**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_import" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
-#### **2- Attribute manipulation**: ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+#### **2- Attribute manipulation**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_attrmanip" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
 #### **3- Geometry manipulation**: ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
-#### **4- R spatial data resources**: ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+#### **4- R spatial data resources**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_rdataresources" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
-#### **5- Custom maps**: ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+#### **5- Custom maps**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_rdataresources" >}})  ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)

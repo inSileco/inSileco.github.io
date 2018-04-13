@@ -20,7 +20,7 @@ output:
 ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
 
-## Vector object in R
+## Vector objects in R
 
 In this section we present two packges: `sp` and `sf`. The `sp` package actualy
 defines classes for both vector and raster objects. Below, we
@@ -106,6 +106,7 @@ listed some properties of the object we have defined.
 isS4(mysp)
 class(mysp)
 slotNames(mysp)
+dim(mysp)
 ```
 
 Basically, it is a [S4 object](http://adv-r.had.co.nz/S4.html) of class
@@ -173,7 +174,7 @@ st_as_sf(mysp)
 ```
 
 
-## Raster objects
+## Raster objects in R 
 
 Package `raster` define three classes of rater object we detail below.
 

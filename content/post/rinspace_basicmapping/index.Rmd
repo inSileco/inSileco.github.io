@@ -28,8 +28,8 @@ library(sp)
 library(sf)
 library(raster)
 dir.create("data")
-bel1 <- getData("GADM", country = "Belgium", level = 1, path = "data/")
-bel2 <- getData("GADM", country = "Belgium", level = 2, path = "data/")
+bel1 <- getData("GADM", country = "BEL", level = 1, path = "data/")
+bel2 <- getData("GADM", country = "BEL", level = 2, path = "data/")
 ```
 
 First plot:
@@ -139,7 +139,6 @@ plot(st_geometry(st_centroid(brux)), pch = 20, add = T)
 
 # Add a label for Bruxelles on the map
 text(st_coordinates(st_centroid(brux)), labels = "Bruxelles", pos = 3, col = "#9728eb")
-
 ```
 
 
