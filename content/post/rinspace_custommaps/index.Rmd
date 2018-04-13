@@ -6,6 +6,9 @@ draft: true
 tweet: "R in Space - Custom maps"
 estime: 10
 date: 2018-04-03
+navposts:
+  prev: rinspace_rdataresources
+  home: rinspace_homepage
 output:
   rmarkdown::html_page:
     fig_width: 3
@@ -21,6 +24,7 @@ So, first, we import 2 vector layers readily available in R, the Canadian countr
 
 ```{r getdata, message = F}
 library(sf)
+library(lwgeom)
 library(raster)
 dir.create("data")
 can1 <- getData("GADM", country = "CAN", level = 1, path = "data")
