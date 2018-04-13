@@ -22,37 +22,46 @@ So, first, we import 2 vector layers readily available in R, the Canadian countr
 ```{r getdata, message = F}
 library(sf)
 library(raster)
-dir.create("data")
-can1 <- getData("GADM", country = "CAN", level = 0, path = "data/")
-can2 <- getData("GADM", country = "CAN", level = 1, path = "data/")
+#dir.create("data")
+
+#can1 <- getData("GADM", country = "CAN", level = 1, path = "data/")
+can1 <- readRDS("data/GADM_2.8_CAN_adm1.rds")
 ```
 
 Transform to `sf` objects to facilitate manipulation
 
 ```{r st_sf, message = F}
 can1_sf <- st_as_sf(can1)
-can2_sf <- st_as_sf(can2)
 ```
 
 Retrieve Quebec polygon
 
 ```{r getQc, message = F}
-qc <- can2_sf[can2_sf$NAME_1 == "Québec",]
+qc <- can1_sf[can1_sf$NAME_1 == "Québec",]
 ```
 
-Let's look at what we have
 
-```{r map_1, message = F}
-plot(st_geometry(can1_sf), lwd = 1.5, col = "grey85")
-plot(st_geometry(qc), lwd = .5, col = "blue3", add = T)
+Change the CRS for 4249, which looks better for Quebec
+```{r crs}
+can1_sf <- st_transform(can1_sf, 4249)
+qc <- st_transform(qc, 4249)
 ```
-It takes a while to plot because there is a lot of unnecessary details, so we
+
+It would take a while to plot because there is a lot of unnecessary details, so we
 can simplify the shape of the polygons using `st_simplify()`.
 
 ```{r simplify, message = F}
 can1_simple <- st_simplify(can1_sf, dTolerance = 0.01, preserveTopology = TRUE)
 qc_simple <- st_simplify(qc, dTolerance = 0.01, preserveTopology = TRUE)
 ```
+
+Let's look at what we have
+
+```{r map_1, message = F}
+plot(st_geometry(can1_simple), lwd = 1.5, col = "grey85")
+plot(st_geometry(qc_simple), lwd = .5, col = "blue3", add = T)
+```
+there is a warning... that we will ignore for now...
 
 Let's say we sampled vegetation in 100 plots in Quebec; we now want to plot them with points proportional to their species richness. We will now create a data frame containing coordinates and random values from 5 to 50.
 
@@ -94,21 +103,22 @@ layout.show(my.layout)
 # layout(matrix(1:2, 2), heights = c(1,.14))
 # par(las = 1, xaxs='i', yaxs='i', mar = rep(c(2.5,3),2))
 # #
-# myblu <- '#6da6c2'
-# mygre <- 'grey50'
-# mypal <- colorRampPalette(rev(brewer.pal(11, "RdYlBu")))
-# #
-# plot0(c(-96,-74), c(41,57), fill=myblu)
-# image(temp_crop, add = T, col = mypal)
-# plot(st_geometry(can1_simple), add = T, col ='#b5cfbd', border = mygre)
-# plot(st_geometry(qc_simple), add = T, col = NA, border ='grey15', lwd =1.4, add = T)
-# plot(st_geometry(sample_pts), cex = sample_pts$richness)
+myblu <- '#6da6c2'
+mygre <- 'grey50'
+mypal <- colorRampPalette(rev(brewer.pal(11, "RdYlBu")))
 
-# legend
-# par(mar = c(3.2, 5, .5, 5), mgp = c(2,.5,0))
-# val <- range(values(temp_crop), na.rm =T)
-# image(as.matrix(seq(val[1], val[2], length = 512)), col = mypal, axes = F)
-# axis(1, at = seq(0.001, .999, length = 6), labels = seq(0, 650, length = 6))
-# mtext(side = 1, line = 1.8, text = 'Mean annual temperature (°C)')
+# plot0(c(-96,-74), c(41,57), fill=myblu)
+plot(st_geometry(can1_simple), add = T, col ='#b5cfbd', border = mygre,
+xlim = c(-82,-56), ylim = c(43, 64))
+image(temp_crop, add = T, col = mypal)
+plot(st_geometry(qc_simple), add = T, col = NA, border ='grey15', lwd =1.4, add = T)
+plot(st_geometry(sample_pts), cex = sample_pts$richness)
+
+legend
+par(mar = c(3.2, 5, .5, 5), mgp = c(2,.5,0))
+val <- range(values(temp_crop), na.rm =T)
+image(as.matrix(seq(val[1], val[2], length = 512)), col = mypal, axes = F)
+axis(1, at = seq(0.001, .999, length = 6), labels = seq(0, 650, length = 6))
+mtext(side = 1, line = 1.8, text = 'Mean annual temperature (°C)')
 
 ```
