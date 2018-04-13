@@ -71,7 +71,7 @@ plot(bel_slc)
 
 Let's do the union of a selection of spatial polygons:
 
-```{r, message = F}
+```{r, warnings = F}
 bel_south <- gUnionCascaded(bel_slc)
 bel_north <- gUnionCascaded(bel2[-slc,])
 bel_one <- gUnionCascaded(bel2)
