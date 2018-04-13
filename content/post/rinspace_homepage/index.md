@@ -62,4 +62,4 @@ Also to access the full list of post of the series, click on the tag [R in space
 
 #### **3- R spatial data resources**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_rdataresources" >}}) ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
-#### **4- Custom maps**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_custommaps" >}})  ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+#### **4- Custom maps**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_custommaps" >}}) ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
