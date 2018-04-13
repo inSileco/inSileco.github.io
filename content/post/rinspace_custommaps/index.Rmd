@@ -5,12 +5,12 @@ tags: [R in Space, R, Spatial]
 draft: true
 tweet: "R in Space - Custom maps"
 estime: 10
-date: 2018-04-04
+date: 2018-04-03
 navposts:
   prev: rinspace_rdataresources
   home: rinspace_homepage
 output:
-  rmarkdown::html_page:
+  rmarkdown::html_base:
     fig_width: 3
     dev: svg
 ---
@@ -21,17 +21,19 @@ source('../../../static/Rscript/codeChunkSetUp.R')
 ```
 
 
-## Creating a map for a paper
+## Creating a thematic map
 
 In this post, we go through all the steps required to produce a complete good-looking map. We will see how to add a title, a legend, a scale, axis and a North arrow and choose a good color palette. To do so, we will use the Quebec province as our sampled area.
 
-So, first, we import 2 vector layers readily available in R, the Canadian country boundary and provincial boundaries.
+So, first, we import 2 vector layers readily available in R, the Canadian provincial boundaries and USA country boundary.
 
 ```{r getdata, message = F}
 library(sf)
-# library(lwgeom)
 library(raster)
+
+# Create a new directory
 dir.create("data")
+
 can1 <- getData("GADM", country = "CAN", level = 1, path = "data")
 usa0 <- getData("GADM", country = "USA", level = 0, path = "data")
 ```
@@ -40,42 +42,45 @@ Transform to `sf` objects to facilitate manipulation
 
 ```{r st_sf, message = F}
 can1_sf <- st_as_sf(can1)
+usa0_sf <- st_as_sf(usa0)
 ```
 
-Retrieve Quebec polygon
+Retrieve Quebec polygon and surrounding provinces
 
 ```{r getQc, message = F}
 qc <- can1_sf[can1_sf$NAME_1 == "Québec",]
+
+qc_neigh <- can1_sf[can1_sf$NAME_1 %in% c("Québec","Ontario", "Nova Scotia","New Brunswick", "Newfoundland and Labrador"),]
 ```
 
 
-Change the CRS for 4249, which looks better for Quebec
-```{r crs}
-can1_sf <- st_transform(can1_sf, 4249)
-qc <- st_transform(qc, 4249)
-```
 
 It would take a while to plot because there is a lot of unnecessary details, so we
 can simplify the shape of the polygons using `st_simplify()`.
 
-```{r simplify, message = F}
-can1_simple <- st_simplify(can1_sf, dTolerance = .01, preserveTopology = F) # We lose the provinces that are really simple with this
-manitoba <- st_simplify(can1_sf$geometry[can1_sf$NAME_1 == 'Manitoba'], dTolerance = .00001, preserveTopology = F)
+
+```{r simplify}
+usa0_simple <- st_simplify(usa0_sf, dTolerance = .05, preserveTopology = F) 
 qc_simple <- st_simplify(qc, dTolerance = .01, preserveTopology = F)
+qc_neigh_simple <- st_simplify(qc_neigh, dTolerance = .01, preserveTopology = F)
+
 ```
 
-Let's look at what we have
 
-```{r map_1, message = F}
-plot(st_geometry(can1_simple), lwd = 1.5, col = "grey85")
-plot(st_geometry(manitoba), lwd = 1.5, col = "grey85", add = T)
-plot(st_geometry(qc_simple), lwd = .5, col = "#cf917f", add = T)
+The warning stating that st_simplify does not correctly simplify longitude/latitude data and it should be in decimal degrees. It's important in some spatial operations involving distances, but we can ignore it for the purpose of mapping. 
+
+Let's look at what we have :
+
+```{r map_1, message = F, fig.height=4, fig.width=4}
+plot(st_geometry(qc_simple), col = "grey85")
+plot(st_geometry(qc_neigh_simple),  col = "grey45", add = T)
+plot(st_geometry(usa0_simple), col = "grey25", add = T)
 ```
-there is a warning... that we will ignore for now...
+
 
 Let's say we sampled vegetation in 100 plots in Quebec; we now want to plot them with points proportional to their species richness. We will now create a data frame containing coordinates and random values from 5 to 50.
 
-```{r points}
+```{r points, message = F}
 # Sample random points from our study area
 sample_pts <- st_sample(x = qc_simple, size = 100)
 
@@ -83,62 +88,90 @@ sample_pts <- st_sample(x = qc_simple, size = 100)
 sample_richness <- sample(x = 5:50, size = 100, replace = TRUE)
 ```
 
+## Add a temperature raster
+
 If we were interested in the latitudinal temperature gradient, we could add a
-raster of mean temperature as a background to our map.
+raster of mean temperature as a background to our map. 
+We will use a low resolution so it does not take to long.
 
 ```{r temp, message = F}
 temp <- getData("worldclim", var = "tmean", res = 10)
+
+# Change projection to match with the polygons
 temp <- projectRaster(temp, crs = st_crs(qc_simple)$proj4string)
+
+# There are 12 layers in this raster. 
+# Keep only the layer for June temperature: tmean6 and divide by 10 (because Worldclim temperature data are in °C * 10)
+temp6 <- temp$tmean6/10
 ```
 
 
-Crop the temperature raster using quebec boundary. Because `crop()` from `raster`
-expects a vector of the form `c(xmin, xmax, ymin, ymax)` as given by `extent()`,
-we have to add `as.vector()` before `st_bbox()`.
+## Crop and mask the temperature raster using quebec boundary. 
+
+First, `crop()` will decrease the extent of the raster using the extent of another spatial object and `mask()` keeps the raster values only in the area of interest and set the rest to NA.
+Because `crop()` from `raster` expects a `sp` object we will use transform the polygon first. 
 
 ```{r crop, message = F}
-temp_crop <- crop(temp, as.vector(st_bbox(qc_simple)))
-temp_crop <- mask(temp_crop, qc_simple)
+temp_crop <- crop(temp6, as(qc_simple, "Spatial"))
+temp_mask <- mask(temp_crop, qc_simple)
 ```
 
-## Creating a layout
+## Creating a simple layout
 
 ```{r layout}
 my.layout <- layout(matrix(1:2, 2), heights = c(1,.14))
 layout.show(my.layout)
 ```
 
-– `mar` controls the margins of the plot area;
-– `xaxs` and `yaxs` controls axis style.
+  – `mar` controls the margins of the plot area;
 
-```{r, eval=T, fig.width = 7, fig.height = 6}
+  – `xaxs` and `yaxs` controls axis style.
+
+```{r, eval=T, fig.width = 5.5, fig.height = 6}
 library(RColorBrewer)
+
 layout(matrix(1:2, 2), heights = c(1,.16))
 par(las = 1, xaxs='i', yaxs='i', mar = rep(c(2.5,3),2))
-# #
+
 myblu <- '#6da6c2'
 mygre <- 'grey50'
 mypal <- colorRampPalette(rev(brewer.pal(11, "RdYlBu")))(124)
 
-# plot0(c(-96,-74), c(41,57), fill=myblu)
-plot(st_geometry(can1_simple), col ='#b5cfbd', border = mygre,
-xlim = c(-82,-56), ylim = c(43, 64))
-image(temp_crop[[1]], add = T, col = mypal)
+plot(st_geometry(qc_neigh_simple), 
+     graticule = st_crs(qc_simple), # add graticules
+     col ='#b5cfbd', border = mygre,
+     xlim = c(-82,-56), ylim = c(43, 64))
+plot(st_geometry(usa0_simple), col = "#b5cfbd", border = mygre, add = T)
+
+# Temperature raster
+image(temp_mask, add = T, col = mypal)
+
+# Quebec boundary on top
 plot(st_geometry(qc_simple), add = T, col = NA, border ='grey15', lwd =1.4)
-plot(st_geometry(sample_pts), add = T, pch = 21, bg = "#63636388", col = "grey15", lwd = 1.4, cex = sample_richness/25)
-plot(st_geometry(st_as_sf(usa0)), col = "#b5cfbd", border = "grey15", add = T)
+
+# Sample points
+plot(st_geometry(sample_pts), add = T, pch = 21, 
+     bg = "#63636388", col = "grey15", lwd = 1.4, 
+     cex = sample_richness/25) # Size proportional to richness
+
+# Axis
 axis(1)
-axis(2)
+axis(2, las = 1)
 axis(3)
-axis(4)
+axis(4, las =1)
 box(lwd=1.2)
-sp::compassRose(-54, 61)
-# legend
+
+# Compass rose
+sp::compassRose(-57, 60)
+
+# Legend
 par(mar = c(3.2, 5, .5, 5), mgp = c(2,.5,0))
-val <- range(values(temp_crop[[1]]), na.rm =T)
+
+val <- range(values(temp_mask), na.rm =T)
 image(as.matrix(seq(val[1], val[2], length = 512)), col = mypal, axes = F)
-axis(1, at = seq(0.001, .999, length = 6), labels = seq(0, 650, length = 6))
+axis(1, at = seq(0.001, .999, length = 6), labels = round(seq(val[1], val[2], length = 6),2))
 mtext(side = 1, line = 1.8, text = 'Mean annual temperature (°C)')
+
 ```
 
 ## Examples of complex layouts
