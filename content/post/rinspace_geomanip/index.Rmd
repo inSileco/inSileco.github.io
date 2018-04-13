@@ -39,6 +39,7 @@ library(sp)
 library(sf)
 library(rgeos)
 library(raster)
+dir.create("data")
 bel2 <- getData(name="GADM", country="BEL", path="data", level = 2)
 plot(bel2)
 ```
@@ -158,7 +159,7 @@ Have a look at the dedicated vignette https://cran.r-project.org/web/packages/sf
 
 ## `raster` objects
 
-Let's now download a simple raster of eleveation.
+Let's now download a simple raster of elevation.
 
 
 ```{r, message = F}
