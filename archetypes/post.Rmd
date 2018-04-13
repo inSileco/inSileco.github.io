@@ -1,9 +1,10 @@
 ---
 title: "{{ replace .TranslationBaseName "-" "" | title }}"
 author: [yourshortname]
-date: 2017-07-05
+date: 2018-07-05
 tags: [tag1, tag2]
-tweet: "{{ replace .TranslationBaseName "-" "" | title }}"
+tweet: "New blog post on inSileco: {{ replace .TranslationBaseName "-" "" | title }}"
+estime: 10
 draft: false
 output:
   rmarkdown::html_page:
@@ -16,3 +17,5 @@ output:
 ```{r codeChunkSetUp, echo=FALSE}
 source('../../static/Rscript/codeChunkSetUp.R')
 ```
+
+## Avoid using lvl 1 titles (reserved for posts' title)

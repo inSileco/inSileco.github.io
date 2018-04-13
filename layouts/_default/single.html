@@ -1,18 +1,20 @@
 {{ partial "header" . }}
 
-<img class="full-width" width="100%" src="/img/banner2.png"></img>
 
-
+<img class="full-width" width="100%" src="/img/banner4.png"></img>
 
 
 <div>
 
-
   <div class="col-md-3">
-    <div class="hidden-sm hidden-xs">
-      <div id="toc"></div>
-    </div>
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+        <div id="toc"></div>
+      </div>
   </div>
+</div>
+
+
 
   <div class="col-md-8">
 
@@ -62,16 +64,47 @@
     </div>
 
 
+
+
     <br>
 
     <div class="text-justify">
 
       {{ .Content }}
 
+
+    {{ if .Params.navposts }}
+
+    <center>
+
+      <br><br>
+
+      {{ if .Params.navposts.prev }}
+        <a href = "{{ ref . .Params.navposts.prev }}"><i class="fa fa-arrow-circle-left fa-3x" aria-hidden="true"></i></a>
+      {{ else }}
+      &nbsp;&nbsp;
+      {{ end }}
+
+      &nbsp;&nbsp;
+      {{ if .Params.navposts.home }}
+        <a href = "{{ ref . .Params.navposts.home }}"><i class="fa fa-home fa-3x" aria-hidden="true"></i></a>
+      {{ else }}
+        &nbsp;&nbsp;
+      {{ end }}
+
+      &nbsp;&nbsp;
+      {{ if .Params.navposts.next }}
+        <a href = "{{ ref . .Params.navposts.next }}"><i class="fa fa-arrow-circle-right fa-3x" aria-hidden="true"></i></a>
+      {{ end }}
+    {{ end }}
+
+    </center>
+
     </div>
 
-    <br><br>
 
+
+    <br><br>
 
     <h3 class="page-header">Comments on this post</h3>
 
@@ -93,7 +126,7 @@
 
             var toc = $("#toc").tocify({
               selectors: "h2,h3",
-              scrollTo: 60
+              scrollTo: 50
             }).data("toc-tocify");
 
             prettyPrint();
