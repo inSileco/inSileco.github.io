@@ -43,8 +43,8 @@ library(sf)
 library(raster)
 dir.create(&quot;data&quot;)</code></pre>
 <pre><code>## Warning in dir.create(&quot;data&quot;): &#39;data&#39; already exists</code></pre>
-<pre class="r"><code>bel1 &lt;- getData(&quot;GADM&quot;, country = &quot;Belgium&quot;, level = 1, path = &quot;data/&quot;)
-bel2 &lt;- getData(&quot;GADM&quot;, country = &quot;Belgium&quot;, level = 2, path = &quot;data/&quot;)</code></pre>
+<pre class="r"><code>bel1 &lt;- getData(&quot;GADM&quot;, country = &quot;BEL&quot;, level = 1, path = &quot;data/&quot;)
+bel2 &lt;- getData(&quot;GADM&quot;, country = &quot;BEL&quot;, level = 2, path = &quot;data/&quot;)</code></pre>
 <p>First plot:</p>
 <pre class="r"><code>plot(bel1)</code></pre>
 <p><img src="/rmarkdown-libs/figure-html4/plotsp1-1.png" width="672" /></p>
@@ -80,18 +80,62 @@ bel2_sf &lt;- st_as_sf(bel2)</code></pre>
 <pre><code>## Warning in min(x): no non-missing arguments to min; returning Inf</code></pre>
 <pre><code>## Warning in max(x): no non-missing arguments to max; returning -Inf</code></pre>
 <p><img src="/rmarkdown-libs/figure-html4/map_sf1-1.png" width="672" /></p>
-<p>It actually plot one map per variables and color the polygon according
+<p>It actually plots one map per variable and colors the polygon according
 to the values. To obtain something similar to what is found in <code>sp</code>,
 an <code>sfc</code> object must be used:</p>
 <pre class="r"><code>plot(st_geometry(bel1_sf), lwd = 1.5, col = &quot;grey85&quot;)
+# same as :
+# plot(bel1_sf$geometry, lwd = 1.5, col = &quot;grey85&quot;)
 plot(st_geometry(bel2_sf), lwd = .5, add = T)</code></pre>
 <p><img src="/rmarkdown-libs/figure-html4/map_sf2-1.png" width="672" /></p>
 </div>
 <div id="plot-methods-for-raster-objects" class="section level2">
 <h2>plot methods for <code>raster</code> objects</h2>
+<p>Let’s get a raster layer of altitude in Belgium using again <code>getData()</code>.</p>
+<pre class="r"><code>alt &lt;- getData(&quot;alt&quot;, country = &quot;Belgium&quot;, path = &quot;data/&quot;)</code></pre>
+<pre class="r"><code>plot(alt)</code></pre>
+<p><img src="/rmarkdown-libs/figure-html4/plot_alt-1.png" width="672" />
+We can also add different layers of information on this maps</p>
+<pre class="r"><code>plot(alt)
+contour(alt, add = T)</code></pre>
+<p><img src="/rmarkdown-libs/figure-html4/plot_alt2-1.png" width="672" /></p>
+<p>… Or reclassify and change the color palette</p>
+<pre class="r"><code># Assign color to a object
+myCol &lt;- terrain.colors(3)
+plot(alt,
+     breaks = c(0, 200, 400, 700),
+     col = myCol,
+     main = &quot;Altitude map of Belgium&quot;)</code></pre>
+<p><img src="/rmarkdown-libs/figure-html4/plot_alt3-1.png" width="672" /></p>
 </div>
-<div id="using-ggmap" class="section level2">
-<h2>Using ggmap</h2>
+<div id="plotting-together-sf-and-raster-objects" class="section level2">
+<h2>plotting together <code>sf</code> and <code>raster</code> objects</h2>
+<pre class="r"><code># Create a new color palette
+library(RColorBrewer)
+myPal &lt;- brewer.pal(n = 9, name = &quot;Greens&quot;)
+
+# Plot the altitude raster
+plot(alt,
+  col = myPal,
+  xlab = &quot;Longitude&quot;,
+  ylab = &quot;Latitude&quot;)
+
+# Add Belgium boundary map
+plot(st_geometry(bel2_sf), add = T)
+
+# Add a point at the centroid of Bruxelles
+brux &lt;- bel2_sf[bel2_sf$NAME_1 == &quot;Bruxelles&quot;,]
+
+plot(st_geometry(st_centroid(brux)), pch = 20, add = T)</code></pre>
+<pre><code>## Warning in st_centroid.sfc(st_geometry(x), of_largest_polygon =
+## of_largest_polygon): st_centroid does not give correct centroids for
+## longitude/latitude data</code></pre>
+<pre class="r"><code># Add a label for Bruxelles on the map
+text(st_coordinates(st_centroid(brux)), labels = &quot;Bruxelles&quot;, pos = 3, col = &quot;#9728eb&quot;)</code></pre>
+<pre><code>## Warning in st_centroid.sfc(st_geometry(x), of_largest_polygon =
+## of_largest_polygon): st_centroid does not give correct centroids for
+## longitude/latitude data</code></pre>
+<p><img src="/rmarkdown-libs/figure-html4/plot_alt_sf-1.png" width="672" /></p>
 </div>
 <div id="mapview" class="section level2">
 <h2>mapview</h2>
