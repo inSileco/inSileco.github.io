@@ -53,15 +53,17 @@ It would take a while to plot because there is a lot of unnecessary details, so 
 can simplify the shape of the polygons using `st_simplify()`.
 
 ```{r simplify, message = F}
-can1_simple <- st_simplify(can1_sf, dTolerance = 0.02, preserveTopology = F)
-qc_simple <- st_simplify(qc, dTolerance = 0.02, preserveTopology = F)
+can1_simple <- st_simplify(can1_sf, dTolerance = .01, preserveTopology = F) # We lose the provinces that are really simple with this
+manitoba <- st_simplify(can1_sf$geometry[can1_sf$NAME_1 == 'Manitoba'], dTolerance = .00001, preserveTopology = F)
+qc_simple <- st_simplify(qc, dTolerance = .02, preserveTopology = F)
 ```
 
 Let's look at what we have
 
 ```{r map_1, message = F}
 plot(st_geometry(can1_simple), lwd = 1.5, col = "grey85")
-plot(st_geometry(qc_simple), lwd = .5, col = "blue3", add = T)
+plot(st_geometry(manitoba), lwd = 1.5, col = "grey85", add = T)
+plot(st_geometry(qc_simple), lwd = .5, col = "#cf917f", add = T)
 ```
 there is a warning... that we will ignore for now...
 
@@ -71,8 +73,8 @@ Let's say we sampled vegetation in 100 plots in Quebec; we now want to plot them
 # Sample random points from our study area
 sample_pts <- st_sample(x = qc_simple, size = 100)
 
-# Add an attribute of fake species richness
-#sample_pts$richness <- sample(x = 5:50, size = 100, replace = TRUE)
+# Create an attribute of fake species richness
+sample_richness <- sample(x = 5:50, size = 100, replace = TRUE)
 ```
 
 If we were interested in the latitudinal temperature gradient, we could add a
@@ -80,6 +82,7 @@ raster of mean temperature as a background to our map.
 
 ```{r temp, message = F}
 temp <- getData("worldclim", var = "tmean", res = 10)
+temp <- projectRaster(temp, crs = st_crs(qc_simple)$proj4string)
 ```
 
 
@@ -89,6 +92,7 @@ we have to add `as.vector()` before `st_bbox()`.
 
 ```{r crop, message = F}
 temp_crop <- crop(temp, as.vector(st_bbox(qc_simple)))
+temp_crop <- mask(temp_crop, qc_simple)
 ```
 
 # Creating a layout
@@ -113,19 +117,47 @@ mypal <- colorRampPalette(rev(brewer.pal(11, "RdYlBu")))(124)
 # plot0(c(-96,-74), c(41,57), fill=myblu)
 plot(st_geometry(can1_simple), col ='#b5cfbd', border = mygre,
 xlim = c(-82,-56), ylim = c(43, 64))
-# image(temp_crop[[1]], add = T, col = mypal)
+image(temp_crop[[1]], add = T, col = mypal)
 plot(st_geometry(qc_simple), add = T, col = NA, border ='grey15', lwd =1.4)
-plot(st_geometry(sample_pts), add = T, pch = 21, bg = "grey85", col = "grey15", lwd = 1.4)
+plot(st_geometry(sample_pts), add = T, pch = 21, bg = "#63636388", col = "grey15", lwd = 1.4, cex = sample_richness/25)
 axis(1)
 axis(2)
 axis(3)
 axis(4)
 box(lwd=1.2)
-sp::compassRose(-54, 62)
+sp::compassRose(-54, 61)
 # legend
 par(mar = c(3.2, 5, .5, 5), mgp = c(2,.5,0))
 val <- range(values(temp_crop[[1]]), na.rm =T)
-# image(as.matrix(seq(val[1], val[2], length = 512)), col = mypal, axes = F)
+image(as.matrix(seq(val[1], val[2], length = 512)), col = mypal, axes = F)
 axis(1, at = seq(0.001, .999, length = 6), labels = seq(0, 650, length = 6))
 mtext(side = 1, line = 1.8, text = 'Mean annual temperature (°C)')
 ```
+
+# Examples of complex layouts
+
+The `layout()` function can be used to produce simple to very complex layouts
+for figures. Here are a few examples of complex layouts used to produce
+scientific article figures.
+
+```{r layout1}
+# Layout
+mat <- matrix(0, 28, 32)
+mat[1:12, 1:16] <- 1 # traffic
+mat[15:26, 1:16] <- 2 # demersal
+mat[1:12, 17:32] <- 3 # traffic + demersal
+mat[18:28, 17:29] <- 4 # kernel
+mat[15:17, 17:29] <- 5 # dens traffic (x)
+mat[18:28, 30:32] <- 6 # dens demersal (y)
+mat[13:14, 6:11] <- 7 # scale traffic
+mat[27:28, 6:11] <- 8 # scale demersal
+mat[13:14, 22:27] <- 9 # scale combine
+mat[1:2, 15:16] <- 10 # panel A
+mat[15:16, 15:16] <- 11 # panel B
+mat[1:2, 31:32] <- 12 # panel C
+mat[15:16, 31:32] <- 13 # panel D
+layout(mat)
+layout.show(13)
+```
+
+![](./layout1.png)
