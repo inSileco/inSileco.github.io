@@ -20,7 +20,7 @@ output:
 
 
 ```{r codeChunkSetUp, echo=FALSE}
-source('../../static/Rscript/codeChunkSetUp.R')
+source('../../../static/Rscript/codeChunkSetUp.R')
 ```
 
 #### Below are presented the 6 steps you need to make your plot a Hylian one! **May the triforce be with you**!
@@ -41,12 +41,12 @@ it using a couple of clicks, if you proceed so, skip step 1.
 
 ```{r, echo = TRUE, eval = TRUE}
 # Create a directory < fonts >
-dr <- "downloaded_files/"
+dr <- "assets/"
 dir.create(dr, showWarnings = FALSE)
 
 # Download Triforce font < Triforce.ttf >
 url <- "http://zeldauniverse.net/wp-content/uploads/2014/01/Triforce.ttf_.zip"
-download.file(url, destfile=paste0(dr, basename(url)),method="libcurl")
+download.file(url, destfile=paste0(dr, basename(url)), method="libcurl")
 
 # Unzip the file
 unzip(paste0(dr, basename(url)), exdir = dr)
@@ -61,7 +61,7 @@ file.remove(paste0(dr, basename(url)))
 install.packages("showtext")
 ```
 
-###  3. Look at the list of fonts available locally
+### 3. Look at the list of fonts available locally
 
 ```{r, echo = TRUE, eval = TRUE, R.options=list(max.print=30)}
 library(showtext)
@@ -117,4 +117,6 @@ points(x = 0.1, y = 0.1, pch = "%", cex = 10, col = "#3fb3b2", lwd=2)
 points(x = 0.9, y = 0.9, pch = "^", cex = 10, col = "#ffdd55", lwd=2)
 ```
 
-<br>
+<br><br>
+
+#### YEAH! :sunglasses:

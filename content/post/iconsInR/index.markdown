@@ -10,8 +10,8 @@ estime: 10
 edits:
   - date: 2017-11-11
     comment: "Fix paths to icon files"
-  - date: 2018-02-04
-    comment: "Work with version 5 of Font Awesome"
+  - date: 2018-04-15
+    comment: "Change URLs to download Font-Awesome"
 output:
   rmarkdown::html_page:
     toc: true
@@ -21,9 +21,7 @@ output:
 
 
 
-```{r codeChunkSetUp, echo=FALSE}
-source('../../static/Rscript/codeChunkSetUp.R')
-```
+
 
 
 ## Introduction
@@ -67,9 +65,10 @@ make a direct **link** with a [previous blog post](/post/HylianStyle.html).
 
 #### R version used to build the last update of this post
 
-```{r infosession}
-# path <- "../../static/assets/AcademiconsInR"
+
+```r
 sessionInfo()[[1L]]$version.string
+#R> [1] "R version 3.4.4 (2018-03-15)"
 ```
 
 #### List of packages to be used
@@ -79,16 +78,19 @@ sessionInfo()[[1L]]$version.string
 
 Here is line of code you need to install these packages:
 
-```{r, eval = FALSE}
+
+```r
 install.packages(c('magrittr', 'showtext'))
 ```
 
 Then, we load them:
 
-```{r libraries, message=FALSE}
+
+```r
 library(magrittr)
 library(showtext)
 packageVersion("showtext")
+#R> [1] '0.5.1'
 ```
 
 
@@ -108,18 +110,18 @@ and you will be able to use them in other softwares *e.g.* LibreOffice) or
 store them in a dedicated folder whose path will be denoted `dr` hereafter.
 
 
-```{r downloadFonts}
-dr <- "downloaded_files/"
-dir.create(dr, showWarnings = FALSE)
-##-- gather URLs
+
+```r
+dir.create("assets", showWarnings = FALSE)
+##-- URLs
 urls <- c(
   'https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf',
-  'https://github.com/FortAwesome/Font-Awesome/blob/master/web-fonts-with-css/webfonts/fa-regular-400.ttf',
+  'https://github.com/inSileco/inSileco.github.io/raw/dev/static/fonts/fontawesome-webfont.ttf',
   'https://github.com/driftyco/ionicons/raw/master/fonts/ionicons.ttf'
   )   
 ##-- download the fonts
 for (i in 1:3){
-  download.file(urls[i], destfile=paste0(dr, basename(urls[i])))
+  download.file(urls[i], destfile=paste0("assets/", basename(urls[i])))
 }
 ```
 
@@ -130,7 +132,8 @@ for (i in 1:3){
 To activate the facilities `showtext` provides, use `showtext_auto()`
 (by the way, the author of the package deserves a medal!):
 
-```{r showtext, message = FALSE}
+
+```r
 showtext_auto()
 ```
 <!-- help rebuilding the website without downloading font as they are
@@ -138,24 +141,27 @@ included in this folder -->
 
 We add the path to our fonts:
 
-```{r}
-font_paths(dr)
-```
 
+```r
+font_paths("assets")
+```
 
 Then, we add `academicons.ttf`, `FontAwesome.otf` and `ionicons.ttf` to our
 session with the `font_add()` function:
 
-```{r addfonts}
-font_add(family = 'academicons', regular = 'academicons.ttf')
-font_add(family = 'FontAwesome', regular = 'FontAwesome.otf')
+
+```r
+font_add(family = 'academicons', regular = 'assets/academicons.ttf')
+font_add(family = 'FontAwesome', regular = 'fontawesome-webfont.ttf')
 font_add(family = 'ionicons', regular = 'ionicons.ttf')
-##-- check the font families available on your computer.
+##-- check the font families available
 font_families()
+#R> [1] "sans"         "serif"        "mono"         "wqy-microhei"
+#R> [5] "academicons"  "FontAwesome"  "ionicons"
 ```
 
 Here, things are going to be a little bit trickier than they were in the
-[Hylian blog post](/content/post/HylianStyle.html), as we should first locate the
+[Hylian blog post]({{ ref "HylianStyle.html" }}), as we should first locate the
 unicode characters to be used. Fortunately, this is fairly doable:
 
   1. FontAwesome provides a very [helpful cheatsheet](http://fontawesome.io/cheatsheet/);     
@@ -164,7 +170,7 @@ unicode characters to be used. Fortunately, this is fairly doable:
 
 <br>
 
-<center> ![Academicons on LibreOffice](/assets/AcademiconsInR/academicons.png){width=70%} </center>
+<center> ![Academicons on LibreOffice](assets/academicons.png) </center>
 
 <br>
 <br>
@@ -185,25 +191,28 @@ There are 36 unicode characters available. They are numbered like so: "E9" +
 numbers ranging from 00 to 35 (version 1.8.0). To use them, we create a
 sequence using `sprintf()` and `paste0()` function:
 
-```{r academ}
+
+```r
 nb <- 54
 acs <- sprintf("%02d", 5+1:nb) %>% paste0("E8",.)
+coord <- expand.grid(1:9, 1:6)
+cols <- c("#3fb3b2", "#8555b4", "#ffdd55", "#1b95e0")
 ```
 
 We now plot them as if they were on a regular grid and we add the decimal value
 below:
 
-```{r figacadem, fig.width=9.5, fig.height=6, fig.showtext=TRUE}
-coord <- expand.grid(1:9, 1:6)
-cols <- c("#3fb3b2", "#8555b4", "#ffdd55", "#1b95e0")
-##
+
+```r
 par(mar=c(0,0,0,0))
-plot(c(0,9), c(0,7), type="n", ann=FALSE, axes=FALSE)
-text(coord[,1], coord[,2], labels= acs,  offset = 1.6, cex=2, pos=1)
+plot(c(0,10), c(0,7), type="n", ann=FALSE, axes=FALSE)
+text(coord[,1], coord[,2], labels= acs, offset = 2.2, cex=1.6, pos=1)
 ##
 par(family = "academicons")
-points(coord[,1], coord[,2], pch=-as.hexmode(acs), cex=5, col=cols)
+points(coord[,1], coord[,2], pch=-as.hexmode(acs), cex=4.8, col=cols)
 ```
+
+<center><img src = "assets/academiconR.png" width = "90%"></img></center>
 
 
 ### Adding FontAwesome's icons
@@ -212,13 +221,16 @@ The unicode hexadecimal for the FontAwesome's icons range from `f000`
 (<i class="fa fa-glass" aria-hidden="true"></i>) to `f2e0`
 (<i class="fa fa-meetup" aria-hidden="true"></i>) in version 4.7. Version
 
-```{r figfontawe, fig.width=9.5, fig.height=9, fig.showtext=TRUE}
+
+```r
 nsq <- 12
 fas <- 1:(nsq*nsq) %>% as.hexmode %>% paste0("f0", .)
 coord <- expand.grid(1:nsq, 1:nsq)
 par(mar=c(2,2,2,2), family = 'FontAwesome')
 plot(coord[,1], coord[,2], pch=-as.hexmode(fas), cex=5, col=cols, ann=FALSE, axes=FALSE)
 ```
+
+<img src="/rmarkdown-libs/figure-html4/figfontawe-1.png" width="912" style="display: block; margin: auto;" />
 
 ### Adding Ionicons
 
@@ -227,7 +239,8 @@ There are 765 icons available (version 2.0.1), therefore some hexidecimal are
 not assigned. Here we'll use the `intToUtf8()` function to convert the decimal
 value into an unicode character.
 
-```{r figionic, fig.width=9.5, fig.height=8, fig.showtext=TRUE}
+
+```r
 val <- 61970:62046
 ias <- sapply(val, FUN=intToUtf8)
 coord <- expand.grid(rev(1:11), 1:7)
@@ -236,6 +249,8 @@ par(mar=c(2,2,2,2), family = "ionicons")
 plot(coord[,1], coord[,2], ann=FALSE, axes=FALSE, pch=ias, cex=5, col=cols)
 ```
 
+<img src="/rmarkdown-libs/figure-html4/figionic-1.png" width="912" style="display: block; margin: auto;" />
+
 
 
 ### Combining them
@@ -243,7 +258,8 @@ plot(coord[,1], coord[,2], ann=FALSE, axes=FALSE, pch=ias, cex=5, col=cols)
 To combine, we have to switch from one font to another. Here is a simple
 example that combines the three icon frameworks.
 
-```{r volcano, fig.width=9.5, fig.height=7, fig.showtext=TRUE}
+
+```r
 data(volcano)
 par(las=1, mar=c(4,5,4,4))
 image(volcano, col=colorRampPalette(c("grey10", "grey90"))(100), axes=FALSE)
@@ -261,6 +277,8 @@ points(0.451, 0.091, pch=-as.hexmode("F448"), col="#3fb3b2", cex=4)
 par(family = "academicons")
 mtext(text=intToUtf8(59476), side=4, adj=1, line=3, col = "#8555b4", cex=6)
 ```
+
+<img src="/rmarkdown-libs/figure-html4/volcano-1.png" width="912" style="display: block; margin: auto;" />
 
 
 
