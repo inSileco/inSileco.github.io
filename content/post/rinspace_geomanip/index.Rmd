@@ -1,12 +1,11 @@
 ---
 title: R in Space - Geometry manipulation
 author: [david, marieh, nicolas, kevin, elliot, steve]
-date: 2018-04-06
+date: 2018-04-08
 tags: [R in Space, R, Spatial]
-rpkgs: [sp, sf, raster]
-draft: true
-tweet: "R in Space - Spatial Objects in R"
-estime: 10
+rpkgs: [raster, rgeos, sf, sp]
+draft: false
+tweet: "R in Space - Geometry manipulation"
 navposts:
   prev: rinspace_attrmanip
   home: rinspace_homepage
@@ -154,7 +153,7 @@ points(pts, col = is.na(over(pts, bel2_geom))+2, pch =19)
 
 ## `sf` objects
 
-Have a look at the dedicated vignette https://cran.r-project.org/web/packages/sf/vignettes/sf3.html
+Have a look at the dedicated vignette: https://cran.r-project.org/web/packages/sf/vignettes/sf3.html
 
 
 ## `raster` objects

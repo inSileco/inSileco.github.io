@@ -1,15 +1,14 @@
 ---
 title: R in Space - Useful resources
 author: [marieh, nicolas, kevin, david, elliot, steve]
-date: 2018-04-12
+date: 2018-04-13
 tags: [R in Space, R, Spatial, wiki]
 draft: true
-tweet: "R in Space - A Series"
+tweet: "R in Space - Useful resources"
 navposts:
   prev: rinspace_homepage
   home: rinspace_homepage
   next: rinspace_spobjects
-estime: 10
 ---
 
 
