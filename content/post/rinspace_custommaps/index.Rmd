@@ -275,7 +275,7 @@ layout.show(13)
 The elements on this complex layout will be drawn sequentially following the
 order specified in the layout matrix.
 
-```{r figure1}
+```{r figure1, eval = F}
 layout(mat)
 par(mar = c(2,2,2,2))
 
@@ -361,6 +361,9 @@ plot0(c(0,1))
 text(x = 0.5, y = 0.5, labels = 'D', font = 2, cex = 1.35)
 ```
 
+![](./example1.png)
+
+
 <br/>
 
 While it may seem complicated, all of these plot calls are make up each element
@@ -425,7 +428,7 @@ layout.show(24)
 
 <br/>
 
-```{r figure2}
+```{r figure2, eval = F}
 layout(mat,
        heights = c(1,1,1,.2,.2,1,1,.2,.4,.2,.2,1,1,.2,1,1,1),
        widths = c(.2,1,1,1,.5,.5,1,1,1,.2))
@@ -549,6 +552,8 @@ for(i in 1:2) {
   text(x = 0.1, y = .1, '\u2022 Regional', cex = 0.75, adj = c(0,1))
 }
 ```
+
+![](./example2.png)
 
 And here is the actual figure!
 
