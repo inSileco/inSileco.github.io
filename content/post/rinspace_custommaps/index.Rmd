@@ -23,9 +23,13 @@ source('../../../static/Rscript/codeChunkSetUp.R')
 
 ## Creating a thematic map
 
-In this post, we go through all the steps required to produce a complete good-looking map. We will see how to add a title, a legend, a scale, axis and a North arrow and choose a good color palette. To do so, we will use the Quebec province as our sampled area.
+In this post, we go through all the steps required to produce a complete
+good-looking map. We will see how to add a title, a legend, a scale, axis and a
+North arrow and choose a good color palette. To do so, we will use the Quebec
+province as our sampled area.
 
-So, first, we import 2 vector layers readily available in R, the Canadian provincial boundaries and USA country boundary.
+So, first, we import 2 vector layers readily available in R, the Canadian
+provincial boundaries and USA country boundary.
 
 ```{r getdata, message = F}
 library(sf)
@@ -55,21 +59,23 @@ qc_neigh <- can1_sf[can1_sf$NAME_1 %in% c("Québec","Ontario", "Nova Scotia","Ne
 
 
 
-It would take a while to plot because there is a lot of unnecessary details, so we
-can simplify the shape of the polygons using `st_simplify()`.
+It would take a while to plot because there is a lot of unnecessary details, so
+we can simplify the shape of the polygons using `st_simplify()`.
 
 
 ```{r simplify}
 usa0_simple <- st_simplify(usa0_sf, dTolerance = .05, preserveTopology = F)
 qc_simple <- st_simplify(qc, dTolerance = .01, preserveTopology = F)
 qc_neigh_simple <- st_simplify(qc_neigh, dTolerance = .01, preserveTopology = F)
-
 ```
 
 
-The warning stating that st_simplify does not correctly simplify longitude/latitude data and it should be in decimal degrees. It's important in some spatial operations involving distances, but we can ignore it for the purpose of mapping.
+The warning stating that st_simplify does not correctly simplify
+longitude/latitude data and it should be in decimal degrees. It's important in
+some spatial operations involving distances, but we can ignore it for the
+purpose of mapping.
 
-Let's look at what we have :
+Let's look at what we have:
 
 ```{r map_1, message = F, fig.height=4, fig.width=4}
 plot(st_geometry(qc_simple), col = "grey85")
@@ -78,7 +84,9 @@ plot(st_geometry(usa0_simple), col = "grey25", add = T)
 ```
 
 
-Let's say we sampled vegetation in 100 plots in Quebec; we now want to plot them with points proportional to their species richness. We will now create a data frame containing coordinates and random values from 5 to 50.
+Let's say we sampled vegetation in 100 plots in Quebec; we now want to plot them
+with points proportional to their species richness. We will now create a data
+frame containing coordinates and random values from 5 to 50.
 
 ```{r points, message = F}
 # Sample random points from our study area
@@ -174,6 +182,12 @@ mtext(side = 1, line = 1.8, text = 'Mean annual temperature (°C)')
 
 ```
 
+
+
+
+
+
+
 ## Examples of complex layouts
 
 The `layout()` function can be used to produce simple to very complex layouts
@@ -212,8 +226,8 @@ library(graphicsutils)
 
 # Import marine layers
   layers <- c('BO_dissox','BO_sstmean')
-  dir.create("downloaded_files/", showWarnings = FALSE)
-  envCov <- sdmpredictors::load_layers(layers, datadir = "downloaded_files/", rasterstack = TRUE)
+  dir.create("data", showWarnings = FALSE)
+  envCov <- sdmpredictors::load_layers(layers, datadir = "data", rasterstack = TRUE)
 
 # Crop and build raster stack
   envCov <- raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax)) %>%
@@ -361,7 +375,7 @@ plot0(c(0,1))
 text(x = 0.5, y = 0.5, labels = 'D', font = 2, cex = 1.35)
 ```
 
-![](./example1.png)
+<center>![](./example1.png){width=80%}</center>
 
 
 <br/>
@@ -377,7 +391,7 @@ they joint density distribution.
 
 <br/>
 
-![](./layout1.png)
+<center>![](./layout1.png){width=90%}</center>
 
 <br/>
 
@@ -553,8 +567,8 @@ for(i in 1:2) {
 }
 ```
 
-![](./example2.png)
+<center>![](./example2.png){width=90%}</center>
 
 And here is the actual figure!
 
-![](./layout2.png)
+<center>![](./layout2.png){width=90%}</center>
