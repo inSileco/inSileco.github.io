@@ -7,7 +7,7 @@ tweet: "R in Space - A Series"
 draft: false
 navposts:
   home: rinspace_homepage
-  next: rinspace_homepage
+  next: rinspace_refs
 ---
 
 
@@ -39,7 +39,7 @@ Also to access the full list of post of the series, click on the tag [R in space
 
 ### Beginner course
 
-#### **1- Useful resources**: curated list of valuable resources [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_spobjects" >}})
+#### **1- Useful resources**: curated list of valuable resources [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_refs" >}})
 
 #### **2- About spatial objects**: [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "rinspace_spobjects" >}})
 

@@ -3,7 +3,7 @@ title: R in Space - Useful resources
 author: [marieh, nicolas, kevin, david, elliot, steve]
 date: 2018-04-13
 tags: [R in Space, R, Spatial, wiki]
-draft: true
+draft: false
 tweet: "R in Space - Useful resources"
 navposts:
   prev: rinspace_homepage
@@ -133,7 +133,7 @@ spatial data in R is:
 
 - [r-spatial.org](http://r-spatial.org/);
 - [rspatial.org](http://www.rspatial.org/);
-- [A  DataCamp tutorial](https://www.datacamp.com/courses/spatial-analysis-in-r-with-sf-and-raster);
+- [A DataCamp tutorial](https://www.datacamp.com/courses/spatial-analysis-in-r-with-sf-and-raster);
 - [Geocomputation with R](https://geocompr.robinlovelace.net/intro.html);
 - [Analyses spatiale sous R](https://qcbs.ca/wiki/_media/gisonr.pdf) (fr).
 - [Another tutorial by Claudia Engel](https://cengel.github.io/rspatial)
