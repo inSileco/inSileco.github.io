@@ -15,7 +15,10 @@ output:
     dev: svg
 ---
 
-![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+
+```{r codeChunkSetUp, echo=FALSE}
+source('../../../static/Rscript/codeChunkSetUp.R')
+```
 
 
 ## Plot methods for `sp` objects
@@ -31,13 +34,13 @@ bel1 <- getData("GADM", country = "BEL", level = 1, path = "data/")
 bel2 <- getData("GADM", country = "BEL", level = 2, path = "data/")
 ```
 
-First plot:
+Quick plot:
 
 ```{r plotsp1}
 plot(bel1)
 ```
 
-First two plots:
+Two quick plots:
 
 ```{r plotsp2}
 par(mfrow = c(1,2), mar = c(0,0,0,0))
@@ -45,7 +48,7 @@ plot(bel1, col = 1:3)
 plot(bel2, lty = 2)
 ```
 
-First two plots:
+Slightly customized plots:
 
 ```{r plotsp3}
 plot(bel1, col = "grey85", main = "Belgium")
@@ -60,7 +63,7 @@ text(city[1], city[2], labels = "Bruxelles", pos = 3, col = "#9728eb")
 
 ## plot methods for `sf` objects
 
-Let's first get `sf` object:
+Let's first get two `sf` object:
 
 ```{r map_sf0, message = F}
 bel1_sf <- st_as_sf(bel1)
@@ -97,14 +100,19 @@ alt <- getData("alt", country = "Belgium", path = "data/")
 ```{r plot_alt, message = F}
 plot(alt)
 ```
-We can also add different layers of information on this maps
+
+
+We can also add different layers of information on this maps:
+
+
 
 ```{r plot_alt2, message = F}
 plot(alt)
 contour(alt, add = T)
 ```
 
-... Or reclassify and change the color palette
+Or reclassify and change the color palette:
+
 
 ```{r plot_alt3, message = F}
 # Assign color to a object
@@ -141,9 +149,12 @@ text(st_coordinates(st_centroid(brux)), labels = "Bruxelles", pos = 3, col = "#9
 ```
 
 
-## mapview
+## Package `mapview`
 
-```{r mapview, message = F}
+```{r mapview, message = F, fig.width = 9.5}
 library(mapview)
-mapview(bel1)
+mapview(bel1)@map
 ```
+
+
+### Neat!

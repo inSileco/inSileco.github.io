@@ -10,9 +10,25 @@
       <div class="hidden-sm hidden-xs">
         <div class="sticky-top">
         <div id="toc"></div>
+        <script>
+          var $jq = jQuery.noConflict();
+
+            $jq(function() {
+
+                var toc = $jq("#toc").tocify({
+                  selectors: "h2, h3",
+                  scrollTo: 50
+                }).data("toc-tocify");
+
+                prettyPrint();
+                $jq(".optionName").popover({ trigger: "hover" });
+
+            });
+        </script>
       </div>
   </div>
 </div>
+
 
 
 
@@ -104,36 +120,22 @@
 
 
 
+
+
     <br><br>
 
     <h3 class="page-header">Comments on this post</h3>
 
     <div id="disqus_thread"></div>
 
-
     <!-- related posts with the same tags -->
     {{ $related := first 3 (where (where (where .Site.Pages.ByDate.Reverse ".Type" "==" "post") ".Params.tags" "intersect" .Params.tags) "Permalink" "!=" .Permalink) }}
-
 
     {{ if $related }}
       <h3 class="page-header">Related posts</h3>
       {{ range $related }} {{ partial "list-item" . }} {{ end }}
     {{ end }}
 
-
-    <script>
-        $(function() {
-
-            var toc = $("#toc").tocify({
-              selectors: "h2,h3",
-              scrollTo: 50
-            }).data("toc-tocify");
-
-            prettyPrint();
-            $(".optionName").popover({ trigger: "hover" });
-
-        });
-    </script>
 
     <script>
       /**
