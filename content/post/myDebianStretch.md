@@ -6,6 +6,8 @@ date: 2018-01-21
 edits:
   - date: 2018-02-24
     comment: "add a seflfie"
+  - date: 2018-04-17
+    comment: "new gist (won't be updated)"
 tags: [Linux, Debian]
 draft: false
 tweet: "Setting my Debian Stretch up"
@@ -303,12 +305,13 @@ website on [unofficial repositories](https://wiki.debian.org/fr/UnofficialReposi
 [Skype](https://wiki.debian.org/skype) and [Dropbox](https://wiki.debian.org/dropbox).
 Also, if you wonder what is the difference between `deb` and `deb-src`, go on
 [stackexchange](https://unix.stackexchange.com/questions/20504/the-difference-between-deb-versus-deb-src-in-sources-list).
-Once you are aware of this, have a look at my gist below (as version `138` when
-I first shared this post and version `146` after review).
+Once you are aware of this, have a look at my gist below (also version `138` when
+I first shared this post and version `146` after review of this gist
+https://gist.github.com/KevCaz/29536740b9150383a9d543ec1be96103 I keep updating).
 
 
 <br>
-<script src="https://gist.github.com/KevCaz/29536740b9150383a9d543ec1be96103.js"></script>
+<script src="https://gist.github.com/KevCaz/98309a714f6bd3f6ba5ac367425fcb62.js"></script>
 <br>
 
 For some of the softwares listed, I do not use `sudo apt-get package` and
