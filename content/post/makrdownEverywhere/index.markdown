@@ -22,27 +22,31 @@ appeared over the years to answer these issues.
 
 Here I'd like to expand on this and develop why Markdown is so common,
 why I think it is for the best and why I think it could be useful for academics.
-
+T
 
 
 ## Origin and philosophy
 
-Scrolling down the Wikipedia page, you'll learn that Markdown was first
-released in 2004 by John Gruber and if you look up Markdown on the Internet,
-you may rapidly find the *orignal webpage* on daringfireball.net,
-*i.e.* https://daringfireball.net/projects/markdown/. There you will find a
-description of the original syntax and an explanation about how the conversion
-is made, *i.e.* the call to a [perl](https://www.perl.org/) parser `Markdown.pl`
-and even a small web application to try it https://daringfireball.net/projects/markdown/dingus.
+If you scroll down the Wikipedia page, you should learn that Markdown was first
+released in 2004 by John Gruber and you will find the URL of the *orignal
+webpage* on daringfireball.net, *i.e.* https://daringfireball.net/projects/markdown/.
+There you will find:
+
+1. details about the philosophy behind Markdown,
+1. a description of the original syntax,
+2. how the conversion is made, *i.e.* the call to a [perl](https://www.perl.org/) parser `Markdown.pl`,
+4. a small [web application](https://daringfireball.net/projects/markdown/dingus) to try Markdown.
 
 
 As [John Gruber wrote](https://daringfireball.net/projects/markdown/syntax):
 
 > Markdown is intended to be as easy-to-read and easy-to-write as is feasible.
 
-and it really is! Let me pick, copy and slightly modify an example from the
+and it really is! Let me select, copy and slightly modify an example from the
 [daringfireball](https://daringfireball.net/projects/markdown/basics) to compare
-the two versions:  
+the two versions:
+
+
 
 #### **Markdown version**
 
@@ -96,34 +100,39 @@ dog's back.</p>
 </blockquote>
 ```
 
-If not before, now you should get the play on words: HTML (HyperText Markup Language) is a [markup language](https://en.wikipedia.org/wiki/Markup_language) and Markdown is a [Lightweight Markup Language (LML)](https://en.wikipedia.org/wiki/Lightweight_markup_language) that reduces the length of the most commonly
-used tags.
+Easy-to-read and easy-to-write indeed! If not before, now you should understand
+the play on words: HTML (HyperText Markup Language) is a
+[markup language](https://en.wikipedia.org/wiki/Markup_language) and Markdown
+is a [Lightweight Markup Language (LML)](https://en.wikipedia.org/wiki/Lightweight_markup_language)
+that reduces the length of the most commonly used tags, Mark~~up~~down.
 
-Broadly speaking, the philosophy behind Markdown is something omnipresent
-in computer science. Indeed Given a specific langage, a create easier
-that how we end up hivong code easy to read such as C, FORTAN, Python, ...
-while utilimatiely the mchine langage is used. [CoffeeScript](http://coffeescript.org/)
+Broadly speaking, the philosophy behind Markdown is actually omnipresent
+in computer science. In many case, for efficiency/ergonomy purposes it makes
+more sense to write an new language on the top of another. It is the principle
+that explains why we use language such as C or Python, called [high level programming
+languages](https://en.wikipedia.org/wiki/High-level_programming_language) instead
+of programming directly using machine language (would be a pain in the #!@?#),
+even though ultimately the machine language is used.
 
-https://en.wikipedia.org/wiki/Syntactic_sugar
+Markdown is not a programming language but a markup language and the power
+comes from the chnages in syntax (see [syntactic sugar](https://en.wikipedia.org/wiki/Syntactic_sugar])). an Markdown tags represent a very
+restricted subset of HTLM tags (the one for text formating) In this sense it is
+very akin to language such as [CoffeeScript](http://coffeescript.org/) but again
+Markdown is a markup langage.
 
 
-You have a very efficient and langage
-In some sense markdown in a higher langage just as C in
-
-A good example in Coffee script: http://coffeescript.org/
-A it different is not a programming lanage but a this has different consequences.
 
 
-x
 ## Many flavors
 
-John Gruber released Markdown on dairingball on 2004, he provided the syntax
-the perl paser, but it did not purdue and did not provide a complete specification
-so that would allow one to wirte a paser in any langage and produce the same result.
-That lead some blogger to assert that Markdown suffered from [bad parenting]( https://blog.codinghorror.com/responsible-open-source-code-parenting/).
-
-As a consequence different flavors were created to expand the original
-version for different purpose, among them:
+John Gruber released Markdown on dairingball on 2004, he described the original
+syntax and the perl parser, but he did not provide a complete specification,
+*i.e.* a set of instruction that would allow anyone to write a Markdown parser
+in any programming language that would reproduce .
+That lead some blogger to write that Markdown suffered from [bad parenting]( https://blog.codinghorror.com/responsible-open-source-code-parenting/).
+I think there is no reason to blame John Gruber for not writing a specification,
+however, as a direct consequences, different flavors were created to expand the original
+version for different purposes, among them:
 
 
 - [MultiMarkdown](fletcherpenney.net/multimarkdown/) [<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/fletcher/MultiMarkdown) by Fletcher Penney:
@@ -134,36 +143,46 @@ version for different purpose, among them:
 
 > MultiMarkdown started as a Perl script, which was modified from the original Markdown.pl.
 
+
 - [PHP Markdown Extra](https://michelf.ca/projects/php-markdown/extra/) by Michel Fortin:
 
-> Markdown Extra is an extension to PHP Markdown implementing some features currently not available with the plain Markdown syntax.
+> Markdown Extra is an extension to PHP Markdown implementing some features
+currently not available with the plain Markdown syntax.
+
 
 - [kramdown](https://kramdown.gettalong.org/) [<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/gettalong/kramdown):
 
-> kramdown (sic, not Kramdown or KramDown, just kramdown) is a free MIT-licensed Ruby library for parsing and converting a superset of Markdown. It is completely written in Ruby, supports standard Markdown (with some minor modifications) and various extensions that have been made popular by the PHP Markdown Extra package and Maruku.
+> kramdown (sic, not Kramdown or KramDown, just kramdown) is a free MIT-licensed
+Ruby library for parsing and converting a superset of Markdown. It is completely
+written in Ruby, supports standard Markdown (with some minor modifications) and
+various extensions that have been made popular by the PHP Markdown Extra
+package and Maruku.
 
 
-As a consequence, even though all flavors are very alike, they have the difference
-and this leads to many confucion when asking ""
-see https://stackoverflow.com/questions/14675913/changing-image-size-in-markdown.
-Better refer to a specific and a detailed response to should inclue difference
-bewteen
+Even though all flavors are very alike, they are superset of the
+original Markdown with flavor-specific variations. Therefore when asking
+"*how can I change the size of an image using Markdown?*" you don't have
+an unique answer, you may have one answer per flavor, well this explains
+the confusion on the answer of the question on [StackOverflow](https://stackoverflow.com/questions/14675913/changing-image-size-in-markdown.).
+So when asking a question about Markdown, beware of the flavor!
 
 
 ## A specification
 
-The main reason of the di
+As I previously wrote, the main reason of the emergence of partially compatobel  
+flavore is that it original Markdown was lacking a specification.
+A specification is like a manual of the manual,not the manual to learn
+how to do this and that with the langage but what the language is supposed to do,
+a complete caracteisation of the lanegge. In the case of Markdown
+this means an unequivocal description of what the parser must do. eFortunately,
+highly capable people have developed such specification, it is called
+[CommonMark](http://commonmark.org/): and provide
 
-- Specification is something major for any langage. (C is not well specified)
-- Markdown not well specified, parser Perl not clear.
 
 
-- [CommonMark](http://commonmark.org/)
-- Specification: http://spec.commonmark.org/ 0.28
+- Specification: http://spec.commonmark.org/, currenlty 0.28
 - implementations https://github.com/commonmark/CommonMark/wiki/List-of-CommonMark-Implementations
 - also a tutorial "learn markdown in 60 seconds"
-
-- another ref: https://www.kobo.com/ca/en/ebook/markdown-for-writers-1
 
 
 
@@ -176,7 +195,7 @@ Markdown. I have therefore decided to discuss a couple of example I am familiar
 to illustrate different way to take advantage from Markdown.
 
 In any situation involving the editing of online content, the usage of Markdown
-brings many advantages (well, it was design for such purpose :smirk:). It is therefore
+brings many advantages (well, it was designed for such purpose :smirk:). It is therefore
 not surprising that Markdown is supported by many websites and web applications where people edit content. For instance, you can use Markdown to edit a question or an answer on [StackOverflow](https://stackoverflow.com/editing-help) or to exchange
 with you colleagues on [Gitter](https://gitter.im/). When you are writing
 content for your own website, you may find a solution to use Markdown.
@@ -245,6 +264,8 @@ In the rest of the section I develop how this is used in a example.
 
 
 
+- another ref: https://www.kobo.com/ca/en/ebook/markdown-for-writers-1
+
 ### Pandoc to the rescue
 
 This includes another dimensions happening with
@@ -260,6 +281,8 @@ Easy but also very confusing and many questions raised with Rmarkdown about what
   Discussion about needed more unless a template doem which IMHO should be the case.
 
 <!-- Needs to know about Latex -->
+
+PCI ecology suupoort markdown!
 
 
 ## Resources
@@ -280,14 +303,23 @@ package mardown preview https://atom.io/packages/markdown-preview
 - https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf
 
 
-## Concluding remarks
+## Concluding questions
 
-Instead
+Instead of a classical "concluding remark" I would like to end this post by asking
+two questions to let you (and me) think about Markdown:
 
-Here I ask 2 questions and propose and answer. I am not a specialist so it's very subjectve and I
+1. Why not replacing the HTML tags by their associated Markdown tag?
 
-- Why not replacing all common HTML tags by their associated Markdown tag?
+2. Is it worth learning HTML/CSS/Latex (among others) while I can rather stick to Markdown?
 
-- Is it worth learning HTML/CSS/Latex (among other) while I can rather stick to Markdown?
+I am not a specialist of all of this, so my thoughts may not be the best, but here
+they are:
 
-Of course.
+- Regarding 1. I think it is useless to replace the specification. HTML has
+it owns tag system and it should better keep it that way. Again it makes
+
+- Regarding 2. Yes! Always good to learn, and you need to know more Mardown alone
+is no more, but no less that shortcuts and you need to know the oter to use them.
+That being said, regarding who you are and you usage you may not need more
+many peolple use R markdown and they do not know much more beacuse they
+don,t need to, That being saud they often enconter issue...
