@@ -191,17 +191,17 @@ and that would be the different flavors, that would be great! Fortunately,
 a couple of highly capable people have decided to tackle this challenge and
 have created [CommonMark](http://commonmark.org/). The website provides:
 
-1. a specification for Markdown, version 0.28 currenlty: http://spec.commonmark.org/, currenlty 0.28
+1. a specification for Markdown, version 0.28 currently: http://spec.commonmark.org/
 
 2. links to implementations in various programming languages: https://github.com/commonmark/CommonMark/wiki/List-of-CommonMark-Implementations
 
-3. a very useful tutorial: ["learn markdown in 60 seconds"](http://commonmark.org/help/).
+3. a great tutorial: ["LEARN MARKDOWN IN 60 SECONDS"](http://commonmark.org/help/).
 
 I really hope this will soon represent a standard. This would be very useful to
 switch from one converter to another without worrying about its behavior. You might
 think this is only for advanced users but it is not. If you use Markdown in
 different websites, you regularly switch from one converter to another! and you
-probably do so because... markdown is everywhere!
+probably do so because... Markdown is everywhere!
 
 
 
@@ -225,7 +225,7 @@ generator such as [Hugo](https://gohugo.io/) and [Jekyll](https://jekyllrb.com/)
 always include such feature. Furthermore, when markdown support is not a primary feature, you will likely find a pluggin/tool
 that will bring you this feature, for instance, if you blog with [Medium](https://medium.com/) you can use [markdown to Medium](http://markdowntomedium.com/).
 
-Speaking about plugins [Markdown Here](https://markdown-here.com/) allows you to write email in Markdown. I really enjoy Mardown Here, I use the plugin for Thunderbird (currenlty I use
+Speaking about plugins [Markdown Here](https://markdown-here.com/) allows you to write email in Markdown. I really enjoy Markdown Here, I use the plugin for Thunderbird (curenlty I use
 Thunderbird 52.7.0) pretty much everyday, let me show you!
 
 
@@ -242,7 +242,7 @@ again easy-to-read, easy-to-write! And as it is a markup language, it is also
 easy-to-format! That's how a README file turned into a very helpful and good-looking
 webpage on your Github projects!
 
-Last but not least, Markdown is now extensively used in dynamic documents /
+Last but not least, Markdown is now extensively used to produce dynamic documents /
 dynamic webpages where text and code are integrated together. For instance,
 you can format your text with Markdown in [Jupyter Notebooks](http://jupyter.org/).
 R users now extensively use  [Rmarkdown](https://rmarkdown.rstudio.com/) to
@@ -261,26 +261,23 @@ Once again Markdown is a Lightweight Markup Language and was originally designed
 to be converted to HTML. HTML is one among a long [list of markup languages](https://en.wikipedia.org/wiki/List_of_markup_languages). It is however
 designed to ease the writing of formatted text in HTML. So, let's consider another
 Markup language also designed to format text, say [LateX](https://www.latex-project.org/)
-(which itself built on the top of TeX :smile_cat:!). Why not use Markdown and
-use a LML for a subset of TeX tags?
-
-There are actually several options to imagine
+(which itself built on the top of TeX :smile_cat:!). Why not using Markdown and
+another converter to ease the use of the second language which would also
+mean that we can use markdown for two different language.
 
 Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> HTML
 
-But we can easily imagine equivalent
+Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> LateX
 
-Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> LaTex
+We can also image an universal intermediare, an abstract representation
 
-Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> LaTex
-
-Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> LaTex
-
-L1 Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> Universal <i class="fa fa-long-arrow-right" aria-hidden="true"></i> L2
+ Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> LU <i class="fa fa-long-arrow-right" aria-hidden="true"></i> L2
 
 
+ L1 <i class="fa fa-long-arrow-right" aria-hidden="true"></i> LU <i class="fa fa-long-arrow-right" aria-hidden="true"></i> L2
 
-That is pretty much what [Pandoc](https://pandoc.org/) offers! from
+
+That is pretty much what [Pandoc](https://pandoc.org/) offers! From
 https://hackage.haskell.org/package/pandoc :
 
 > In contrast to most existing tools for converting Markdown to HTML, pandoc has
@@ -292,35 +289,46 @@ input or output format requires only adding a reader or writer.
 
 I won't give much details about Pandoc, which deserves a post it-self (if not more than),
 let simply assume that within a common line like `pandoc cool.mu1 -o cool.mu2`
-does a conversion from to anither. So... I can go from HTML to TEX to PDF
-so from makdown to PDF. Yes... you can! It is slighly more complex than that
-but it works just great
-
-L1 and L2
+does a conversion from to another.
 
 
 
-## Markdown for academic writing?
+## Is Markdown suitable for academic writing?
 
-Yes but a few other tools needed, among the most obvious:
+Very good question! Truncated answer "No" :disappointed:. Less truncated
+answer "No answer UNLESS you use an enhanced flavor of Markdown and an awesome
+tool such as Pandoc!" :sweat_smile:.  Indeed if you consider the orignal version
+of pandoc are, many essential formatting aspects are not included, among them, the most
+important of them are:
 
+- annotations (admittedly not vital)
 - tables
-- math
-- annotations
-- references
+- equations (a support for math editing at large)
+- references (crucial)
 
-Pandoc's Markdown covers such needs. Also scholarlymarkdown
+Fortunately Pandoc's Markdown covers such needs. Also an awesome associated tool
+[pandoc-citeproc](https://github.com/jgm/pandoc-citeproc) to deal with citations.
+Well the only think is then to move away form
 
-
-A very rich tutorial on http://swcarpentry.github.io/modern-scientific-authoring/
-See (Publications / articles / discussion)
-
-
-["Why scholars should write in Markdown"](http://blogs.harvard.edu/pamphlet/files/2014/08/markdownpost-amsart.pdf) by Stuart M. Shieber on Harvard blog
+Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> LateX <i class="fa fa-long-arrow-right" aria-hidden="true"></i> pdf
 
 
-I personnaly write my review in Markdown, and I have never find journal accept
-mardown, well seem like PCI ecology PCI ecology support markdown!
+Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> docx
+
+Atom preview marjdown autocomplete bibtex and then you go to go.!
+
+A very rich tutorial on [swcarpentry](http://swcarpentry.github.io/modern-scientific-authoring/)
+
+["Why scholars should write in Markdown"](http://blogs.harvard.edu/pamphlet/files/2014/08/markdownpost-amsart.pdf) by Stuart M. Shieber on Harvard blog. See Publications in Rerouce for more details.
+
+
+A final note about reviews. I personally write my review in Markdown and convert
+them in PDF. I then copy paste the markdown and attache the pdf, I think it makes
+sense and it would be even better than the zone where I paste makfdwin be converted
+into a nice formatted HTML text. So far, not seen but I am sure some journal
+use it and PCI ecology PCI ecology support markdown!
+
+
 
 
 
