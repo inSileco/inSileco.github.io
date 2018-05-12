@@ -43,15 +43,15 @@ efficiently and usefully refine your plots.
 
 There are two strategies to include icons on a R plot:
 
-  1. using icons as a font when possible;    
+  1. using icons as a font when possible;
   2. using icons as images.
 
 Here, we exemplify the first strategy and leave the second one for another post
 (hopefully). We will use icons from three different iconic frameworks:
 
-  1. [Academicon](jpswalsh.github.io/academicons/);   
-  2. [Font Awesome](http://fontawesome.io);        
-  3. [Ionicons](http://ionicons.com).   
+  1. [Academicon](jpswalsh.github.io/academicons/);
+  2. [Font Awesome](http://fontawesome.io);
+  3. [Ionicons](http://ionicons.com).
 
 All of these frameworks propose either a `.ttf` (TrueType Font) or a `.otf`
 file (OpenType Font) or both. These files make our life very easy and we can
@@ -73,8 +73,8 @@ sessionInfo()[[1L]]$version.string
 
 #### List of packages to be used
 
-- the `showtext` package and its dependency `sysfont` (see details on line [<i class="fa fa-link" aria-hidden="true"></i>](https://cran.r-project.org/web/packages/showtext/index.html));      
-- the `magrittr` package for the pipes (see the [associated websites](http://magrittr.tidyverse.org)).    
+- the `showtext` package and its dependency `sysfont` (see details on line [<i class="fa fa-link" aria-hidden="true"></i>](https://cran.r-project.org/web/packages/showtext/index.html));
+- the `magrittr` package for the pipes (see the [associated websites](http://magrittr.tidyverse.org)).
 
 Here is line of code you need to install these packages:
 
@@ -100,8 +100,8 @@ We first need to download the 3 fonts we will be using. Links to retrieve them
 are available below and the next code chunk describes how
 use the R to get these fonts.
 
-1. [the *Academicons* font](https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf)   
-2. [the *FontAwesome* font](https://github.com/FortAwesome/Font-Awesome/blob/master/web-fonts-with-css/webfonts/fa-regular-400.ttf)   
+1. [the *Academicons* font](https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf)
+2. [the *FontAwesome* font](https://github.com/FortAwesome/Font-Awesome/blob/master/web-fonts-with-css/webfonts/fa-regular-400.ttf)
 3. [the *Ionicons* font](https://github.com/driftyco/ionicons/raw/master/fonts/ionicons.ttf)
 
 If you have decided to downloaded theses fonts, you can then either install them
@@ -117,8 +117,8 @@ dir.create("assets", showWarnings = FALSE)
 urls <- c(
   'https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf',
   'https://github.com/inSileco/inSileco.github.io/raw/dev/static/fonts/fontawesome-webfont.ttf',
-  'https://github.com/driftyco/ionicons/raw/master/fonts/ionicons.ttf'
-  )   
+  'https://github.com/ionic-team/ionicons/blob/master/docs/fonts/ionicons.ttf?raw=true'
+  )
 ##-- download the fonts
 for (i in 1:3){
   download.file(urls[i], destfile=paste0("assets/", basename(urls[i])))
@@ -164,9 +164,9 @@ Here, things are going to be a little bit trickier than they were in the
 [Hylian blog post]({{ ref "HylianStyle.html" }}), as we should first locate the
 unicode characters to be used. Fortunately, this is fairly doable:
 
-  1. FontAwesome provides a very [helpful cheatsheet](http://fontawesome.io/cheatsheet/);     
+  1. FontAwesome provides a very [helpful cheatsheet](http://fontawesome.io/cheatsheet/);
   2. `.ttf` files are easy to explore, for instance using LibreOffice and
-  inserting a special character (see the figure below).     
+  inserting a special character (see the figure below).
 
 <br>
 
