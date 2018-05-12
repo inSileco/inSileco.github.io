@@ -60,8 +60,9 @@ which will use the [archetype](https://gohugo.io/content-management/archetypes/)
 
 #### Badges
 
-![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
-![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
+- ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg) for posts that still requires some works
+
+- ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg) for posts that has reached at certain level of quality and submitted to the review of members of the blog
 
 
 #### JS/CSS libraries added
