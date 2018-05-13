@@ -2,9 +2,9 @@
 title: Markdown everywhere!
 author: [kevin]
 reviewer:
-date: 2018-05-10
+date: 2018-05-13
 tags: [Markdown, markup language]
-draft: true
+draft: false
 tweet: "Markdown everywhere!"
 estime: 15
 ---
@@ -327,40 +327,42 @@ of Markdown, many essential formatting aspects are not included, among them,
 the most important for academic writing are:
 
 1. tables
-2. equations (a support for math editing at large)
+2. support for math editing
 3. references (crucial)
 
-A solution would be to simply use Latex but then would it still be academic
-writing with markdown? Fortunately, [Pandoc's Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown) covers such needs! So,
+Given when I wrote above, a solution would be to use Markdown in combination
+with another markup language such as Latex and most of the document would actually
+be written in Latex, so would it still be academic writing with Markdown? No!
 
-1. Several ways to create [tables](https://pandoc.org/MANUAL.html#tables)
+Fortunately, the needs of academics writing are covered by [Pandoc's Markdown](https://pandoc.org/MANUAL.html#pandocs-markdown)! So,
 
-2. https://pandoc.org/MANUAL.html#math
+1. several ways to create [tables](https://pandoc.org/MANUAL.html#tables)
 
-3. Also an awesome associated tool
-[pandoc-citeproc](https://github.com/jgm/pandoc-citeproc) to deal with citations.
-Well the only think is then to move away form
+2. [Latex's syntax for math editing](https://pandoc.org/MANUAL.html#math)
 
-Plus easy to use [templates](https://pandoc.org/MANUAL.html#templates)
-And metadata https://pandoc.org/MANUAL.html#metadata-blocks YAML header (another
-potential post topic thanks to Clark Evans) we abondly use hear!
+3. there is a very complete pandoc filter [pandoc-citeproc](https://github.com/jgm/pandoc-citeproc) that deal very well with citations.
 
+So basically thanks to Pandoc, Mardown it is suitable for academic writing.
+There are even more adavtages such ad using [templates](https://pandoc.org/MANUAL.html#templates)
+and benefit from [storing metadata of your manuscript directly in your file](https://pandoc.org/MANUAL.html#metadata-blocks) fir instance through YAML header (another
+potential post topic thanks to Clark Evans). Using mMrkdown may also require
+the authors switch from a classical WYSIWYG tool to a Markdown editor. I
+personnaly use [Atom](https://atom.io/) with the following packages: [markdown preview enhanced](https://atom.io/packages/markdown-preview),
+[autocomplete-bibtex](https://atom.io/packages/autocomplete-bibtex) (to handle reference) and [document-outline](https://atom.io/packages/document-outline) (thanks [@tpoi](https://twitter.com/tpoi) for the suggestion about the latter).
 
-Atom preview Markdown autocomplete bibtex and then you go to go.!
-
-There is much details to give beyond the scope of this post,
-a very rich tutorial on [swcarpentry](http://swcarpentry.github.io/modern-scientific-authoring/)
-Also many point of view even (nmiss sone tecnhical detais though)
-["Why scholars should write in Markdown"](http://blogs.harvard.edu/pamphlet/files/2014/08/markdownpost-amsart.pdf) by Stuart M. Shieber on Harvard blog. See Publications in Resourec for more details.
+If you looking for more details about this, I highly recommend the tutorial of [Software Carpentry on the topic](http://swcarpentry.github.io/modern-scientific-authoring/) and also the
+reading of different points of view such as
+["Why scholars should write in Markdown"](http://blogs.harvard.edu/pamphlet/files/2014/08/markdownpost-amsart.pdf) by Stuart M. Shieber
+(more articles listed in the resource section).
 
 
 A final note about reviews. I personally write my review in Markdown and convert
 them in `pdf`. I then copy/paste the Markdown file and attache the `pdf` which
-is Ok, but it would be even better than the zone where I paste markfdwon be converted
-into a nice formatted HTML text. So far, I never came across a journal that offers
-such feature (same publisher, same platform) not seen but I am sure some journal
-do support markdown. And [Peer Community In](https://peercommunityin.org/) support markdown,
-let's wait and see PCI ecology !
+is Ok, but it would be even better if the zone where I paste the markdown-formated
+review could be converted into a nice formatted HTML text. So far, I never came
+across a journal that offers such feature but I am comvinced that some journals
+support markdown. I am glad that [Peer Community In](https://peercommunityin.org/)
+offer such feature but I have not seen it in action yet!
 
 
 
@@ -417,7 +419,7 @@ There are specific editor such as [Abricotine](http://abricotine.brrd.fr/),
 code editor includes specific library for highlight syntaxing and
 preview. For instance [Atom](https://atom.io/) includes a [markdown preview](https://atom.io/packages/markdown-preview) a core
 package and a quick search show that there 30 packages (querry on
-May 12, I use atom 1.26.1 on my debian device), I personally enjoy the [markdown preview enhanced](https://atom.io/packages/markdown-preview) package.
+May 12, I use atom 1.26.1 on my debian device):
 
 
 ```bash
