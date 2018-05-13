@@ -16,31 +16,30 @@ estime: 15
 According to [Wikipedia](https://en.wikipedia.org/wiki/Markdown):
 
 > Markdown is a lightweight markup language with plain text formatting syntax.
-It is designed so that it can be converted to HTML and many other formats using
-a tool by the same name Markdown is often used to format readme files, for
-writing messages in online discussion forums, and to create rich text using a
-plain text editor. As the initial description of Markdown contained ambiguities
-and unanswered questions, many implementations and extensions of Markdown
-appeared over the years to answer these issues.
+> It is designed so that it can be converted to HTML and many other formats using
+> a tool by the same name Markdown is often used to format readme files, for
+> writing messages in online discussion forums, and to create rich text using a
+> plain text editor. As the initial description of Markdown contained ambiguities
+> and unanswered questions, many implementations and extensions of Markdown
+> appeared over the years to answer these issues.
 
 In this post I'd like to expand on this and write down some thoughts I have
-regarding Markdown. My goal is to shed some light on the exact nature of
+about Markdown. My goal is to shed some light on the exact nature of
 Markdown which would hopefully explains why Markdown is everywhere through
-different flavors. I would conclude this posts by asking whether Markdown is
-a suitable option for academic writing.  
+different flavors. I would conclude this post by asking whether Markdown is
+a suitable option for academic writing.
 
 
 
 ## Origin and philosophy
 
-If you scroll down the Wikipedia page, you would learn that Markdown was first
-released in 2004 (Facebook was born this year) by John Gruber and you will find
-the URL of the *orignal webpage* on daringfireball.net, *i.e.* https://daringfireball.net/projects/markdown/.
-There you will find:
+If you scroll down the Wikipedia page, you'll learn that Markdown was first
+released in 2004 (the year of Facebook's birth) by John Gruber on the orignal
+webpage: *i.e.* https://daringfireball.net/projects/markdown/ where you''ll find:
 
 1. details about the Markdown's philosophy,
-1. a description of the original syntax,
-2. how the conversion is made, *i.e.* a call to a markdown-to-html converter written in [Perl](https://www.Perl.org/): `Markdown.pl`,
+2. a description of the original syntax,
+3. how the conversion is made, *i.e.* a call to a markdown-to-html converter written in [Perl](https://www.Perl.org/): `Markdown.pl`,
 4. a small [web application](https://daringfireball.net/projects/markdown/dingus) to try Markdown.
 
 
@@ -110,11 +109,11 @@ dog's back.</p>
 Easy-to-read and easy-to-write indeed! If not before, now you should understand
 the play on words: HTML (HyperText Markup Language) is a
 [markup language](https://en.wikipedia.org/wiki/Markup_language) and Markdown
-is a [Lightweight Markup Language (LML)](https://en.wikipedia.org/wiki/Lightweight_markup_language)
+is a [Lightweight Markup Language (LML)](https://en.wikipedia.org/wiki/Category:Lightweight_markup_languages)
 that reduces the length of the most commonly used tags for content editing
-in HTML, so Mark~~up~~down.
+in HTML, so Mark~~up~~down <img src = "assets/mdLogo.svg" height = 18px><img>.
 
-Broadly speaking, the idea of creating an language on the top of
+Broadly speaking, the idea of creating a language on the top of
 another for efficiency purposes is very common in computer science. It is
 actually the principle that explains why we use language such as C, Python or
 Rust, called [high level programming languages](https://en.wikipedia.org/wiki/High-level_programming_language) instead
@@ -124,17 +123,18 @@ even though ultimately the machine language is used. A good illustration is
 top of JavaScript:
 
 > The golden rule of CoffeeScript is: “It’s just JavaScript.” The code compiles
-one-to-one into the equivalent JS, and there is no interpretation at runtime.
-You can use any existing JavaScript library seamlessly from CoffeeScript
-(and vice-versa). The compiled output is readable, pretty-printed, and tends to
-run as fast or faster than the equivalent handwritten JavaScript.
+> one-to-one into the equivalent JS, and there is no interpretation at runtime.
+> You can use any existing JavaScript library seamlessly from CoffeeScript
+> (and vice-versa). The compiled output is readable, pretty-printed, and tends to
+> run as fast or faster than the equivalent handwritten JavaScript.
 
 Markdown is a markup language not a programming language but the approach is
 essentially the same. A better example would then be [LateX](https://www.latex-project.org/) that
-was build on the top of [TeX](http://tug.org/) to ease the usage of its macro.
-The difference is that Markdown only convers a very restricted
-subset of HTLM tags, the rest of HTML tags, if required,
-may be used as is. You probably wonder why not expanding the number of tags
+was build on the top of [TeX](http://tug.org/) to ease the usage of its macros,
+but again this is a bit more complex than the case of Markdown which
+only converts a very restricted subset of HTLM tags. Note that if you want to
+use other HTML tags, the converter will keep them as is and you HTML page
+should be rendered just as you expect. You probably wonder why not expanding the number of tags
 covered by Markdown, right? Well, this is one of the main reason explaining why there are
 several flavors of Markdown available!
 
@@ -142,13 +142,12 @@ several flavors of Markdown available!
 
 ## Many flavors
 
-John Gruber released Markdown on his website on 2004. Despite the substantial
-information given about Markdown, he did not provide a complete specification,
-*i.e.* an unequivocal set of instructions that would allow anyone to write a
-Markdown converter in any programming languages that would have the same behavior
-(note that reading the code of the Perl converter does not seem to remove all ambiguities,
-according to the authors of [CommonMark](http://spec.commonmark.org/) that I'll
-introduce below). That led some authors to consider that Markdown suffered from [bad parenting]( https://blog.codinghorror.com/responsible-open-source-code-parenting/).
+Despite the substantial information about Markdown that John Gruber provided,
+he unfortunately did not provide a complete specification, *i.e.* an unequivocal
+set of instructions that would allow anyone to write a Markdown converter in any programming
+languages that would have the same behavior (note that reading the code of the
+Perl converter does not seem to remove all ambiguities, according to the authors of [CommonMark](http://spec.commonmark.org/) that I'll introduce below). That led
+some authors to consider that Markdown suffered from [bad parenting](https://blog.codinghorror.com/responsible-open-source-code-parenting/).
 To me, there is no reason to blame John Gruber for not having written a complete
 specification. It is however reasonable to consider that this is another partial
 explanation of the current variability among Markdown flavors. Let me introduce
@@ -192,12 +191,12 @@ So... when asking a question about Markdown, beware of the flavor!
 
 Markdown would doubtlessly benefit from being clearly defined, *i.e.* having
 a minimal set of tags (say the one of the original Markdown) and an accurate
-description of what a Markdown-to-HTML converter must do (it harder that it sounds,
+description of what a Markdown-to-HTML converter must do (harder that it sounds,
 think about how to deal with line breaks, nested tags, interference with html
-tags...). This could be a core Markdown on the top of which extensions (flavors)
-are built, that would be great! Fortunately,
-a couple of highly capable people have decided to tackle this challenge and
-have created [CommonMark](http://commonmark.org/) and provide:
+tags...). This would be a core Markdown on the top of which extensions (flavors)
+are built, that would be great (again it is not the current Markdown landscape)!
+Fortunately, a bunch of highly capable people have decided to tackle this
+challenge and have created [CommonMark](http://commonmark.org/) that provides:
 
 1. a specification for Markdown, version 0.28 currently: http://spec.commonmark.org/
 
@@ -206,11 +205,11 @@ have created [CommonMark](http://commonmark.org/) and provide:
 3. a great tutorial: ["LEARN MARKDOWN IN 60 SECONDS"](http://commonmark.org/help/).
 
 I really hope this will soon represent a standard. This would be very useful to
-switch from one converter to another without worrying about its behavior. You might
-think this is only for advanced users, well it is not! If you use Markdown in
-different websites, or web application, you very likely switch from one
-converter to another on a regular basis! And you probably do so because...
-Markdown is everywhere!
+switch from one converter to another without worrying about its behavior. You
+might think this is only for advanced users, well it is not! If you
+use Markdown in different websites, different application, you very likely
+switch from one converter to another on a regular basis! And you probably do
+so because... Markdown is everywhere!
 
 
 
@@ -264,51 +263,58 @@ edit reports, create package documentations, presentations and websites. In
 particular, we have created this blog with
 [Blogdown](https://bookdown.org/yihui/blogdown/) and use Markdown and R Mardown
 for our posts. By the way, do you remember what I said previously about switching
-from one converter to another? Well we do so, as [Blogdown allows us to do so](https://github.com/rstudio/blogdown/issues/171).
+from one converter to another? Well we do so, as [Blogdown allows us to use two
+different converter](https://github.com/rstudio/blogdown/issues/171).
 
 
 
 
 ## Markdown for other markup languages?
 
-Once again Markdown is a Lightweight Markup Language and was originally designed
-to be converted to HTML. HTML is one among a long [list of markup languages](https://en.wikipedia.org/wiki/List_of_markup_languages), though
-one of the most widely used. So now let's consider a second
-Markup language also designed to format content, say [LateX](https://www.latex-project.org/)
-(itself built on the top of TeX :smile_cat:!), why not using Markdown
-for this second markdown language, it *only* requires a new converter. This
-would means that we can use markdown for two different markdown languages:
+Once again Markdown is a lightweight markup language that emphasize plain-text
+readability and was originally designed to be converted to HTML. HTML is one
+among a long [list of markup languages](https://en.wikipedia.org/wiki/List_of_markup_languages),
+though one of the most widely used. So now let's consider a second
+markup language also designed to format content, say [LateX](https://www.latex-project.org/)
+(itself built on the top of TeX :smile_cat:!), then why not using Markdown
+for this second markdown language, it *only* requires a new converter and this
+would allow us to use markdown for two different markdup languages :trophy::
 
 
 HTML <i class="fa fa-long-arrow-left" aria-hidden="true"></i> Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> LateX
 
-And we could imagine Markdown been used with as many markup Language as desired.
-Given that Markdown is rather minimal, Markdown represents a subset of those
-languages. What if we could do even more! What if we create a abstract markup
-language that would act as an universal language and allow to do a conversion
-between many markup language, *i.e.*:
+We can easily imagine Markdown been used with as many markup language as desired.
+Given that Markdown is rather minimal, Markdown represents a useful subset for
+all those languages (assuming we are talking about markup lanageg that are
+concerned at least partially by plain-text readability). What if we could do
+even more! What if we create an abstract representation of a markup language
+that would act as an universal language and allow to do a conversion
+between many markup languages, *i.e.*:
 
  Markup 1 <i class="fa fa-arrows-h" aria-hidden="true"></i> Universal  <i class="fa fa-arrows-h" aria-hidden="true"></i> Markup 2.
 
-That is pretty much what [Pandoc](https://pandoc.org/) has to offers! From
+Well, that is pretty much what [Pandoc](https://pandoc.org/) has to offers! From
 https://hackage.haskell.org/package/pandoc :
 
 > In contrast to most existing tools for converting Markdown to HTML, pandoc has
-a modular design: it consists of a set of readers, which parse text in a given
-format and produce a native representation of the document, and a set of writers,
-which convert this native representation into a target format. Thus, adding an
-input or output format requires only adding a reader or writer.
+> a modular design: it consists of a set of readers, which parse text in a given
+> format and produce a native representation of the document, and a set of writers,
+> which convert this native representation into a target format. Thus, adding an
+> input or output format requires only adding a reader or writer.
 
 So now we have this fantastic tools thanks to John MacFarlane (I won't give much
 details about Pandoc, which deserves a post it-self, if not more) we can perform
 the conversion between many markup languages, then Markdown becomes very useful
 minimal syntax we can use keeping in mind that it will be converted into
-a richer/heavier markup language. Typically, Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> LateX and then Latex in converted into a pdf!
+a richer/heavier markup language. Typically, you can use Markdown to produce
+pdf files as follows: Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> LateX and then Latex is converted into a pdf file!
 
-Remember that Markdown, irrespective of the flavor, only concerns a very restricted
+Remember that Markdown, irrespective of the flavor, only concerns a restricted
 of tags. So if you want further format your document you can actually use
-the rest of the tags of the markup language. format can be handle using
-template. Pandoc offer pretty easy.
+the rest of the tags of the markup language. So you can either stick to Markdown
+and convert it into different formats or you can use Markdown and other tags
+of the markup language you will convert your file into and then to anyt possible
+convertion to other other markup language.
 
 
 
@@ -316,7 +322,7 @@ template. Pandoc offer pretty easy.
 
 Very good question! Truncated answer "No" :disappointed:. Less truncated
 answer "No answer UNLESS you use an adequate flavor of Markdown and an awesome
-tool such as Pandoc!" :sweat_smile:.  Indeed the original version
+tool such as Pandoc!" :sweat_smile:. Indeed the original version
 of Markdown, many essential formatting aspects are not included, among them,
 the most important for academic writing are:
 
@@ -387,21 +393,21 @@ and the one by [BubuAnabelas](https://github.com/BubuAnabelas/awesome-markdown).
 
 
 
-### Publications / articles / discussion
-
-
-- ["What is Markdown?"](http://kirkstrobeck.github.io/whatismarkdown.com/) by Kirk Strobeck
+### Publications
 
 - ["A Call for Scholarly Markdown"](http://blogs.plos.org/mfenner/2012/12/13/a-call-for-scholarly-markdown/) by Martin Flenner on Plos Blog
 
+- ["What is Markdown?"](http://kirkstrobeck.github.io/whatismarkdown.com/) by Kirk Strobeck
+
 - ["Why scholars should write in Markdown"](http://blogs.harvard.edu/pamphlet/files/2014/08/markdownpost-amsart.pdf) by Stuart M. Shieber on Harvard blog
 
--  [Writing Technical Papers with Markdown](http://blog.kdheepak.com/writing-papers-with-markdown.html) by Dheepak Krishnamurthy
+- ["Writing Technical Papers with Markdown"](http://blog.kdheepak.com/writing-papers-with-markdown.html) by Dheepak Krishnamurthy
 
-- [Modern Scientific Authoring](http://swcarpentry.github.io/modern-scientific-authoring/02-markdown.html) on Software Carpentry website
+- ["Modern Scientific Authoring"](http://swcarpentry.github.io/modern-scientific-authoring/02-markdown.html) on Software Carpentry website
 
 - ["Markdown for Writers"](https://www.kobo.com/ca/en/ebook/markdown-for-writers-1) by Gene Wilburn
 
+- ["reStructuredText vs Markdown for documentation"](http://www.zverovich.net/2016/06/16/rst-vs-markdown.html) by Victor Zverovich
 
 
 ### Editors
