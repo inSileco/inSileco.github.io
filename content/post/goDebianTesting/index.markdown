@@ -10,6 +10,7 @@ estime: 15
 ---
 
 
+ ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
 Since almost a year now I've being spending most of my computer time on Debian.
 I begun with Debian Stretch and switched to Debian Testing two months ago.
@@ -251,70 +252,12 @@ The table below show changes in version after the transition:
 
 #### About Firefox
 
-
-#### About Julia
-
-
-#### About R
-
-#### About Sage
-
-### R
-
-and I remove R [backport](https://backports.debian.org/)
-https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_literal_apt_literal_vs_literal_apt_get_literal_literal_apt_cache_literal_vs_literal_aptitude_literal
-
-
-#### About Zotero
-
-```bash
-❯ zotero -v
-xulrunner not found, trying firefox instead.
-Zotero Zotero 4.0.29.16, Copyright (c) 2006-2016 Contributors
-```
-
-```bash
-❯ zotero -v
-xulrunner not found, trying firefox instead.
-Zotero Zotero 4.0.29.16, Copyright (c) 2006-2016 Contributors
-```
-
-Same version. Not sirptrinsing developement on version 5 that I was to install
-the version 5, and so I did
-
-
-```bash
-❯ zotero --version
-Zotero Zotero 5.0.44, Copyright (c) 2006-2018 Contributors
-```
-
-https://forums.zotero.org/discussion/68453/install-zotero-5-0-on-ubuntu
-
-
-
-### Firefox and Thunderbird
-
-Same discussion to
-
- Thunderbird 52.7.0
-
-https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_tracking_literal_testing_literal_with_some_packages_from_literal_unstable_literal
-
-
-```bash
-❯ firefox -v
-Mozilla Firefox 52.7.3
-```
-
-
-https://www.addictivetips.com/ubuntu-linux-tips/get-firefox-quantum-on-debian-stable/
-
-recently (May 11) 52.8.0 still question on Debian best strategy to include 60.XX there are otrher optopn like snal
-
-
-
-
-### Snap
+Well Debian Testing do not yet offer Firefox 60-X via aptitude (there are
+actually ongoing discussion about this on the Debian developer mailing
+list). While I am still using Firefox 52-X and am statisfied with it
+I wanted to install the last verion. As
+[suggested by the Debian wiki](https://wiki.debian.org/Firefox), I installed
+the package manager [snap](https://docs.snapcraft.io/snaps/):
 
 ```bash
 ❯ snap --version
@@ -325,45 +268,50 @@ debian
 kernel  4.15.0-3-amd64
 ```
 
-https://docs.snapcraft.io/snaps/san
+and install Firefox via snap:
 
-
-
-
-
-
-
-
-
-
-
-#### Programming Language
-
-#### Julia
-
-```
-julia --version
-```
-
-berfore / after
-
-```
-julia version 0.4.7
+```bash
+❯ snap install firefox
 ```
 
 
-julia is already the newest version (0.4.7-6+b3).
-well 01-04-2018 no...
+#### About R
+
+As I am on Debian Testing now ,the [backport](https://backports.debian.org/)
+is no longer required! I am currently on R 3.4.4 and we are waiting for
+3.5.0, there are [active discussions about this](https://www.mail-archive.com/r-sig-debian@r-project.org/msg02777.html) but we should get the new
+in the next couple of weeks!
 
 
+#### About Sage
 
-#### Sage
+I used to have [Sage](http://www.sagemath.org/) installed:
 
-sage -v
+```bash
+❯ sage -v
 SageMath version 7.4, Release Date: 2016-10-18
+```
+
+But as you can read on the [Debian wiki](https://wiki.debian.org/DebianScience/Sage),
+Sage demands substantial maintainance efforts, recent versions are therefore
+are not available for Testing. When I checked the version available I get:
+
+
+```bash
+❯ apt-cache policy sagemath
+sagemath:
+  Installed: (none)
+  Candidate: 7.4-9
+  Version table:
+     7.4-9 500
+        500 http://ftp.debian.org/debian stable/main amd64 Packages
+```
+
+The stable version that I thought I'd be able to install but when I try:
+
 
 ```
-❯ sudo apt-get install sagemath                                                                                                   4]
+❯ sudo apt-get install sagemath      
 Reading package lists... Done
 Building dependency tree
 Reading state information... Done
@@ -379,17 +327,14 @@ The following packages have unmet dependencies:
             Depends: libflint-arb1 but it is not going to be installed
             Depends: libgsl2 but it is not going to be installed
             Depends: liblinbox-1.4.2-0 but it is not going to be installed
+            ...
+            Recommends: texlive-latex-base but it is not going to be installed
+E: Unable to correct problems, you have held broken packages.
 ```
 
-apt-cache policy sagemath
-sagemath:
-  Installed: (none)
-  Candidate: 7.4-9
-  Version table:
-     7.4-9 500
-        500 http://ftp.debian.org/debian stable/main amd64 Packages
+:cry: Well I guess my option is to cherry pick form Unstable... I'll let you know
+if I do do.
 
-well sage disappeared!
 
 
 
@@ -416,7 +361,7 @@ about it](https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_lite
 - [Steve]({{< relref "about.md">}}) brought that great talk by [Bryan Lunduke](http://lunduke.com/)
 to my attention, I love it:
 
-{{< youtube QhEmPScin4Y >}}
+{{< youtube TVHcdgrqbHE >}}
 
 
 
