@@ -236,9 +236,10 @@ I like it that way!
 
 ### Software - a few notes
 
-#### Newer version
+#### Newer versions - four examples
 
-do a table as of  (as of 04-02-2018) more or less I mi
+The table below show changes in version after the transition:
+
 
 | Software            | Command line         | Stretch                  | Testing (April 2018)       |
 |:--------------------|:---------------------|:-------------------------|:---------------------------|
@@ -248,9 +249,15 @@ do a table as of  (as of 04-02-2018) more or less I mi
 | GIMP                |gimp --version        |2.8.18                    | 2.8.22                     |
 
 
+#### About Firefox
 
 
+#### About Julia
 
+
+#### About R
+
+#### About Sage
 
 ### R
 
@@ -258,10 +265,7 @@ and I remove R [backport](https://backports.debian.org/)
 https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_literal_apt_literal_vs_literal_apt_get_literal_literal_apt_cache_literal_vs_literal_aptitude_literal
 
 
-
-
-
-### Zotero
+#### About Zotero
 
 ```bash
 ❯ zotero -v
@@ -333,7 +337,7 @@ https://docs.snapcraft.io/snaps/san
 
 
 
-#### Programming Langage
+#### Programming Language
 
 #### Julia
 
@@ -389,88 +393,41 @@ well sage disappeared!
 
 
 
-### Recap
+### Useful resources
+
+#### Answers to questions I had in my mind  
+
+- What's the difference between `atp` and `àpt-get`? The Debian Handobook give a clear [answer
+about it](https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_literal_apt_literal_vs_literal_apt_get_literal_literal_apt_cache_literal_vs_literal_aptitude_literal
+).
+
+- What are the difference between Debian and Ubuntu? Here is some
+[interesting material related to this](https://wiki.ubuntu.com/Ubuntu/ForDebianDevelopers?action=show&redirect=UbuntuForDebianDevelopers).
+
+- How to change the length of? I've found this [answer by Antoine Schellenberger](http://antoine-schellenberger.com/linux/2014/11/03/change-default-screencast-duration-in-gnome-3.html):
+
+> gsettings get org.gnome.settings-daemon.plugins.media-keys max-screencast-length 60
+
+
+#### Miscellaneous
+
+- I've updated [my Gist `installDebian.sh`](https://gist.github.com/KevCaz/29536740b9150383a9d543ec1be96103)
+- I've come across that nice screenshot tour for Debian Stretch http://www.linuxandubuntu.com/home/debian-9-complete-screenshot-tour
+- [Steve]({{< relref "about.md">}}) brought that great talk by [Bryan Lunduke](http://lunduke.com/)
+to my attention, I love it:
+
+{{< youtube QhEmPScin4Y >}}
 
 
 
+<br><br>
 
+I like being on Testing and I guess I'll stay on it for a while. The
+natural next step for me is to be able to efficiently cherry pick
+package from the Unstable. It sounds like pretty straightforward
+according to the Debian Handbook by I'd like to read a bit more
+before any new transition! I'll keep you blogposted!
 
+<br>
 
-### Update myGist
-
-Well I may not have got everything right yet. That being said I really am happy
-about the progresses I made and love being in Debian stable. Set up os evolving
-and new version. I will doutlessly post when I move a step forward.
-I lose sage because... but install
-Next step cherry picking some cherry picking as mentioned in the Manual
-Well I'll likely post about it
-
-no more backport
-hugo -> sudo apt not on GH
-git config --global color.diff auto -> in a dotfiles I keep on GH
-
-### Gist
-
-<script src="https://gist.github.com/KevCaz/29536740b9150383a9d543ec1be96103.js"></script>
-
-### New tricks
-
-#### Debian vs Ubuntu
-
-I wonder what was the difference between Ubuntu and Debian
-
-https://wiki.ubuntu.com/Ubuntu/ForDebianDevelopers?action=show&redirect=UbuntuForDebianDevelopers
-
-27th April 2018 new Ubuntu https://insights.ubuntu.com/2018/04/26/ubuntu-18-04-lts-optimised-for-security-multi-cloud-containers-ai
-
-
-####
-gsettings get org.gnome.settings-daemon.plugins.media-keys max-screencast-length
-gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 45
-
-
-#### apt vs apt-get
-
-understanding apt / apt-get
-https://askubuntu.com/questions/445384/what-is-the-difference-between-apt-and-apt-get
-+ see debian manual
-
-
-#### Other
-
-https://wiki.debian.org/DebianRepository/Unofficial
-
-
-```bash
-❯ cat /etc/*-release
-PRETTY_NAME="Debian GNU/Linux buster/sid"
-NAME="Debian GNU/Linux"
-ID=debian
-HOME_URL="https://www.debian.org/"
-SUPPORT_URL="https://www.debian.org/support"
-BUG_REPORT_URL="https://bugs.debian.org/"
-```
-
-
-
-
-The following packages were automatically installed and are no longer required:
-  linux-headers-4.15.0-2-amd64 linux-headers-4.15.0-2-common linux-image-4.15.0-2-amd64
-Use 'sudo apt autoremove' to remove them.
-0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
-
-
-
-## Nice new resources
-
-
-https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_literal_apt_literal_vs_literal_apt_get_literal_literal_apt_cache_literal_vs_literal_aptitude_literal
-
-
-http://www.linuxandubuntu.com/home/debian-9-complete-screenshot-tour
-
-Steve's video
-
-{{< youtube QhEmPScin4Y >}}v
-
-Bryan Lunduke http://lunduke.com/
+#### **THE END** :dizzy_face:
