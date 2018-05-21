@@ -55,7 +55,7 @@ Here, we exemplify the first strategy and leave the second one for another post
 
 All of these frameworks propose either a `.ttf` (TrueType Font) or a `.otf`
 file (OpenType Font) or both. These files make our life very easy and we can
-make a direct **link** with a [previous blog post](/post/HylianStyle.html).
+make a direct **link** with a [previous blog post]({{< relref "post/hylianStyle" >}}).
 
 
 
@@ -161,7 +161,7 @@ font_families()
 ```
 
 Here, things are going to be a little bit trickier than they were in the
-[Hylian blog post]({{ ref "HylianStyle.html" }}), as we should first locate the
+[Hylian blog post]({{< relref "post/hylianStyle" >}}), as we should first locate the
 unicode characters to be used. Fortunately, this is fairly doable:
 
   1. FontAwesome provides a very [helpful cheatsheet](http://fontawesome.io/cheatsheet/);
