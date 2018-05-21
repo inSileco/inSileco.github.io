@@ -11,7 +11,7 @@ estime: 15
 
 
 
-Since almost a year now [I've being spending most of my computer time on Debian]({{< relref "post/myDebianStretch.md" >}}).
+Since almost a year now I've being spending most of my computer time on Debian.
 I begun with Debian Stretch and switched to Debian Testing two months ago.
 This was another good opportunity to gain skills and I would like to report
 about my transition in this post!
@@ -97,71 +97,73 @@ but it worked:
 stage.
 
 
-### My :heart: stopped beating... few hours only!
+### My :heart: stopped beating... for a few hours only!
 
 What do you do when all is installed? Well, you reboot, right? So I did!
-On the first the logging page looked the same but once logged in there
+The logging page looked the same but once logged in there
 was a nightmarish blue screen (you know, the kind of screen Windows is famous for!) :scream:!
 My GNOME desktop environment had disappeared :scream:! Here begun a
-few hours of total confusion... I have to admit that I felt lost and that
-I did not take the time to screenshot or take notes but I have some memories and
-what happened and I think I know what I did to solve this mess (again all
-on me!).
+few hours of confusion... I actually felt a bit lost that's why I did not
+take screenshot or detailed notes about what's was happening but I recall
+more or less what I did to solve this mess (a mess I am responsible for).
 
-First at te
+First of all I learned very helpful shortcuts that enable to switch from
+the Desktop environment to the Command Line Interface (CLI): `ctrl + atl + f2`
+and conversely `ctrl + atl + f3` (even more funny I was not able to use it
+first because somehow I turned `FnLock` on). So, even though I was not able
+to use GNOME I was able to see what was happening using the CLI. And
+so I searched on the internet (I had another computer) for a solution
+and there I leanr that I could check the status of the [display mangers](https://wiki.debian.org/DisplayManager)
+using `systemctl` for instance for the Gnome Display Manager (gdm):
 
+```
+systemctl status gdm
+```
 
-really
+(see https://unix.stackexchange.com/questions/204387/debian-not-booting-into-gui)
+and then I realize there was something wrong with gnome. So first I decided
+to install another display manager, I chose [lightdm](https://wiki.debian.org/LightDM)
+and it worked well. I was relieved that everything was working well (no
+more weird blue screen) but I really wanted my GNOME back and so I thought
+that I needed to reinstall it:
 
-> systemctl status gdm
+```
+sudo apt-get install --reinstall gnome3
+```
 
+The reinstallation went Ok but it was not working... until I removed lightdm,
+that I cannot explain... But in the end GNOME was back, the update
+was completed! Given what I went through I think it is worth spending
+some time learning about the different graphical desktops Debian offers,
+I recommend the reading of the [Debian Handbook](https://debian-handbook.info/browse/stable/sect.graphical-desktops.html),
+and this article for [Ubuntu useres](https://support.system76.com/articles/desktop-environment/)
+which interestingly assert that:
 
-even though my logging page was exactly the same... I've tried everything
-I knew (not that much!) but I was only able to use either
-the Command Line Interface (CLI) or systemctl status gdm3 service
+> In Ubuntu 16.04, make sure to choose lightdm as the display manager
+> when prompted. Choosing gdm, sddm, or another, will break the installation.   
 
-
-Do remeber why but I actually install
-
-https://unix.stackexchange.com/questions/204387/debian-not-booting-into-gui
-
-It is the
-
- lightdm
-
-  finally
-
-Well I was not able to recover my set up... Only a blue screen
-
-
-I read online but an reinstall gnome see
-
-remove lightdm why? I do not understand once done... it worked
-
-echo $DESKTOP_SESSION
-
-https://debian-handbook.info/browse/stable/sect.graphical-desktops.html
-
-https://support.system76.com/articles/desktop-environment/
-
-sudo dpkg-reconfigure gdm3
-
-
-
+By the way note that `echo $DESKTOP_SESSION` indicates the desktop
+environment you are currently using and if you are eager to change the
+use display manager you have to reconfigure a display manager package, *e.g.*
+`dpkg-reconfigure gdm3` (in su mode).
 
 
 
-## What about the new seutp!
 
-### Kernel
 
-As in my first post, I'll use [inxi](https://smxi.org/docs/inxi.htm)
+## What about my new setup?
+
+
+### Kernel and GNOME version
+
+As in my first post, I use [inxi](https://smxi.org/docs/inxi.htm) tpo
+provide some details regarding my setup:
 
 ```
 inxi -S
 ```
 
-Previously:
+Previously the command returned:
 
 
 ```bash
@@ -169,7 +171,7 @@ System:    Host: debian Kernel: 4.9.0-5-amd64 x86_64 (64 bit) Desktop: Gnome 3.2
            Distro: Debian GNU/Linux 9 (stretch)
 ```
 
-Now
+Now:
 
 ```bash
 System:    Host: debian Kernel: 4.15.0-3-amd64 x86_64 bits: 64 Desktop: Gnome 3.28.0
@@ -177,7 +179,7 @@ System:    Host: debian Kernel: 4.15.0-3-amd64 x86_64 bits: 64 Desktop: Gnome 3.
 ```
 
 
-Actually recently changed:
+Actually, there was a recent kernel update, currently I am on:
 
 
 ```bash
@@ -185,50 +187,69 @@ System:    Host: debian Kernel: 4.16.0-1-amd64 x86_64 bits: 64 Desktop: Gnome 3.
            Distro: Debian GNU/Linux buster/sid
 ```
 
-### Source list
-
-
-https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_literal_apt_literal_vs_literal_apt_get_literal_literal_apt_cache_literal_vs_literal_aptitude_literal
-
-### Look
-
-Gnome 3.28
 
 
 ### New theme and new cursors and top icon
 
-Top icon
+I keep using the same theme that I used on [my Debian Stretch setup]({{< relref "post/myDebianStretch.md#Gnome,gnome-tweak-toolsandshortcuts" >}}) but I
+further customized it:
 
-I chose on Gnoome Look https://www.gnome-look.org/p/1148692/
+1. I keep using the [Vimix theme](https://github.com/vinceliuice/vimix-gtk-themes) and I added the [user theme that was disabled](https://askubuntu.com/questions/545741/why-is-shell-theme-disabled-in-gnome-tweak-tool),
+1. I add a shell extension: Topicons Plus (https://extensions.gnome.org/extension/1031/topicons/)
+3. I chose a new set of cursors: [Capitaine Cursors](https://www.gnome-look.org/p/1148692/)
 
-I was not able to gett on GnomeLook and as it was avilable on Gith
-Captain America which is on GH  https://github.com/keeferrourke/capitaine-cursors
+Regarding 1 and 2, below is my setup on GNOME tweak:
 
-either clone it or downlod the source and get the lattest rela
+<img src = "assets/themes.png#center" style="width:80%"></img>
 
-I was not sure soI looked up on the Internet
+<img src = "assets/activated.png#center" style="width:80%"></img>
 
-https://askubuntu.com/questions/592478/how-to-install-mouse-cursor
 
-Remember I use Gnome
-Gnome tweek option activate and I finally use fully my theme
+Regarding 3, it took me few extra steps as I was not able to get the cursor
+directly on GNOME-Look:
 
-once I clonded and place me on thisrepo (super user mode required)
+1. I clone the [<i class="fa fa-github" aria-hidden="true"></i> repo](https://github.com/keeferrourke/capitaine-cursors)
+
+2. I double check on the Internet how to proceeded (see
+[<i class="fa fa-external-link" aria-hidden="true"></i>](https://askubuntu.com/questions/592478/how-to-install-mouse-cursor))
+
+3. Once I clone and the repo and set the current directory to my cloned repo:
 
 ```
 mkdir /usr/share/icons/CaptaineCursors
 cp -r dist/* /usr/share/icons/CaptaineCursors/
 ```
-then reboot and go to gnome tweak to select new cursor
 
-2BEADDED a picture see (picture)
-
-gnome-shell-extension-top-icons-plus
-https://askubuntu.com/questions/545741/why-is-shell-theme-disabled-in-gnome-tweak-tool
+4. I then reboot and go to gnome tweak to select new cursor in the list
+of cursors
 
 
+This is the current look (I use one of the default wallpaper)
 
-#### Programming languages
+
+<img src = "assets/look.png#center" style="width:90%"></img>
+
+
+I like it that way!
+
+
+
+### Software - a few notes
+
+#### Newer version
+
+do a table as of  (as of 04-02-2018) more or less I mi
+
+| Software            | Command line         | Stretch                  | Testing (April 2018)       |
+|:--------------------|:---------------------|:-------------------------|:---------------------------|
+| LibreOffice         |libreoffice --version |5.2.7.2 20m0(Build:2)     | 6.0.2.1.0 00m0(Build:1)    |
+| ImageMagick         |convert --version     |6.9.7-4 Q16 x86_64        | 6.9.9-34 Q16 x86_64        |
+| PostgreSQL          |psql --version        |9.6.7                     | 10.3 (Debian 10.3-2)       |
+| GIMP                |gimp --version        |2.8.18                    | 2.8.22                     |
+
+
+
+
 
 
 ### R
@@ -236,18 +257,6 @@ https://askubuntu.com/questions/545741/why-is-shell-theme-disabled-in-gnome-twea
 and I remove R [backport](https://backports.debian.org/)
 https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_literal_apt_literal_vs_literal_apt_get_literal_literal_apt_cache_literal_vs_literal_aptitude_literal
 
-
-
-### Google chrome
- /etc/apt/sources.list.d/google-chrome.list
-
-```
-### THIS FILE IS AUTOMATICALLY CONFIGURED ###
-# You may comment out this entry, but any other modifications may be lost.
-deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
-```
-apt-get update & apt-get upgrade
-sudo apt-get install google-chrome-stable
 
 
 
@@ -320,15 +329,6 @@ https://docs.snapcraft.io/snaps/san
 
 
 
-lightdm added and remove...
-So I remove julia and dowlod from source. Same for Firefox.
-So here is what I temporarely decide to add in my `/etc/apt/source.list`
-I think it is now time to read acreefyllu Debian handbook!
-
-Bilan, where is my right click hhahahah on my bottom tap bar but... I like it
-better that way so I did not find a solution to fiux this.
-
-
 
 
 
@@ -350,13 +350,6 @@ julia version 0.4.7
 
 julia is already the newest version (0.4.7-6+b3).
 well 01-04-2018 no...
-
-#### PostgreSQL
-
-
-```
-cool : sudo apt-get install qgis
-```
 
 
 
@@ -398,22 +391,8 @@ well sage disappeared!
 
 ### Recap
 
-do a table as of  (as of 04-02-2018) more or less I mi
-
-| Software            | Stretch                  | Testing Stretch            |
-|:--------------------|:-------------------------|:---------------------------|
-| LibreOffice         |5.2.7.2 20m0(Build:2)     | 6.0.2.1.0 00m0(Build:1)    |
-| ImageMagick         |6.9.7-4 Q16 x86_64        | 6.9.9-34 Q16 x86_64        |
-| PostgreSQL          |9.6.7                     | 10.3 (Debian 10.3-2)       |
-| GIMP                |2.8.18                    | 2.8.22                     |
 
 
-```
-gimp -v
-psql --version
-```
-
-(convert --version for Image magick)
 
 
 
@@ -430,7 +409,9 @@ no more backport
 hugo -> sudo apt not on GH
 git config --global color.diff auto -> in a dotfiles I keep on GH
 
+### Gist
 
+<script src="https://gist.github.com/KevCaz/29536740b9150383a9d543ec1be96103.js"></script>
 
 ### New tricks
 
@@ -481,6 +462,10 @@ Use 'sudo apt autoremove' to remove them.
 
 
 ## Nice new resources
+
+
+https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_literal_apt_literal_vs_literal_apt_get_literal_literal_apt_cache_literal_vs_literal_aptitude_literal
+
 
 http://www.linuxandubuntu.com/home/debian-9-complete-screenshot-tour
 
