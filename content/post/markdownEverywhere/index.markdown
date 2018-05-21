@@ -10,8 +10,6 @@ estime: 15
 ---
 
 
-![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
-
 
 According to [Wikipedia](https://en.wikipedia.org/wiki/Markdown):
 
@@ -128,8 +126,14 @@ top of JavaScript:
 > (and vice-versa). The compiled output is readable, pretty-printed, and tends to
 > run as fast or faster than the equivalent handwritten JavaScript.
 
-Markdown is a markup language not a programming language but the approach is
-essentially the same. A better example would then be [LateX](https://www.latex-project.org/) that
+[Less](http://lesscss.org/) and [Sass](https://sass-lang.com/) are two other
+good examples. They both are dynamic preprocessors style sheet language:
+the user write in Less and Sass and those files are compiled into CSS
+(Cascading Style Sheets). In the case of CSS an obvious benefit from using Less
+or Sass is the possibility of using variables (does not exist in CSS).
+
+Markdown is a markup language to format plain text not, a programming language but the approach is
+essentially the same. A better example would be [LateX](https://www.latex-project.org/) that
 was build on the top of [TeX](http://tug.org/) to ease the usage of its macros,
 but again this is a bit more complex than the case of Markdown which
 only converts a very restricted subset of HTLM tags. Note that if you want to

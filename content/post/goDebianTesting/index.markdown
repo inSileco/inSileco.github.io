@@ -4,7 +4,7 @@ author: [kevin]
 reviewer:
 date: 2018-05-21
 tags: [Linux, Debian]
-draft: true
+draft: false
 tweet: "Markdown everywhere!"
 estime: 15
 ---
