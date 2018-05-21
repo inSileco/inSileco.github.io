@@ -1,0 +1,415 @@
+---
+title: Go Debian Testing!
+author: [kevin]
+reviewer:
+date: 2018-05-15
+tags: [Markdown, markup language]
+draft: true
+tweet: "Markdown everywhere!"
+estime: 15
+---
+
+
+
+Since almost a year now [I am on Debian]() I was initially on Debian Stetch
+but I have recently switched to testing. Again it was a great opportunity
+to learn practically many aspects of Debian and so I would like to write a few
+lines about this.
+
+
+## What really happened?
+
+It was Eastern week end /time after 8 monts on Debian Stetch I was eager to try
+to go a step foreward a switch to testing where more. Well, when on Debian I
+wrote, I though well, it should be easy and I knew how to do... Well it was
+not as easy as I hoped! But I cam guarentee that's my sole responsibility
+:sweat_smile:. Indeed after 6 months on Debian I have tested and change some set up and my guess is it may
+not be straigh forward if your configuration is somewhat similar
+but when it may be a little... 100% I mess up but it a (though debatable) way
+to learn!
+
+
+### A hope for simplicity and for learning
+
+Video on chnage on upgrade...
+
+And a lot of subsequend and expected cnahed chnages. I thogh also to understand
+
+
+### A  First delusion
+
+Well it also a bit some packages were kept back
+
+so basically my strategy was install the few first
+autoclean again
+
+
+### My :heart: stopped beating
+
+Well I was not able to recover my set up... Only a blue screen
+
+
+### The revival
+
+I read online but an reinstall gnome see
+
+remove lightdm why? I do not understand once done... it worked
+
+
+
+
+
+
+
+## What about the new seutp!
+
+### Kernel
+
+As in my first post, I'll use [inxi](https://smxi.org/docs/inxi.htm)
+
+```
+inxi -S
+```
+
+Previously:
+
+
+```bash
+System:    Host: debian Kernel: 4.9.0-5-amd64 x86_64 (64 bit) Desktop: Gnome 3.22.3
+           Distro: Debian GNU/Linux 9 (stretch)
+```
+
+Now
+
+```bash
+System:    Host: debian Kernel: 4.15.0-3-amd64 x86_64 bits: 64 Desktop: Gnome 3.28.0
+           Distro: Debian GNU/Linux buster/sid
+```
+
+
+Actually recently changed:
+
+
+```bash
+System:    Host: debian Kernel: 4.16.0-1-amd64 x86_64 bits: 64 Desktop: Gnome 3.28.1
+           Distro: Debian GNU/Linux buster/sid
+```
+
+### Source list
+
+```
+# main repo
+deb http://debian.mirror.rafal.ca/debian testing main contrib non-free
+deb-src http://debian.mirror.rafal.ca/debian testing main contrib non-free
+
+deb http://security.debian.org/debian-security testing/updates main contrib non-free
+deb-src http://security.debian.org/debian-security testing/updates main contrib non-free
+
+# testing-updates, previously known as 'volatile'
+deb http://debian.mirror.rafal.ca/debian/ testing-updates main contrib non-free
+deb-src http://debian.mirror.rafal.ca/debian/ testing-updates main contrib non-free
+
+# Tor
+deb http://deb.torproject.org/torproject.org testing main
+deb-src http://deb.torproject.org/torproject.org testing main
+
+# Papirus' icons
+deb http://ppa.launchpad.net/papirus/papirus/ubuntu xenial main
+deb-src http://ppa.launchpad.net/papirus/papirus/ubuntu xenial main
+```
+
+### Look
+
+Gnome 3.28
+
+
+### New theme and new cursors and top icon
+
+Top icon
+
+I chose on Gnoome Look https://www.gnome-look.org/p/1148692/
+
+I was not able to gett on GnomeLook and as it was avilable on Gith
+Captain America which is on GH  https://github.com/keeferrourke/capitaine-cursors
+
+either clone it or downlod the source and get the lattest rela
+
+I was not sure soI looked up on the Internet
+
+https://askubuntu.com/questions/592478/how-to-install-mouse-cursor
+
+Remember I use Gnome
+Gnome tweek option activate and I finally use fully my theme
+
+once I clonded and place me on thisrepo (super user mode required)
+
+```
+mkdir /usr/share/icons/CaptaineCursors
+cp -r dist/* /usr/share/icons/CaptaineCursors/
+```
+then reboot and go to gnome tweak to select new cursor
+
+2BEADDED a picture see (picture)
+
+gnome-shell-extension-top-icons-plus
+https://askubuntu.com/questions/545741/why-is-shell-theme-disabled-in-gnome-tweak-tool
+
+
+
+#### Programming languages
+
+
+### R
+
+and I remove R [backport](https://backports.debian.org/)
+https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_literal_apt_literal_vs_literal_apt_get_literal_literal_apt_cache_literal_vs_literal_aptitude_literal
+
+
+
+### Google chrome
+ /etc/apt/sources.list.d/google-chrome.list
+
+```
+### THIS FILE IS AUTOMATICALLY CONFIGURED ###
+# You may comment out this entry, but any other modifications may be lost.
+deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+```
+apt-get update & apt-get upgrade
+sudo apt-get install google-chrome-stable
+
+
+
+
+### Zotero
+
+```bash
+❯ zotero -v
+xulrunner not found, trying firefox instead.
+Zotero Zotero 4.0.29.16, Copyright (c) 2006-2016 Contributors
+```
+
+```bash
+❯ zotero -v
+xulrunner not found, trying firefox instead.
+Zotero Zotero 4.0.29.16, Copyright (c) 2006-2016 Contributors
+```
+
+Same version. Not sirptrinsing developement on version 5 that I was to install
+the version 5, and so I did
+
+
+```bash
+❯ zotero --version
+Zotero Zotero 5.0.44, Copyright (c) 2006-2018 Contributors
+```
+
+https://forums.zotero.org/discussion/68453/install-zotero-5-0-on-ubuntu
+
+
+
+### Firefox and Thunderbird
+
+Same discussion to
+
+ Thunderbird 52.7.0
+
+https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_tracking_literal_testing_literal_with_some_packages_from_literal_unstable_literal
+
+
+```bash
+❯ firefox -v
+Mozilla Firefox 52.7.3
+```
+
+
+https://www.addictivetips.com/ubuntu-linux-tips/get-firefox-quantum-on-debian-stable/
+
+recently (May 11) 52.8.0 still question on Debian best strategy to include 60.XX there are otrher optopn like snal
+
+
+
+
+### Snap
+
+```bash
+❯ snap --version
+snap    2.32.5
+snapd   2.32.5
+series  16
+debian
+kernel  4.15.0-3-amd64
+```
+
+https://docs.snapcraft.io/snaps/san
+
+
+
+
+
+
+
+lightdm added and remove...
+So I remove julia and dowlod from source. Same for Firefox.
+So here is what I temporarely decide to add in my `/etc/apt/source.list`
+I think it is now time to read acreefyllu Debian handbook!
+
+Bilan, where is my right click hhahahah on my bottom tap bar but... I like it
+better that way so I did not find a solution to fiux this.
+
+
+
+
+
+
+#### Programming Langage
+
+#### Julia
+
+```
+julia --version
+```
+
+berfore / after
+
+```
+julia version 0.4.7
+```
+
+
+julia is already the newest version (0.4.7-6+b3).
+well 01-04-2018 no...
+
+#### PostgreSQL
+
+
+```
+cool : sudo apt-get install qgis
+```
+
+
+
+#### Sage
+
+sage -v
+SageMath version 7.4, Release Date: 2016-10-18
+
+```
+❯ sudo apt-get install sagemath                                                                                                   4]
+Reading package lists... Done
+Building dependency tree
+Reading state information... Done
+Some packages could not be installed. This may mean that you have
+requested an impossible situation or if you are using the unstable
+distribution that some required packages have not yet been created
+or been moved out of Incoming.
+The following information may help to resolve the situation:
+
+The following packages have unmet dependencies:
+ sagemath : Depends: ecl (>= 15.3.7+dfsg1-2) but it is not going to be installed
+            Depends: libflint-2.5.2 but it is not going to be installed
+            Depends: libflint-arb1 but it is not going to be installed
+            Depends: libgsl2 but it is not going to be installed
+            Depends: liblinbox-1.4.2-0 but it is not going to be installed
+```
+
+apt-cache policy sagemath
+sagemath:
+  Installed: (none)
+  Candidate: 7.4-9
+  Version table:
+     7.4-9 500
+        500 http://ftp.debian.org/debian stable/main amd64 Packages
+
+well sage disappeared!
+
+
+
+### Recap
+
+do a table as of  (as of 04-02-2018) more or less I mi
+
+| Software            | Stretch                  | Testing Stretch            |
+|:--------------------|:-------------------------|:---------------------------|
+| LibreOffice         |5.2.7.2 20m0(Build:2)     | 6.0.2.1.0 00m0(Build:1)    |
+| ImageMagick         |6.9.7-4 Q16 x86_64        | 6.9.9-34 Q16 x86_64        |
+| PostgreSQL          |9.6.7                     | 10.3 (Debian 10.3-2)       |
+| GIMP                |2.8.18                    | 2.8.22                     |
+
+
+```
+gimp -v
+psql --version
+```
+
+(convert --version for Image magick)
+
+
+
+### Update myGist
+
+Well I may not have got everything right yet. That being said I really am happy
+about the progresses I made and love being in Debian stable. Set up os evolving
+and new version. I will doutlessly post when I move a step forward.
+I lose sage because... but install
+Next step cherry picking some cherry picking as mentioned in the Manual
+Well I'll likely post about it
+
+no more backport
+hugo -> sudo apt not on GH
+git config --global color.diff auto -> in a dotfiles I keep on GH
+
+
+
+### New tricks
+
+#### Debian vs Ubuntu
+
+I wonder what was the difference between Ubuntu and Debian
+
+https://wiki.ubuntu.com/Ubuntu/ForDebianDevelopers?action=show&redirect=UbuntuForDebianDevelopers
+
+27th April 2018 new Ubuntu https://insights.ubuntu.com/2018/04/26/ubuntu-18-04-lts-optimised-for-security-multi-cloud-containers-ai
+
+
+####
+gsettings get org.gnome.settings-daemon.plugins.media-keys max-screencast-length
+gsettings set org.gnome.settings-daemon.plugins.media-keys max-screencast-length 45
+
+
+#### apt vs apt-get
+
+understanding apt / apt-get
+https://askubuntu.com/questions/445384/what-is-the-difference-between-apt-and-apt-get
++ see debian manual
+
+
+#### Other
+
+https://wiki.debian.org/DebianRepository/Unofficial
+
+
+```bash
+❯ cat /etc/*-release
+PRETTY_NAME="Debian GNU/Linux buster/sid"
+NAME="Debian GNU/Linux"
+ID=debian
+HOME_URL="https://www.debian.org/"
+SUPPORT_URL="https://www.debian.org/support"
+BUG_REPORT_URL="https://bugs.debian.org/"
+```
+
+
+
+
+The following packages were automatically installed and are no longer required:
+  linux-headers-4.15.0-2-amd64 linux-headers-4.15.0-2-common linux-image-4.15.0-2-amd64
+Use 'sudo apt autoremove' to remove them.
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+
+
+
+## Nice new reourcces
+
+http://www.linuxandubuntu.com/home/debian-9-complete-screenshot-tour
+
+Steve's video
