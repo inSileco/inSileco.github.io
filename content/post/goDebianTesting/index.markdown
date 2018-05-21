@@ -338,14 +338,14 @@ if I do such move.
 
 I had questions, I've found answers, let me share:
 
-- What's the difference between `atp` and `àpt-get`? The Debian Handbook give a clear [answer
+- What's the difference between `apt` and `apt-get`? The Debian Handbook gives a clear [answer
 about it](https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_literal_apt_literal_vs_literal_apt_get_literal_literal_apt_cache_literal_vs_literal_aptitude_literal
 ).
 
 - What are the difference between Debian and Ubuntu? Here is some
 [interesting material related to this](https://wiki.ubuntu.com/Ubuntu/ForDebianDevelopers?action=show&redirect=UbuntuForDebianDevelopers).
 
-- How to change the length of a screencast? I've found this [answer by Antoine Schellenberger](http://antoine-schellenberger.com/linux/2014/11/03/change-default-screencast-duration-in-gnome-3.html):
+- How to change the length of a screencast? I've found [this answer by Antoine Schellenberger](http://antoine-schellenberger.com/linux/2014/11/03/change-default-screencast-duration-in-gnome-3.html):
 
 ```bash
 ❯ settings get org.gnome.settings-daemon.plugins.media-keys max-screencast-length 60
