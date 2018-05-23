@@ -10,7 +10,6 @@ estime: 15
 ---
 
 
- ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
 For almost a year now I've being spending most of my computer time on Debian.
 I began with Debian Stretch and switched to Debian Testing two months ago.
@@ -328,7 +327,7 @@ The following packages have unmet dependencies:
 E: Unable to correct problems, you have held broken packages.
 ```
 
-:cry: Well I guess my option is to cherry pick form Unstable... I'll let you know
+:cry: Well I guess my option is to cherry pick Sage from Unstable... I'll let you know
 if I do such move.
 
 
@@ -366,7 +365,7 @@ to my attention, I love it:
 
 I like being on Testing and I guess I'll stay on it for a while. The
 natural next step for me is to be able to efficiently cherry pick
-package from the Unstable. It sounds pretty straightforward
+packages from Unstable. It sounds pretty straightforward
 according to the Debian Handbook by I'd like to read a bit more
 before any new transition! I'll keep you blogposted!
 
