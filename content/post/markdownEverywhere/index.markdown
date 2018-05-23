@@ -23,7 +23,7 @@ According to [Wikipedia](https://en.wikipedia.org/wiki/Markdown):
 
 In this post I'd like to expand on this and write down some thoughts I have
 about Markdown. My goal is to shed some light on the exact nature of
-Markdown which would hopefully explains why Markdown is everywhere through
+Markdown which would hopefully explain why Markdown is everywhere through
 different flavors. I would conclude this post by asking whether Markdown is
 a suitable option for academic writing.
 
@@ -31,8 +31,8 @@ a suitable option for academic writing.
 
 ## Origin and philosophy
 
-If you scroll down the Wikipedia page, you'll learn that Markdown was first
-released in 2004 (the year of Facebook's birth) by John Gruber on the orignal
+Scrolling down the Wikipedia page, you'll learn that Markdown was first
+released in 2004 (the year of Facebook's birth) by John Gruber on the original
 webpage: *i.e.* https://daringfireball.net/projects/markdown/ where you''ll find:
 
 1. details about the Markdown's philosophy,
@@ -47,7 +47,7 @@ As [John Gruber wrote](https://daringfireball.net/projects/markdown/syntax):
 
 and it really is! Let me select, copy and slightly modify an example from the
 [daringfireball](https://daringfireball.net/projects/markdown/basics) to compare
-the Markdown text and the equivalent written in HTML, that is what the Perl converter
+the Markdown text and the equivalent written in HTML, *i.e.* what the Perl converter
 renders:
 
 
@@ -128,7 +128,7 @@ top of JavaScript:
 
 [Less](http://lesscss.org/) and [Sass](https://sass-lang.com/) are two other
 good examples. They both are dynamic preprocessors style sheet language:
-the user write in Less and Sass and those files are compiled into CSS
+the user codes in Less and Sass and those files are compiled into CSS
 (Cascading Style Sheets). In the case of CSS an obvious benefit from using Less
 or Sass is the possibility of using variables (does not exist in CSS).
 
@@ -151,7 +151,7 @@ he unfortunately did not provide a complete specification, *i.e.* an unequivocal
 set of instructions that would allow anyone to write a Markdown converter in any programming
 languages that would have the same behavior (note that reading the code of the
 Perl converter does not seem to remove all ambiguities, according to the authors of [CommonMark](http://spec.commonmark.org/) that I'll introduce below). That led
-some authors to consider that Markdown suffered from [bad parenting](https://blog.codinghorror.com/responsible-open-source-code-parenting/).
+some authors to affirm that Markdown suffered from [bad parenting](https://blog.codinghorror.com/responsible-open-source-code-parenting/).
 To me, there is no reason to blame John Gruber for not having written a complete
 specification. It is however reasonable to consider that this is another partial
 explanation of the current variability among Markdown flavors. Let me introduce
@@ -197,8 +197,8 @@ Markdown would doubtlessly benefit from being clearly defined, *i.e.* having
 a minimal set of tags (say the one of the original Markdown) and an accurate
 description of what a Markdown-to-HTML converter must do (harder that it sounds,
 think about how to deal with line breaks, nested tags, interference with html
-tags...). This would be a core Markdown on the top of which extensions (flavors)
-are built, that would be great (again it is not the current Markdown landscape)!
+tags...). This could be a core Markdown on the top of which extensions (flavors)
+are built, that would be just great (again it is not the current Markdown landscape)!
 Fortunately, a bunch of highly capable people have decided to tackle this
 challenge and have created [CommonMark](http://commonmark.org/) that provides:
 
@@ -211,9 +211,9 @@ challenge and have created [CommonMark](http://commonmark.org/) that provides:
 I really hope this will soon represent a standard. This would be very useful to
 switch from one converter to another without worrying about its behavior. You
 might think this is only for advanced users, well it is not! If you
-use Markdown in different websites, different application, you very likely
-switch from one converter to another on a regular basis! And you probably do
-so because... Markdown is everywhere!
+use Markdown in different websites, different applications, you are very likely
+switching from one converter to another on a regular basis! And you probably do
+so because... Markdown is everywhere :fire:!
 
 
 
@@ -225,7 +225,7 @@ Markdown on the Internet. I have therefore decided to discuss below a curated
 set of examples I am familiar with.
 
 In any situation involving the edition of online content, the usage of Markdown
-brings many advantages (it was designed for such purpose :sweat_smile:).
+brings many advantages (as it was designed for such purpose :sweat_smile:).
 It is therefore not surprising that Markdown is supported by tons websites and
 web applications where people edit content. For instance, you can use Markdown
 to edit a question or an answer on
@@ -237,12 +237,13 @@ with Markdown. Indeed, most famous Content Management Systems (CMS) such as
 [Wordpress support Markdown](https://en.support.wordpress.com/markdown/) as well
 as static site generators such as [Hugo](https://gohugo.io/) or
 [Jekyll](https://jekyllrb.com/). Furthermore, when markdown support is not a
-primary feature, you will likely find a plugin that will bring such support.
-For instance, if you blog with [Medium](https://medium.com/) you can use [markdown to Medium](http://markdowntomedium.com/).
+primary feature, you should easily find a plugin that brings such support.
+For instance, if you blog with [Medium](https://medium.com/) you can use
+[markdown to Medium](http://markdowntomedium.com/).
 
 Speaking about plugins [Markdown Here](https://markdown-here.com/) (by Adam
 Pritchard) allows you to write email in Markdown! I really enjoy it, so I've
-decided to make a short screen-cast of me using it, which is what I do pretty
+decided to make a short screencast of me using it, which is what I do pretty
 much everyday! Note that I use the plugin for Thunderbird (Thunderbird 52.7.0).
 
 
@@ -259,8 +260,8 @@ again easy-to-read and easy-to-write! But also, as a markup language, it is also
 easy-to-format! That's how a README file turns into a very helpful and good-looking
 webpage on Github projects (see the [README of this website](https://github.com/inSileco/inSileco.github.io))!
 
-Last but not least, Markdown is now extensively used to produce dynamic documents /
-dynamic webpages where text and code are integrated together. For instance,
+Last but not least, Markdown is now extensively used to produce dynamic documents
+including dynamic webpages where text and code are integrated together. For instance,
 you can format your text with Markdown in [Jupyter Notebooks](http://jupyter.org/).
 Similarly, R users now extensively use [Rmarkdown](https://rmarkdown.rstudio.com/) to
 edit reports, create package documentations, presentations and websites. In
@@ -282,14 +283,14 @@ though one of the most widely used. So now let's consider a second
 markup language also designed to format content, say [LateX](https://www.latex-project.org/)
 (itself built on the top of TeX :smile_cat:!), then why not using Markdown
 for this second markdown language, it *only* requires a new converter and this
-would allow us to use markdown for two different markdup languages :trophy::
+would allow us to use markdown for two different markup languages :trophy::
 
 
 HTML <i class="fa fa-long-arrow-left" aria-hidden="true"></i> Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> LateX
 
-We can easily imagine Markdown been used with as many markup language as desired.
+We can easily imagine Markdown been used with as many markup languages as desired.
 Given that Markdown is rather minimal, Markdown represents a useful subset for
-all those languages (assuming we are talking about markup lanageg that are
+all those languages (assuming we are talking about markup language that are
 concerned at least partially by plain-text readability). What if we could do
 even more! What if we create an abstract representation of a markup language
 that would act as an universal language and allow to do a conversion
@@ -311,7 +312,8 @@ details about Pandoc, which deserves a post it-self, if not more) we can perform
 the conversion between many markup languages, then Markdown becomes very useful
 minimal syntax we can use keeping in mind that it will be converted into
 a richer/heavier markup language. Typically, you can use Markdown to produce
-pdf files as follows: Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> LateX and then Latex is converted into a pdf file! Remember that, irrespective of the flavor, Markdown only accounts fotr a restricted set of tags. So if you want to further format your document you can actually the other tags of the markup language you will convert your file into.
+pdf files as follows: Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> LateX and then Latex is converted into a pdf file! Remember that, irrespective of the flavor, Markdown only accounts for a restricted set of tags. So if you want to further format your document you can actually use other tags of the
+specific markup language you will convert your file into.
 In this case you can use Pandoc afterwards to convert your file into another
 markup language if desired.
 
@@ -320,7 +322,7 @@ markup language if desired.
 ## Is Markdown suitable for academic writing?
 
 Very good question! Truncated answer "No" :disappointed:. Less truncated
-answer "No answer UNLESS you use an adequate flavor of Markdown and an awesome
+answer "No, UNLESS you use an adequate flavor of Markdown and an awesome
 tool such as Pandoc!" :sweat_smile:. Indeed the original version
 of Markdown, many essential formatting aspects are not included, among them,
 the most important for academic writing are:
@@ -339,14 +341,14 @@ Fortunately, the needs of academics writing are covered by [Pandoc's Markdown](h
 
 2. [Latex's syntax for math editing](https://pandoc.org/MANUAL.html#math)
 
-3. there is a very complete pandoc filter [pandoc-citeproc](https://github.com/jgm/pandoc-citeproc) that deal very well with citations.
+3. there is a specific Pandoc filter [pandoc-citeproc](https://github.com/jgm/pandoc-citeproc) that deal very well with citations.
 
-So basically thanks to Pandoc, Mardown it is suitable for academic writing.
-There are even more adavtages such ad using [templates](https://pandoc.org/MANUAL.html#templates)
+So, thanks to Pandoc, Markdown it is suitable for academic writing.
+There are even more advantages such ad using [templates](https://pandoc.org/MANUAL.html#templates)
 and benefit from [storing metadata of your manuscript directly in your file](https://pandoc.org/MANUAL.html#metadata-blocks) fir instance through YAML header (another
-potential post topic thanks to Clark Evans). Using mMrkdown may also require
-the authors switch from a classical WYSIWYG tool to a Markdown editor. I
-personnaly use [Atom](https://atom.io/) with the following packages: [markdown preview enhanced](https://atom.io/packages/markdown-preview),
+potential post topic thanks to Clark Evans). Using Markdown also means for
+the authors to switch from a classical WYSIWYG tool to a Markdown editor. I
+personally use [Atom](https://atom.io/) with the following packages: [markdown preview enhanced](https://atom.io/packages/markdown-preview),
 [autocomplete-bibtex](https://atom.io/packages/autocomplete-bibtex) (to handle reference) and [document-outline](https://atom.io/packages/document-outline) (thanks [@tpoi](https://twitter.com/tpoi) for the suggestion about the latter).
 
 If you looking for more details about this, I highly recommend the tutorial of [Software Carpentry on the topic](http://swcarpentry.github.io/modern-scientific-authoring/) and also the
@@ -357,11 +359,11 @@ reading of different points of view such as
 
 A final note about reviews. I personally write my review in Markdown and convert
 them in `pdf`. I then copy/paste the Markdown file and attache the `pdf` which
-is Ok, but it would be even better if the zone where I paste the markdown-formated
-review could be converted into a nice formatted HTML text. So far, I never came
-across a journal that offers such feature but I am comvinced that some journals
-support markdown. I am glad that [Peer Community In](https://peercommunityin.org/)
-offer such feature but I have not seen it in action yet!
+is Ok, but it would be even better if the zone where I paste the markdown-formatted
+review could be converted into a nicely formatted HTML page. So far, I never came
+across a journal that offers such feature but I am convinced that some journals
+actually support markdown for reviews. I am glad that [Peer Community In](https://peercommunityin.org/)
+offers such feature though I have not seen it in action so far!
 
 
 
@@ -373,7 +375,7 @@ offer such feature but I have not seen it in action yet!
 
 While I was writing this post I realize that just as Markdown is, resources
 are everywhere! I though it would be useful to end this posts by providing a
-personal selection of links below.
+personal selection of online material.
 Before proceeding, I shall mention the existence of several [Awesome lists](https://github.com/sindresorhus/awesome) where you will find even more
 resources. Even better, a [list that lists such lists](https://github.com/tajmone/markdown-guide#awesomeness).
 I recommend you have a look at the list created by [mundimark](https://github.com/mundimark/awesome-markdown) and the one by [BubuAnabelas](https://github.com/BubuAnabelas/awesome-markdown).
@@ -412,12 +414,12 @@ I recommend you have a look at the list created by [mundimark](https://github.co
 
 ### Editors
 
-There are specific editor such as [Abricotine](http://abricotine.brrd.fr/),
-[Mou](http://25.io/mou/) or [Stackedit](https://stackedit.io/). Most of modern
-code editor includes specific library for highlight syntaxing and
-preview. For instance [Atom](https://atom.io/) includes a [markdown preview](https://atom.io/packages/markdown-preview) a core
-package and a quick search show that there 30 packages (querry on
-May 12, I use atom 1.26.1 on my debian device):
+There are Markdown-specific editors such as [Abricotine](http://abricotine.brrd.fr/),
+[Mou](http://25.io/mou/) or [Stackedit](https://stackedit.io/). Note that most
+of modern code editors include specific libraries for highlight syntaxing and
+preview of documents written in Markdown. For instance, [Atom](https://atom.io/) includes a [markdown preview](https://atom.io/packages/markdown-preview) as a core
+package and a quick search reveals that there are 30 packages available (query on
+May 12th 2018, Atom 1.26.1 on my Debian device):
 
 
 ```bash
