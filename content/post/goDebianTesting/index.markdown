@@ -1,7 +1,7 @@
 ---
 title: Go Debian Testing!
 author: [kevin]
-reviewer:
+reviewer: [david]
 date: 2018-05-21
 tags: [Linux, Debian]
 draft: false
@@ -12,13 +12,13 @@ estime: 15
 
  ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
-Since almost a year now I've being spending most of my computer time on Debian.
-I begun with Debian Stretch and switched to Debian Testing two months ago.
+For almost a year now I've being spending most of my computer time on Debian.
+I began with Debian Stretch and switched to Debian Testing two months ago.
 This was another good opportunity to gain skills and I'd like to report
 about my transition in this post.
 
 
-## What did really happen?
+## What really happened?
 
 ### The hope of a seamless transition
 
@@ -30,7 +30,7 @@ after a couple of online readings I was convinced that being on Testing
 was a fairly reasonable step forward that would just make my live easier.
 
 So, [following the instructions on the wiki](https://wiki.debian.org/DebianTesting),
-I've changed my `etc/apt/sources.list` file (see also the [Debian handbook](https://debian-handbook.info/browse/stable/apt.html#id-1.9.10.8)
+I changed my `etc/apt/sources.list` file (see also the [Debian handbook](https://debian-handbook.info/browse/stable/apt.html#id-1.9.10.8)
 for more details):
 
 ```
@@ -87,53 +87,55 @@ If I recall correctly, I proceeded as follows:
 2. Do some packages remain kept back?
 3. if yes go back to 1
 
-I don't think this is the best approach as I could have either copy-pasted
+I don't think this is the best approach, as I could have either copy-pasted
 the full package list to install them all at once or use the  [`dist-upgrade`](https://askubuntu.com/questions/81585/what-is-dist-upgrade-and-why-does-it-upgrade-more-than-upgrade) command instead. But it worked:
 
 <img src = "assets/updeb5.png#center" style="width:80%"></img>
 
-"Yeah!! all right, all done, all good!:fire:" I was thinking at that
+"Yeah!! all right, all done, all good!:fire:" I naïvely thought at that
 stage.
 
 
 ### My :heart: stopped beating... for a few hours only!
 
-What do you do when all is installed? Well, you reboot, right? And did I!
+What do you do when all is installed? Well, you reboot, right? And so I did!
 The logging page actually looked the same but once logged in there
 was a nightmarish blue screen (you know, the kind of screen Windows is famous for!) :scream:!
-My GNOME desktop environment had disappeared :scream:! Here begun a
-few hours of confusion... I actually felt a bit lost that's why I did not
-take any screenshot or notes about what's was happening but I recall
-more or less what I did to solve this mess (a mess that I was responsible for).
+My GNOME desktop environment had disappeared :scream:! Here began a
+few hours of confusion... I actually felt a bit lost, which is why I did not
+take any screenshot or note about what was happened in the aftermath but I recall
+more or less what I did to solve this mess (a mess that I was of course responsible for!).
 
 First of all I learned very helpful shortcuts that allow the user to switch from
 his desktop environment to the Command Line Interface (CLI): `ctrl + atl + f2`
 and conversely `ctrl + atl + f3`. Even though I was not able
 to use GNOME I was able to see what was happening using the CLI.
 I searched on the internet (I had another computer) for a solution
-and there I learned how to check the status of the [display mangers](https://wiki.debian.org/DisplayManager), for instance, for the Gnome Display Manager (gdm):
+and there I learned how to check the status of the [display managers](https://wiki.debian.org/DisplayManager).
+For instance, for the Gnome Display Manager (gdm):
 
 ```
 ❯ systemctl status gdm
 ```
 
-This is how to realize there was something wrong with GNOME (see https://unix.stackexchange.com/questions/204387/debian-not-booting-into-gui).
+This is how I came to realize there was something wrong with GNOME (see
+https://unix.stackexchange.com/questions/204387/debian-not-booting-into-gui).
 At that point, I decided to install another display manager (I do not
-understand why :smile:), I chose [lightdm](https://wiki.debian.org/LightDM).
-It was working just fine and I relieved that everything was working well (no
-more weird blue screen) but I really wanted my GNOME back and I reinstalled it:
+understand why :smile:). I chose [lightdm](https://wiki.debian.org/LightDM).
+I was relieved that  everything was working just fine (no
+more weird blue screen) but I really wanted my GNOME back and so I reinstalled it:
 
 ```
 ❯ sudo apt-get install --reinstall gnome3
 ```
 
 The re-installation went well but it was still not working... until I
-removed lightdm, that I cannot explain... But in the end GNOME was back, the update
+removed lightdm, which I cannot explain... But in the end GNOME was back, the update
 was completed!
 
 Given what I went through, I think it is worth spending
-some time reading about the different graphical desktops Debian offers,
-I recommend the reading of the [section of the Debian Handbook on the topic](https://debian-handbook.info/browse/stable/sect.graphical-desktops.html),
+some time reading about the different graphical desktops Debian offers.
+I recommend reading the [section of the Debian Handbook on the topic](https://debian-handbook.info/browse/stable/sect.graphical-desktops.html),
 and this article for [Ubuntu useres](https://support.system76.com/articles/desktop-environment/)
 that interestingly asserts:
 
@@ -141,8 +143,8 @@ that interestingly asserts:
 > when prompted. Choosing gdm, sddm, or another, will break the installation.   
 
 By the way, note that `echo $DESKTOP_SESSION` indicates the desktop
-environment you are currently working withg and if you are eager to change the
-use display manager you have to reconfigure a display manager package, *e.g.*
+environment you are currently working with and if you are eager to change the
+user display manager you have to reconfigure a display manager package, *e.g.*
 `dpkg-reconfigure gdm3` (in su mode).
 
 
@@ -247,7 +249,7 @@ I like it that way!
 
 #### About Firefox
 
-Well Debian Testing do not yet offer Firefox 60-X via aptitude and there
+Well Debian Testing does not offer Firefox 60-X via aptitude yet and there
 are actually ongoing discussions about this on the Debian developer mailing
 list. While I am still using Firefox 52-X and am satisfied with it
 I wanted to install the last version. As
@@ -336,11 +338,9 @@ if I do such move.
 
 #### Answers to questions I had in my mind  
 
-I had questions, I've found answers, let me share:
+I had questions, I found answers, let me share:
 
-- What's the difference between `apt` and `apt-get`? The Debian Handbook gives a clear [answer
-about it](https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_literal_apt_literal_vs_literal_apt_get_literal_literal_apt_cache_literal_vs_literal_aptitude_literal
-).
+- What's the difference between `apt` and `apt-get`? The Debian Handbook provides a clear [answer](https://www.debian.org/doc/manuals/debian-reference/ch02.en.html#_literal_apt_literal_vs_literal_apt_get_literal_literal_apt_cache_literal_vs_literal_aptitude_literal).
 
 - What are the difference between Debian and Ubuntu? Here is some
 [interesting material related to this](https://wiki.ubuntu.com/Ubuntu/ForDebianDevelopers?action=show&redirect=UbuntuForDebianDevelopers).
@@ -366,7 +366,7 @@ to my attention, I love it:
 
 I like being on Testing and I guess I'll stay on it for a while. The
 natural next step for me is to be able to efficiently cherry pick
-package from the Unstable. It sounds like pretty straightforward
+package from the Unstable. It sounds pretty straightforward
 according to the Debian Handbook by I'd like to read a bit more
 before any new transition! I'll keep you blogposted!
 
