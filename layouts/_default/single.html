@@ -46,19 +46,20 @@
 
 
     {{ if .Params.author }}
-      <p style = "font-size: 1.6em; margin-top: 20px"> <i class="fa fa-pencil" aria-hidden="true"></i>
+      <p style = "font-size: 1.8em; margin-top: 20px"> <i class="fa fa-pencil" aria-hidden="true"></i>
       {{ range $auth := .Params.author }} {{ $info := index $.Site.Data.authors $auth }}
-        <a href="/about/">{{ $info.given_name }} {{ $info.family_name }} &nbsp;
+        <a href="/about/">{{ $info.given_name }} {{ $info.family_name }}</a> &nbsp;
       {{ end }}
-    </a> <a href="#"></a></p>
+     <a href="#"></a></p>
     {{ end }}
 
 
     {{ if .Params.reviewer }}
       <p> <i class="fa fa-check-square" aria-hidden="true"></i>
       {{ range $rev := .Params.reviewer }} {{ $info := index $.Site.Data.authors $rev }}
-      <a href="/about/">{{ $info.given_name }} {{ $info.family_name }}</a></p>
+      <a href="/about/">{{ $info.given_name }} {{ $info.family_name }}</a> &nbsp;
       {{ end }}
+      <a href="#"></a></p>
     {{ end }}
 
     {{ with .Params.estime }} <i class="fa fa-clock-o" aria-hidden="true"></i> {{ . }}min {{ end }}
