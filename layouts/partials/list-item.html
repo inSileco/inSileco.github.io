@@ -2,11 +2,11 @@
 
   {{ if eq .Type "post" }}
 
-  <h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
+  <h1>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a> <small>{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</small>
+  </h1>
 
-  <h5>{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</h5>
-
-  <p>{{ range .Params.tags }} <a href="/tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}</p>
+  <p> <i class="fa fa-tags" aria-hidden="true"></i> {{ range .Params.tags }} <a href="/tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}</p>
 
   {{ end }}
 
