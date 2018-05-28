@@ -1,7 +1,7 @@
 ---
 title: "Empty your R plots!"
 author: [kevin, david, nicolas, steve]
-date: 2018-04-01
+date: 2018-06-01
 tags: [R, plot]
 tweet: "Empty your R plots!"
 draft: true
@@ -17,6 +17,7 @@ output:
 
 <div id="data-visualization-in-r" class="section level2">
 <h2>Data visualization in R</h2>
+<p><span class="math display">\[\beta\]</span></p>
 <p>We do love creating plots with R and we think R offers a fantastic set of tools
 to make beautiful graphics. Many websites and blog posts show what you can
 be capable with R. Have a look at what <a href="http://www.gastonsanchez.com/Rtist/">Gaston Sanchez created</a>
@@ -45,10 +46,10 @@ you intend at creating a empty plot. When using graphics you cannot refresh the
 viewer and update it unless you re-execute all the lines. Therefore to cutomize
 easer if you start with and emply plot</p>
 <pre class="r"><code>plot(0:10, 0:10)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/emptyYourPlots/index_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To empty it</p>
 <pre class="r"><code>plot(0:10, 0:10)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/emptyYourPlots/index_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>if you have a careful look at the code behind <code>plot.default()</code> (the one we
 actually call here) you will concclure</p>
 </div>
@@ -86,8 +87,8 @@ on <a href="https://github.com/inSileco/graphicsutils"><i class = "fa fa-github"
 <pre class="r"><code>library(graphicsutils)
 plot0(c(0,10))
 points(1:9, 1:9)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/emptyYourPlots/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>plot0(c(0,10), fill=&#39;#ebebeb&#39;, grid.col = &#39;white&#39;)
 points(1:9, 1:9)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/emptyYourPlots/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
