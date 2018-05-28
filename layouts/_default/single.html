@@ -4,31 +4,32 @@
 <img class="full-width" width="100%" src="/img/banner4.png"></img>
 
 
+
 <div>
 
   <div class="col-md-3">
       <div class="hidden-sm hidden-xs">
         <div class="sticky-top">
-        <div id="toc"></div>
-        <script>
-          var $jq = jQuery.noConflict();
+          <div id="toc"></div>
 
-            $jq(function() {
+          <script>
+            var $jq = jQuery.noConflict();
 
-                var toc = $jq("#toc").tocify({
-                  selectors: "h2, h3",
-                  scrollTo: 50
-                }).data("toc-tocify");
+              $jq(function() {
 
-                prettyPrint();
-                $jq(".optionName").popover({ trigger: "hover" });
+                  var toc = $jq("#toc").tocify({
+                    selectors: "h2, h3",
+                    scrollTo: 50
+                  }).data("toc-tocify");
 
+                  prettyPrint();
+                  $jq(".optionName").popover({ trigger: "hover" });
             });
-        </script>
-      </div>
-  </div>
-</div>
+          </script>
 
+        </div>
+    </div>
+  </div>
 
 
 
@@ -159,6 +160,12 @@
     <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
   </div>
+
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script async
+  src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+  </script>
+
 </div>
 
 {{ partial "footer.html" . }}
