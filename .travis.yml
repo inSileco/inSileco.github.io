@@ -14,7 +14,7 @@ notifications:
         - "%{repository} (%{commit}) : %{message} %{foo} "
         - "Build: %{build_url}"
         - "website: https://insileco.github.io/"
-        - "duration: %{duration}" 
+        - "duration: %{duration}"
 
 cache:
   packages: yes
@@ -37,6 +37,7 @@ before_install:
   - wget https://github.com/jgm/pandoc/releases/download/1.19.2.1/pandoc-1.19.2.1-1-amd64.deb
   - sudo dpkg -i pandoc-1.19.2.1-1-amd64.deb
   - export PATH=./pandoc/usr/bin/:$PATH
+  - sudo apt-get install pandoc-citeproc
 
 before_script:
   - Rscript -e 'blogdown::install_hugo()'
