@@ -83,7 +83,34 @@ figures, etc. Finally, the author should do his best to select the `tags` so the
 reader easily access posts with similar content.
 
 
-### Writing guidelines
+## Writing guidelines
+
+### Citations and reference list
+
+A common reference management system has been set up for the blog. We are
+working from a common `.bib` file: `~/data/bib/inSilecoRef.bib`. Updating this
+file with new references is done by adding DOIs to the file
+`~/data/bib/listDOI.csv` and adding this code to the main body of posts
+that need a bibliography:
+
+```{r bibSetUp, echo=FALSE}
+source('../../static/Rscript/bibSetUp.R')
+```
+
+Note that the path needs to be adjusted depending on the path of the post.
+Link to the bibliography and the citation style is then added to the yaml
+header of the posts:
+
+```yaml
+bibliography: [../../data/bib/inSilecoRef.bib]
+csl: [../../data/bib/nature.csl]
+link-citations: yes
+```
+
+In-text citations are added to posts using [common markdown citation
+procedures](https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)
+and the bibliography is added by finishing the post with the header `### References`.
+
 
 To be added:
 
