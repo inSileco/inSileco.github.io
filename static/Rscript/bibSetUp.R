@@ -1,5 +1,5 @@
 bibFile <- 'inSilecoRef.bib'
-bibPath <- 'data/bib/'
+bibPath <- 'bib/'
 while (file.exists(paste0(bibPath,bibFile)) == F) {
   bibPath <- paste0('../', bibPath)
 }
