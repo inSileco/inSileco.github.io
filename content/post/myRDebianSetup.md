@@ -1,7 +1,7 @@
 ---
 title: My R setup on Debian
 author: [kevin]
-reviewer:
+reviewer: [david]
 date: 2018-06-18
 tags: [R, Linux, Debian, setup]
 rpkgs: [base]
@@ -17,14 +17,14 @@ output:
 
 ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
-R 3.5.0 "Joy in playing" was released April 23th this year. It took a couple
+R 3.5.0 "Joy in playing" was released April 23rd this year. It took a couple
 of weeks before it was made available on Debian testing due to the work
 required to rebuild the packages and as a Debian user that spend a lot of time
 on R, I am extremely grateful to [the work of Dirk, Michael and Johannes on this](http://dirk.eddelbuettel.com/blog/2018/06/11/)!
 
 
 I thought it was a good opportunity to write few notes about my R setup. Nothing
-really special or tricky and I guess more advanced users proceed otherwise,
+really special or tricky and I guess more advanced users proceed otherwise, yet
 it is nonetheless simple and functional :smile:! In this post I'll go over two
 different aspects:
 
@@ -36,7 +36,7 @@ different aspects:
 
 ## How do I install and the package I use?
 
-As mentioned in [a previous post]({{< relref "post/goDebianTesting" >}}) I am
+As mentioned in [a previous post]({{< relref "post/goDebianTesting" >}}), I am
 currently working on Debian testing and use `apt-get` to install my software
 which includes R:
 
@@ -46,8 +46,8 @@ $ apt-get install r-base r-recommended r-base-dev
 ```
 
 I use the default location to store the core packages, *i.e.* `/usr/lib/R/library/`.
-After the installation of the core packages, I configure Java for R (see *Java support* on [the manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html) for more
-details:
+After the installation of the core packages, I configure Java for R (see *Java support* on [the manual](https://cran.r-project.org/doc/manuals/r-release/R-admin.html) for
+more details):
 
 ```bash
 $ R CMD javareconf JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64/
@@ -74,7 +74,7 @@ a selection would probably have taken tens :smile:!
 
 For the remaining packages (not packaged specifically for Debian), I use the
 classical `ìnstall.packages()` for packages on CRAN and `devtools::install_github()`
-for GitHub packages (I do not use package from other repositories).
+for GitHub packages. I do not use package from other repositories.
 For those packages, I have created a small [gist](https://gist.github.com/KevCaz/aaa83151e9d12cc07fbe379e2c32a385)
 to gather them and I edit it each time I've found a package relevant for my research.
 In order to install this package I get the gist (an R script) and execute it:
@@ -85,7 +85,7 @@ $ sudo Rscript /tmp/pkgsR/myPackages.R
 ```
 
 The path to these packages is `/home/kevcaz/R/x86_64-pc-linux-gnu-library/3.5`
-this is not the default behavior but a path commonly used. So, yes, in total  
+this is not the default behavior but a path commonly used. So, yes, in total
 I use 3 different paths to my R packages :smiley::
 
 ```R
@@ -108,11 +108,12 @@ R>> find.package("drat")
 ```
 
 Well, I very much like it that way :smile_cat:! Two notes to conclude this section.
-First, in a near future I may consider
+First, in the near future I may consider
 the neat [`drat` package](http://dirk.eddelbuettel.com/code/drat.html) to add
-packages available GitHub. Second, if you are interested in
+packages available on GitHub. Second, if you are interested in
 reproducing this installation, have a look at [my installDebian.sh gist](https://gist.github.com/KevCaz/29536740b9150383a9d543ec1be96103).
-Now that R is installed let's see hot customize the launch process.
+
+Now that R is installed let's see how to customize the launch process.
 
 
 ## My R's Startup
@@ -142,7 +143,7 @@ R>> R.home()
 so for me `/usr/lib/R/etc`:
 
 ```R
-$ ls /usr/lib/R/etc              
+$ ls /usr/lib/R/etc
 javaconf  ldpaths  Makeconf  Renviron  Renviron.orig  Renviron.site  Renviron.ucf  repositories  Rprofile.site
 ```
 
@@ -157,7 +158,7 @@ R_ENVIRON = "/usr/lib/R/etc/Renviron.site"
 ```
 
 It is not mandatory but it is pretty common to locate where you add your chnages
-next to the default one. On Debian we actually get a empty `Renviron.site` file:
+next to the default one. On Debian we actually get an empty `Renviron.site` file:
 
 ```
 ##                                              Emacs please make this -*- R -*-
@@ -186,7 +187,7 @@ next to the default one. On Debian we actually get a empty `Renviron.site` file:
 #R_LIBS_USER=${R_LIBS_USER-'~/R/@R_PLATFORM@-library/@MAJ_MIN_VERSION@'}
 ```
 
-Thanks Dirk for this! As you can read, several changes are possible all
+Thanks Dirk for this! As you can read, several changes are possible and all
 the parameter found in `Renviron` may be used. In my case I added two lines
 
 ```
@@ -194,7 +195,7 @@ R_PROFILE_USER = "~/.Rprofile"
 R_LIBS_USER=${R_LIBS_USER-'~/R/x86_64-pc-linux-gnu-library/3.5'}
 ```
 
-The latter indicates the path to packages installed with `ìnstall.packages()`
+The latter indicates the path to packages installed with `ìnstall.packages()`,
 while the former points to another file where I do most of the tweaks!
 Here it is (also available on
 [<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/KevCaz/dotfiles/blob/master/dotfiles/.Rprofile)
