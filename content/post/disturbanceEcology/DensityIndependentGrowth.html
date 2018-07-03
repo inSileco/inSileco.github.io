@@ -1,0 +1,319 @@
+---
+title: Disturbance Ecology Series - Discrete Density Independent Growth
+author: [david]
+reviewer:
+date: 2018-07-02
+tags: [Disturbance Ecology, ecology, disturbance, model, population, community]
+rpkgs: [base, graphics, graphicsutils, latex2exp, utils]
+draft: true
+tweet: "Disturbance Ecology Series - Discrete Density Independent Growth"
+estime: 15
+relativeurls: true
+bibliography: [../../../static/bib/inSilecoRef.bib]
+csl: [../../../static/bib/nature.csl]
+link-citations: yes
+navposts:
+  prev: disturbanceEcology
+  home: disturbanceEcology
+---
+
+
+
+{{< distecolintro >}}
+<div id="discrete-density-independent-growth" class="section level2">
+<h2>Discrete density independent growth</h2>
+<p>In this first post we start by looking at the most simple population dynamic
+model available, the case of discrete density independent growth for a single
+species population. This model is a nice model to understand basic population
+dynamics and a useful stepping stone towards more complicated models
+of population dynamics.</p>
+</div>
+<div id="theory-in-brief" class="section level2">
+<h2>Theory in brief</h2>
+<p>Let’s begin by explaining what discrete and density independent growth are.</p>
+<p>Discrete growth means that a population grows in separate
+and distinct steps, such as large mammals giving birth to a set amount of
+offsprings every year. Density independent growth, meanwhile, means that
+there is no statistical relation between population density and its <em>per capita</em>
+growth rate<span class="citation"><sup><a href="#ref-Stevens_2009">1</a></sup></span>. This would be the case for a populations that grows
+without any apparent environmental constraints. Human population growth is a good
+example of discrete (although we don’t model our populations using discrete
+growth models) and density independent growth (see
+<a href="https://ourworldindata.org/world-population-growth">Our World in Data</a>).</p>
+<p><br/></p>
+<p>This simple model simulates population dynamics using a constant
+geometric growth, <em>i.e.</em> using a constant growth parameter:</p>
+<p><span class="math display">\[N_t = \lambda^t N_0\]</span></p>
+<p>where <span class="math inline">\(N\)</span> is population size, <span class="math inline">\(N_0\)</span> is the initial population size, <span class="math inline">\(\lambda\)</span>
+is the <em>per capita</em> growth rate and <span class="math inline">\(t\)</span> is the time.</p>
+<p><br/></p>
+<p>Let’s write a function for later use, also available in the
+<a href="https://github.com/inSileco/inSilecoMod"><code>inSilecoMod</code> package</a>:</p>
+<pre class="r"><code>ddig &lt;- function(N0, lambda, t) lambda^t * N0</code></pre>
+<p><br/></p>
+<p>In essence, this model assumes that every individual in the population will
+foster a constant and finite amount of offsprings at every time step. If we
+imagine a population in which each individual fosters two offspring each year
+and that we start with 1 individual in the population, we know that by the
+second year, we will have 3 individuals in the population, <em>i.e.</em> the
+parent and the offsprings. With this information, we can then predict
+population size for every subsequent year:</p>
+<p><span class="math display">\[\begin{eqnarray}
+  \nonumber N_0 &amp;=&amp; 1 \\
+  \nonumber N_1 &amp;=&amp; 3N_0 = 3 \\
+  \nonumber N_2 &amp;=&amp; 3N_1 = 3(3N_0) = 3^2N_0 = 9 \\
+  \nonumber N_3 &amp;=&amp; 3N_2 = 3(3^2N_0) = 3^3N_0 = 27 \\
+  \nonumber ... \\
+  \nonumber N_t &amp;=&amp; 3^tN_0 \\
+\end{eqnarray}\]</span></p>
+<p><img src="/post/disturbanceEcology/DensityIndependentGrowth_files/figure-html/example1-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Further generalizing the growth rates gives us the initial function that we
+presented:</p>
+<p><span class="math display">\[N_t = \lambda^t N_0\]</span></p>
+<p>Another important aspect of this model is that:</p>
+<p><span class="math display">\[\begin{eqnarray}
+  \nonumber \lambda &gt; 1 &amp; \rightarrow &amp; N \text{ increases} \\
+  \nonumber \lambda = 1 &amp; \rightarrow &amp; N \text{ is constant} \\
+  \nonumber \lambda &lt; 1 &amp; \rightarrow &amp; N \text{ decreases}
+\end{eqnarray}\]</span></p>
+<p><img src="/post/disturbanceEcology/DensityIndependentGrowth_files/figure-html/lambdaDec-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><br/></p>
+</div>
+<div id="simulated-ecology" class="section level2">
+<h2>Simulated ecology</h2>
+<p>To delve a little deeper into this model, we will now simulate a simple
+population in which, like before, every individual fosters 2 offsprings
+at every discrete time step in a perfect geometrical growth. We will then
+project population size in time using the model and compare the simulated
+population with the results from this model.</p>
+<div id="functions" class="section level3">
+<h3>Functions</h3>
+<p>Let’s write a few functions that we can use later to make things easier. First,
+a function that simulates our population sequentially through time so that we
+can later add some complexity to our simulations.</p>
+<pre class="r"><code>simPop &lt;- function(N0, rate, nt) {
+  pop &lt;- numeric(nt + 1)
+  pop[1] &lt;- N0
+  for(i in 2:(nt+1)) {
+    pop[i] &lt;- pop[i-1] + (rate * pop[i-1])
+  }
+  pop
+}</code></pre>
+<p>Second, I’m embedding a plot call in a function so that I can use it again.
+You can make this in a single command line, I simply like to customize my plots.</p>
+<pre class="r"><code>plot1 &lt;- function(pop) {
+  par(mar = c(4,4,1,1))
+  plot0(x = range(pop$year),
+        y = c(0, max(pop[, 2:ncol(pop)])))
+  axis(1, cex.axis = .75)
+  axis(2, cex.axis = .75)
+  mtext(&quot;Abundance&quot;, side = 2, line = 2.25)
+  mtext(&quot;Year&quot;, side = 1, line = 2.25)
+}</code></pre>
+</div>
+<div id="simulations---geometric-growth-rate" class="section level3">
+<h3>Simulations - Geometric growth rate</h3>
+<p>We begin by simulating a population that has a perfect geometric growth:</p>
+<pre class="r"><code>nt &lt;- 5
+rate &lt;- 2
+N0 &lt;- 10
+pop &lt;- data.frame(year = 0:nt,
+                  pop = simPop(N0, rate, nt))
+
+plot1(pop)
+points(x = pop$year, y = pop$pop, pch = 20, cex = 1.5, col = cols[2])</code></pre>
+<p><img src="/post/disturbanceEcology/DensityIndependentGrowth_files/figure-html/dataSim-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>With this data in hand, we can evaluate the rate of increase from one year to the next,
+<em>e.g.</em> by dividing <span class="math inline">\(N_1 / N_0 = 3 / 1 = 3\)</span>. This is the <span class="math inline">\(\lambda\)</span> for our model.
+We can then use this, with <span class="math inline">\(N_0 = 10\)</span>, to model population size and make predictions
+for the future population size using the discrete density independent model and
+the <code>ddig()</code> function that we wrote earlier.</p>
+<pre class="r"><code>pred &lt;- data.frame(year = 1:10,
+                   pop = ddig(N0 = 10, lambda = 3, t = 1:10))
+
+# Visualize
+plot1(pred)
+lines(spline(x = pred$year, y = pred$pop, n = 100), lty = &#39;dashed&#39;, col = cols[4])
+points(x = pred$year, y = pred$pop, pch = 1, cex = 2, col = cols[4])
+points(x = pop$year, y = pop$pop, pch = 20, cex = 1.5, col = cols[2])</code></pre>
+<p><img src="/post/disturbanceEcology/DensityIndependentGrowth_files/figure-html/predict-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>In this first example, we obviously obtain a perfect match between model
+projections and the simulated population because we simulated a population with
+geometric (<em>i.e.</em> constant) growth rate. This is however rarely (read <em>never</em>)
+the case in real life.</p>
+</div>
+<div id="simulations---variable-growth-rates" class="section level3">
+<h3>Simulations - Variable growth rates</h3>
+<p>Let’s add some realism to the simulated population by allowing growth
+rate to vary between years, and thus deviate from model expectations.
+To achieve this, we will randomly set growth rate using a uniform distribution
+between 0 and 3.</p>
+<pre class="r"><code># We will create a new function that simulates our population sequentially
+# through time so that we can later use it to add some complexity to our simulations.
+simPop2 &lt;- function(N0, rateRange, nt) {
+  pop &lt;- numeric(nt + 1)
+  pop[1] &lt;- N0
+  for(i in 2:(nt+1)) {
+    rate &lt;- runif(1, rateRange[1], rateRange[2])
+    pop[i] &lt;- pop[i-1] + (rate * pop[i-1])
+  }
+  pop
+}</code></pre>
+<p>With this in hand, let’s simulate a few populations all starting with the same
+initial size.</p>
+<pre class="r"><code>nt &lt;- 5
+rate &lt;- c(0,3)
+N0 &lt;- 10
+pop &lt;- data.frame(year = 0:nt,
+                  pop1 = simPop2(N0, rate, nt),
+                  pop2 = simPop2(N0, rate, nt),
+                  pop3 = simPop2(N0, rate, nt),
+                  pop4 = simPop2(N0, rate, nt))</code></pre>
+<p>We can now see that growth rates are much more variable.</p>
+<pre class="r"><code>rates &lt;- data.frame(pop1 = pop$pop1[2:(nt+1)] / pop$pop1[1:nt],
+                    pop2 = pop$pop2[2:(nt+1)] / pop$pop2[1:nt],
+                    pop3 = pop$pop3[2:(nt+1)] / pop$pop3[1:nt],
+                    pop4 = pop$pop4[2:(nt+1)] / pop$pop4[1:nt])
+rates
+#R&gt;       pop1     pop2     pop3     pop4
+#R&gt; 1 3.461662 3.395601 2.040363 1.830775
+#R&gt; 2 1.040555 1.656360 2.336889 3.474657
+#R&gt; 3 3.537849 1.297052 3.022492 2.431359
+#R&gt; 4 3.659354 2.878623 2.798357 3.218993
+#R&gt; 5 2.418180 1.775319 1.507087 2.233671
+
+par(mfrow = c(1,2), mar = c(4,4,1,1))
+matplot(pop[, 2:5], type = &#39;l&#39;, col = cols, lwd = 1.25, ylab = &#39;Population size&#39;)
+matplot(rates, type = &#39;l&#39;, col = cols, lwd = 1.25, ylab = &#39;Rates&#39;)</code></pre>
+<p><img src="/post/disturbanceEcology/DensityIndependentGrowth_files/figure-html/growthRates-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><strong><em>Arithmetic average</em></strong></p>
+<p>The goal then becomes to find a <span class="math inline">\(\lambda\)</span> value that allows us to model the growth
+of those populations using a discrete density independent growth model. The first
+idea that comes to mind is to use the arithmetic mean of the growth rates.</p>
+<pre class="r"><code>meanRates &lt;- apply(rates, 2, mean)
+pred &lt;- data.frame(year = 1:6,
+                   pop1 = ddig(N0 = 10, lambda = meanRates[1], t = 1:6),
+                   pop2 = ddig(N0 = 10, lambda = meanRates[2], t = 1:6),
+                   pop3 = ddig(N0 = 10, lambda = meanRates[3], t = 1:6),
+                   pop4 = ddig(N0 = 10, lambda = meanRates[4], t = 1:6))
+
+par(mfrow = c(2,2))
+for(i in 2:5) {
+  # Visualize
+  plot1(pred)
+  lines(spline(x = pred$year, y = pred[, i], n = 100), lty = &#39;dashed&#39;, col = cols[4])
+  points(x = pred$year, y = pred[, i], pch = 1, cex = 2, col = cols[4])
+  points(x = pop$year, y = pop[, i], pch = 20, cex = 1.5, col = cols[2])
+}</code></pre>
+<p><img src="/post/disturbanceEcology/DensityIndependentGrowth_files/figure-html/pred2-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>While useful, the use of the arithmetic average can lead to erreneous results.
+Following the example from Stevens 2009<span class="citation"><sup><a href="#ref-Stevens_2009">1</a></sup></span> on page 11, let’s
+imagine a population with <span class="math inline">\(N_0 = 100\)</span>, annual growth rate <span class="math inline">\(R_1 = 0.5\)</span> and
+<span class="math inline">\(R_2 = 1.5\)</span>. Using the arithmetic average to evaluate the growth rate for the
+model would give us <span class="math inline">\(\lambda = 1\)</span>, <em>i.e.</em> a population with a constant <span class="math inline">\(N = 100\)</span>.
+However, if we look at population trends applying <span class="math inline">\(R\)</span> for consecutive years,
+the result would be quite different:</p>
+<p><span class="math display">\[\begin{eqnarray}
+  \nonumber N_0 &amp;=&amp; 100 \\
+  \nonumber N_1 &amp;=&amp; N_0 * 0.5 = 50 \\
+  \nonumber N_2 &amp;=&amp; N_1 * 1.5 = 75 \\
+\end{eqnarray}\]</span></p>
+<p>We need something better.</p>
+<p><br/></p>
+<p><strong><em>Geometric average</em></strong></p>
+<p>The solution we are presenting here is the one found in Stevens’s book<span class="citation"><sup><a href="#ref-Stevens_2009">1</a></sup></span>,
+which is to use the <a href="https://en.wikipedia.org/wiki/Geometric_mean">geometric average</a>:</p>
+<p><span class="math display">\[\bar{R} = \Bigg(\prod_{i=1}^{t} R_i\Bigg)^{1/t}\]</span></p>
+<p>Here is a nice function to evaluate the geometric mean, found on
+<a href="https://stackoverflow.com/questions/2602583/geometric-mean-is-there-a-built-in">stackoverflow</a>:</p>
+<pre class="r"><code>gm_mean &lt;- function(x, na.rm = TRUE) {
+  exp(sum(log(x[x &gt; 0]), na.rm = na.rm) / length(x))
+}</code></pre>
+<p>And we can look at how the geometric average affects the predictions:</p>
+<pre class="r"><code>meanRatesGeom &lt;- apply(rates, 2, gm_mean)
+pred2 &lt;- data.frame(year = 1:6,
+                    pop1 = ddig(N0 = 10, lambda = meanRatesGeom[1], t = 1:6),
+                    pop2 = ddig(N0 = 10, lambda = meanRatesGeom[2], t = 1:6),
+                    pop3 = ddig(N0 = 10, lambda = meanRatesGeom[3], t = 1:6),
+                    pop4 = ddig(N0 = 10, lambda = meanRatesGeom[4], t = 1:6))
+
+par(mfrow = c(2,2))
+for(i in 2:5) {
+  # Visualize
+  plot1(pred)
+  lines(spline(x = pred$year, y = pred[, i], n = 100), lty = &#39;dashed&#39;, col = cols[4])
+  lines(spline(x = pred2$year, y = pred2[, i], n = 100), lty = &#39;dashed&#39;, col = cols[6])
+  points(x = pred$year, y = pred[, i], pch = 1, cex = 2, col = cols[4])
+  points(x = pred2$year, y = pred2[, i], pch = 1, cex = 2, col = cols[6])
+  points(x = pop$year, y = pop[, i], pch = 20, cex = 1.5, col = cols[2])
+}
+# Legend
+lines(x = c(1, 1.4), y = c((max(pred) * .85), (max(pred) * .85)), lty = &#39;dashed&#39;, col = cols[4])
+lines(x = c(1, 1.4), y = c((max(pred) * .78), (max(pred) * .78)), lty = &#39;dashed&#39;, col = cols[6])
+points(x = 1.2, y = (max(pred) * .92), pch = 20, cex = 1.5, col = cols[2])
+points(x = 1.2, y = (max(pred) * .85), pch = 1, cex = 2, col = cols[4])
+points(x = 1.2, y = (max(pred) * .78), pch = 1, cex = 2, col = cols[6])
+text(x = 1.5, y = (max(pred) * .92), &quot;Simulated data&quot;, adj = 0)
+text(x = 1.5, y = (max(pred) * .85), &quot;Arithmetic average&quot;, adj = 0)
+text(x = 1.5, y = (max(pred) * .78), &quot;Geometric average&quot;, adj = 0)</code></pre>
+<p><img src="/post/disturbanceEcology/DensityIndependentGrowth_files/figure-html/pred3-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="simulated-disturbances" class="section level2">
+<h2>Simulated disturbances</h2>
+<p>This model offers very little opportunity to test disturbances in any meaningful
+way. We mostly present it to start from the very basics. We can however take a
+look at how manipulating model parameters affects population trends.
+Simulated disturbances will increase in complecity as the models become more
+complex, but for now we will keep things as simple as possible considering the
+simplicity of the model presented.</p>
+<div id="population-size" class="section level3">
+<h3>Population size</h3>
+<p>We can see that the initial population size greatly influences
+population size at the end of simulations even if <span class="math inline">\(\lambda\)</span> is constant:</p>
+<p><br/></p>
+<pre class="r"><code>popN0 &lt;- data.frame(pop1 = ddig(1, 3, 1:5),
+                    pop2 = ddig(2, 3, 1:5),
+                    pop3 = ddig(3, 3, 1:5),
+                    pop4 = ddig(4, 3, 1:5),
+                    pop5 = ddig(5, 3, 1:5),
+                    pop6 = ddig(6, 3, 1:5),
+                    pop7 = ddig(7, 3, 1:5))
+
+# Visualize
+cols &lt;- gpuPalette(&quot;insileco&quot;)
+par(mfrow = c(1,2), mar = c(4,4,1,1))
+matplot(popN0, type = &#39;l&#39;, col = cols)
+matplot(popN0, type = &#39;l&#39;, log = &#39;y&#39;, col = cols)</code></pre>
+<p><img src="/post/disturbanceEcology/DensityIndependentGrowth_files/figure-html/N0-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="growth-rate" class="section level3">
+<h3>Growth rate</h3>
+<p>Similarly, changing <em>per capita</em> growth rate greatly influences final
+population size:</p>
+<pre class="r"><code>popN0 &lt;- data.frame(pop1 = ddig(1, .25, 1:5),
+                    pop2 = ddig(1, .5, 1:5),
+                    pop3 = ddig(1, .75, 1:5),
+                    pop4 = ddig(1, 1, 1:5),
+                    pop5 = ddig(1, 1.25, 1:5),
+                    pop6 = ddig(1, 1.5, 1:5),
+                    pop7 = ddig(1, 2, 1:5))
+
+# Visualize
+par(mfrow = c(1,2), mar = c(4,4,1,1))
+matplot(popN0, type = &#39;l&#39;, col = cols)
+matplot(popN0, type = &#39;l&#39;, log = &#39;y&#39;, col = cols)</code></pre>
+<p><img src="/post/disturbanceEcology/DensityIndependentGrowth_files/figure-html/lambda-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>As stated previously, this model is a good stepping stone toward more complex
+ecological models, which we will keep exploring in this post series. Stay tuned
+for the next post in the series!</p>
+</div>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-Stevens_2009">
+<p>1. Stevens, M. H. H. <em>A primer of ecology with r</em>. (Springer New York, 2009). doi:<a href="https://doi.org/10.1007/978-0-387-89882-7">10.1007/978-0-387-89882-7</a></p>
+</div>
+</div>
+</div>

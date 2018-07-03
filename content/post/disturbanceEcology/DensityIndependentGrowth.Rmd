@@ -1,0 +1,413 @@
+---
+title: Disturbance Ecology Series - Discrete Density Independent Growth
+author: [david]
+reviewer:
+date: 2018-07-02
+tags: [Disturbance Ecology, ecology, disturbance, model, population, community]
+rpkgs: [base, graphics, graphicsutils, latex2exp, utils]
+draft: true
+tweet: "Disturbance Ecology Series - Discrete Density Independent Growth"
+estime: 15
+relativeurls: true
+bibliography: [../../../static/bib/inSilecoRef.bib]
+csl: [../../../static/bib/nature.csl]
+link-citations: yes
+navposts:
+  prev: disturbanceEcology
+  home: disturbanceEcology
+---
+
+```{r bibSetUp, echo=FALSE}
+source('../../../static/Rscript/bibSetUp.R')
+```
+
+`r htmltools::HTML("{{< distecolintro >}}")`
+
+```{r libraries, echo = F}
+library(graphicsutils)
+library(latex2exp)
+cols <- gpuPalette("insileco")
+```
+
+```{r codeChunkSetUp, echo=FALSE}
+source('../../../static/Rscript/codeChunkSetUp.R')
+```
+
+## Discrete density independent growth
+
+In this first post we start by looking at the most simple population dynamic
+model available, the case of discrete density independent growth for a single
+species population. This model is a nice model to understand basic population
+dynamics and a useful stepping stone towards more complicated models
+of population dynamics.
+
+## Theory in brief
+
+Let's begin by explaining what discrete and density independent growth are.
+
+Discrete growth means that a population grows in separate
+and distinct steps, such as large mammals giving birth to a set amount of
+offsprings every year. Density independent growth, meanwhile, means that
+there is no statistical relation between population density and its *per capita*
+growth rate [@Stevens_2009]. This would be the case for a populations that grows
+without any apparent environmental constraints. Human population growth is a good
+example of discrete (although we don't model our populations using discrete
+growth models) and density independent growth (see
+[Our World in Data](https://ourworldindata.org/world-population-growth)).
+
+<br/>
+
+This simple model simulates population dynamics using a constant
+geometric growth, *i.e.* using a constant growth parameter:
+
+$$N_t = \lambda^t N_0$$
+
+where $N$ is population size, $N_0$ is the initial population size, $\lambda$
+is the *per capita* growth rate and $t$ is the time.
+
+<br/>
+
+Let's write a function for later use, also available in the
+[`inSilecoMod` package](https://github.com/inSileco/inSilecoMod):
+
+```{r model}
+ddig <- function(N0, lambda, t) lambda^t * N0
+```
+
+<br/>
+
+In essence, this model assumes that every individual in the population will
+foster a constant and finite amount of offsprings at every time step. If we
+imagine a population in which each individual fosters two offspring each year
+and that we start with 1 individual in the population, we know that by the
+second year, we will have 3 individuals in the population, *i.e.* the
+parent and the offsprings. With this information, we can then predict
+population size for every subsequent year:
+
+\begin{eqnarray}
+  \nonumber N_0 &=& 1 \\
+  \nonumber N_1 &=& 3N_0 = 3 \\
+  \nonumber N_2 &=& 3N_1 = 3(3N_0) = 3^2N_0 = 9 \\
+  \nonumber N_3 &=& 3N_2 = 3(3^2N_0) = 3^3N_0 = 27 \\
+  \nonumber ... \\
+  \nonumber N_t &=& 3^tN_0 \\
+\end{eqnarray}
+
+```{r example1, fig.height = 5, fig.width = 5, fig.align = 'center', echo = F}
+N <- c(1,3,9,27)
+t <- 1:4
+par(mar = c(4,4,1,1))
+plot(x = t, y = N, ylab = 'Population size', xlab = 'Time',
+     pch = 20, axes = F, cex = 1.5, col = cols[2])
+lines(x = t, y = N, col = cols[2], lwd = 1.25)
+axis(1, at = 1:4)
+axis(2)
+```
+
+Further generalizing the growth rates gives us the initial function that we
+presented:
+
+$$N_t = \lambda^t N_0$$
+
+Another important aspect of this model is that:
+
+\begin{eqnarray}
+  \nonumber \lambda > 1 & \rightarrow & N \text{ increases} \\
+  \nonumber \lambda = 1 & \rightarrow & N \text{ is constant} \\
+  \nonumber \lambda < 1 & \rightarrow & N \text{ decreases}
+\end{eqnarray}
+
+```{r lambdaDec, fig.height = 5, fig.width = 5, fig.align = 'center', results = 'hold', echo = F}
+pop <- data.frame(pop1 = ddig(10, .5, 1:5),
+                  pop2 = ddig(10, 1, 1:5),
+                  pop3 = ddig(10, 1.5, 1:5))
+
+# Visualize
+par(mar = c(4,4,1,1))
+plot0(x = c(1,5), y = c(0,80))
+for(i in 1:3) points(x = 1:5, y = pop[, i], cex = 1.5, col = cols[i+1], pch = 20)
+for(i in 1:3) lines(x = 1:5, y = pop[, i], lwd = 1.25, col = cols[i+1])
+axis(1)
+axis(2, at = seq(0,80,20))
+mtext('Time', 1, 2)
+mtext('Population size', 2, 2)
+text(x = 1.5, y = 12, TeX("$\\lambda = 1$"), cex = .8)
+text(x = 1.5, y = 22, TeX("$\\lambda > 1$"), cex = .8)
+text(x = 1.5, y = 1, TeX("$\\lambda < 1$"), cex = .8)
+```
+
+<br/>
+
+## Simulated ecology
+
+To delve a little deeper into this model, we will now simulate a simple
+population in which, like before, every individual fosters 2 offsprings
+at every discrete time step in a perfect geometrical growth. We will then
+project population size in time using the model and compare the simulated
+population with the results from this model.
+
+### Functions
+
+Let's write a few functions that we can use later to make things easier. First,
+a function that simulates our population sequentially through time so that we
+can later add some complexity to our simulations.
+
+```{r simPop}
+simPop <- function(N0, rate, nt) {
+  pop <- numeric(nt + 1)
+  pop[1] <- N0
+  for(i in 2:(nt+1)) {
+    pop[i] <- pop[i-1] + (rate * pop[i-1])
+  }
+  pop
+}
+```
+
+Second, I'm embedding a plot call in a function so that I can use it again.
+You can make this in a single command line, I simply like to customize my plots.
+
+```{r dataViz}
+plot1 <- function(pop) {
+  par(mar = c(4,4,1,1))
+  plot0(x = range(pop$year),
+        y = c(0, max(pop[, 2:ncol(pop)])))
+  axis(1, cex.axis = .75)
+  axis(2, cex.axis = .75)
+  mtext("Abundance", side = 2, line = 2.25)
+  mtext("Year", side = 1, line = 2.25)
+}
+
+```
+
+### Simulations - Geometric growth rate
+
+We begin by simulating a population that has a perfect geometric growth:
+
+```{r dataSim, fig.height = 5, fig.width = 5, fig.align = 'center', results = 'hold'}
+nt <- 5
+rate <- 2
+N0 <- 10
+pop <- data.frame(year = 0:nt,
+                  pop = simPop(N0, rate, nt))
+
+plot1(pop)
+points(x = pop$year, y = pop$pop, pch = 20, cex = 1.5, col = cols[2])
+```
+
+With this data in hand, we can evaluate the rate of increase from one year to the next,
+*e.g.* by dividing $N_1 / N_0 = 3 / 1 = 3$. This is the $\lambda$ for our model.
+We can then use this, with $N_0 = 10$, to model population size and make predictions
+for the future population size using the discrete density independent model and
+the `ddig()` function that we wrote earlier.
+
+```{r predict, fig.height = 5, fig.width = 5, fig.align = 'center', results = 'hold'}
+pred <- data.frame(year = 1:10,
+                   pop = ddig(N0 = 10, lambda = 3, t = 1:10))
+
+# Visualize
+plot1(pred)
+lines(spline(x = pred$year, y = pred$pop, n = 100), lty = 'dashed', col = cols[4])
+points(x = pred$year, y = pred$pop, pch = 1, cex = 2, col = cols[4])
+points(x = pop$year, y = pop$pop, pch = 20, cex = 1.5, col = cols[2])
+```
+
+In this first example, we obviously obtain a perfect match between model
+projections and the simulated population because we simulated a population with
+geometric (*i.e.* constant) growth rate. This is however rarely (read *never*)
+the case in real life.
+
+### Simulations - Variable growth rates
+
+Let's add some realism to the simulated population by allowing growth
+rate to vary between years, and thus deviate from model expectations.
+To achieve this, we will randomly set growth rate using a uniform distribution
+between 0 and 3.
+
+```{r simPop2}
+# We will create a new function that simulates our population sequentially
+# through time so that we can later use it to add some complexity to our simulations.
+simPop2 <- function(N0, rateRange, nt) {
+  pop <- numeric(nt + 1)
+  pop[1] <- N0
+  for(i in 2:(nt+1)) {
+    rate <- runif(1, rateRange[1], rateRange[2])
+    pop[i] <- pop[i-1] + (rate * pop[i-1])
+  }
+  pop
+}
+```
+
+With this in hand, let's simulate a few populations all starting with the same
+initial size.
+
+```{r dataSim2, fig.height = 5, fig.width = 5, fig.align = 'center', results = 'hold'}
+nt <- 5
+rate <- c(0,3)
+N0 <- 10
+pop <- data.frame(year = 0:nt,
+                  pop1 = simPop2(N0, rate, nt),
+                  pop2 = simPop2(N0, rate, nt),
+                  pop3 = simPop2(N0, rate, nt),
+                  pop4 = simPop2(N0, rate, nt))
+```
+
+We can now see that growth rates are much more variable.
+
+```{r growthRates, fig.height = 5, fig.width = 10, fig.align = 'center'}
+rates <- data.frame(pop1 = pop$pop1[2:(nt+1)] / pop$pop1[1:nt],
+                    pop2 = pop$pop2[2:(nt+1)] / pop$pop2[1:nt],
+                    pop3 = pop$pop3[2:(nt+1)] / pop$pop3[1:nt],
+                    pop4 = pop$pop4[2:(nt+1)] / pop$pop4[1:nt])
+rates
+
+par(mfrow = c(1,2), mar = c(4,4,1,1))
+matplot(pop[, 2:5], type = 'l', col = cols, lwd = 1.25, ylab = 'Population size')
+matplot(rates, type = 'l', col = cols, lwd = 1.25, ylab = 'Rates')
+```
+
+***Arithmetic average***
+
+The goal then becomes to find a $\lambda$ value that allows us to model the growth
+of those populations using a discrete density independent growth model. The first
+idea that comes to mind is to use the arithmetic mean of the growth rates.
+
+```{r pred2, fig.height = 10, fig.width = 10, fig.align = 'center', results = 'hold'}
+meanRates <- apply(rates, 2, mean)
+pred <- data.frame(year = 1:6,
+                   pop1 = ddig(N0 = 10, lambda = meanRates[1], t = 1:6),
+                   pop2 = ddig(N0 = 10, lambda = meanRates[2], t = 1:6),
+                   pop3 = ddig(N0 = 10, lambda = meanRates[3], t = 1:6),
+                   pop4 = ddig(N0 = 10, lambda = meanRates[4], t = 1:6))
+
+par(mfrow = c(2,2))
+for(i in 2:5) {
+  # Visualize
+  plot1(pred)
+  lines(spline(x = pred$year, y = pred[, i], n = 100), lty = 'dashed', col = cols[4])
+  points(x = pred$year, y = pred[, i], pch = 1, cex = 2, col = cols[4])
+  points(x = pop$year, y = pop[, i], pch = 20, cex = 1.5, col = cols[2])
+}
+```
+
+While useful, the use of the arithmetic average can lead to erreneous results.
+Following the example from Stevens 2009 [@Stevens_2009] on page 11, let's
+imagine a population with $N_0 = 100$, annual growth rate $R_1 = 0.5$ and
+$R_2 = 1.5$. Using the arithmetic average to evaluate the growth rate for the
+model would give us $\lambda = 1$, *i.e.* a population with a constant $N = 100$.
+However, if we look at population trends applying $R$ for consecutive years,
+the result would be quite different:
+
+\begin{eqnarray}
+  \nonumber N_0 &=& 100 \\
+  \nonumber N_1 &=& N_0 * 0.5 = 50 \\
+  \nonumber N_2 &=& N_1 * 1.5 = 75 \\
+\end{eqnarray}
+
+We need something better.
+
+<br/>
+
+***Geometric average***
+
+The solution we are presenting here is the one found in Stevens's book [@Stevens_2009],
+which is to use the [geometric average](https://en.wikipedia.org/wiki/Geometric_mean):
+
+$$\bar{R} = \Bigg(\prod_{i=1}^{t} R_i\Bigg)^{1/t}$$
+
+Here is a nice function to evaluate the geometric mean, found on
+[stackoverflow](https://stackoverflow.com/questions/2602583/geometric-mean-is-there-a-built-in):
+
+```{r geomMean}
+gm_mean <- function(x, na.rm = TRUE) {
+  exp(sum(log(x[x > 0]), na.rm = na.rm) / length(x))
+}
+```
+
+And we can look at how the geometric average affects the predictions:
+
+``` {r pred3, fig.height = 10, fig.width = 10, fig.align = 'center', results = 'hold'}
+meanRatesGeom <- apply(rates, 2, gm_mean)
+pred2 <- data.frame(year = 1:6,
+                    pop1 = ddig(N0 = 10, lambda = meanRatesGeom[1], t = 1:6),
+                    pop2 = ddig(N0 = 10, lambda = meanRatesGeom[2], t = 1:6),
+                    pop3 = ddig(N0 = 10, lambda = meanRatesGeom[3], t = 1:6),
+                    pop4 = ddig(N0 = 10, lambda = meanRatesGeom[4], t = 1:6))
+
+par(mfrow = c(2,2))
+for(i in 2:5) {
+  # Visualize
+  plot1(pred)
+  lines(spline(x = pred$year, y = pred[, i], n = 100), lty = 'dashed', col = cols[4])
+  lines(spline(x = pred2$year, y = pred2[, i], n = 100), lty = 'dashed', col = cols[6])
+  points(x = pred$year, y = pred[, i], pch = 1, cex = 2, col = cols[4])
+  points(x = pred2$year, y = pred2[, i], pch = 1, cex = 2, col = cols[6])
+  points(x = pop$year, y = pop[, i], pch = 20, cex = 1.5, col = cols[2])
+}
+# Legend
+lines(x = c(1, 1.4), y = c((max(pred) * .85), (max(pred) * .85)), lty = 'dashed', col = cols[4])
+lines(x = c(1, 1.4), y = c((max(pred) * .78), (max(pred) * .78)), lty = 'dashed', col = cols[6])
+points(x = 1.2, y = (max(pred) * .92), pch = 20, cex = 1.5, col = cols[2])
+points(x = 1.2, y = (max(pred) * .85), pch = 1, cex = 2, col = cols[4])
+points(x = 1.2, y = (max(pred) * .78), pch = 1, cex = 2, col = cols[6])
+text(x = 1.5, y = (max(pred) * .92), "Simulated data", adj = 0)
+text(x = 1.5, y = (max(pred) * .85), "Arithmetic average", adj = 0)
+text(x = 1.5, y = (max(pred) * .78), "Geometric average", adj = 0)
+```
+
+## Simulated disturbances
+
+This model offers very little opportunity to test disturbances in any meaningful
+way. We mostly present it to start from the very basics. We can however take a
+look at how manipulating model parameters affects population trends.
+Simulated disturbances will increase in complecity as the models become more
+complex, but for now we will keep things as simple as possible considering the
+simplicity of the model presented.
+
+### Population size
+
+We can see that the initial population size greatly influences
+population size at the end of simulations even if $\lambda$ is constant:
+
+<br/>
+
+```{r N0, fig.height = 5, fig.width = 10, fig.align = 'center', results = 'hold'}
+popN0 <- data.frame(pop1 = ddig(1, 3, 1:5),
+                    pop2 = ddig(2, 3, 1:5),
+                    pop3 = ddig(3, 3, 1:5),
+                    pop4 = ddig(4, 3, 1:5),
+                    pop5 = ddig(5, 3, 1:5),
+                    pop6 = ddig(6, 3, 1:5),
+                    pop7 = ddig(7, 3, 1:5))
+
+# Visualize
+cols <- gpuPalette("insileco")
+par(mfrow = c(1,2), mar = c(4,4,1,1))
+matplot(popN0, type = 'l', col = cols)
+matplot(popN0, type = 'l', log = 'y', col = cols)
+```
+
+### Growth rate
+
+Similarly, changing *per capita* growth rate greatly influences final
+population size:
+
+```{r lambda, fig.height = 5, fig.width = 10, fig.align = 'center', results = 'hold'}
+popN0 <- data.frame(pop1 = ddig(1, .25, 1:5),
+                    pop2 = ddig(1, .5, 1:5),
+                    pop3 = ddig(1, .75, 1:5),
+                    pop4 = ddig(1, 1, 1:5),
+                    pop5 = ddig(1, 1.25, 1:5),
+                    pop6 = ddig(1, 1.5, 1:5),
+                    pop7 = ddig(1, 2, 1:5))
+
+# Visualize
+par(mfrow = c(1,2), mar = c(4,4,1,1))
+matplot(popN0, type = 'l', col = cols)
+matplot(popN0, type = 'l', log = 'y', col = cols)
+```
+
+As stated previously, this model is a good stepping stone toward more complex
+ecological models, which we will keep exploring in this post series. Stay tuned
+for the next post in the series!
+
+## References
