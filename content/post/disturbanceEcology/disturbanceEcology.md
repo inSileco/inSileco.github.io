@@ -91,6 +91,4 @@ Also to access the full list of post of the series, click on the tag [Disturbanc
 
 #### **1- Discrete Density-Independent Growth** [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "DensityIndependentGrowth" >}})
 
-#### **2- Continuous Exponential Growth**   <i class="fa fa-hourglass-half" aria-hidden="true" style="color:#c7254e"></i>
-
-<!-- #### **2- Continuous Exponential Growth** [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "ContinuousExponentialGrowth" >}}) -->
+#### **2- Continuous Exponential Growth** [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "ContinuousExponentialGrowth" >}}) 

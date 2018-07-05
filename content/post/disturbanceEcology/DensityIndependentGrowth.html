@@ -15,6 +15,7 @@ link-citations: yes
 navposts:
   prev: disturbanceEcology
   home: disturbanceEcology
+  next: ContinuousExponentialGrowth
 ---
 
 
@@ -176,11 +177,11 @@ pop &lt;- data.frame(year = 0:nt,
                     pop4 = pop$pop4[2:(nt+1)] / pop$pop4[1:nt])
 rates
 #R&gt;       pop1     pop2     pop3     pop4
-#R&gt; 1 3.461662 3.395601 2.040363 1.830775
-#R&gt; 2 1.040555 1.656360 2.336889 3.474657
-#R&gt; 3 3.537849 1.297052 3.022492 2.431359
-#R&gt; 4 3.659354 2.878623 2.798357 3.218993
-#R&gt; 5 2.418180 1.775319 1.507087 2.233671
+#R&gt; 1 2.588635 1.748670 1.035498 2.142559
+#R&gt; 2 3.726291 3.373474 1.794670 2.516353
+#R&gt; 3 2.712475 2.729712 1.748372 3.620535
+#R&gt; 4 3.826054 3.067447 1.496227 3.707773
+#R&gt; 5 3.177494 3.453479 1.026849 3.464950
 
 par(mfrow = c(1,2), mar = c(4,4,1,1))
 matplot(pop[, 2:5], type = &#39;l&#39;, col = cols, lwd = 1.25, ylab = &#39;Population size&#39;)
