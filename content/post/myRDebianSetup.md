@@ -198,8 +198,7 @@ R_LIBS_USER=${R_LIBS_USER-'~/R/x86_64-pc-linux-gnu-library/3.5'}
 The latter indicates the path to packages installed with `ìnstall.packages()`,
 while the former points to another file where I do most of the tweaks!
 Here it is (also available on
-[<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/KevCaz/dotfiles/blob/master/dotfiles/.Rprofile)
-):
+[<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/KevCaz/dotfiles/blob/master/dotfiles/.Rprofile)):
 
 
 ```R
