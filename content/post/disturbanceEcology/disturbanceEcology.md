@@ -9,7 +9,7 @@ tweet: "Disturbance Ecology Series"
 estime: 15
 navposts:
   home: disturbanceEcology
-  next: DensityIndependentGrowth
+  next: geometricGrowth
 ---
 
 ### A naïve beginning
@@ -89,6 +89,6 @@ Also to access the full list of post of the series, click on the tag [Disturbanc
 
 <br/>
 
-#### **1- Discrete Density-Independent Growth** [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "DensityIndependentGrowth" >}})
+#### **1- Discrete Density-Independent Growth** [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "geometricGrowth" >}})
 
-#### **2- Continuous Exponential Growth** [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "ContinuousExponentialGrowth" >}}) 
+#### **2- Continuous Exponential Growth** [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "exponentialGrowth" >}}) 

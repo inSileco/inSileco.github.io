@@ -13,7 +13,7 @@ bibliography: [../../../static/bib/inSilecoRef.bib]
 csl: [../../../static/bib/nature.csl]
 link-citations: yes
 navposts:
-  prev: DensityIndependentGrowth
+  prev: geometricGrowth
   home: disturbanceEcology
 ---
 
@@ -22,7 +22,7 @@ navposts:
 {{< distecolintro >}}
 <div id="continuous-exponential-growth" class="section level2">
 <h2>Continuous Exponential Growth</h2>
-<p>In the <a href="{{< ref DensityIndependentGrowth >}}">first post</a>
+<p>In the <a href="{{< ref geometricGrowth >}}">first post</a>
 of this series, we looked at the most simple population dynamic model available,
 <em>i.e.</em> discrete density independent growth of a single species population. That
 simple model uses discrete growth increments at specified time steps. Certain
@@ -40,11 +40,11 @@ that of the bacterium <em>Escherichia coli</em>. Imagine <em>E. coli</em> cells 
 largely asynchronously in such a way new cells are observed in the population
 <em>very</em> frequently, giving the appearance of a smooth growth curve at very short
 time intervals.</p>
-<p><img src="/post/disturbanceEcology/ContinuousExponentialGrowth_files/figure-html/exempleSteps-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/post/disturbanceEcology/exponentialGrowth_files/figure-html/exempleSteps-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>One could take a discrete model with a very large number of time steps, <em>i.e.</em>
 ideally an infinite number of steps. To explore this, let’s start from the
 discrete model we presented in the
-<a href="{{< ref DensityIndependentGrowth >}}">first post</a>
+<a href="{{< ref geometricGrowth >}}">first post</a>
 on discrete density independent growth.
 We defined <span class="math inline">\(\lambda\)</span> as the <em>per capita</em> growth rate of a population.
 From <span class="math inline">\(\lambda\)</span> we can define another term, <span class="math inline">\(r_d\)</span>, the discrete growth factor,
@@ -93,7 +93,7 @@ is the instantaneous <em>per capita</em> growth rate and <span class="math inlin
   \nonumber \lambda = 1; \ r = 0 &amp; \rightarrow &amp; N \text{ is constant} \\
   \nonumber \lambda &lt; 1; \ r &lt; 0 &amp; \rightarrow &amp; N \text{ decreases}
 \end{eqnarray}\]</span></p>
-<p><img src="/post/disturbanceEcology/ContinuousExponentialGrowth_files/figure-html/example1-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="/post/disturbanceEcology/exponentialGrowth_files/figure-html/example1-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p><br/></p>
 <p>We could also use the exponential growth formula to evaluate the time required
 for the population to double, triple, etc:</p>
@@ -123,7 +123,7 @@ tpl
 x10 &lt;- mtime(0.03, 10)
 x10
 #R&gt; [1] 76.75284</code></pre>
-<p><img src="/post/disturbanceEcology/ContinuousExponentialGrowth_files/figure-html/mtimeFig-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="/post/disturbanceEcology/exponentialGrowth_files/figure-html/mtimeFig-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Now enough with the theory, let’s jump into simulations!</p>
 </div>
 <div id="simulated-ecology" class="section level2">

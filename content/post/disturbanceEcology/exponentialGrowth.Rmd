@@ -13,7 +13,7 @@ bibliography: [../../../static/bib/inSilecoRef.bib]
 csl: [../../../static/bib/nature.csl]
 link-citations: yes
 navposts:
-  prev: DensityIndependentGrowth
+  prev: geometricGrowth
   home: disturbanceEcology
 ---
 
@@ -36,7 +36,7 @@ source('../../../static/Rscript/codeChunkSetUp.R')
 
 ## Continuous Exponential Growth
 
-In the [first post](`r htmltools::HTML("{{< ref DensityIndependentGrowth >}}")`)
+In the [first post](`r htmltools::HTML("{{< ref geometricGrowth >}}")`)
 of this series, we looked at the most simple population dynamic model available,
 *i.e.* discrete density independent growth of a single species population. That
 simple model uses discrete growth increments at specified time steps. Certain
@@ -93,7 +93,7 @@ plot1(5) # graph 3
 One could take a discrete model with a very large number of time steps, *i.e.*
 ideally an infinite number of steps. To explore this, let's start from the
 discrete model we presented in the
-[first post](`r htmltools::HTML("{{< ref DensityIndependentGrowth >}}")`)
+[first post](`r htmltools::HTML("{{< ref geometricGrowth >}}")`)
 on discrete density independent growth.
 We defined $\lambda$ as the *per capita* growth rate of a population.
 From $\lambda$ we can define another term, $r_d$, the discrete growth factor,
@@ -183,9 +183,9 @@ mtext('Population size', 2, 2)
 lines(x = c(1, 10), y = c(39, 39), col = cols[2], lwd = 2)
 lines(x = c(1, 10), y = c(37, 37), col = cols[3], lwd = 2)
 lines(x = c(1, 10), y = c(35, 35), col = cols[4], lwd = 2)
-text(x = 12, y = 39, TeX("$r \\, > \\, 0$"), cex = 1, adj = 0)
+text(x = 12, y = 39, TeX("$r = 0.03$"), cex = 1, adj = 0)
 text(x = 12, y = 37, TeX("$r = 0$"), cex = 1, adj = 0)
-text(x = 12, y = 35, TeX("$r \\, < \\, 0$"), cex = 1, adj = 0)
+text(x = 12, y = 35, TeX("$r = -0.03$"), cex = 1, adj = 0)
 ```
 
 <br/>
