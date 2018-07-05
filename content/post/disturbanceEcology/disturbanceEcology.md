@@ -1,7 +1,7 @@
 ---
 title: Disturbance Ecology Series
 author: [david]
-reviewer:
+reviewer: [kevin]
 date: 2018-07-01
 tags: [Disturbance Ecology, ecology, disturbance, model, population, community]
 draft: true
@@ -39,7 +39,7 @@ as you add complexity to the overall design.
 Realizing this, I decided to focus part of my thesis on using theoretical ecology
 models to investigate how populations of interacting species are likely to be
 affected when multiple disturbances are acting simultaneously. I added another
-supervisor to my thesis committee, Dominique Gravel, who works on all things
+supervisor to my thesis committee, [Dominique Gravel,](https://ielab.recherche.usherbrooke.ca/home/) who works on all things
 theoretical in the realm of ecology, with a healthy touch of empirical work
 thrown in. I also reconnected with R from my master's days and quickly realized
 how poorly I was coding back then. In all fairness, I will probably realize
@@ -51,6 +51,7 @@ beginning with the Lotka-Volterra interspecific competition model. Entering
 this world, I redesigned my thesis to begin investigating how multiple
 disturbances are likely to affect the structure of networks of interacting
 species through theory.
+
 
 ### A shortcoming recognition
 
@@ -71,7 +72,7 @@ initiate this work,
 by [M. Henry H. Stevens](http://blogs.miamioh.edu/stevens-lab/) [@Stevens_2009].
 
 Posts will begin with the most basic models and grow in complexity. The content
-of these post is going to be quite straightforward. First, I will provide a
+of these posts is going to be quite straightforward. First, I will provide a
 brief overview of the theory of the topic I working on. Then, I will provide
 code to simulate an example of the theory. Then I will tinker around with
 relevant variables to simulate disturbances on the populations or communities
@@ -91,4 +92,4 @@ Also to access the full list of post of the series, click on the tag [Disturbanc
 
 #### **1- Discrete Density-Independent Growth** [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "geometricGrowth" >}})
 
-#### **2- Continuous Exponential Growth** [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "exponentialGrowth" >}}) 
+#### **2- Continuous Exponential Growth** [<i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i>]({{< ref "exponentialGrowth" >}})
