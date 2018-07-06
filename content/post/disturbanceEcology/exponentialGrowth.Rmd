@@ -3,7 +3,7 @@ title: Disturbance Ecology Series - Continuous Exponential Growth
 author: [david]
 reviewer:
 date: 2018-07-02
-tags: [Disturbance Ecology, ecology, disturbance, model, population, community]
+tags: [Disturbance Ecology, ecology, disturbance, model, population, community, exponential growth]
 rpkgs: [base, graphics, graphicsutils, latex2exp, utils]
 draft: true
 tweet: "Disturbance Ecology Series - Continuous Exponential Growth"
@@ -19,6 +19,7 @@ navposts:
 
 ```{r bibSetUp, echo=FALSE}
 source('../../../static/Rscript/bibSetUp.R')
+source('../../../static/Rscript/codeChunkSetUp.R')
 ```
 
 `r htmltools::HTML("{{< distecolintro >}}")`
@@ -30,9 +31,6 @@ cols <- gpuPalette("insileco")
 contExp <- function(N0, r, t) N0 * exp(r * t) # Exponential growth function
 ```
 
-```{r codeChunkSetUp, echo=FALSE}
-source('../../../static/Rscript/codeChunkSetUp.R')
-```
 
 ## Continuous Exponential Growth
 
@@ -63,11 +61,11 @@ r <- .05
 t <- 0:100
 N <- contExp(N0, r, t)
 
-plot1 <- function(n) {
+plot1 <- function(n, ylab = "") {
   plot0(x = c(0, 100), y = c(0,150))
   axis(1, at = seq(0, 101, by = 10), label = seq(0, 100, by = 10))
-  axis(2)
-  mtext('Population size', 2, 2.5)
+  axis(2, las = 1)
+  mtext(ylab, 2, 2.6)
   mtext('Time', 1, 2.5)
   lines(x = t, y = N, lwd = 1, col = cols[2])
   for(i in seq(1,100,by=n)) lines(x = c(t[i], t[i+n]), y = c(N[i], N[i]), col = cols[3])
@@ -80,12 +78,12 @@ plot0()
 # graph 4
   plot0(x = c(0, 100), y = c(0,150))
   axis(1, at = seq(0, 101, by = 10), label = seq(0, 100, by = 10))
-  axis(2)
-  mtext('Population size', 2, 2.5)
+  axis(2, las = 1)
+  mtext('Population size', 2, 2.6)
   mtext('Time', 1, 2.5)
   lines(x = t, y = N, lwd = 1.5, col = cols[2])
 plot0()
-plot1(25) # graph 1
+plot1(25, "Population size") # graph 1
 plot1(10) # graph 2
 plot1(5) # graph 3
 ```

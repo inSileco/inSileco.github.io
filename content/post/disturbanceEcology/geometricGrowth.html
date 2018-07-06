@@ -1,7 +1,7 @@
 ---
 title: Disturbance Ecology Series - Discrete Density Independent Growth
 author: [david]
-reviewer:
+reviewer: [kevin]
 date: 2018-07-02
 tags: [Disturbance Ecology, ecology, disturbance, model, population, community]
 rpkgs: [base, graphics, graphicsutils, latex2exp, utils]
@@ -177,11 +177,11 @@ pop &lt;- data.frame(year = 0:nt,
                     pop4 = pop$pop4[2:(nt+1)] / pop$pop4[1:nt])
 rates
 #R&gt;       pop1     pop2     pop3     pop4
-#R&gt; 1 1.136337 1.880038 2.644001 1.659373
-#R&gt; 2 1.328502 2.953557 1.546719 1.617366
-#R&gt; 3 3.363450 1.065644 1.485526 2.375147
-#R&gt; 4 1.725291 1.355422 2.594039 2.580416
-#R&gt; 5 1.549468 3.884654 2.585483 2.015456
+#R&gt; 1 1.296293 3.977279 2.817646 2.402144
+#R&gt; 2 3.415145 2.148723 3.231153 1.413180
+#R&gt; 3 2.822722 1.698193 3.155067 2.968950
+#R&gt; 4 2.148497 2.789526 1.534407 3.454058
+#R&gt; 5 3.993411 2.037013 1.890938 2.139918
 
 par(mfrow = c(1,2), mar = c(4,4,1,1))
 matplot(pop[, 2:5], type = &#39;l&#39;, col = cols, lwd = 1.25, ylab = &#39;Population size&#39;)

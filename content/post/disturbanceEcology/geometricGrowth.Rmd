@@ -1,7 +1,7 @@
 ---
 title: Disturbance Ecology Series - Discrete Density Independent Growth
 author: [david]
-reviewer:
+reviewer: [kevin]
 date: 2018-07-02
 tags: [Disturbance Ecology, ecology, disturbance, model, population, community]
 rpkgs: [base, graphics, graphicsutils, latex2exp, utils]
@@ -20,6 +20,7 @@ navposts:
 
 ```{r bibSetUp, echo=FALSE}
 source('../../../static/Rscript/bibSetUp.R')
+source('../../../static/Rscript/codeChunkSetUp.R')
 ```
 
 `r htmltools::HTML("{{< distecolintro >}}")`
@@ -30,9 +31,6 @@ library(latex2exp)
 cols <- gpuPalette("insileco")
 ```
 
-```{r codeChunkSetUp, echo=FALSE}
-source('../../../static/Rscript/codeChunkSetUp.R')
-```
 
 ## Discrete density independent growth
 
@@ -84,6 +82,8 @@ and that we start with 1 individual in the population, we know that by the
 second year, we will have 3 individuals in the population, *i.e.* the
 parent and the offsprings. With this information, we can then predict
 population size for every subsequent year:
+
+
 
 \begin{eqnarray}
   \nonumber N_0 &=& 1 \\

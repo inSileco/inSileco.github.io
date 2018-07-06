@@ -16,13 +16,10 @@ output:
 
 
 ```{r codeChunkSetUp, echo=FALSE}
-source('../../static/Rscript/codeChunkSetUp.R')
+source('../../../static/Rscript/codeChunkSetUp.R')
 ```
 
-
-
 ```{r, results = "hide", echo = FALSE, message = FALSE}
-rm(list=ls())
 library(raster)
 library(magrittr)
 library(knitr)
@@ -30,8 +27,7 @@ library(kableExtra)
 opts_chunk$set(fig.align='center')
 ```
 
-
-<br/><br/>
+<br/>
 
 # Online ecology
 
@@ -137,6 +133,7 @@ ecol <- ecol[!is.na(ecol[,2]), ] # remove NAs
 knitr::kable(ecol, col.names = c('Descriptors', 'Attributes'), "html") %>%
     kableExtra::kable_styling(full_width = FALSE)
 ```
+
 
 <br/>
 
@@ -276,8 +273,9 @@ and terrestrial environments and a total of
 
 ```{r, sdmpredictors}
 # List sdmpredictors datasets
-    knitr::kable(sdmpredictors::list_datasets(), 'html') %>%
+    knitr::kable(sdmpredictors::list_datasets()[,1:4], 'html') %>%
         kable_styling(full_width = F)
+  # issues with the above if all columns included
 ```
 
 <br/>
@@ -289,21 +287,15 @@ could also be used.
 
 <br/>
 
-```{r importEnvVarhidden, echo = FALSE, eval = FALSE}
-# if following the tutorial, do not run this block and/or feel free to delete the entire block
-# this is only for saving/loading the data from our repository, the steps to download the data are in the next chunk
-# Import marine layers
-layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
-envCov <- readRDS("downloaded_files/envCov.Rds")
-```
 
 ```{r importEnvVar}
 # Import marine layers
   layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
 # layers <- 'BO_ph'
-  dir.create("downloaded_files/", showWarnings = FALSE)
-  envCov <- sdmpredictors::load_layers(layers, datadir = "downloaded_files/", rasterstack = TRUE)
+  dir.create("downloaded_predictors/", showWarnings = FALSE)
+  envCov <- sdmpredictors::load_layers(layers, datadir = "downloaded_predictors/", rasterstack = TRUE)
 ```
+
 
 <br/>
 
@@ -313,8 +305,9 @@ Clip them and plot them:
 
 ```{r cropEnvCov, eval = TRUE}
 # Clip to study area extent
-envCov <- raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax)) %>%
-  raster::stack()
+envCov <- raster::stack(
+    raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax))
+  )
 ```
 
 ```{r cropEnvCov2, eval = TRUE}
@@ -373,7 +366,6 @@ model for your species of interest...
 ```{r, SDM model, eval = TRUE, results = 'hide', warning = FALSE}
 # Basic options for modelling
   SDMoption <- biomod2::BIOMOD_ModelingOptions()
-
 # SDM model
   SDM <- biomod2::BIOMOD_Modeling(data = SDMdata,
                                     models = "MAXENT.Tsuruoka",
@@ -417,7 +409,7 @@ species spatial distribution:
 ```
 
 ```{r, unlink, echo = FALSE}
-unlink('./Gadus.morhua/', recursive = T)
+# unlink('./Gadus.morhua/', recursive = T)
 ```
 
 
