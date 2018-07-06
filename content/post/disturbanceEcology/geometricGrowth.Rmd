@@ -101,8 +101,8 @@ par(mar = c(4,4,1,1))
 plot(x = t, y = N, ylab = 'Population size', xlab = 'Time',
      pch = 20, axes = F, cex = 1.5, col = cols[2])
 lines(x = t, y = N, col = cols[2], lwd = 1.25)
-axis(1, at = 1:4)
-axis(2)
+axis(1, at = 1:2)
+axis(2, las = 1)
 ```
 
 Further generalizing the growth rates gives us the initial function that we
@@ -410,5 +410,50 @@ matplot(popN0, type = 'l', log = 'y', col = cols)
 As stated previously, this model is a good stepping stone toward more complex
 ecological models, which we will keep exploring in this post series. Stay tuned
 for the next post in the series!
+
+
+## KEV COMMENTS
+
+### Obtenir le modèle
+
+Je pense qu'il faudrait que tu etablisses le modele avec les phrase que tu as
+écrites au lieu de le donner puis le décire. Tu a tout écris c'est juste
+qu'il faut inverser l'ordre!
+
+Tu pourrais dire qu'entre 2 années (entre t+1 et t) il y a les individus de
+l'années suivante et leur descendance, si b est la descendance moyenne par individu alors:
+
+$$N_{t+1} = N_{t} + bN_{t} = (1 + b)N_{t}$$
+
+et donc $\lambda = (1+b)$. Ou alors, l'option que je préfère: d'une année a l'autre il y a un taux de de mortalité moyen $d$ et un taux de naissance moyen $b$:
+
+$$N_{t+1} = N_{t} + bN_{t} - dN_{t} -  = (1 + b - d)N_{t}$$
+
+et donc $\lambda = 1 + b - d$. C'est en fait comme ça qu'on démontre comment
+passer du discret au continu (la deminstration n'est pas trop méchante).
+
+### Remarque sur le log
+
+En fait il serait important de noter à quelque part que:
+
+$$N^t = \exp(t\log(N))$$
+
+Pourquoi? Parceque:
+
+- pas besoin d'utiliser de `spline` pour les prédictions
+- Ca permet de comprendre pourquoi il faut utiliser une moyenne géométrique (qui
+  est en fait une moyenne arithmétique sur les log) et ça explique du meme coup la trick du post de stack overflow.
+
+### Figures
+
+- Je préfère utiliser `las = 1` (voir le post de trick) pour afficher les textes
+horizontalement
+
+- sur la 2eme figure j'aurai mis les vrai valeurs de $\lambda$.
+
+- sur les figures avec les taux vairables, je mettrais scenario minimu et scenario maximum! 
+
+
+
 
 ## References

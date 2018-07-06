@@ -310,6 +310,42 @@ ecological models, which we will keep exploring in this post series. Stay tuned
 for the next post in the series!</p>
 </div>
 </div>
+<div id="kev-comments" class="section level2">
+<h2>KEV COMMENTS</h2>
+<div id="obtenir-le-modele" class="section level3">
+<h3>Obtenir le modèle</h3>
+<p>Je pense qu’il faudrait que tu etablisses le modele avec les phrase que tu as
+écrites au lieu de le donner puis le décire. Tu a tout écris c’est juste
+qu’il faut inverser l’ordre!</p>
+<p>Tu pourrais dire qu’entre 2 années (entre t+1 et t) il y a les individus de
+l’années suivante et leur descendance, si b est la descendance moyenne par individu alors:</p>
+<p><span class="math display">\[N_{t+1} = N_{t} + bN_{t} = (1 + b)N_{t}\]</span></p>
+<p>et donc <span class="math inline">\(\lambda = (1+b)\)</span>. Ou alors, l’option que je préfère: d’une année a l’autre il y a un taux de de mortalité moyen <span class="math inline">\(d\)</span> et un taux de naissance moyen <span class="math inline">\(b\)</span>:</p>
+<p><span class="math display">\[N_{t+1} = N_{t} + bN_{t} - dN_{t} -  = (1 + b - d)N_{t}\]</span></p>
+<p>et donc <span class="math inline">\(\lambda = 1 + b - d\)</span>. C’est en fait comme ça qu’on démontre comment
+passer du discret au continu (la deminstration n’est pas trop méchante).</p>
+</div>
+<div id="remarque-sur-le-log" class="section level3">
+<h3>Remarque sur le log</h3>
+<p>En fait il serait important de noter à quelque part que:</p>
+<p><span class="math display">\[N^t = \exp(t\log(N))\]</span></p>
+<p>Pourquoi? Parceque:</p>
+<ul>
+<li>pas besoin d’utiliser de <code>spline</code> pour les prédictions</li>
+<li>Ca permet de comprendre pourquoi il faut utiliser une moyenne géométrique (qui
+est en fait une moyenne arithmétique sur les log) et ça explique du meme coup la trick du post de stack overflow.</li>
+</ul>
+</div>
+<div id="figures" class="section level3">
+<h3>Figures</h3>
+<ul>
+<li><p>Je préfère utiliser <code>las = 1</code> (voir le post de trick) pour afficher les textes
+horizontalement</p></li>
+<li><p>sur la 2eme figure j’aurai mis les vrai valeurs de <span class="math inline">\(\lambda\)</span>.</p></li>
+<li><p>sur les figures avec les taux vairables, je mettrais scenario minimu et scenario maximum!</p></li>
+</ul>
+</div>
+</div>
 <div id="references" class="section level2 unnumbered">
 <h2>References</h2>
 <div id="refs" class="references">
