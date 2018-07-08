@@ -69,9 +69,12 @@ which can be simplified to:
 
 $$N_{t+1} = N_t (1+b)$$
 
-Similarly, if we know that this particular species has an average death rate of
-$d$ individual every year, $N_{t+1}$ would be equal to the number of individuals
-at time $t$ plus their offsprings minus the annual number of dead individuals:
+In this particular example, our population is eternal, meaning that no death
+occurs and every individual survives indefinitely. Death rates could however
+be incorporated in the same way as births. If we know that this particular
+species has an average death rate of $d$ individual every year, $N_{t+1}$
+would be equal to the number of individuals at time $t$ plus their offsprings
+minus the annual number of dead individuals:
 
 \begin{eqnarray}
   \nonumber N_{t+1} &=& N_t + bN_t - dN_t \\
@@ -253,7 +256,9 @@ points(x = pop$year, y = pop$pop, pch = 20, cex = 1.5, col = cols[2])
 In this first example, we obviously obtain a perfect match between model
 projections and the simulated population because we simulated a population with
 geometric (*i.e.* constant) growth rate. This is however rarely (read *never*)
-the case in real life.
+the case in real life, as population growth rates will vary temporally due
+variations in biotic and abiotic constraints such as resource availability,
+competition, reproductive sucess and environmental conditions.
 
 ### Simulations - Variable growth rates
 
@@ -390,7 +395,7 @@ $$\bar{R} = \Bigg(\prod_{i=1}^{t} R_i\Bigg)^{1/t}$$
 
 This also corresponds to calculating the mean by taking the arithmetic mean of
 the log transformed values and then transforming values back to the original
-scale by using the exponentiation, given that we values > 0:
+scale by using the exponentiation, given values $R_i > 0$:
 
 \begin{eqnarray}
   \bar{R} &=& \Bigg(\prod_{i=1}^{t} R_i\Bigg)^{1/t} \\
@@ -508,94 +513,6 @@ matplot(popN0, type = 'l', log = 'y', col = cols)
 As stated previously, this model is a good stepping stone toward more complex
 ecological models, which we will keep exploring in this post series. Stay tuned
 for the next post in the series!
-
-
-## KEV COMMENTS
-
-### Obtenir le modèle
-<p style="color:red;">DONE, voir les changements, c'est ok?</p>
-
-<p class="comment2">Oui</p>
-
-<div class="comment2"> Oui, 2 commentaires:
-
-1. avant le "Similarly, " qui nous emmène vers l'approche qui inclut le nombre
-de morts je releverais le fait que pas de morts sont inclus dans l'autre,
-les individus sont éternels dans cette formulation!
-
-2. "This is however rarely (read *never*)
-the case in real life."  (l.256) Je pense que tu pourrais dire un peu plus pourquoi!
-
-</div>
-
-Je pense qu'il faudrait que tu etablisses le modele avec les phrase que tu as
-écrites au lieu de le donner puis le décire. Tu a tout écris c'est juste
-qu'il faut inverser l'ordre!
-
-Tu pourrais dire qu'entre 2 années (entre t+1 et t) il y a les individus de
-l'années suivante et leur descendance, si b est la descendance moyenne par individu alors:
-
-$$N_{t+1} = N_{t} + bN_{t} = (1 + b)N_{t}$$
-
-et donc $\lambda = (1+b)$. Ou alors, l'option que je préfère: d'une année a l'autre il y a un taux de de mortalité moyen $d$ et un taux de naissance moyen $b$:
-
-$$N_{t+1} = N_{t} + bN_{t} - dN_{t} -  = (1 + b - d)N_{t}$$
-
-et donc $\lambda = 1 + b - d$. C'est en fait comme ça qu'on démontre comment
-passer du discret au continu (la deminstration n'est pas trop méchante).
-
-### Remarque sur le log
-
-En fait il serait important de noter à quelque part que:
-
-$$N^t = \exp(t\log(N))$$
-
-<p style="color:red;">Est-ce que c'est ok comme ça?</p>
-<div class="comment2"> Oui! </div>
-
-
-Pourquoi? Parceque:
-
-- pas besoin d'utiliser de `spline` pour les prédictions
-<p style="color:red;">Pourquoi? Parce qu'on peut utiser la fonction exponentielle?
-Si oui, j'attendrais quand même au post sur le modèle exponentiel avant de l'introduire</p>
-<p class="comment2"> Fair enough </p>
-
-
-- Ca permet de comprendre pourquoi il faut utiliser une moyenne géométrique (qui
-  est en fait une moyenne arithmétique sur les log) et ça explique du meme coup la trick du post de stack overflow.
-<p style="color:red;">Je comprends le tricks, mais je comprends pas pourquoi ça
-nous permettrait de comprendre qu'il faut utiliser la moyenne géométrique plutôt
-que la moyenne arithmétique?</p>
-
-<p class="comment2"> Ouep t'as raison ça explique pas. J'avoue que je vois pas
-une façon simple de dire pourquoi si ce n'est ce qui est déjà écrit. Il faudrait
-embarqué sur les propriétés des estimateurs... Ça va nous emmener trop loin. On
-garde ça en tete pour une série sur les stats qui peut etre ce fera un jour. </p>
-
-
-### Figures
-
-- Je préfère utiliser `las = 1` (voir le post de trick) pour afficher les textes
-horizontalement
-<p style="color:red;">DONE sauf pour `matplot()`</p>
-
-- sur la 2eme figure j'aurai mis les vrai valeurs de $\lambda$.
-<p style="color:red;">DONE</p>
-
-- sur les figures avec les taux vairables, je mettrais scenario minimu et scenario maximum!
-<p style="color:red;">DONE, mais on voit moins la différence entre la moyenne arithmétique et géométrique</p>
-
-<p class="comment2">  Tu pourrais les enlever et mettre une envelop gris clair!!
-Regardes la funtion "envelop" dans graphicsutils </p>
-
-
-
-### New comments
-
-<p class="comment2">  pas dur de ce que tu voulais dire après "exponentiation,":
-"given that we values > 0"??? </p>
-
 
 
 ## References

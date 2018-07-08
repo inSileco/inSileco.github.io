@@ -51,9 +51,12 @@ offsprings:</p>
 <p><span class="math display">\[N_{t+1} = N_t + bN_t\]</span></p>
 <p>which can be simplified to:</p>
 <p><span class="math display">\[N_{t+1} = N_t (1+b)\]</span></p>
-<p>Similarly, if we know that this particular species has an average death rate of
-<span class="math inline">\(d\)</span> individual every year, <span class="math inline">\(N_{t+1}\)</span> would be equal to the number of individuals
-at time <span class="math inline">\(t\)</span> plus their offsprings minus the annual number of dead individuals:</p>
+<p>In this particular example, our population is eternal, meaning that no death
+occurs and every individual survives indefinitely. Death rates could however
+be incorporated in the same way as births. If we know that this particular
+species has an average death rate of <span class="math inline">\(d\)</span> individual every year, <span class="math inline">\(N_{t+1}\)</span>
+would be equal to the number of individuals at time <span class="math inline">\(t\)</span> plus their offsprings
+minus the annual number of dead individuals:</p>
 <p><span class="math display">\[\begin{eqnarray}
   \nonumber N_{t+1} &amp;=&amp; N_t + bN_t - dN_t \\
   \nonumber &amp;=&amp; N_t (1 + b - d)
@@ -175,7 +178,9 @@ points(x = pop$year, y = pop$pop, pch = 20, cex = 1.5, col = cols[2])</code></pr
 <p>In this first example, we obviously obtain a perfect match between model
 projections and the simulated population because we simulated a population with
 geometric (<em>i.e.</em> constant) growth rate. This is however rarely (read <em>never</em>)
-the case in real life.</p>
+the case in real life, as population growth rates will vary temporally due
+variations in biotic and abiotic constraints such as resource availability,
+competition, reproductive sucess and environmental conditions.</p>
 </div>
 <div id="simulations---variable-growth-rates" class="section level3">
 <h3>Simulations - Variable growth rates</h3>
@@ -211,11 +216,11 @@ pop &lt;- data.frame(year = 0:nt,
                     pop4 = pop$pop4[2:(nt+1)] / pop$pop4[1:nt])
 rates
 #R&gt;       pop1     pop2     pop3     pop4
-#R&gt; 1 1.128393 2.290154 1.787647 1.607596
-#R&gt; 2 2.046563 1.497780 1.966833 1.179045
-#R&gt; 3 1.789846 1.302550 1.933862 1.853212
-#R&gt; 4 1.497682 1.775461 1.231576 2.063425
-#R&gt; 5 2.297145 1.449372 1.386073 1.493965
+#R&gt; 1 2.223917 1.413555 1.167040 1.653822
+#R&gt; 2 2.260937 1.793231 2.281511 1.473508
+#R&gt; 3 1.449859 2.208722 2.229069 1.845701
+#R&gt; 4 2.039101 1.310155 1.236418 1.761737
+#R&gt; 5 1.096476 1.437535 1.772898 1.334250
 
 par(mfrow = c(1,2), mar = c(4,4,1,1))
 matplot(pop[, 2:5], type = &#39;l&#39;, col = cols, lwd = 1.25, ylab = &#39;Population size&#39;)
@@ -296,7 +301,7 @@ which is to use the <a href="https://en.wikipedia.org/wiki/Geometric_mean">geome
 <p><span class="math display">\[\bar{R} = \Bigg(\prod_{i=1}^{t} R_i\Bigg)^{1/t}\]</span></p>
 <p>This also corresponds to calculating the mean by taking the arithmetic mean of
 the log transformed values and then transforming values back to the original
-scale by using the exponentiation, given that we values &gt; 0:</p>
+scale by using the exponentiation, given values <span class="math inline">\(R_i &gt; 0\)</span>:</p>
 <p><span class="math display">\[\begin{eqnarray}
   \bar{R} &amp;=&amp; \Bigg(\prod_{i=1}^{t} R_i\Bigg)^{1/t} \\
   log \ \bar{R} &amp;=&amp; log\Bigg(\Big(\prod_{i=1}^{t} R_i\Big)^{1/t}\Bigg) &amp; \rightarrow &amp;  \text{Transform to logarithms} \\
@@ -400,102 +405,6 @@ matplot(popN0, type = &#39;l&#39;, log = &#39;y&#39;, col = cols)</code></pre>
 <p>As stated previously, this model is a good stepping stone toward more complex
 ecological models, which we will keep exploring in this post series. Stay tuned
 for the next post in the series!</p>
-</div>
-</div>
-<div id="kev-comments" class="section level2">
-<h2>KEV COMMENTS</h2>
-<div id="obtenir-le-modele" class="section level3">
-<h3>Obtenir le modèle</h3>
-<p style="color:red;">
-DONE, voir les changements, c’est ok?
-</p>
-<p class="comment2">
-Oui
-</p>
-<div class="comment2">
-<p>Oui, 2 commentaires:</p>
-<ol style="list-style-type: decimal">
-<li><p>avant le “Similarly,” qui nous emmène vers l’approche qui inclut le nombre
-de morts je releverais le fait que pas de morts sont inclus dans l’autre,
-les individus sont éternels dans cette formulation!</p></li>
-<li><p>“This is however rarely (read <em>never</em>)
-the case in real life.” (l.256) Je pense que tu pourrais dire un peu plus pourquoi!</p></li>
-</ol>
-</div>
-<p>Je pense qu’il faudrait que tu etablisses le modele avec les phrase que tu as
-écrites au lieu de le donner puis le décire. Tu a tout écris c’est juste
-qu’il faut inverser l’ordre!</p>
-<p>Tu pourrais dire qu’entre 2 années (entre t+1 et t) il y a les individus de
-l’années suivante et leur descendance, si b est la descendance moyenne par individu alors:</p>
-<p><span class="math display">\[N_{t+1} = N_{t} + bN_{t} = (1 + b)N_{t}\]</span></p>
-<p>et donc <span class="math inline">\(\lambda = (1+b)\)</span>. Ou alors, l’option que je préfère: d’une année a l’autre il y a un taux de de mortalité moyen <span class="math inline">\(d\)</span> et un taux de naissance moyen <span class="math inline">\(b\)</span>:</p>
-<p><span class="math display">\[N_{t+1} = N_{t} + bN_{t} - dN_{t} -  = (1 + b - d)N_{t}\]</span></p>
-<p>et donc <span class="math inline">\(\lambda = 1 + b - d\)</span>. C’est en fait comme ça qu’on démontre comment
-passer du discret au continu (la deminstration n’est pas trop méchante).</p>
-</div>
-<div id="remarque-sur-le-log" class="section level3">
-<h3>Remarque sur le log</h3>
-<p>En fait il serait important de noter à quelque part que:</p>
-<p><span class="math display">\[N^t = \exp(t\log(N))\]</span></p>
-<p style="color:red;">
-Est-ce que c’est ok comme ça?
-</p>
-<div class="comment2">
-Oui!
-</div>
-<p>Pourquoi? Parceque:</p>
-<ul>
-<li>pas besoin d’utiliser de <code>spline</code> pour les prédictions
-<p style="color:red;">
-Pourquoi? Parce qu’on peut utiser la fonction exponentielle?
-Si oui, j’attendrais quand même au post sur le modèle exponentiel avant de l’introduire
-</p>
-<p class="comment2">
-Fair enough
-</p></li>
-<li>Ca permet de comprendre pourquoi il faut utiliser une moyenne géométrique (qui
-est en fait une moyenne arithmétique sur les log) et ça explique du meme coup la trick du post de stack overflow.
-<p style="color:red;">
-Je comprends le tricks, mais je comprends pas pourquoi ça
-nous permettrait de comprendre qu’il faut utiliser la moyenne géométrique plutôt
-que la moyenne arithmétique?
-</p></li>
-</ul>
-<p class="comment2">
-Ouep t’as raison ça explique pas. J’avoue que je vois pas
-une façon simple de dire pourquoi si ce n’est ce qui est déjà écrit. Il faudrait
-embarqué sur les propriétés des estimateurs… Ça va nous emmener trop loin. On
-garde ça en tete pour une série sur les stats qui peut etre ce fera un jour.
-</p>
-</div>
-<div id="figures" class="section level3">
-<h3>Figures</h3>
-<ul>
-<li>Je préfère utiliser <code>las = 1</code> (voir le post de trick) pour afficher les textes
-horizontalement
-<p style="color:red;">
-DONE sauf pour <code>matplot()</code>
-</p></li>
-<li>sur la 2eme figure j’aurai mis les vrai valeurs de <span class="math inline">\(\lambda\)</span>.
-<p style="color:red;">
-DONE
-</p></li>
-<li>sur les figures avec les taux vairables, je mettrais scenario minimu et scenario maximum!
-<p style="color:red;">
-DONE, mais on voit moins la différence entre la moyenne arithmétique et géométrique
-</p></li>
-</ul>
-<p class="comment2">
-Tu pourrais les enlever et mettre une envelop gris clair!!
-Regardes la funtion “envelop” dans graphicsutils
-</p>
-</div>
-<div id="new-comments" class="section level3">
-<h3>New comments</h3>
-<p class="comment2">
-pas dur de ce que tu voulais dire après “exponentiation,”:
-“given that we values &gt; 0”???
-</p>
 </div>
 </div>
 <div id="references" class="section level2 unnumbered">
