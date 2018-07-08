@@ -22,6 +22,8 @@ source('../../../static/Rscript/bibSetUp.R')
 source('../../../static/Rscript/codeChunkSetUp.R')
 ```
 
+ ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
+
 `r htmltools::HTML("{{< distecolintro >}}")`
 
 ```{r libraries, echo = F}
@@ -53,6 +55,11 @@ that of the bacterium *Escherichia coli*. Imagine *E. coli* cells multiplying
 largely asynchronously in such a way new cells are observed in the population
 *very* frequently, giving the appearance of a smooth growth curve at very short
 time intervals.
+
+<p class = "comment2"> KC: du coup je dirais qu'on a envie que le pas de temps
+tente vers 0 et je mettrai la demonstation que j'ai écrite plus bas! Mais
+ce que tu avais écrit est valable aussi, je trouve ça plus simple de montrer
+le résult en faisant tendre le pas de tem,ps faire 0.<p>
 
 
 ```{r exempleSteps, fig.height = 5, fig.width = 10, fig.align = 'center', echo = F}
@@ -242,7 +249,83 @@ mtext('Population size', 2, 2)
 
 Now enough with the theory, let's jump into simulations!
 
+
+<div class = "comment2"> Pour les simulation qui suive j'ai une idée on
+pourrait parler du cas ou $\lambda$ est une font du temps un cas simple
+c'est la saisonalité.
+
+
+```{r season}
+seqt <- seq(0, 16, 0.05)
+lambda <- cos(seqt) + 1
+par(mfrow = c(1, 2))
+plot(seqt, lambda, type = "l")
+plot(seqt, exp(0.01*cumsum(lambda)), type = "l")
+```
+
+Note que c'est l'allure de la courbe que ça donne en intégrant, je n'ai pas
+fait la démonstation et je ne sait pas à quelle point elle est facile. On pourrai
+prendre un function plus simple du genre
+
+```{r season2}
+seqt <- seq(0, 16, 0.05)
+lambda <- rep(c(0,1,0,1), each = 50, length.out = length(seqt))
+par(mfrow = c(1, 2))
+plot(seqt, lambda, type = "l")
+plot(seqt, exp(0.01*cumsum(lambda)), type = "l")
+```
+
+La la démonstration me semble plus aisée. Aussi, j'ai l'impression qu'il est pas encore question de
+taux de croissance négative mais si c'est le cas on pourrais prendre des
+functions qui prenne des valuer négatives.</div>
+
+
+
 ## Simulated ecology
 
 
+
 ## Simulated disturbances
+
+
+## KevCaz's comments
+
+## From arithmetic to exponential growth
+
+On repart de:
+
+$$N_{t+1} = N_{t} + b N_{t} - d N_{t}$$
+
+
+Maintenant 1 devient dt (notation souvent utilisée, parfois on prend $s$), une variable qu'on
+fera tendre vers 0 et faut comprendre que les taux b et d sont des taux
+par unité de temps donc avant on avait b le taux moyen de naissance par an
+(par exemple), et on écrivait en fait b pour b*1, meme remarque pour d, ce qui
+donne avce dt
+
+$$N_{t+dt} = N_{t} + b dt N_{t} - d dt N_{t}$$
+
+J'introduis un truc juste pour pour reflèter une hypothese: $o(dt)$. En gros
+ça veut dire que il peu y avoir des truc qui se produise mais:
+
+$$\lim_{dt\to0} \frac{o(dt)}{dt} = 0$$
+
+Encore une fois ça permet d'etre propre et c'est pour dire "quand dt est assez petit
+y'a rien d'autre qui arrive", mais on peut laisser tomber ça change pas la demonstration.
+
+$$N_{t+dt} = N_{t} + (b - d)dtN_{t} + o(dt)$$
+
+On peut passer $N_t$ de l'autre côté et on divise par dt:
+
+
+$$\frac{N_{t+dt} - N_t}{dt}= (b - d)N_{t} + \frac{o(dt)}{dt}$$
+
+et en faisant tendre dt vers 0 on a, par définition a gauche la dérivée de N
+et a droite par definition (plus haut) le dernier term devient 0, donc:
+
+$$\dot{N}_t = (b - d)N_{t}$$
+
+Equation diff dotn soltion est l'exponentiel!
+
+
+## References
