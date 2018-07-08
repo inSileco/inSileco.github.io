@@ -45,7 +45,7 @@ growth models) and density independent growth (see
 <a href="https://ourworldindata.org/world-population-growth">Our World in Data</a>).</p>
 <p><br/></p>
 <p>Imagine a species that has an average birth rate of <span class="math inline">\(b\)</span> offsprings every year.
-If we begin at time <em>t</em> with a population <em>N_t</em>, the population at time <span class="math inline">\(t + 1\)</span>,
+If we begin at time <em>t</em> with a population <span class="math inline">\(N_t\)</span>, the population at time <span class="math inline">\(t + 1\)</span>,
 <span class="math inline">\(N_{t+1}\)</span>, will be equal to the number of individuals at time <span class="math inline">\(t\)</span> plus their
 offsprings:</p>
 <p><span class="math display">\[N_{t+1} = N_t + bN_t\]</span></p>
@@ -211,11 +211,11 @@ pop &lt;- data.frame(year = 0:nt,
                     pop4 = pop$pop4[2:(nt+1)] / pop$pop4[1:nt])
 rates
 #R&gt;       pop1     pop2     pop3     pop4
-#R&gt; 1 1.087780 1.322924 2.162744 2.208040
-#R&gt; 2 1.274704 1.132864 1.276102 2.262647
-#R&gt; 3 1.133882 2.110884 2.244675 1.731817
-#R&gt; 4 1.753545 1.538903 1.419693 2.170360
-#R&gt; 5 1.114211 1.895317 1.387372 1.421856
+#R&gt; 1 1.128393 2.290154 1.787647 1.607596
+#R&gt; 2 2.046563 1.497780 1.966833 1.179045
+#R&gt; 3 1.789846 1.302550 1.933862 1.853212
+#R&gt; 4 1.497682 1.775461 1.231576 2.063425
+#R&gt; 5 2.297145 1.449372 1.386073 1.493965
 
 par(mfrow = c(1,2), mar = c(4,4,1,1))
 matplot(pop[, 2:5], type = &#39;l&#39;, col = cols, lwd = 1.25, ylab = &#39;Population size&#39;)
@@ -357,7 +357,7 @@ for(i in 2:5) {
 <p>This model offers very little opportunity to test disturbances in any meaningful
 way. We mostly present it to start from the very basics. We can however take a
 look at how manipulating model parameters affects population trends.
-Simulated disturbances will increase in complecity as the models become more
+Simulated disturbances will increase in complexity as the models become more
 complex, but for now we will keep things as simple as possible considering the
 simplicity of the model presented.</p>
 <div id="population-size" class="section level3">
@@ -409,6 +409,19 @@ for the next post in the series!</p>
 <p style="color:red;">
 DONE, voir les changements, c’est ok?
 </p>
+<p class="comment2">
+Oui
+</p>
+<div class="comment2">
+<p>Oui, 2 commentaires:</p>
+<ol style="list-style-type: decimal">
+<li><p>avant le “Similarly,” qui nous emmène vers l’approche qui inclut le nombre
+de morts je releverais le fait que pas de morts sont inclus dans l’autre,
+les individus sont éternels dans cette formulation!</p></li>
+<li><p>“This is however rarely (read <em>never</em>)
+the case in real life.” (l.256) Je pense que tu pourrais dire un peu plus pourquoi!</p></li>
+</ol>
+</div>
 <p>Je pense qu’il faudrait que tu etablisses le modele avec les phrase que tu as
 écrites au lieu de le donner puis le décire. Tu a tout écris c’est juste
 qu’il faut inverser l’ordre!</p>
@@ -427,12 +440,18 @@ passer du discret au continu (la deminstration n’est pas trop méchante).</p>
 <p style="color:red;">
 Est-ce que c’est ok comme ça?
 </p>
+<div class="comment2">
+Oui!
+</div>
 <p>Pourquoi? Parceque:</p>
 <ul>
 <li>pas besoin d’utiliser de <code>spline</code> pour les prédictions
 <p style="color:red;">
 Pourquoi? Parce qu’on peut utiser la fonction exponentielle?
 Si oui, j’attendrais quand même au post sur le modèle exponentiel avant de l’introduire
+</p>
+<p class="comment2">
+Fair enough
 </p></li>
 <li>Ca permet de comprendre pourquoi il faut utiliser une moyenne géométrique (qui
 est en fait une moyenne arithmétique sur les log) et ça explique du meme coup la trick du post de stack overflow.
@@ -442,6 +461,12 @@ nous permettrait de comprendre qu’il faut utiliser la moyenne géométrique pl
 que la moyenne arithmétique?
 </p></li>
 </ul>
+<p class="comment2">
+Ouep t’as raison ça explique pas. J’avoue que je vois pas
+une façon simple de dire pourquoi si ce n’est ce qui est déjà écrit. Il faudrait
+embarqué sur les propriétés des estimateurs… Ça va nous emmener trop loin. On
+garde ça en tete pour une série sur les stats qui peut etre ce fera un jour.
+</p>
 </div>
 <div id="figures" class="section level3">
 <h3>Figures</h3>
@@ -460,6 +485,17 @@ DONE
 DONE, mais on voit moins la différence entre la moyenne arithmétique et géométrique
 </p></li>
 </ul>
+<p class="comment2">
+Tu pourrais les enlever et mettre une envelop gris clair!!
+Regardes la funtion “envelop” dans graphicsutils
+</p>
+</div>
+<div id="new-comments" class="section level3">
+<h3>New comments</h3>
+<p class="comment2">
+pas dur de ce que tu voulais dire après “exponentiation,”:
+“given that we values &gt; 0”???
+</p>
 </div>
 </div>
 <div id="references" class="section level2 unnumbered">

@@ -15,8 +15,6 @@ output:
 ---
 
 
-![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
-
 R 3.5.0 "Joy in playing" was released April 23rd this year. It took a couple
 of weeks before it was made available on Debian testing due to the work
 required to rebuild the packages and as a Debian user that spend a lot of time
