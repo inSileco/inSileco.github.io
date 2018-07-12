@@ -86,7 +86,7 @@ rate of our population, noted as $\lambda$, while $b$ and $d$ are the discrete
 birth and death rates of our population. For this post we will note $b - d$ as
 $r_d$, the discrete growth factor, so that $\lambda = 1 + r_d$.
 There are numerous population dynamics component such as births, deaths,
-immigration or emigration that can privide a refined understanding of the growth
+immigration or emigration that can provide a refined understanding of the growth
 (or decrease) of a population. We will however not begin to get into more
 details until later in this blog series, so for now we will focus solely on
 $\lambda$ and $r_d$.
@@ -150,6 +150,10 @@ Another important aspect of this model is that:
   \nonumber \lambda = 1 & \rightarrow & N \text{ is constant} \\
   \nonumber \lambda < 1 & \rightarrow & N \text{ decreases}
 \end{eqnarray}
+
+<!-- For this plot in particular (though I would always start these kind of plots at t0), I think you need to start at t0. I really get hung up on the fact that the lines don't start at the same point! 
+
+Also, I don't know what the answer to this really is, but what does a population of 0.3125 mean? Can you have a fraction of an organism? Should we just start with a larger number and round to avoid the issue?-->
 
 ```{r lambdaDec, fig.height = 5, fig.width = 5, fig.align = 'center', results = 'hold', echo = F}
 pop <- data.frame(pop1 = geomMod(10, .5, 1:5),
@@ -258,7 +262,7 @@ projections and the simulated population because we simulated a population with
 geometric (*i.e.* constant) growth rate. This is however rarely (read *never*)
 the case in real life, as population growth rates will vary temporally due
 variations in biotic and abiotic constraints such as resource availability,
-competition, reproductive sucess and environmental conditions.
+competition, reproductive success and environmental conditions.
 
 ### Simulations - Variable growth rates
 
@@ -317,6 +321,8 @@ idea that comes to mind is to use the arithmetic mean of the growth rates.
 As a comparison, we also show what would happen if we were to use the minimum
 and maximum growth rate observed.
 
+<!-- made this more colorblind friendly and thickened the lines for my old tired eyes ;), I will let you decide which of these changes to keep and/or to apply to other plots -->
+
 ```{r pred2, fig.height = 10, fig.width = 10, fig.align = 'center', results = 'hold'}
 meanRates <- apply(rates, 2, mean)
 nP <- 7
@@ -345,30 +351,30 @@ par(mfrow = c(2,2))
 for(i in 2:5) {
   # Visualize
   plot1(predMax)
-  lines(spline(x = predAMean$year, y = predAMean[, i], n = 100), lty = 'dashed', col = cols[4])
-  lines(spline(x = predMax$year, y = predMax[, i], n = 100), lty = 'dashed', col = cols[7])
-  lines(spline(x = predMin$year, y = predMin[, i], n = 100), lty = 'dashed', col = cols[1])
-  points(x = predAMean$year, y = predAMean[, i], pch = 1, cex = 2, col = cols[4])
-  points(x = predMax$year, y = predMax[, i], pch = 1, cex = 2, col = cols[7])
-  points(x = predMin$year, y = predMin[, i], pch = 1, cex = 2, col = cols[1])
-  points(x = pop$year, y = pop[, i], pch = 20, cex = 1.5, col = cols[2])
+  lines(spline(x = predAMean$year, y = predAMean[, i], n = 100), lwd = 2, lty = 'dashed', col = cols[4])
+  lines(spline(x = predMax$year, y = predMax[, i], n = 100), lwd = 2, lty = 'dashed', col = cols[7])
+  lines(spline(x = predMin$year, y = predMin[, i], n = 100), lwd = 2, lty = 'dashed', col = cols[1])
+  points(x = predAMean$year, y = predAMean[, i], lwd = 2, pch = 1, cex = 2, col = cols[4])
+  points(x = predMax$year, y = predMax[, i], lwd = 2, pch = 2, cex = 2, col = cols[7])
+  points(x = predMin$year, y = predMin[, i], lwd = 2, pch = 6, cex = 2, col = cols[1])
+  points(x = pop$year, y = pop[, i], lwd = 2, pch = 20, cex = 1.5, col = cols[2])
 }
   # Legend
   maxVal <- roundUpNice(max(predMax))
-  lines(x = c(0, 0.4), y = c(maxVal * .85, maxVal * .85), lty = 'dashed', col = cols[1])
-  lines(x = c(0, 0.4), y = c(maxVal * .78, maxVal * .78), lty = 'dashed', col = cols[7])
-  lines(x = c(0, 0.4), y = c(maxVal * .71, maxVal * .71), lty = 'dashed', col = cols[4])
-  points(x = 0.2, y = maxVal * .92, pch = 20, cex = 1.5, col = cols[2])
-  points(x = 0.2, y = maxVal * .85, pch = 1, cex = 2, col = cols[1])
-  points(x = 0.2, y = maxVal * .78, pch = 1, cex = 2, col = cols[7])
-  points(x = 0.2, y = maxVal * .71, pch = 1, cex = 2, col = cols[4])
+  lines(x = c(0, 0.4), y = c(maxVal * .85, maxVal * .85), lwd = 2, lty = 'dashed', col = cols[1])
+  lines(x = c(0, 0.4), y = c(maxVal * .78, maxVal * .78), lwd = 2, lty = 'dashed', col = cols[7])
+  lines(x = c(0, 0.4), y = c(maxVal * .71, maxVal * .71), lwd = 2, lty = 'dashed', col = cols[4])
+  points(x = 0.2, y = maxVal * .92, lwd = 2, pch = 20, cex = 1.5, col = cols[2])
+  points(x = 0.2, y = maxVal * .85, lwd = 2, pch = 6, cex = 2, col = cols[1])
+  points(x = 0.2, y = maxVal * .78, lwd = 2, pch = 2, cex = 2, col = cols[7])
+  points(x = 0.2, y = maxVal * .71, lwd = 2, pch = 1, cex = 2, col = cols[4])
   text(x = 0.5, y = maxVal * .92, "Simulated data", adj = 0)
   text(x = 0.5, y = maxVal * .85, "Minimum", adj = 0)
   text(x = 0.5, y = maxVal * .78, "Maximum", adj = 0)
   text(x = 0.5, y = maxVal * .71, "Arithmetic average", adj = 0)
 ```
 
-While useful, the use of the arithmetic average can lead to erreneous results.
+While useful, the use of the arithmetic average can lead to erroneous results.
 Following the example from Stevens 2009 [@Stevens_2009] on page 11, let's
 imagine a population with $N_0 = 100$, annual growth rate $R_1 = 0.5$ and
 $R_2 = 1.5$. Using the arithmetic average to evaluate the growth rate for the
@@ -388,7 +394,7 @@ We need something better.
 
 ***Geometric average***
 
-The solution we are presenting here is the one found in Stevens's book [@Stevens_2009],
+The solution we are presenting here is the one found in Steven' book [@Stevens_2009],
 which is to use the [geometric average](https://en.wikipedia.org/wiki/Geometric_mean):
 
 $$\bar{R} = \Bigg(\prod_{i=1}^{t} R_i\Bigg)^{1/t}$$
@@ -457,6 +463,8 @@ for(i in 2:5) {
   text(x = .5, y = maxVal * .71, "Arithmetic average", adj = 0)
   text(x = .5, y = maxVal * .64, "Geometric average", adj = 0)
 ```
+
+<!-- Is one better than the other? -->
 
 ## Simulated disturbances
 
