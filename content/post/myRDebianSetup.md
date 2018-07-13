@@ -3,7 +3,7 @@ title: My R setup on Debian
 author: [kevin]
 reviewer: [david]
 date: 2018-06-18
-tags: [R, Linux, Debian, setup]
+tags: [R, Linux, Debian, Setup]
 rpkgs: [base]
 draft: false
 estime: 6

@@ -3,7 +3,7 @@ title: Go Debian Testing!
 author: [kevin]
 reviewer: [david]
 date: 2018-05-21
-tags: [Linux, Debian]
+tags: [Linux, Debian, Setup]
 draft: false
 tweet: "Markdown everywhere!"
 estime: 15

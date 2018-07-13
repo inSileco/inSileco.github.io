@@ -8,7 +8,7 @@ edits:
     comment: "add a seflfie"
   - date: 2018-04-17
     comment: "new gist (won't be updated)"
-tags: [Linux, Debian]
+tags: [Linux, Debian, Setup]
 draft: false
 tweet: "Setting my Debian Stretch up"
 estime: 14

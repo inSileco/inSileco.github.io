@@ -1,9 +1,9 @@
 ---
 title: My MacOS Setup
 author: [david]
-reviewer:
-date: 2018-09-12
-tags: [MacOS]
+reviewer: [kevin]
+date: 2018-07-14
+tags: [MacOS, Setup]
 draft: true
 tweet: "My MacOS Setup"
 estime: 10
@@ -29,6 +29,7 @@ Full disclosure, I would not have done this without the help of
 [Steve](https://insileco.github.io/about/) and
 [Nicolas](https://insileco.github.io/about/), who gave me great resources and
 part of their own code to set up their Mac!
+
 
 ### My laptop
 
@@ -75,7 +76,7 @@ most of my files are backed on the cloud. I use a combination of
 [Google Drive](https://www.google.ca/drive/)
 to manage most of my individual and collaborative projects. This means that the
 majority of my files can be reaccessed through the web once I've reinstalled
-those softwares.
+those software.
 
 
 ### Reseting to factory settings
@@ -87,7 +88,7 @@ I simply did not follow the instructions that targeted time machine, iTunes and
 iCloud because I had no intention of reinstalling an image of my laptop or to
 sell my laptop to someone else.
 
-In essence, here are the steps I followed (but I still recommendend reading the
+In essence, here are the steps I followed (but I still recommend reading the
 detailed documentation
 [here](https://www.macworld.co.uk/how-to/mac/how-reset-mac-factory-settings-3494564/)
 if you wish to go the same route I did):
@@ -115,11 +116,13 @@ as my laptop name, passwords, etc.
 
 What came after was reinstalling every software that I needed to reproduce the
 laptop configuration that I wanted. This script allows me to install and all
-the softwares I'm using, mostly through [brew](https://brew.sh/),
+them. I'm using, mostly through [brew](https://brew.sh/),
 configure them through the terminal and download all the project data I have
 stored in the cloud:
 
+
 <script src="https://gist.github.com/david-beauchesne/c7b045d07dd213c9144ed64767b70a0a.js"></script>
+
 
 The script is not perfect. I did have to improve it as I was reinstalling and
 reconfiguring my laptop, and I will likely keep improving it through time.
@@ -128,7 +131,7 @@ configured laptop very efficiently.
 Building the script and backing up my data did take considerable time, but
 I started with a very basic understanding of what it meant to reconfigure a
 laptop. I would not say I'm an expert now, far from it, but the whole process
-was enlightning and with the script I built I can now easily reset my Mac
+was enlightening and with the script I built I can now easily reset my Mac
 or a new one just the way I like it, which was the whole point to begin with!
 
 Enjoy!
