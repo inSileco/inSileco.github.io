@@ -2,9 +2,9 @@
 title: My MacOS Setup
 author: [david]
 reviewer: [kevin]
-date: 2018-07-14
+date: 2018-07-13
 tags: [MacOS, Setup]
-draft: true
+draft: false
 tweet: "My MacOS Setup"
 estime: 10
 relativeurls: true
@@ -85,8 +85,8 @@ Now the first step was to reset my laptop to factory settings. I googled it
 and followed most of the instructions found
 [here](https://www.macworld.co.uk/how-to/mac/how-reset-mac-factory-settings-3494564/).
 I simply did not follow the instructions that targeted time machine, iTunes and
-iCloud because I had no intention of reinstalling an image of my laptop or to
-sell my laptop to someone else.
+iCloud because I had no intention of reinstalling an image of my old laptop
+or to sell my laptop to someone else.
 
 In essence, here are the steps I followed (but I still recommend reading the
 detailed documentation
@@ -115,19 +115,30 @@ as my laptop name, passwords, etc.
 ### Setting up my Mac
 
 What came after was reinstalling every software that I needed to reproduce the
-laptop configuration that I wanted. This script allows me to install and all
-them. I'm using, mostly through [brew](https://brew.sh/),
-configure them through the terminal and download all the project data I have
-stored in the cloud:
+laptop configuration that I wanted. The script I prepared, which is the core of
+this post, allows me to install and configure softwares through the terminal
+and download all the project data I have stored in the cloud.
 
+Software installation is done mostly using the [Homebrew](https://brew.sh/),
+and [Cask](https://brew.sh/) projects, which are package managers for macOS
+that allows installation and management of applications on a Mac computer.
+Homebrew mostly deals with command line software, while Cask is an extension of
+Homebrew that allows management of graphical applications. Homebrew and Cask
+can be tapped using `brew` and `brew cask` commands in the terminal. See
+[here](https://apple.stackexchange.com/questions/125468/what-is-the-difference-between-brew-and-brew-cask)
+for some information on their difference and visit the
+[Homebrew website](https://brew.sh/) for more information.
 
 <script src="https://gist.github.com/david-beauchesne/c7b045d07dd213c9144ed64767b70a0a.js"></script>
 
 
-The script is not perfect. I did have to improve it as I was reinstalling and
+The script is not perfect. It still can't fully execute in one go because I get
+prompted for credentials for some software (which I plan to remedy on my next
+setup). I also did have to improve it as I was reinstalling and
 reconfiguring my laptop, and I will likely keep improving it through time.
 Ultimately, however, I managed to have an almost fully operational and
 configured laptop very efficiently.
+
 Building the script and backing up my data did take considerable time, but
 I started with a very basic understanding of what it meant to reconfigure a
 laptop. I would not say I'm an expert now, far from it, but the whole process
