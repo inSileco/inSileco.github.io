@@ -20,7 +20,7 @@ output:
 ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
 ```{r codeChunkSetUp, echo=FALSE}
-source('../../../static/Rscript/codeChunkSetUp.R')
+source('../../../../static/Rscript/codeChunkSetUp.R')
 ```
 
 
@@ -28,7 +28,7 @@ To manipulate geometries, there are few options. For spatial objects defined
 with `sp`, there is a specific package to manipulate vector objects: `rgeos`.
 The equivalent of most common functions in `sp` are found in `sf`.
 Finally, there are a set of interesting functions in `raster` to handle
-the manipulation of rasters with vector objects.  
+the manipulation of rasters with vector objects.
 
 
 Let's first load the packages required and download a simple shapefile of Belgium.

@@ -17,7 +17,7 @@ output:
 
 
 ```{r codeChunkSetUp, echo=FALSE}
-source('../../../static/Rscript/codeChunkSetUp.R')
+source('../../../../static/Rscript/codeChunkSetUp.R')
 ```
 
 
@@ -195,7 +195,7 @@ for figures. The previous figure was a rather simple example and we will show
 two other examples from a scientific article that David is currently wrapping up.
 These examples are simply to help visualizing the fact that as long as you can
 position elements on a two-dimensional cartesian plane, than you can create
-whatever visual you may have in mind with R.  
+whatever visual you may have in mind with R.
 
 ### Setting data and parameters
 
@@ -495,27 +495,27 @@ for(i in 1:4) {
 # 11
 for(i in 1:2) {
   par(mar = c(1,1,1,1))
-  image(envCov[[1]], col = rbPal(100), main = "", axes = F)  
+  image(envCov[[1]], col = rbPal(100), main = "", axes = F)
   rect(xmn, ymn, xmx, ymx, lwd = 1, border = '#00000099')
 }
 
 #12
 par(mar = c(1,1,1,1))
-image(envCov[[1]] + envCov[[2]], col = rbPal(100), main = "", axes = F)  
+image(envCov[[1]] + envCov[[2]], col = rbPal(100), main = "", axes = F)
 rect(xmn, ymn, xmx, ymx, lwd = 1, border = '#00000099')
 
 # 13, 14
 for(i in 1:2) {
   par(mar = c(1.25,1.25,1.25,1.25))
   plot0(x = c(xmn, xmx), y = c(ymn, ymx))
-  image(envCov[[1]], col = rbPal(100), main = "", axes = F, add = T)    
+  image(envCov[[1]], col = rbPal(100), main = "", axes = F, add = T)
   rect(xmn, ymn, xmx, ymx, lwd = 1, border = '#00000099')
 }
 
 # 15, 16
 for(i in 1:2) {
   par(mar = c(1,1,1,1))
-  image(envCov[[2]], col = rbPal(100), main = "", axes = F)  
+  image(envCov[[2]], col = rbPal(100), main = "", axes = F)
 }
 
 # 17 Title 1

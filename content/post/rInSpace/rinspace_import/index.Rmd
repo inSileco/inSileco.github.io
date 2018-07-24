@@ -13,6 +13,10 @@ navposts:
 ---
 
 
+```{r codeChunkSetUp, echo=FALSE}
+source('../../../../static/Rscript/codeChunkSetUp.R')
+```
+
 ## Reading and writing spatial objects with `sf` and `raster`
 
 Spatial data are encoded in various [GIS file formats](https://en.wikipedia.org/wiki/GIS_file_formats)
@@ -83,7 +87,7 @@ all the attributes related to the sample points.
 The default plot of a simple features object is a multi-facet of all attributes.
 
 ```{r plot_pts, eval=T}
-plot(pts_sf)  
+plot(pts_sf)
 ```
 
 As you can see, instead of creating a single map, as with sp object, the
