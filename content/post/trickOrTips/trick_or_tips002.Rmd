@@ -16,15 +16,15 @@ output:
 
 
 ```{r codeChunkSetUp, echo=FALSE}
-source('../../static/Rscript/codeChunkSetUp.R')
+source('../../../static/Rscript/codeChunkSetUp.R')
 ```
 
 
 <br>
 
-## The `drop` argument of the `[]` operator   
+## The `drop` argument of the `[]` operator
 
-This is something not obvious and poorly known but there is a logical argument  
+This is something not obvious and poorly known but there is a logical argument
 `drop` that can be passed to the `[]` operator and I'll try to explain why it
 could be useful! Let's first create a dataframe with ten rows and three
 columns:
@@ -101,7 +101,7 @@ Now you know ;-)
 
 <br>
 
-## Get the citation of a package   
+## Get the citation of a package
 
 Many researchers (it is especially TRUE in ecology) uses R and write paper and
 carry out analyses using R for their research. One cones the time of citing the
@@ -250,7 +250,7 @@ how a package works!
 
 <br>
 
-## The `las` argument of `par()`     
+## The `las` argument of `par()`
 
 I really enjoy using `graphics` to create plots in R. That being said the default
 values always puzzles me! One I specially dislike is that values on the y-axis

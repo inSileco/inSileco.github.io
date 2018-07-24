@@ -18,7 +18,7 @@ output:
 
 
 ```{r codeChunkSetUp, echo=FALSE}
-source('../../static/Rscript/codeChunkSetUp.R')
+source('../../../static/Rscript/codeChunkSetUp.R')
 ```
 
 
@@ -28,11 +28,11 @@ source('../../static/Rscript/codeChunkSetUp.R')
 
 For the first post of the series, let's introduce 5 **R** tips:
 
-  1. The %in% operator      
-  2. The `paste0()` function    
-  3. Using "\\r" in `cat()`   
-  4. The `sprintf()` function     
-  5. The `xaxs` and `yaxs` arguments of `par()`     
+  1. The %in% operator
+  2. The `paste0()` function
+  3. Using "\\r" in `cat()`
+  4. The `sprintf()` function
+  5. The `xaxs` and `yaxs` arguments of `par()`
 
 
 
@@ -91,7 +91,7 @@ I know... this means you'll save 5 previous characters each time you call `paste
 
 *Note that for this tip, you should execute the code-chunk in your own R console*
 
-When programming we often need to monitor what we are doing, especially for  
+When programming we often need to monitor what we are doing, especially for
 time-consuming calculation. Using `cat()` with all its default is very helpful
 to report information on progress:
 
@@ -155,15 +155,15 @@ couple of optional characters tuning the display and ends with a letter
 specifying the nature of the variable(s) to be displayed (number or string). The
 most common letters are:
 
-- "d" for integer value;  
+- "d" for integer value;
 - "f" for double precision value;
-- "s" for strings.  
+- "s" for strings.
 
 The most common options are:
 
 - "n", an integer values specifying the width of the field;
-- "0" indicates whether zero-padding should be used;    
-- ".m" where n is an integer.  
+- "0" indicates whether zero-padding should be used;
+- ".m" where n is an integer.
 
 
 That being said, to be as clear as possible, let me exemplify!
@@ -194,7 +194,7 @@ sprintf("%10f", pi)
 sprintf("%010f", pi)
 ```
 
-5. Tune the precision:   
+5. Tune the precision:
 
 ```{r sprintf5}
 sprintf("%.50f", pi)
@@ -221,19 +221,19 @@ a plot using the default parameters' values and the same plot using the tip:
 
 ```{r xaxsYaxs, fig.width=9.5}
 par(mfrow=c(1,2), bty="l")
-plot(0:10, 0:10, pch=20)     
-par(xaxs="i", yaxs="i")   
-plot(0:10, 0:10, pch=20)   
+plot(0:10, 0:10, pch=20)
+par(xaxs="i", yaxs="i")
+plot(0:10, 0:10, pch=20)
 ```
 
 Can you tell the difference? I now add two extra lines to stress the differences out.
 
 ```{r xaxsYaxsV2, fig.width=9.5}
 par(mfrow=c(1,2), bty="l")
-plot(0:10, 0:10, pch=20)  
-abline(v=c(0,10), h=c(0,10), col=2)   
-par(xaxs="i", yaxs="i")   
-plot(0:10, 0:10, pch=20)   
+plot(0:10, 0:10, pch=20)
+abline(v=c(0,10), h=c(0,10), col=2)
+par(xaxs="i", yaxs="i")
+plot(0:10, 0:10, pch=20)
 abline(v=c(0,10), h=c(0,10), col=2)
 ```
 

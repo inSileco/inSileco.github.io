@@ -20,14 +20,10 @@ output:
 <h2><em>Fish and tips</em> 0001</h2>
 <p>For the first post of the series, let’s introduce 5 <strong>R</strong> tips:</p>
 <ol style="list-style-type: decimal">
-<li>The %in% operator<br />
-</li>
-<li>The <code>paste0()</code> function<br />
-</li>
-<li>Using “\r” in <code>cat()</code><br />
-</li>
-<li>The <code>sprintf()</code> function<br />
-</li>
+<li>The %in% operator</li>
+<li>The <code>paste0()</code> function</li>
+<li>Using “\r” in <code>cat()</code></li>
+<li>The <code>sprintf()</code> function</li>
 <li>The <code>xaxs</code> and <code>yaxs</code> arguments of <code>par()</code></li>
 </ol>
 </div>
@@ -66,7 +62,7 @@ default parameters:</p>
 <div id="using-argument-r-in-cat" class="section level2">
 <h2>Using argument ‘\r’ in <code>cat()</code></h2>
 <p><em>Note that for this tip, you should execute the code-chunk in your own R console</em></p>
-<p>When programming we often need to monitor what we are doing, especially for<br />
+<p>When programming we often need to monitor what we are doing, especially for
 time-consuming calculation. Using <code>cat()</code> with all its default is very helpful
 to report information on progress:</p>
 <pre class="r"><code>for (i in 1:10) {
@@ -113,16 +109,14 @@ couple of optional characters tuning the display and ends with a letter
 specifying the nature of the variable(s) to be displayed (number or string). The
 most common letters are:</p>
 <ul>
-<li>“d” for integer value;<br />
-</li>
+<li>“d” for integer value;</li>
 <li>“f” for double precision value;</li>
 <li>“s” for strings.</li>
 </ul>
 <p>The most common options are:</p>
 <ul>
 <li>“n”, an integer values specifying the width of the field;</li>
-<li>“0” indicates whether zero-padding should be used;<br />
-</li>
+<li>“0” indicates whether zero-padding should be used;</li>
 <li>“.m” where n is an integer.</li>
 </ul>
 <p>That being said, to be as clear as possible, let me exemplify!</p>
@@ -170,17 +164,17 @@ values as axes limits and handling myself their values so that all symbols stay 
 have to pass <code>xaxs=&quot;i&quot;</code> (<code>yaxs=&quot;i&quot;</code>) to the <code>par()</code> function. I compare below
 a plot using the default parameters’ values and the same plot using the tip:</p>
 <pre class="r"><code>par(mfrow=c(1,2), bty=&quot;l&quot;)
-plot(0:10, 0:10, pch=20)     
-par(xaxs=&quot;i&quot;, yaxs=&quot;i&quot;)   
-plot(0:10, 0:10, pch=20)   </code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/xaxsYaxs-1.png" width="912" style="display: block; margin: auto;" /></p>
+plot(0:10, 0:10, pch=20)
+par(xaxs=&quot;i&quot;, yaxs=&quot;i&quot;)
+plot(0:10, 0:10, pch=20)</code></pre>
+<p><img src="/post/trickOrTips/trick_or_tips001_files/figure-html/xaxsYaxs-1.png" width="912" style="display: block; margin: auto;" /></p>
 <p>Can you tell the difference? I now add two extra lines to stress the differences out.</p>
 <pre class="r"><code>par(mfrow=c(1,2), bty=&quot;l&quot;)
-plot(0:10, 0:10, pch=20)  
-abline(v=c(0,10), h=c(0,10), col=2)   
-par(xaxs=&quot;i&quot;, yaxs=&quot;i&quot;)   
-plot(0:10, 0:10, pch=20)   
+plot(0:10, 0:10, pch=20)
+abline(v=c(0,10), h=c(0,10), col=2)
+par(xaxs=&quot;i&quot;, yaxs=&quot;i&quot;)
+plot(0:10, 0:10, pch=20)
 abline(v=c(0,10), h=c(0,10), col=2)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/xaxsYaxsV2-1.png" width="912" style="display: block; margin: auto;" /></p>
+<p><img src="/post/trickOrTips/trick_or_tips001_files/figure-html/xaxsYaxsV2-1.png" width="912" style="display: block; margin: auto;" /></p>
 <p><strong>That’s all folks… until next time!</strong></p>
 </div>
