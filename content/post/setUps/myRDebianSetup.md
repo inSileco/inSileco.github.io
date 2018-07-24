@@ -34,7 +34,7 @@ different aspects:
 
 ## How do I install and the package I use?
 
-As mentioned in [a previous post]({{< relref "post/goDebianTesting" >}}), I am
+As mentioned in [a previous post]({{< relref "/post/setUps/goDebianTesting" >}}), I am
 currently working on Debian testing and use `apt-get` to install my software
 which includes R:
 

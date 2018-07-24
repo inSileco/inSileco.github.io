@@ -24,7 +24,7 @@ about my transition in this post.
 Last Easter, after a couple of months on Debian Stretch, I felt like the time
 had come for me to go Debian Testing. I was actually enjoying Debian Stretch and
 I was able to manage to get up-to-date versions of certain software when desired
-(detailed in my [previous post]({{< relref "post/myDebianStretch.md" >}})) but
+(detailed in my [previous post]({{< relref "/post/setUps/myDebianStretch.md" >}})) but
 after a couple of online readings I was convinced that being on Testing
 was a fairly reasonable step forward that would just make my live easier.
 
@@ -189,7 +189,7 @@ System:    Host: debian Kernel: 4.16.0-1-amd64 x86_64 bits: 64 Desktop: Gnome 3.
 
 ### New theme and new cursors and top icon
 
-I keep using the same theme that I used on [my Debian Stretch setup]({{< relref "post/myDebianStretch.md#Gnome,gnome-tweak-toolsandshortcuts" >}}) but I
+I keep using the same theme that I used on [my Debian Stretch setup]({{< relref "post/setUps/myDebianStretch.md#Gnome,gnome-tweak-toolsandshortcuts" >}}) but I
 further customized it:
 
 1. I chose the [Vimix theme](https://github.com/vinceliuice/vimix-gtk-themes) and I added the [user theme that was disabled](https://askubuntu.com/questions/545741/why-is-shell-theme-disabled-in-gnome-tweak-tool),
