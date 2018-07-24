@@ -1,0 +1,148 @@
+---
+title: R in Space - Geometry manipulation
+author: [david, marieh, nicolas, kevin, elliot, steve]
+date: 2018-04-08
+tags: [R in Space, R, Spatial]
+rpkgs: [raster, rgeos, sf, sp]
+draft: false
+tweet: "R in Space - Geometry manipulation"
+navposts:
+  prev: rinspace_attrmanip
+  home: rinspace_homepage
+  next: rinspace_rdataresources
+output:
+  rmarkdown::html_page:
+    fig_width: 3
+    dev: svg
+---
+
+
+
+<p><img src="https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg" /></p>
+<p>To manipulate geometries, there are few options. For spatial objects defined
+with <code>sp</code>, there is a specific package to manipulate vector objects: <code>rgeos</code>.
+The equivalent of most common functions in <code>sp</code> are found in <code>sf</code>.
+Finally, there are a set of interesting functions in <code>raster</code> to handle
+the manipulation of rasters with vector objects.</p>
+<p>Let’s first load the packages required and download a simple shapefile of Belgium.</p>
+<pre class="r"><code>library(sp)
+library(sf)
+library(rgeos)
+library(raster)
+dir.create(&quot;data&quot;)
+bel2 &lt;- getData(name=&quot;GADM&quot;, country=&quot;BEL&quot;, path=&quot;data&quot;, level = 2)
+plot(bel2)</code></pre>
+<p><img src="/post/rinspace_geomanip/index_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="sp-objects" class="section level2">
+<h2><code>sp</code> objects</h2>
+<div id="subset" class="section level3">
+<h3>Subset</h3>
+<p>A quick subset:</p>
+<pre class="r"><code>## Create a subset (A sub-shapefile)
+slc &lt;- c(8,11,12)
+bel_slc &lt;- bel2[slc,]
+class(bel_slc)
+#R&gt; [1] &quot;SpatialPolygonsDataFrame&quot;
+#R&gt; attr(,&quot;package&quot;)
+#R&gt; [1] &quot;sp&quot;</code></pre>
+<p>Let’s plot our selection:</p>
+<pre class="r"><code>plot(bel_slc)</code></pre>
+<p><img src="/post/rinspace_geomanip/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="unions" class="section level3">
+<h3>Unions</h3>
+<p>Let’s do the union of a selection of spatial polygons:</p>
+<pre class="r"><code>bel_south &lt;- gUnionCascaded(bel_slc)
+bel_north &lt;- gUnionCascaded(bel2[-slc,])
+bel_one &lt;- gUnionCascaded(bel2)
+par(mfrow=c(1,3), mar=c(1,1,1,1))
+plot(bel_south)
+plot(bel_north)
+plot(bel_one)</code></pre>
+<p><img src="/post/rinspace_geomanip/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Let’s combine them on one plot:</p>
+<pre class="r"><code>plot(bel2, lwd = .1)
+plot(bel_south, add=T, col=2)
+plot(bel_north, add=T, col=4)
+plot(bel2, lwd = .5, add = T)
+plot(bel_one, lwd = 2, add = T, border = &quot;grey55&quot;)</code></pre>
+<p><img src="/post/rinspace_geomanip/index_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="buffers" class="section level3">
+<h3>Buffers</h3>
+<p>Buffer must be done on planar coordinates.</p>
+<pre class="r"><code>plot(bel2)
+bufs &lt;- gBuffer(bel_south, width=0.4)
+bufn &lt;- gBuffer(bel_north, width=0.1)
+plot(bufs, add=T, lwd=2, lty=2)
+plot(bufn, add=T, lwd=3)</code></pre>
+<p><img src="/post/rinspace_geomanip/index_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="intersections" class="section level3">
+<h3>Intersections</h3>
+<p>Intersections between <code>bel_south</code> and <code>bel_north</code>:</p>
+<pre class="r"><code>par(mfrow = c(1,2))
+plot(bel_one)
+plot(gIntersection(bel_south, bel_north), col=5, add=T, lwd=2)
+plot(bel_one)
+plot(gIntersection(bufs, bufn), col=5, add=T, lwd=2)</code></pre>
+<p><img src="/post/rinspace_geomanip/index_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="differences" class="section level3">
+<h3>Differences</h3>
+<pre class="r"><code>bel_diff &lt;- gDifference(bufs, bufn)
+plot(bel_one)
+plot(bel_diff, add=T, lwd=2, lty=3, col=2)
+plot(bel_south, add=T, col=2)</code></pre>
+<p><img src="/post/rinspace_geomanip/index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="overlays" class="section level2">
+<h2>Overlays</h2>
+<p>One very useful tool is the <strong>over()</strong> function which provides a consistent
+spatial overlay. For instance, here, I create a set of random points and
+look which one are in <code>bel2</code>, <code>bel_north</code> and <code>bel_south</code>:</p>
+<pre class="r"><code>pts &lt;- SpatialPoints(
+  coords = cbind(
+    runif(50, bel2@bbox[1, 1], bel2@bbox[1, 2]),
+    runif(50, bel2@bbox[2, 1], bel2@bbox[2, 2])
+  ),
+  proj4string = bel2@proj4string
+)
+# Make a SpatialPolygons
+bel2_geom &lt;- SpatialPolygons(bel2@polygons, proj4string = bel2@proj4string)
+# plots
+plot(bel2_geom)
+points(pts, col = is.na(over(pts, bel2_geom))+2, pch =19)</code></pre>
+<p><img src="/post/rinspace_geomanip/index_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="sf-objects" class="section level2">
+<h2><code>sf</code> objects</h2>
+<p>Have a look at the dedicated vignette: <a href="https://cran.r-project.org/web/packages/sf/vignettes/sf3.html" class="uri">https://cran.r-project.org/web/packages/sf/vignettes/sf3.html</a></p>
+</div>
+<div id="raster-objects" class="section level2">
+<h2><code>raster</code> objects</h2>
+<p>Let’s now download a simple raster of elevation.</p>
+<pre class="r"><code>bel_elv &lt;- getData(name=&quot;alt&quot;, country=&quot;BEL&quot;, path=&quot;data&quot;, level = 2)
+plot(bel_elv)</code></pre>
+<p><img src="/post/rinspace_geomanip/index_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="extract-values" class="section level3">
+<h3>Extract values</h3>
+<pre class="r"><code>val_south &lt;- extract(bel_elv, bel_south)
+val_north &lt;- extract(bel_elv, bel_north)
+#
+par(mfrow = c(1,2))
+hist(val_south[[1]])
+hist(val_north[[1]])</code></pre>
+<p><img src="/post/rinspace_geomanip/index_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="mask" class="section level3">
+<h3>Mask</h3>
+<pre class="r"><code>elv_south &lt;- rasterize(bel_south, bel_elv, mask = T)
+elv_north &lt;- rasterize(bel_north, bel_elv, mask = T)
+par(mfrow = c(1,2))
+plot(elv_south)
+plot(elv_north)</code></pre>
+<p><img src="/post/rinspace_geomanip/index_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+</div>

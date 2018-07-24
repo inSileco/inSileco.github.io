@@ -1,0 +1,403 @@
+---
+title: "R in Space - About spatial data"
+author: [david, marieh, nicolas, kevin, elliot, steve]
+date: 2018-04-12
+tags: [R in Space, R, Spatial]
+rpkgs: [raster, sf, sp]
+tweet: "R in Space - About spatial data"
+draft: false
+navposts:
+  prev: rinspace_refs
+  home: rinspace_homepage
+  next: rinspace_import
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+
+
+<p><br><br></p>
+<p>Spatial data refer to phenomenon or information that can be observed geographically.
+What a definition! In short spatial data concern every information that could
+be reported on a map, <em>i.e.</em> on a two-dimensions geographical coordinates system.
+Two kinds of spatial data exist: <strong>vector data</strong> and <strong>raster data</strong>. Generally
+vectors refer to discrete locations, <em>i.e.</em> objects with boundaries (for
+instance a city, a road, a country) whereas raster data refer to continuous
+phenomenon that can be observed everywhere, but without natural boundaries (for
+instance the surface temperature). Let’s take a look at their characteristics.</p>
+<div id="vector-data" class="section level2">
+<h2>Vector data</h2>
+<p>Vector data consist of the description of a spatially explicit phenomenon
+geometry (position and coordinates of its boundaries in a specific spatial
+referential). In addition to this geometry, vector data may contain variables
+(or attributes) with additional information about the phenomenon at each
+location. For instance, cities of a country are vector data (points) and
+attributes could be cities names, population sizes, etc. Borders of a country
+are also vector data (polygons) and could contain the name of the country,
+the population for a given year, and the mean number of crimes as attributes.</p>
+<p>There are main symbol types for vector data: <strong>points</strong>, <strong>lines</strong> and <strong>polygons</strong>.
+The geometry of these data structures consists of sets of geographical
+coordinate pairs (longitude, latitude) in a specific Coordinate Reference System
+(CRS).</p>
+<div id="points-data" class="section level3">
+<h3>Points data</h3>
+<p>Points are the simplest vector object. Each point has one two-dimensional
+coordinates, and several associated variables. For instance, a point might
+represent a location where an animal was trapped, and the attributes could
+include the capture date, the size, the sex, and information about the physical
+environment.</p>
+<p><br /></p>
+<p><img src="/post/rinspace_spobjects/index_files/figure-html/vector-data-1.png" width="810" height="270" style="display: block; margin: auto;" /></p>
+<p><br /></p>
+</div>
+<div id="lines-data" class="section level3">
+<h3>Lines data</h3>
+<p>Lines are the second type of vector data. A line is a shape consisting of one
+or several segments (or paths) and each segment has two noteworthy points
+(or vertex): a starting point and an ending point. Note that the ending point of
+a segment will have the same coordinates as the starting point of the following
+segment in the case of a line consisting of connected segments. In other words,
+a line with one segment is defined by two coordinates pairs (longitude and
+latitude). A line with two connected segments is defined by three coordinates
+pairs and a line with two isolated segments is defined by four coordinates pairs.
+Thus, the representation of a line is very similar to that of a collection of
+points. The main difference is that the ordering of the points is important,
+because we need to know which points should be connected two-by-two.</p>
+</div>
+<div id="polygons-data" class="section level3">
+<h3>Polygons data</h3>
+<p>Polygons are closed spatial lines where the coordinates of the starting point of
+the first segment is identical to the ending point of the last segment. The
+geometry of a polygon is very similar to that of a line but polygons have three
+characteristics:</p>
+<ol style="list-style-type: decimal">
+<li><p>a polygon cannot self-intersect (whereas a line can),</p></li>
+<li><p>a polygon can contain hole (think about the state of Vatican overlapping the
+country of Italy but considered as a separated polygon),</p></li>
+<li><p>as a closed feature, a polygon has an inside and a border.</p></li>
+</ol>
+<p><br /></p>
+<p>Vector data are generally stored in <strong>ESRI Shapefile</strong>, <strong>GeoJSON</strong>, <strong>KML</strong>
+or <strong>Simple Features</strong> files. In R, two main packages exist to handle spatial
+vector data: <code>sp</code> and <code>sf</code>. Note that the package <code>rgdal</code> will be used to
+import/export vector data (go next post to learn more).</p>
+</div>
+</div>
+<div id="raster-data" class="section level2">
+<h2>Raster data</h2>
+<p>Raster data are commonly used to represent <em>continuous</em> phenomenon that can be
+observed everywhere, but without natural boundaries (but with artificial
+boundaries defined by the user). A raster consists of a grid of equally sized
+cells (or pixels) that all have a values (or a missing value) for one single
+variable.</p>
+<p>Unlike vector data, the geometry of raster data is not explicitly stored as
+coordinates. Rather it is implicitly set by setting the spatial extent and the
+number of rows and columns of a regular grid. From this spatial information,
+the size of the raster cells (spatial resolution) can be computed. Working with
+raster data will therefore be more efficient than working with polygons data.</p>
+<p>Raster can be used to represent a very broad range of data: continuous
+(temperature values), discrete (habitat classes) or even binary (species occurrence)
+variables.</p>
+<p><img src="/post/rinspace_spobjects/index_files/figure-html/raster-data-1.png" width="810" height="270" style="display: block; margin: auto;" /></p>
+<p><br /></p>
+<p>Several file formats exist to store raster data. The most commons are: <strong>GeoTIFF</strong>, <strong>NetCDF</strong>, <strong>grd</strong> and <strong>ascii</strong> formats. Even the package <code>rgdal</code> can be used to import/export raster data, we will prefer the package <code>raster</code>.</p>
+</div>
+<div id="vector-objects-in-r" class="section level2">
+<h2>Vector objects in R</h2>
+<p>In this section we present two packges: <code>sp</code> and <code>sf</code>. The <code>sp</code> package actualy
+defines classes for both vector and raster objects. Below, we
+however focus on the vector ones and so we do not detail <code>SpatialGrid</code> and
+<code>SpatialPixels</code> objects. Also note that <code>sf</code> “[…] aims at succeeding <code>sp</code> in
+the long term” (<a href="https://cran.r-project.org/web/packages/sf/vignettes/sf1.html">Simple Features for R</a>,
+<code>sf</code> vignette).</p>
+<p>Let first create a data frame <code>mydata</code>:</p>
+<pre class="r"><code>mylon &lt;- -82+2*runif(20)
+mylat &lt;- 42+2*runif(20)
+mydata &lt;- data.frame(
+  lon = mylon,
+  lat = mylat,
+  var1 = rnorm(20),
+  var2 = 10*runif(20)
+)</code></pre>
+<p>Let’s have a look at thus data frame:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="right">lon</th>
+<th align="right">lat</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">-81.80247</td>
+<td align="right">42.61008</td>
+<td align="right">0.4903868</td>
+<td align="right">1.075007</td>
+</tr>
+<tr class="even">
+<td align="right">-80.38990</td>
+<td align="right">42.02608</td>
+<td align="right">-0.3728839</td>
+<td align="right">4.172873</td>
+</tr>
+<tr class="odd">
+<td align="right">-80.78485</td>
+<td align="right">43.08422</td>
+<td align="right">-0.2509555</td>
+<td align="right">5.859953</td>
+</tr>
+<tr class="even">
+<td align="right">-81.23434</td>
+<td align="right">43.10306</td>
+<td align="right">-0.7129443</td>
+<td align="right">9.746547</td>
+</tr>
+<tr class="odd">
+<td align="right">-80.00439</td>
+<td align="right">42.99512</td>
+<td align="right">1.0514086</td>
+<td align="right">1.311865</td>
+</tr>
+<tr class="even">
+<td align="right">-80.01515</td>
+<td align="right">42.58484</td>
+<td align="right">0.2805270</td>
+<td align="right">6.302691</td>
+</tr>
+</tbody>
+</table>
+<div id="package-sp" class="section level3">
+<h3>Package <code>sp</code></h3>
+<div id="classes" class="section level4">
+<h4>Classes</h4>
+<p>The table below includes a description of the classes for points, lines and polygons.
+Basically all these classes work the same way. For instance, in order to define a
+<code>SpatialPointsDataPoints</code> object, three elements are required: a set of coordinates,
+a Coordinate Reference System (CRS) and an attribute table. Intermediate
+class are also defined (for instance points + CRS = <code>SpatialPoints</code>) and
+the name of the class is also the name of the function to be called.</p>
+<table>
+<thead>
+<tr class="header">
+<th>Classes and functions</th>
+<th>Contents</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Points</td>
+<td>list of points (set of coordinates)</td>
+</tr>
+<tr class="even">
+<td>SpatialPoints</td>
+<td>list of points + CRS</td>
+</tr>
+<tr class="odd">
+<td>SpatialPointsDataPoints</td>
+<td>list of points + CRS + attribute table</td>
+</tr>
+<tr class="even">
+<td>Line</td>
+<td>a line (set of coordinates)</td>
+</tr>
+<tr class="odd">
+<td>Lines</td>
+<td>list of lines</td>
+</tr>
+<tr class="even">
+<td>SpatialLines</td>
+<td>list of lines + CRS</td>
+</tr>
+<tr class="odd">
+<td>SpatialLinesDataFrame</td>
+<td>list of lines + CRS + attribute table</td>
+</tr>
+<tr class="even">
+<td>Polygon</td>
+<td>a line (set of coordinates)</td>
+</tr>
+<tr class="odd">
+<td>Polygons</td>
+<td>list of lines</td>
+</tr>
+<tr class="even">
+<td>SpatialPolygons</td>
+<td>list of lines + CRS</td>
+</tr>
+<tr class="odd">
+<td>SpatialPolygonsDataFrame</td>
+<td>list of lines + CRS + attribute table</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="spatialpointsdataframe" class="section level4">
+<h4><code>SpatialPointsDataFrame</code></h4>
+<p>As an more tangible example, let’s now create a <code>SpatialPointsDataFrame</code>
+based on our data frame <code>mydata</code>.</p>
+<pre class="r"><code>library(sp)
+mysp &lt;- SpatialPointsDataFrame(
+  coords = mydata[, 1:2],
+  data = mydata[, 3:4],
+  proj4string = CRS(
+    &quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0&quot;
+  )
+)</code></pre>
+<p>Note that <a href="https://github.com/OSGeo/proj.4">proj4</a> is used and we therefore
+wrote a string that describes the CRS and that proj4 understands. Below are
+listed some properties of the object we have defined.</p>
+<pre class="r"><code>isS4(mysp)
+class(mysp)
+slotNames(mysp)
+dim(mysp)
+#R&gt; [1] TRUE
+#R&gt; [1] &quot;SpatialPointsDataFrame&quot;
+#R&gt; attr(,&quot;package&quot;)
+#R&gt; [1] &quot;sp&quot;
+#R&gt; [1] &quot;data&quot;        &quot;coords.nrs&quot;  &quot;coords&quot;      &quot;bbox&quot;        &quot;proj4string&quot;
+#R&gt; [1] 20  2</code></pre>
+<p>Basically, it is a <a href="http://adv-r.had.co.nz/S4.html">S4 object</a> of class
+<code>SpatialPointsDataFrame</code>. All slot names refer to attribute that are accessible
+<em>via</em> and <code>@</code>:</p>
+<pre class="r"><code>mysp@proj4string
+#R&gt; CRS arguments:
+#R&gt;  +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0
+head(mysp@data)
+#R&gt;         var1     var2
+#R&gt; 1  0.4903868 1.075007
+#R&gt; 2 -0.3728839 4.172873
+#R&gt; 3 -0.2509555 5.859953
+#R&gt; 4 -0.7129443 9.746547
+#R&gt; 5  1.0514086 1.311865
+#R&gt; 6  0.2805270 6.302691</code></pre>
+<p>In order to change projection, the user must call <code>spTransform()</code>, like so:</p>
+<pre class="r"><code>(mysp2 &lt;- spTransform(mysp, CRS=CRS(&quot;+proj=merc +ellps=GRS80&quot;)))
+#R&gt; class       : SpatialPointsDataFrame 
+#R&gt; features    : 20 
+#R&gt; extent      : -9106209, -8906048, 5136273, 5419564  (xmin, xmax, ymin, ymax)
+#R&gt; coord. ref. : +proj=merc +ellps=GRS80 
+#R&gt; variables   : 2
+#R&gt; names       :              var1,              var2 
+#R&gt; min values  : -2.57922790428167, 0.919948113150895 
+#R&gt; max values  :  2.92647742025747,  9.82871481450275</code></pre>
+</div>
+</div>
+<div id="package-sf" class="section level3">
+<h3>Package <code>sf</code></h3>
+<p>Below is a very short overview of classes in <code>sf</code>, the reader that requires
+further explanation would find more details on the
+<a href="https://cran.r-project.org/web/packages/sf/vignettes/sf1.html#sf-objects-with-simple-features">first vignette of sf</a>.
+Basically three classes are defined: <code>sf</code>, <code>sfc</code> and <code>sfg</code>.</p>
+<div id="class-sf" class="section level4">
+<h4>Class <code>sf</code></h4>
+<pre class="r"><code>library(sf)
+pts_sf &lt;- st_as_sf(
+  x = mydata,
+  coords = c(&quot;lon&quot;, &quot;lat&quot;),
+  crs = 4326)</code></pre>
+<p>Let’s examine its class</p>
+<pre class="r"><code>class(pts_sf)
+#R&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
+</div>
+<div id="class-sfc" class="section level4">
+<h4>Class <code>sfc</code></h4>
+<pre class="r"><code>pts_sfc &lt;- st_geometry(pts_sf)
+class(pts_sfc)
+#R&gt; [1] &quot;sfc_POINT&quot; &quot;sfc&quot;</code></pre>
+</div>
+<div id="class-sfg" class="section level4">
+<h4>Class <code>sfg</code></h4>
+<pre class="r"><code>(x &lt;- st_point(c(1,2)))
+class(x)
+#R&gt; [1] &quot;XY&quot;    &quot;POINT&quot; &quot;sfg&quot;</code></pre>
+</div>
+<div id="how-to-import-a-sp-object" class="section level4">
+<h4>How to import a <code>sp</code> object</h4>
+<p><code>st_as_sf()</code> can also be used to convert a <code>sp</code> object into a <code>sf</code> one.</p>
+<pre class="r"><code>st_as_sf(mysp)
+#R&gt; Simple feature collection with 20 features and 2 fields
+#R&gt; geometry type:  POINT
+#R&gt; dimension:      XY
+#R&gt; bbox:           xmin: -81.80247 ymin: 42.02608 xmax: -80.00439 ymax: 43.89495
+#R&gt; epsg (SRID):    4326
+#R&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#R&gt; First 10 features:
+#R&gt;          var1     var2                   geometry
+#R&gt; 1   0.4903868 1.075007 POINT (-81.80247 42.61008)
+#R&gt; 2  -0.3728839 4.172873  POINT (-80.3899 42.02608)
+#R&gt; 3  -0.2509555 5.859953 POINT (-80.78485 43.08422)
+#R&gt; 4  -0.7129443 9.746547 POINT (-81.23434 43.10306)
+#R&gt; 5   1.0514086 1.311865 POINT (-80.00439 42.99512)
+#R&gt; 6   0.2805270 6.302691 POINT (-80.01515 42.58484)
+#R&gt; 7  -0.1555556 9.223396 POINT (-81.23418 42.08587)
+#R&gt; 8  -1.5763767 3.279468 POINT (-81.53454 42.42827)
+#R&gt; 9  -0.9360012 6.251189 POINT (-80.80698 43.34591)
+#R&gt; 10 -1.9618193 9.635805 POINT (-81.30866 43.19977)</code></pre>
+</div>
+</div>
+</div>
+<div id="raster-objects-in-r" class="section level2">
+<h2>Raster objects in R</h2>
+<p>The R package <code>raster</code> provides three main classes of raster object (more details
+<a href="http://www.rspatial.org/spatial/rst/4-rasterdata.html#rasterlayer">here</a>):</p>
+<ol style="list-style-type: decimal">
+<li><strong>RasterLayer</strong> imports a single-layer (variable) raster,</li>
+<li><strong>RasterStack</strong> imports in one single object several single-layer (variable) rasters stored in one or different files,</li>
+<li><strong>RasterBrick</strong> imports in one single object several single-layer (variable) rasters stored in one single file.</li>
+</ol>
+<p>Using <strong>RasterStack</strong> and <strong>RasterBrick</strong> requires that the geometry of all
+raster data is equal.</p>
+<p>Package <code>raster</code> define three classes of rater object we detail below.</p>
+<div id="rasterlayer" class="section level3">
+<h3>RasterLayer</h3>
+<pre class="r"><code>library(raster)
+val1 &lt;- matrix(runif(100*100,0,10), ncol = 100, nrow = 100)
+ras1 &lt;- raster(
+    val1,
+    crs = CRS(&quot;+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0&quot;),
+    xmn = -82, xmx = +80, ymn = +42, ymx = +44
+  )
+class(ras1)
+#R&gt; [1] &quot;RasterLayer&quot;
+#R&gt; attr(,&quot;package&quot;)
+#R&gt; [1] &quot;raster&quot;
+dim(ras1)
+#R&gt; [1] 100 100   1
+head(values(ras1))
+#R&gt; [1] 6.544016 3.900609 4.368254 3.970687 8.061125 8.084684
+projection(ras1)
+#R&gt; [1] &quot;+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0&quot;</code></pre>
+</div>
+<div id="rasterstack-and-rasterbrick" class="section level3">
+<h3>RasterStack and RasterBrick</h3>
+<p><a href="http://www.rspatial.org/spatial/rst/4-rasterdata.html#rasterstack-and-rasterbrick" class="uri">http://www.rspatial.org/spatial/rst/4-rasterdata.html#rasterstack-and-rasterbrick</a></p>
+<p>Let’s first create another raster (with the same CRS)</p>
+<pre class="r"><code>val2 &lt;- matrix(rnorm(100*100), ncol = 100, nrow = 100)
+ras2 &lt;- raster(
+    val2,
+    crs = CRS(&quot;+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0&quot;),
+    xmn = -82, xmx = +80, ymn = +42, ymx = +44
+  )
+class(ras2)
+#R&gt; [1] &quot;RasterLayer&quot;
+#R&gt; attr(,&quot;package&quot;)
+#R&gt; [1] &quot;raster&quot;</code></pre>
+<p>Let’s <code>stack()</code> <code>ras1</code> and <code>ras2</code>:</p>
+<pre class="r"><code>sta1 &lt;- stack(ras1, ras2)
+class(sta1)
+#R&gt; [1] &quot;RasterStack&quot;
+#R&gt; attr(,&quot;package&quot;)
+#R&gt; [1] &quot;raster&quot;</code></pre>
+<p>Let’s <code>brick()</code> them:</p>
+<pre class="r"><code>bri1 &lt;- brick(ras1, ras2)
+class(bri1)
+#R&gt; [1] &quot;RasterBrick&quot;
+#R&gt; attr(,&quot;package&quot;)
+#R&gt; [1] &quot;raster&quot;</code></pre>
+</div>
+</div>
