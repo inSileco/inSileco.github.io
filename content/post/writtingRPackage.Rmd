@@ -1,22 +1,30 @@
 ---
-layout: post
-title:  "Creating an R package, it's worth it"
-author: Kevin Cazelles
-date:   2015-08-04
-categories: R
+title: Writing your R package
+author: [kevin]
+date: 2018-07-28
+tags: [R, packages]
+rpkgs: [devtools]
+draft: true
+tweet: Make your R plot Hylian
+estime: 12
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
 ---
 
 
-As I have recently submitted first package to CRAN after quite a while I'd like 
-to share my expereince forst is the revisit of a post I worte bac in Agust 2015
- 2015-08-04 At that time I add created my forst package now I use R packge
- as one on my toots
+
+As I have recently submitted a first package to the [CRAN](https://cran.r-project.org/) after quite a while I'd like
+to share my expereince and took the opportunity to revisit a piece of text I wrote
+three years ago when I built y forst package. 
 
 I have recently created my first R package to gather R functions I often use to create graphics.
 It is straightforward, I have learned a lot, many tools make your live easier, it's definitively worth it!
 
 
-### Documentation and tools to build R packages ###
+## Documentation and tools to build R packages
 
 As I did not know how it works, my first move was to search on the CRAN website where I readily found an [exhaustive documentation](https://cran.r-project.org/doc/manuals/r-release/R-exts.html).
 It was so well-detailed that I quickly figured out that it would require hours to go through and understand all of this.
@@ -24,8 +32,8 @@ Therefore I decided to search online for a more applied perspective. That's how 
 A small click for my web browser a giant leap for me!
 Everything is actually already well-thought-out:
 
-1- An R package has a clear and simple architecture, all files required are easy to edit.  
-2- There is a valuable book, available as a [website](http://r-pkgs.had.co.nz), written by Hadley Wickham.  
+1- An R package has a clear and simple architecture, all files required are easy to edit.
+2- There is a valuable book, available as a [website](http://r-pkgs.had.co.nz), written by Hadley Wickham.
 3- Many steps such as the documentation are automated due to functions of the [*devtools*](https://cran.r-project.org/web/packages/devtools/index.html) package.
 4- In addition, using [Github](https://github.com), [Travis](https://travis-ci.org) together with a powerful code editor such as [Atom](https://atom.io) makes the workflow even more efficient.
 
@@ -47,10 +55,10 @@ To do so at the head of all you function, you must use a couple of lines startin
 
 To have more details, the minimal example from [Hilary Parker](http://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) is well-chosen. To go deeper, look at [what Hadley Wickham wrote](http://r-pkgs.had.co.nz/man.html). Once your function os documented, you simply need to use 2 functions, like so:
 
-{% highlight R %}
-load_all("path2yourRpackage")   
+```
+load_all("path2yourRpackage")
 document("path2yourRpackage")
-{% endhighlight %}
+```
 
 The first function will load all the functions in the **R** folder, the second will create the folder **man** that contains one document file for each function based on what you wrote.
 Those functions check wether your package is in accordance with the architecture of an R package. However neither your code nor your examples are tested.
@@ -87,6 +95,6 @@ Also, to chose the version number of you R package, I recommend you to follow th
 <br/>
 
 
-**That's all folks!**
+### That's all folks!
 
 <br/>

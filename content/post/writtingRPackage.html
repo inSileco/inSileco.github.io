@@ -1,0 +1,80 @@
+---
+title: Writing your R package
+author: [kevin]
+date: 2018-07-28
+tags: [R, packages]
+rpkgs: [devtools]
+draft: true
+tweet: Make your R plot Hylian
+estime: 12
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+
+
+<p>As I have recently submitted a first package to the <a href="https://cran.r-project.org/">CRAN</a> after quite a while I’d like
+to share my expereince and took the opportunity to revisit a piece of text I wrote
+three years ago when I built y forst package.</p>
+<p>I have recently created my first R package to gather R functions I often use to create graphics.
+It is straightforward, I have learned a lot, many tools make your live easier, it’s definitively worth it!</p>
+<div id="documentation-and-tools-to-build-r-packages" class="section level2">
+<h2>Documentation and tools to build R packages</h2>
+<p>As I did not know how it works, my first move was to search on the CRAN website where I readily found an <a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html">exhaustive documentation</a>.
+It was so well-detailed that I quickly figured out that it would require hours to go through and understand all of this.
+Therefore I decided to search online for a more applied perspective. That’s how I came across <a href="http://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/">this post from Hilary Parker</a>.
+A small click for my web browser a giant leap for me!
+Everything is actually already well-thought-out:</p>
+<p>1- An R package has a clear and simple architecture, all files required are easy to edit.
+2- There is a valuable book, available as a <a href="http://r-pkgs.had.co.nz">website</a>, written by Hadley Wickham.
+3- Many steps such as the documentation are automated due to functions of the <a href="https://cran.r-project.org/web/packages/devtools/index.html"><em>devtools</em></a> package.
+4- In addition, using <a href="https://github.com">Github</a>, <a href="https://travis-ci.org">Travis</a> together with a powerful code editor such as <a href="https://atom.io">Atom</a> makes the workflow even more efficient.</p>
+<div id="the-devtools-packages" class="section level3">
+<h3>The <em>devtools</em> packages</h3>
+<p>This is the R package you need to develop your own R package efficiently.
+Hadley Wickham and colleagues have cleverly automated many steps for creating R packages in different packages that are used by <em>devtools</em>.
+Let’s say you have a bunch of R functions. What you need to do is to make a folder called <strong>yourRpackage</strong> where you edit a file <strong>DESCRIPTION</strong> that <a href="http://r-pkgs.had.co.nz/description.html">describes your package</a>.
+Then, you must create a subfolder named <strong>R</strong> where you put your R functions (usually with a filename extension “<em>.R</em>” ) and then put all your R functions within.
+Before going any further, you must document your functions.
+To do so at the head of all you function, you must use a couple of lines starting by <strong>#’</strong> that will be used by <em>devtools</em> (via <em>roxygen2</em>) to produce the documentation. The basic syntax is:</p>
+<p>{% highlight R %}
+#’ <span class="citation">@nameofsection</span> (e.g. <span class="citation">@return</span>, <span class="citation">@examples</span>, …)
+#’ what you need to write
+{% endhighlight %}</p>
+<p>To have more details, the minimal example from <a href="http://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/">Hilary Parker</a> is well-chosen. To go deeper, look at <a href="http://r-pkgs.had.co.nz/man.html">what Hadley Wickham wrote</a>. Once your function os documented, you simply need to use 2 functions, like so:</p>
+<pre><code>load_all(&quot;path2yourRpackage&quot;)
+document(&quot;path2yourRpackage&quot;)</code></pre>
+<p>The first function will load all the functions in the <strong>R</strong> folder, the second will create the folder <strong>man</strong> that contains one document file for each function based on what you wrote.
+Those functions check wether your package is in accordance with the architecture of an R package. However neither your code nor your examples are tested.
+Therefore, you must strongly benefit from <a href="http://r-pkgs.had.co.nz/check.html">testing your package</a>.
+One first thing to do is to use the function <em>check</em> of ‘devtools’ package.
+Also, thanks to the <a href="https://cran.r-project.org/web/packages/testthat/index.html"><em>testthat</em></a> you have a simple unit testing system.
+I do not take advantage from this package, I rather use Travis as explained below.</p>
+</div>
+<div id="github-travis" class="section level3">
+<h3>Github + Travis</h3>
+<p><a href="https://github.com">Github</a> is becoming an inescapable tool for developers. Even without collaboration Github is an useful way to work efficiently.
+It offers a place to save your work, see clearly your progress and share to everyone your achievements.
+If your are not familiar with Github, you can have a look at the <a href="https://en.wikipedia.org/wiki/GitHub">wikipedia page</a>. Then, if you are eager to use it, I suggest you go through the <a href="https://en.wikipedia.org/wiki/GitHub">users documentation</a>.</p>
+<p>For an R package, there is one important extra asset: people can download and install your package using functions <em>install_github</em> or <em>install_git</em> of <em>devtools</em>. Even for your-self this is useful: once you have pushed your package to Github, you can install the released version through this process while keeping the version under development apart. Then, anytime you improve your package, you can test and document the new functions, make a new commit and so on.</p>
+<p>Even better, for each commit you push, a series of automated testing code can be made on a dedicated server. This is the magic of the continuous integration service <a href="https://travis-ci.org">Travis</a>. A couple of minute after pushing the new commit, you receive an email stating whether or not your package have been built with success.</p>
+<p>To start with Travis, after signing up (with your github account), you only need to read 1) <a href="http://docs.travis-ci.com/user/for-beginners">the thin documentation for complete beginners</a> and 2) the details regarding the <a href="http://docs.travis-ci.com/user/languages/r/">R language</a>. Then you must decide whether or not using Travis for your projects.
+You will likely notice that Travis for R language is community supported. Therefore, we are indebted to Craig Citro, Dirk Eddelbuettel, Hadley Wickham and people that contribute to the <a href="https://github.com/craigcitro/r-travis">r-travis project</a>, so thank you guys, it helps a lot!</p>
+</div>
+<div id="license-and-version-of-your-package" class="section level3">
+<h3>License and Version of your package</h3>
+<p>Two last points to conclude this post.</p>
+<p>First, you may wonder what kind of license you must pick up for your package.
+In this case, I recommend you to go and visit this website:
+<a href="http://choosealicense.com">“ChooseALicense”</a>.</p>
+<p>Also, to chose the version number of you R package, I recommend you to follow the recommendation of <a href="http://semver.org">Semantic Versioning</a>. This will make the three numbers you add to your package name meaningful while others make the <a href="https://en.wikipedia.org/wiki/TeX">version number converging to pi</a>.</p>
+<p><br/></p>
+</div>
+<div id="thats-all-folks" class="section level3">
+<h3>That’s all folks!</h3>
+<p><br/></p>
+</div>
+</div>
