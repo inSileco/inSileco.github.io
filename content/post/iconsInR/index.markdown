@@ -24,6 +24,7 @@ output:
 
 
 
+
 ## Introduction
 
 Icons are very popular on websites to improve the visual grepping (*i.e.* visual
@@ -55,7 +56,7 @@ Here, we exemplify the first strategy and leave the second one for another post
 
 All of these frameworks propose either a `.ttf` (TrueType Font) or a `.otf`
 file (OpenType Font) or both. These files make our life very easy and we can
-make a direct **link** with a [previous blog post]({{< relref "post/hylianStyle" >}}).
+make a direct **link** with a [previous blog post](/post/HylianStyle.html).
 
 
 
@@ -68,7 +69,7 @@ make a direct **link** with a [previous blog post]({{< relref "post/hylianStyle"
 
 ```r
 sessionInfo()[[1L]]$version.string
-#R> [1] "R version 3.4.4 (2018-03-15)"
+#R> [1] "R version 3.5.1 (2018-07-02)"
 ```
 
 #### List of packages to be used
@@ -161,7 +162,7 @@ font_families()
 ```
 
 Here, things are going to be a little bit trickier than they were in the
-[Hylian blog post]({{< relref "post/hylianStyle" >}}), as we should first locate the
+[Hylian blog post]({{ ref "HylianStyle.html" }}), as we should first locate the
 unicode characters to be used. Fortunately, this is fairly doable:
 
   1. FontAwesome provides a very [helpful cheatsheet](http://fontawesome.io/cheatsheet/);
@@ -230,7 +231,7 @@ par(mar=c(2,2,2,2), family = 'FontAwesome')
 plot(coord[,1], coord[,2], pch=-as.hexmode(fas), cex=5, col=cols, ann=FALSE, axes=FALSE)
 ```
 
-<img src="/rmarkdown-libs/figure-html4/figfontawe-1.png" width="912" style="display: block; margin: auto;" />
+<img src="/post/iconsInR/index_files/figure-html/figfontawe-1.png" width="912" style="display: block; margin: auto;" />
 
 ### Adding Ionicons
 
@@ -249,7 +250,7 @@ par(mar=c(2,2,2,2), family = "ionicons")
 plot(coord[,1], coord[,2], ann=FALSE, axes=FALSE, pch=ias, cex=5, col=cols)
 ```
 
-<img src="/rmarkdown-libs/figure-html4/figionic-1.png" width="912" style="display: block; margin: auto;" />
+<img src="/post/iconsInR/index_files/figure-html/figionic-1.png" width="912" style="display: block; margin: auto;" />
 
 
 
@@ -260,10 +261,9 @@ example that combines the three icon frameworks.
 
 
 ```r
-data(volcano)
 par(las=1, mar=c(4,5,4,4))
-image(volcano, col=colorRampPalette(c("grey10", "grey90"))(100), axes=FALSE)
-contour(volcano, add=T, col="#ffdd55")
+image(datasets::volcano, col=colorRampPalette(c("grey10", "grey90"))(100), axes=FALSE)
+contour(datasets::volcano, add=T, col="#ffdd55")
 title(main = toupper("My volcano"), cex.main=2)
 ##
 par(family="FontAwesome")
@@ -278,7 +278,7 @@ par(family = "academicons")
 mtext(text=intToUtf8(59476), side=4, adj=1, line=3, col = "#8555b4", cex=6)
 ```
 
-<img src="/rmarkdown-libs/figure-html4/volcano-1.png" width="912" style="display: block; margin: auto;" />
+<img src="/post/iconsInR/index_files/figure-html/volcano-1.png" width="912" style="display: block; margin: auto;" />
 
 
 

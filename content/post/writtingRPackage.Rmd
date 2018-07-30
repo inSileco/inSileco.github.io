@@ -5,7 +5,7 @@ date: 2018-07-28
 tags: [R, packages]
 rpkgs: [devtools]
 draft: true
-tweet: Make your R plot Hylian
+tweet: Why create a R package?
 estime: 12
 output:
   rmarkdown::html_page:
@@ -16,17 +16,126 @@ output:
 
 
 
-As I have recently submitted a first package to the [CRAN](https://cran.r-project.org/) after quite a while I'd like
-to share my expereince and took the opportunity to revisit a piece of text I wrote
-three years ago when I built y forst package. 
+As I have recently submitted a first package ([rcites](https://github.com/ibartomeus/rcites)) to the [CRAN](https://cran.r-project.org/)
+I'd like to share my experience as well as valuables resources. This also gave
+the opportunity to revisit a post I wrote three years ago when I created my
+first package.
 
-I have recently created my first R package to gather R functions I often use to create graphics.
-It is straightforward, I have learned a lot, many tools make your live easier, it's definitively worth it!
 
+http://web.mit.edu/insong/www/pdf/rpackage_instructions.pdf
+https://github.com/r-lib/pkgbuild
+
+
+## What is a R package?
+
+In the introduction of his book [R packages](http://r-pkgs.had.co.nz/intro.html),
+Hadley Wickham wrote:
+
+> A package bundles together code, data, documentation, and tests, and is easy to share with others.
+
+I like the way Hadley presents a package, it is straightforward and crystal clear.
+Interestingly enough, it describes what a package **does**, not what a
+package **is**. Defining R package is actually harder than I thought! I remember
+the first time I've tried to characterize a R packages, I ask a couple of
+questions and find the answer quite surprizing:
+
+- Are R packages extensions available on [CRAN](https://cran.r-project.org/) or [Bioconductor](https://www.bioconductor.org/)? **Not necessarly!**
+
+The answer sounds obvious nowadays with almost [40K R packages on Github](https://rdrr.io/).
+but 10 years I guess it wasn't. However it is important to notice that an R
+package that only exists (yet) in your own computer is an R packages.
+
+- Should a package have a minimum set of functions? **No**
+
+Obviously even among most used R packages the number of package is not a criterium.
+[vegan]() exports 192 functions (as of version 2.5.2) while [png]() includes
+two functions.
+
+- Should a package be designed to perform a specific analysis? **No**
+
+Two points here. First R packages can do a large range of think it could
+be an implementation of a set of tmethods for a field, for instance
+[](), a collection of useful function []() or make you R session
+crash each tine you load it (see [trump](https://github.com/romainfrancois/trump)).
+I guess for an academic using R to implement a nethid he develops the answer shold be
+yes be in general the answer os no. Second an R package is not defined by the
+methods it implemnts and there are no quality required to define. In fact
+CRAN does not reflcte quality of R package which leads sone people to coplain
+and [Kurt Hortnik, CRAN maintainer to discuss whether number of packages](http://www.stat.tugraz.at/AJS/ausg121/121Hornik.pdf)
+
+On CRAN JOSS Ropenscience for review (beyng the technical details).
+
+https://simplystatistics.org/2015/11/06/how-i-decide-when-to-trust-an-r-package/
+
+https://cran.r-project.org/web/packages/png/index.html
+
+
+>  In fact, packages can be employed as “containers” for
+all kinds of R extension material, such as data sets or documentation (manuals or books):
+because packages are versioned, keeping the extensions up-to-date can easily be achieved.
+
+I think it is however not a definition and I think when we think about
+
+
+> Package authors often seem to prefer copying code from other packages than
+depending on these, or collaborate to develop a common infrastructure. If packages pro-
+vide different solutions to similar tasks, they will evidently rather compete than cooperate
+through hierarchical dependencies.
+
+what a R package really is, it becomes quite interesting.
+
+package, we my guess is that we have to narrow down to a technical
+definition like: a set of structured files that pass the `R CMD check`.
+
+answer, it is
+
+This is not a question easy to answer. The easy way to answer is thI guess
+
+
+http://r-pkgs.had.co.nz/intro.html
+
+## Why create a R package?
+
+Another big question. In his introduction, Hadley gives 3 arguments:
+
+-
+
+
+
+I don't think it is worth jumping into details as they are I've created a
+very small
+presentation
+
+
+
+## How to proceed
+
+Three years where you will find many posts on the topic. I remember that
+[this post from Hilary Parker](http://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/)
+was of great help. Now I know that there are two resources:
+
+- all technical details [exhaustive documentation](https://cran.r-project.org/doc/manuals/r-release/R-exts.html
+- somewhat crystal clear and more prograntic
+
+After 3 years of experience and a couple of packages I do not frquenlty have
+to look at then anymore, they however always my answer if the question was not
+ask on stack before!
+
+Basically the
+
+
+
+https://www.r-project.org/dsc/2017/slides/R-hub.pdf
+
+https://github.com/r-hub/rhub
+
+https://builder.r-hub.io/
+
+http://blog.revolutionanalytics.com/2016/10/r-hub-public-beta.html
 
 ## Documentation and tools to build R packages
 
-As I did not know how it works, my first move was to search on the CRAN website where I readily found an [exhaustive documentation](https://cran.r-project.org/doc/manuals/r-release/R-exts.html).
+As I did not know how it works, my first move was to search on the CRAN website where I readily found an ).
 It was so well-detailed that I quickly figured out that it would require hours to go through and understand all of this.
 Therefore I decided to search online for a more applied perspective. That's how I came across [this post from Hilary Parker](http://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/).
 A small click for my web browser a giant leap for me!
@@ -47,10 +156,10 @@ Then, you must create a subfolder named **R** where you put your R functions (us
 Before going any further, you must document your functions.
 To do so at the head of all you function, you must use a couple of lines starting by **#'** that will be used by *devtools* (via *roxygen2*) to produce the documentation. The basic syntax is:
 
-{% highlight R %}
+```
 #' @nameofsection  (e.g. @return, @examples, ...)
 #' what you need to write
-{% endhighlight %}
+```
 
 
 To have more details, the minimal example from [Hilary Parker](http://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/) is well-chosen. To go deeper, look at [what Hadley Wickham wrote](http://r-pkgs.had.co.nz/man.html). Once your function os documented, you simply need to use 2 functions, like so:
@@ -67,8 +176,15 @@ One first thing to do is to use the function *check* of 'devtools' package.
 Also, thanks to the [*testthat*](https://cran.r-project.org/web/packages/testthat/index.html) you have a simple unit testing system.
 I do not take advantage from this package, I rather use Travis as explained below.
 
+About the number of package
+https://cran.r-project.org/web/packages/
+https://gist.github.com/daroczig/3cf06d6db4be2bbe3368
+http://blog.revolutionanalytics.com/2017/01/cran-10000.html
+https://www.r-pkg.org/
 
-### Github + Travis ###
+https://awesome-r.com/
+
+### Github + Travis + Appveyor
 
 [Github](https://github.com) is becoming an inescapable tool for developers. Even without collaboration Github is an useful way to work efficiently.
 It offers a place to save your work, see clearly your progress and share to everyone your achievements.
@@ -82,7 +198,7 @@ To start with Travis, after signing up (with your github account), you only need
 You will likely notice that Travis for R language is community supported. Therefore, we are indebted to Craig Citro, Dirk Eddelbuettel, Hadley Wickham and people that contribute to the [r-travis project](https://github.com/craigcitro/r-travis), so thank you guys, it helps a lot!
 
 
-### License and Version of your package ###
+### License and Version of your package
 
 Two last points to conclude this post.
 
@@ -96,5 +212,3 @@ Also, to chose the version number of you R package, I recommend you to follow th
 
 
 ### That's all folks!
-
-<br/>

@@ -26,6 +26,7 @@ source('../../../static/Rscript/codeChunkSetUp.R')
 ```
 
 
+
 ## Introduction
 
 Icons are very popular on websites to improve the visual grepping (*i.e.* visual
@@ -242,10 +243,9 @@ To combine, we have to switch from one font to another. Here is a simple
 example that combines the three icon frameworks.
 
 ```{r volcano, fig.width=9.5, fig.height=7, fig.showtext=TRUE}
-data(volcano)
 par(las=1, mar=c(4,5,4,4))
-image(volcano, col=colorRampPalette(c("grey10", "grey90"))(100), axes=FALSE)
-contour(volcano, add=T, col="#ffdd55")
+image(datasets::volcano, col=colorRampPalette(c("grey10", "grey90"))(100), axes=FALSE)
+contour(datasets::volcano, add=T, col="#ffdd55")
 title(main = toupper("My volcano"), cex.main=2)
 ##
 par(family="FontAwesome")
