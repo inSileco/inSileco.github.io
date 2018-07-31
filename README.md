@@ -1,6 +1,7 @@
 ## inSileco blogdown
 
 [![Build Status](https://travis-ci.org/inSileco/inSileco.github.io.svg?branch=dev)](https://travis-ci.org/inSileco/inSileco.github.io)
+[![Build status](https://ci.appveyor.com/api/projects/status/kxa7ht9m3b1eke22?svg=true)](https://ci.appveyor.com/project/KevCaz/insileco-github-io)
 
 
 The overarching goal of this blog is quite straightforward: tackle challenges
