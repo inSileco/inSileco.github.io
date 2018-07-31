@@ -14,9 +14,10 @@ install:
 
 build_script:
   - travis-tool.sh install_deps
+  - Rscript -e 'blogdown::install_hugo()'
 
 test_script:
-  - travis-tool.sh run_tests
+  - Rscript -e 'blogdown::build_site()'
 
 on_failure:
   - 7z a failure.zip *.Rcheck\*
