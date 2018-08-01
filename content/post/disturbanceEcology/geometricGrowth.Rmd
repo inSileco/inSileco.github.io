@@ -110,12 +110,12 @@ we can then predict population size for every subsequent year:
 
 ```{r example1, fig.height = 5, fig.width = 5, fig.align = 'center', echo = F}
 N <- c(1,3,9,27)
-t <- 1:4
+t <- 0:3
 par(mar = c(4,4,1,1))
 plot(x = t, y = N, ylab = 'Population size', xlab = 'Time',
      pch = 20, axes = F, cex = 1.5, col = cols[2], ylim = c(0, 30))
 lines(x = t, y = N, col = cols[2], lwd = 1.25)
-axis(1, at = 1:4)
+axis(1, at = 0:3)
 axis(2, las = 1)
 ```
 
@@ -151,20 +151,16 @@ Another important aspect of this model is that:
   \nonumber \lambda < 1 & \rightarrow & N \text{ decreases}
 \end{eqnarray}
 
-<!-- For this plot in particular (though I would always start these kind of plots at t0), I think you need to start at t0. I really get hung up on the fact that the lines don't start at the same point! 
-
-Also, I don't know what the answer to this really is, but what does a population of 0.3125 mean? Can you have a fraction of an organism? Should we just start with a larger number and round to avoid the issue?-->
-
 ```{r lambdaDec, fig.height = 5, fig.width = 5, fig.align = 'center', results = 'hold', echo = F}
-pop <- data.frame(pop1 = geomMod(10, .5, 1:5),
-                  pop2 = geomMod(10, 1, 1:5),
-                  pop3 = geomMod(10, 1.5, 1:5))
+pop <- data.frame(pop1 = geomMod(10, .5, 0:5),
+                  pop2 = geomMod(10, 1, 0:5),
+                  pop3 = geomMod(10, 1.5, 0:5))
 
 # Visualize
 par(mar = c(4,4,1,1))
-plot0(x = c(1,5), y = c(0,80))
-for(i in 1:3) points(x = 1:5, y = pop[, i], cex = 1.5, col = cols[i+1], pch = 20)
-for(i in 1:3) lines(x = 1:5, y = pop[, i], lwd = 1.25, col = cols[i+1])
+plot0(x = c(0,5), y = c(0,80))
+for(i in 1:3) points(x = 0:5, y = pop[, i], cex = 1.5, col = cols[i+1], pch = 20)
+for(i in 1:3) lines(x = 0:5, y = pop[, i], lwd = 1.25, col = cols[i+1])
 axis(1)
 axis(2, at = seq(0,80,20), las = 1)
 mtext('Time', 1, 2)
@@ -321,30 +317,28 @@ idea that comes to mind is to use the arithmetic mean of the growth rates.
 As a comparison, we also show what would happen if we were to use the minimum
 and maximum growth rate observed.
 
-<!-- made this more colorblind friendly and thickened the lines for my old tired eyes ;), I will let you decide which of these changes to keep and/or to apply to other plots -->
-
 ```{r pred2, fig.height = 10, fig.width = 10, fig.align = 'center', results = 'hold'}
 meanRates <- apply(rates, 2, mean)
 nP <- 7
-predAMean <- data.frame(year = 1:nP,
-                        pop1 = geomMod(N0 = 10, lambda = meanRates[1], t = 1:nP),
-                        pop2 = geomMod(N0 = 10, lambda = meanRates[2], t = 1:nP),
-                        pop3 = geomMod(N0 = 10, lambda = meanRates[3], t = 1:nP),
-                        pop4 = geomMod(N0 = 10, lambda = meanRates[4], t = 1:nP))
+predAMean <- data.frame(year = 0:nP,
+                        pop1 = geomMod(N0 = 10, lambda = meanRates[1], t = 0:nP),
+                        pop2 = geomMod(N0 = 10, lambda = meanRates[2], t = 0:nP),
+                        pop3 = geomMod(N0 = 10, lambda = meanRates[3], t = 0:nP),
+                        pop4 = geomMod(N0 = 10, lambda = meanRates[4], t = 0:nP))
 
 maxRates <- apply(rates, 2, max)
-predMax <- data.frame(year = 1:nP,
-                      pop1 = geomMod(N0 = 10, lambda = maxRates[1], t = 1:nP),
-                      pop2 = geomMod(N0 = 10, lambda = maxRates[2], t = 1:nP),
-                      pop3 = geomMod(N0 = 10, lambda = maxRates[3], t = 1:nP),
-                      pop4 = geomMod(N0 = 10, lambda = maxRates[4], t = 1:nP))
+predMax <- data.frame(year = 0:nP,
+                      pop1 = geomMod(N0 = 10, lambda = maxRates[1], t = 0:nP),
+                      pop2 = geomMod(N0 = 10, lambda = maxRates[2], t = 0:nP),
+                      pop3 = geomMod(N0 = 10, lambda = maxRates[3], t = 0:nP),
+                      pop4 = geomMod(N0 = 10, lambda = maxRates[4], t = 0:nP))
 
 minRates <- apply(rates, 2, min)
-predMin <- data.frame(year = 1:nP,
-                      pop1 = geomMod(N0 = 10, lambda = minRates[1], t = 1:nP),
-                      pop2 = geomMod(N0 = 10, lambda = minRates[2], t = 1:nP),
-                      pop3 = geomMod(N0 = 10, lambda = minRates[3], t = 1:nP),
-                      pop4 = geomMod(N0 = 10, lambda = minRates[4], t = 1:nP))
+predMin <- data.frame(year = 0:nP,
+                      pop1 = geomMod(N0 = 10, lambda = minRates[1], t = 0:nP),
+                      pop2 = geomMod(N0 = 10, lambda = minRates[2], t = 0:nP),
+                      pop3 = geomMod(N0 = 10, lambda = minRates[3], t = 0:nP),
+                      pop4 = geomMod(N0 = 10, lambda = minRates[4], t = 0:nP))
 
 
 par(mfrow = c(2,2))
@@ -426,35 +420,35 @@ And we can look at how the geometric average affects the predictions:
 ``` {r pred3, fig.height = 10, fig.width = 10, fig.align = 'center', results = 'hold'}
 meanRatesGeom <- apply(rates, 2, gm_mean)
 nP <- 7
-predGMean <- data.frame(year = 1:nP,
-                    pop1 = geomMod(N0 = 10, lambda = meanRatesGeom[1], t = 1:nP),
-                    pop2 = geomMod(N0 = 10, lambda = meanRatesGeom[2], t = 1:nP),
-                    pop3 = geomMod(N0 = 10, lambda = meanRatesGeom[3], t = 1:nP),
-                    pop4 = geomMod(N0 = 10, lambda = meanRatesGeom[4], t = 1:nP))
+predGMean <- data.frame(year = 0:nP,
+                    pop1 = geomMod(N0 = 10, lambda = meanRatesGeom[1], t = 0:nP),
+                    pop2 = geomMod(N0 = 10, lambda = meanRatesGeom[2], t = 0:nP),
+                    pop3 = geomMod(N0 = 10, lambda = meanRatesGeom[3], t = 0:nP),
+                    pop4 = geomMod(N0 = 10, lambda = meanRatesGeom[4], t = 0:nP))
 
 par(mfrow = c(2,2))
 for(i in 2:5) {
   # Visualize
   plot1(predMax)
-  lines(spline(x = predAMean$year, y = predAMean[, i], n = 100), lty = 'dashed', col = cols[4])
-  lines(spline(x = predMax$year, y = predMax[, i], n = 100), lty = 'dashed', col = cols[7])
-  lines(spline(x = predMin$year, y = predMin[, i], n = 100), lty = 'dashed', col = cols[1])
+  lines(spline(x = predAMean$year, y = predAMean[, i], n = 100), lwd = 2, lty = 'dashed', col = cols[4])
+  lines(spline(x = predMax$year, y = predMax[, i], n = 100), lwd = 2, lty = 'dashed', col = cols[7])
+  lines(spline(x = predMin$year, y = predMin[, i], n = 100), lwd = 2, lty = 'dashed', col = cols[1])
   lines(spline(x = predGMean$year, y = predGMean[, i], n = 100), lty = 'dashed', col = cols[6])
   points(x = predAMean$year, y = predAMean[, i], pch = 1, cex = 2, col = cols[4])
-  points(x = predMax$year, y = predMax[, i], pch = 1, cex = 2, col = cols[7])
-  points(x = predMin$year, y = predMin[, i], pch = 1, cex = 2, col = cols[1])
+  points(x = predMax$year, y = predMax[, i], pch = 2, cex = 2, col = cols[7])
+  points(x = predMin$year, y = predMin[, i], pch = 6, cex = 2, col = cols[1])
   points(x = predGMean$year, y = predGMean[, i], pch = 1, cex = 2, col = cols[6])
   points(x = pop$year, y = pop[, i], pch = 20, cex = 1.5, col = cols[2])
 }
   # Legend
   maxVal <- roundUpNice(max(predMax))
-  lines(x = c(0, .4), y = c(maxVal * .85, maxVal * .85), lty = 'dashed', col = cols[1])
-  lines(x = c(0, .4), y = c(maxVal * .78, maxVal * .78), lty = 'dashed', col = cols[7])
-  lines(x = c(0, .4), y = c(maxVal * .71, maxVal * .71), lty = 'dashed', col = cols[4])
-  lines(x = c(0, .4), y = c(maxVal * .64, maxVal * .64), lty = 'dashed', col = cols[6])
+  lines(x = c(0, .4), y = c(maxVal * .85, maxVal * .85), lwd = 2, lty = 'dashed', col = cols[1])
+  lines(x = c(0, .4), y = c(maxVal * .78, maxVal * .78), lwd = 2, lty = 'dashed', col = cols[7])
+  lines(x = c(0, .4), y = c(maxVal * .71, maxVal * .71), lwd = 2, lty = 'dashed', col = cols[4])
+  lines(x = c(0, .4), y = c(maxVal * .64, maxVal * .64), lwd = 2, lty = 'dashed', col = cols[6])
   points(x = .2, y = maxVal * .92, pch = 20, cex = 1.5, col = cols[2])
-  points(x = .2, y = maxVal * .85, pch = 1, cex = 2, col = cols[1])
-  points(x = .2, y = maxVal * .78, pch = 1, cex = 2, col = cols[7])
+  points(x = .2, y = maxVal * .85, pch = 6, cex = 2, col = cols[1])
+  points(x = .2, y = maxVal * .78, pch = 2, cex = 2, col = cols[7])
   points(x = .2, y = maxVal * .71, pch = 1, cex = 2, col = cols[4])
   points(x = .2, y = maxVal * .64, pch = 1, cex = 2, col = cols[6])
   text(x = .5, y = maxVal * .92, "Simulated data", adj = 0)
@@ -464,7 +458,41 @@ for(i in 2:5) {
   text(x = .5, y = maxVal * .64, "Geometric average", adj = 0)
 ```
 
-<!-- Is one better than the other? -->
+This graph unsurprisingly makes it obvious that the arithmetic and geometric
+averages give better predictions than using the minimum or maximum observed
+growth rate. It is however not obvious which of the two averages provide the
+most accurate predictions. Let's look at the graph with only the two averages.
+
+<br/>
+
+```{r pred4, fig.height = 10, fig.width = 10, fig.align = 'center', results = 'hold'}
+par(mfrow = c(2,2))
+for(i in 2:5) {
+  # Visualize
+  plot1(predAMean)
+  lines(spline(x = predAMean$year, y = predAMean[, i], n = 100), lwd = 2, lty = 'dashed', col = cols[4])
+  lines(spline(x = predGMean$year, y = predGMean[, i], n = 100), lwd = 2, lty = 'dashed', col = cols[6])
+  points(x = predAMean$year, y = predAMean[, i], pch = 1, cex = 2, col = cols[4])
+  points(x = predGMean$year, y = predGMean[, i], pch = 1, cex = 2, col = cols[6])
+  points(x = pop$year, y = pop[, i], pch = 20, cex = 1.5, col = cols[2])
+}
+  # Legend
+  maxVal <- roundUpNice(max(predAMean))
+  lines(x = c(0, .4), y = c(maxVal * .85, maxVal * .85), lwd = 2, lty = 'dashed', col = cols[4])
+  lines(x = c(0, .4), y = c(maxVal * .78, maxVal * .78), lwd = 2, lty = 'dashed', col = cols[6])
+  points(x = .2, y = maxVal * .92, pch = 20, cex = 1.5, col = cols[2])
+  points(x = .2, y = maxVal * .85, pch = 1, cex = 2, col = cols[4])
+  points(x = .2, y = maxVal * .78, pch = 1, cex = 2, col = cols[6])
+  text(x = .5, y = maxVal * .92, "Simulated data", adj = 0)
+  text(x = .5, y = maxVal * .85, "Arithmetic average", adj = 0)
+  text(x = .5, y = maxVal * .78, "Geometric average", adj = 0)
+```
+
+A visual inspection of the graphs lets us see that the geometric average
+provides predictions that are always lower than the arithmetic average, and
+that as we go farther in time, the predictions are providing more accurate
+predictions.
+
 
 ## Simulated disturbances
 
