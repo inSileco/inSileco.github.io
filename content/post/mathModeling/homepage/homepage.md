@@ -12,7 +12,7 @@ navposts:
 
 ## Why models?
 
-We are all modellers, and so since a long time. The first drawings you did as a child, whether it was a cloud, your house or members of your family, were models . Similarly, if you imagine the outcome of a war, an epidemic, a migration crisis, you are running an implicit model.
+We are all modellers, and so since a long time. The first drawings you did as a child, whether it was a cloud, your house or members of your family, were models. Similarly, if you imagine the outcome of a war, an epidemic, a migration crisis, you are running an implicit model.
 
 Indeed, a model is an abstraction of the reality, that allows people to focus on the essentials by keeping out non-essential details. As Levin said in 1992:
 
@@ -30,21 +30,20 @@ Models can be used for many different reasons. When people think of why building
 
 ## Classification
 
-Mathematical models may take different forms for different objectives.
+Mathematical models may take different forms to achieve different objectives.
 It is a general term to describe the use of equations to solve or understand a problem.
-The first form to come in mind is **statistical models** that, based in a probabilistic thinking, uses data to describe or predict a process.
-Other forms of mathematical models are more deterministic, often used to study the dynamic of a process.
-These **dynamical models** can be expressed by differential or integral equations.
-A more complete discussion in the difference between statistical and dynamical models can be found [here](http://sherrytowers.com/2013/08/03/module-ii-the-difference-between-mathematical-and-statistical-modelling-plus-some-more-basics-of-r/).
-In this first series of posts on [models in ecology](tagLink), we will stay simple and focus only on differential equations.
+The first type of mathematical models one would think of are **statistical models** that, based on a probabilistic thinking, use data to describe or predict a process.
+Other forms of mathematical models, often called **dynamical models**, are used to study the dynamic of a process. They can be expressed by differential or integral equations.
+A more complete discussion on the differences between statistical and dynamical models can be found [here](http://sherrytowers.com/2013/08/03/module-ii-the-difference-between-mathematical-and-statistical-modelling-plus-some-more-basics-of-r/).
+In this first series of posts on [models in ecology](tagLink), we will stay simple and focus on differential equations.
 
 ## Outline
 
-1 - **TITLE**: introduces differential equations and show with a toy model how to code and visualize its dynamical in R.
+1 - **TITLE**: introduce differential equations and show with a toy model how to code and visualize its dynamic in R.
 
-2 - **TITLE**: introduces the theoretical concepts in analyzing and solving differential equations.
+2 - **TITLE**: introduce theoretical concepts in analyzing and solving differential equations.
 
-3 - **TITLE**: shows the existent R packages and functions used to analyze and solve differential equations.
+3 - **TITLE**: show the existent R packages and functions used to analyze and solve differential equations.
 
 4 - **TITLE**: discuss the graphical representation and a taste of sensitivity analyses.
 
