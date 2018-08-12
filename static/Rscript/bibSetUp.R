@@ -1,4 +1,4 @@
-bibFile <- 'inSilecoRef.bib'
+bibFile <- 'DOIRef.bib'
 bibPath <- 'static/bib/'
 
 while (file.exists(paste0(bibPath,bibFile)) == F) {
