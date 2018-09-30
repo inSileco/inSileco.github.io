@@ -15,7 +15,7 @@ output:
 
 
 ```{r codeChunkSetUp, echo=FALSE}
-source('../../static/Rscript/codeChunkSetUp.R')
+source('../../../static/Rscript/codeChunkSetUp.R')
 ```
 
 
@@ -49,7 +49,7 @@ sessionInfo()[[1]]$version.string
 
 ### Installing imagemagick
 
-The package `animation`, which I used to create the animations in R, works with the application [`imagemagick`](https://www.imagemagick.org/script/index.php), which can be installed using [`Homebrew`](https://brew.sh/).
+The package `animation`, which I used to create the animations in R, works with the application [`imagemagick`](https://www.imagemagick.org/script/index.php), which can be installed using [`Homebrew`](https://brew.sh/) on MacOS.
 
 ```bash
 brew install imagemagick
@@ -73,13 +73,13 @@ The maps generated in this post require the user to load [`ocean`](http://www.na
 
 ```{r, loadData, message=FALSE}
 # UV data
-  UV <- readRDS('../../static/assets/AnimationInR/MonthOMI.rds')
+  UV <- readRDS('MonthOMI.rds')
 
 # Projection
   spatProj <- '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs'
 
 # Ocean shapefile
-  ocean <- readOGR(dsn = "../../static/assets/AnimationInR/shpfile/", layer = "ne_10m_ocean") %>%
+  ocean <- readOGR(dsn = "shpfile", layer = "ne_10m_ocean") %>%
              spTransform(CRSobj = CRS(spatProj))
 
   class(ocean)
@@ -187,7 +187,7 @@ saveGIF({
                 temporal <- data.frame(years = years[1:i], monthMean = monthMean[labels[1:i,j]], lowCI = lowCI[labels[1:i,j]], upCI = upCI[labels[1:i,j]]) %>%
                             na.omit()
                 polyY <- c(temporal$upCI, rev(temporal$lowCI)) # Y coordinates for confidence interval polygon
-                polyX <- c(temporal$years, rev(temporal$years)) # X coordinates for confidence interval polygon   
+                polyX <- c(temporal$years, rev(temporal$years)) # X coordinates for confidence interval polygon
 
                 par(mar = c(0,3,1,1), family = "serif")
                 eplot(xmin = 2005, xmax = 2016, ymin = 0, ymax = max(upCI))
