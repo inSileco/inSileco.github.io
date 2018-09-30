@@ -1,9 +1,5 @@
 ---
 title: "Tutorials"
-layout: "tuto"
-updates:
-  - date: 2018-02-11
-    comment: "create this page."
 ---
 
 
