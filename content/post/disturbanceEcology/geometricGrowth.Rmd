@@ -18,6 +18,8 @@ navposts:
   next: exponentialGrowth
 ---
 
+
+
 ```{r bibSetUp, echo=FALSE}
 source('../../../static/Rscript/bibSetUp.R')
 source('../../../static/Rscript/codeChunkSetUp.R')
@@ -50,7 +52,7 @@ Discrete growth means that a population grows in separate
 and distinct steps, such as large mammals giving birth to a set amount of
 offsprings every year. Density independent growth, meanwhile, means that
 there is no statistical relation between population density and its *per capita*
-growth rate [@Stevens_2009]. This would be the case for a populations that grows
+growth rate [@stevens_2009]. This would be the case for a populations that grows
 without any apparent environmental constraints. Human population growth is a good
 example of discrete (although we don't model our populations using discrete
 growth models) and density independent growth (see
@@ -369,7 +371,7 @@ for(i in 2:5) {
 ```
 
 While useful, the use of the arithmetic average can lead to erroneous results.
-Following the example from Stevens 2009 [@Stevens_2009] on page 11, let's
+Following the example from Stevens 2009 [@stevens_2009] on page 11, let's
 imagine a population with $N_0 = 100$, annual growth rate $R_1 = 0.5$ and
 $R_2 = 1.5$. Using the arithmetic average to evaluate the growth rate for the
 model would give us $\lambda = 1$, *i.e.* a population with a constant $N = 100$.
@@ -388,7 +390,7 @@ We need something better.
 
 ***Geometric average***
 
-The solution we are presenting here is the one found in Steven' book [@Stevens_2009],
+The solution we are presenting here is the one found in Steven' book [@stevens_2009],
 which is to use the [geometric average](https://en.wikipedia.org/wiki/Geometric_mean):
 
 $$\bar{R} = \Bigg(\prod_{i=1}^{t} R_i\Bigg)^{1/t}$$

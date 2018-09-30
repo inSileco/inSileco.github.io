@@ -38,7 +38,7 @@ growth are.</p>
 and distinct steps, such as large mammals giving birth to a set amount of
 offsprings every year. Density independent growth, meanwhile, means that
 there is no statistical relation between population density and its <em>per capita</em>
-growth rate<span class="citation"><sup><a href="#ref-Stevens_2009">1</a></sup></span>. This would be the case for a populations that grows
+growth rate<span class="citation"><sup><a href="#ref-stevens_2009">1</a></sup></span>. This would be the case for a populations that grows
 without any apparent environmental constraints. Human population growth is a good
 example of discrete (although we don’t model our populations using discrete
 growth models) and density independent growth (see
@@ -216,11 +216,11 @@ pop &lt;- data.frame(year = 0:nt,
                     pop4 = pop$pop4[2:(nt+1)] / pop$pop4[1:nt])
 rates
 #R&gt;       pop1     pop2     pop3     pop4
-#R&gt; 1 1.734401 1.382359 1.672187 1.132190
-#R&gt; 2 1.013150 1.543300 1.880596 1.722252
-#R&gt; 3 2.244115 1.850140 2.008702 1.493437
-#R&gt; 4 1.149115 1.679585 1.595771 1.081331
-#R&gt; 5 2.063387 1.649655 1.001576 1.745204
+#R&gt; 1 1.128393 2.290154 1.787647 1.607596
+#R&gt; 2 2.046563 1.497780 1.966833 1.179045
+#R&gt; 3 1.789846 1.302550 1.933862 1.853212
+#R&gt; 4 1.497682 1.775461 1.231576 2.063425
+#R&gt; 5 2.297145 1.449372 1.386073 1.493965
 
 par(mfrow = c(1,2), mar = c(4,4,1,1))
 matplot(pop[, 2:5], type = &#39;l&#39;, col = cols, lwd = 1.25, ylab = &#39;Population size&#39;)
@@ -282,7 +282,7 @@ for(i in 2:5) {
   text(x = 0.5, y = maxVal * .71, &quot;Arithmetic average&quot;, adj = 0)</code></pre>
 <p><img src="/post/disturbanceEcology/geometricGrowth_files/figure-html/pred2-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>While useful, the use of the arithmetic average can lead to erroneous results.
-Following the example from Stevens 2009<span class="citation"><sup><a href="#ref-Stevens_2009">1</a></sup></span> on page 11, let’s
+Following the example from Stevens 2009<span class="citation"><sup><a href="#ref-stevens_2009">1</a></sup></span> on page 11, let’s
 imagine a population with <span class="math inline">\(N_0 = 100\)</span>, annual growth rate <span class="math inline">\(R_1 = 0.5\)</span> and
 <span class="math inline">\(R_2 = 1.5\)</span>. Using the arithmetic average to evaluate the growth rate for the
 model would give us <span class="math inline">\(\lambda = 1\)</span>, <em>i.e.</em> a population with a constant <span class="math inline">\(N = 100\)</span>.
@@ -296,7 +296,7 @@ the result would be quite different:</p>
 <p>We need something better.</p>
 <p><br/></p>
 <p><strong><em>Geometric average</em></strong></p>
-<p>The solution we are presenting here is the one found in Steven’ book<span class="citation"><sup><a href="#ref-Stevens_2009">1</a></sup></span>,
+<p>The solution we are presenting here is the one found in Steven’ book<span class="citation"><sup><a href="#ref-stevens_2009">1</a></sup></span>,
 which is to use the <a href="https://en.wikipedia.org/wiki/Geometric_mean">geometric average</a>:</p>
 <p><span class="math display">\[\bar{R} = \Bigg(\prod_{i=1}^{t} R_i\Bigg)^{1/t}\]</span></p>
 <p>This also corresponds to calculating the mean by taking the arithmetic mean of
@@ -440,7 +440,7 @@ for the next post in the series!</p>
 <div id="references" class="section level2 unnumbered">
 <h2>References</h2>
 <div id="refs" class="references">
-<div id="ref-Stevens_2009">
+<div id="ref-stevens_2009">
 <p>1. Stevens, M. H. H. <em>A primer of ecology with r</em>. (Springer New York, 2009). doi:<a href="https://doi.org/10.1007/978-0-387-89882-7">10.1007/978-0-387-89882-7</a></p>
 </div>
 </div>

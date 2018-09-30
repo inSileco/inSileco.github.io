@@ -4,15 +4,16 @@
 
 
 
-
 <div>
 
-
   <div class="col-md-3">
-    <div class="hidden-sm hidden-xs">
-      <div id="toc"></div>
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+          <div id="toc"></div>
+        </div>
     </div>
   </div>
+
 
   <div class="col-md-8">
 
@@ -29,11 +30,9 @@
 
     <p>{{ range .Params.tags }} <a href="/tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}</p>
 
-
     <p> <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true" data-text="{{ .Params.tweet }}">Tweet</a>
       <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
     </p>
-
 
     <div class="text-justify">
       <p>
@@ -45,16 +44,15 @@
       </p>
     </div>
 
-
     <br>
 
     <div class="text-justify">
-
       {{ .Content }}
-
     </div>
 
-{{ partial "bottom" . }}
+  {{ partial "bottom" . }}
+
 </div>
+
 
 {{ partial "footer.html" . }}

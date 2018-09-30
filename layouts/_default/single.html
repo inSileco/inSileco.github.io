@@ -1,6 +1,5 @@
 {{ partial "header" . }}
 
-
 <img class="full-width" width="100%" src="/img/banner4.png"></img>
 
 
@@ -11,21 +10,6 @@
       <div class="hidden-sm hidden-xs">
         <div class="sticky-top">
           <div id="toc"></div>
-
-          <script>
-            var $jq = jQuery.noConflict();
-
-              $jq(function() {
-
-                  var toc = $jq("#toc").tocify({
-                    selectors: "h2, h3",
-                    scrollTo: 50
-                  }).data("toc-tocify");
-
-                  prettyPrint();
-                  $jq(".optionName").popover({ trigger: "hover" });
-            });
-          </script>
 
         </div>
     </div>
@@ -122,7 +106,7 @@
 
 
     {{ partial "bottom" . }}
-    
+
 
 </div>
 

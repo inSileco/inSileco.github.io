@@ -5,3 +5,7 @@ doi = static/bib/DOIRef.bib
 biblio:
 	Rscript static/Rscript/bibSetUp.R
 	bibtool -d $(doi) $(nodoi) -o $(bib)
+
+
+clean:
+	rm post/*.html
