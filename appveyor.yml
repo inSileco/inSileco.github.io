@@ -10,11 +10,8 @@ init:
 install:
   ps: Bootstrap
 
-# Adapt as necessary starting from here
-
 environment:
   USE_RTOOLS: true
-
 
 build_script:
   - travis-tool.sh install_deps
@@ -22,9 +19,7 @@ build_script:
 after_build:
   - choco install pandoc hugo
   - rm -rf iconsInR
-  # - Rscript -e 'blogdown::install_hugo()'
   - Rscript -e 'blogdown::build_site()'
-
 
 on_failure:
   - 7z a failure.zip *.Rcheck\*
