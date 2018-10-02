@@ -100,7 +100,7 @@ the main Debian package repository available online. To illustrate this, in the
 video below I navigate to a mirror and show where Pandoc is stored.
 
 <video width="100%" controls>
- <source src="/assets/myDebianStretch/mirror.webm" type="video/webm">
+ <source src="/post/setUps/myDebianStretch/assets/mirror.webm" type="video/webm">
  Your browser does not support the video tag.
 </video>
 
@@ -167,7 +167,7 @@ a selfie 😈) and installed Debian Stretch. Let me now
 explain how!
 
 <br>
-<center><img  alt="me on windows" width="35%" src = "/assets/myDebianStretch/meonwindows.png"></img></center>
+<center><img  alt="me on windows" width="35%" src = "/post/setUps/myDebianStretch/assets/meonwindows.png"></img></center>
 <br>
 
 #### 1- Get a bootable USB stick
@@ -223,7 +223,7 @@ below `ctrl+alt+shift+R`).
 ### Gnome version
 
 <video width="100%" controls>
- <source src="/assets/myDebianStretch/gnomeVersion.webm" type="video/webm">
+ <source src="/post/setUps/myDebianStretch/assets/gnomeVersion.webm" }} type="video/webm">
  Your browser does not support the video tag.
 </video>
 
@@ -232,7 +232,7 @@ below `ctrl+alt+shift+R`).
 ### Gnome-Tweak-Tool
 
 <video width="100%" controls>
- <source src="/assets/myDebianStretch/gnomeTweak.webm" type="video/webm">
+ <source src="/post/setUps/myDebianStretch/assets/gnomeTweak.webm" type="video/webm">
  Your browser does not support the video tag.
 </video>
 
@@ -241,7 +241,7 @@ below `ctrl+alt+shift+R`).
 ### Keyboard bindings
 
 <video width="100%" controls>
- <source src="/assets/myDebianStretch/shortcuts.webm" type="video/webm">
+ <source src="/post/setUps/myDebianStretch/assets/shortcuts.webm" type="video/webm">
  Your browser does not support the video tag.
 </video>
 
@@ -360,7 +360,7 @@ issues that may be solved when I use a more recent release, and regarding
 As you can see below I have a couple of error messages on log (command line
 is `sudo dmesg -l err`):
 
-<img src="/assets/myDebianStretch/errors.png" width="100%"></img>
+<img src="/post/setUps/myDebianStretch/assets/errors.png" width="100%"></img>
 
 Well from what I understood this is nothing too bad. For instance, `kvm: disabled by bios`
 is more of a warning message than an error message. My Wi-fi works great despite
