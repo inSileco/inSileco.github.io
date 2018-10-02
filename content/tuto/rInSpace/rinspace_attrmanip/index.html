@@ -17,7 +17,6 @@ output:
 
 
 
-<p><img src="https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg" /></p>
 <div id="spatial-objects-attributes-manipulations" class="section level2">
 <h2>Spatial objects attributes manipulations</h2>
 <p>Now that we know how to import and transform different classes of spatial objects
@@ -44,7 +43,7 @@ will mostly apply.</p>
 )
 
 library(sf)</code></pre>
-<pre><code>## Linking to GEOS 3.6.2, GDAL 2.2.4, proj.4 5.0.0</code></pre>
+<pre><code>## Linking to GEOS 3.6.2, GDAL 2.3.1, proj.4 5.1.0</code></pre>
 <pre class="r"><code>spatData &lt;- st_as_sf(mydata,
                      coords = c(&quot;long&quot;, &quot;lat&quot;),
                      crs = &quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0&quot;)
@@ -99,7 +98,7 @@ knitr::kable(head(spatData))</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>plot(spatData)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/sim_points-1.png" width="672" /></p>
+<p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/sim_points-1.png" width="672" /></p>
 </div>
 <div id="adding-and-removing-attributes" class="section level3">
 <h3>Adding and removing attributes</h3>
@@ -114,9 +113,9 @@ knitr::kable(head(spatData))</code></pre>
 <th align="right">id</th>
 <th align="right">var1</th>
 <th align="right">var2</th>
+<th align="left">geometry</th>
 <th align="right">var3</th>
 <th align="right">var4</th>
-<th align="left">geometry</th>
 </tr>
 </thead>
 <tbody>
@@ -124,49 +123,49 @@ knitr::kable(head(spatData))</code></pre>
 <td align="right">1</td>
 <td align="right">0.4903868</td>
 <td align="right">1.075007</td>
+<td align="left">c(-81.8024716190994, 42.6100823129527)</td>
 <td align="right">0.6544016</td>
 <td align="right">0.5271691</td>
-<td align="left">c(-81.8024716190994, 42.6100823129527)</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="right">-0.3728839</td>
 <td align="right">4.172873</td>
+<td align="left">c(-80.3899031458423, 42.026078232564)</td>
 <td align="right">0.3535367</td>
 <td align="right">-1.5559970</td>
-<td align="left">c(-80.3899031458423, 42.026078232564)</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
 <td align="right">-0.2509555</td>
 <td align="right">5.859953</td>
+<td align="left">c(-80.784852087032, 43.0842197341844)</td>
 <td align="right">0.4001560</td>
 <td align="right">-1.4705877</td>
-<td align="left">c(-80.784852087032, 43.0842197341844)</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
 <td align="right">-0.7129443</td>
 <td align="right">9.746547</td>
+<td align="left">c(-81.2343355868943, 43.1030629281886)</td>
 <td align="right">0.9549762</td>
 <td align="right">-6.9487451</td>
-<td align="left">c(-81.2343355868943, 43.1030629281886)</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
 <td align="right">1.0514086</td>
 <td align="right">1.311865</td>
+<td align="left">c(-80.0043925712816, 42.9951165420935)</td>
 <td align="right">0.2128042</td>
 <td align="right">1.3793059</td>
-<td align="left">c(-80.0043925712816, 42.9951165420935)</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
 <td align="right">0.2805270</td>
 <td align="right">6.302691</td>
+<td align="left">c(-80.0151476305909, 42.5848372559994)</td>
 <td align="right">0.1118683</td>
 <td align="right">1.7680750</td>
-<td align="left">c(-80.0151476305909, 42.5848372559994)</td>
 </tr>
 </tbody>
 </table>
@@ -517,9 +516,9 @@ knitr::kable(head(spatData))</code></pre>
 <th align="right">id</th>
 <th align="right">var1</th>
 <th align="right">var2</th>
+<th align="left">geometry</th>
 <th align="left">fact1</th>
 <th align="left">fact2</th>
-<th align="left">geometry</th>
 </tr>
 </thead>
 <tbody>
@@ -527,49 +526,49 @@ knitr::kable(head(spatData))</code></pre>
 <td align="right">1</td>
 <td align="right">0.4903868</td>
 <td align="right">1.075007</td>
+<td align="left">c(-81.8024716190994, 42.6100823129527)</td>
 <td align="left">a1</td>
 <td align="left">b1</td>
-<td align="left">c(-81.8024716190994, 42.6100823129527)</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
 <td align="right">-0.3728839</td>
 <td align="right">4.172873</td>
+<td align="left">c(-80.3899031458423, 42.026078232564)</td>
 <td align="left">a2</td>
 <td align="left">b2</td>
-<td align="left">c(-80.3899031458423, 42.026078232564)</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
 <td align="right">-0.2509555</td>
 <td align="right">5.859953</td>
+<td align="left">c(-80.784852087032, 43.0842197341844)</td>
 <td align="left">a1</td>
 <td align="left">b3</td>
-<td align="left">c(-80.784852087032, 43.0842197341844)</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
 <td align="right">-0.7129443</td>
 <td align="right">9.746547</td>
+<td align="left">c(-81.2343355868943, 43.1030629281886)</td>
 <td align="left">a2</td>
 <td align="left">b4</td>
-<td align="left">c(-81.2343355868943, 43.1030629281886)</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
 <td align="right">1.0514086</td>
 <td align="right">1.311865</td>
+<td align="left">c(-80.0043925712816, 42.9951165420935)</td>
 <td align="left">a1</td>
 <td align="left">b5</td>
-<td align="left">c(-80.0043925712816, 42.9951165420935)</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
 <td align="right">0.2805270</td>
 <td align="right">6.302691</td>
+<td align="left">c(-80.0151476305909, 42.5848372559994)</td>
 <td align="left">a2</td>
 <td align="left">b1</td>
-<td align="left">c(-80.0151476305909, 42.5848372559994)</td>
 </tr>
 </tbody>
 </table>
@@ -580,7 +579,7 @@ use the first 10 rows of our data.</p>
 <pre class="r"><code>selectID &lt;- 1:10
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/manualSub-1.png" width="672" /></p>
+<p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/manualSub-1.png" width="672" /></p>
 <p><br/></p>
 <p>However, subsets based on certain criteria, <em>e.g.</em> all values greater to or
 equal to 0, can be much more efficient to create subsets. These are conditional
@@ -591,27 +590,27 @@ like <a href="https://stackoverflow.com/">StackOverflow</a> for more specific qu
 selectID &lt;- spatData$var1 &gt;= 0
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/autoSub-1.png" width="672" /></p>
+<p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/autoSub-1.png" width="672" /></p>
 <pre class="r"><code># var1 smaller than 0 and var2 higher than 5
 selectID &lt;- spatData$var1 &lt; 0 &amp; spatData$var2 &lt; 5
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/autoSub-2.png" width="672" /></p>
+<p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/autoSub-2.png" width="672" /></p>
 <pre class="r"><code># fact1 equal to a1
 selectID &lt;- spatData$fact1 == &#39;a1&#39;
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/autoSub-3.png" width="672" /></p>
+<p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/autoSub-3.png" width="672" /></p>
 <pre class="r"><code># fact1 equal to a1 or var1 greater than 0
 selectID &lt;- spatData$fact1 == &#39;a1&#39; | spatData$var1 &gt; 0
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/autoSub-4.png" width="672" /></p>
+<p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/autoSub-4.png" width="672" /></p>
 <pre class="r"><code># fact2 equal to b3 or b4
 selectID &lt;- spatData$fact2 %in% c(&#39;b3&#39;,&#39;b4&#39;)
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/autoSub-5.png" width="672" /></p>
+<p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/autoSub-5.png" width="672" /></p>
 <p><br/></p>
 </div>
 <div id="join" class="section level3">
@@ -733,10 +732,7 @@ knitr::kable(head(aggData))</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>plot(aggData, cex = abs(aggData$var1))</code></pre>
-<pre><code>## Warning in classInt::classIntervals(na.omit(values), min(nbreaks, n.unq), :
-## n same as number of different finite values\neach different finite value is
-## a separate class</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 </div>
 <div id="raster-objects" class="section level2">

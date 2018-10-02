@@ -12,9 +12,6 @@ navposts:
 ---
 
 
-![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
-
-
 ## The mapping landscape has changed!
 
 Over the last decade it has become increasingly easy to create and edit maps.

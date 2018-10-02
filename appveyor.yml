@@ -18,7 +18,6 @@ build_script:
 
 after_build:
   - choco install pandoc hugo
-  - rm -rf iconsInR
   - Rscript -e 'blogdown::build_site()'
 
 on_failure:

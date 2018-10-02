@@ -18,7 +18,6 @@ output:
 
 
 
-<p><img src="https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg" /></p>
 <p>To manipulate geometries, there are few options. For spatial objects defined
 with <code>sp</code>, there is a specific package to manipulate vector objects: <code>rgeos</code>.
 The equivalent of most common functions in <code>sp</code> are found in <code>sf</code>.
@@ -32,7 +31,7 @@ library(raster)
 dir.create(&quot;data&quot;)
 bel2 &lt;- getData(name=&quot;GADM&quot;, country=&quot;BEL&quot;, path=&quot;data&quot;, level = 2)
 plot(bel2)</code></pre>
-<p><img src="/post/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="sp-objects" class="section level2">
 <h2><code>sp</code> objects</h2>
 <div id="subset" class="section level3">
@@ -47,7 +46,7 @@ class(bel_slc)
 #R&gt; [1] &quot;sp&quot;</code></pre>
 <p>Let’s plot our selection:</p>
 <pre class="r"><code>plot(bel_slc)</code></pre>
-<p><img src="/post/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="unions" class="section level3">
 <h3>Unions</h3>
@@ -59,14 +58,14 @@ par(mfrow=c(1,3), mar=c(1,1,1,1))
 plot(bel_south)
 plot(bel_north)
 plot(bel_one)</code></pre>
-<p><img src="/post/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Let’s combine them on one plot:</p>
 <pre class="r"><code>plot(bel2, lwd = .1)
 plot(bel_south, add=T, col=2)
 plot(bel_north, add=T, col=4)
 plot(bel2, lwd = .5, add = T)
 plot(bel_one, lwd = 2, add = T, border = &quot;grey55&quot;)</code></pre>
-<p><img src="/post/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="buffers" class="section level3">
 <h3>Buffers</h3>
@@ -76,7 +75,7 @@ bufs &lt;- gBuffer(bel_south, width=0.4)
 bufn &lt;- gBuffer(bel_north, width=0.1)
 plot(bufs, add=T, lwd=2, lty=2)
 plot(bufn, add=T, lwd=3)</code></pre>
-<p><img src="/post/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="intersections" class="section level3">
 <h3>Intersections</h3>
@@ -86,7 +85,7 @@ plot(bel_one)
 plot(gIntersection(bel_south, bel_north), col=5, add=T, lwd=2)
 plot(bel_one)
 plot(gIntersection(bufs, bufn), col=5, add=T, lwd=2)</code></pre>
-<p><img src="/post/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="differences" class="section level3">
 <h3>Differences</h3>
@@ -94,7 +93,7 @@ plot(gIntersection(bufs, bufn), col=5, add=T, lwd=2)</code></pre>
 plot(bel_one)
 plot(bel_diff, add=T, lwd=2, lty=3, col=2)
 plot(bel_south, add=T, col=2)</code></pre>
-<p><img src="/post/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="overlays" class="section level2">
@@ -114,7 +113,7 @@ bel2_geom &lt;- SpatialPolygons(bel2@polygons, proj4string = bel2@proj4string)
 # plots
 plot(bel2_geom)
 points(pts, col = is.na(over(pts, bel2_geom))+2, pch =19)</code></pre>
-<p><img src="/post/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sf-objects" class="section level2">
 <h2><code>sf</code> objects</h2>
@@ -125,7 +124,7 @@ points(pts, col = is.na(over(pts, bel2_geom))+2, pch =19)</code></pre>
 <p>Let’s now download a simple raster of elevation.</p>
 <pre class="r"><code>bel_elv &lt;- getData(name=&quot;alt&quot;, country=&quot;BEL&quot;, path=&quot;data&quot;, level = 2)
 plot(bel_elv)</code></pre>
-<p><img src="/post/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="extract-values" class="section level3">
 <h3>Extract values</h3>
 <pre class="r"><code>val_south &lt;- extract(bel_elv, bel_south)
@@ -134,7 +133,7 @@ val_north &lt;- extract(bel_elv, bel_north)
 par(mfrow = c(1,2))
 hist(val_south[[1]])
 hist(val_north[[1]])</code></pre>
-<p><img src="/post/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="mask" class="section level3">
 <h3>Mask</h3>
@@ -143,6 +142,6 @@ elv_north &lt;- rasterize(bel_north, bel_elv, mask = T)
 par(mfrow = c(1,2))
 plot(elv_south)
 plot(elv_north)</code></pre>
-<p><img src="/post/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>

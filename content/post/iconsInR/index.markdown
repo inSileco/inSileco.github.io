@@ -153,8 +153,8 @@ session with the `font_add()` function:
 
 ```r
 font_add(family = 'academicons', regular = 'assets/academicons.ttf')
-font_add(family = 'FontAwesome', regular = 'FontAwesome.otf')
-font_add(family = 'ionicons', regular = 'ionicons.ttf')
+font_add(family = 'FontAwesome', regular = 'assets/FontAwesome.otf')
+font_add(family = 'ionicons', regular = 'assets/ionicons.ttf')
 ##-- check the font families available
 font_families()
 #R> [1] "sans"         "serif"        "mono"         "wqy-microhei"
