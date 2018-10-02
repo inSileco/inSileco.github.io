@@ -117,7 +117,7 @@ dir.create("assets", showWarnings = FALSE)
 ##-- URLs
 urls <- c(
   'https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf',
-  'https://github.com/inSileco/inSileco.github.io/raw/dev/static/fonts/fontawesome-webfont.ttf',
+  'https://github.com/xdanaux/fontawesome-latex/raw/master/FontAwesome.otf',
   'https://github.com/ionic-team/ionicons/raw/master/docs/fonts/ionicons.ttf'
   )
 ##-- download the fonts
@@ -153,7 +153,7 @@ session with the `font_add()` function:
 
 ```r
 font_add(family = 'academicons', regular = 'assets/academicons.ttf')
-font_add(family = 'FontAwesome', regular = 'fontawesome-webfont.ttf')
+font_add(family = 'FontAwesome', regular = 'FontAwesome.otf')
 font_add(family = 'ionicons', regular = 'ionicons.ttf')
 ##-- check the font families available
 font_families()
