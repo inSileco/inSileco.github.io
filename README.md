@@ -1,6 +1,6 @@
 ## inSileco blog
 
-Our blog built with [blogdown]().
+Our blog built with [blogdown](https://bookdown.org/yihui/blogdown/).
 
 [![Build Status](https://travis-ci.org/inSileco/inSileco.github.io.svg?branch=dev)](https://travis-ci.org/inSileco/inSileco.github.io)
 [![Build status](https://ci.appveyor.com/api/projects/status/kxa7ht9m3b1eke22?svg=true)](https://ci.appveyor.com/project/KevCaz/insileco-github-io)
@@ -43,7 +43,7 @@ We use our own badges to notify the status of a given post that is not completed
 - ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg) for posts that have reached at certain level of quality and submitted to the review of members of the blog.
 
 
-#### JS/CSS libraries we added
+#### JS/CSS libraries used
 
 - [jQuerryUI](https://jqueryui.com/)
 - [Disqus](https://disqus.com/)
