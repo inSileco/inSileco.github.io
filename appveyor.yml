@@ -16,15 +16,14 @@ environment:
   USE_RTOOLS: true
 
 
-
 build_script:
   - travis-tool.sh install_deps
 
 after_build:
   - choco install pandoc
+  - rm -rf iconsInR
   - Rscript -e 'blogdown::install_hugo()'
   - Rscript -e 'blogdown::build_site()'
-  - blogdownAppveyor.sh
 
 
 on_failure:
