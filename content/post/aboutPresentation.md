@@ -3,11 +3,12 @@ title: "The talks we do"
 author: [kevin]
 date: 2018-09-01
 tags: [Communication, Talks]
-draft: false
+draft: true
 tweet: "Setting my Debian Stretch up"
 estime: 14
 ---
 
+[![Build Status](https://travis-ci.org/inSileco/inSileco.github.io.svg?branch=dev)](https://travis-ci.org/inSileco/inSileco.github.io)
 
 This summer, I went to two conferences:
 [Canadian Society for Ecology & Evolution Meeting 2018](http://www.csee2018.ca/)
@@ -185,7 +186,7 @@ helps s
 
 It's not all about jokes neither, It's about a nice stroy
 well told, with enthousian and hope for future research,  
-image it does not prevent jokes or .. 
+image it does not prevent jokes or ..
 
 
 
