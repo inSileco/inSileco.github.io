@@ -1,6 +1,6 @@
 ---
 title: Efficiency of spatial intersects in R
-author: [david,remi]
+author: [david, remi]
 reviewer: [kevin]
 date: 2017-09-12
 tags: [R, spatial, intersection]
@@ -76,7 +76,7 @@ compare all the functions together for the sake of comparison in this post.
 
 ```{r init, message = F, warnings = F}
 # R version
-sessionInfo()[[1]]$version.string
+sessionInfo()[[1L]]$version.string
 #--
 rm(list=ls())
 library(sf)
@@ -192,7 +192,7 @@ sampNames
 for(i in 1:nSamp) {
     assign(x = sampNames[i],
            value = data.frame(lon = runif(n = samp[i], min = lonmin, max = lonmax),
-                              lat = runif(n = samp[i], min = latmin, max = latmax)))    
+                              lat = runif(n = samp[i], min = latmin, max = latmax)))
 }
 
 # We now have nSamp new objects with randomly generated coordinates
@@ -402,7 +402,7 @@ Et voilà! It is obvious from these simulations that the `sf` package overall
 provides the most efficient options to perform spatial intersects in R.
 `rgeos` is also very efficient when it comes to binary intersects, especially
 with polygons on polygons intersects where it edges `st_intersects` by
-decreasing calculation time in half.  
+decreasing calculation time in half.
 
 Our recommendation: use `sf::st_intersects` for binary intersects and
 use `sf::st_intersection` for zonal intersects. However, be aware that the `sf`

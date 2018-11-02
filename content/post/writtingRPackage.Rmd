@@ -1,7 +1,7 @@
 ---
 title: "rcites, behind the scenes"
 author: [kevin]
-date: 2018-09-20
+date: 2018-11-02
 tags: [R, package, development]
 rpkgs: [devtools]
 draft: true
@@ -15,13 +15,8 @@ output:
 ---
 
 
-With a couple of colleagues, we have recently released a R package to the CRAN, [rcites](https://github.com/ibartomeus/rcites) a R client for the [Species+ API](https://api.speciesplus.net/). In the lines below, I would like to share
-my experience, few thoughts about R packages as well as valuables resources.
+A couple of collegues and I have recently released a R package to the CRAN, [rcites](https://github.com/ibartomeus/rcites), a R client for the [Species+ API](https://api.speciesplus.net/). In the following lines, I would like to share my experience, few thoughts about R packages as well as valuables resources.
 
-
-http://web.mit.edu/insong/www/pdf/rpackage_instructions.pdf
-
-https://github.com/r-lib/pkgbuild
 
 
 ## What is a R package?
@@ -30,36 +25,38 @@ In the introduction of his book [R packages](http://r-pkgs.had.co.nz/intro.html)
 
 > A package bundles together code, data, documentation, and tests, and is easy to share with others.
 
-I like the way he presents a package, it is straightforward and crystal clear.
-Interestingly enough, it describes what a package **does**, not what a
-package **is**. Defining R package is actually harder than I thought! I remember the first time I've tried to characterize a R packages, I ask a couple of questions and find the answer quite surprising:
+I like the way he presents a package, it is straightforward and crystal clear. Interestingly enough, it describes what a package **does**, not what a package **is**. Defining R package is actually harder than I thought! I remember the first time I've tried to characterize an R package, I asked myself a couple of questions and found the answers quite surprising:
 
 - Are R packages extensions available on [CRAN](https://cran.r-project.org/) or [Bioconductor](https://www.bioconductor.org/)? **Not necessarly!**
 
-The answer sounds obvious nowadays with almost [40K R packages on Github](https://rdrr.io/), but 10 years I guess it wasn't. However it is important to notice that an R package that only exists (yet) in your own computer is an R packages.
+The answer sounds obvious nowadays with over than [40K R packages on Github](https://rdrr.io/), but 10 years it wasn't. However it is important to notice that an R package that only exists (yet) in your own computer is an R package.
 
 - Should a package have a minimum number of functions? **No**
 
-Even among the most popular packages, the number of package is not a criterion.
-[vegan](https://cran.r-project.org/web/packages/vegan/index.html) exports 192 functions (as of version 2.5.2) while [png](https://cran.r-project.org/web/packages/png/) only includes
+Even among the most popular packages, the number of package is not a criterion. For instance, [vegan](https://cran.r-project.org/web/packages/vegan/index.html) exports 192 functions (as of version 2.5.2) while [png](https://cran.r-project.org/web/packages/png/) only includes
 two functions.
 
 - Should a package be designed to perform a specific analysis? **No**
 
-Two points here. First R packages can be designed to do many things: they can turn R into a power Geographic Information System or make you R session
+Two points here. First R packages do many things: they can turn R into a power Geographic Information System or make you R session
 crash each time you load it (see [trump](https://github.com/romainfrancois/trump))!
 
-So **what is a R package?** Well my own definition would be:
+So **what is a R package?** Well, my own definition would be something like:
 
 > a set of files that passes the command `R CMD INSTALL`
 
-From that definition, one should understand that a R package does not necessarily perform any analysis correctly. It is not what it is and on the CRAN, nobody check if your package do it right, they however check if it is pass this command line
-(note that I can tell you now that people who review your package also give you valuable advice!).
+From that definition, one should understand that a R package does not necessarily performs any analysis correctly. It is not what it is and on the CRAN, nobody check if your package do it right, instead they check if your structure of file and your code are compliant to the numerous tests included in `R CMD INSTALL`!
+
+http://web.mit.edu/insong/www/pdf/rpackage_instructions.pdf
+
+https://github.com/r-lib/pkgbuild
+
 
 
 ## Why create a R package?
 
-This is another crucial question. In [his introduction](http://r-pkgs.had.co.nz/intro.html) Hadley Wickham emphazised that R packages are a standard way to organize your project which helps you saving time and ease the code sharing. Once your are used to R packaes I guearentee you always organize your folder the same way and you dont loose your time finding a specific file.
+This is another crucial question. In [his introduction](http://r-pkgs.had.co.nz/intro.html), Hadley Wickham emphasized that R packages are a standard way to organize your project which helps you saving time and ease the code sharing. Once your are used to R packages I garante you always organize your folder the same way and you dont loose your time finding a specific file.  (note that there is also other suggested way to organize your project with R without buiilding a package https://nicercode.github.io/blog/2013-04-05-projects/).
+
 
 I guess for an academic using R to implement a nethid he develops the answer shold be
 yes be in general the answer os no. Second an R package is not defined by the
@@ -70,53 +67,37 @@ Creating R packages is
 
 ## Why share your R package?
 
-
-
-Sharing with collaborator
+Sharing with collaborators, on a Github or simialr  very similar interect or sharing with many different people thanotopn g
 
 Reporducible science
 
 Helps us, people helps here we hope that package and further devc
 
 I had previous experience in creating package actually I have a couple
-of R packages that are on GH, and so far, I think that's where they should
-be:
+of R packages that are on GH, and so far, I think that's where they should be:
 
-- [inSilecoMisc](https://github.com/inSileco/inSilecoMisc)
+- [inSilecoMisc](https://github.com/inSileco/inSilecoMisc): a set of ultis functions, a functoin that I will likelhy use in the futiure,
+I add it here
 
-- [burningHouse](https://github.com/KevCaz/burningHouse)
+- [burningHouse](https://github.com/KevCaz/burningHouse): set pf fucntion to rpeproduce analaysis we did [for this paper](https://www.frontiersin.org/articles/10.3389/fevo.2017.00175/full)
 
-https://www.frontiersin.org/articles/10.3389/fevo.2017.00175/full
-
+There are on GH to share reproduce but not meant to be use by too contextualise or just not though enough to be tunr into a package so
+there are
 
 
 In fact
 CRAN does not reflcte quality of R package which leads sone people to coplain
-and [Kurt Hortnik, CRAN maintainer to discuss whether number of packages](http://www.stat.tugraz.at/AJS/ausg121/121Hornik.pdf)
-
-
+and [Kurt Hortnik, CRAN maintainer to discuss whether there are number too many packages on the CRAN](http://www.stat.tugraz.at/AJS/ausg121/121Hornik.pdf)
 
 
 >  In fact, packages can be employed as “containers” for
-all kinds of R extension material, such as data sets or documentation (manuals or books):
-because packages are versioned, keeping the extensions up-to-date can easily be achieved.
+all kinds of R extension material, such as data sets or documentation (manuals or books): because packages are versioned, keeping the extensions up-to-date can easily be achieved.
 
 I think it is however not a definition and I think when we think about
 
 
-> Package authors often seem to prefer copying code from other packages than
-depending on these, or collaborate to develop a common infrastructure. If packages pro-
-vide different solutions to similar tasks, they will evidently rather compete than cooperate
-through hierarchical dependencies.
+> Package authors often seem to prefer copying code from other packages than depending on these, or collaborate to develop a common infrastructure. If packages provide different solutions to similar tasks, they will evidently rather compete than cooperate through hierarchical dependencies.
 
-what a R package really is, it becomes quite interesting.
-
-package, we my guess is that we have to narrow down to a technical
-definition like: a set of structured files that pass the `R CMD check`.
-
-answer, it is
-
-This is not a question easy to answer. The easy way to answer is thI guess
 
 
 http://r-pkgs.had.co.nz/intro.html
@@ -128,15 +109,14 @@ https://gist.github.com/daroczig/3cf06d6db4be2bbe3368
 
 http://blog.revolutionanalytics.com/2017/01/cran-10000.html
 
-https://www.r-pkg.org/
+[METACRAN](https://www.r-pkg.org/)
 
-https://awesome-r.com/
-
-
+[A curration of package](https://awesome-r.com/)
 
 
 
 
+(note that I can tell you now that people who review your package also give you valuable advice!).
 
 
 ## How to proceed?
@@ -154,12 +134,11 @@ ask on stack before!
 
 ### Local development
 
-I personally use the []() packages developed by Wicham and colleague that
-make you life really easy with packae. and basically explianed with the
-book.
+I personally use the [devtools]() packages developed by Wicham and colleagues that make you life really easy with packae. and basically explianed with the book. By the way [version 2.0]([5:53 PM]
+https://www.tidyverse.org/articles/2018/10/devtools-2-0-0/)
 
 
-### The *devtools* packages ###
+### The *devtools* packages
 
 This is the R package you need to develop your own R package efficiently.
 Hadley Wickham and colleagues have cleverly automated many steps for creating R packages in different packages that are used by *devtools*.
@@ -244,5 +223,7 @@ https://github.com/r-hub/rhub
 https://builder.r-hub.io/
 
 http://blog.revolutionanalytics.com/2016/10/r-hub-public-beta.html
+
+https://github.com/r-lib/usethis
 
 ## Documentation and tools to build R packages
