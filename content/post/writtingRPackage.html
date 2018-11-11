@@ -6,7 +6,7 @@ tags: [R, package, development]
 rpkgs: [devtools]
 draft: true
 tweet: "First R package to the CRAN"
-estime: 12
+estime: 15
 output:
   rmarkdown::html_page:
     toc: true
@@ -16,14 +16,20 @@ output:
 
 
 
-<p>A couple of collegues and I have recently released a R package to the CRAN, <a href="https://github.com/ibartomeus/rcites">rcites</a>, a R client for the <a href="https://api.speciesplus.net/">Species+ API</a>. In the following lines, I would like to share my experience, few thoughts about R packages as well as valuables resources.</p>
+<p>A couple of colleagues and I have recently released a R package to the CRAN, <a href="https://github.com/ibartomeus/rcites">rcites</a>, a R client for the <a href="https://api.speciesplus.net/">Species+ API</a>. In the following lines, I would like to
+share my experience, few thoughts about R packages as well as valuable resources.</p>
 <div id="what-is-a-r-package" class="section level2">
 <h2>What is a R package?</h2>
-<p>In the introduction of his book <a href="http://r-pkgs.had.co.nz/intro.html">R packages</a>, Hadley Wickham wrote:</p>
+<p>In the introduction of his book <a href="http://r-pkgs.had.co.nz/intro.html">R packages</a>,
+Hadley Wickham wrote:</p>
 <blockquote>
 <p>A package bundles together code, data, documentation, and tests, and is easy to share with others.</p>
 </blockquote>
-<p>I like the way he presents a package, it is straightforward and crystal clear. Interestingly enough, it describes what a package <strong>does</strong>, not what a package <strong>is</strong>. Defining R package is actually harder than I thought! I remember the first time I’ve tried to characterize an R package, I asked myself a couple of questions and found the answers quite surprising:</p>
+<p>I like the way the famous R developer presents a package, it is straightforward
+and crystal clear. Interestingly enough, it describes what a package <strong>does</strong>,
+not what a package <strong>is</strong>. Defining R package is actually harder than I thought!
+I remember the first time, I’ve tried to characterize an R package, I asked
+myself a couple of questions and found the answers quite surprising:</p>
 <ul>
 <li>Are R packages extensions available on <a href="https://cran.r-project.org/">CRAN</a> or <a href="https://www.bioconductor.org/">Bioconductor</a>? <strong>Not necessarly!</strong></li>
 </ul>
@@ -36,29 +42,41 @@ two functions.</p>
 <ul>
 <li>Should a package be designed to perform a specific analysis? <strong>No</strong></li>
 </ul>
-<p>Two points here. First R packages do many things: they can turn R into a power Geographic Information System or make you R session
-crash each time you load it (see <a href="https://github.com/romainfrancois/trump">trump</a>)!</p>
-<p>So <strong>what is a R package?</strong> Well, my own definition would be something like:</p>
+<p>Two points here. First, R packages do many things: they can turn R into a power
+Geographic Information System or make your R session crash each time you load it
+(see <a href="https://github.com/romainfrancois/trump">trump</a>)!</p>
+<p>So <strong>what is a R package?</strong> Well, my own definition would be something along this
+line:</p>
 <blockquote>
 <p>a set of files that passes the command <code>R CMD INSTALL</code></p>
 </blockquote>
-<p>From that definition, one should understand that a R package does not necessarily performs any analysis correctly. It is not what it is and on the CRAN, nobody check if your package do it right, instead they check if your structure of file and your code are compliant to the numerous tests included in <code>R CMD INSTALL</code>!</p>
-<p><a href="http://web.mit.edu/insong/www/pdf/rpackage_instructions.pdf" class="uri">http://web.mit.edu/insong/www/pdf/rpackage_instructions.pdf</a></p>
-<p><a href="https://github.com/r-lib/pkgbuild" class="uri">https://github.com/r-lib/pkgbuild</a></p>
+<p>From this definition, one should understand that a R package does not
+any analysis correctly. Rather a package is an organized set of files that
+complies to a well-defined set of rules (there are indeed numerous tests!).</p>
 </div>
 <div id="why-create-a-r-package" class="section level2">
 <h2>Why create a R package?</h2>
-<p>This is another crucial question. In <a href="http://r-pkgs.had.co.nz/intro.html">his introduction</a>, Hadley Wickham emphasized that R packages are a standard way to organize your project which helps you saving time and ease the code sharing. Once your are used to R packages I garante you always organize your folder the same way and you dont loose your time finding a specific file. (note that there is also other suggested way to organize your project with R without buiilding a package <a href="https://nicercode.github.io/blog/2013-04-05-projects/" class="uri">https://nicercode.github.io/blog/2013-04-05-projects/</a>).</p>
-<p>I guess for an academic using R to implement a nethid he develops the answer shold be
-yes be in general the answer os no. Second an R package is not defined by the
-methods it implemnts and there are no quality required to define.</p>
-<p>Creating R packages is</p>
+<p>This is another crucial question. In <a href="http://r-pkgs.had.co.nz/intro.html">his introduction</a>,
+Hadley Wickham emphasized that R packages are a standard way to organize your
+project which helps you saving time and ease the code sharing.
+Once your are used to create and handle R packages, it becomes natural to use
+the standard file organzation to structure your project or something very
+similar (see for instance <a href="https://nicercode.github.io/blog/2013-04-05-projects/" class="uri">https://nicercode.github.io/blog/2013-04-05-projects/</a>)
+and you’ll stop using <code>setwd()</code>.</p>
+<p>Interestingly enough, one of the main reason of creating a package is for
+efficiency purposes not necessarily to submitted it to the CRAN. I do think
+this point is extremely important because if you start using packages for your
+analysis, the day you decide that you want to actually share the set of functions
+then the step will be way smaller that if you never get the habits of managing
+your analysis as a package. But of course the sharing is a key, but I think
+this is a distinguish question.</p>
 </div>
-<div id="why-share-your-r-package" class="section level2">
-<h2>Why share your R package?</h2>
-<p>Sharing with collaborators, on a Github or simialr very similar interect or sharing with many different people thanotopn g</p>
-<p>Reporducible science</p>
-<p>Helps us, people helps here we hope that package and further devc</p>
+<div id="why-should-you-share-your-r-package" class="section level2">
+<h2>Why should you share your R package?</h2>
+<p>Again, a major question.</p>
+<p>You have expertice in your filed your are developing methods,</p>
+<p>Then the questions is where. So there are two main repository:
+<a href="">CRAN</a>, <a href=""></a> but also the <a href="https://en.wikipedia.org/wiki/Forge_(softw%20can%20see%20many%20bad%20reason%20such%20as%20adding%20lines%20to%20myCV%20are)">forges</a> for instance Github.</p>
 <p>I had previous experience in creating package actually I have a couple
 of R packages that are on GH, and so far, I think that’s where they should be:</p>
 <ul>
@@ -68,39 +86,38 @@ I add it here</p></li>
 </ul>
 <p>There are on GH to share reproduce but not meant to be use by too contextualise or just not though enough to be tunr into a package so
 there are</p>
-<p>In fact
-CRAN does not reflcte quality of R package which leads sone people to coplain
+<p>CRAN does not reflect quality of R package which leads some people to coplain
 and <a href="http://www.stat.tugraz.at/AJS/ausg121/121Hornik.pdf">Kurt Hortnik, CRAN maintainer to discuss whether there are number too many packages on the CRAN</a></p>
 <blockquote>
-<p>In fact, packages can be employed as “containers” for
-all kinds of R extension material, such as data sets or documentation (manuals or books): because packages are versioned, keeping the extensions up-to-date can easily be achieved.</p>
+<p>In fact, packages can be employed as “containers” for all kinds of R extension
+material, such as data sets or documentation (manuals or books): because packages
+are versioned, keeping the extensions up-to-date can easily be achieved.</p>
 </blockquote>
 <p>I think it is however not a definition and I think when we think about</p>
 <blockquote>
-<p>Package authors often seem to prefer copying code from other packages than depending on these, or collaborate to develop a common infrastructure. If packages provide different solutions to similar tasks, they will evidently rather compete than cooperate through hierarchical dependencies.</p>
+<p>Package authors often seem to prefer copying code from other packages than
+depending on these, or collaborate to develop a common infrastructure. If
+packages provide different solutions to similar tasks, they will evidently
+rather compete than cooperate through hierarchical dependencies.</p>
 </blockquote>
-<p><a href="http://r-pkgs.had.co.nz/intro.html" class="uri">http://r-pkgs.had.co.nz/intro.html</a></p>
-<p>About the number of package
-<a href="https://cran.r-project.org/web/packages/" class="uri">https://cran.r-project.org/web/packages/</a></p>
-<p><a href="https://gist.github.com/daroczig/3cf06d6db4be2bbe3368" class="uri">https://gist.github.com/daroczig/3cf06d6db4be2bbe3368</a></p>
-<p><a href="http://blog.revolutionanalytics.com/2017/01/cran-10000.html" class="uri">http://blog.revolutionanalytics.com/2017/01/cran-10000.html</a></p>
-<p><a href="https://www.r-pkg.org/">METACRAN</a></p>
-<p><a href="https://awesome-r.com/">A curration of package</a></p>
 <p>(note that I can tell you now that people who review your package also give you valuable advice!).</p>
+<p><a href="https://cran.r-project.org/web/packages/" class="uri">https://cran.r-project.org/web/packages/</a></p>
 </div>
 <div id="how-to-proceed" class="section level2">
 <h2>How to proceed?</h2>
-<p>Below I give a very brief description of how we proceeded for <a href="">rcites</a> and
+<p>Below I give a very brief description of how we proceeded for <a href="https://cran.r-project.org/web/packages/rcites/index.html">rcites</a> and
 try to gather useful resources. Before starting writing a to have a look at
-resource that dealt in depth with this topic. I remember that I strated
-by writing <a href="http://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/">“Writing an R package from scratch” by Hilary Parker</a>
-that helps pied a l’étrier to start with and then read <a href="http://r-pkgs.had.co.nz/">Rpackages by Hadley Wickham</a>,exhaustive and very pedagogical. Last but nor least remeber that all technical details [exhaustive documentation](<a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html" class="uri">https://cran.r-project.org/doc/manuals/r-release/R-exts.html</a>
-After 3 years of experience and a couple of packages I do not frequenlty have
-to look at then anymore, they however always my answer if the question was not
+resource that dealt in depth with this topic. I remember that I started
+by reading <a href="http://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/">“Writing an R package from scratch” by Hilary Parker</a>
+that helps me get started and I then then read <a href="http://r-pkgs.had.co.nz/">R packages by Hadley Wickham</a>,exhaustive and very pedagogical. Last but nor least remeber that all technical details [exhaustive documentation](<a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html" class="uri">https://cran.r-project.org/doc/manuals/r-release/R-exts.html</a>
+After 3 years of experience and a couple of packages, I do not frequently have
+to look at then anymore, but I always find my answer if the question was not
 ask on stack before!</p>
 <div id="local-development" class="section level3">
 <h3>Local development</h3>
-<p>I personally use the <a href="">devtools</a> packages developed by Wicham and colleagues that make you life really easy with packae. and basically explianed with the book. By the way <a href="%5B5:53%20PM%5D%20https://www.tidyverse.org/articles/2018/10/devtools-2-0-0/">version 2.0</a></p>
+<p>I personally use the <a href="https://cran.r-project.org/web/packages/devtools/index.html">devtools</a>
+package developed by Wickham and colleagues that make you life really easy
+with package. and basically explained with the book. By the way <a href="https://www.tidyverse.org/articles/2018/10/devtools-2-0-0/">version 2.0</a></p>
 </div>
 <div id="the-devtools-packages" class="section level3">
 <h3>The <em>devtools</em> packages</h3>
@@ -132,6 +149,16 @@ If your are not familiar with Github, you can have a look at the <a href="https:
 <p>To start with Travis, after signing up (with your github account), you only need to read 1) <a href="http://docs.travis-ci.com/user/for-beginners">the thin documentation for complete beginners</a> and 2) the details regarding the <a href="http://docs.travis-ci.com/user/languages/r/">R language</a>. Then you must decide whether or not using Travis for your projects.
 You will likely notice that Travis for R language is community supported. Therefore, we are indebted to Craig Citro, Dirk Eddelbuettel, Hadley Wickham and people that contribute to the <a href="https://github.com/craigcitro/r-travis">r-travis project</a>, so thank you guys, it helps a lot!</p>
 </div>
+<div id="other-great-resources" class="section level3">
+<h3>Other great resources</h3>
+<p><a href="https://www.r-project.org/dsc/2017/slides/R-hub.pdf" class="uri">https://www.r-project.org/dsc/2017/slides/R-hub.pdf</a></p>
+<p><a href="https://github.com/r-hub/rhub" class="uri">https://github.com/r-hub/rhub</a></p>
+<p><a href="https://builder.r-hub.io/" class="uri">https://builder.r-hub.io/</a></p>
+<p><a href="http://blog.revolutionanalytics.com/2016/10/r-hub-public-beta.html" class="uri">http://blog.revolutionanalytics.com/2016/10/r-hub-public-beta.html</a></p>
+<p><a href="https://github.com/r-lib/usethis" class="uri">https://github.com/r-lib/usethis</a></p>
+<p><a href="http://web.mit.edu/insong/www/pdf/rpackage_instructions.pdf" class="uri">http://web.mit.edu/insong/www/pdf/rpackage_instructions.pdf</a></p>
+<p><a href="https://github.com/r-lib/pkgbuild" class="uri">https://github.com/r-lib/pkgbuild</a></p>
+</div>
 <div id="license-and-version-of-your-package" class="section level3">
 <h3>License and Version of your package</h3>
 <p>Two last points to conclude this post.</p>
@@ -141,16 +168,21 @@ In this case, I recommend you to go and visit this website:
 <p>Also, to chose the version number of you R package, I recommend you to follow the recommendation of <a href="http://semver.org">Semantic Versioning</a>. This will make the three numbers you add to your package name meaningful while others make the <a href="https://en.wikipedia.org/wiki/TeX">version number converging to pi</a>.</p>
 <p><br/></p>
 </div>
-<div id="submit-your-r-packages" class="section level3">
-<h3>Submit your R packages</h3>
+<div id="submit-your-r-package" class="section level3">
+<h3>Submit your R package</h3>
 <div id="cran" class="section level4">
 <h4>CRAN</h4>
+<p>Moreover, nobody checks that your package does the
+analysis right when you submit it to the CRAN, it would be impossible to
+manage right, instead they check if your structure of file and your code are compliant to the numerous tests included in <code>R CMD INSTALL</code>!</p>
 </div>
 <div id="ropenscience" class="section level4">
 <h4>Ropenscience</h4>
+<p>Not all package before CRAN</p>
 </div>
 <div id="joss" class="section level4">
 <h4>JOSS</h4>
+<p>A publication</p>
 </div>
 </div>
 <div id="section" class="section level3">
@@ -158,13 +190,5 @@ In this case, I recommend you to go and visit this website:
 <p>On CRAN JOSS Ropenscience for review (beyond the technical details).</p>
 <p><a href="https://simplystatistics.org/2015/11/06/how-i-decide-when-to-trust-an-r-package/" class="uri">https://simplystatistics.org/2015/11/06/how-i-decide-when-to-trust-an-r-package/</a></p>
 <p><a href="https://cran.r-project.org/web/packages/png/index.html" class="uri">https://cran.r-project.org/web/packages/png/index.html</a></p>
-<p><a href="https://www.r-project.org/dsc/2017/slides/R-hub.pdf" class="uri">https://www.r-project.org/dsc/2017/slides/R-hub.pdf</a></p>
-<p><a href="https://github.com/r-hub/rhub" class="uri">https://github.com/r-hub/rhub</a></p>
-<p><a href="https://builder.r-hub.io/" class="uri">https://builder.r-hub.io/</a></p>
-<p><a href="http://blog.revolutionanalytics.com/2016/10/r-hub-public-beta.html" class="uri">http://blog.revolutionanalytics.com/2016/10/r-hub-public-beta.html</a></p>
-<p><a href="https://github.com/r-lib/usethis" class="uri">https://github.com/r-lib/usethis</a></p>
 </div>
-</div>
-<div id="documentation-and-tools-to-build-r-packages" class="section level2">
-<h2>Documentation and tools to build R packages</h2>
 </div>
