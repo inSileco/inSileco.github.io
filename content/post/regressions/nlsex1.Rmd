@@ -1,5 +1,5 @@
 ---
-title: "Non linear regression with `nls`()"
+title: "Non linear regression with nls()"
 author: [kevin]
 date: 2018-11-18
 tags: [R, regression, nls]
@@ -15,7 +15,11 @@ output:
 
 ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
-### Context
+```{r codeChunkSetUp, echo=FALSE}
+source('../../../static/Rscript/codeChunkSetUp.R')
+```
+
+## Context
 
 Last week, I was discussing about how to use `nls()` for a specific
 model with one of my colleague and I ended creating a piece of code to
@@ -24,14 +28,14 @@ in more depth that I did (for instance [this post on datascienceplus by Lionel H
 I thought I could share these lines of command here!
 
 Basically, we were talking about a model where the temperature ($T$) follows
-a saturation curve starting from 10°C at t=0 (so T(0) = 10) and plateauing at $T_{\inf}.
+a saturation curve starting from 10°C at t=0 (so T(0) = 10) and plateauing at $T_{\inf}$.
 
 $$T(t) = T_0 - (T_{\inf} - T_0)\exp(-k*seqt)$$
 
-### Goal and data
+## Goal and data
 
-The goal here is to use `nls()` (Nonlinear Least Squares) to find $k$ and $T_\{inf}$. For the sack of
-clarity I'll simulate the data, i.e. I use the saturation curve with know parameter,
+The goal here is to use `nls()` (Nonlinear Least Squares) to find $k$ and $T_{inf}$.
+For the sack of clarity, I'll simulate the data, i.e. I use the saturation curve with know parameter,
 then I add some noise (here a [white noise](https://en.wikipedia.org/wiki/White_noise)):
 
 ```{R}
@@ -52,7 +56,7 @@ simdata <- cbind(
 head(simdata)
 ```
 
-### Use `nls()`
+## Use `nls()`
 
 Now I call `nls()` to fit the data:
 
@@ -72,8 +76,8 @@ Let's draw a quick plot:
 ## get the coefficients values
 cr <- coef(res)
 fitC <- function(x) cr[1] - (cr[1] - 10)*exp(-cr[2]*x)
-plot(simdata[,1], simdata[,2])
+plot(simdata[,1], simdata[,2], xlab = "Time (min)", ylab = "Temperature (°C)")
 curve(fitC, 0, 50, add = TRUE, col = "#2f85a4", lwd = 3)
 ```
 
-#### That's all folks :smile_cat:
+#### That's all folks!
