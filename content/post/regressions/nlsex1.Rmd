@@ -57,8 +57,7 @@ head(simdata)
 Now I call `nls()` to fit the data:
 
 ```{R}
-res <- nls(sim ~ Tinf - (Tinf - 10)*exp(-k*seqt),
-      data = simdata, start = list(Tinf = 1, k = .01))
+res <- nls(sim ~ Tinf - (Tinf - 10)*exp(-k*seqt), simdata, list(Tinf = 1, k = .1))
 ```
 
 All the information needed are stored in `res` and display via the print method:
