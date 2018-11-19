@@ -35,6 +35,7 @@ clarity I'll simulate the data, i.e. I use the saturation curve with know parame
 then I add some noise (here a [white noise](https://en.wikipedia.org/wiki/White_noise)):
 
 ```{R}
+library(magrittr)
 # Parameters
 ## known
 T0 = 10
