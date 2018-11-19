@@ -21,14 +21,17 @@ cache:
   directories:
     - $HOME/bin
 
+apt_packages:
+  - libgdal-dev
+  - libgeos-dev
+  - libproj-dev
+  - r-cran-ncdf4
+  - libudunits2-dev
+  - libfreetype6-dev
+  - libpoppler-cpp-dev
+  - libssl-dev
 
 before_install:
-  - sudo apt-get --yes --force-yes update -qq
-  - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
-  - sudo apt-get install libgdal-dev libgeos-dev libproj-dev libnetcdf-dev libudunits2-dev libfreetype6-dev libpoppler-cpp-dev libssl-dev
-  - sudo apt-get install r-cran-ncdf4
-  # - wget http://cirrus.ucsd.edu/\~pierce/ncdf/ncdf4_1.13.tar.gz
-  # - sudo R CMD INSTALL ncdf4_1.13.tar.gz --configure-args="--with-nc-config=/home/travis/bin/nc-config"
   - mkdir pandoc
   - wget https://github.com/jgm/pandoc/releases/download/2.3/pandoc-2.3-1-amd64.deb
   - sudo dpkg -i pandoc-2.3-1-amd64.deb
