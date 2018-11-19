@@ -33,7 +33,7 @@ the manipulation of rasters with vector objects.
 
 Let's first load the packages required and download a simple shapefile of Belgium.
 
-```{r, message = F}
+```{R, message = FALSE}
 library(sp)
 library(sf)
 library(rgeos)
@@ -41,6 +41,7 @@ library(raster)
 dir.create("data")
 bel2 <- getData(name="GADM", country="BEL", path="data", level = 2)
 plot(bel2)
+text(bel2, 1:11)
 ```
 
 
@@ -52,16 +53,16 @@ plot(bel2)
 
 A quick subset:
 
-```{r, message = F}
+```{R}
 ## Create a subset (A sub-shapefile)
-slc <- c(8,11,12)
+slc <- c(8:11)
 bel_slc <- bel2[slc,]
 class(bel_slc)
 ```
 
 Let's plot our selection:
 
-```{r, message = F}
+```{r, message = FALSE}
 plot(bel_slc)
 ```
 
@@ -70,7 +71,7 @@ plot(bel_slc)
 
 Let's do the union of a selection of spatial polygons:
 
-```{r, warnings = F}
+```{R, warnings = FALSE}
 bel_south <- gUnionCascaded(bel_slc)
 bel_north <- gUnionCascaded(bel2[-slc,])
 bel_one <- gUnionCascaded(bel2)
@@ -82,7 +83,7 @@ plot(bel_one)
 
 Let's combine them on one plot:
 
-```{r, message = F}
+```{R}
 plot(bel2, lwd = .1)
 plot(bel_south, add=T, col=2)
 plot(bel_north, add=T, col=4)
@@ -97,7 +98,7 @@ plot(bel_one, lwd = 2, add = T, border = "grey55")
 
 Buffer must be done on planar coordinates.
 
-```{r, message = F}
+```{R}
 plot(bel2)
 bufs <- gBuffer(bel_south, width=0.4)
 bufn <- gBuffer(bel_north, width=0.1)
@@ -109,7 +110,7 @@ plot(bufn, add=T, lwd=3)
 
 Intersections between `bel_south` and `bel_north`:
 
-```{r, message = F}
+```{R}
 par(mfrow = c(1,2))
 plot(bel_one)
 plot(gIntersection(bel_south, bel_north), col=5, add=T, lwd=2)
@@ -124,8 +125,8 @@ plot(gIntersection(bufs, bufn), col=5, add=T, lwd=2)
 ```{r}
 bel_diff <- gDifference(bufs, bufn)
 plot(bel_one)
-plot(bel_diff, add=T, lwd=2, lty=3, col=2)
-plot(bel_south, add=T, col=2)
+plot(bel_diff, add = TRUE, lwd = 2, lty = 3, col = 2)
+plot(bel_south, add = TRUE, col = 2)
 ```
 
 
@@ -158,10 +159,10 @@ Have a look at the dedicated vignette: https://cran.r-project.org/web/packages/s
 
 ## `raster` objects
 
-Let's now download a simple raster of elevation.
+Let's now download a simple raster of elevation using `getData()`.
 
 
-```{r, message = F}
+```{R}
 bel_elv <- getData(name="alt", country="BEL", path="data", level = 2)
 plot(bel_elv)
 ```
@@ -169,7 +170,9 @@ plot(bel_elv)
 
 ### Extract values
 
-```{r, message = F}
+Note that `extract()` is in `raster`
+
+```{R}
 val_south <- extract(bel_elv, bel_south)
 val_north <- extract(bel_elv, bel_north)
 #
@@ -180,9 +183,9 @@ hist(val_north[[1]])
 
 ### Mask
 
-```{r, message = F}
-elv_south <- rasterize(bel_south, bel_elv, mask = T)
-elv_north <- rasterize(bel_north, bel_elv, mask = T)
+```{R}
+elv_south <- rasterize(bel_south, bel_elv, mask = TRUE)
+elv_north <- rasterize(bel_north, bel_elv, mask = TRUE)
 par(mfrow = c(1,2))
 plot(elv_south)
 plot(elv_north)
