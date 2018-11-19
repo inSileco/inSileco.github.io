@@ -32,7 +32,6 @@ apt_packages:
   - libssl-dev
 
 before_install:
-  - which nc-config
   - wget http://cirrus.ucsd.edu/\~pierce/ncdf/ncdf4_1.13.tar.gz
   - sudo R CMD INSTALL ncdf4_1.13.tar.gz --configure-args="--with-nc-config=$(which nc-config)"
   - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
