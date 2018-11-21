@@ -13,8 +13,6 @@ output:
     dev: svg
 ---
 
-![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
-
 ```{r codeChunkSetUp, echo=FALSE}
 source('../../../static/Rscript/codeChunkSetUp.R')
 ```
@@ -30,13 +28,13 @@ I thought I could share these lines of command here!
 Basically, we were talking about a model where the temperature ($T$) follows
 a saturation curve starting from 10°C at t=0 (so T(0) = 10) and plateauing at $T_{\inf}$.
 
-$$T(t) = T_0 - (T_{\inf} - T_0)\exp(-k*seqt)$$
+$$T(t) = T_0 - (T_{\inf} - T_0)\exp(-kt)$$
 
 ## Goal and data
 
 The goal here is to use `nls()` (Nonlinear Least Squares) to find $k$ and $T_{inf}$.
-For the sack of clarity, I'll simulate the data, i.e. I use the saturation curve with know parameter,
-then I add some noise (here a [white noise](https://en.wikipedia.org/wiki/White_noise)):
+For the sack of clarity, I simulate the data, i.e. I use the saturation curve
+with known parameter values, then I add some noise (here a [white noise](https://en.wikipedia.org/wiki/White_noise)):
 
 ```{R}
 library(magrittr)
@@ -47,8 +45,10 @@ T0 = 10
 k = 0.2
 Tinf = 20
 
-## Simulate data
+# Simulate data
+## time
 seqt <- seq(0, 50, .25)
+## create a data frame
 simdata <- cbind(
   seqt = seqt,
   sim = Tinf - (Tinf- T0)*exp(-k*seqt) + .5*rnorm(length(seqt))
