@@ -1,15 +1,15 @@
 ---
 title: "List of online R resources"
 wikitheme: R
-date: 2015-12-04
-update: 2018-10-25
+date: 2018-11-21
+update: 2018-11-21
 categories: [about R]
 tags: [plot, R, wiki]
-draft: true
+draft: false
 ---
 
 
-## Main source of resources
+## Main sources of resources
 
 ### Comprehensive R Archive Network: [CRAN](https://cran.r-project.org)
 
@@ -29,13 +29,27 @@ draft: true
 
 ### RStudio
 
-  - Website: https://www.rstudio.com:
+  - Website: https://www.rstudio.com
   - [Books](https://www.rstudio.com/resources/training/books/)
   - [Cheat Sheet](https://www.rstudio.com/resources/cheatsheets/)
+  - [R Views](https://rviews.rstudio.com/)
 
 ### ROpensci
 
+  - Website: https://ropensci.org/about/
+  - [ROpensci's blog](https://ropensci.org/blog/)
+  - [ROpensci's packages](https://github.com/ropensci)
 
+### Tutorials
+
+  - [DataCamp](https://www.datacamp.com/)
+
+### Tools
+
+  - [METACRAN](https://www.r-pkg.org/)
+  - [A curation of R packages](https://awesome-r.com/)
+  - [rdrr](https://rdrr.io/)
+  - [rdocumentation](https://www.rdocumentation.org/)
 
 ### Blogs
 
@@ -45,19 +59,77 @@ draft: true
   - [Revolutions](http://blog.revolutionanalytics.com/about.html)
   - [R graph gallery](http://rgraphgallery.blogspot.ca)
   - [A newer graph gallery](http://www.r-graph-gallery.com)
+  - [Reproducible Random Thoughts](https://yonicd.netlify.com/)
+  - [Rcpp Gallery](gallery.rcpp.org)
+  - [Blog of dirk eddelbuettel](http://dirk.eddelbuettel.com/blog/)
+  - [datascienceplus](https://datascienceplus.com/)
+  - [business-science](https://www.business-science.io/)
+  - [insightR](https://insightr.wordpress.com/)
+  - [Yihui's Blog](https://yihui.name/en/)
+  - [rud.is](https://rud.is/b/)
+  - [Maëlle's R blog](https://masalmon.eu/)
+  - [R posts](https://r-posts.com)
+  - [Data R value](https://datarvalue.blogspot.com/)
 
-### Tutorial
 
-  - [DataCamp](https://www.datacamp.com/)
-
-
-### Tools
-
-  - [METACRAN](https://www.r-pkg.org/)
-  - [A curation of R packages](https://awesome-r.com/)
 
 
 ## Curated list of blog posts
 
-  - https://gist.github.com/daroczig/3cf06d6db4be2bbe3368
-  - http://blog.revolutionanalytics.com/2017/01/cran-10000.html
+### About R
+
+- [R and Python in 2017](http://blog.revolutionanalytics.com/2017/06/python-and-r-top-2017-kdnuggets-rankings.html)
+- [Updated history on R - 20/10/2017](https://blog.revolutionanalytics.com/2017/10/updated-history-of-r.html)
+- https://gist.github.com/daroczig/3cf06d6db4be2bbe3368
+- http://blog.revolutionanalytics.com/2017/01/cran-10000.html
+- [Python-R vs SPSS-SAS](http://www.theanalyticslab.nl/2017/03/18/python-r-vs-spss-sas/)
+- [Python vs R](https://gigadom.wordpress.com/2017/05/22/r-vs-python-different-similarities-and-similar-differences/)
+- [Stack Overflow' survey tag 2017](https://insights.stackoverflow.com/survey/2017)
+- [The 5 most effective ways to learn R](https://blog.datazar.com/the-5-most-effective-ways-to-learn-r-d4cfdf0d524)
+
+### Miscellaneous
+
+- [Faces of #rstats](http://www.masalmon.eu/2017/03/19/facesofr/)
+- [Network analysis of Game of Thrones family ties](https://shiring.github.io/networks/2017/05/15/got_final)
+- [Best practices](https://www.quantinsti.com/blog/r-best-practices-r-you-writing-the-r-way/)
+- [Organize your R project](https://nicercode.github.io/blog/2013-04-05-projects/)
+
+### Visualization
+
+- [Sunflowers for colourlovers/](https://fronkonstin.com/2017/05/22/sunflowers-for-colourlovers/)
+- [Superpixels in imager](https://dahtah.wordpress.com/2017/03/24/superpixels-in-imager/)
+- [colourpicker package v1.0](https://deanattali.com/blog/colourpicker-update-alpha/)
+- [Role Playing with Probabilities: The Importance of Distributions](  http://blog.revolutionanalytics.com/2017/11/role-playing-with-probabilities.html)
+- [D3partitionR](https://antoineguillot.wordpress.com/2016/11/20/an-extensive-tutorial-of-d3partitionr-0-2/)
+
+### Interface
+
+- [Interfacing with APIs using R: the basics](http://blog.revolutionanalytics.com/2017/06/interfacing-with-apis.html)
+- [Writing Julia functions in R with examples](https://insightr.wordpress.com/2017/10/18/writing-julia-functions-in-r-with-examples/)
+- [Test driving Python integration in R, using the ‘reticulate’ package](https://longhowlam.wordpress.com/2017/04/10/test-driving-python-integration-in-r-using-the-reticulate-package/)
+- [http://davegiles.blogspot.ca/2017/09/how-good-is-that-random-number-generator.html](How Good is That Random Number Generator?)
+
+### Bayesian
+
+- [Gibbs Sampling](http://appsilondatascience.com/blog/rstats/2017/10/09/gibbs-sampling.html)
+- [Fitting Bayesian Linear Mixed Models for continuous and binary data using Stan: A quick tutorial](https://vasishth-statistics.blogspot.ca/2017/03/fitting-bayesian-linear-mixed-models.html)
+- [Bayesian model checking via posterior predictive simulations (Bayesian p-values) with the DHARMa package](https://theoreticalecology.wordpress.com/2017/07/01/bayesian-model-checking-via-posterior-predictive-simulations-bayesian-p-values-with-the-dharma-package/)
+- [Introduction to Bayesian Data Analysis](http://www.sumsar.net/blog/2017/02/introduction-to-bayesian-data-analysis-part-one/)
+
+### Machine learning
+
+- [Practical machine learning with R and Python](https://gigadom.wordpress.com/2017/10/06/practical-machine-learning-with-r-and-python-part-1/)
+- [How to sample from multidimensional distributions using Gibbs sampling?](  http://appsilondatascience.com/blog/rstats/2017/10/09/gibbs-sampling.html)
+- [Time series data mining in R](https://petolau.github.io/Ensemble-of-trees-for-forecasting-time-series/)
+
+### Mapping
+
+- [https://owi.usgs.gov/blog/basemaps/](The National Map Base Maps)
+- [using R as a GIS](https://realdataweb.wordpress.com/2017/04/22/using-r-as-a-gis/)
+- [Cartograms of New Zealand census data](http://ellisp.github.io/blog/2017/04/23/cartograms)
+- [https://ikashnitsky.github.io/2017/map-hacking/](Hacking maps with ggplot2)
+
+
+### Shiny
+
+- [Shiny server series](https://www.jasperginn.nl/shiny-server-series-pt1/)
