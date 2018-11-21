@@ -1,5 +1,5 @@
 ---
-title: "List of online R resources"
+title: "Curated list of R resources available online"
 wikitheme: R
 date: 2018-11-21
 update: 2018-11-21
@@ -20,7 +20,7 @@ draft: false
 
   - [R journal](https://journal.r-project.org)
   - [Journal of Statistical Software](http://www.jstatsoft.org/index)
-  - [JOSS]()
+  - [JOSS](https://joss.theoj.org)
 
 ### Books
 
@@ -39,6 +39,7 @@ draft: false
   - Website: https://ropensci.org/about/
   - [ROpensci's blog](https://ropensci.org/blog/)
   - [ROpensci's packages](https://github.com/ropensci)
+  - [Learn R](https://rstudio.github.io/learnr/)
 
 ### Tutorials
 
@@ -50,6 +51,7 @@ draft: false
   - [A curation of R packages](https://awesome-r.com/)
   - [rdrr](https://rdrr.io/)
   - [rdocumentation](https://www.rdocumentation.org/)
+  - [cloudyr](https://cloudyr.github.io/)
 
 ### Blogs
 
@@ -59,6 +61,7 @@ draft: false
   - [Revolutions](http://blog.revolutionanalytics.com/about.html)
   - [R graph gallery](http://rgraphgallery.blogspot.ca)
   - [A newer graph gallery](http://www.r-graph-gallery.com)
+  - [ggplot2 extensions](http://www.ggplot2-exts.org/gallery/)
   - [Reproducible Random Thoughts](https://yonicd.netlify.com/)
   - [Rcpp Gallery](gallery.rcpp.org)
   - [Blog of dirk eddelbuettel](http://dirk.eddelbuettel.com/blog/)
@@ -70,7 +73,9 @@ draft: false
   - [Maëlle's R blog](https://masalmon.eu/)
   - [R posts](https://r-posts.com)
   - [Data R value](https://datarvalue.blogspot.com/)
-
+  - [Recology](https://recology.info/index.html)
+  - [Once upon Data](https://www.onceupondata.com/)
+  - [r-spatial](https://www.r-spatial.org)
 
 
 
@@ -93,14 +98,21 @@ draft: false
 - [Network analysis of Game of Thrones family ties](https://shiring.github.io/networks/2017/05/15/got_final)
 - [Best practices](https://www.quantinsti.com/blog/r-best-practices-r-you-writing-the-r-way/)
 - [Organize your R project](https://nicercode.github.io/blog/2013-04-05-projects/)
+- [Limiting dependencies](https://recology.info/2018/10/limiting-dependencies/)
+- [Package-Wide Variables/Cache in R Packages](https://www.r-bloggers.com/package-wide-variablescache-in-r-packages/)
+- [Rcpp Intro](http://www.mjdenny.com/Rcpp_Intro.html)
+- [Mongolite](https://jeroen.github.io/mongolite/)
 
 ### Visualization
 
-- [Sunflowers for colourlovers/](https://fronkonstin.com/2017/05/22/sunflowers-for-colourlovers/)
+- [Sunflowers for colourlovers](https://fronkonstin.com/2017/05/22/sunflowers-for-colourlovers/)
 - [Superpixels in imager](https://dahtah.wordpress.com/2017/03/24/superpixels-in-imager/)
 - [colourpicker package v1.0](https://deanattali.com/blog/colourpicker-update-alpha/)
 - [Role Playing with Probabilities: The Importance of Distributions](  http://blog.revolutionanalytics.com/2017/11/role-playing-with-probabilities.html)
 - [D3partitionR](https://antoineguillot.wordpress.com/2016/11/20/an-extensive-tutorial-of-d3partitionr-0-2/)
+- [Network visualization with R](http://kateto.net/network-visualization)
+- [ggThemeAssist an add-in for RStudio](https://calligross.github.io/2016-03-28-ggthemeassist-an-add-in-for-rstudio.html)
+- [Visualizing Wine Reviews](https://nycdatascience.com/blog/student-works/visualizing-wine-reviews/)
 
 ### Interface
 
@@ -124,12 +136,13 @@ draft: false
 
 ### Mapping
 
-- [https://owi.usgs.gov/blog/basemaps/](The National Map Base Maps)
+- [The National Map Base Maps](https://owi.usgs.gov/blog/basemaps/)
 - [using R as a GIS](https://realdataweb.wordpress.com/2017/04/22/using-r-as-a-gis/)
 - [Cartograms of New Zealand census data](http://ellisp.github.io/blog/2017/04/23/cartograms)
-- [https://ikashnitsky.github.io/2017/map-hacking/](Hacking maps with ggplot2)
+- [Hacking maps with ggplot2](https://ikashnitsky.github.io/2017/map-hacking/)
 
 
 ### Shiny
 
 - [Shiny server series](https://www.jasperginn.nl/shiny-server-series-pt1/)
+- [Long Running Tasks With Shiny: Challenges and Solutions](http://blog.fellstat.com/?p=407)
