@@ -85,8 +85,6 @@ draft: false
 
 - [R and Python in 2017](http://blog.revolutionanalytics.com/2017/06/python-and-r-top-2017-kdnuggets-rankings.html)
 - [Updated history on R - 20/10/2017](https://blog.revolutionanalytics.com/2017/10/updated-history-of-r.html)
-- https://gist.github.com/daroczig/3cf06d6db4be2bbe3368
-- http://blog.revolutionanalytics.com/2017/01/cran-10000.html
 - [Python-R vs SPSS-SAS](http://www.theanalyticslab.nl/2017/03/18/python-r-vs-spss-sas/)
 - [Python vs R](https://gigadom.wordpress.com/2017/05/22/r-vs-python-different-similarities-and-similar-differences/)
 - [Stack Overflow' survey tag 2017](https://insights.stackoverflow.com/survey/2017)
@@ -102,6 +100,7 @@ draft: false
 - [Package-Wide Variables/Cache in R Packages](https://www.r-bloggers.com/package-wide-variablescache-in-r-packages/)
 - [Rcpp Intro](http://www.mjdenny.com/Rcpp_Intro.html)
 - [Mongolite](https://jeroen.github.io/mongolite/)
+- [Pair Programming](http://staff.math.su.se/hoehle/blog/2017/09/02/pairprogramming.html)
 
 ### Visualization
 
@@ -113,6 +112,8 @@ draft: false
 - [Network visualization with R](http://kateto.net/network-visualization)
 - [ggThemeAssist an add-in for RStudio](https://calligross.github.io/2016-03-28-ggthemeassist-an-add-in-for-rstudio.html)
 - [Visualizing Wine Reviews](https://nycdatascience.com/blog/student-works/visualizing-wine-reviews/)
+- [Phylomoji with ggtree and emojifont]( http://guangchuangyu.github.io/2017/05/phylomoji-with-ggtree-and-emojifont/)
+- [Sankey charts for swinging voters](http://freerangestats.info/blog/2017/05/21/nzes-sankey)
 
 ### Interface
 
