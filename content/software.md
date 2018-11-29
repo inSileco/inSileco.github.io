@@ -1,4 +1,4 @@
 ---
-title: "softwares"
+title: "software"
 layout: "soft"
 ---

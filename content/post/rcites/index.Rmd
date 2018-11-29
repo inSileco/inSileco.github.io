@@ -1,0 +1,288 @@
+---
+title: "A few thoughts about R packages"
+author: [kevin]
+date: 2018-11-25
+tags: [R, package, development, GitHub, CRAN, ROpenSci]
+rpkgs: [devtools, rcites]
+draft: true
+tweet: "A few thoughts about R packages"
+estime: 15
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+
+![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
+
+
+[Jonas Geschke](https://www.linkedin.com/in/jonasgeschke/),
+[Ignasi Bartomeus](https://bartomeuslab.com/) and I have recently released the
+second version of [rcites](https://github.com/ibartomeus/rcites), a R client for the [Species+ API](https://api.speciesplus.net/) after it has been reviewed by [ROpenSci](https://ropensci.org/). In the following lines, I would like to share my experience, few thoughts about R packages as well as a couple of valuable resources.
+
+<center> ![rcites on CRAN](assets/rcites_cran.png){width=100%} </center>
+
+<br>
+
+
+
+## What is a R package?
+
+In the introduction of his book [R packages](http://r-pkgs.had.co.nz/intro.html),
+Hadley Wickham wrote:
+
+> A package bundles together code, data, documentation, and tests, and is easy to share with others.
+
+I like the way the famous R developer presents a package, it is straightforward and crystal clear. Interestingly enough, it describes what a package *does*, not what a package *is*. Defining an R package is actually harder than I thought! I remember the first time, I've tried to characterize an R package, I asked myself a couple of questions and found the answers quite surprising:
+
+* Are R packages extensions available on [CRAN](https://cran.r-project.org/) or [Bioconductor](https://www.bioconductor.org/)? **Not necessarly!**
+
+The answer sounds obvious nowadays with over than [40K R packages on Github](https://rdrr.io/), but 10 years ago it wasn't. That said, we shall recall that an R package that only exists in your computer still is an R package.
+
+* Should a package have a minimum number of functions? **No**
+
+Even among the most popular packages, the number of package is not a criterion. For instance, [vegan](https://cran.r-project.org/web/packages/vegan/index.html) exports 192 functions (as of version 2.5.2) while [png](https://cran.r-project.org/web/packages/png/) only includes two functions.
+
+* Should a package be designed to perform a specific analysis? **No**
+
+Two comments here. First, R packages do many things: they can turn R into a power Geographic Information System or make your R session crash each time you load it (see [trump](https://github.com/romainfrancois/trump))! Second, it sometimes make more sense for development purposes to split the full pipeline in several package so that more than one R package are required for an analysis.
+
+So **what is a R package?** Well, my own definition would be something along this line:
+
+> A set of files that passes the command `R CMD INSTALL`.
+
+From this definition, one should understand that a R package does not perform
+any analysis correctly. Rather an R package is an organized set of files that
+passes a set of tests, *a lot of tests*!.
+
+
+
+
+## Why create a R package?
+
+This is another crucial question. In [his introduction](http://r-pkgs.had.co.nz/intro.html),
+Hadley Wickham emphasized that R packages are a standard way to organize your
+project: it saves you time, gives you an opportunity to acquire good practices when writing functions and makes the sharing of your code easy.
+Once you get used to create and handle R packages, it becomes natural to use
+the standard file organisation to structure your project. With this good habit, the question "where is this file?" vanishes and you'll stop using `setwd()`. Note that, some authors propose similar structure of R projects, e.g. https://nicercode.github.io/blog/2013-04-05-projects/, but you'll need to tweak a little bit if you want to test your code with standard tools.
+
+I would like to point out that one of the main reasons of creating a package is for efficiency purposes, not necessarily to submit it to the CRAN. To me, this is *extremely* important. This means that you do not need to have a good reason to write a package (if you work regularly on R you can write packages) and the day you decide to turn your set of functions for a particular project into an actual package, then the step to do so will be small. Of course the sharing of your package is an important question, but I think this is different question:
+
+> If you build a package it does not imply you'll share it.
+
+
+
+
+## Why share your R package?
+
+There are different answers to this question and depending on the answer, you
+may consider different options to share your code. I do not intend to be exhaustive here rather I provide three examples I am familiar with.
+
+
+### 1- My personal helper functions
+
+When I keep repeating the same lines of code in a project, I write a function.
+Sometime, this function is quite general and can actually be used for other
+projects. Three years ago I used to write this kind of function in a dedicated `.R` file that I stored in a specific folder where all R files were load during the startup process (see `?Startup` in R). Three years ago, I decided to make a package out of this set of functions. There were three main reasons for doing so. First, I was still learning how to build packages, so this was another opportunity to practice. Second, I wanted to document these functions. Last but not least, I thought these function might be useful to other people and so I thought it was an efficient way of sharing them. I ended building a package that is now on Github: [inSilecoMisc](https://github.com/inSileco/inSilecoMisc). As a popular  [forge](https://en.wikipedia.org/wiki/Forge_(software)), Github makes the sharing of the code very easy, people can see the code, take the piece they want for their own project and potentially give feed back. Even though it a R package exhaustively tested, [inSilecoMisc](https://github.com/inSileco/inSilecoMisc) remains a collection of sub-optimal functions which according to me does not deserve to be published on the CRAN, Github provides all the services I need.
+
+
+
+### 2- The code to reproduce a paper
+
+Reproducible science matters to me, when I perform analysis on R and share figures created with R, there is no reason to not share the analysis pipeline with the rest of the scientific community: it demands a little more time to me to save a huge amount of time for them. The first time I did so was for a paper we did with a couple of colleagues where we compared [media coverage for climate change and biodiversity](https://www.frontiersin.org/articles/10.3389/fevo.2017.00175/ful). Unfortunately, we were not able to make the gathering of data reproducible (believe me we tried, the only solution to get all paper we needed was to  work on private an API, so, not reproducible to the majority of researchers),  we however turned the data collected into `.Rdata` files and the set of functions (including the ones for the figures) were stored on Github in the repository [burningHouse](https://github.com/KevCaz/burningHouse). Doing we were able to ensure the interoperability of the package, and potential users ae able to report issues easily. Moreover, [Zenodo](https://zenodo.org/) makes it simple to assign a DOI to the repo and the people can easily reference this work if needed. A final comment to mention that it becomes common to see people sharing their code that way, see for instance [this repository](https://github.com/hyenaproject/vullioud2018) associated with this [great paper about the girl power in the clans of Hyenas](https://doi.org/10.1038/s41559-018-0718-9).
+
+
+### 3- A R-Client for a web API
+
+A year ago now, I was in a hackathon in Ghent (my first hackathon) and I sat on the same table as [Jonas Geschke](https://www.linkedin.com/in/jonasgeschke/), [Ignasi Bartomeus](https://bartomeuslab.com/) (among other colleagues). We worked intensively on a prototype of a package listed in [the wishlist of RopenSci](https://github.com/ropensci/wishlist/issues/29):
+and R-Client to the CITES-API. After the first version was completed, we [submitted it to the review process of ROpenSci](https://github.com/ropensci/onboarding/issues/244). And now [rcites is part of ROpenSci](https://github.com/ropensci/rcites) (more about this story [here](XXX)). So here is a tangible example where I think the package is worth making the CRAN and even a dedicated organization on GitHub. The package is general, has a specific goal, helps people retrieving data to do science and helps them to do so in a reproducible way. So it should be broadly shared. Plus, making the package part of an organization such as ROpenSci means that the package will likely keep being develop (and bugs fixed), even if we stop maintaining it (somebody can easily take over). There are [thousands of packages on the CRAN](https://cran.r-project.org/web/packages/) I personally
+think that it is worth sending packages of good quality (here quality do not mean trying to build a package that is in the top ten of the most downloaded packages, it rather means to make a package that does what it was meant to do and that des it well). After this experience, with ROpenSci, I'll always do my best to get reviews of the code before sending the package to the CRAN.
+
+
+
+
+
+
+
+## How to proceed?
+
+Below, I give a brief description of how we proceeded for [rcites](https://cran.r-project.org/web/packages/rcites/index.html). I remember that back in 2012 when I started
+turning my rproject into packages I first read ["Writing an R package from scratch" by Hilary Parker](http://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/)
+that helps me get started and I then then read [R packages by Hadley Wickham](http://r-pkgs.had.co.nz/),exhaustive and very pedagogical.
+Last but nor least you must keep in mind that all technical details are [in
+the documentation available on CRAN](https://cran.r-project.org/doc/manuals/r-release/R-exts.html), fairly
+technical and exhaustive.
+After 3 years of experience and a couple of packages, I do not frequently have
+to look at then anymore, but I always find my answer if the question was not
+ask on stack before!
+
+
+
+### Local development
+
+I personally use the [devtools](https://cran.r-project.org/web/packages/devtools/index.html)
+package developed by Wickham and colleagues that make you life really easy
+with package. and basically explained with the book. By the way [version 2.0](https://www.tidyverse.org/articles/2018/10/devtools-2-0-0/) has recentlty
+been released. One must remember that `devtools` is not required to create
+a packages, it however makes your life really easy. Indeed,
+Hadley Wickham and colleagues have cleverly automated many steps for creating R packages .
+The book []() explained
+
+load_all() => document() => test() => check()
+
+All oprions you need. Makes oit very efficient.
+
+
+
+### Continuous Integration
+
+[Github](https://github.com) is becoming an inescapable tool for developers. Even without collaboration Github is an useful way to work efficiently.
+It offers a place to save your work, see clearly your progress and share to everyone your achievements.
+If your are not familiar with Github, you can have a look at the [wikipedia page](https://en.wikipedia.org/wiki/GitHub). Then, if you are eager to use it, I suggest you go through the [users documentation](https://en.wikipedia.org/wiki/GitHub).
+
+For an R package, there is one important extra asset: people can download and install your package using functions *install_github* or *install_git* of *devtools*. Even for your-self this is useful: once you have pushed your package to Github, you can install the released version through this process while keeping the version under development apart. Then, anytime you improve your package, you can test and document the new functions, make a new commit and so on.
+
+Even better, for each commit you push, a series of automated testing code can be made on a dedicated server. This is the magic of the continuous integration service [Travis](https://travis-ci.org). A couple of minute after pushing the new commit, you receive an email stating whether or not your package have been built with success.
+
+To start with Travis, after signing up (with your github account), you only need to read 1) [the thin documentation for complete beginners](http://docs.travis-ci.com/user/for-beginners) and 2) the details regarding the [R language](http://docs.travis-ci.com/user/languages/r/). Then you must decide whether or not using Travis for your projects.
+You will likely notice that Travis for R language is community supported. Therefore, we are indebted to Craig Citro, Dirk Eddelbuettel, Hadley Wickham and people that contribute to the [r-travis project](https://github.com/craigcitro/r-travis), so thank you guys, it helps a lot!
+
+
+
+### License and Version of your package
+
+You may wonder what kind of license you must pick up for your package. Even though
+I am no expert on this topic, I can tell that choosing your license matters.
+it defines the cif you are an academic like me, you may find somebody
+at your university that can help you with that.
+In this case, I recommend you to go and visit this website:
+["ChooseALicense"](http://choosealicense.com).
+
+Also, to chose the version number of you R package, I recommend you to follow the recommendation of [Semantic Versioning](http://semver.org). This will make the three numbers you add to your package name meaningful while others make the [version number converging to pi](https://en.wikipedia.org/wiki/TeX).
+
+<br/>
+
+
+### Submit your R package
+
+Do you remember that CARN. So this means your package is tecnhically soun, It
+does mean you package is a good package. What is a good package? Ok...
+I better . Here the topic, how revolutioniary is your appoarches disrgeadrnug
+the potential of the new analysis it makes possible... I'm not talking
+about this king of good. I am talking about some objectivity:
+
+- readiubility of your code: easy to follow, how easy for a new contiutor to jump
+in and help
+- code dependencites: is you pckae denpency makes sense (see this post
+  by Scko Chamberlain)
+- code redundancy: is your code a bunch of copy paste or coded in a well design
+to make the debug easy and (example if you do similar task copy paste
+  one fault copy paste the debuged version), one function
+- is your code efficient no need to code it there a couple of astice yp
+- how good the user expereice piont about being true is non intuitif and you
+are the only one understandiug it, pretty sure nobody will use it sue your package..
+people won,t
+
+This is actually what Ropenscience do the review the packae. There is a scope
+of package thery are unteresting in []() when you submt they consider it
+and then start the review process. Our expericne was , love the idea, love
+how editior and love the commitment of reviewrr, and you know what, 100%
+transparency, you want me to narate what happend? No need, all avaliable
+online [see here](). On top of the quality of the process, theyu are boulding a fantastic
+colleaction of resourecs here []().
+
+After review, you have optopn MEE, JOSS as a small package we wnt to JOSS
+and [JOSS]() because reviewwed y Ropensci accpeted with DOI
+
+Once done, CRAN easy
+
+Moreover, nobody checks that your package does the
+analysis right when you submit it to the CRAN, it would be impossible to
+manage  right, instead they check if your structure of file and your code are compliant to the numerous tests included in `R CMD INSTALL`!
+
+
+
+And you should test in the different platform why AppVeyor travis , plus
+offer a [winbuild]()
+
+```R
+pkgdown::build_site()
+```
+
+```R
+devtools::submit_cran()
+```
+
+```md
+## This is our second submission
+
+## Test environments
+
+* local Debian testing (4.18.0-2-amd64), R 3.5.1
+* MacOSX 10.13.3 (on Travis-ci), R:release
+* Ubuntu 14.04 (on Travis-ci), R 3.4.4, R:release, R:devel
+* win-builder (R:release and R:devel)
+
+
+## R CMD check results (win-builder)
+
+There were no ERRORs, WARNINGs or NOTEs.
+
+Installation time in seconds: 7
+Check time in seconds: 99
+Status: OK
+R Under development (unstable) (2018-11-12 r75592)
+
+
+## Downstream dependencies
+
+There are currently no downstream dependencies for this package.
+```
+
+
+
+On CRAN JOSS Ropenscience for review (beyond the technical details).
+
+https://simplystatistics.org/2015/11/06/how-i-decide-when-to-trust-an-r-package/
+R
+https://cran.r-project.org/web/packages/png/index.html
+
+
+
+### Curated list of resources
+
+#### Packages
+
+- [devtools](https://github.com/r-lib/devtools/issues)
+- [usethis](https://github.com/r-lib/usethis)
+- [pkgbuild](https://github.com/r-lib/pkgbuild)
+- [goodpractice](https://github.com/MangoTheCat/goodpractice)
+- [codemetar](https://github.com/ropensci/codemetar/issues)
+
+
+#### Builders
+
+- [r-hub](https://r-hub.github.io/rhub/) see https://builder.r-hub.io/
+- [Winbuilder](https://win-builder.r-project.org/)
+
+
+#### Documentation
+
+- [Writing R extension, on the CRAN](https://cran.r-project.org/doc/manuals/r-release/R-exts.html)
+- [R packages by Hadley Wickham](http://r-pkgs.had.co.nz/)
+- [rOpenSci Packages: Development, Maintenance, and Peer Review](https://ropensci.github.io/dev_guide/)
+
+
+#### Journals
+
+- [R Journal](https://journal.r-project.org/)
+- [The Journal of Open Source Software (JOSS)](https://joss.theoj.org/)
+- [Methods in Ecology and Evolution (MEE)](https://besjournals.onlinelibrary.wiley.com/journal/2041210x), [it partnered up with ROpenSci](https://ropensci.org/blog/2017/11/29/review-collaboration-mee/)
+
+
+
+<br>
+
+#### That's all folks!

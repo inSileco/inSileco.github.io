@@ -30,7 +30,8 @@ library(rgeos)
 library(raster)
 dir.create(&quot;data&quot;)
 bel2 &lt;- getData(name=&quot;GADM&quot;, country=&quot;BEL&quot;, path=&quot;data&quot;, level = 2)
-plot(bel2)</code></pre>
+plot(bel2)
+text(bel2, 1:11)</code></pre>
 <p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="sp-objects" class="section level2">
 <h2><code>sp</code> objects</h2>
@@ -38,7 +39,7 @@ plot(bel2)</code></pre>
 <h3>Subset</h3>
 <p>A quick subset:</p>
 <pre class="r"><code>## Create a subset (A sub-shapefile)
-slc &lt;- c(8,11,12)
+slc &lt;- c(8:11)
 bel_slc &lt;- bel2[slc,]
 class(bel_slc)
 #R&gt; [1] &quot;SpatialPolygonsDataFrame&quot;
@@ -91,8 +92,8 @@ plot(gIntersection(bufs, bufn), col=5, add=T, lwd=2)</code></pre>
 <h3>Differences</h3>
 <pre class="r"><code>bel_diff &lt;- gDifference(bufs, bufn)
 plot(bel_one)
-plot(bel_diff, add=T, lwd=2, lty=3, col=2)
-plot(bel_south, add=T, col=2)</code></pre>
+plot(bel_diff, add = TRUE, lwd = 2, lty = 3, col = 2)
+plot(bel_south, add = TRUE, col = 2)</code></pre>
 <p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
@@ -121,12 +122,13 @@ points(pts, col = is.na(over(pts, bel2_geom))+2, pch =19)</code></pre>
 </div>
 <div id="raster-objects" class="section level2">
 <h2><code>raster</code> objects</h2>
-<p>Let’s now download a simple raster of elevation.</p>
+<p>Let’s now download a simple raster of elevation using <code>getData()</code>.</p>
 <pre class="r"><code>bel_elv &lt;- getData(name=&quot;alt&quot;, country=&quot;BEL&quot;, path=&quot;data&quot;, level = 2)
 plot(bel_elv)</code></pre>
 <p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="extract-values" class="section level3">
 <h3>Extract values</h3>
+<p>Note that <code>extract()</code> is in <code>raster</code></p>
 <pre class="r"><code>val_south &lt;- extract(bel_elv, bel_south)
 val_north &lt;- extract(bel_elv, bel_north)
 #
@@ -137,8 +139,8 @@ hist(val_north[[1]])</code></pre>
 </div>
 <div id="mask" class="section level3">
 <h3>Mask</h3>
-<pre class="r"><code>elv_south &lt;- rasterize(bel_south, bel_elv, mask = T)
-elv_north &lt;- rasterize(bel_north, bel_elv, mask = T)
+<pre class="r"><code>elv_south &lt;- rasterize(bel_south, bel_elv, mask = TRUE)
+elv_north &lt;- rasterize(bel_north, bel_elv, mask = TRUE)
 par(mfrow = c(1,2))
 plot(elv_south)
 plot(elv_north)</code></pre>
