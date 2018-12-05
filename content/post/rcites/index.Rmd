@@ -1,6 +1,7 @@
 ---
 title: "A few thoughts on R packages"
 author: [kevin]
+reviewer: [marieh]
 date: 2018-12-03
 tags: [R, package, development, GitHub, CRAN, rOpenSci]
 rpkgs: [devtools, testthtat, pkgdown, goodpractice, rcites, roxygen2, usethis]
@@ -56,7 +57,7 @@ So **what is an R package?** Well, my own definition would be something along th
 
 From this definition, one should understand that an R package does not perform
 any analysis correctly. Rather, an R package is an organized set of files that
-passes a set of tests, *a lot of tests*!.
+passes a set of tests, *a lot of tests*!
 
 
 
@@ -83,12 +84,12 @@ may consider different options to share your code. I do not intend to be exhaust
 ### 1- My personal helper functions
 
 When I keep repeating the same lines of code in a project, I write a function.
-Sometimes, the function can actually be used in different projects. I used to write this kind of function in a dedicated `.R` file that was loaded during my custom startup process (see `?Startup` in R). Three years ago, I decided to make a package out of these functions. There were three main reasons for doing so. First, I was still learning how to write packages, so this was another opportunity to practice. Second, I wanted to document these functions. Last but not least, I thought these functions might be useful to other people so writing an R package was an efficient way to share them. The package is now on Github: [inSilecoMisc](https://github.com/inSileco/inSilecoMisc), everyone can use it, borrow one or more functions for his own project, report issues, etc. Even though the package is exhaustively tested, [inSilecoMisc](https://github.com/inSileco/inSilecoMisc) remains a collection of sub-optimal functions which according to me does not deserve to be published on the CRAN, GitHub and the additional web services I use cover all my needs!
+Sometimes, the function can actually be used in different projects. I used to write this kind of function in a dedicated `.R` file that was loaded during my custom startup process (see `?Startup` in R). Three years ago, I decided to make a package out of these functions. There were three main reasons for doing so. First, I was still learning how to write packages, so this was another opportunity to practice. Second, I wanted to document these functions. Last but not least, I thought these functions might be useful to other people so writing an R package was an efficient way to share them. The package is now on GitHub: [inSilecoMisc](https://github.com/inSileco/inSilecoMisc), everyone can use it, borrow one or more functions for his own project, report issues, etc. Even though the package is exhaustively tested, [inSilecoMisc](https://github.com/inSileco/inSilecoMisc) remains a collection of sub-optimal functions which according to me does not deserve to be published on the CRAN, GitHub and the additional web services I use cover all my needs!
 
 
 ### 2- The code to reproduce a paper
 
-Reproducible science matters to me, when I publish a paper I cannot see any reason to not share the analysis pipeline with the rest of the scientific community: it demands a little more of my time to save a huge amount of time for them. To do so, I now create a small package that contains the anlaysis. The first time I did so was for a paper we did with a couple of colleagues where we compared [media coverage for climate change and biodiversity](https://www.frontiersin.org/articles/10.3389/fevo.2017.00175/ful). Unfortunately, we were not able to make the gathering of data reproducible (believe me, we've tried, the only solution was to work on private an API, so, making the code not reproducible for the majority of researchers), we however turned the data collected into `.Rdata` files and the set of functions were stored on a Github repository: [burningHouse](https://github.com/KevCaz/burningHouse). This ensures the interoperability of the package, shows to other researchers how we did it the analysis and let them report issues with the code. Moreover, [Zenodo](https://zenodo.org/) makes it simple to assign a DOI to the repository so that people can reference this work if needed. Note that it becomes quite common for researchers to share their code that way, see for instance [this repository](https://github.com/hyenaproject/vullioud2018) associated with this [nice paper about the girl power in the clans of Hyenas](https://doi.org/10.1038/s41559-018-0718-9).
+Reproducible science matters to me, when I publish a paper I cannot see any reason to not share the analysis pipeline with the rest of the scientific community: it demands a little more of my time to save a huge amount of time for them. To do so, I now create a small package that contains the analysis. The first time I did so was for a paper we did with a couple of colleagues where we compared [media coverage for climate change and biodiversity](https://www.frontiersin.org/articles/10.3389/fevo.2017.00175/ful). Unfortunately, we were not able to make the gathering of data reproducible (believe me, we've tried, the only solution was to work on private API, so, making the code not reproducible for the majority of researchers), we however turned the data collected into `.Rdata` files and the set of functions were stored on a GitHub repository: [burningHouse](https://github.com/KevCaz/burningHouse). This ensures the interoperability of the package, shows to other researchers how we did it the analysis and let them report issues with the code. Moreover, [Zenodo](https://zenodo.org/) makes it simple to assign a DOI to the repository so that people can reference this work if needed. Note that it becomes quite common for researchers to share their code that way, see for instance [this repository](https://github.com/hyenaproject/vullioud2018) associated with this [nice paper about the girl power in the clans of Hyenas](https://doi.org/10.1038/s41559-018-0718-9).
 
 
 ### 3- A R-Client for a web API
@@ -143,7 +144,7 @@ I would like to conclude this part by pointing out that using the set of package
 
 Web-based [<i class="fa fa-git" aria-hidden="true"></i>](https://git-scm.com/)-repository managers such (GitHub <i class="fa fa-github" aria-hidden="true"></i>, GitLab <i class="fa fa-gitlab" aria-hidden="true"></i>, Bitbucket <i class="fa fa-bitbucket" aria-hidden="true"></i>, etc.) are very powerful tools to develop your packages
 especially to work with collaborators, get feed back and add web-services to improve your workflow. First, [<i class="fa fa-git" aria-hidden="true"></i>](https://git-scm.com/)
-it-self is a fantastic tool (beyond the scope of this post, I recommend you the reading of [Pro Git](https://git-scm.com/book/en/v2)). Second, by hosting your package on GitHub, your are basically sending an invitation at large to contribute to your project: "hey devs, this is the project I am working on, it you are interested, please star, clone, fork, report issues, submit pull requests, etc."! Furthermore, once on GitHub, people can easily install your package directly from R:
+it-self is a fantastic tool (beyond the scope of this post, I recommend you the reading of [Pro Git](https://git-scm.com/book/en/v2)). Second, by hosting your package on GitHub, your are basically sending an invitation at large to contribute to your project: "hey devs, this is the project I am working on, if you are interested, please star, clone, fork, report issues, submit pull requests, etc."! Furthermore, once on GitHub, people can easily install your package directly from R:
 
 ```R
 devtools::install_github("rOpenSci/rcites")
@@ -172,7 +173,7 @@ Even though I am no expert on this topic, I can tell that choosing your license 
 ### Release on GitHub and on the CRAN
 
 This topic is also well covered in Hadley's book, so I suggest you read [this chapter](r-pkgs.had.co.nz/release.html).
-Arelease is an achievement, you have reached a milestone and the package works great, so you are basically spreading the news "and I/we've reached a milestone guys, here it is!". Doing a release is as simple as changing the number of the version in the `DESCRIPTION` file. That said, there are ways of making it more official and more useful.
+A release is an achievement, you have reached a milestone and the package works great, so you are basically spreading the news "I/we've reached a milestone guys, here it is!". Doing a release is as simple as changing the number of the version in the `DESCRIPTION` file. That said, there are ways of making it more official and more useful.
 
 First on GitHub, you can [create releases](https://help.github.com/articles/creating-releases/). After editing the version number in `DESCRIPTION`, you can push and create a release and even add a DOI with the version via [Zenodo](https://zenodo.org/). You can also submit your package to the [CRAN](https://cran.r-project.org/) or [Bioconductor](https://www.bioconductor.org/) which demands a little more work.
 Either way, at this stage you must choose a version number. Easy peasy? Yes, but this choice does matter. It is all about making the numbers used as meaningful as possible to provide useful landmarks as you keep on developing your package. [Semantic Versioning](http://semver.org) does a great work at explaining this, check this website out! I also suggest that you spend some time thinking about how useful it is to make the [version number converging to pi](https://en.wikipedia.org/wiki/TeX).
@@ -217,7 +218,7 @@ Once done, you are ready to submit, so thanks to [devtools](https://cran.r-proje
 devtools::submit_cran()
 ```
 
-After this, you'll receive an email (the one you wrote in the maintainer field of `DESCRIPTION`) to confirm the submission. You may receive emails from people that manage the CRAN because of issues or potential improvements. So far, they have given me one good advice: using `\donttest{}` instead of commenting out examples for examples that cannot be tested on the CRAN.
+After this, you'll receive an email (the one you wrote in the maintainer field of `DESCRIPTION`) to confirm the submission. You may receive emails from people that manage the CRAN because of issues or potential improvements. So far, they have given me one good advice: using `\donttest{}` instead of commenting out examples that cannot be tested on the CRAN.
 
 
 
@@ -227,8 +228,7 @@ Let's assume your package is already on GitHub and the built passes on both Trav
 
 - **good practice**: is your package compliant to good practices? Given the number of ways R offers to do the same things, e.g. `<-` or `=` to assign a value to a variable (that puzzles some people), it is recommended to follow good practice. [goodpractice](https://github.com/MangoTheCat/goodpractice) checks if your package follows them. For instance, `goodpractice::gp()` checks that you are using `<-` rather than `=`, that your lines of code do not exceed 80 character, that you are using `TRUE` and `FALSE` instead of `T` and `F`, etc.;
 
-- **readability** is your code well-commented and easy to understand? This determines how easy it would be for new contributors to understand your code and thus how easy it would be for them to contribute. Note that for efficiency purposes, some steps may sometimes be hard to understand, in such case, you must comment how you did it and why, this is also relevant for the future
-you;
+- **readability** is your code well-commented and easy to understand? This determines how easy it would be for new contributors to understand your code and thus how easy it would be for them to contribute. Note that for efficiency purposes, some steps may sometimes be hard to understand, in such case, you must comment how you did it and why, this is also relevant for the future you;
 
 - **Dependencies**: there is nothing wrong with [depending on other packages](http://www.stat.tugraz.at/AJS/ausg121/121Hornik.pdf). However,
 [being parsimonious and using adequate package matter](https://recology.info/2018/10/limiting-dependencies/) (the [Occam's razor](https://en.wikipedia.org/wiki/Occam%27s_razor) version for packages). The first release of [rcites](https://cran.r-project.org/web/packages/rcites/) imported [data.table](https://cran.r-project.org/web/packages/data.table/). During the review of the package [Noam Ross](https://github.com/noamross) suggested that data.table is actually used for efficiency purposes and that in the context of rcites, it was an extra dependency for no real benefice, which is true, so we changed this.
@@ -237,13 +237,12 @@ you;
 
 - **Efficiency** is your code efficient? There are many tips given by Colin Gillespie and Robin Lovelace in [Efficient R programming](https://csgillespie.github.io/efficientR/), have a look!
 
-- **User experience** Never thought why Hadley's packages are among the most popular ones? Well, he cares a lot about the users. I am sure he thinks a lot about how people will use a package and how to make it as intuitive as possible. Moreover, he exhaustively documents his works. This is a critical part. Making your package user friendly is about its design and documenting your package. Without a good documentation, you'll miss your shot. Build vignettes! Explain carefully how your package works, build a website! You cannot say it's hard because [pkgdown](https://pkgdown.r-lib.org/) makes this real easy!
+- **User experience** Never wondered why Hadley's packages are among the most popular ones? Well, he cares a lot about the users. I am sure he thinks a lot about how people will use a package and how to make it as intuitive as possible. Moreover, he exhaustively documents his works. This is a critical part. Making your package user friendly is about its design and documenting your package. Without a good documentation, you'll miss your shot. Build vignettes! Explain carefully how your package works, build a website! You cannot say it's hard because [pkgdown](https://pkgdown.r-lib.org/) makes this real easy!
 
-To evaluate all these aspects, you (still) need human reviewers! That's why I value so much initiatives such as [rOpenSci](https://ropensci.org/), their member [review packages](https://ropensci.org/blog/2017/09/01/nf-softwarereview/), they advertise the packages they've reviewed, they write tutorials and [they blog on what they are doing](https://ropensci.org/blog/).
-Our experience was awesome, we had very positive feed back, very clever suggestions that made [rcites](https://github.com/ropensci/rcites) a better package. I would love to say more about it but guess what, the review process  in 100% transparent, so check out what really happened `=>` [![ROpenSci status](https://badges.ropensci.org/244_status.svg)](https://github.com/ropensci/onboarding/issues/244). You may wonder whether your package is in the scope of rOpenSci? How to submit your package? Well, they are completing a book to answer all this question, [check it out!](https://ropensci.github.io/dev_guide/). If your package is not in rOpenSci book, you have other options such as [The Journal of Open Source Software (JOSS)](https://joss.theoj.org) or [Journal of statistical software](https://www.jstatsoft.org/index). Note that [rOpenSci has Software Review Collaboration with Methods in Ecology and Evolution](https://ropensci.org/blog/2017/11/29/review-collaboration-mee/) and with JOSS. So in our case, it meant that [out JOSS paper](https://joss.theoj.org/papers/ad23e358f208568c4913cf5fb99a030d) was accepted after the review completed by rOpenSci.
+To evaluate all these aspects, you (still) need human reviewers! That's why I value so much initiatives such as [rOpenSci](https://ropensci.org/), their members [review packages](https://ropensci.org/blog/2017/09/01/nf-softwarereview/), advertise the packages they've reviewed, write tutorials and [ blog on what they are doing](https://ropensci.org/blog/). Our experience was awesome, we had very positive feed back, very clever suggestions that made [rcites](https://github.com/ropensci/rcites) a better package. I would love to say more about it but guess what, the review process  in 100% transparent, so check out what really happened `=>` [![ROpenSci status](https://badges.ropensci.org/244_status.svg)](https://github.com/ropensci/onboarding/issues/244). You may wonder whether your package is in the scope of rOpenSci? How to submit your package? Well, they are completing a book to answer all this question, [check it out](https://ropensci.github.io/dev_guide/)! If your package is not in rOpenSci book, you have other options such as [The Journal of Open Source Software (JOSS)](https://joss.theoj.org) or [Journal of statistical software](https://www.jstatsoft.org/index). Note that [rOpenSci has Software Review Collaboration with Methods in Ecology and Evolution](https://ropensci.org/blog/2017/11/29/review-collaboration-mee/) and with JOSS. So in our case, it meant that [our JOSS paper](https://joss.theoj.org/papers/ad23e358f208568c4913cf5fb99a030d) was accepted after the review completed by rOpenSci.
 
 There are [thousands of packages on the CRAN](https://cran.r-project.org/web/packages/), I personally
-think that it is worth sending packages of good quality (again quality means that the package does what it was meant to do and that does it well). After this experience, I'll always do my best to get reviews of the code before sending the package to the CRAN. People are sometimes wondering how to [trust an R package](https://simplystatistics.org/2015/11/06/how-i-decide-when-to-trust-an-r-package/), getting packages peer-reviewed is definitively a good solution.
+think that it is worth sending packages of good quality (again quality means that the package does what it was meant to do and does it well). After this experience, I'll always do my best to get reviews of the code before sending the package to the CRAN. People are sometimes wondering how to [trust an R package](https://simplystatistics.org/2015/11/06/how-i-decide-when-to-trust-an-r-package/), getting packages peer-reviewed is definitively a good solution.
 For now on, my personal approach with R packages will be:
 
 1. Development of GitHub (or similar);
@@ -291,6 +290,10 @@ For now on, my personal approach with R packages will be:
 - [The Journal of Open Source Software (JOSS)](https://joss.theoj.org/)
 - [Methods in Ecology and Evolution (MEE)](https://besjournals.onlinelibrary.wiley.com/journal/2041210x), [it partnered up with rOpenSci](https://rOpenSci.org/blog/2017/11/29/review-collaboration-mee/)
 
+
+### Misc
+
+- [You can make a package in 20 minutes](https://www.rstudio.com/resources/videos/you-can-make-a-package-in-20-minutes/)
 
 
 <br>
