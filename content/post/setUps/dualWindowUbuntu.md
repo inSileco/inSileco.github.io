@@ -1,8 +1,8 @@
 ---
 title: Ubuntu + Windows 7 - dual partition
-date: 2018-12-9
 tags: [Windows, Ubuntu, dual partition, chocolatey, apt-get]
 author: [kevin]
+date: 2018-12-09
 draft: false
 estime: 7
 tweet: My R setup on Debian
@@ -107,7 +107,7 @@ sudo apt install calibre inkscape gimp vlc xournal hugo pandoc pandoc-citeproc i
 Below, I used [inxi](https://www.tecmint.com/inxi-command-to-find-linux-system-information/) to get details about the hardware:
 
 ```sh
-$ inxi -SMCND
+$ inxi -SMCNDP
 System:    Host: mhb Kernel: 4.15.0-42-generic x86_64 bits: 64 Console: tty 1
            Distro: Ubuntu 18.04.1 LTS
 Machine:   Device: desktop System: Dell product: Studio XPS 8100 serial: N/A
