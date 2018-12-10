@@ -135,7 +135,7 @@ was completed!
 Given what I went through, I think it is worth spending
 some time reading about the different graphical desktops Debian offers.
 I recommend reading the [section of the Debian Handbook on the topic](https://debian-handbook.info/browse/stable/sect.graphical-desktops.html),
-and this article for [Ubuntu useres](https://support.system76.com/articles/desktop-environment/)
+and this article for [Ubuntu users](https://support.system76.com/articles/desktop-environment/)
 that interestingly asserts:
 
 > In Ubuntu 16.04, make sure to choose lightdm as the display manager
