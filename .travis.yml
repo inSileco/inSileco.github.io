@@ -33,10 +33,6 @@ apt_packages:
   - libmagick++-dev
 
 before_install:
-  - mkdir pandoc
-  - wget https://github.com/jgm/pandoc/releases/download/2.3/pandoc-2.3-1-amd64.deb
-  - sudo dpkg -i pandoc-2.3-1-amd64.deb
-  - export PATH=./pandoc/usr/bin/:$PATH
   - wget https://github.com/gohugoio/hugo/releases/download/v0.53/hugo_0.53_Linux-64bit.deb
   - sudo dpkg -i hugo_0.53_Linux-64bit.deb
 
