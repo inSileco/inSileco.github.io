@@ -2,6 +2,7 @@
 title: Ubuntu + Windows 7 - dual partition
 tags: [Windows, Ubuntu, dual partition, chocolatey, apt-get]
 author: [kevin]
+reviewer: [marieh]
 date: 2018-12-09
 draft: false
 estime: 7
@@ -11,6 +12,7 @@ output:
     fig_width: 3
     dev: svg
 ---
+
 
 ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
@@ -24,7 +26,7 @@ Ubuntu = Debian Testing + software to simplify its use
 ```
 
 There are a couple of articles online that are opposing these two Linux distributions, which makes no real sense to me. I prefer the reading of this [article that explains the technical differences](https://wiki.ubuntu.com/Ubuntu/ForDebianDevelopers?action=show&redirect=UbuntuForDebianDevelopers). As I mentioned in a
-[previous post](/post/setUps/goDebianTesting/), I am currently on working on Debian with GNOME (3.30) and actually when I am on the latest Ubuntu (18.04, [Bionic Beaver](http://releases.ubuntu.com/18.04/)), everything is very similar.
+[previous post](/post/setUps/goDebianTesting/), I am currently working on Debian with GNOME (3.30) and it is very similar to the latest Ubuntu (18.04, [Bionic Beaver](http://releases.ubuntu.com/18.04/)).
 
 
 
@@ -32,7 +34,7 @@ There are a couple of articles online that are opposing these two Linux distribu
 
 ## Cleaning up the Windows 7 partition
 
-I took the opportunity to spend some time on Windows 7. What I did first what to check out the [hardware on windows with the msinfo32 command](https://support.microsoft.com/en-ca/help/300887/how-to-use-system-information-msinfo32-command-line-tool-switches). Then I installed the package manager [chocolatey](https://chocolatey.org/docs/installation). To do so, I used [PowerShell](https://en.wikipedia.org/wiki/PowerShell), version v2.+ was required (see https://chocolatey.org/docs/installation and use `$PSVersionTable.PSVersion` to check out the version available). One line of command completes the installation of [chocolatey](https://chocolatey.org/docs/installation):
+I took the opportunity to spend some time on Windows 7. What I did first was a [checkout of the hardware with the `msinfo32` command](https://support.microsoft.com/en-ca/help/300887/how-to-use-system-information-msinfo32-command-line-tool-switches). Then I installed the package manager [chocolatey](https://chocolatey.org/docs/installation). To do so, I used [PowerShell](https://en.wikipedia.org/wiki/PowerShell), version v2.+ was required (see https://chocolatey.org/docs/installation and use `$PSVersionTable.PSVersion` to check out the version available). One line of command completes the installation of [chocolatey](https://chocolatey.org/docs/installation):
 
 ```sh
 Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
@@ -53,7 +55,7 @@ choco install pandoc R R.Studio imagemagick QGIS
 
 ## Creating a bootable USB stick to install Ubuntu
 
-There are various tutorials online that adresses this topic, for instance [this one on tutorials.ubuntu.com](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-ubuntu#0). I created the bootable USB stick on my Debian machine after I [checked out useful info about my USB device](https://www.tecmint.com/find-usb-device-name-in-linux/):
+There are various tutorials online that adress this topic, for instance [this one on tutorials.ubuntu.com](https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-ubuntu#0). I created a bootable USB stick on my Debian machine but before I [identified the USB device](https://www.tecmint.com/find-usb-device-name-in-linux/):
 
 ```sh
 $ df -h
@@ -72,7 +74,7 @@ tmpfs           1.6G  9.6M  1.6G   1% /run/user/1000
 /dev/sda         15G  809M   14G   6% /media/kevcaz/myusbstick
 ```
 
-I unmounted the device (`myusbstick`) like so:
+I unmounted the right device: `myusbstick` (last line above) like so:
 
 ```sh
 $ sudo umount /dev/sda
@@ -97,8 +99,8 @@ Linux mhb 4.15.0-42-generic #45-Ubuntu SMP Thu Nov 15 19:32:57 UTC 2018 x86_64 x
 U/Linux
 ```
 
-During the installation process I was offline and I realized after the installation
-that I was not ale to get the wifi working. So I plugged the computer on the Ethernet and found out that the Broadcom wireless driver was not properly installed. I solved this issue following this answer on [Stack Exchange]([wifi](https://askubuntu.com/questions/55868/installing-broadcom-wireless-drivers)). Then I installed a couple of freeware:
+During the installation process I was offline and I realized afterwards
+that I was not able to get the wifi working. So I plugged the computer on the Ethernet and found out that the Broadcom wireless driver was not properly installed. I solved this issue following this answer on [Stack Exchange]([wifi](https://askubuntu.com/questions/55868/installing-broadcom-wireless-drivers)). Then I installed a couple of freeware:
 
 ```sh
 sudo apt install calibre inkscape gimp vlc xournal hugo pandoc pandoc-citeproc imagemagick ffmpeg inxi tree curl openssh-server pass
@@ -137,4 +139,4 @@ I finally I downloaded
 I was done.
 
 I still have to write a post about my [Raspberry Pi](https://www.raspberrypi.org/) setup, hopefully I'll do so soon. Also, next time I am given carte blanche, I'll
-install a [Linux distribution](https://upload.wikimedia.org/wikipedia/commons/1/1b/Linux_Distribution_Timeline.svg) quite different: Arch, FreeBSD, Fedora& We shall see.
+install a [Linux distribution](https://upload.wikimedia.org/wikipedia/commons/1/1b/Linux_Distribution_Timeline.svg) quite different: Arch, FreeBSD, Fedora, etc. We shall see!
