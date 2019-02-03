@@ -6,10 +6,10 @@
   <div class="col-sm-4">
     <h3>Latest posts</h3>
     <h5><a href="/post/">View all</a></h5>
-    <hr> {{ range first 5 .Site.Pages }} {{if eq .Type "post" }}
+    <hr> {{ range first 3 .Site.Pages }} {{if eq .Type "post" }}
     <h4 style="font-weight:bolder;"><a href="{{ .RelPermalink }}">{{ .Title }}</a></h4>
     <p>{{ .Date.Format "02 Jan, 2006" }}</p>
-    <p style="font-size:small;"><i>{{ slicestr .Summary 0 200 }}...</i> <a href="{{ .Permalink }}">Read More</a></p>
+    <p style="font-size:small;"><i>{{ .Summary }}...</i> <a href="{{ .Permalink }}">Read More</a></p>
     <hr>
     {{ end }} {{ end }}
   </div>

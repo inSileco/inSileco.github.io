@@ -1,20 +1,20 @@
 ---
 title: "The talks we do"
 author: [kevin]
-date: 2018-09-01
+date: 2018-12-22
 tags: [Communication, Talks]
 draft: true
 tweet: "Setting my Debian Stretch up"
 estime: 14
 ---
 
-[![Build Status](https://travis-ci.org/inSileco/inSileco.github.io.svg?branch=dev)](https://travis-ci.org/inSileco/inSileco.github.io)
+![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
 
 This summer, I went to two conferences:
 [Canadian Society for Ecology & Evolution Meeting 2018](http://www.csee2018.ca/)
 (hosted by the university where I am currently working at!) and the
 [Ecological Society of America Meeting 2018](https://esa.org/neworleans/) and
-gave a talk during both of them. As I attended dozens of talks, I spent some
+gave a talk during both of them. This month I attempted the [annual symposium of the QCBS](). As I attended dozens of talks, I spent some
 time thinking about what makes a talk good talk (read "a talk I like") and what
 stop focusing on what the speaker is telling. In what follows, I've tried to
 organize my thoughts around a couple of principles that are my own opinion.
@@ -22,11 +22,12 @@ I do think there are a set of good advice but some people may or may not agree
 to all of then. I start with general thoughts that applies on communication
 at large and finish with few hints!
 What follows is base on my experience and subjective I did not learn much
-from communication I simply think about it and try to improve the way
+from communication so far I had one formation (I should do more) I'm learning by doing and thinking and try to improve the way
 I present stuff talk after talk.
 
 
-## 1. Communication is what we do
+
+## 1. A major part of doing science is communicating it  
 
 There are two things a scientist do: science and communicating about science.
 For the latter,
@@ -43,7 +44,7 @@ As any communication system, communicating your science involves a transmitter
 that sent a message through a (noisy) channel to a receiver. In the specific
 case of a scientific given a talk that is explaining is research, he/she is the transmitter
 of a message he/she created and it he sending to an audience.
-For a t The message is a combinatio
+For a t The message is a combination
 
 So it's a combination between a set of slides and a discourse about it
 you are prononcing. So below I'll give set of general advice but
@@ -63,7 +64,9 @@ We should be aware that communication is  important if we do nice
 discover but never tell anybody, why having work in the wfirst place?
 
 
+## Who's doing a favor to the other?
 
+So you are presenting you have
 
 
 It is outreach
@@ -137,9 +140,15 @@ results in crontirbuted talk, play the game!
 
 
 
+## 3- Simple is beautiful
+
+Slides and message
+Message
 
 
+## 4- do everything you can to make them understand
 
+one take home and this should be understand...
 
 
 ## 4- Consistency is the key
@@ -151,6 +160,9 @@ haomony with this. Is it way more complicated with irregular shape a color
 used any way,
 
 Advice use color
+
+Simplicity and consitency do a theme!
+
 
 
 ## 5- A matter of dosage and rhythm
@@ -188,6 +200,9 @@ It's not all about jokes neither, It's about a nice stroy
 well told, with enthousian and hope for future research,  
 image it does not prevent jokes or ..
 
+I think we must try to be entertaining... not saying we should do jokes or
+some dance or whatever. Their are many ways of being entertaining being passionate abut what you saying is one of them adding cool example nice
+even question to the audience can easily help you,
 
 
 
@@ -198,7 +213,7 @@ spend spend time in results
 animation for pedagogic resuts  is often
 results one
 
-"on the x axis we have" explian the plot
+"on the x axis we have" explain the plot
 
 Figure of a publication rarely fits, the reader have all time.
 
@@ -206,10 +221,32 @@ Figure of a publication rarely fits, the reader have all time.
 "talk to your audience "
 
 
+## 8- Manage your memory
+
+I think we cannot write all our text. Stress et al. can make you forgt
+So be strategic about the word you
+
+> "Oh, I cannot remember the name of this great scientific, sorry..."
+
+Well 2 options do not mention it or write his name...
+
+
+## 9- Show them you're here  
+
+Let them know you are here and don't show them your back when they are here
+to see your face.
+
+
 
 non native speaker do not appologize for your accent do your best try
-to imporove the prononciation (english pronounciation is complicated)
-Most of our colleague understande that it is harder for us as we as to
+to improve the prononciation (english pronounciation is complicated)
+Most of our colleague understand that it is harder for us as we as to
 do our job in a foreign langage. + prononciation indian, UK, New-Zeland
 US. Worst case scenario make fun of your accent, and you know what,
 it's not as bad as it sounds!
+
+## NB
+
+"You have to trust me on that"
+
+Could be a joke but said seriomuly about results you don't show... no.
