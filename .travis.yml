@@ -32,7 +32,6 @@ apt_packages:
   - libssl-dev
   - libmagick++-dev
   - libstdc++.so
-  - strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBCXX
 
 before_install:
   - mkdir pandoc
@@ -41,6 +40,9 @@ before_install:
   - export PATH=./pandoc/usr/bin/:$PATH
   - wget https://github.com/gohugoio/hugo/releases/download/v0.53/hugo_0.53_Linux-64bit.deb
   - sudo dpkg -i hugo_0.53_Linux-64bit.deb
+
+before_script:
+  - strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBCXX
 
 script:
   - Rscript -e 'blogdown::build_site()'
