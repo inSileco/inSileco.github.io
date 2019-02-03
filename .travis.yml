@@ -31,14 +31,16 @@ apt_packages:
   - libpoppler-cpp-dev
   - libssl-dev
   - libmagick++-dev
+  - libstdc++.so
+  - strings /usr/lib/x86_64-linux-gnu/libstdc++.so.6 | grep GLIBCXX
 
 before_install:
   - mkdir pandoc
   - wget https://github.com/jgm/pandoc/releases/download/2.3/pandoc-2.3-1-amd64.deb
   - sudo dpkg -i pandoc-2.3-1-amd64.deb
   - export PATH=./pandoc/usr/bin/:$PATH
-  - wget https://github.com/gohugoio/hugo/releases/download/v0.50/hugo_0.50_Linux-64bit.deb
-  - sudo dpkg -i hugo_0.50_Linux-64bit.deb
+  - wget https://github.com/gohugoio/hugo/releases/download/v0.53/hugo_0.53_Linux-64bit.deb
+  - sudo dpkg -i hugo_0.53_Linux-64bit.deb
 
 script:
   - Rscript -e 'blogdown::build_site()'
