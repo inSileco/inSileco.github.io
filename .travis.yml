@@ -31,7 +31,7 @@ apt_packages:
   - libpoppler-cpp-dev
   - libssl-dev
   - libmagick++-dev
-  - libstdc++6
+  - hugo
 
 before_install:
   - mkdir pandoc
@@ -39,8 +39,6 @@ before_install:
   - sudo dpkg -i pandoc-2.3-1-amd64.deb
   - export PATH=./pandoc/usr/bin/:$PATH
 
-before_script:
-  - Rscript -e 'blogdown::install_hugo()'
 script:
   - Rscript -e 'blogdown::build_site()'
 
