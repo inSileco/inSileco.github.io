@@ -27,7 +27,12 @@ First of all, the functions I am using in this post are available in  [inSilecoM
 ```r
 library(devtools)
 install_github("inSileco/inSilecoMisc")
-library(inSileco)
+```
+
+Then, load it:
+
+```{r}
+library(inSilecoMisc)
 ```
 
 In this post, I'll exemplify how to use `dfTemplate()` and `dfTemplateMatch()` but if you are interested in other functions in the packages, [check out the tour vignette](http://insileco.github.io/inSilecoMisc/articles/overview.html).
