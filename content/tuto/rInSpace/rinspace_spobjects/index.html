@@ -50,7 +50,7 @@ represent a location where an animal was trapped, and the attributes could
 include the capture date, the size, the sex, and information about the physical
 environment.</p>
 <p><br /></p>
-<p><img src="/post/rInSpace/rinspace_spobjects/index_files/figure-html/vector-data-1.png" width="810" height="270" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_spobjects/index_files/figure-html/vector-data-1.png" width="810" height="270" style="display: block; margin: auto;" /></p>
 <p><br /></p>
 </div>
 <div id="lines-data" class="section level3">
@@ -101,7 +101,7 @@ raster data will therefore be more efficient than working with polygons data.</p
 <p>Raster can be used to represent a very broad range of data: continuous
 (temperature values), discrete (habitat classes) or even binary (species occurrence)
 variables.</p>
-<p><img src="/post/rInSpace/rinspace_spobjects/index_files/figure-html/raster-data-1.png" width="810" height="270" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_spobjects/index_files/figure-html/raster-data-1.png" width="810" height="270" style="display: block; margin: auto;" /></p>
 <p><br /></p>
 <p>Several file formats exist to store raster data. The most commons are: <strong>GeoTIFF</strong>, <strong>NetCDF</strong>, <strong>grd</strong> and <strong>ascii</strong> formats. Even the package <code>rgdal</code> can be used to import/export raster data, we will prefer the package <code>raster</code>.</p>
 </div>
@@ -134,40 +134,40 @@ mydata &lt;- data.frame(
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">-81.80247</td>
-<td align="right">42.61008</td>
-<td align="right">0.4903868</td>
-<td align="right">1.075007</td>
+<td align="right">-80.05570</td>
+<td align="right">42.84646</td>
+<td align="right">-0.7987937</td>
+<td align="right">2.2569850</td>
 </tr>
 <tr class="even">
-<td align="right">-80.38990</td>
-<td align="right">42.02608</td>
-<td align="right">-0.3728839</td>
-<td align="right">4.172873</td>
+<td align="right">-80.44741</td>
+<td align="right">43.60424</td>
+<td align="right">1.0901666</td>
+<td align="right">8.9240727</td>
 </tr>
 <tr class="odd">
-<td align="right">-80.78485</td>
-<td align="right">43.08422</td>
-<td align="right">-0.2509555</td>
-<td align="right">5.859953</td>
+<td align="right">-80.14674</td>
+<td align="right">42.47373</td>
+<td align="right">0.2347846</td>
+<td align="right">0.2033818</td>
 </tr>
 <tr class="even">
-<td align="right">-81.23434</td>
-<td align="right">43.10306</td>
-<td align="right">-0.7129443</td>
-<td align="right">9.746547</td>
+<td align="right">-80.04910</td>
+<td align="right">43.37983</td>
+<td align="right">1.1603766</td>
+<td align="right">9.5833169</td>
 </tr>
 <tr class="odd">
-<td align="right">-80.00439</td>
-<td align="right">42.99512</td>
-<td align="right">1.0514086</td>
-<td align="right">1.311865</td>
+<td align="right">-80.61820</td>
+<td align="right">42.51091</td>
+<td align="right">-0.4495556</td>
+<td align="right">1.3975431</td>
 </tr>
 <tr class="even">
-<td align="right">-80.01515</td>
-<td align="right">42.58484</td>
-<td align="right">0.2805270</td>
-<td align="right">6.302691</td>
+<td align="right">-81.80566</td>
+<td align="right">42.77227</td>
+<td align="right">-0.7381103</td>
+<td align="right">6.8438345</td>
 </tr>
 </tbody>
 </table>
@@ -268,23 +268,23 @@ dim(mysp)
 #R&gt; CRS arguments:
 #R&gt;  +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0
 head(mysp@data)
-#R&gt;         var1     var2
-#R&gt; 1  0.4903868 1.075007
-#R&gt; 2 -0.3728839 4.172873
-#R&gt; 3 -0.2509555 5.859953
-#R&gt; 4 -0.7129443 9.746547
-#R&gt; 5  1.0514086 1.311865
-#R&gt; 6  0.2805270 6.302691</code></pre>
+#R&gt;         var1      var2
+#R&gt; 1 -0.7987937 2.2569850
+#R&gt; 2  1.0901666 8.9240727
+#R&gt; 3  0.2347846 0.2033818
+#R&gt; 4  1.1603766 9.5833169
+#R&gt; 5 -0.4495556 1.3975431
+#R&gt; 6 -0.7381103 6.8438345</code></pre>
 <p>In order to change projection, the user must call <code>spTransform()</code>, like so:</p>
 <pre class="r"><code>(mysp2 &lt;- spTransform(mysp, CRS=CRS(&quot;+proj=merc +ellps=GRS80&quot;)))
 #R&gt; class       : SpatialPointsDataFrame 
 #R&gt; features    : 20 
-#R&gt; extent      : -9106209, -8906048, 5136273, 5419564  (xmin, xmax, ymin, ymax)
+#R&gt; extent      : -9124003, -8911025, 5203347, 5425225  (xmin, xmax, ymin, ymax)
 #R&gt; coord. ref. : +proj=merc +ellps=GRS80 
 #R&gt; variables   : 2
-#R&gt; names       :              var1,              var2 
-#R&gt; min values  : -2.57922790428167, 0.919948113150895 
-#R&gt; max values  :  2.92647742025747,  9.82871481450275</code></pre>
+#R&gt; names       :             var1,               var2 
+#R&gt; min values  : -2.7016487715172, 0.0589724956080317 
+#R&gt; max values  :  1.1748522059962,   9.95613515842706</code></pre>
 </div>
 </div>
 <div id="package-sf" class="section level3">
@@ -323,21 +323,21 @@ class(x)
 #R&gt; Simple feature collection with 20 features and 2 fields
 #R&gt; geometry type:  POINT
 #R&gt; dimension:      XY
-#R&gt; bbox:           xmin: -81.80247 ymin: 42.02608 xmax: -80.00439 ymax: 43.89495
+#R&gt; bbox:           xmin: -81.96231 ymin: 42.47373 xmax: -80.0491 ymax: 43.93171
 #R&gt; epsg (SRID):    4326
 #R&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs
 #R&gt; First 10 features:
-#R&gt;          var1     var2                   geometry
-#R&gt; 1   0.4903868 1.075007 POINT (-81.80247 42.61008)
-#R&gt; 2  -0.3728839 4.172873  POINT (-80.3899 42.02608)
-#R&gt; 3  -0.2509555 5.859953 POINT (-80.78485 43.08422)
-#R&gt; 4  -0.7129443 9.746547 POINT (-81.23434 43.10306)
-#R&gt; 5   1.0514086 1.311865 POINT (-80.00439 42.99512)
-#R&gt; 6   0.2805270 6.302691 POINT (-80.01515 42.58484)
-#R&gt; 7  -0.1555556 9.223396 POINT (-81.23418 42.08587)
-#R&gt; 8  -1.5763767 3.279468 POINT (-81.53454 42.42827)
-#R&gt; 9  -0.9360012 6.251189 POINT (-80.80698 43.34591)
-#R&gt; 10 -1.9618193 9.635805 POINT (-81.30866 43.19977)</code></pre>
+#R&gt;           var1      var2                   geometry
+#R&gt; 1  -0.79879375 2.2569850  POINT (-80.0557 42.84646)
+#R&gt; 2   1.09016661 8.9240727 POINT (-80.44741 43.60424)
+#R&gt; 3   0.23478456 0.2033818 POINT (-80.14674 42.47373)
+#R&gt; 4   1.16037663 9.5833169  POINT (-80.0491 43.37983)
+#R&gt; 5  -0.44955564 1.3975431  POINT (-80.6182 42.51091)
+#R&gt; 6  -0.73811026 6.8438345 POINT (-81.80566 42.77227)
+#R&gt; 7  -0.05455257 9.9561352 POINT (-81.88514 43.62013)
+#R&gt; 8  -0.66169937 1.7069069  POINT (-80.99327 42.5564)
+#R&gt; 9  -0.69373266 6.8152934 POINT (-81.96231 43.31016)
+#R&gt; 10 -1.02641967 2.2984597 POINT (-81.84224 42.86656)</code></pre>
 </div>
 </div>
 </div>
@@ -369,7 +369,7 @@ class(ras1)
 dim(ras1)
 #R&gt; [1] 100 100   1
 head(values(ras1))
-#R&gt; [1] 6.544016 3.900609 4.368254 3.970687 8.061125 8.084684
+#R&gt; [1] 0.6316173 2.5857456 4.3138824 1.0657610 7.3351959 8.8406225
 projection(ras1)
 #R&gt; [1] &quot;+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0&quot;</code></pre>
 </div>

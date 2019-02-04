@@ -53,7 +53,7 @@ purpose of mapping.</p>
 <pre class="r"><code>plot(st_geometry(qc_simple), col = &quot;grey85&quot;)
 plot(st_geometry(qc_neigh_simple),  col = &quot;grey45&quot;, add = T)
 plot(st_geometry(usa0_simple), col = &quot;grey25&quot;, add = T)</code></pre>
-<p><img src="/post/rInSpace/rinspace_custommaps/index_files/figure-html/map_1-1.png" width="384" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_custommaps/index_files/figure-html/map_1-1.png" width="384" style="display: block; margin: auto;" /></p>
 <p>Let’s say we sampled vegetation in 100 plots in Quebec; we now want to plot them
 with points proportional to their species richness. We will now create a data
 frame containing coordinates and random values from 5 to 50.</p>
@@ -88,7 +88,7 @@ temp_mask &lt;- mask(temp_crop, qc_simple)</code></pre>
 <h2>Creating a simple layout</h2>
 <pre class="r"><code>my.layout &lt;- layout(matrix(1:2, 2), heights = c(1,.14))
 layout.show(my.layout)</code></pre>
-<p><img src="/post/rInSpace/rinspace_custommaps/index_files/figure-html/layout-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_custommaps/index_files/figure-html/layout-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>– <code>mar</code> controls the margins of the plot area;</p>
 <p>– <code>xaxs</code> and <code>yaxs</code> controls axis style.</p>
 <pre class="r"><code>library(RColorBrewer)
@@ -134,7 +134,7 @@ val &lt;- range(values(temp_mask), na.rm =T)
 image(as.matrix(seq(val[1], val[2], length = 512)), col = mypal, axes = F)
 axis(1, at = seq(0.001, .999, length = 6), labels = round(seq(val[1], val[2], length = 6),2))
 mtext(side = 1, line = 1.8, text = &#39;Mean annual temperature (°C)&#39;)</code></pre>
-<p><img src="/post/rInSpace/rinspace_custommaps/index_files/figure-html/unnamed-chunk-1-1.png" width="528" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_custommaps/index_files/figure-html/unnamed-chunk-1-1.png" width="528" style="display: block; margin: auto;" /></p>
 </div>
 <div id="examples-of-complex-layouts" class="section level2">
 <h2>Examples of complex layouts</h2>
@@ -180,7 +180,7 @@ library(graphicsutils)
 
 # Visualize data
   raster::plot(envCov)</code></pre>
-<p><img src="/post/rInSpace/rinspace_custommaps/index_files/figure-html/getData-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_custommaps/index_files/figure-html/getData-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>
 # For this graph, we will normalize the values
   values(envCov[[1]]) &lt;- values(envCov[[1]]) / max(values(envCov[[1]]), na.rm = T)
@@ -223,7 +223,7 @@ mat[1:2, 31:32] &lt;- 12
 mat[15:16, 31:32] &lt;- 13
 layout(mat)
 layout.show(13)</code></pre>
-<p><img src="/post/rInSpace/rinspace_custommaps/index_files/figure-html/layout1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_custommaps/index_files/figure-html/layout1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The elements on this complex layout will be drawn sequentially following the
 order specified in the layout matrix.</p>
 <pre class="r"><code>layout(mat)
@@ -366,7 +366,7 @@ layout(mat,
        heights = c(1,1,1,.2,.2,1,1,.2,.4,.2,.2,1,1,.2,1,1,1),
        widths = c(.2,1,1,1,.5,.5,1,1,1,.2))
 layout.show(24)</code></pre>
-<p><img src="/post/rInSpace/rinspace_custommaps/index_files/figure-html/layout2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_custommaps/index_files/figure-html/layout2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><br/></p>
 <pre class="r"><code>layout(mat,
        heights = c(1,1,1,.2,.2,1,1,.2,.4,.2,.2,1,1,.2,1,1,1),

@@ -69,7 +69,7 @@ make a direct **link** with a [previous blog post](/post/HylianStyle.html).
 
 ```r
 sessionInfo()[[1L]]$version.string
-#R> [1] "R version 3.5.1 (2018-07-02)"
+#R> [1] "R version 3.5.2 (2018-12-20)"
 ```
 
 #### List of packages to be used
@@ -91,7 +91,7 @@ Then, we load them:
 library(magrittr)
 library(showtext)
 packageVersion("showtext")
-#R> [1] '0.5.1'
+#R> [1] '0.6'
 ```
 
 
@@ -153,8 +153,8 @@ session with the `font_add()` function:
 
 ```r
 font_add(family = 'academicons', regular = 'assets/academicons.ttf')
-font_add(family = 'FontAwesome', regular = 'assets/FontAwesome.otf')
-font_add(family = 'ionicons', regular = 'assets/ionicons.ttf')
+font_add(family = 'FontAwesome', regular = 'FontAwesome.otf')
+font_add(family = 'ionicons', regular = 'ionicons.ttf')
 ##-- check the font families available
 font_families()
 #R> [1] "sans"         "serif"        "mono"         "wqy-microhei"

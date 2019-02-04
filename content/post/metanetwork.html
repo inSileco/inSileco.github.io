@@ -78,12 +78,12 @@ head(nodes)</code></pre>
 ## 6 Drivers driver_6</code></pre>
 <pre class="r"><code>head(links)</code></pre>
 <pre><code>##            from            to
-## 1      driver_8    species_17
-## 2     manager_4     species_3
-## 3    species_29 beneficiary_3
-## 4    species_13    species_27
-## 5 beneficiary_9    species_24
-## 6 beneficiary_9     manager_6</code></pre>
+## 1 beneficiary_7    species_17
+## 2     manager_2      action_8
+## 3 beneficiary_4    species_29
+## 4 beneficiary_8      driver_1
+## 5      action_5      action_2
+## 6      driver_7 beneficiary_9</code></pre>
 </div>
 <div id="circle-functions" class="section level2">
 <h2>Circle functions</h2>
@@ -216,7 +216,7 @@ for visual differentiation between the group.</p>
     plot0()    
     points(metanetwork$nodes$x, metanetwork$nodes$y, pch = 20, cex = 2)
     points(metanetwork$networkGroup$x, metanetwork$networkGroup$y, pch = 20, cex = 2)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/nodePos-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="/post/metanetwork_files/figure-html/nodePos-1.png" width="480" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="visualization-functions" class="section level2">
@@ -278,7 +278,7 @@ boxGroup &lt;- function(metanetwork, rad1 = .95, rad2 = 1, colBox = NULL, names 
   boxGroup(metanetwork, addNames = F)
   plot0()
   boxGroup(metanetwork, rad1 = .5)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/plotGroups-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/post/metanetwork_files/figure-html/plotGroups-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="plot-connections" class="section level3">
 <h3>Plot connections</h3>
@@ -316,7 +316,7 @@ We can do this using the <code>xspline</code> function.</p>
   plot0()
   plotLinks(metanetwork, col = &#39;black&#39;)
   points(metanetwork$nodes$x, metanetwork$nodes$y)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/plotLinks-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/metanetwork_files/figure-html/plotLinks-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p></br></p>
 </div>
 </div>
@@ -328,7 +328,7 @@ We can do this using the <code>xspline</code> function.</p>
   boxGroup(metanetwork)
   plotLinks(metanetwork, col = &#39;black&#39;)
   points(metanetwork$nodes$x, metanetwork$nodes$y, pch = 20, cex = 2)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/metanetwork-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><img src="/post/metanetwork_files/figure-html/metanetwork-1.png" width="576" style="display: block; margin: auto;" /></p>
 <p><br/></p>
 <div id="customize-graph-functions" class="section level3">
 <h3>Customize graph functions</h3>
@@ -391,12 +391,12 @@ nodeSize &lt;- function(metanetwork, freq = T) {
 metanetwork &lt;- nodeSize(metanetwork)
 head(metanetwork$nodes)</code></pre>
 <pre><code>##   network     name          x         y    cols Freq       cex
-## 1 Drivers driver_1 -0.0546519 0.8732916 #ffdd55   11 0.8461538
-## 2 Drivers driver_2 -0.1282239 0.8655539 #ffdd55    9 0.6923077
-## 3 Drivers driver_3 -0.2008793 0.8516293 #ffdd55    8 0.6153846
-## 4 Drivers driver_4 -0.2720989 0.8316172 #ffdd55    9 0.6923077
-## 5 Drivers driver_5 -0.3413735 0.8056607 #ffdd55    5 0.3846154
-## 6 Drivers driver_6 -0.4082079 0.7739453 #ffdd55   12 0.9230769</code></pre>
+## 1 Drivers driver_1 -0.0546519 0.8732916 #ffdd55   12 0.9230769
+## 2 Drivers driver_2 -0.1282239 0.8655539 #ffdd55    5 0.3846154
+## 3 Drivers driver_3 -0.2008793 0.8516293 #ffdd55    9 0.6923077
+## 4 Drivers driver_4 -0.2720989 0.8316172 #ffdd55    7 0.5384615
+## 5 Drivers driver_5 -0.3413735 0.8056607 #ffdd55    7 0.5384615
+## 6 Drivers driver_6 -0.4082079 0.7739453 #ffdd55   10 0.7692308</code></pre>
 <p><br/></p>
 <p>Finally, we can give a color to links or focus on certain individual networks in
 the metanetwork, or focus on all the links for a single network.</p>
@@ -474,12 +474,12 @@ the metanetwork, or focus on all the links for a single network.</p>
 metanetwork &lt;- linkCol(metanetwork, type = &#39;focus&#39;, focus = c(&#39;Species&#39;,&#39;Drivers&#39;))
 head(metanetwork$links)</code></pre>
 <pre><code>##            from            to      cols
-## 1      driver_8    species_17 #876b4066
-## 2     manager_4     species_3 #f4f4f466
-## 3    species_29 beneficiary_3 #f4f4f466
-## 4    species_13    species_27 #876b4066
-## 5 beneficiary_9    species_24 #f4f4f466
-## 6 beneficiary_9     manager_6 #f4f4f466</code></pre>
+## 1 beneficiary_7    species_17 #f4f4f466
+## 2     manager_2      action_8 #f4f4f466
+## 3 beneficiary_4    species_29 #f4f4f466
+## 4 beneficiary_8      driver_1 #f4f4f466
+## 5      action_5      action_2 #f4f4f466
+## 6      driver_7 beneficiary_9 #f4f4f466</code></pre>
 <pre class="r"><code>head(metanetwork$networkGroup)</code></pre>
 <pre><code>##            Var1 Freq      Prop   spanDeg     lower     upper          x
 ## 1       Actions    9 0.1250000 0.7853982 0.0125000 0.7728982  0.4619398
@@ -569,6 +569,6 @@ plotMetanetwork(metanetwork)
 plotMetanetwork(metanetwork, type = &#39;focus&#39;, focus = &#39;Species&#39;)
 plotMetanetwork(metanetwork, type = &#39;focus&#39;, focus = c(&#39;Species&#39;, &#39;Drivers&#39;))
 plotMetanetwork(metanetwork, type = &#39;focus&#39;, focus = c(&#39;Species&#39;, &#39;Drivers&#39;, &#39;Managers&#39;))</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/function-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/post/metanetwork_files/figure-html/function-1.png" width="960" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>opt &lt;- options()</code></pre>
 </div>

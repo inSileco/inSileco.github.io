@@ -14,6 +14,7 @@ output:
     dev: svg
 ---
 
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
 
 
 <!--
@@ -40,7 +41,7 @@ jump to the end, copy the <code>ganttR</code> function I created and Gantt away!
 <pre class="r"><code>rm(list=ls())
 # R version
 sessionInfo()[[1]]$version.string
-#R&gt; [1] &quot;R version 3.4.4 (2018-03-15)&quot;
+#R&gt; [1] &quot;R version 3.5.2 (2018-12-20)&quot;
 
 # Packages required
 library(knitr)
@@ -318,7 +319,7 @@ lines(c(nLines,nLines) ~ c(min(df$startDate), max(df$dueDate)), lwd = 8, col = c
 
 # Add today&#39;s date
 abline(v = as.Date(format(Sys.time(), format = &quot;%Y-%m-%d&quot;)), lwd = 2, lty = 2)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/singleGantt-1.svg" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/post/ganttR_files/figure-html/singleGantt-1.svg" width="960" style="display: block; margin: auto;" /></p>
 <p><br/></p>
 </div>
 <div id="multiple-milestones" class="section level3">
@@ -395,7 +396,7 @@ for(i in 1:nLines) {
 
 abline(h = which(dfMulti$status == &#39;M&#39;) + 0.5, col = &#39;#634d42&#39;)
 abline(v = as.Date(format(Sys.time(), format = &quot;%Y-%m-%d&quot;)), lwd = 2, lty = 2)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/multiGantt-1.svg" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/post/ganttR_files/figure-html/multiGantt-1.svg" width="960" style="display: block; margin: auto;" /></p>
 <p><br/></p>
 </div>
 </div>
@@ -514,13 +515,13 @@ abline(v = as.Date(format(Sys.time(), format = &quot;%Y-%m-%d&quot;)), lwd = 2, 
 
 # Single milestone
 ganttR(df)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/ganttR-1.svg" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/post/ganttR_files/figure-html/ganttR-1.svg" width="960" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>
 # Multiple milestones
 ganttR(dfM)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/ganttR-2.svg" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/post/ganttR_files/figure-html/ganttR-2.svg" width="960" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>
 # Milestones only
 ganttR(dfM, &#39;milestones&#39;)</code></pre>
-<p><img src="/rmarkdown-libs/figure-html4/ganttR-3.svg" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/post/ganttR_files/figure-html/ganttR-3.svg" width="960" style="display: block; margin: auto;" /></p>
 </div>

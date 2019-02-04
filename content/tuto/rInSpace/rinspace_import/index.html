@@ -92,7 +92,7 @@ is now stored in a simple feature list-column (<code>sfc</code>). The other colu
 all the attributes related to the sample points.</p>
 <p>The default plot of a simple features object is a multi-facet of all attributes.</p>
 <pre class="r"><code>plot(pts_sf)</code></pre>
-<p><img src="/post/rInSpace/rinspace_import/index_files/figure-html/plot_pts-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_import/index_files/figure-html/plot_pts-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>As you can see, instead of creating a single map, as with sp object, the
 default plot of sf object creates multiple maps, one for each attribute,
 which can sometimes be useful for exploring the spatial distribution of different
@@ -104,8 +104,8 @@ variables.</p>
 <code>st_write()</code> function in <code>sf</code>, which needs at least two arguments, the object
 and a filename:</p>
 <pre class="r"><code>st_write(pts_sf, &quot;data/pts_sf.shp&quot;, delete_dsn = T)
-#R&gt; Deleting source `/home/kevcaz/Github/Websites/inSileco.github.io/content/post/rInSpace/rinspace_import/data/pts_sf.shp&#39; using driver `ESRI Shapefile&#39;
-#R&gt; Writing layer `pts_sf&#39; to data source `/home/kevcaz/Github/Websites/inSileco.github.io/content/post/rInSpace/rinspace_import/data/pts_sf.shp&#39; using driver `ESRI Shapefile&#39;
+#R&gt; Deleting source `data/pts_sf.shp&#39; using driver `ESRI Shapefile&#39;
+#R&gt; Writing layer `pts_sf&#39; to data source `data/pts_sf.shp&#39; using driver `ESRI Shapefile&#39;
 #R&gt; features:       66
 #R&gt; fields:         5
 #R&gt; geometry type:  Point</code></pre>
@@ -129,7 +129,7 @@ unzip(&quot;data/bois.zip&quot;, exdir = &quot;data&quot;)
 
 # Read shapefile in R
 bois &lt;- st_read(dsn = &quot;data/&quot;, layer = &quot;bois&quot;)
-#R&gt; Reading layer `bois&#39; from data source `/home/kevcaz/Github/Websites/inSileco.github.io/content/post/rInSpace/rinspace_import/data&#39; using driver `ESRI Shapefile&#39;
+#R&gt; Reading layer `bois&#39; from data source `/home/kevcaz/Github/Websites/inSileco.github.io/content/tuto/rInSpace/rinspace_import/data&#39; using driver `ESRI Shapefile&#39;
 #R&gt; Simple feature collection with 2716 features and 4 fields
 #R&gt; geometry type:  MULTIPOLYGON
 #R&gt; dimension:      XY
@@ -157,11 +157,11 @@ us to work directly with the two objects otherwise we should have transformed
 one dataset using the CRS of the other. To plot only the geometry and not all
 attributes, we retrieve the geometry list-column using <code>st_geometry()</code>:</p>
 <pre class="r"><code>plot(st_geometry(bois))</code></pre>
-<p><img src="/post/rInSpace/rinspace_import/index_files/figure-html/plot_poly_geom-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_import/index_files/figure-html/plot_poly_geom-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>To plot the polygons with a thematic color scale according to one attribute of
 interest, we actually subset the object (here we use the name of the column):</p>
 <pre class="r"><code>plot(bois[&quot;Shape_Area&quot;])</code></pre>
-<p><img src="/post/rInSpace/rinspace_import/index_files/figure-html/plot_poly_area-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_import/index_files/figure-html/plot_poly_area-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="import-geojson-file" class="section level2">
 <h2>Import GeoJSON file</h2>
@@ -174,7 +174,7 @@ if (!file.exists(&quot;data/courseau.geojson&quot;))
 # For GeoJSON, dsn may be the character string holding the geojson data
 
 courseau &lt;- st_read(dsn = &quot;data/courseau.geojson&quot;)
-#R&gt; Reading layer `courseau&#39; from data source `/home/kevcaz/Github/Websites/inSileco.github.io/content/post/rInSpace/rinspace_import/data/courseau.geojson&#39; using driver `GeoJSON&#39;
+#R&gt; Reading layer `courseau&#39; from data source `/home/kevcaz/Github/Websites/inSileco.github.io/content/tuto/rInSpace/rinspace_import/data/courseau.geojson&#39; using driver `GeoJSON&#39;
 #R&gt; Simple feature collection with 1306 features and 5 fields
 #R&gt; geometry type:  MULTILINESTRING
 #R&gt; dimension:      XY
@@ -205,7 +205,7 @@ head(courseau)
 #R&gt; 6 MULTILINESTRING ((-73.9206 ...
 
 plot(st_geometry(courseau))</code></pre>
-<p><img src="/post/rInSpace/rinspace_import/index_files/figure-html/read_geojson-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_import/index_files/figure-html/read_geojson-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="import-raster-data" class="section level2">
 <h2>Import raster data</h2>
@@ -234,10 +234,10 @@ by row and <code>ncol(canopee_mtl)</code> pixels by column. Note that raster use
 #R&gt; resolution  : 1, 1  (x, y)
 #R&gt; extent      : 265961, 306815, 5027324, 5063078  (xmin, xmax, ymin, ymax)
 #R&gt; coord. ref. : +proj=tmerc +lat_0=0 +lon_0=-73.5 +k=0.9999 +x_0=304800 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
-#R&gt; data source : /home/kevcaz/Github/Websites/inSileco.github.io/content/post/rInSpace/rinspace_import/data/660_CLASS_3m.tif 
+#R&gt; data source : /home/kevcaz/Github/Websites/inSileco.github.io/content/tuto/rInSpace/rinspace_import/data/660_CLASS_3m.tif 
 #R&gt; names       : X660_CLASS_3m 
 #R&gt; values      : 1, 5  (min, max)</code></pre>
 <p>Similar to the sf package, raster also provides <code>plot</code> methods for its own classes.</p>
 <pre class="r"><code>plot(canopee_mtl)</code></pre>
-<p><img src="/post/rInSpace/rinspace_import/index_files/figure-html/plot_tif-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/tuto/rInSpace/rinspace_import/index_files/figure-html/plot_tif-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>

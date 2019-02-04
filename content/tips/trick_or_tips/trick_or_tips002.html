@@ -27,22 +27,22 @@ columns:</p>
   var3 = runif(10)
 )
 head(df)
-#R&gt;         var1      var2       var3
-#R&gt; 1 0.09876419 0.6058819 0.30504116
-#R&gt; 2 0.80504843 0.7437177 0.01303912
-#R&gt; 3 0.60757396 0.7183557 0.54210987
-#R&gt; 4 0.38283221 0.1781357 0.55153146
-#R&gt; 5 0.99780371 0.2969795 0.49755827
-#R&gt; 6 0.99242618 0.4673813 0.29241863</code></pre>
+#R&gt;         var1       var2      var3
+#R&gt; 1 0.97214754 0.17931947 0.4232305
+#R&gt; 2 0.77629332 0.33089277 0.8021215
+#R&gt; 3 0.92663082 0.86864228 0.2368631
+#R&gt; 4 0.97544924 0.03986284 0.6899139
+#R&gt; 5 0.69090139 0.59170953 0.2554542
+#R&gt; 6 0.09717161 0.13255950 0.3861375</code></pre>
 <p>To extract the first column, I use the <code>[]</code> operator and either type the number
 of the column like so:</p>
 <pre class="r"><code>df[, 1]
-#R&gt;  [1] 0.09876419 0.80504843 0.60757396 0.38283221 0.99780371 0.99242618
-#R&gt;  [7] 0.38290775 0.23273107 0.59650867 0.34567095</code></pre>
+#R&gt;  [1] 0.97214754 0.77629332 0.92663082 0.97544924 0.69090139 0.09717161
+#R&gt;  [7] 0.05742987 0.50336581 0.01884337 0.07887983</code></pre>
 <p>or the name of the column to be extracted:</p>
 <pre class="r"><code>df[, &#39;var1&#39;]
-#R&gt;  [1] 0.09876419 0.80504843 0.60757396 0.38283221 0.99780371 0.99242618
-#R&gt;  [7] 0.38290775 0.23273107 0.59650867 0.34567095</code></pre>
+#R&gt;  [1] 0.97214754 0.77629332 0.92663082 0.97544924 0.69090139 0.09717161
+#R&gt;  [7] 0.05742987 0.50336581 0.01884337 0.07887983</code></pre>
 <p>Interestingly enough, this returns a <strong>vector</strong> not a data.frame</p>
 <pre class="r"><code>class(df)
 #R&gt; [1] &quot;data.frame&quot;
@@ -61,16 +61,16 @@ a work around. By default it is set to <code>TRUE</code> and a 1-column datafram
 a vector, but using <code>drop=FALSE</code> prevents this from happening. Let’s try this:</p>
 <pre class="r"><code>df[, 1, drop=FALSE]
 #R&gt;          var1
-#R&gt; 1  0.09876419
-#R&gt; 2  0.80504843
-#R&gt; 3  0.60757396
-#R&gt; 4  0.38283221
-#R&gt; 5  0.99780371
-#R&gt; 6  0.99242618
-#R&gt; 7  0.38290775
-#R&gt; 8  0.23273107
-#R&gt; 9  0.59650867
-#R&gt; 10 0.34567095</code></pre>
+#R&gt; 1  0.97214754
+#R&gt; 2  0.77629332
+#R&gt; 3  0.92663082
+#R&gt; 4  0.97544924
+#R&gt; 5  0.69090139
+#R&gt; 6  0.09717161
+#R&gt; 7  0.05742987
+#R&gt; 8  0.50336581
+#R&gt; 9  0.01884337
+#R&gt; 10 0.07887983</code></pre>
 <p>Let’s check its class:</p>
 <pre class="r"><code>class(df[, 1, drop=FALSE])
 #R&gt; [1] &quot;data.frame&quot;</code></pre>
@@ -78,23 +78,23 @@ a vector, but using <code>drop=FALSE</code> prevents this from happening. Let’
 number without comma.</p>
 <pre class="r"><code>df[1]
 #R&gt;          var1
-#R&gt; 1  0.09876419
-#R&gt; 2  0.80504843
-#R&gt; 3  0.60757396
-#R&gt; 4  0.38283221
-#R&gt; 5  0.99780371
-#R&gt; 6  0.99242618
-#R&gt; 7  0.38290775
-#R&gt; 8  0.23273107
-#R&gt; 9  0.59650867
-#R&gt; 10 0.34567095</code></pre>
+#R&gt; 1  0.97214754
+#R&gt; 2  0.77629332
+#R&gt; 3  0.92663082
+#R&gt; 4  0.97544924
+#R&gt; 5  0.69090139
+#R&gt; 6  0.09717161
+#R&gt; 7  0.05742987
+#R&gt; 8  0.50336581
+#R&gt; 9  0.01884337
+#R&gt; 10 0.07887983</code></pre>
 <p>But if you need a specific selection of rows, you better use <code>drop</code>!</p>
 <pre class="r"><code>df[2:5, 1, drop=F]
 #R&gt;        var1
-#R&gt; 2 0.8050484
-#R&gt; 3 0.6075740
-#R&gt; 4 0.3828322
-#R&gt; 5 0.9978037</code></pre>
+#R&gt; 2 0.7762933
+#R&gt; 3 0.9266308
+#R&gt; 4 0.9754492
+#R&gt; 5 0.6909014</code></pre>
 <p>Now you know ;-)</p>
 <p><br></p>
 </div>
@@ -111,7 +111,7 @@ of the reference for the package <code>knitr</code> as of version 1.17 using fun
 #R&gt; To cite the &#39;knitr&#39; package in publications use:
 #R&gt; 
 #R&gt;   Yihui Xie (2018). knitr: A General-Purpose Package for Dynamic
-#R&gt;   Report Generation in R. R package version 1.20.
+#R&gt;   Report Generation in R. R package version 1.21.
 #R&gt; 
 #R&gt;   Yihui Xie (2015) Dynamic Documents with R and knitr. 2nd
 #R&gt;   edition. Chapman and Hall/CRC. ISBN 978-1498716963
@@ -131,7 +131,7 @@ format with the <code>toBibtex</code> function, let’s do this:</p>
 #R&gt;   title = {knitr: A General-Purpose Package for Dynamic Report Generation in R},
 #R&gt;   author = {Yihui Xie},
 #R&gt;   year = {2018},
-#R&gt;   note = {R package version 1.20},
+#R&gt;   note = {R package version 1.21},
 #R&gt;   url = {https://yihui.name/knitr/},
 #R&gt; }
 #R&gt; 
@@ -178,16 +178,16 @@ df &lt;- data.frame(
   )
 extract(df, &#39;var1&#39;)
 #R&gt;         var1
-#R&gt; 1  0.7165401
-#R&gt; 2  0.1990046
-#R&gt; 3  0.4424000
-#R&gt; 4  0.4360524
-#R&gt; 5  0.4034303
-#R&gt; 6  0.3283211
-#R&gt; 7  0.3590873
-#R&gt; 8  0.7868476
-#R&gt; 9  0.2820782
-#R&gt; 10 0.9474739</code></pre>
+#R&gt; 1  0.8841679
+#R&gt; 2  0.9186451
+#R&gt; 3  0.8662018
+#R&gt; 4  0.3062776
+#R&gt; 5  0.6439910
+#R&gt; 6  0.9658562
+#R&gt; 7  0.7923442
+#R&gt; 8  0.2409328
+#R&gt; 9  0.2851143
+#R&gt; 10 0.4017860</code></pre>
 <p>Here I use the function <code>extract()</code> from the magrittr package that act as <code>[]</code>
 and I extract the column <code>var1</code> from <code>df</code>. This function is actually designed
 to be use with pipes (if this sounds weird, have a look at the
@@ -197,11 +197,6 @@ do the same. So far, so good. Now I load the
 <a href="https://cran.r-project.org/web/packages/raster/index.html">raster</a> package:</p>
 <pre class="r"><code>library(raster)
 #R&gt; Loading required package: sp
-#R&gt; 
-#R&gt; Attaching package: &#39;sp&#39;
-#R&gt; The following object is masked from &#39;package:graphicsutils&#39;:
-#R&gt; 
-#R&gt;     compassRose
 #R&gt; 
 #R&gt; Attaching package: &#39;raster&#39;
 #R&gt; The following object is masked from &#39;package:magrittr&#39;:
@@ -220,16 +215,16 @@ different names, so the combination of the two is unique (this holds true if you
 only package from the CRAN). Let’s use it:</p>
 <pre class="r"><code>magrittr::extract(df, &#39;var1&#39;)
 #R&gt;         var1
-#R&gt; 1  0.7165401
-#R&gt; 2  0.1990046
-#R&gt; 3  0.4424000
-#R&gt; 4  0.4360524
-#R&gt; 5  0.4034303
-#R&gt; 6  0.3283211
-#R&gt; 7  0.3590873
-#R&gt; 8  0.7868476
-#R&gt; 9  0.2820782
-#R&gt; 10 0.9474739</code></pre>
+#R&gt; 1  0.8841679
+#R&gt; 2  0.9186451
+#R&gt; 3  0.8662018
+#R&gt; 4  0.3062776
+#R&gt; 5  0.6439910
+#R&gt; 6  0.9658562
+#R&gt; 7  0.7923442
+#R&gt; 8  0.2409328
+#R&gt; 9  0.2851143
+#R&gt; 10 0.4017860</code></pre>
 <p>Using this is also very helpful when you develop a package and functions from
 different packages. Even if you script and use a large number
 of function from various packages, it could be better to remember
