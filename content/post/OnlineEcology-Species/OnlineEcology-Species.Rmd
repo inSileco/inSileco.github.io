@@ -172,7 +172,7 @@ taxize::synonyms(taxize::as.tsn(idtsn), db = 'itis')
 # taxonomic scale. With the itis db, you should first find the tsn associated
 # with Gadus. Using `taxize::get_tsn('gadus')` you'll find out that it is 164710
 knitr::kable(taxize::children(164710, db = 'itis')[[1]], "html") %>%
-  kableExtra::kable_styling(full_width = F)
+  kableExtra::kable_styling(full_width = FALSE)
 ```
 
 Sounds like this is consistent with [what Wikipedia says](https://en.wikipedia.org/wiki/Gadus)!
@@ -193,7 +193,7 @@ of interactions, all over the world, and is accessible using the package [`rglob
 ```{r trophic1, results='asis'}
 # There are multiple types of interactions available on GloBI
     knitr::kable(rglobi::get_interaction_types()[,1:3], 'html') %>%
-        kable_styling(full_width = F)
+        kable_styling(full_width = FALSE)
 ```
 
 ```{r trophic2}
@@ -236,7 +236,7 @@ information on its use.
 
 ```{r, OBIS data, eval=TRUE, fig.width=9.5}
 # Download occurrence data for species and area of interest between 2010 and 2017
-    OBIS <- robis::occurrence(scientificname = sp, geometry=sf::st_as_text(bb$geometry), startdate = as.Date("2010-01-01"), enddate = as.Date("2017-01-01"), fields = c("species", "yearcollected","decimalLongitude", "decimalLatitude"))
+    OBIS <- robis::occurrence(scientificname = sp, geometry=sf::st_as_text(bb$geometry), startdate = as.Date("2010-01-01"), enddate = as.Date("2017-01-01"))
 
 # Remove duplicates
     OBIS <- unique(OBIS)
@@ -274,7 +274,7 @@ and terrestrial environments and a total of
 ```{r, sdmpredictors}
 # List sdmpredictors datasets
     knitr::kable(sdmpredictors::list_datasets()[,1:4], 'html') %>%
-        kable_styling(full_width = F)
+        kable_styling(full_width = FALSE)
   # issues with the above if all columns included
 ```
 
