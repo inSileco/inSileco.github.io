@@ -1,7 +1,7 @@
 ---
 title: "Creating empty data frames with dfTemplate() and dfTemplateMatch()"
 author: [kevin]
-reviewer: [azenor]
+reviewer: [azenor, marieh]
 date: 2019-02-03
 tags: [R, data frame, data frames generation, row binding]
 rpkgs: [inSilecoMisc]
@@ -95,9 +95,8 @@ df5 <- dfTemplate(c("category", "value"))
 So, now you are able to create custom data frames with a set of column names!
 
 ```{r}
-nms <- replicate(10, paste(sample(LETTERS, 6, TRUE), collapse = ""))
-nms
-df6 <- dfTemplate(nms, 10, fill = c(NA, 0), col_classes =c("character", "numeric"))
+nms <- LETTERS[1:10]
+df6 <- dfTemplate(nms, 10, fill = tolower(nms))
 df6
 ```
 
@@ -140,18 +139,22 @@ Now let me show you how to `rbind()` a specific subset of columns of a list of d
 
 
 ```{r}
-lsdf <- apply(replicate(5, sample(nms, 6)), 2, dfTemplate, nrows = 5, fill = 1)
+lsdf <- apply(
+  replicate(5, sample(nms, 5)),
+  2,
+  function(x) dfTemplate(x, nrows = 5, fill = tolower(x))
+)
 lsdf
 ```
 
 So the goal here is to create a data frame that contains only the five first
-columns, i.e. `r nms[1:5]`, the remaining columns must be discarded and
+columns, i.e. `r LETTERS[1:5]`, the remaining columns must be discarded and
 when one selected column is missing, it must be added (filled out with `NA`).
 To do so, I simply need to call `dfTemplateMatch()`:
 
 
 ```{r}
-lsdf2 <- lapply(lsdf, dfTemplateMatch, nms[1:5], yonly = TRUE)
+lsdf2 <- lapply(lsdf, dfTemplateMatch, LETTERS[1:5], yonly = TRUE)
 lsdf2
 ```
 
