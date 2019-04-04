@@ -9,44 +9,50 @@ estime: 10
 ---
 
 
+![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
-When working in Ecology, it is often necessary to produce maps and calculate distances between objects such as sampled stations, species distribution ranges or geographical features. A previous post in this blog described many techniques to create maps with different packages in R, like `sf` and `raster`. In this post, I will go further and use these tools to calculate distances in our spatial environment.
+When working in Ecology, it is often necessary to produce maps and calculate distances between objects such as sampled stations, species distribution ranges or geographical features. A [tutorial on this blog](/tuto/rinspace/rinspace_homepage/) describes many techniques to create maps with different packages in R, such as `sf` and `raster`. In this post, I will go further and use these tools to calculate distances in our spatial environment.
+
 
 # How to define a distance?
 
-Before steping in our subject, let's define what we are talking about. What is a *distance*? This concept has various applications in ecology we need to present here, so that we are all talking about the same thing.
+Before stepping in our topic, let's define what we are talking about. What is a *distance*? This concept has various applications in ecology we need to present here, to make sure we are on the same page.
 
-Distances are frequently used to describe how the characteristics of two (or more) samples are different from each other (abiotic parameters, species composition, functional traits...). This particular definition presents a distance as an index of similarity/dissimilarity. Such indices include functions like Euclidian distance, Sørensen coefficient, Bray-Curtis dissimilarity or Mahalanobis distance, which can be applied to different types of data with different results (see *Legendre & Legendre 2012*). We will not cover these aspects here, more information can be found in Chapter 7 of *Numerical Ecology* which is a must-have for every ecologist!
+Distances are frequently used to describe how the characteristics of two (or more) samples are different from each other (abiotic parameters, species composition, functional traits...). This particular definition presents a distance as an index of similarity/dissimilarity. Such indices include functions like Euclidean distance, Sørensen coefficient, Bray-Curtis dissimilarity or Mahalanobis distance, which can be applied to different types of data with different results (see *Legendre & Legendre 2012*). We will not cover these aspects here, more information can be found in Chapter 7 of *Numerical Ecology*, which is a must-have for every ecologist!
 
-Instead of using a distance as a ressemblance measure, we will use it with its first meaning: a measure of how distant in space two points are. The most straightforward geographical measure is the Euclidian distance, based on Pythagoras' theorem of triangular equality. In an Euclidian plane, we will compute the difference between the X and Y coordinates of two points A and B:
+Instead of using a distance as a ressemblance measure, we will use it with its first meaning: a measure of how distant in space two points are. The most straightforward geographical measure is the Euclidean distance, based on Pythagoras' theorem of triangular equality. In an Euclidean plane, we will compute the difference between the X and Y coordinates of two points A and B:
 
 $$D_{A,B} = \sqrt{(x_{B} - x_{A})^{2} + (y_{B} - y_{A})^{2}}$$
 
-![Euclidian Distance](Figures/Euclidian.png)
+<center> ![Euclidean Distance](Figures/Euclidean.png) </center>
 
-Many other exists, which can be used with different coordinate systems.
+Many other exists that can be used with different coordinate systems.
+
+
 
 # Geographical distances and the problem of heterogeneity
 
-Let's choose a concrete example: let me introduce Herbert the lobster. Herbert is a wild lobster living in the bay of Sept-Îles (Québec) and we, as researchers, are interested in knowing the connectivity of its actual distribution to other potential living places close by, in the context of predicting future distribution under a scenario of habitat loss due to human perturbation.
+Let's choose a concrete example: let me introduce Herbert the lobster. Herbert is a wild lobster living in the bay of Sept-Îles (Québec, Canada) and we, as researchers, are interested in knowing the connectivity of its actual distribution to other potential living places close by, in the context of predicting future distribution under a scenario of habitat loss due to human perturbation.
 
-![No, not this lobster (*imgur.com*)](Figures/Zoidberg1.gif)
+<center> ![No, not this lobster (*imgur.com*)](Figures/Zoidberg1.gif){width=40%} </center>
 
-Euclidian distance is a great tool to calculate the distance between initial and potential living places for Herbert, assuming the space between these locations is homogeneous. Typically, marine ecosystems are particularly relevant for this measure. However, depending on the scale and/or location, the presence of islands, bays or anthropogenic structures can be problematic as they consitute barriers between locations that a species cannot cross. Straight distances will then be meaningless!
+Euclidean distance is a great tool to calculate the distance between initial and potential living places for Herbert, assuming the space between these locations is homogeneous. Typically, marine ecosystems are particularly relevant for this measure. However, depending on the scale and/or location, the presence of islands, bays or anthropogenic structures can be problematic as they constitute barriers between locations that a species cannot cross. Distances as the crow flies will then be meaningless!
 
-So what to do? Well, we can still use the Euclidian distance, but with the specification of forbidden regions in the space we are considering. Then, the path between the two locations will not be straight anymore (as above), but with intermidiate steps only in allowed regions. In this case, many different paths can exist, so we will have to compute all possible paths between the start and end point, then select the best one *i.e.* the path with the shortest distance.
+So what do we do? Well, we can still use the Euclidean distance, but with the specification of forbidden regions in the space we are considering. Then, the path between the two locations will not be straight anymore (as above), but with intermediate steps only in allowed regions. In this case, many different paths can exist, so we will have to compute all possible paths between the start and end point, then select the best one *i.e.* the path with the shortest distance.
 
-![Example of a pathfinding algorithm (*Wikipedia*)](Figures/Pathfinding1.gif)
+<center> ![Example of a pathfinding algorithm ([*Wikipedia*](https://en.wikipedia.org/wiki/Pathfinding))](Figures/Pathfinding1.gif) </center>
 
-This is a frequent problem used for many applications, in particular for articifial intelligence (robot movements, characters evolution in video games...). Many algorithms exist to answer this problem, with various computational performance, as some problems can be highly difficult to solve! One of the most widely spread is Dijkstra's algorithm (*Dijkstra 1959*), where it is possible to add weights for path points. We won't go into details about these algorithms as this is not the topic of this post, but remember that Dijkstra's algorithm is used in the methods presented below.
+This is a frequent problem used for many applications, in particular for artificial intelligence (robot movements, characters evolution in video games...). Many algorithms exist to answer this problem, with various computational performance, as some problems can be highly difficult to solve! One of the most widely spread is Dijkstra's algorithm (*Dijkstra 1959*), where it is possible to add weights for path points. We won't go into details about these algorithms as this is not the topic of this post, but remember that Dijkstra's algorithm is used in the methods presented below.
+
+
 
 # Application in R
 
-We will work with the `sf` package, as described in the previous [InSileco GIS series](https://insileco.github.io/tuto/rinspace/rinspace_homepage/) (*Pebesma 2018*).
+We will work with the `sf` package, as described in the previous [inSileco GIS series](/tuto/rinspace/rinspace_homepage/) (*Pebesma 2018*).
 
 First, we will have to import the shapefile of the study area. All shapefiles are plotted in the WGS84 CRS (EPSG code: 4326), but analyses will be done in the UTM19N CRS (EPSG code: 32619).
 
-```{r import1, results="hide", warning=FALSE}
+```{r import1, results="hide", warning=FALSE, eval = TRUE}
 library(knitr)
 library(sf)
 library(sp)
@@ -64,7 +70,7 @@ coords <- st_as_sf(coords, coords = c("longitude", "latitude"), crs = 4326, stri
           st_transform(crs = 32619)
 ```
 
-```{r plot1, echo=FALSE, warning=FALSE, fig.align="center"}
+```{r plot1, echo=FALSE, warning=FALSE, fig.align="center", eval = TRUE}
 par(mar = c(3, 3, 1, 1))
 plot(st_geometry(bay), axes = T, main = "", col = "#E2E2E2", border = "#C1C1C1")
 plot(coords, cex = 2, pch = 16, add = T)
@@ -76,11 +82,12 @@ text(x = st_coordinates(coords)[,"X"],
 The initial position of Herbert is on the turquoise dot ("init"), and we are interested in three possible locations (P1, P2 and P3).
 
 
+
 ## Classic geographical distances
 
-We can compute the Euclidian distances between each points by using `sf::st_distance()`. Let's try this here, even if we know that we do not consider the coast as a forbidden area.
+We can compute the Euclidean distances between each points by using `sf::st_distance()`. Let's try this here, even if we know that we do not consider the coast as a forbidden area.
 
-```{r distances1, warning=FALSE}
+```{r distances1, warning=FALSE, eval = TRUE}
 dist1 <- st_distance(x = coords[1,], y = coords[-1,])
 
 dist1_df <- data.frame(dist1, row.names = "Distance from init:")
@@ -91,7 +98,7 @@ kable(dist1_df)
 
 Based on these results, P1 is the closest site to the initial location of Herbert implying that P1 could be the preferential site where he would migrate under the human perturbation scenario where its initial position would not be available anymore. However, we know that Herbert, even if he is an awesome lobster, cannot go on land (which is necessary to attain P1), so we need to refine our analysis to take this into account.
 
-```{r plot2, echo=FALSE, warning=FALSE, fig.align="center"}
+```{r plot2, echo=FALSE, warning=FALSE, fig.align="center", eval = TRUE}
 par(mar = c(3, 3, 1, 1))
 plot(st_geometry(bay), axes = T, main = "", col = "#E2E2E2", border = "#C1C1C1")
 plot(coords, cex = 2, pch = 16, add = T)
@@ -110,27 +117,28 @@ lines(x = st_coordinates(coords)[c(1,4),"X"],
       col = "#A1A1A1", lwd = 2)
 ```
 
+
 ## Least Cost Distances
 
-To take the coast into consideration, we will use the package `gdistance`, which have a very useful sets of functions to calculate functions (*ven Etten 2017*). In particular, `costDistance()` will do the trick. To use it, we will need to convert our polygon for the Bay of Sept-Îles to a raster specifying which cell can be considered for the pathfinding:
+To take the coast into consideration, we will use the package `gdistance`, which have a very useful sets of functions to calculate functions (*ven Etten 2017*). In particular, `costDistance()` will do the trick. To use it, we will need to convert our polygon for the Bay of Sept-Îles to a raster specifying which cell can be considered by the pathfinding and so
 
-- forbidden cells will have a value of 0
-- allowed cells will have a value of 1 (each cell has the same "cost", meaning no weighting have been applied for particular paths)
+1. forbidden cells will have a value of 0;
+2. allowed cells will have a value of 1 (each cell has the same "cost", meaning no weighting have been applied for particular paths).
 
-Note that the calculation is highly dependant on the **raster resolution**. A better resolution will bring better results, but at the cost of computing resources.
+Note that the calculation is highly dependent on the **raster resolution**. A better resolution will bring better results, but at the cost of computing resources.
 
 ```{r import2, warning=FALSE}
 library(gdistance)
 library(raster)
 ```
 
-```{r rastering, warning=FALSE}
+```{r rastering, warning=FALSE, eval = TRUE}
 raster_bay <- raster(x = extent(bay), nrow = 250,  ncol = 250)
 raster_bay <- rasterize(x = bay, y = raster_bay, field = 1)
 raster_bay[is.na(raster_bay)] <- 0
 ```
 
-```{r plot3, echo=FALSE, warning=FALSE, fig.align="center"}
+```{r plot3, echo=FALSE, warning=FALSE, fig.align="center", eval = TRUE}
 par(mar = c(3, 3, 1, 1))
 plot(raster_bay)
 ```
@@ -139,24 +147,24 @@ plot(raster_bay)
 
 Before calculating the distance, `costDistance()` needs a transition matrix. This matrix is an object that will define the cost to choose a cell (which in our case is inherited from the values of `raster_bay`) and the direction from which it is possible to choose a cell as the next one in the path. The direction is based on movements of soldiers on a chessboard:
 
-- `4` is only from straight lines, *i.e.* rooks in chess
-- `bishop` is only from diagonal lines, *i.e.* bishops
-- `8` is straight and diagonal lines, *i.e.* queen
-- `16` is straight, diagonal lines and tilted diagonals, *i.e.* queen and knights
+- `4` is only from straight lines, *i.e.* rooks in chess;
+- `bishop` is only from diagonal lines, *i.e.* bishops;
+- `8` is straight and diagonal lines, *i.e.* queen;
+- `16` is straight, diagonal lines and tilted diagonals, *i.e.* queen and knights.
 
-The `geoCorrection()` function is needed to apply a correction to the transition matrix so that map distortion is taken into account (this may be more or less relevent depending on the coordinate reference system used).
+The `geoCorrection()` function is needed to apply a correction to the transition matrix so that map distortion is taken into account (this may be more or less relevant depending on the coordinate reference system used).
 
-```{r transition, warning=FALSE}
+```{r transition, warning=FALSE, eval = TRUE}
 raster_bay_tr <- transition(raster_bay, transitionFunction = mean, directions = 16)
 
 raster_bay_tr <- geoCorrection(raster_bay_tr, type = "c")
 ```
 
-![Direction selection for the transition matrix (*J van Etten*)](Figures/Chess.png)
+<center> ![Direction selection for the transition matrix (*J van Etten*)](Figures/Chess.png) </center>
 
 And now, let's calculate distances with a least cost path analysis!
 
-```{r distances2, warning=FALSE}
+```{r distances2, warning=FALSE, eval = TRUE}
 dist2 <- costDistance(raster_bay_tr,
                       fromCoords = as(as_Spatial(coords[1,]), "SpatialPoints"),
                       toCoords = as(as_Spatial(coords[-1,]), "SpatialPoints"))
@@ -171,7 +179,8 @@ kable(dist2_df)
 
 These results show that P2 is the closest potential site for Herbert now, without any coast between the two points. This result is much more relevant than previously calculated with `st_distance()`! If you want to represent the shortest path between two points (based on the transition matrix), you can plot the result of function `shortestPath()`.
 
-```{r plot4, echo=FALSE, warning=FALSE, fig.align="center"}
+
+```{r plot4, echo=FALSE, warning=FALSE, fig.align="center", eval = TRUE}
 par(mar = c(3, 3, 1, 1))
 plot(st_geometry(bay), axes = T, main = "", col = "#E2E2E2", border = "#C1C1C1")
 plot(coords, cex = 2, pch = 16, add = T)
@@ -189,16 +198,18 @@ plot(shortestPath(raster_bay_tr, as_Spatial(coords)[1,], as_Spatial(coords)[4,],
 
 This technique will be highly useful for many research questions, *e.g.* to determine the influence of a perturbation in an ecosystem, to characterize species movements or community connectivity... The method presented here is one of the many that exist to answer these questions, which is also possible to tackle in ArcGIS or QGIS. As literature is seldom difficult to compile on the different GIS communities, especially for R, I thought a simple tutorial would be welcomed!
 
-![](Figures/Zoidberg2.gif)
+<center> ![](Figures/Zoidberg2.gif) </center>
+
+
 
 ## Bonus: Least Cost Distances with Hexagons and `igraph`
 
-The `gdistance` package is excellent, but not particularly flexible. You may need a custom workflow if you have very large datasets or you want to use a hexagonal grid (i.e. you don't want to worry about chessboard moves!). With this method, we will create a grid that covers 
+The `gdistance` package is excellent, but not particularly flexible. You may need a custom workflow if you have very large datasets or you want to use a hexagonal grid (i.e. you don't want to worry about chessboard moves!). With this method, we will create a grid that covers
 
 Let's create another grid, but this time, let's make it hexagonal. For this example, the cell centroids are 250 m apart (in any of the 6 directions!), but you could increase the resolution if you don't mind waiting a bit. As you can see from the map below, such a high resolution may ignore the presence of some smaller islands.
 
-```{r}
-hex_bay <- st_make_grid(bay,cellsize = 250,square=FALSE)
+```{r, eval = TRUE}
+hex_bay <- st_make_grid(bay, cellsize = 250, square=FALSE)
 
 ggplot(bay)+
   geom_sf(size=1)+
@@ -208,29 +219,29 @@ ggplot(bay)+
   theme_bw()
 ```
 
-Now that we have our basic grid, we need to create an `igraph` network. The network in this case will represent neighbouring (*i.e.* right next to one another) cells which Herbert could move through. We must first create an edgelist (*i.e.* list to 'from' and 'to' cell id's that represent neighbours) which then gets converted into a network. 
+Now that we have our basic grid, we need to create an `igraph` network. The network in this case will represent neighbouring (*i.e.* right next to one another) cells which Herbert could move through. We must first create an edgelist (*i.e.* list to 'from' and 'to' cell id's that represent neighbours) which then gets converted into a network.
 
-```{r}
+```{r, eval = TRUE}
 edgelist <- as.matrix(as.data.frame(st_intersects(hex_bay))) # yes, the as.matrix and as.data.frame is a bit silly, but required to get the data in the right format
 head(edgelist)
 ```
 
-```{r}
+```{r, eval = TRUE}
 gr <- graph_from_edgelist(edgelist)
 plot(gr)
 ```
 
 Yes, this plot no longer looks like the bay because we have abstracted out the actual coordinates and are looking only at the distances between cells. In this particular example we know that the distance between each neighbouring cell is 1000 m since we defined this when we created the grid. so the 'weight' (*i.e.* distance) for each edge (*i.e.* link between neighbours). At this phase you could also incorporate 'fancier' weights that incorporate habitat resistance (*i.e.* the influence of habitat type on the facilitation or prevention of movement) to cacluate isolation by resistance. But for this example, let's keep it simple.
 
-```{r}
+```{r, eval = TRUE}
 E(gr)
-E(gr)$weight <- 250    #setting the weight for ALL edges, alternatively could supply a vector here 
+E(gr)$weight <- 250    #setting the weight for ALL edges, alternatively could supply a vector here
 is.weighted(gr)
 ```
 
 Now we have a weighted graph ready for least cost path analysis! We just need to figure out where the stations are relative to the hexagonal grid.
 
-```{r}
+```{r, eval = TRUE}
 whereisHerbert <- as.numeric(st_intersects(coords,hex_bay))
 
 ggplot(bay)+
@@ -244,8 +255,9 @@ ggplot(bay)+
 distances(gr,whereisHerbert[1],whereisHerbert[-1])
 ```
 
+You'll notice this is a bit different and a bit further than the `gdistance` estimates. This is likely mostly because of the difference in resolution (and somewhat because of cell shape). If your just calculating a handful of distances such as in this example, `gdistance` is probably faster. But if you're doing millions, `igraph` is typically more effective since much of the work is done 'upfront' when you create the graph. It would also be possible to create an igraph network from a gdistance transition raster which would combine the best of both packages.
 
-You'll notice this is a bit different and a bit further than the `gdistance` estimates. This is likely mostely because of the difference in resolution (and somewhat because of cell shape). If your just calculating a handful of distances such as in this example, `gdistance` is probably faster. But if you're doing millions, `igraph` is typically more effective since much of the work is done 'upfront' when you create the graph. It would also be possible to create an igraph network from a gdistance transition raster which would combine the best of both packages.
+
 
 # References
 
