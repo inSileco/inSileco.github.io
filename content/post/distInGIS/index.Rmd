@@ -55,7 +55,7 @@ This is a frequent problem used for many applications, in particular for artific
 
 We will work with the `sf` package (*Pebesma 2018*), as described in the previous [inSileco GIS series](/tuto/rinspace/rinspace_homepage/).
 
-First, we will have to import the shapefile of the study area. All shapefiles are plotted using the WGS84 (EPSG code: 4326) coordinate reference system (CRS), but analyses will be done in the UTM19N CRS (EPSG code: 32619).
+First, we will have to import the shapefile of the study area. All shapefiles are plotted using the WGS84 (EPSG code: 4326) coordinate reference system (CRS), but analyses will be done in the UTM 19N CRS (EPSG code: 32619). UTM allows to have units in meters instead of degrees as a projected CRS, and the area of Sept-Îles is contained in UTM 19N.
 
 ```{r import1, results="hide", warning=FALSE, eval=TRUE}
 library(knitr)
@@ -69,14 +69,14 @@ coords <- data.frame(station = c("INIT", "P1", "P2", "P3"),
                      longitude = c(-66.437, -66.508, -66.363, -66.385),
                      latitude = c(50.152, 50.162, 50.133, 50.095))
 
-coords <- st_as_sf(coords, coords = c("longitude", "latitude"), crs = 4326, stringsAsFactors = F) %>%
+coords <- st_as_sf(coords, coords = c("longitude", "latitude"), crs = 4326, stringsAsFactors = FALSE) %>%
           st_transform(crs = 32619)
 ```
 
-```{r plot1, echo=FALSE, warning=FALSE,  eval=TRUE}
+```{r plot1, echo=FALSE, warning=FALSE, eval=TRUE}
 par(mar = c(3, 3, 1, 1))
-plot(st_geometry(bay), axes = T, main = "", col = "#E2E2E2", border = "#C1C1C1")
-plot(coords, cex = 2, pch = 16, add = T)
+plot(st_geometry(bay), axes = TRUE, main = "", col = "#E2E2E2", border = "#C1C1C1")
+plot(coords, cex = 2, pch = 16, add = TRUE)
 text(x = st_coordinates(coords)[,"X"],
      y = st_coordinates(coords)[,"Y"],
     labels = coords$station, pos = 3, font = 2)
@@ -89,7 +89,7 @@ The initial position of Herbert is on the turquoise dot (init), and we are inter
 
 We can compute the Euclidean distances between each points by using `sf::st_distance()`. Let's try this here, even if we know that we do not consider the coast as a forbidden area.
 
-```{r distances1, warning = FALSE, eval = TRUE}
+```{r distances1, warning=FALSE, eval=TRUE}
 dist1 <- st_distance(x = coords[1,], y = coords[-1,])
 
 dist1_df <- data.frame(dist1, row.names = "Distance from init:")
@@ -102,8 +102,8 @@ Based on these results, P1 is the closest site to the initial location of Herber
 
 ```{r plot2, echo=FALSE, warning=FALSE, eval=TRUE}
 par(mar = c(3, 3, 1, 1))
-plot(st_geometry(bay), axes = T, main = "", col = "#E2E2E2", border = "#C1C1C1")
-plot(coords, cex = 2, pch = 16, add = T)
+plot(st_geometry(bay), axes = TRUE, main = "", col = "#E2E2E2", border = "#C1C1C1")
+plot(coords, cex = 2, pch = 16, add = TRUE)
 text(x = st_coordinates(coords)[,"X"],
      y = st_coordinates(coords)[,"Y"],
      labels = coords$station, pos = 3, font = 2)
@@ -140,7 +140,7 @@ raster_bay <- rasterize(x = bay, y = raster_bay, field = 1)
 raster_bay[is.na(raster_bay)] <- 0
 ```
 
-```{r plot3, echo=FALSE, warning=FALSE,  eval=TRUE}
+```{r plot3, echo=FALSE, warning=FALSE, eval=TRUE}
 par(mar = c(3, 3, 1, 1))
 plot(raster_bay)
 ```
@@ -160,6 +160,8 @@ The `geoCorrection()` function is needed to apply a correction to the transition
 raster_bay_tr <- transition(raster_bay, transitionFunction = mean, directions = 16)
 raster_bay_tr <- geoCorrection(raster_bay_tr, type = "c")
 ```
+
+> The type argument defines the correction method for longitude and latitude. For the Least Cost Distances, type "c" corrects coordinates in an East-West direction. If you want to use other algorithms such as Random Walks, you can use type "r" to apply a correction in a North-South direction.
 
 <center> ![Direction selection for the transition matrix (*J van Etten*)](Figures/Chess.png) </center>
 
@@ -182,8 +184,8 @@ These results show that P2 is the closest potential site for Herbert now, withou
 
 ```{r plot4, echo=FALSE, warning=FALSE, eval=TRUE}
 par(mar = c(3, 3, 1, 1))
-plot(st_geometry(bay), axes = T, main = "", col = "#E2E2E2", border = "#C1C1C1")
-plot(coords, cex = 2, pch = 16, add = T)
+plot(st_geometry(bay), axes = TRUE, main = "", col = "#E2E2E2", border = "#C1C1C1")
+plot(coords, cex = 2, pch = 16, add = TRUE)
 text(x = st_coordinates(coords)[,"X"],
      y = st_coordinates(coords)[,"Y"],
      labels = coords$station, pos = 3, font = 2)
@@ -211,7 +213,7 @@ Let's create another grid, but this time, let's make it hexagonal. For this exam
 hex_bay <- st_make_grid(bay, cellsize = 250, square = FALSE)
 ```
 
-```{r plot5, echo=FALSE, warning=FALSE,  eval=TRUE}
+```{r plot5, echo=FALSE, warning=FALSE, eval=TRUE}
 par(mar = c(3, 3, 1, 1))
 plot(st_geometry(bay), axes = TRUE, main = "", col = "#E2E2E2", border = "#C1C1C1")
 plot(hex_bay, col = "#FFFFFF00", border = "#0300FF", add = TRUE)
@@ -233,7 +235,7 @@ edgelist <- as.matrix(as.data.frame(st_intersects(hex_bay)))
 gr <- graph_from_edgelist(edgelist)
 ```
 
-```{r plot6, echo=FALSE, warning=FALSE,  eval=TRUE}
+```{r plot6, echo=FALSE, warning=FALSE, eval=TRUE}
 plot(gr)
 ```
 
@@ -258,7 +260,7 @@ kable(dist3_df)
 
 You will notice this is a bit different and a bit further than the `gdistance` estimates. This is likely mostly because of the difference in resolution (and somewhat because of cell shape). If you are just calculating a handful of distances such as in this example, `gdistance` is probably faster. But if you are doing millions, `igraph` is typically more effective since much of the work is done 'upfront' when you create the graph. It would also be possible to create an igraph network from a gdistance transition raster which would combine the best of both packages.
 
-These techniques will be highly useful for many research questions, *e.g.* to determine the influence of a perturbation in an ecosystem, to characterize species movements or community connectivity... The method presented here is one of the many that exist to answer these questions, which is also possible to tackle in ArcGIS or QGIS. As literature is seldom difficult to compile on the different GIS communities, especially for R, I thought a simple tutorial would be welcomed!
+Techniques above will be highly useful for many research questions, *e.g.* determining the influence of a perturbation in an ecosystem, characterizing species movements or community connectivity... The method presented here is one of the many that exist to answer these questions. You can find many tutorials for softwares like ArcGIS or QGIS, but I thought a simple presentation for R users would be welcomed. Enjoy!
 
 <center> ![](Figures/Zoidberg2.gif) </center>
 
