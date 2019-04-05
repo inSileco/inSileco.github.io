@@ -4,12 +4,19 @@ author: [elliot]
 reviewer: [remi, kevin]
 date: 2019-04-02
 tags: [R, GIS, utils]
+rpkgs: [sf, igraph, gdistance, knitr, sp]
 draft: true
 estime: 15
 ---
 
 
 ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
+
+```{r codeChunkSetUp, echo=FALSE}
+source('../../../static/Rscript/codeChunkSetUp.R')
+```
+
+
 
 When working in Ecology, it is often necessary to produce maps and calculate distances between objects such as sampled stations, species distribution ranges or geographical features. A [tutorial on this blog](/tuto/rinspace/rinspace_homepage/) describes many techniques to create maps with different packages in R, such as `sf` and `raster`. In this post, I will go further and use these tools to calculate distances in our spatial environment.
 
@@ -31,7 +38,7 @@ Many other exists that can be used for different coordinate systems.
 
 # Geographical distances and the problem of heterogeneity
 
-Let's choose a concrete example: let me introduce Herbert the lobster. Herbert is a wild lobster living in the bay of Sept-Îles (Québec, Canada) and we, as researchers, are interested in knowing the connectivity of its actual distribution to other potential living places close by, in the context of predicting future distribution under a scenario of habitat loss due to human perturbation.
+Let's choose a concrete example: let me introduce Herbert the lobster. Herbert is a wild lobster living in the bay of Sept-Îles (Québec, Canada) and we, as researchers, are interested in knowing the connectivity of its actual distribution to other potential living places close by. Why so? Because it is a crucial piece of information to predict its future distribution under a scenario of habitat loss due to human perturbation!
 
 <center> ![No, not this lobster... (*imgur.com*)](Figures/Zoidberg1.gif){width=40%} </center>
 
@@ -41,14 +48,14 @@ So what do we do? Well, we can still use the Euclidean distance, but with the sp
 
 <center> ![Example of a pathfinding algorithm ([*Wikipedia*](https://en.wikipedia.org/wiki/Pathfinding))](Figures/Pathfinding1.gif) </center>
 
-This is a frequent problem used for many applications, in particular for artificial intelligence (robot movements, characters evolution in video games...). Many algorithms exist to answer this problem, with various computational performance, as some problems can be highly difficult to solve! One of the most widely spread is Dijkstra's algorithm (*Dijkstra 1959*), where it is possible to add weights for path points. We won't go into details about these algorithms as this is not the topic of this post, but remember that Dijkstra's algorithm is used in the methods presented below.
+This is a frequent problem used for many applications, in particular for artificial intelligence (robot movements, characters evolution in video games...). Many algorithms exist to answer this problem, with various computational performances, as some problems can be highly difficult to solve! One of the most widely used algorithm in the one proposed by Dijkstra in 1959 (*Dijkstra 1959*) that allows to add weights for path points. We won't go into details here, but remember that Dijkstra's algorithm is used in the methods presented below.
 
 
 # Applications in R
 
-We will work with the `sf` package, as described in the previous [inSileco GIS series](/tuto/rinspace/rinspace_homepage/) (*Pebesma 2018*).
+We will work with the `sf` package (*Pebesma 2018*), as described in the previous [inSileco GIS series](/tuto/rinspace/rinspace_homepage/).
 
-First, we will have to import the shapefile of the study area. All shapefiles are plotted in the WGS84 CRS (EPSG code: 4326), but analyses will be done in the UTM19N CRS (EPSG code: 32619).
+First, we will have to import the shapefile of the study area. All shapefiles are plotted using the WGS84 (EPSG code: 4326) coordinate reference system (CRS), but analyses will be done in the UTM19N CRS (EPSG code: 32619).
 
 ```{r import1, results="hide", warning=FALSE, eval=TRUE}
 library(knitr)
@@ -66,7 +73,7 @@ coords <- st_as_sf(coords, coords = c("longitude", "latitude"), crs = 4326, stri
           st_transform(crs = 32619)
 ```
 
-```{r plot1, echo=FALSE, warning=FALSE, fig.align="center", eval=TRUE}
+```{r plot1, echo=FALSE, warning=FALSE,  eval=TRUE}
 par(mar = c(3, 3, 1, 1))
 plot(st_geometry(bay), axes = T, main = "", col = "#E2E2E2", border = "#C1C1C1")
 plot(coords, cex = 2, pch = 16, add = T)
@@ -82,7 +89,7 @@ The initial position of Herbert is on the turquoise dot (init), and we are inter
 
 We can compute the Euclidean distances between each points by using `sf::st_distance()`. Let's try this here, even if we know that we do not consider the coast as a forbidden area.
 
-```{r distances1, warning=FALSE, eval=TRUE}
+```{r distances1, warning = FALSE, eval = TRUE}
 dist1 <- st_distance(x = coords[1,], y = coords[-1,])
 
 dist1_df <- data.frame(dist1, row.names = "Distance from init:")
@@ -93,7 +100,7 @@ kable(dist1_df)
 
 Based on these results, P1 is the closest site to the initial location of Herbert implying that P1 could be the preferential site where he would migrate under the human perturbation scenario where its initial position would not be available anymore. However, we know that Herbert, even if he is an awesome lobster, cannot go on land (which is necessary to attain P1), so we need to refine our analysis to take this into account.
 
-```{r plot2, echo=FALSE, warning=FALSE, fig.align="center", eval=TRUE}
+```{r plot2, echo=FALSE, warning=FALSE, eval=TRUE}
 par(mar = c(3, 3, 1, 1))
 plot(st_geometry(bay), axes = T, main = "", col = "#E2E2E2", border = "#C1C1C1")
 plot(coords, cex = 2, pch = 16, add = T)
@@ -133,7 +140,7 @@ raster_bay <- rasterize(x = bay, y = raster_bay, field = 1)
 raster_bay[is.na(raster_bay)] <- 0
 ```
 
-```{r plot3, echo=FALSE, warning=FALSE, fig.align="center", eval=TRUE}
+```{r plot3, echo=FALSE, warning=FALSE,  eval=TRUE}
 par(mar = c(3, 3, 1, 1))
 plot(raster_bay)
 ```
@@ -173,7 +180,7 @@ kable(dist2_df)
 
 These results show that P2 is the closest potential site for Herbert now, without any coast between the two points. This result is much more relevant than previously calculated with `st_distance()`! If you want to represent the shortest path between two points (based on the transition matrix), you can plot the result of function `shortestPath()`.
 
-```{r plot4, echo=FALSE, warning=FALSE, fig.align="center", eval=TRUE}
+```{r plot4, echo=FALSE, warning=FALSE, eval=TRUE}
 par(mar = c(3, 3, 1, 1))
 plot(st_geometry(bay), axes = T, main = "", col = "#E2E2E2", border = "#C1C1C1")
 plot(coords, cex = 2, pch = 16, add = T)
@@ -201,13 +208,13 @@ library(igraph)
 Let's create another grid, but this time, let's make it hexagonal. For this example, the cell centroids are 250 m apart (in any of the 6 directions), but you could increase the resolution if you don't mind waiting a bit. As you can see from the map below, such a high resolution may ignore the presence of some smaller islands.
 
 ```{r hex, warning=FALSE, eval=TRUE}
-hex_bay <- st_make_grid(bay, cellsize = 250, square = F)
+hex_bay <- st_make_grid(bay, cellsize = 250, square = FALSE)
 ```
 
-```{r plot5, echo=FALSE, warning=FALSE, fig.align="center", eval=TRUE}
+```{r plot5, echo=FALSE, warning=FALSE,  eval=TRUE}
 par(mar = c(3, 3, 1, 1))
-plot(st_geometry(bay), axes = T, main = "", col = "#E2E2E2", border = "#C1C1C1")
-plot(hex_bay, col = "#FFFFFF00", border = "#0300FF", add = T)
+plot(st_geometry(bay), axes = TRUE, main = "", col = "#E2E2E2", border = "#C1C1C1")
+plot(hex_bay, col = "#FFFFFF00", border = "#0300FF", add = TRUE)
 
 # ggplot(bay) +
 #   geom_sf(size = 1) +
@@ -226,11 +233,11 @@ edgelist <- as.matrix(as.data.frame(st_intersects(hex_bay)))
 gr <- graph_from_edgelist(edgelist)
 ```
 
-```{r plot6, echo=FALSE, warning=FALSE, fig.align="center", eval=TRUE}
+```{r plot6, echo=FALSE, warning=FALSE,  eval=TRUE}
 plot(gr)
 ```
 
-Yes, this plot no longer looks like the bay because we have abstracted out the actual coordinates and are looking only at the distances between cells. In this particular example we know that the distance between each neighbouring cell is 1,000 m since we defined this when we created the grid. At this phase you could also incorporate 'fancier' weights that incorporate habitat resistance (*i.e.* the influence of habitat type on the facilitation or prevention of movement) to calcuate isolation by resistance. But for this example, let's keep it simple.
+Yes, this plot no longer looks like the bay because we have abstracted out the actual coordinates and are looking only at the distances between cells. In this particular example we know that the distance between each neighbouring cell is 250 m since we defined this when we created the grid. At this phase you could also incorporate 'fancier' weights that incorporate habitat resistance (*i.e.* the influence of habitat type on the facilitation or prevention of movement) to calcuate isolation by resistance. But for this example, let's keep it simple.
 
 ```{r weight, warning=FALSE, eval=TRUE}
 E(gr)$weight <- 250
@@ -256,6 +263,7 @@ These techniques will be highly useful for many research questions, *e.g.* to de
 <center> ![](Figures/Zoidberg2.gif) </center>
 
 
+
 # References
 
 - Csardi G, Nepusz T (2006). The igraph software package for complex network research. *InterJournal*, Complex Systems 1695. http://igraph.org
@@ -264,3 +272,10 @@ These techniques will be highly useful for many research questions, *e.g.* to de
 - Pebesma E (2018). Simple Features for R: Standardized Support for Spatial Vector Data. *The R Journal*,
   https://journal.r-project.org/archive/2018/RJ-2018-009/
 - van Etten J (2017). R Package gdistance: Distances and Routes on Geographical Grids. *Journal of Statistical Software* 76(13). doi:10.18637/jss.v076.i13.
+
+<details>
+<summary>Session info <i class="fa fa-cogs" aria-hidden="true"></i></summary>
+```{r sessionInfo}
+sessionInfo()
+```
+</details>

@@ -14,18 +14,20 @@ output:
 ---
 
 
-
 ```{r codeChunkSetUp, echo=FALSE}
 source('../../../static/Rscript/codeChunkSetUp.R')
 ```
+
+
+
 
 ```{r, results = "hide", echo = FALSE, message = FALSE}
 library(raster)
 library(magrittr)
 library(knitr)
 library(kableExtra)
-opts_chunk$set(fig.align='center')
 ```
+
 
 <br/>
 
@@ -122,7 +124,7 @@ through the package [`rfishbase`](https://github.com/ropensci/rfishbase)
 
 <br/>
 
-```{r ecology, eval = TRUE, results='asis'}
+```{r ecology, eval = TRUE, results = 'asis'}
 # Species ecology
 ecol <- rfishbase::ecology(sp)
 ecol <- cbind(colnames(ecol), t(ecol))
@@ -363,7 +365,7 @@ model for your species of interest...
 
 <br/>
 
-```{r, SDM model, eval = TRUE, results = 'hide', warning = FALSE}
+```{r SDM_model, eval = TRUE, results = 'hide', warning = FALSE}
 # Basic options for modelling
   SDMoption <- biomod2::BIOMOD_ModelingOptions()
 # SDM model
@@ -434,3 +436,12 @@ The reality is, there is so much more going on in our area of interest than
 the spatial distribution of a single species. In the [next post](OnlineEcology-Communities.html),
 we will look into community scale analyses using some of the tools presented in
 this post, alongside some new ones specifically designed for community ecology.
+
+
+
+<details>
+<summary>Session info <i class="fa fa-cogs" aria-hidden="true"></i></summary>
+```{r sessionInfo}
+sessionInfo()
+```
+</details>
