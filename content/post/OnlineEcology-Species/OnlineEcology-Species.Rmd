@@ -14,14 +14,8 @@ output:
 ---
 
 
-```{r codeChunkSetUp, echo=FALSE}
+```{r codeChunkSetUp, include = FALSE}
 source('../../../static/Rscript/codeChunkSetUp.R')
-```
-
-
-
-
-```{r, results = "hide", echo = FALSE, message = FALSE}
 library(raster)
 library(magrittr)
 library(knitr)
@@ -410,9 +404,8 @@ species spatial distribution:
   biomod2::plot(SDMproj)
 ```
 
-```{r, unlink, echo = FALSE}
-# unlink('./Gadus.morhua/', recursive = T)
-```
+<!-- unlink('./Gadus.morhua/', recursive = T) -->
+
 
 
 <br/>
