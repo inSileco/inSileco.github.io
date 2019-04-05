@@ -360,13 +360,14 @@ model for your species of interest...
 <br/>
 
 ```{r SDM_model, eval = TRUE, results = 'hide', warning = FALSE}
-# Basic options for modelling
-  SDMoption <- biomod2::BIOMOD_ModelingOptions()
-# SDM model
-  SDM <- biomod2::BIOMOD_Modeling(data = SDMdata,
-                                    models = "MAXENT.Tsuruoka",
-                                    model.options = SDMoption,
-                                    SaveObj = FALSE)
+
+SDM <- biomod2::BIOMOD_Modeling(
+            data = SDMdata,
+            models = "RF",
+            # models = "MAXENT.Tsuruoka",
+            # Basic options for modelling
+            model.options = biomod2::BIOMOD_ModelingOptions(),
+            SaveObj = FALSE)
 ```
 
 
@@ -379,7 +380,7 @@ model for your species of interest...
 ```{r, modelEval}
 # Model evaluation
   knitr::kable(biomod2::get_evaluations(SDM), 'html')  %>%
-      kable_styling(full_width = F)
+      kable_styling(full_width = FALSE)
 ```
 
 
@@ -433,7 +434,7 @@ this post, alongside some new ones specifically designed for community ecology.
 
 
 <details>
-<summary>Session info <i class="fa fa-cogs" aria-hidden="true"></i></summary>
+<summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
 ```{r sessionInfo}
 sessionInfo()
 ```
