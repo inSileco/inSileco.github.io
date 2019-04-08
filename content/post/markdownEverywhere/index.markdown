@@ -405,7 +405,7 @@ I recommend you have a look at the list created by [mundimark](https://github.co
 
 - ["Writing Technical Papers with Markdown"](http://blog.kdheepak.com/writing-papers-with-markdown.html) by Dheepak Krishnamurthy
 
-- ["Modern Scientific Authoring"](http://swcarpentry.github.io/modern-scientific-authoring/02-markdown.html) on Software Carpentry website
+- ["Modern Scientific Authoring"](http://swcarpentry.github.io/modern-scientific-authoring/) on Software Carpentry website
 
 - ["Markdown for Writers"](https://www.kobo.com/ca/en/ebook/markdown-for-writers-1) by Gene Wilburn
 
