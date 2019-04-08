@@ -1,16 +1,14 @@
 ---
-title: R as a ruler? How to calculate distances between GIS objects
+title: R as a ruler? How to calculate distances between geographical objects
 author: [elliot]
 reviewer: [remi, kevin]
-date: 2019-04-02
+date: 2019-04-08
 tags: [R, GIS, utils]
-rpkgs: [sf, igraph, gdistance, knitr, sp]
-draft: true
+rpkgs: [sf, gdistance, igraph, knitr, sp, raster]
+draft: false
 estime: 15
 ---
 
-
-![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
 ```{r codeChunkSetUp, echo=FALSE}
 source('../../../static/Rscript/codeChunkSetUp.R')
@@ -53,16 +51,16 @@ This is a frequent problem used for many applications, in particular for artific
 
 # Applications in R
 
-We will work with the `sf` package (*Pebesma 2018*), as described in the previous [inSileco GIS series](/tuto/rinspace/rinspace_homepage/).
+We will work with the `sf` package (*Pebesma 2018*), as described in the previous [inSileco GIS series](/tuto/rinspace/rinspace_homepage/). Also, we present here a case study with *point* data, but these methods can be adapted to *lines*, *polygons* or *objects with multiple geometries*.
 
-First, we will have to import the shapefile of the study area. All shapefiles are plotted using the WGS84 (EPSG code: 4326) coordinate reference system (CRS), but analyses will be done in the UTM 19N CRS (EPSG code: 32619). UTM allows to have units in meters instead of degrees as a projected CRS, and the area of Sept-Îles is contained in UTM 19N.
+First, we will have to import the shapefile of the study area. All shapefiles are projected with the WGS84 (EPSG code: 4326) coordinate reference system (CRS), but analyses will be done with the UTM 19N (EPSG code: 32619) CRS. UTM consideres units in meters instead of degrees, *i.e* it is a projected CRS with corrections for longitude and latitude, and we use UTM 19N which includes the area of Sept-Îles.
 
 ```{r import1, results="hide", warning=FALSE, eval=TRUE}
 library(knitr)
 library(sf)
 library(sp)
 
-bay <- st_read("Data/poly_bay_BSI.shp") %>%
+bay <- st_read("Data/poly_bay.shp") %>%
        st_transform(crs = 32619)
 
 coords <- data.frame(station = c("INIT", "P1", "P2", "P3"),
@@ -98,7 +96,7 @@ colnames(dist1_df) <- c("P1", "P2", "P3")
 kable(dist1_df)
 ```
 
-Based on these results, P1 is the closest site to the initial location of Herbert implying that P1 could be the preferential site where he would migrate under the human perturbation scenario where its initial position would not be available anymore. However, we know that Herbert, even if he is an awesome lobster, cannot go on land (which is necessary to attain P1), so we need to refine our analysis to take this into account.
+Based on these results, P1 is the closest site to the initial location of Herbert implying that P1 could be the preferential site where he would migrate under the human perturbation scenario (where its initial position would not be available anymore). However, we know that Herbert, even if he is an awesome lobster, cannot go on land which is necessary to attain P1. So, we need to refine our analysis to take this into account.
 
 ```{r plot2, echo=FALSE, warning=FALSE, eval=TRUE}
 par(mar = c(3, 3, 1, 1))
@@ -122,12 +120,12 @@ lines(x = st_coordinates(coords)[c(1,4),"X"],
 
 ## Least Cost Distances with `gdistance`
 
-To take the coast into consideration, we will use the package `gdistance`, which have a very useful sets of functions to calculate functions (*ven Etten 2017*). In particular, `costDistance()` will do the trick. To use it, we will need to convert our polygon for the Bay of Sept-Îles to a raster specifying which cell can be considered by the pathfinding and so:
+To take the geographical barriers into consideration, we will use the package `gdistance`, which have a very useful sets of functions to calculate functions (*ven Etten 2017*). In particular, `costDistance()` will do the trick. To use it, we will need to convert our polygon for the Bay of Sept-Îles to a raster specifying which cell can be considered by the pathfinding and so:
 
-1. forbidden cells will have a value of 0;
-2. allowed cells will have a value of 1 (each cell has the same "cost", meaning no weighting have been applied for particular paths).
+- forbidden cells will have a value of 0;
+- allowed cells will have a value of 1 (each cell has the same "cost", meaning no weighting have been applied for particular paths).
 
-> Note that the calculation is highly dependent on the **raster resolution**. A better resolution will bring better results, but at the cost of computing resources. Also, the grid of this raster is square by default.
+> Note that the calculation is highly dependent on the **raster resolution**. A better resolution will bring better results, but at the cost of computing resources. Also, the cells of this raster are **squares**.
 
 ```{r import2, warning=FALSE, eval=TRUE}
 library(gdistance)
@@ -145,7 +143,7 @@ par(mar = c(3, 3, 1, 1))
 plot(raster_bay)
 ```
 
-> We have to add `field = 1` in function `rasterize()` otherwise the cell id number will be automatically assigned to each cell as a weighting parameter, which will bias the distance calculation by introducing a cost for choosing the cell.
+> We have to add `field = 1` in function `rasterize()` otherwise the id number will be automatically assigned to each cell as a weighting parameter, which will bias the distance calculation by introducing a cost for choosing the cell.
 
 Before calculating the distance, `costDistance()` needs a transition matrix. This matrix is an object that will define the cost to choose a cell (which in our case is inherited from the values of `raster_bay`) and the direction from which it is possible to choose a cell as the next one in the path. The direction is based on movements of soldiers on a chessboard:
 
@@ -154,16 +152,16 @@ Before calculating the distance, `costDistance()` needs a transition matrix. Thi
 - `8` is straight and diagonal lines, *i.e.* queen;
 - `16` is straight, diagonal lines and tilted diagonals, *i.e.* queen and knights.
 
-The `geoCorrection()` function is needed to apply a correction to the transition matrix so that units and map distortion are taken into account (this may be more or less relevant depending on the coordinate reference system used).
+<center> ![Direction selection for the transition matrix (*J van Etten*)](Figures/Chess.png) </center>
+
+The `geoCorrection()` function is needed to apply a correction to the transition matrix so that units and map distortion are taken into account (this may be more or less relevant depending on the CRS used).
 
 ```{r transition, warning=FALSE, eval=TRUE}
 raster_bay_tr <- transition(raster_bay, transitionFunction = mean, directions = 16)
 raster_bay_tr <- geoCorrection(raster_bay_tr, type = "c")
 ```
 
-> The type argument defines the correction method for longitude and latitude. For the Least Cost Distances, type "c" corrects coordinates in an East-West direction. If you want to use other algorithms such as Random Walks, you can use type "r" to apply a correction in a North-South direction.
-
-<center> ![Direction selection for the transition matrix (*J van Etten*)](Figures/Chess.png) </center>
+> The `type` argument defines the correction method for longitude and latitude. For the Least Cost Distances, `type = "c"` corrects coordinates in an East-West direction. If you want to use other algorithms such as Random Walks, you can use `type = "r"` to apply a correction in a North-South direction.
 
 And now, let's calculate distances with the least cost path analysis!
 
@@ -178,7 +176,7 @@ colnames(dist2_df) <- c("P1", "P2", "P3")
 kable(dist2_df)
 ```
 
-> `costDistance()` needs a conversion to `SpatialPoints` class, as it the package has been created with `sp` objects.
+> `costDistance()` needs a conversion to `SpatialPoints` class, as the package has been created with `sp` objects.
 
 These results show that P2 is the closest potential site for Herbert now, without any coast between the two points. This result is much more relevant than previously calculated with `st_distance()`! If you want to represent the shortest path between two points (based on the transition matrix), you can plot the result of function `shortestPath()`.
 
@@ -201,13 +199,13 @@ plot(shortestPath(raster_bay_tr, as_Spatial(coords)[1,], as_Spatial(coords)[4,],
 
 ## Least Cost Distances with `igraph`
 
-The `gdistance` package is excellent, but not particularly flexible. You may need a custom workflow if you need to handle very large datasets or you want to use a hexagonal grid (*i.e.* you don't want to worry about chessboard moves!). If this is so, you will need package `igraph` (*Csardi & Nepusz 2006*).
+The `gdistance` package is excellent, but not particularly flexible. You may need a custom workflow if you need to handle very large datasets or you want to use a hexagonal grid (*i.e.* you don't want to worry about chessboard moves). If this is so, you will need package `igraph` (*Csardi & Nepusz 2006*).
 
 ```{r import3, warning=FALSE, eval=TRUE}
 library(igraph)
 ```
 
-Let's create another grid, but this time, let's make it hexagonal. For this example, the cell centroids are 250 m apart (in any of the 6 directions), but you could increase the resolution if you don't mind waiting a bit. As you can see from the map below, such a high resolution may ignore the presence of some smaller islands.
+Let's create another grid, but this time, let's make it hexagonal. For this example, the cell centroids are 250m apart (in any of the 6 directions), but you could increase the resolution if you don't mind waiting a bit. As you can see from the map below, this resolution may ignore the presence of some smaller islands, which can be a problem.
 
 ```{r hex, warning=FALSE, eval=TRUE}
 hex_bay <- st_make_grid(bay, cellsize = 250, square = FALSE)
@@ -226,7 +224,7 @@ plot(hex_bay, col = "#FFFFFF00", border = "#0300FF", add = TRUE)
 #   theme_bw()
 ```
 
-Now that we have our basic grid, we need to create an `igraph` network. The network in this case will represent neighbouring cells (*i.e.* right next to one another) which Herbert has the possibility to move through. We must first create an edgelist (*i.e.* list to 'from' and 'to' cell id's that represent neighbours) which then gets converted into a network.
+Now that we have our basic grid, we need to create an `igraph` network. The network in this case will represent neighbouring cells (*i.e.* right next to one another) which Herbert has the possibility to move through. We must first create an edgelist (*i.e.* list to 'from' and 'to' cell id's that represent neighbours), then convert into a network.
 
 ```{r edge, warning=FALSE, eval=TRUE}
 edgelist <- as.matrix(as.data.frame(st_intersects(hex_bay)))
@@ -239,7 +237,7 @@ gr <- graph_from_edgelist(edgelist)
 plot(gr)
 ```
 
-Yes, this plot no longer looks like the bay because we have abstracted out the actual coordinates and are looking only at the distances between cells. In this particular example we know that the distance between each neighbouring cell is 250 m since we defined this when we created the grid. At this phase you could also incorporate 'fancier' weights that incorporate habitat resistance (*i.e.* the influence of habitat type on the facilitation or prevention of movement) to calcuate isolation by resistance. But for this example, let's keep it simple.
+Yes, this plot no longer looks like the bay because we have abstracted out the actual coordinates and are looking only at the distances between cells. In this particular example we know that the distance between each neighbouring cell is 250m since we defined this when we created the grid. At this phase, you could also incorporate 'fancier' weights that incorporate habitat resistance (*i.e.* the influence of habitat type on the facilitation or prevention of movement) to calcuate isolation by resistance. But for this example, let's keep it simple.
 
 ```{r weight, warning=FALSE, eval=TRUE}
 E(gr)$weight <- 250
@@ -258,9 +256,11 @@ colnames(dist3_df) <- c("P1", "P2", "P3")
 kable(dist3_df)
 ```
 
-You will notice this is a bit different and a bit further than the `gdistance` estimates. This is likely mostly because of the difference in resolution (and somewhat because of cell shape). If you are just calculating a handful of distances such as in this example, `gdistance` is probably faster. But if you are doing millions, `igraph` is typically more effective since much of the work is done 'upfront' when you create the graph. It would also be possible to create an igraph network from a gdistance transition raster which would combine the best of both packages.
+You will notice that we find a comparable result from what we calculated previsouly with `gdistace` (P2 being the closest potential site), even if this is a bit further than the `gdistance` estimates. This is likely mostly because of the difference in resolution (and somewhat because of cell shape).
 
-Techniques above will be highly useful for many research questions, *e.g.* determining the influence of a perturbation in an ecosystem, characterizing species movements or community connectivity... The method presented here is one of the many that exist to answer these questions. You can find many tutorials for softwares like ArcGIS or QGIS, but I thought a simple presentation for R users would be welcomed. Enjoy!
+If you are just calculating a handful of distances such as in this example, `gdistance` is probably faster. But if you are doing millions, `igraph` is typically more effective since much of the work is done 'upfront' when you create the graph. It would also be possible to create an `igraph` network from a `gdistance` transition raster which would combine the best of both packages.
+
+Techniques above will be highly useful for many research questions, *e.g.* determining the influence of a perturbation in an ecosystem, characterizing species movements or community connectivity... The method presented in this post is one of the many that exist to answer these questions. You can find many tutorials for softwares like ArcGIS or QGIS, but I thought a simple presentation for R users would be welcomed. Enjoy!
 
 <center> ![](Figures/Zoidberg2.gif) </center>
 
