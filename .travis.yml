@@ -36,7 +36,6 @@ apt_packages:
 before_install:
   - wget https://github.com/gohugoio/hugo/releases/download/v0.53/hugo_0.53_Linux-64bit.deb
   - sudo dpkg -i hugo_0.53_Linux-64bit.deb
-  - R -e 'source("https://install-github.me/r-lib/remotes")'
 
 before_script:
   - apt-cache policy libstdc++6
