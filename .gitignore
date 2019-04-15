@@ -1,21 +1,19 @@
-/content/post/goDebianTesting/assets/notuploaded
-/node_modules
-package-lock.json
+# Current posts' index.html file
+content/post//*.html
 
 
-# posts' index.html file
-content/post/*/*.html
-content/post/*.html
-content/post/OnlineEcology-Species/downloaded_predictors/
-content/post/OnlineEcology-Species/Gadus.morhua/
-static/rmarkdown-libs/*
-content/tips/trick_or_tips/*.html
+# current posts are built by Travis
+content/post/Current/*.html
+# old post are not
+content/post/Archived/*/*.Rmd
+content/post/Archived/*/*.Rmarkdown
+content/post/Archived/*/*.rds
+content/post/Archived/**/shpfile
+content/post/Archived/**/downloaded_predictors
+content/post/Archived/**/Gadus
 
-#tuto
-content/**/index.html
-static/tuto
 
-#tips
+# tips
 static/tips
 
 # large files
@@ -25,6 +23,9 @@ static/tips
 **/rInSpace/rinspace_custommaps/data/
 **/rInSpace/rinspace_custommaps/wc10/
 
+#
+.DS_Store
+public/
 
 
 
@@ -61,14 +62,3 @@ vignettes/*.pdf
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
-
-#
-_site/
-.DS_Store
-publi
-public/
-_drafts/
-
-# avoid prebuilt files (let them only on the master branch)
-/static/post/*
-content/post/downloaded_files/*tif

@@ -42,6 +42,59 @@ We use our own badges to notify the status of a given post that is not completed
 
 - ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg) for posts that have reached at certain level of quality and submitted to the review of members of the blog.
 
+#### Add code chunks set up
+
+
+    ```{r codeChunkSetUp, include = FALSE}
+      source('/../../static/Rscript/codeChunkSetUp.R')
+    ```
+
+
+#### Add session Info
+
+<details>
+<summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
+```{r sessionInfo}
+sessionInfo()
+```
+</details>
+
+
+#### Full list of packages required for all post
+
+```
+blogdown,
+devtools,
+DiagrammeR,
+animation,
+biomod2,
+gdistance,
+graphicsutils,
+inSilecoRef,
+inSilecoMisc,
+kableExtra,
+latex2exp,
+lwgeom,
+htmltools,
+mapview,
+plyr,
+rcrossref,
+RefManageR,
+rgdal,
+rgeos,
+rfishbase,
+rglobi,
+rmarkdown,
+robis,
+sdmpredictors,
+showtext,
+sf,
+taxize,
+tidyverse,
+tm,
+yaml
+```
+
 
 #### JS/CSS libraries used
 

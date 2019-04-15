@@ -1,0 +1,556 @@
+---
+title: Disturbance Ecology Series - Geometric Growth
+author: [david, kevin]
+reviewer:
+date: 2018-07-02
+tags: [Disturbance Ecology, ecology, disturbance, model, population, community]
+rpkgs: [base, graphics, graphicsutils, latex2exp, utils]
+draft: true
+tweet: "Disturbance Ecology Series - Geometric Growth"
+estime: 15
+relativeurls: true
+bibliography: [../../../static/bib/inSilecoRef.bib]
+csl: [../../../static/bib/nature.csl]
+link-citations: yes
+navposts:
+  prev: disturbanceEcology
+  home: disturbanceEcology
+  next: exponentialGrowth
+---
+
+
+
+```{r bibSetUp, echo=FALSE}
+source('../../../static/Rscript/bibSetUp.R')
+source('../../../static/Rscript/codeChunkSetUp.R')
+```
+
+`r htmltools::HTML("{{< distecolintro >}}")`
+
+```{r libraries, echo = F}
+library(graphicsutils)
+library(latex2exp)
+cols <- gpuPalette("insileco")
+```
+
+
+## Geometric growth
+
+In this first post we start by looking at the most simple population dynamic
+model available, the case of discrete density independent growth for a single
+species population. This model is a nice model to understand basic population
+dynamics and a useful stepping stone towards more complicated models
+of population dynamics.
+
+## Theory in brief
+
+This post on geometric growth really is focused on discrete density independent
+growth, Let's begin by explaining what discrete and density independent
+growth are.
+
+Discrete growth means that a population grows in separate
+and distinct steps, such as large mammals giving birth to a set amount of
+offsprings every year. Density independent growth, meanwhile, means that
+there is no statistical relation between population density and its *per capita*
+growth rate [@stevens_2009]. This would be the case for a populations that grows
+without any apparent environmental constraints. Human population growth is a good
+example of discrete (although we don't model our populations using discrete
+growth models) and density independent growth (see
+[Our World in Data](https://ourworldindata.org/world-population-growth)).
+
+<br/>
+
+Imagine a species that has an average birth rate of $b$ offsprings every year.
+If we begin at time *t* with a population $N_t$, the population at time $t + 1$,
+$N_{t+1}$, will be equal to the number of individuals at time $t$ plus their
+offsprings:
+
+$$N_{t+1} = N_t + bN_t$$
+
+which can be simplified to:
+
+$$N_{t+1} = N_t (1+b)$$
+
+In this particular example, our population is eternal, meaning that no death
+occurs and every individual survives indefinitely. Death rates could however
+be incorporated in the same way as births. If we know that this particular
+species has an average death rate of $d$ individual every year, $N_{t+1}$
+would be equal to the number of individuals at time $t$ plus their offsprings
+minus the annual number of dead individuals:
+
+\begin{eqnarray}
+  \nonumber N_{t+1} &=& N_t + bN_t - dN_t \\
+  \nonumber &=& N_t (1 + b - d)
+\end{eqnarray}
+
+In this particular formula, $1 + b - d$ corresponds to the *per capita* growth
+rate of our population, noted as $\lambda$, while $b$ and $d$ are the discrete
+birth and death rates of our population. For this post we will note $b - d$ as
+$r_d$, the discrete growth factor, so that $\lambda = 1 + r_d$.
+There are numerous population dynamics component such as births, deaths,
+immigration or emigration that can provide a refined understanding of the growth
+(or decrease) of a population. We will however not begin to get into more
+details until later in this blog series, so for now we will focus solely on
+$\lambda$ and $r_d$.
+
+<br/>
+
+Now if we were interested in evaluating how our population would fare farther
+in the future, what would we do? Imagine that each individual in our population
+fosters two offsprings each year (*i.e* $r_d = 2$ and $\lambda = 3$) and that
+we begin with a single individual in the population (*i.e.* $N_t = 1$). We know
+that by the second year, we will have 3 individuals in the population, *i.e.*
+the parent and the two offsprings, so $\lambda = 3$. With this information,
+we can then predict population size for every subsequent year:
+
+\begin{eqnarray}
+  \nonumber N_t &=& 1 \\
+  \nonumber N_{t+1} &=& 3N_t = 3 \\
+  \nonumber N_{t+2} &=& 3N_{t+1} = 3(3N_t) = 3^2N_t = 9 \\
+  \nonumber N_{t+3} &=& 3N_{t+2} = 3(3^2N_t) = 3^3N_t = 27 \\
+\end{eqnarray}
+
+```{r example1, fig.height = 5, fig.width = 5, fig.align = 'center', echo = F}
+N <- c(1,3,9,27)
+t <- 0:3
+par(mar = c(4,4,1,1))
+plot(x = t, y = N, ylab = 'Population size', xlab = 'Time',
+     pch = 20, axes = F, cex = 1.5, col = cols[2], ylim = c(0, 30))
+lines(x = t, y = N, col = cols[2], lwd = 1.25)
+axis(1, at = 0:3)
+axis(2, las = 1)
+```
+
+Generalizing the growth rates and time parameters gives us the
+formula for the discrete geometric model to evaluate population size
+at any time:
+
+$$N_t = \lambda^t N_0$$
+
+where $N$ is population size, $N_0$ is the initial population size, $\lambda$
+is the *per capita* growth rate and $t$ is the time.
+
+This simple model thus simulates population dynamics using a constant
+geometric growth, *i.e.* using a constant growth parameter.
+In essence, this model assumes that every individual in the population will
+foster a constant and finite amount of offsprings at every time step.
+<br/>
+
+Let's write a function for later use, also available in the
+[`inSilecoMod` package](https://github.com/inSileco/inSilecoMod):
+
+```{r model}
+geomMod <- function(N0, lambda, t) lambda^t * N0
+```
+
+<br/>
+
+Another important aspect of this model is that:
+
+\begin{eqnarray}
+  \nonumber \lambda > 1 & \rightarrow & N \text{ increases} \\
+  \nonumber \lambda = 1 & \rightarrow & N \text{ is constant} \\
+  \nonumber \lambda < 1 & \rightarrow & N \text{ decreases}
+\end{eqnarray}
+
+```{r lambdaDec, fig.height = 5, fig.width = 5, fig.align = 'center', results = 'hold', echo = F}
+pop <- data.frame(pop1 = geomMod(10, .5, 0:5),
+                  pop2 = geomMod(10, 1, 0:5),
+                  pop3 = geomMod(10, 1.5, 0:5))
+
+# Visualize
+par(mar = c(4,4,1,1))
+plot0(x = c(0,5), y = c(0,80))
+for(i in 1:3) points(x = 0:5, y = pop[, i], cex = 1.5, col = cols[i+1], pch = 20)
+for(i in 1:3) lines(x = 0:5, y = pop[, i], lwd = 1.25, col = cols[i+1])
+axis(1)
+axis(2, at = seq(0,80,20), las = 1)
+mtext('Time', 1, 2)
+mtext('Population size', 2.25, 2)
+text(x = 4, y = 14, TeX("$\\lambda = 1$"), cex = 1, adj = 0, col = cols[3])
+text(x = 4, y = 70, TeX("$\\lambda = 1.5$"), cex = 1, adj = 0, col = cols[4])
+text(x = 4, y = 5, TeX("$\\lambda = 0.5$"), cex = 1, adj = 0, col = cols[2])
+```
+
+<br/>
+
+## Simulated ecology
+
+To delve a little deeper into this model, we will now simulate a simple
+population in which, like before, every individual fosters 2 offsprings
+at every discrete time step in a perfect geometrical growth. We will then
+project population size in time using the model and compare the simulated
+population with the results from this model.
+
+### Functions
+
+Let's write a few functions that we can use later to make things easier. First,
+a function that simulates our population sequentially through time so that we
+can later add some complexity to our simulations.
+
+```{r simPop}
+simPop <- function(N0, rd, nt) {
+  pop <- numeric(nt + 1)
+  pop[1] <- N0
+  for(i in 2:(nt+1)) {
+    pop[i] <- pop[i-1] * (1 + rd)
+  }
+  pop
+}
+```
+
+Second, I'm embedding a plot call in a function so that I can use it again.
+You can make this in a single command line, I simply like to customize my plots.
+
+```{r dataViz}
+# To round up nicely the y axis
+# Function found on stackoverflow:
+# https://stackoverflow.com/questions/6461209/how-to-round-up-to-the-nearest-10-or-100-or-x
+roundUpNice <- function(x, nice=c(1,2,4,5,6,8,10)) {
+    if(length(x) != 1) stop("'x' must be of length 1")
+    10^floor(log10(x)) * nice[[which(x <= 10^floor(log10(x)) * nice)[[1]]]]
+}
+
+plot1 <- function(pop) {
+  par(mar = c(4,4,1,1))
+  plot0(x = c(0, max(pop$year)),
+        y = c(0, roundUpNice(max(pop[, 2:ncol(pop)]))))
+  axis(1, cex.axis = .75)
+  axis(2, cex.axis = .75, las = 1)
+  mtext("Abundance", side = 2, line = 3)
+  mtext("Year", side = 1, line = 2.25)
+}
+
+```
+
+### Simulations - Geometric growth rate
+
+We begin by simulating a population that has a perfect geometric growth:
+
+```{r dataSim, fig.height = 5, fig.width = 5, fig.align = 'center', results = 'hold'}
+nt <- 10
+rd <- 0.5
+N0 <- 10
+pop <- data.frame(year = 0:nt,
+                  pop = simPop(N0, rd, nt))
+
+plot1(pop)
+points(x = pop$year, y = pop$pop, pch = 20, cex = 1.5, col = cols[2])
+```
+
+With this data in hand, we can evaluate the rate of increase from one year to the next,
+*e.g.* by dividing $N_1 / N_0 = 3 / 1 = 3$. This is the $\lambda$ for our model.
+We can then use this, with $N_0 = 10$, to model population size and make predictions
+for the future population size using the discrete density independent model and
+the `geomMod()` function that we wrote earlier.
+
+```{r predict, fig.height = 5, fig.width = 5, fig.align = 'center', results = 'hold'}
+pred <- data.frame(year = 1:20,
+                   pop = geomMod(N0 = 10, lambda = 1+rd, t = 1:20))
+
+# Visualize
+plot1(pred)
+lines(spline(x = pred$year, y = pred$pop, n = 100), lty = 'dashed', col = cols[4])
+points(x = pred$year, y = pred$pop, pch = 1, cex = 2, col = cols[4])
+points(x = pop$year, y = pop$pop, pch = 20, cex = 1.5, col = cols[2])
+```
+
+In this first example, we obviously obtain a perfect match between model
+projections and the simulated population because we simulated a population with
+geometric (*i.e.* constant) growth rate. This is however rarely (read *never*)
+the case in real life, as population growth rates will vary temporally due
+variations in biotic and abiotic constraints such as resource availability,
+competition, reproductive success and environmental conditions.
+
+### Simulations - Variable growth rates
+
+Let's add some realism to the simulated population by allowing growth
+rate to vary between years, and thus deviate from model expectations.
+To achieve this, we will randomly set growth rate using a uniform distribution
+between 0 and 3.
+
+```{r simPop2}
+# We will create a new function that simulates our population sequentially
+# through time so that we can later use it to add some complexity to our simulations.
+simPop2 <- function(N0, rdRange, nt) {
+  pop <- numeric(nt + 1)
+  pop[1] <- N0
+  for(i in 2:(nt+1)) {
+    rate <- runif(1, rdRange[1], rdRange[2])
+    pop[i] <- pop[i-1] + (rate * pop[i-1])
+  }
+  pop
+}
+```
+
+With this in hand, let's simulate a few populations all starting with the same
+initial size.
+
+```{r dataSim2, fig.height = 5, fig.width = 5, fig.align = 'center', results = 'hold'}
+nt <- 5
+rdRange <- c(0,1.3)
+N0 <- 10
+pop <- data.frame(year = 0:nt,
+                  pop1 = simPop2(N0, rdRange, nt),
+                  pop2 = simPop2(N0, rdRange, nt),
+                  pop3 = simPop2(N0, rdRange, nt),
+                  pop4 = simPop2(N0, rdRange, nt))
+```
+
+We can now see that growth rates are much more variable.
+
+```{r growthRates, fig.height = 5, fig.width = 10, fig.align = 'center'}
+rates <- data.frame(pop1 = pop$pop1[2:(nt+1)] / pop$pop1[1:nt],
+                    pop2 = pop$pop2[2:(nt+1)] / pop$pop2[1:nt],
+                    pop3 = pop$pop3[2:(nt+1)] / pop$pop3[1:nt],
+                    pop4 = pop$pop4[2:(nt+1)] / pop$pop4[1:nt])
+rates
+
+par(mfrow = c(1,2), mar = c(4,4,1,1))
+matplot(pop[, 2:5], type = 'l', col = cols, lwd = 1.25, ylab = 'Population size')
+matplot(rates, type = 'l', col = cols, lwd = 1.25, ylab = 'Rates')
+```
+
+***Arithmetic average***
+
+The goal then becomes to find a $\lambda$ value that allows us to model the growth
+of those populations using a discrete density independent growth model. The first
+idea that comes to mind is to use the arithmetic mean of the growth rates.
+As a comparison, we also show what would happen if we were to use the minimum
+and maximum growth rate observed.
+
+```{r pred2, fig.height = 10, fig.width = 10, fig.align = 'center', results = 'hold'}
+meanRates <- apply(rates, 2, mean)
+nP <- 7
+predAMean <- data.frame(year = 0:nP,
+                        pop1 = geomMod(N0 = 10, lambda = meanRates[1], t = 0:nP),
+                        pop2 = geomMod(N0 = 10, lambda = meanRates[2], t = 0:nP),
+                        pop3 = geomMod(N0 = 10, lambda = meanRates[3], t = 0:nP),
+                        pop4 = geomMod(N0 = 10, lambda = meanRates[4], t = 0:nP))
+
+maxRates <- apply(rates, 2, max)
+predMax <- data.frame(year = 0:nP,
+                      pop1 = geomMod(N0 = 10, lambda = maxRates[1], t = 0:nP),
+                      pop2 = geomMod(N0 = 10, lambda = maxRates[2], t = 0:nP),
+                      pop3 = geomMod(N0 = 10, lambda = maxRates[3], t = 0:nP),
+                      pop4 = geomMod(N0 = 10, lambda = maxRates[4], t = 0:nP))
+
+minRates <- apply(rates, 2, min)
+predMin <- data.frame(year = 0:nP,
+                      pop1 = geomMod(N0 = 10, lambda = minRates[1], t = 0:nP),
+                      pop2 = geomMod(N0 = 10, lambda = minRates[2], t = 0:nP),
+                      pop3 = geomMod(N0 = 10, lambda = minRates[3], t = 0:nP),
+                      pop4 = geomMod(N0 = 10, lambda = minRates[4], t = 0:nP))
+
+
+par(mfrow = c(2,2))
+for(i in 2:5) {
+  # Visualize
+  plot1(predMax)
+  lines(spline(x = predAMean$year, y = predAMean[, i], n = 100), lwd = 2, lty = 'dashed', col = cols[4])
+  lines(spline(x = predMax$year, y = predMax[, i], n = 100), lwd = 2, lty = 'dashed', col = cols[7])
+  lines(spline(x = predMin$year, y = predMin[, i], n = 100), lwd = 2, lty = 'dashed', col = cols[1])
+  points(x = predAMean$year, y = predAMean[, i], lwd = 2, pch = 1, cex = 2, col = cols[4])
+  points(x = predMax$year, y = predMax[, i], lwd = 2, pch = 2, cex = 2, col = cols[7])
+  points(x = predMin$year, y = predMin[, i], lwd = 2, pch = 6, cex = 2, col = cols[1])
+  points(x = pop$year, y = pop[, i], lwd = 2, pch = 20, cex = 1.5, col = cols[2])
+}
+  # Legend
+  maxVal <- roundUpNice(max(predMax))
+  lines(x = c(0, 0.4), y = c(maxVal * .85, maxVal * .85), lwd = 2, lty = 'dashed', col = cols[1])
+  lines(x = c(0, 0.4), y = c(maxVal * .78, maxVal * .78), lwd = 2, lty = 'dashed', col = cols[7])
+  lines(x = c(0, 0.4), y = c(maxVal * .71, maxVal * .71), lwd = 2, lty = 'dashed', col = cols[4])
+  points(x = 0.2, y = maxVal * .92, lwd = 2, pch = 20, cex = 1.5, col = cols[2])
+  points(x = 0.2, y = maxVal * .85, lwd = 2, pch = 6, cex = 2, col = cols[1])
+  points(x = 0.2, y = maxVal * .78, lwd = 2, pch = 2, cex = 2, col = cols[7])
+  points(x = 0.2, y = maxVal * .71, lwd = 2, pch = 1, cex = 2, col = cols[4])
+  text(x = 0.5, y = maxVal * .92, "Simulated data", adj = 0)
+  text(x = 0.5, y = maxVal * .85, "Minimum", adj = 0)
+  text(x = 0.5, y = maxVal * .78, "Maximum", adj = 0)
+  text(x = 0.5, y = maxVal * .71, "Arithmetic average", adj = 0)
+```
+
+While useful, the use of the arithmetic average can lead to erroneous results.
+Following the example from Stevens 2009 [@stevens_2009] on page 11, let's
+imagine a population with $N_0 = 100$, annual growth rate $R_1 = 0.5$ and
+$R_2 = 1.5$. Using the arithmetic average to evaluate the growth rate for the
+model would give us $\lambda = 1$, *i.e.* a population with a constant $N = 100$.
+However, if we look at population trends applying $R$ for consecutive years,
+the result would be quite different:
+
+\begin{eqnarray}
+  \nonumber N_0 &=& 100 \\
+  \nonumber N_1 &=& N_0 * 0.5 = 50 \\
+  \nonumber N_2 &=& N_1 * 1.5 = 75 \\
+\end{eqnarray}
+
+We need something better.
+
+<br/>
+
+***Geometric average***
+
+The solution we are presenting here is the one found in Steven' book [@stevens_2009],
+which is to use the [geometric average](https://en.wikipedia.org/wiki/Geometric_mean):
+
+$$\bar{R} = \Bigg(\prod_{i=1}^{t} R_i\Bigg)^{1/t}$$
+
+This also corresponds to calculating the mean by taking the arithmetic mean of
+the log transformed values and then transforming values back to the original
+scale by using the exponentiation, given values $R_i > 0$:
+
+\begin{eqnarray}
+  \bar{R} &=& \Bigg(\prod_{i=1}^{t} R_i\Bigg)^{1/t} \\
+  log \ \bar{R} &=& log\Bigg(\Big(\prod_{i=1}^{t} R_i\Big)^{1/t}\Bigg) & \rightarrow &  \text{Transform to logarithms} \\
+  log \ \bar{R} &=& \frac{1}{t} log\Big(\prod_{i=1}^{t} R_i\Big)  & \rightarrow &  log \ x^y = y \ log \ x \\
+  log \ \bar{R} &=& \frac{1}{t} \sum_{i=1}^{t}log \ R_i\ & \rightarrow & log \ (x+y) = log \ x + log \ y \\
+  exp[ log \ \bar{R}] &=& exp\Bigg[\frac{1}{t}\sum_{i=1}^{t}log \ R_i\Bigg] & \rightarrow & \text{Back transform} \: log \ \bar{R} \\
+  \bar{R} &=& exp\Bigg[\frac{1}{t}\sum_{i=1}^{t}log \ R_i\Bigg]
+\end{eqnarray}
+
+Here is a nice function to evaluate the geometric mean using this last formula, found on
+[stackoverflow](https://stackoverflow.com/questions/2602583/geometric-mean-is-there-a-built-in):
+
+```{r geomMean}
+gm_mean <- function(x, na.rm = TRUE) {
+  exp(sum(log(x[x > 0]), na.rm = na.rm) / length(x))
+}
+```
+
+And we can look at how the geometric average affects the predictions:
+
+``` {r pred3, fig.height = 10, fig.width = 10, fig.align = 'center', results = 'hold'}
+meanRatesGeom <- apply(rates, 2, gm_mean)
+nP <- 7
+predGMean <- data.frame(year = 0:nP,
+                    pop1 = geomMod(N0 = 10, lambda = meanRatesGeom[1], t = 0:nP),
+                    pop2 = geomMod(N0 = 10, lambda = meanRatesGeom[2], t = 0:nP),
+                    pop3 = geomMod(N0 = 10, lambda = meanRatesGeom[3], t = 0:nP),
+                    pop4 = geomMod(N0 = 10, lambda = meanRatesGeom[4], t = 0:nP))
+
+par(mfrow = c(2,2))
+for(i in 2:5) {
+  # Visualize
+  plot1(predMax)
+  lines(spline(x = predAMean$year, y = predAMean[, i], n = 100), lwd = 2, lty = 'dashed', col = cols[4])
+  lines(spline(x = predMax$year, y = predMax[, i], n = 100), lwd = 2, lty = 'dashed', col = cols[7])
+  lines(spline(x = predMin$year, y = predMin[, i], n = 100), lwd = 2, lty = 'dashed', col = cols[1])
+  lines(spline(x = predGMean$year, y = predGMean[, i], n = 100), lty = 'dashed', col = cols[6])
+  points(x = predAMean$year, y = predAMean[, i], pch = 1, cex = 2, col = cols[4])
+  points(x = predMax$year, y = predMax[, i], pch = 2, cex = 2, col = cols[7])
+  points(x = predMin$year, y = predMin[, i], pch = 6, cex = 2, col = cols[1])
+  points(x = predGMean$year, y = predGMean[, i], pch = 1, cex = 2, col = cols[6])
+  points(x = pop$year, y = pop[, i], pch = 20, cex = 1.5, col = cols[2])
+}
+  # Legend
+  maxVal <- roundUpNice(max(predMax))
+  lines(x = c(0, .4), y = c(maxVal * .85, maxVal * .85), lwd = 2, lty = 'dashed', col = cols[1])
+  lines(x = c(0, .4), y = c(maxVal * .78, maxVal * .78), lwd = 2, lty = 'dashed', col = cols[7])
+  lines(x = c(0, .4), y = c(maxVal * .71, maxVal * .71), lwd = 2, lty = 'dashed', col = cols[4])
+  lines(x = c(0, .4), y = c(maxVal * .64, maxVal * .64), lwd = 2, lty = 'dashed', col = cols[6])
+  points(x = .2, y = maxVal * .92, pch = 20, cex = 1.5, col = cols[2])
+  points(x = .2, y = maxVal * .85, pch = 6, cex = 2, col = cols[1])
+  points(x = .2, y = maxVal * .78, pch = 2, cex = 2, col = cols[7])
+  points(x = .2, y = maxVal * .71, pch = 1, cex = 2, col = cols[4])
+  points(x = .2, y = maxVal * .64, pch = 1, cex = 2, col = cols[6])
+  text(x = .5, y = maxVal * .92, "Simulated data", adj = 0)
+  text(x = .5, y = maxVal * .85, "Minimum", adj = 0)
+  text(x = .5, y = maxVal * .78, "Maximum", adj = 0)
+  text(x = .5, y = maxVal * .71, "Arithmetic average", adj = 0)
+  text(x = .5, y = maxVal * .64, "Geometric average", adj = 0)
+```
+
+This graph unsurprisingly makes it obvious that the arithmetic and geometric
+averages give better predictions than using the minimum or maximum observed
+growth rate. It is however not obvious which of the two averages provide the
+most accurate predictions. Let's look at the graph with only the two averages.
+
+<br/>
+
+```{r pred4, fig.height = 10, fig.width = 10, fig.align = 'center', results = 'hold'}
+par(mfrow = c(2,2))
+for(i in 2:5) {
+  # Visualize
+  plot1(predAMean)
+  lines(spline(x = predAMean$year, y = predAMean[, i], n = 100), lwd = 2, lty = 'dashed', col = cols[4])
+  lines(spline(x = predGMean$year, y = predGMean[, i], n = 100), lwd = 2, lty = 'dashed', col = cols[6])
+  points(x = predAMean$year, y = predAMean[, i], pch = 1, cex = 2, col = cols[4])
+  points(x = predGMean$year, y = predGMean[, i], pch = 1, cex = 2, col = cols[6])
+  points(x = pop$year, y = pop[, i], pch = 20, cex = 1.5, col = cols[2])
+}
+  # Legend
+  maxVal <- roundUpNice(max(predAMean))
+  lines(x = c(0, .4), y = c(maxVal * .85, maxVal * .85), lwd = 2, lty = 'dashed', col = cols[4])
+  lines(x = c(0, .4), y = c(maxVal * .78, maxVal * .78), lwd = 2, lty = 'dashed', col = cols[6])
+  points(x = .2, y = maxVal * .92, pch = 20, cex = 1.5, col = cols[2])
+  points(x = .2, y = maxVal * .85, pch = 1, cex = 2, col = cols[4])
+  points(x = .2, y = maxVal * .78, pch = 1, cex = 2, col = cols[6])
+  text(x = .5, y = maxVal * .92, "Simulated data", adj = 0)
+  text(x = .5, y = maxVal * .85, "Arithmetic average", adj = 0)
+  text(x = .5, y = maxVal * .78, "Geometric average", adj = 0)
+```
+
+A visual inspection of the graphs lets us see that the geometric average
+provides predictions that are always lower than the arithmetic average, and
+that as we go farther in time, the predictions are providing more accurate
+predictions.
+
+
+## Simulated disturbances
+
+This model offers very little opportunity to test disturbances in any meaningful
+way. We mostly present it to start from the very basics. We can however take a
+look at how manipulating model parameters affects population trends.
+Simulated disturbances will increase in complexity as the models become more
+complex, but for now we will keep things as simple as possible considering the
+simplicity of the model presented.
+
+### Population size
+
+We can see that the initial population size greatly influences
+population size at the end of simulations even if $\lambda$ is constant:
+
+<br/>
+
+```{r N0, fig.height = 5, fig.width = 10, fig.align = 'center', results = 'hold'}
+popN0 <- data.frame(pop1 = geomMod(1, 3, 1:5),
+                    pop2 = geomMod(2, 3, 1:5),
+                    pop3 = geomMod(3, 3, 1:5),
+                    pop4 = geomMod(4, 3, 1:5),
+                    pop5 = geomMod(5, 3, 1:5),
+                    pop6 = geomMod(6, 3, 1:5),
+                    pop7 = geomMod(7, 3, 1:5))
+
+# Visualize
+cols <- gpuPalette("insileco")
+par(mfrow = c(1,2), mar = c(4,4,1,1))
+matplot(popN0, type = 'l', col = cols)
+matplot(popN0, type = 'l', log = 'y', col = cols)
+```
+
+### Growth rate
+
+Similarly, changing *per capita* growth rate greatly influences final
+population size:
+
+```{r lambda, fig.height = 5, fig.width = 10, fig.align = 'center', results = 'hold'}
+popN0 <- data.frame(pop1 = geomMod(1, .25, 1:5),
+                    pop2 = geomMod(1, .5, 1:5),
+                    pop3 = geomMod(1, .75, 1:5),
+                    pop4 = geomMod(1, 1, 1:5),
+                    pop5 = geomMod(1, 1.25, 1:5),
+                    pop6 = geomMod(1, 1.5, 1:5),
+                    pop7 = geomMod(1, 2, 1:5))
+
+# Visualize
+par(mfrow = c(1,2), mar = c(4,4,1,1))
+matplot(popN0, type = 'l', col = cols)
+matplot(popN0, type = 'l', log = 'y', col = cols)
+```
+
+As stated previously, this model is a good stepping stone toward more complex
+ecological models, which we will keep exploring in this post series. Stay tuned
+for the next post in the series!
+
+
+## References

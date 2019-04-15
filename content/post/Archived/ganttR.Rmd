@@ -1,0 +1,357 @@
+---
+title: Gantt charts in R
+author: [david]
+reviewer: [kevin]
+date: 2017-09-20
+tags: [R, time management, gantt]
+rpkgs: [graphics, tidyverse, RColorBrewer, kableExtra]
+draft: false
+estime: 15
+tweet: Gantt charts in R
+output:
+  blogdown::html_page:
+    fig_width: 3
+    dev: svg
+---
+
+
+
+```{r codeChunkSetUp, echo=FALSE}
+source('../../../static/Rscript/codeChunkSetUp.R')
+```
+
+<br/>
+
+## Gantt charts
+
+[Gantt charts](https://en.wikipedia.org/wiki/Gantt_chart) are a very useful way
+to organize projects into milestones and tasks visually. They are also dead
+useful when comes the time to create a timeline for a project, whether it be for
+a research project, field work or grant applications. I recently wanted to
+create one, but was unsatisfied by what was available out there in terms of
+visuals (although there are neat R examples, see [here](https://www.r-bloggers.com/gantt-charts-in-r-using-plotly/),
+[here](https://stackoverflow.com/questions/3550341/gantt-charts-with-r) and
+[here](https://davetang.org/muse/2017/02/03/gantt-chart-using-r/)). So I came up with my own!
+
+For those who might be interested only in generating charts without all the code,
+jump to the end, copy the `ganttR` function I created and Gantt away!
+
+<br/>
+
+## Initiate R
+
+```{r init, message = F, warnings = F}
+rm(list=ls())
+# R version
+sessionInfo()[[1]]$version.string
+
+# Packages required
+library(knitr)
+library(tidyverse)
+library(RColorBrewer)
+library(kableExtra)
+```
+
+<br/>
+
+## The code!
+
+I wanted to come up with something simple and visually appealing, so I created
+a figure that simply required the following elements: milestone, tasks, start
+date, due data and status.
+
+### Data
+
+<br/>
+
+```{r data}
+# Let's organize a fake manuscript project to generate the chart.
+Manuscript <- c('Research & readings','Data preparation','Analyses','Plan','Introduction','Methods','Results','Discussion','Conclusion','Preliminary version to co-authors')
+startDate <- c('2017-09-01','2017-09-14','2017-09-28','2017-09-21','2017-09-28','2017-09-14','2017-10-28','2017-11-14','2017-11-28','2017-12-11')
+dueDate <- c('2017-11-28','2017-09-28','2017-10-28','2017-09-28','2017-10-28','2017-10-28','2017-11-14','2017-11-28','2017-12-04','2017-12-11')
+status <- c('I','C','I','C','I','I','I','I','I','I')
+nTasks <- length(Manuscript)
+
+# Create the data frame.
+# In statuses, "I" and "C" would stand for "Incomplete" and "Complete", respectively
+df <- data.frame(milestones = rep('Manuscript', nTasks),
+                 tasks = Manuscript,
+                 startDate = as.Date(startDate),
+                 dueDate = as.Date(dueDate),
+                 status = status,
+                 stringsAsFactors = FALSE)
+
+kable(df, "html") %>%
+    kable_styling(full_width = F)
+```
+
+<br/>
+
+We can now create our Gantt chart!
+
+<br/>
+
+### The chart
+
+<br/>
+
+```{r singleGantt, fig.width = 10, fig.height = 4}
+# Let's first organize our graph in order of tasks startDate
+df <- arrange(df, desc(startDate))
+
+# We need a date range for which we wish to crete the graph.
+# Let's select the duration of the milestone
+dateRange <- c(min(df$startDate), max(df$dueDate))
+
+# We also need the number of elements to add to our graph.
+# It will be the number of tasks plus the number of milestones
+nameMilestones <- unique(df$milestones)
+nMilestones <- length(nameMilestones)
+nLines <- nTasks + nMilestones
+
+# We also need a date sequence that will be used as one of our axes
+# We select the date range divided into 7 days periods
+dateSeq <- seq.Date(dateRange[1], dateRange[2], by = 7)
+
+# Finally, we need a color palette for the project
+# We take three colors, the first will be for the milestones
+# The second will be for incomplete tasks
+# The third color will be for completed tasks
+cols <- c('#4f739d','#4f739dBB','#4f739d33')
+
+# Gantt chart
+par(family = "serif", mar = c(6,9,2,0))
+plot(x = 1, y = 1, col = 'transparent', xlim = dateRange, ylim = c(1,nLines), bty = "n",ann = FALSE, xaxt = "n",yaxt = "n",type = "n",bg = 'grey')
+
+# Add axes, tasks and milestones
+mtext(dateSeq, side = 1, at = dateSeq, las = 3, line = 1.5, cex = 0.75)
+axis(1, dateSeq, labels = F, line = 0.5)
+mtext(df$tasks, side = 2, at = 1:nrow(df), las = 1, line = 0, cex = 0.75)
+mtext(nameMilestones, side = 2, at = nrow(df)+1, las = 1, line = 8, font = 2, adj = 0, cex = 0.8)
+
+# Add tasks
+for(i in 1:nTasks) {
+    lines(c(i,i) ~ c(df$startDate[i], df$dueDate[i]), lwd = 6, col = if(df$status[i] == 'C') cols[3] else cols[2])
+}
+
+# Add milestone
+lines(c(nLines,nLines) ~ c(min(df$startDate), max(df$dueDate)), lwd = 8, col = cols[1])
+
+# Add today's date
+abline(v = as.Date(format(Sys.time(), format = "%Y-%m-%d")), lwd = 2, lty = 2)
+```
+
+<br/>
+
+### Multiple milestones
+
+Now Gantt charts are also useful to visualize and organize multiple projects
+together, so let's make this chart multi-milestony.
+
+<br/>
+
+```{r multiGantt, fig.width = 10}
+# We will simply duplicate the manuscript and do as though we are working on three consecutive manuscripts
+df2 <- df3 <- df
+df2$milestones <- 'Manuscript2'
+df3$milestones <- 'Manuscript3'
+df2[,c('startDate','dueDate')] <- df2[,c('startDate','dueDate')] + as.numeric(diff(dateRange))
+df3[,c('startDate','dueDate')] <- df3[,c('startDate','dueDate')] + as.numeric(diff(dateRange))*2
+df2$status <- df3$status <- rep('I',nTasks)
+dfM <- rbind(df, df2, df3)
+
+# ... and go through the process of setting up the elements needed for the chart
+# Let's start with the colors this time
+# We take three colors, the first will be for the milestones
+# The second will be for incomplete tasks
+# The third color will be for completed tasks
+nameMilestones <- unique(dfM$milestones)
+nMilestones <- length(nameMilestones)
+cols <- data.frame(milestones = nameMilestones,
+                   col = brewer.pal(nMilestones, "Dark2"),
+                   stringsAsFactors = F)
+
+# Let's organize our dataset to produce the graph
+dfMulti <- dfM %>%
+      group_by(milestones) %>% # group by milestones
+      summarise(startDate = min(startDate),
+                dueDate = max(dueDate)) %>% # Determine the beginning and end date of milestones
+      mutate(tasks = milestones, status = 'M') %>% # Give a name and a status
+      bind_rows(dfM) %>% # Bind milestones with tasks
+      mutate(lwd = ifelse(milestones == tasks, 8, 6)) %>% # Add line width for graph
+      left_join(cols, by = 'milestones') %>% # add colors
+      mutate(col = ifelse(status == 'I', paste0(col,'BB'), col)) %>% # change colors according to status
+      mutate(col = ifelse(status == 'C', paste0(col,'33'), col)) %>% # change colors according to status
+      mutate(cex = ifelse(status == 'M', 0.8, 0.75)) %>%
+      mutate(adj = ifelse(status == 'M', 0, 1)) %>%
+      mutate(line = ifelse(status == 'M', 8, 0.5)) %>%
+      mutate(font = ifelse(status == 'M', 2, 1)) %>%
+      arrange(milestones,desc(startDate),dueDate) # sort table
+
+# We need a date range for which we wish to crete the graph.
+# Let's select the duration of the milestone
+dateRange <- c(min(dfMulti$startDate), max(dfMulti$dueDate))
+
+# We also need a date sequence that will be used as one of our axes
+# We select the date range divided into 7 days periods
+dateSeq <- seq.Date(dateRange[1], dateRange[2], by = 7)
+
+
+# Gantt chart
+nLines <- nrow(dfMulti)
+par(family = "serif", mar = c(6,9,2,0))
+plot(x = 1, y = 1, col = 'transparent', xlim = dateRange, ylim = c(1,nLines), bty = "n",ann = FALSE, xaxt = "n",yaxt = "n",type = "n",bg = 'grey')
+mtext(dateSeq, side = 1, at = dateSeq, las = 3, line = 1.5, cex = 0.75)
+axis(1, dateSeq, labels = F, line = 0.5)
+
+for(i in 1:nLines) {
+    lines(c(i,i) ~ c(dfMulti$startDate[i],dfMulti$dueDate[i]),
+          lwd = dfMulti$lwd[i],
+          col = dfMulti$col[i])
+    mtext(dfMulti$tasks[i],
+          side = 2,
+          at = i,
+          las = 1,
+          adj = dfMulti$adj[i],
+          line = dfMulti$line[i],
+          cex = dfMulti$cex[i],
+          font = dfMulti$font[i])
+}
+
+abline(h = which(dfMulti$status == 'M') + 0.5, col = '#634d42')
+abline(v = as.Date(format(Sys.time(), format = "%Y-%m-%d")), lwd = 2, lty = 2)
+```
+
+<br/>
+
+## ganttR()
+
+Now that we have all the code, let's simply transform it into a reusable function. Let's also give it the choice to generate two types of graph: 1) all milestones and tasks or 2) only milestones.
+
+```{r, ganttR, fig.width = 10, warning = F}
+ganttR <- function(df, type = 'all') {
+    nameMilestones <- unique(df$milestones)
+    nMilestones <- length(nameMilestones)
+    rbPal <- colorRampPalette(c("#3fb3b2", "#ffdd55", "#c7254e", "#1b95e0", "#8555b4")) # Color palette
+    cols <- data.frame(milestones = nameMilestones,
+                       col = rbPal(nMilestones),
+                       stringsAsFactors = F)
+    cols <- cols[1:nMilestones, ]
+
+    # Let's organize our dataset to produce the graph
+    df <- df %>%
+          group_by(milestones) %>% # group by milestones
+          summarise(startDate = min(startDate),
+                    dueDate = max(dueDate)) %>% # Determine the beginning and end date of milestones
+          mutate(tasks = milestones, status = 'M') %>% # Give a name and a status
+          bind_rows(df) %>% # Bind milestones with tasks
+          mutate(lwd = ifelse(milestones == tasks, 8, 6)) %>% # Add line width for graph
+          left_join(cols, by = 'milestones') %>% # add colors
+          mutate(col = ifelse(status == 'I', paste0(col,'BB'), col)) %>% # change colors according to status
+          mutate(col = ifelse(status == 'C', paste0(col,'33'), col)) %>% # change colors according to status
+          mutate(cex = ifelse(status == 'M', 0.8, 0.75)) %>%
+          mutate(adj = ifelse(status == 'M', 0, 1)) %>%
+          mutate(line = ifelse(status == 'M', 8, 0.5)) %>%
+          mutate(font = ifelse(status == 'M', 2, 1)) %>%
+          arrange(milestones,desc(startDate),dueDate) # sort table
+
+    # We need a date range for which we wish to crete the graph.
+    # Let's select the duration of the milestone
+    dateRange <- c(min(df$startDate), max(df$dueDate))
+
+    # We also need a date sequence that will be used as one of our axes
+    # We select the date range divided into 7 days periods
+    # dateSeq <- seq.Date(dateRange[1], dateRange[2], by = 7)
+    forced_start <- as.Date(paste0(format(dateRange[1], "%Y-%m"), "-01"))
+    yEnd <- format(dateRange[2], "%Y")
+    mEnd <- as.numeric(format(dateRange[2], "%m")) + 1
+    if(mEnd == 13) {
+        yEnd <- as.numeric(yEnd) + 1
+        mEnd <- 1
+    }
+    forced_end <- as.Date(paste0(yEnd, "-", mEnd,"-01"))
+    dateSeq <- seq.Date(forced_start, forced_end, by = "month")
+    lab <- format(dateSeq, "%B")
+
+    # Gantt chart for 'all' type
+    if(type == 'all') {
+        nLines <- nrow(df)
+        par(family = "serif", mar = c(6,9,2,0))
+        plot(x = 1, y = 1, col = 'transparent', xlim = c(min(dateSeq), max(dateSeq)), ylim = c(1,nLines), bty = "n",ann = FALSE, xaxt = "n",yaxt = "n",type = "n",bg = 'grey')
+        mtext(lab[-length(lab)], side = 1, at = dateSeq[-length(lab)], las = 0, line = 1.5, cex = 0.75, adj = 0)
+        axis(1, dateSeq, labels = F, line = 0.5)
+        extra <- nLines * 0.03
+        for(i in seq(1,length(dateSeq-1), by = 2)) {
+            polygon(x = c(dateSeq[i],dateSeq[i+1],dateSeq[i+1],dateSeq[i]),
+                    y = c(1-extra,1-extra,nLines+extra,nLines+extra),
+                    border = 'transparent',
+                    col = '#f1f1f155')
+        }
+
+        for(i in 1:nLines) {
+            lines(c(i,i) ~ c(df$startDate[i],df$dueDate[i]),
+                  lwd = df$lwd[i],
+                  col = df$col[i])
+            mtext(df$tasks[i],
+                  side = 2,
+                  at = i,
+                  las = 1,
+                  adj = df$adj[i],
+                  line = df$line[i],
+                  cex = df$cex[i],
+                  font = df$font[i])
+        }
+
+        abline(h = which(df$status == 'M') + 0.5, col = '#634d42')
+        abline(v = as.Date(format(Sys.time(), format = "%Y-%m-%d")), lwd = 2, lty = 2)
+    }
+
+    # Gantt chart for 'milestones' only
+    if(type == 'milestones') {
+        nLines <- nMilestones
+        ms <- which(df$status == 'M')
+        par(family = "serif", mar = c(6,9,2,0))
+        plot(x = 1, y = 1, col = 'transparent', xlim = c(min(dateSeq), max(dateSeq)), ylim = c(1,nLines), bty = "n",ann = FALSE, xaxt = "n",yaxt = "n",type = "n",bg = 'grey')
+        mtext(lab[-length(lab)], side = 1, at = dateSeq[-length(lab)], las = 0, line = 1.5, cex = 0.75, adj = 0)
+        axis(1, dateSeq, labels = F, line = 0.5)
+        extra <- nLines * 0.03
+        for(i in seq(1,length(dateSeq-1), by = 2)) {
+            polygon(x = c(dateSeq[i],dateSeq[i+1],dateSeq[i+1],dateSeq[i]),
+                    y = c(1-extra,1-extra,nLines+extra,nLines+extra),
+                    border = 'transparent',
+                    col = '#f1f1f155')
+        }
+
+        for(i in 1:nLines) {
+            lines(c(i,i) ~ c(df$startDate[ms[i]],df$dueDate[ms[i]]),
+                  lwd = df$lwd[ms[i]],
+                  col = df$col[ms[i]])
+            mtext(df$tasks[ms[i]],
+                  side = 2,
+                  at = i,
+                  las = 1,
+                  adj = 1,
+                  line = 0.5,
+                  cex = df$cex[ms[i]],
+                  font = df$font[ms[i]])
+        }
+        abline(v = as.Date(format(Sys.time(), format = "%Y-%m-%d")), lwd = 2, lty = 2)
+    }
+}
+
+# Single milestone
+ganttR(df)
+
+# Multiple milestones
+ganttR(dfM)
+
+# Milestones only
+ganttR(dfM, 'milestones')
+```
+
+<details>
+<summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
+```{r sessionInfo}
+sessionInfo()
+```
+</details>

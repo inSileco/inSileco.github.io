@@ -1,0 +1,839 @@
+---
+title: Efficiency of spatial intersects in R
+author: [david, remi]
+reviewer: [kevin]
+date: 2017-09-12
+tags: [R, spatial, intersection]
+rpkgs: [sf, sp, rgeos]
+draft: false
+tweet: R spatial intersects efficiency
+output:
+  rmarkdown::html_page:
+    toc: true
+    toc_float:
+      collapsed: false
+    fig_width: 3
+    dev: svg
+---
+
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+
+
+<p><br/></p>
+<div id="intersects-r" class="section level2">
+<h2>Intersects &amp; R</h2>
+<p>We are increasingly performing spatial analyses in R. The replicability and the
+efficiency of programming languages is much more appealing than using user
+friendly softwares like <a href="https://www.arcgis.com/features/index.html">ArcGIS</a>,
+even though you can still code your way through analyses when using those
+softwares (latter versions of <a href="http://qgis.org/fr/site/">QGIS</a> do a fantastic
+job in that regard!). The performance of tools available for spatial analyses in
+R is however not completely certain.</p>
+<p>In this post, we compare four different methods to perform spatial intersects
+between objects in R, from three different packages:</p>
+<ol style="list-style-type: decimal">
+<li><code>raster::intersect</code></li>
+<li><code>rgeos::gIntersects</code></li>
+<li><code>rgeos::gIntersection</code></li>
+<li><code>sf::st_intersects</code></li>
+<li><code>sf::st_intersection</code></li>
+</ol>
+<p>More specifically, we test how these methods fare when performing binary
+(TRUE/FALSE) and zonal or aerial intersects. Keep in mind, not all methods
+can be used for both binary and zonal intersects:</p>
+<p><br/></p>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+Function
+</th>
+<th style="text-align:left;">
+Binary
+</th>
+<th style="text-align:left;">
+Zonal
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+<code>raster::intersect</code>
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>rgeos::gIntersects</code>
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>rgeos::gIntersection</code>
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>sf::st_intersects</code>
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+<code>sf::st_intersection</code>
+</td>
+<td style="text-align:left;">
+X
+</td>
+<td style="text-align:left;">
+X
+</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<p>Obviously, if you mean to perform binary intersects only, the binary functions
+make more sense as they are built to include less calculations. We nonetheless
+compare all the functions together for the sake of comparison in this post.</p>
+<p><br/></p>
+</div>
+<div id="initiate-r" class="section level2">
+<h2>Initiate R</h2>
+<pre class="r"><code># R version
+sessionInfo()[[1L]]$version.string
+#R&gt; [1] &quot;R version 3.5.2 (2018-12-20)&quot;
+#--
+rm(list=ls())
+library(sf)
+library(rgdal)
+library(sp)
+library(raster)
+library(rgeos)
+library(magrittr)
+library(knitr)
+library(kableExtra)
+##--
+opts_chunk$set(fig.align=&#39;center&#39;)
+##--
+# Empty plot function
+eplot &lt;- function(x = 1, y = 1, xmin = 0, xmax = 1, ymin = 0, ymax = 1) {
+  plot(x = x,y = y,bty = &quot;n&quot;,ann = FALSE,xaxt = &quot;n&quot;,yaxt = &quot;n&quot;,type = &quot;n&quot;,bg = &#39;grey&#39;,ylim = c(ymin,ymax),xlim = c(xmin,xmax))
+}</code></pre>
+<p>Version of packages that have been used to build this post and are herein discussed:</p>
+<pre class="r"><code>packageVersion(&quot;raster&quot;)
+packageVersion(&quot;rgeos&quot;)
+packageVersion(&quot;sf&quot;)
+#R&gt; [1] &#39;2.8.19&#39;
+#R&gt; [1] &#39;0.4.2&#39;
+#R&gt; [1] &#39;0.7.3&#39;</code></pre>
+<p><br/></p>
+</div>
+<div id="generate-spatial-objects-for-testing" class="section level2">
+<h2>Generate spatial objects for testing</h2>
+<p>We start be generating random spatial object in space. For the record,
+the area selected is within the St. Lawrence estuary in eastern Canada
+(see <a href="https://insileco.github.io/2017/06/19/online-ecology---individual-species-description/">online ecology series</a>),
+although the actual location really does not matter for this post!</p>
+<p><br/></p>
+</div>
+<div id="grid" class="section level2">
+<h2>Grid</h2>
+<p>We use a regular grid to intersect vectorized data, <em>i.e.</em> points and polygons
+for this post. This simulate the use of a grid used to extract environmental
+data (biotic and/or abiotic) from multiple sources to characterize a study area.</p>
+<p><br/></p>
+<pre class="r"><code># Projection in lambers
+projSpat &lt;- &quot;+proj=lcc +lat_1=46 +lat_2=60 +lat_0=44 +lon_0=-68.5 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs +ellps=GRS80 +towgs84=0,0,0&quot;
+
+# Bounding box
+latmax &lt;- 625000
+latmin &lt;- 585000
+lonmax &lt;- 150000
+lonmin &lt;- 100000
+
+# Create a spatial bounding box for the area of interest using the &#39;sp&#39; package:
+bb &lt;- cbind(c(lonmin,lonmax,lonmax,lonmin,lonmin),
+                   c(latmin,latmin,latmax,latmax,latmin)) %&gt;%
+      Polygon() %&gt;% list() %&gt;%
+      Polygons(ID = &#39;ID1&#39;) %&gt;% list() %&gt;%
+      SpatialPolygons(proj4string = CRS(projSpat))
+
+
+# Create spatial grid that will be used for intersects
+A &lt;- 5*1000000 # Surface of cells in m^2 (area in km^2 * 1000000)
+cellsize &lt;- sqrt(2*A)/3^(1/4) # value of the small diagonal
+grid &lt;- sp::spsample(bb,type=&quot;hexagonal&quot;,cellsize=cellsize, offset=c(0,0)) %&gt;% # Points for a hexagonal grid
+        sp::HexPoints2SpatialPolygons() # creating polygons
+
+# We now have a grid of polygons to work with!
+plot(grid)
+lines(bb, col = &#39;blue&#39;, lwd = 2)</code></pre>
+<p><img src="/post/Archived/Rintersets/RIntersects_files/figure-html/grid-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>
+# We need this grid in `sp` and `sf` usable formats
+gridSP &lt;- grid
+gridSF &lt;- sf::st_as_sf(grid)
+class(gridSP)
+#R&gt; [1] &quot;SpatialPolygons&quot;
+#R&gt; attr(,&quot;package&quot;)
+#R&gt; [1] &quot;sp&quot;
+class(gridSF)
+#R&gt; [1] &quot;sf&quot;         &quot;data.frame&quot;</code></pre>
+<p><br/></p>
+</div>
+<div id="points-and-polygons" class="section level2">
+<h2>Points and Polygons</h2>
+<p>Now we generate random points within the bounding box to test the intersects.
+This is done for <code>1, 10, 50, 100, 250, 500, 1000, 10000</code> points. Then, to get
+all data required to perform the tests, we also need to create polygons from
+the point data.</p>
+<p><br/></p>
+<pre class="r"><code># Number of samples
+samp &lt;- c(1, 10, 50, 100, 250, 500, 1000, 10000)
+nSamp &lt;- length(samp)
+
+# Names of points samples
+sampNames &lt;- paste0(&#39;Pt&#39;,samp)
+sampNames
+#R&gt; [1] &quot;Pt1&quot;     &quot;Pt10&quot;    &quot;Pt50&quot;    &quot;Pt100&quot;   &quot;Pt250&quot;   &quot;Pt500&quot;   &quot;Pt1000&quot; 
+#R&gt; [8] &quot;Pt10000&quot;
+
+# Random points for all samples
+for(i in 1:nSamp) {
+    assign(x = sampNames[i],
+           value = data.frame(lon = runif(n = samp[i], min = lonmin, max = lonmax),
+                              lat = runif(n = samp[i], min = latmin, max = latmax)))
+}
+
+# We now have nSamp new objects with randomly generated coordinates
+ls()
+#R&gt;  [1] &quot;A&quot;         &quot;bb&quot;        &quot;cellsize&quot;  &quot;eplot&quot;     &quot;grid&quot;     
+#R&gt;  [6] &quot;gridSF&quot;    &quot;gridSP&quot;    &quot;i&quot;         &quot;latmax&quot;    &quot;latmin&quot;   
+#R&gt; [11] &quot;lonmax&quot;    &quot;lonmin&quot;    &quot;nSamp&quot;     &quot;projSpat&quot;  &quot;Pt1&quot;      
+#R&gt; [16] &quot;Pt10&quot;      &quot;Pt100&quot;     &quot;Pt1000&quot;    &quot;Pt10000&quot;   &quot;Pt250&quot;    
+#R&gt; [21] &quot;Pt50&quot;      &quot;Pt500&quot;     &quot;res1&quot;      &quot;res2&quot;      &quot;samp&quot;     
+#R&gt; [26] &quot;sampNames&quot;
+
+# Let&#39;s now create spatial objects with those coordinates for use with the `sp` package
+sampNamesSP &lt;- paste0(sampNames, &#39;SP&#39;)
+for(i in 1:nSamp) {
+    assign(
+      x = sampNamesSP[i],
+      value = SpatialPoints(coords = get(sampNames[i]), proj4string=CRS(projSpat))
+    )
+}
+
+# Visualize them
+par(mfrow = c(3,3))
+for(i in 1:nSamp) {
+    par(mar = c(0,0,0,0))
+    plot(bb, lwd = 2)
+    points(get(sampNamesSP[i]), cex = 0.75, col = &#39;transparent&#39;, bg = &#39;#1e6b7955&#39;, pch = 21)
+}</code></pre>
+<p><img src="/post/Archived/Rintersets/RIntersects_files/figure-html/randomData-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Now we generate polygons from the point data using the `rgeos::gBuffer`,
+# see `sf::st_buffer` is the equivalent for the `sf` package
+sampNamesPoly &lt;- paste0(&#39;Poly&#39;,samp)
+sampNamesSPPoly &lt;- paste0(sampNamesPoly, &#39;SP&#39;)
+for(i in 1:nSamp) {
+    assign(x = sampNamesSPPoly[i],
+           value = rgeos::gBuffer(get(sampNamesSP[i]), byid = T, width = 2000))
+}
+
+# Visualize them
+par(mfrow = c(3,3))
+for(i in 1:nSamp) {
+    par(mar = c(0,0,0,0))
+    plot(bb, lwd = 2)
+    plot(get(sampNamesSPPoly[i]), border = &#39;transparent&#39;, col = &#39;#1e6b7955&#39;, add = T)
+}</code></pre>
+<p><img src="/post/Archived/Rintersets/RIntersects_files/figure-html/randomData2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># Transform points and polygons for use with the `sf` package
+sampNamesSF &lt;- paste0(sampNames, &#39;SF&#39;) # for points
+sampNamesSFPoly &lt;- paste0(sampNamesPoly, &#39;SF&#39;) # for polygons
+
+for(i in 1:nSamp) {
+    assign(x = sampNamesSF[i],
+           sf::st_as_sf(get(sampNamesSP[i]))) # points
+    assign(x = sampNamesSFPoly[i],
+           sf::st_as_sf(get(sampNamesSPPoly[i]))) # polygons
+}</code></pre>
+<p><br/></p>
+</div>
+<div id="benchmarking" class="section level2">
+<h2>Benchmarking</h2>
+<p>Now that the data is ready for use, we can perform the tests! But first, let’s
+take a quick look at the type of results that are returned by each function.</p>
+<p><br/></p>
+<div id="points-intersections" class="section level3">
+<h3>Points intersections</h3>
+<p>First, we will test the intersects only with the points.</p>
+<p><br/></p>
+<pre class="r"><code>res1 &lt;- data.frame(n = samp,
+                   raster_intersect = numeric(nSamp),
+                   rgeos_gIntersects = numeric(nSamp),
+                   rgeos_gIntersection = numeric(nSamp),
+                   sf_st_intersects = numeric(nSamp),
+                   sf_st_intersection = numeric(nSamp))
+
+for(i in 1:nSamp) {
+    res1$raster_intersect[i] &lt;- system.time(raster::intersect(gridSP, get(sampNamesSP[i])))[&#39;elapsed&#39;]
+    res1$rgeos_gIntersects[i] &lt;- system.time(rgeos::gIntersects(gridSP, get(sampNamesSP[i]), byid = T))[&#39;elapsed&#39;]
+    res1$rgeos_gIntersection[i] &lt;- system.time(rgeos::gIntersection(gridSP, get(sampNamesSP[i]), byid = T))[&#39;elapsed&#39;]
+    res1$sf_st_intersects[i] &lt;- system.time(sf::st_intersects(gridSF, get(sampNamesSF[i])))[&#39;elapsed&#39;]
+    res1$sf_st_intersection[i] &lt;- system.time(sf::st_intersection(gridSF, get(sampNamesSF[i])))[&#39;elapsed&#39;]
+}</code></pre>
+<pre class="r"><code># Visualize results table
+knitr::kable(res1, &quot;html&quot;, digits = 2) %&gt;% kable_styling(full_width = F)</code></pre>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+raster_intersect
+</th>
+<th style="text-align:right;">
+rgeos_gIntersects
+</th>
+<th style="text-align:right;">
+rgeos_gIntersection
+</th>
+<th style="text-align:right;">
+sf_st_intersects
+</th>
+<th style="text-align:right;">
+sf_st_intersection
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+250
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.50
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+500
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+1.02
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1000
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+2.27
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10000
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+23.07
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.59
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>
+# Visualize results
+cols &lt;- c(&quot;#3fb3b2&quot;, &quot;#484f42&quot;, &quot;#ffdd55&quot;, &quot;#c7254e&quot;, &quot;#1b95e0&quot;)
+layout(matrix(c(1,2), ncol =2), widths = c(5,2), heights = 3)
+par(mar = c(4,4,1,1), family = &quot;serif&quot;, las=1)
+#
+plot(res1$raster_intersect ~ res1$n, type = &#39;l&#39;, lwd = 2, col = cols[1], ylim = c(0,max(res1[,2:6])), xlab = &#39;Number of points&#39;, ylab = &#39;Time (s)&#39;)
+lines(res1$rgeos_gIntersects ~ res1$n, lwd = 2, col = cols[2])
+lines(res1$rgeos_gIntersection ~ res1$n, lwd = 2, col = cols[3])
+lines(res1$sf_st_intersects ~ res1$n, lwd = 2, col = cols[4])
+lines(res1$sf_st_intersection ~ res1$n, lwd = 2, col = cols[5])
+# Legend
+par(mar = c(0,0,0,0), family = &quot;serif&quot;, las = 1)
+eplot()
+legend(x = &#39;center&#39;, legend = as.character(colnames(res1)[-1]), bty = &#39;n&#39;, lty = 1, col = cols, seg.len = 2, cex = 0.8, title = expression(bold(&#39;Fonctions&#39;)))</code></pre>
+<p><img src="/post/Archived/Rintersets/RIntersects_files/figure-html/ptIntersect2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>
+# Visualize results without gIntersection
+layout(matrix(c(1,2), ncol =2), widths = c(5,2), heights = 3)
+par(mar = c(4,4,1,1), family = &quot;serif&quot;, las = 1)
+#
+plot(res1$raster_intersect ~ res1$n, type = &#39;l&#39;, lwd = 2, col = cols[1], ylim = c(0,max(res1[,c(2,3,5,6)])), xlab = &#39;Number of points&#39;, ylab = &#39;Time (s)&#39;)
+lines(res1$rgeos_gIntersects ~ res1$n, lwd = 2, col = cols[2])
+lines(res1$sf_st_intersects ~ res1$n, lwd = 2, col = cols[4])
+lines(res1$sf_st_intersection ~ res1$n, lwd = 2, col = cols[5])
+# Legend
+par(mar = c(0,0,0,0), family = &quot;serif&quot;)
+eplot()
+legend(x = &#39;center&#39;, legend = as.character(colnames(res1)[-c(1,4)]), bty = &#39;n&#39;, lty = 1, col = cols[-3], seg.len = 2, cex = 0.8, title = expression(bold(&#39;Fonctions&#39;)))</code></pre>
+<p><img src="/post/Archived/Rintersets/RIntersects_files/figure-html/ptIntersect2-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><br/></p>
+<p>In this analysis <code>rgeos::gIntersection</code> is clearly much less efficient than the
+alternative options. Using <code>raster::intersect</code>, <code>rgeos::gIntersects</code>,
+<code>sf::st_intersects</code> or <code>sf::st_intersection</code> significantly decreases calculation
+time, with <code>sf::st_intersects</code> proving to be the most efficient option.</p>
+<p><br/></p>
+</div>
+<div id="polygons-intersections" class="section level3">
+<h3>Polygons intersections</h3>
+<p>Now let’s take a look at intersects using polygons only.</p>
+<p><br/></p>
+<pre class="r"><code>res2 &lt;- data.frame(n = samp,
+                   raster_intersect = numeric(nSamp),
+                   rgeos_gIntersects = numeric(nSamp),
+                   rgeos_gIntersection = numeric(nSamp),
+                   sf_st_intersects = numeric(nSamp),
+                   sf_st_intersection = numeric(nSamp))
+
+for(i in 1:nSamp) {
+    res2$raster_intersect[i] &lt;- system.time(raster::intersect(gridSP, get(sampNamesSPPoly[i])))[&#39;elapsed&#39;]
+    res2$rgeos_gIntersects[i] &lt;- system.time(rgeos::gIntersects(gridSP, get(sampNamesSP[i]), byid = T))[&#39;elapsed&#39;]
+    res2$rgeos_gIntersection[i] &lt;- system.time(rgeos::gIntersection(gridSP, get(sampNamesSPPoly[i]), byid = T))[&#39;elapsed&#39;]
+    res2$sf_st_intersects[i] &lt;- system.time(sf::st_intersects(gridSF, get(sampNamesSFPoly[i])))[&#39;elapsed&#39;]
+    res2$sf_st_intersection[i] &lt;- system.time(sf::st_intersection(gridSF, get(sampNamesSFPoly[i])))[&#39;elapsed&#39;]
+}</code></pre>
+<pre class="r"><code># Visualize results table
+knitr::kable(res2, &quot;html&quot;, digits = 2) %&gt;% kable_styling(full_width = F)</code></pre>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:right;">
+n
+</th>
+<th style="text-align:right;">
+raster_intersect
+</th>
+<th style="text-align:right;">
+rgeos_gIntersects
+</th>
+<th style="text-align:right;">
+rgeos_gIntersection
+</th>
+<th style="text-align:right;">
+sf_st_intersects
+</th>
+<th style="text-align:right;">
+sf_st_intersection
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+100
+</td>
+<td style="text-align:right;">
+0.39
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.36
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+250
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+500
+</td>
+<td style="text-align:right;">
+1.95
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+1.70
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+0.47
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+1000
+</td>
+<td style="text-align:right;">
+3.86
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+3.51
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.97
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+10000
+</td>
+<td style="text-align:right;">
+41.67
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+<td style="text-align:right;">
+40.37
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+8.04
+</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>
+# Visualize results
+layout(matrix(c(1,2), ncol =2), widths = c(5,2), heights = 3)
+par(mar = c(4,4,1,1), las =1, family = &quot;serif&quot;)
+##
+plot(res2$raster_intersect ~ res2$n, type = &#39;l&#39;, lwd = 2, col = cols[1], ylim = c(0,max(res2[,2:6])), xlab = &#39;Number of polygons&#39;, ylab = &#39;Time (s)&#39;)
+lines(res2$rgeos_gIntersects ~ res1$n, lwd = 2, col = cols[2])
+lines(res2$rgeos_gIntersection ~ res2$n, lwd = 2, col = cols[3])
+lines(res2$sf_st_intersects ~ res2$n, lwd = 2, col = cols[4])
+lines(res2$sf_st_intersection ~ res2$n, lwd = 2, col = cols[5])
+# Legend
+par(mar = c(0,0,0,0), family = &quot;serif&quot;)
+eplot()
+legend(x = &#39;center&#39;, legend = as.character(colnames(res2)[-1]), bty = &#39;n&#39;, lty = 1, col = cols, seg.len = 2, cex = 0.8, title = expression(bold(&#39;Fonctions&#39;)))</code></pre>
+<p><img src="/post/Archived/Rintersets/RIntersects_files/figure-html/polyIntersect2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>
+# Visualize results without gIntersection
+layout(matrix(c(1,2), ncol =2), widths = c(5,2), heights = 3)
+par(mar = c(4,4,1,1), family = &quot;serif&quot;, las = 1)
+#
+plot(res2$rgeos_gIntersects ~ res2$n, type = &#39;l&#39;, lwd = 2, col = cols[2], ylim = c(0,max(res2[,c(3,5,6)])), xlab = &#39;Number of points&#39;, ylab = &#39;Time (s)&#39;)
+lines(res2$sf_st_intersects ~ res2$n, lwd = 2, col = cols[4])
+lines(res2$sf_st_intersection ~ res2$n, lwd = 2, col = cols[5])
+# Legend
+par(mar = c(0,0,0,0), family = &quot;serif&quot;)
+eplot()
+legend(x = &#39;center&#39;, legend = as.character(colnames(res1)[-c(1,2,4)]), bty = &#39;n&#39;, lty = 1, col = cols[-c(1,3)], seg.len = 2, cex = 0.8, title = expression(bold(&#39;Fonctions&#39;)))</code></pre>
+<p><img src="/post/Archived/Rintersets/RIntersects_files/figure-html/polyIntersect2-2.png" width="672" style="display: block; margin: auto;" /></p>
+<p><br/></p>
+<p>We see here that <code>rgeos::gIntersects</code>, <code>sf::st_intersects</code>, <code>sf::st_intersection</code>
+are far more efficient when dealing with polygons only intersects, with
+<code>rgeos::gIntersects</code> the most efficient option. <code>raster::intersects</code> loses its
+previous efficiency, while the efficiency of <code>rgeos::gIntersection</code> decreases
+even further.</p>
+<p><br/></p>
+</div>
+</div>
+<div id="concluding-remarks" class="section level2">
+<h2>Concluding remarks</h2>
+<p>Et voilà! It is obvious from these simulations that the <code>sf</code> package overall
+provides the most efficient options to perform spatial intersects in R.
+<code>rgeos</code> is also very efficient when it comes to binary intersects, especially
+with polygons on polygons intersects where it edges <code>st_intersects</code> by
+decreasing calculation time in half.</p>
+<p>Our recommendation: use <code>sf::st_intersects</code> for binary intersects and
+use <code>sf::st_intersection</code> for zonal intersects. However, be aware that the <code>sf</code>
+package evolves very rapidly and functions are likely to be modified,
+although one would hope that efficiency decrease will not be the price of
+further development.</p>
+<p>If you wish to stick with the older packages, then binary intersects could be
+done quite efficiently, but if you need zonal intersects, we recommend that you
+start considering changing your ways!</p>
+<p><br/></p>
+<details>
+<p><summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary></p>
+<pre class="r"><code>sessionInfo()
+#R&gt; R version 3.5.2 (2018-12-20)
+#R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
+#R&gt; Running under: Debian GNU/Linux buster/sid
+#R&gt; 
+#R&gt; Matrix products: default
+#R&gt; BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
+#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.5.so
+#R&gt; 
+#R&gt; locale:
+#R&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+#R&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+#R&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+#R&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#R&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+#R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#R&gt; 
+#R&gt; attached base packages:
+#R&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#R&gt; 
+#R&gt; other attached packages:
+#R&gt;  [1] rgeos_0.4-2      raster_2.8-19    rgdal_1.4-3      sp_1.3-1        
+#R&gt;  [5] sf_0.7-3         kableExtra_1.1.0 knitr_1.22       magrittr_1.5    
+#R&gt;  [9] usethis_1.4.0    devtools_2.0.2  
+#R&gt; 
+#R&gt; loaded via a namespace (and not attached):
+#R&gt;  [1] xfun_0.5          remotes_2.0.2     lattice_0.20-38  
+#R&gt;  [4] colorspace_1.4-0  testthat_2.0.1    htmltools_0.3.6  
+#R&gt;  [7] viridisLite_0.3.0 yaml_2.2.0        rlang_0.3.1      
+#R&gt; [10] pkgbuild_1.0.2    e1071_1.7-0.1     pillar_1.3.1     
+#R&gt; [13] glue_1.3.0        withr_2.1.2       DBI_1.0.0        
+#R&gt; [16] sessioninfo_1.1.1 stringr_1.4.0     munsell_0.5.0    
+#R&gt; [19] blogdown_0.11     rvest_0.3.2       codetools_0.2-16 
+#R&gt; [22] memoise_1.1.0     evaluate_0.13     callr_3.1.1      
+#R&gt; [25] ps_1.3.0          class_7.3-15      highr_0.7        
+#R&gt; [28] Rcpp_1.0.0        readr_1.3.1       backports_1.1.3  
+#R&gt; [31] scales_1.0.0      classInt_0.3-1    desc_1.2.0       
+#R&gt; [34] pkgload_1.0.2     webshot_0.5.1     fs_1.2.6         
+#R&gt; [37] hms_0.4.2         digest_0.6.18     stringi_1.4.3    
+#R&gt; [40] bookdown_0.9.2    processx_3.2.1    rprojroot_1.3-2  
+#R&gt; [43] grid_3.5.2        cli_1.0.1         tools_3.5.2      
+#R&gt; [46] tibble_2.1.1      crayon_1.3.4      pkgconfig_2.0.2  
+#R&gt; [49] xml2_1.2.0        prettyunits_1.0.2 assertthat_0.2.0 
+#R&gt; [52] rmarkdown_1.12    httr_1.4.0        rstudioapi_0.9.0 
+#R&gt; [55] R6_2.4.0          units_0.6-2       compiler_3.5.2</code></pre>
+</details>
+</div>
