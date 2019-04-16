@@ -9,8 +9,8 @@ draft: true
 tweet: "Disturbance Ecology Series - Geometric Growth"
 estime: 15
 relativeurls: true
-bibliography: [../../../static/bib/inSilecoRef.bib]
-csl: [../../../static/bib/nature.csl]
+bibliography: [../../../../static/bib/inSilecoRef.bib]
+csl: [../../../../static/bib/nature.csl]
 link-citations: yes
 navposts:
   prev: disturbanceEcology
@@ -20,9 +20,9 @@ navposts:
 
 
 
-```{r bibSetUp, echo=FALSE}
-source('../../../static/Rscript/bibSetUp.R')
-source('../../../static/Rscript/codeChunkSetUp.R')
+```{r bibSetUp, include = FALSE}
+source('../../../../static/Rscript/bibSetUp.R')
+source('../../codeChunkSetUp.R')
 ```
 
 `r htmltools::HTML("{{< distecolintro >}}")`

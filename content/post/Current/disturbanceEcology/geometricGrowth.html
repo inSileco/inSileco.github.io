@@ -9,8 +9,8 @@ draft: true
 tweet: "Disturbance Ecology Series - Geometric Growth"
 estime: 15
 relativeurls: true
-bibliography: [../../../static/bib/inSilecoRef.bib]
-csl: [../../../static/bib/nature.csl]
+bibliography: [../../../../static/bib/inSilecoRef.bib]
+csl: [../../../../static/bib/nature.csl]
 link-citations: yes
 navposts:
   prev: disturbanceEcology
@@ -84,7 +84,7 @@ we can then predict population size for every subsequent year:</p>
   \nonumber N_{t+2} &amp;=&amp; 3N_{t+1} = 3(3N_t) = 3^2N_t = 9 \\
   \nonumber N_{t+3} &amp;=&amp; 3N_{t+2} = 3(3^2N_t) = 3^3N_t = 27 \\
 \end{eqnarray}\]</span></p>
-<p><img src="/post/disturbanceEcology/geometricGrowth_files/figure-html/example1-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="/post/Current/disturbanceEcology/geometricGrowth_files/figure-html/example1-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>Generalizing the growth rates and time parameters gives us the
 formula for the discrete geometric model to evaluate population size
 at any time:</p>
@@ -106,7 +106,7 @@ foster a constant and finite amount of offsprings at every time step.
   \nonumber \lambda = 1 &amp; \rightarrow &amp; N \text{ is constant} \\
   \nonumber \lambda &lt; 1 &amp; \rightarrow &amp; N \text{ decreases}
 \end{eqnarray}\]</span></p>
-<p><img src="/post/disturbanceEcology/geometricGrowth_files/figure-html/lambdaDec-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="/post/Current/disturbanceEcology/geometricGrowth_files/figure-html/lambdaDec-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p><br/></p>
 </div>
 <div id="simulated-ecology" class="section level2">
@@ -160,7 +160,7 @@ pop &lt;- data.frame(year = 0:nt,
 
 plot1(pop)
 points(x = pop$year, y = pop$pop, pch = 20, cex = 1.5, col = cols[2])</code></pre>
-<p><img src="/post/disturbanceEcology/geometricGrowth_files/figure-html/dataSim-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="/post/Current/disturbanceEcology/geometricGrowth_files/figure-html/dataSim-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>With this data in hand, we can evaluate the rate of increase from one year to the next,
 <em>e.g.</em> by dividing <span class="math inline">\(N_1 / N_0 = 3 / 1 = 3\)</span>. This is the <span class="math inline">\(\lambda\)</span> for our model.
 We can then use this, with <span class="math inline">\(N_0 = 10\)</span>, to model population size and make predictions
@@ -174,7 +174,7 @@ plot1(pred)
 lines(spline(x = pred$year, y = pred$pop, n = 100), lty = &#39;dashed&#39;, col = cols[4])
 points(x = pred$year, y = pred$pop, pch = 1, cex = 2, col = cols[4])
 points(x = pop$year, y = pop$pop, pch = 20, cex = 1.5, col = cols[2])</code></pre>
-<p><img src="/post/disturbanceEcology/geometricGrowth_files/figure-html/predict-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><img src="/post/Current/disturbanceEcology/geometricGrowth_files/figure-html/predict-1.png" width="480" style="display: block; margin: auto;" /></p>
 <p>In this first example, we obviously obtain a perfect match between model
 projections and the simulated population because we simulated a population with
 geometric (<em>i.e.</em> constant) growth rate. This is however rarely (read <em>never</em>)
@@ -225,7 +225,7 @@ rates
 par(mfrow = c(1,2), mar = c(4,4,1,1))
 matplot(pop[, 2:5], type = &#39;l&#39;, col = cols, lwd = 1.25, ylab = &#39;Population size&#39;)
 matplot(rates, type = &#39;l&#39;, col = cols, lwd = 1.25, ylab = &#39;Rates&#39;)</code></pre>
-<p><img src="/post/disturbanceEcology/geometricGrowth_files/figure-html/growthRates-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/post/Current/disturbanceEcology/geometricGrowth_files/figure-html/growthRates-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p><strong><em>Arithmetic average</em></strong></p>
 <p>The goal then becomes to find a <span class="math inline">\(\lambda\)</span> value that allows us to model the growth
 of those populations using a discrete density independent growth model. The first
@@ -280,7 +280,7 @@ for(i in 2:5) {
   text(x = 0.5, y = maxVal * .85, &quot;Minimum&quot;, adj = 0)
   text(x = 0.5, y = maxVal * .78, &quot;Maximum&quot;, adj = 0)
   text(x = 0.5, y = maxVal * .71, &quot;Arithmetic average&quot;, adj = 0)</code></pre>
-<p><img src="/post/disturbanceEcology/geometricGrowth_files/figure-html/pred2-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/post/Current/disturbanceEcology/geometricGrowth_files/figure-html/pred2-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>While useful, the use of the arithmetic average can lead to erroneous results.
 Following the example from Stevens 2009<span class="citation"><sup><a href="#ref-stevens_2009">1</a></sup></span> on page 11, let’s
 imagine a population with <span class="math inline">\(N_0 = 100\)</span>, annual growth rate <span class="math inline">\(R_1 = 0.5\)</span> and
@@ -354,7 +354,7 @@ for(i in 2:5) {
   text(x = .5, y = maxVal * .78, &quot;Maximum&quot;, adj = 0)
   text(x = .5, y = maxVal * .71, &quot;Arithmetic average&quot;, adj = 0)
   text(x = .5, y = maxVal * .64, &quot;Geometric average&quot;, adj = 0)</code></pre>
-<p><img src="/post/disturbanceEcology/geometricGrowth_files/figure-html/pred3-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/post/Current/disturbanceEcology/geometricGrowth_files/figure-html/pred3-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>This graph unsurprisingly makes it obvious that the arithmetic and geometric
 averages give better predictions than using the minimum or maximum observed
 growth rate. It is however not obvious which of the two averages provide the
@@ -380,7 +380,7 @@ for(i in 2:5) {
   text(x = .5, y = maxVal * .92, &quot;Simulated data&quot;, adj = 0)
   text(x = .5, y = maxVal * .85, &quot;Arithmetic average&quot;, adj = 0)
   text(x = .5, y = maxVal * .78, &quot;Geometric average&quot;, adj = 0)</code></pre>
-<p><img src="/post/disturbanceEcology/geometricGrowth_files/figure-html/pred4-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/post/Current/disturbanceEcology/geometricGrowth_files/figure-html/pred4-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>A visual inspection of the graphs lets us see that the geometric average
 provides predictions that are always lower than the arithmetic average, and
 that as we go farther in time, the predictions are providing more accurate
@@ -413,7 +413,7 @@ cols &lt;- gpuPalette(&quot;insileco&quot;)
 par(mfrow = c(1,2), mar = c(4,4,1,1))
 matplot(popN0, type = &#39;l&#39;, col = cols)
 matplot(popN0, type = &#39;l&#39;, log = &#39;y&#39;, col = cols)</code></pre>
-<p><img src="/post/disturbanceEcology/geometricGrowth_files/figure-html/N0-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/post/Current/disturbanceEcology/geometricGrowth_files/figure-html/N0-1.png" width="960" style="display: block; margin: auto;" /></p>
 </div>
 <div id="growth-rate" class="section level3">
 <h3>Growth rate</h3>
@@ -431,7 +431,7 @@ population size:</p>
 par(mfrow = c(1,2), mar = c(4,4,1,1))
 matplot(popN0, type = &#39;l&#39;, col = cols)
 matplot(popN0, type = &#39;l&#39;, log = &#39;y&#39;, col = cols)</code></pre>
-<p><img src="/post/disturbanceEcology/geometricGrowth_files/figure-html/lambda-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p><img src="/post/Current/disturbanceEcology/geometricGrowth_files/figure-html/lambda-1.png" width="960" style="display: block; margin: auto;" /></p>
 <p>As stated previously, this model is a good stepping stone toward more complex
 ecological models, which we will keep exploring in this post series. Stay tuned
 for the next post in the series!</p>
