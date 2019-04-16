@@ -14,8 +14,8 @@ output:
 `r htmltools::HTML("{{< trickortips >}}")`
 
 
-```{r codeChunkSetUp, echo=FALSE}
-source('../../../static/Rscript/codeChunkSetUp.R')
+```{r codeChunkSetUp, include = FALSE}
+source('../codeChunkSetUp.R')
 ```
 
 
@@ -279,3 +279,10 @@ So, I personally prefer and use `las=1`!
 <br>
 
 **That's all for number 2 of this series, see you for the next tips!**
+
+<details>
+<summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
+```{r sessionInfo}
+sessionInfo()
+```
+</details>

@@ -15,8 +15,8 @@ output:
 `r htmltools::HTML("{{< trickortips >}}")`
 
 
-```{r codeChunkSetUp, echo=FALSE}
-source('../../../static/Rscript/codeChunkSetUp.R')
+```{r codeChunkSetUp, include = FALSE}
+source('../codeChunkSetUp.R')
 ```
 
 
@@ -184,3 +184,10 @@ lines(c(-1,3), c(1,1), lwd = 4)
 ### See you next post post!
 
 <br>
+
+<details>
+<summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
+```{r sessionInfo}
+sessionInfo()
+```
+</details>
