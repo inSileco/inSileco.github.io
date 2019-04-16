@@ -19,10 +19,9 @@ output:
 
 
 
-```{r codeChunkSetUp, echo=FALSE}
-source('../../../../static/Rscript/codeChunkSetUp.R')
+```{r codeChunkSetUp, include = FALSE}
+source('../codeChunkSetUp.R')
 ```
-
 
 To manipulate geometries, there are few options. For spatial objects defined
 with `sp`, there is a specific package to manipulate vector objects: `rgeos`.
@@ -190,3 +189,10 @@ par(mfrow = c(1,2))
 plot(elv_south)
 plot(elv_north)
 ```
+
+<details>
+<summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
+```{r sessionInfo}
+sessionInfo()
+```
+</details>

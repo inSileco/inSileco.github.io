@@ -18,8 +18,8 @@ output:
 ---
 
 
-```{r codeChunkSetUp, echo=FALSE}
-source("../../../../static/Rscript/codeChunkSetUp.R")
+```{r codeChunkSetUp, include = FALSE}
+source('../codeChunkSetUp.R')
 ```
 
 
@@ -467,3 +467,11 @@ Let's `brick()` them:
 bri1 <- brick(ras1, ras2)
 class(bri1)
 ```
+
+
+<details>
+<summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
+```{r sessionInfo}
+sessionInfo()
+```
+</details>

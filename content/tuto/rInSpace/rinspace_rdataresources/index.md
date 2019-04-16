@@ -35,13 +35,7 @@ for further detail.
 
 <br/>
 
-<!-- ## At a glance
 
-Let's begin by simply providing a list of resources and then we can delve a
-bit deeper into each resource.
-
-<br/>
- -->
 ### Environmental data
 
 #### Abiotic data
@@ -65,16 +59,3 @@ bit deeper into each resource.
 - [`osmdata`](https://github.com/ropensci/osmdata)
 - [`raster`](https://cran.r-project.org/web/packages/raster/index.html)
 - [`rnaturalearth`](https://github.com/ropenscilabs/rnaturalearth)
-
-<!--
-
-## Environmental data
-
-Let's start with environmental data layers, which we use extensively in ecology
-and the environmental sciences in general.
-
-
-
-### Abiotic data
-
-### Biotic data -->

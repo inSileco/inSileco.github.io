@@ -13,8 +13,8 @@ navposts:
 ---
 
 
-```{r codeChunkSetUp, echo=FALSE}
-source('../../../../static/Rscript/codeChunkSetUp.R')
+```{r codeChunkSetUp, include = FALSE}
+source('../codeChunkSetUp.R')
 ```
 
 ## Reading and writing spatial objects with `sf` and `raster`
@@ -200,7 +200,7 @@ The canopy index raster has values from 1 to 5, has `nrow(canopee_mtl)` pixels
 by row and `ncol(canopee_mtl)` pixels by column. Note that raster uses the
 `proj4string` representation of the coordinate reference system.
 
-```{r info_tif, warning=F}
+```{r info_tif, warning = FALSE}
 canopee_mtl
 ```
 
@@ -209,3 +209,11 @@ Similar to the sf package, raster also provides `plot` methods for its own class
 ```{r plot_tif}
 plot(canopee_mtl)
 ```
+
+
+<details>
+<summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
+```{r sessionInfo}
+sessionInfo()
+```
+</details>

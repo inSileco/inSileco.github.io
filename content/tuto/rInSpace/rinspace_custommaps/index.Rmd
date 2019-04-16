@@ -16,8 +16,8 @@ output:
 ---
 
 
-```{r codeChunkSetUp, echo=FALSE}
-source('../../../../static/Rscript/codeChunkSetUp.R')
+```{r codeChunkSetUp, include = FALSE}
+source('../codeChunkSetUp.R')
 ```
 
 
@@ -572,3 +572,11 @@ for(i in 1:2) {
 And here is the actual figure!
 
 <center>![](./layout2.png){width=90%}</center>
+
+
+<details>
+<summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
+```{r sessionInfo}
+sessionInfo()
+```
+</details>

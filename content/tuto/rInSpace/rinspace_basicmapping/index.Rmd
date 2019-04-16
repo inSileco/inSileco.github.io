@@ -16,8 +16,8 @@ output:
 ---
 
 
-```{r codeChunkSetUp, echo=FALSE}
-source('../../../../static/Rscript/codeChunkSetUp.R')
+```{r codeChunkSetUp, include = FALSE}
+source('../codeChunkSetUp.R')
 ```
 
 
@@ -158,3 +158,11 @@ mapview(bel1)@map
 
 
 ### Neat!
+
+
+<details>
+<summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
+```{r sessionInfo}
+sessionInfo()
+```
+</details>
