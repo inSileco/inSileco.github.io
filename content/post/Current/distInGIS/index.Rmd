@@ -19,7 +19,7 @@ source('../../codeChunkSetUp.R')
 When working in Ecology, it is often necessary to produce maps and calculate distances between objects such as sampled stations, species distribution ranges or geographical features. A [tutorial on this blog](/tuto/rinspace/rinspace_homepage/) describes many techniques to create maps with different packages in R, such as `sf` and `raster`. In this post, I will go further and use these tools to calculate distances in our spatial environment.
 
 
-# How to define a distance?
+## How to define a distance?
 
 Before stepping in our topic, let's define what we are talking about. What is a *distance*? This concept has various applications in ecology we need to present here, to make sure we are on the same page.
 
@@ -32,11 +32,11 @@ $$D_{A,B} = \sqrt{(x_{B} - x_{A})^{2} + (y_{B} - y_{A})^{2}}$$
 <center> ![Euclidean Distance](Figures/Euclidean.png) </center>
 
 
-# Geographical distances and the problem of heterogeneity
+## Geographical distances and the problem of heterogeneity
 
 Let's choose a concrete example: let me introduce Herbert the lobster. Herbert is a wild lobster living in the bay of Sept-Îles (Québec, Canada).
 
-<center> ![No, not this lobster... (*imgur.com*)](Figures/Zoidberg1.gif){width=40%} </center>
+<center> ![No, not this lobster... (*imgur.com*)](Figures/Zoidberg1.gif){width=60%} </center>
 
 We, as researchers, are interested in knowing the connectivity of its actual distribution to other potential living places close by. Why so? Because it is a crucial piece of information to predict its future distribution under a scenario of habitat loss due to human perturbation!
 
@@ -49,7 +49,7 @@ So what do we do? Well, we can still use the Euclidean distance, but with the sp
 This is a frequent problem used for many applications, in particular for artificial intelligence (robot movements, characters evolution in video games...). Many algorithms exist to answer this problem, with various computational performances, as some problems can be highly difficult to solve! One of the most widely used algorithm in the one proposed by Dijkstra in 1959 that allows to add weights for path points. We won't go into details here, but remember that Dijkstra's algorithm is used in the methods presented below.
 
 
-# Applications in R
+## Applications in R
 
 We will work with the `sf` package (Pebesma 2018), as described in the previous [inSileco GIS series](/tuto/rinspace/rinspace_homepage/). Also, we present here a case study with *point* data, but these methods can be adapted to *lines*, *polygons* or *objects with multiple geometries*.
 
@@ -84,7 +84,7 @@ text(x = st_coordinates(coords)[,"X"],
 The initial position of Herbert is on the turquoise dot (init), and we are interested in three possible locations (P1, P2 and P3).
 
 
-## Classic geographical distances
+### Classic geographical distances
 
 We can compute the Euclidean distances between each points by using `sf::st_distance()`. Let's try this here, even if we know that we do not consider the coast as a forbidden area.
 
@@ -119,7 +119,7 @@ lines(x = st_coordinates(coords)[c(1,4),"X"],
 ```
 
 
-## Least Cost Distances with `gdistance`
+### Least Cost Distances with `gdistance`
 
 To take the geographical barriers into consideration, we will use the package `gdistance`, which have a very useful sets of functions to calculate functions (ven Etten 2017). In particular, `costDistance()` will do the trick. To use it, we will need to convert our polygon for the Bay of Sept-Îles to a raster specifying which cell can be considered by the pathfinding and so:
 
@@ -153,7 +153,7 @@ Before calculating the distance, `costDistance()` needs a transition matrix. Thi
 - `8` is straight and diagonal lines, *i.e.* queen;
 - `16` is straight, diagonal lines and tilted diagonals, *i.e.* queen and knights.
 
-<center> ![Direction selection for the transition matrix (*J van Etten*)](Figures/Chess.png) </center>
+<center> ![Direction selection for the transition matrix (*J van Etten*)](Figures/Chess.png){width=80%} </center>
 
 The `geoCorrection()` function is needed to apply a correction to the transition matrix so that units and map distortion are taken into account (this may be more or less relevant depending on the CRS used).
 
@@ -198,7 +198,7 @@ plot(shortestPath(raster_bay_tr, as_Spatial(coords)[1,], as_Spatial(coords)[4,],
 ```
 
 
-## Least Cost Distances with `igraph`
+### Least Cost Distances with `igraph`
 
 The `gdistance` package is excellent, but not particularly flexible. You may need a custom workflow if you need to handle very large datasets or you want to use a hexagonal grid (*i.e.* you don't want to worry about chessboard moves). If this is so, you will need package `igraph` (Csardi & Nepusz 2006).
 
