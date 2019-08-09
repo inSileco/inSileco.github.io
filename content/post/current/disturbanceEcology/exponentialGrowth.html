@@ -1,0 +1,198 @@
+---
+title: Disturbance Ecology Series - Exponential Growth
+author: [david]
+reviewer:
+date: 2018-07-02
+tags: [Disturbance Ecology, ecology, disturbance, model, population, community, exponential growth]
+rpkgs: [base, graphics, graphicsutils, latex2exp, utils]
+draft: true
+tweet: "Disturbance Ecology Series - Exponential Growth"
+estime: 15
+relativeurls: true
+bibliography: [../../../../static/bib/inSilecoRef.bib]
+csl: [../../../../static/bib/nature.csl]
+link-citations: yes
+navposts:
+  prev: geometricGrowth
+  home: disturbanceEcology
+---
+
+
+
+<p><img src="https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg" /></p>
+{{< distecolintro >}}
+<div id="continuous-exponential-growth" class="section level2">
+<h2>Continuous Exponential Growth</h2>
+<p>In the <a href="{{< ref geometricGrowth >}}">first post</a>
+of this series, we looked at the most simple population dynamic model available,
+<em>i.e.</em> discrete density independent growth of a single species population. That
+simple model uses discrete growth increments at specified time steps. Certain
+populations are however poorly described by discrete growth models.</p>
+<p>In this second post, we therefore move to a slightly more complex model that
+models populations growth using continuous growth, the continuous exponential
+growth model.</p>
+</div>
+<div id="theory-in-brief" class="section level2">
+<h2>Theory in brief</h2>
+<p>Many animal populations reproduce asynchronously (<em>i.e.</em> at differing times),
+so that the use of discrete models may provide a poor understanding of the
+mechanisms underlying the observed populations dynamics. A classic example is
+that of the bacterium <em>Escherichia coli</em>. Imagine <em>E. coli</em> cells multiplying
+largely asynchronously in such a way new cells are observed in the population
+<em>very</em> frequently, giving the appearance of a smooth growth curve at very short
+time intervals.</p>
+<p class = "comment2">
+KC: du coup je dirais qu’on a envie que le pas de temps
+tente vers 0 et je mettrai la demonstation que j’ai écrite plus bas! Mais
+ce que tu avais écrit est valable aussi, je trouve ça plus simple de montrer
+le résult en faisant tendre le pas de tem,ps faire 0.
+<p>
+<p><img src="/post/current/disturbanceEcology/exponentialGrowth_files/figure-html/exempleSteps-1.png" width="960" style="display: block; margin: auto;" /></p>
+<p>One could take a discrete model with a very large number of time steps, <em>i.e.</em>
+ideally an infinite number of steps. To explore this, let’s start from the
+discrete model we presented in the
+<a href="{{< ref geometricGrowth >}}">first post</a>
+on discrete density independent growth.
+We defined <span class="math inline">\(\lambda\)</span> as the <em>per capita</em> growth rate of a population.
+From <span class="math inline">\(\lambda\)</span> we can define another term, <span class="math inline">\(r_d\)</span>, the discrete growth factor,
+so that:</p>
+<p><span class="math display">\[\lambda = 1 + r_d\]</span></p>
+<p>Once again drawing from an example from Stevens (2009)<span class="citation"><sup><a href="#ref-stevens_2009">1</a></sup></span> on page 14,
+an annual growth rate <span class="math inline">\(\lambda = 1.5\)</span> would mean that our population
+increases by 50% annually, with a discreate growth factor <span class="math inline">\(r_d = 0.50\)</span>. Using
+the discrete model <span class="math inline">\(N_t = N_0 \lambda^t\)</span>:</p>
+<p><span class="math display">\[N_1 = N_0 (1 + 0.5)^1\]</span></p>
+<p>If we were to consider that our population does not reproduce annualy, but
+rather bi-annually, we would need two smaller time steps to represent the
+growth of our population. We could then realistically infer that the discrete
+growth factor would be halved, <em>i.e.</em> <span class="math inline">\(r_d = 0.25\)</span>, and that the <em>per capita</em>
+growth rate would be squared, <em>i.e.</em> <span class="math inline">\(\lambda^2\)</span> since we now have two time
+steps:</p>
+<p><span class="math display">\[N_1 = N_0 \Big(1 + \frac{0.5}{2}\Big)^2\]</span></p>
+<p>Now, if we were to increase the number of time steps and decreasing the discrete
+growth factor in accordance to our earlier statement that we wish to use an
+infinite number of time steps to model the population dynamics of <em>E. coli</em>, we
+would obtain the following formula:</p>
+<p><span class="math display">\[N_1 = N_0 \Big(1 + \frac{r_d}{n}\Big)^n\]</span></p>
+<p>At this point, we want to evaluate the value of <span class="math inline">\(\big(1 + \frac{r_d}{n}\big)^n\)</span>
+when <span class="math inline">\(n\)</span> goes to infinity. In calculus, we would pose the problem as:</p>
+<p><span class="math display">\[\lim_{n\to\infty} \Big(1 + \frac{r_d}{n}\Big)^n\]</span></p>
+<p>This particular equation solves to a famous irrational number:
+<a href="https://en.wikipedia.org/wiki/E_(mathematical_constant)">the exponential or Euler’s number</a>,
+<span class="math inline">\(e \approx 2.7182818\)</span>. Our function then becomes:</p>
+<p><span class="math display">\[\lim_{n\to\infty} \Big(1 + \frac{r_d}{n}\Big)^n = e^r\]</span></p>
+<p>Going full circle, we can link <span class="math inline">\(\lambda\)</span> and <span class="math inline">\(r_d\)</span> so that:</p>
+<p><span class="math display">\[\begin{eqnarray}
+  \nonumber \lambda &amp;=&amp; e^r \: \: \text{and} \\
+  \nonumber ln(\lambda) &amp;=&amp; r
+\end{eqnarray}\]</span></p>
+<p>Equipped with this, we can say that when a population grows geometrically
+and continuously, <em>i.e.</em> with continuous exponential growth:</p>
+<p><span class="math display">\[N_t = N_0 e^{rt}\]</span></p>
+<p>where <span class="math inline">\(N\)</span> is population size, <span class="math inline">\(N_0\)</span> is the initial population size, <span class="math inline">\(r\)</span>
+is the instantaneous <em>per capita</em> growth rate and <span class="math inline">\(t\)</span> is the time.</p>
+<p>Let’s write a function for later use, also available in the
+<a href="https://github.com/inSileco/inSilecoMod"><code>inSilecoMod</code> package</a>:</p>
+<pre class="r"><code>contExp &lt;- function(N0, r, t) N0 * exp(r * t)</code></pre>
+<p>Just like the discrete model, we can relate <span class="math inline">\(r\)</span> to population growth or declines.</p>
+<p><span class="math display">\[\begin{eqnarray}
+  \nonumber \lambda &gt; 1; \ r &gt; 0 &amp; \rightarrow &amp; N \text{ increases} \\
+  \nonumber \lambda = 1; \ r = 0 &amp; \rightarrow &amp; N \text{ is constant} \\
+  \nonumber \lambda &lt; 1; \ r &lt; 0 &amp; \rightarrow &amp; N \text{ decreases}
+\end{eqnarray}\]</span></p>
+<p><img src="/post/current/disturbanceEcology/exponentialGrowth_files/figure-html/example1-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p><br/></p>
+<p>We could also use the exponential growth formula to evaluate the time required
+for the population to double, triple, etc:</p>
+<p><span class="math display">\[\begin{eqnarray}
+  \nonumber N_t &amp;=&amp; N_0 e^{rt} \\
+  \nonumber 2N_0 &amp;=&amp; N_0 e^{rt} \: &amp;\rightarrow&amp; \: \text{doubling time} \\
+  \nonumber 2 &amp;=&amp; e^{rt} \: &amp;\rightarrow&amp; \: \text{divided by} \ N_0 \\
+  \nonumber ln(2) &amp;=&amp; rt \ ln(e) \: &amp;\rightarrow&amp; \: e^x = x \ ln(e) \\
+  \nonumber ln(2) &amp;=&amp; rt \: &amp;\rightarrow&amp; \: ln(e) = 1 \\
+  \nonumber \frac{ln(2)}{r} &amp;=&amp; t
+\end{eqnarray}\]</span></p>
+<p>We can then use this to generalize the function on <span class="math inline">\(m\)</span> to evaluate <span class="math inline">\(t\)</span> as
+the amount of time for the population to reach <span class="math inline">\(m * N_0\)</span>:</p>
+<p><span class="math display">\[\begin{eqnarray}
+  \nonumber t &amp;=&amp; \frac{ln(m)}{r},
+\end{eqnarray}\]</span></p>
+<p>which we can turn into a function:</p>
+<pre class="r"><code>mtime &lt;- function(r, m) log(m) / r</code></pre>
+<p>We could then take our previous populations and evaluate their multipliying
+times:</p>
+<pre class="r"><code>dbl &lt;- mtime(0.03, 2)
+dbl
+#R&gt; [1] 23.10491
+tpl &lt;- mtime(0.03, 3)
+tpl
+#R&gt; [1] 36.62041
+x10 &lt;- mtime(0.03, 10)
+x10
+#R&gt; [1] 76.75284</code></pre>
+<p><img src="/post/current/disturbanceEcology/exponentialGrowth_files/figure-html/mtimeFig-1.png" width="480" style="display: block; margin: auto;" /></p>
+<p>Now enough with the theory, let’s jump into simulations!</p>
+<div class="comment2">
+<p>Pour les simulation qui suive j’ai une idée on
+pourrait parler du cas ou <span class="math inline">\(\lambda\)</span> est une font du temps un cas simple
+c’est la saisonalité.</p>
+<pre class="r"><code>seqt &lt;- seq(0, 16, 0.05)
+lambda &lt;- cos(seqt) + 1
+par(mfrow = c(1, 2))
+plot(seqt, lambda, type = &quot;l&quot;)
+plot(seqt, exp(0.01*cumsum(lambda)), type = &quot;l&quot;)</code></pre>
+<p><img src="/post/current/disturbanceEcology/exponentialGrowth_files/figure-html/season-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Note que c’est l’allure de la courbe que ça donne en intégrant, je n’ai pas
+fait la démonstation et je ne sait pas à quelle point elle est facile. On pourrai
+prendre un function plus simple du genre</p>
+<pre class="r"><code>seqt &lt;- seq(0, 16, 0.05)
+lambda &lt;- rep(c(0,1,0,1), each = 50, length.out = length(seqt))
+par(mfrow = c(1, 2))
+plot(seqt, lambda, type = &quot;l&quot;)
+plot(seqt, exp(0.01*cumsum(lambda)), type = &quot;l&quot;)</code></pre>
+<p><img src="/post/current/disturbanceEcology/exponentialGrowth_files/figure-html/season2-1.png" width="672" style="display: block; margin: auto;" /></p>
+La la démonstration me semble plus aisée. Aussi, j’ai l’impression qu’il est pas encore question de
+taux de croissance négative mais si c’est le cas on pourrais prendre des
+functions qui prenne des valuer négatives.
+</div>
+</div>
+<div id="simulated-ecology" class="section level2">
+<h2>Simulated ecology</h2>
+</div>
+<div id="simulated-disturbances" class="section level2">
+<h2>Simulated disturbances</h2>
+</div>
+<div id="kevcazs-comments" class="section level2">
+<h2>KevCaz’s comments</h2>
+</div>
+<div id="from-arithmetic-to-exponential-growth" class="section level2">
+<h2>From arithmetic to exponential growth</h2>
+<p>On repart de:</p>
+<p><span class="math display">\[N_{t+1} = N_{t} + b N_{t} - d N_{t}\]</span></p>
+<p>Maintenant 1 devient dt (notation souvent utilisée, parfois on prend <span class="math inline">\(s\)</span>), une variable qu’on
+fera tendre vers 0 et faut comprendre que les taux b et d sont des taux
+par unité de temps donc avant on avait b le taux moyen de naissance par an
+(par exemple), et on écrivait en fait b pour b*1, meme remarque pour d, ce qui
+donne avce dt</p>
+<p><span class="math display">\[N_{t+dt} = N_{t} + b dt N_{t} - d dt N_{t}\]</span></p>
+<p>J’introduis un truc juste pour pour reflèter une hypothese: <span class="math inline">\(o(dt)\)</span>. En gros
+ça veut dire que il peu y avoir des truc qui se produise mais:</p>
+<p><span class="math display">\[\lim_{dt\to0} \frac{o(dt)}{dt} = 0\]</span></p>
+<p>Encore une fois ça permet d’etre propre et c’est pour dire “quand dt est assez petit
+y’a rien d’autre qui arrive”, mais on peut laisser tomber ça change pas la demonstration.</p>
+<p><span class="math display">\[N_{t+dt} = N_{t} + (b - d)dtN_{t} + o(dt)\]</span></p>
+<p>On peut passer <span class="math inline">\(N_t\)</span> de l’autre côté et on divise par dt:</p>
+<p><span class="math display">\[\frac{N_{t+dt} - N_t}{dt}= (b - d)N_{t} + \frac{o(dt)}{dt}\]</span></p>
+<p>et en faisant tendre dt vers 0 on a, par définition a gauche la dérivée de N
+et a droite par definition (plus haut) le dernier term devient 0, donc:</p>
+<p><span class="math display">\[\dot{N}_t = (b - d)N_{t}\]</span></p>
+<p>Equation diff dont la solution est l’exponentiel!</p>
+</div>
+<div id="references" class="section level2 unnumbered">
+<h2>References</h2>
+<div id="refs" class="references">
+<div id="ref-stevens_2009">
+<p>1. Stevens, M. H. H. <em>A primer of ecology with r</em>. (Springer New York, 2009). doi:<a href="https://doi.org/10.1007/978-0-387-89882-7">10.1007/978-0-387-89882-7</a></p>
+</div>
+</div>
+</div>

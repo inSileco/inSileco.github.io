@@ -1,0 +1,84 @@
+---
+title: "Non linear regression with nls()"
+author: [kevin]
+date: 2018-11-18
+tags: [R, regression, nls]
+rpkgs: [stats]
+draft: false
+tweet: "Non linear regression with nls, an example."
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+
+
+<div id="context" class="section level2">
+<h2>Context</h2>
+<p>Last week, I was discussing about how to use <code>nls()</code> for a specific
+model with one of my colleague and I ended creating a piece of code to
+show what I was talking about! Even though there are many posts exploring <code>nls()</code>
+in more depth that I did (for instance <a href="https://datascienceplus.com/first-steps-with-non-linear-regression-in-r/">this post on datascienceplus by Lionel Herzog</a>),
+I thought I could share these lines of command here!</p>
+<p>Basically, we were talking about a model where the temperature (<span class="math inline">\(T\)</span>) follows
+a saturation curve starting from 10°C at t=0 (so T(0) = 10) and plateauing at <span class="math inline">\(T_{\inf}\)</span>.</p>
+<p><span class="math display">\[T(t) = T_{\inf} - (T_{\inf} - T_0)\exp(-kt)\]</span></p>
+</div>
+<div id="goal-and-data" class="section level2">
+<h2>Goal and data</h2>
+<p>The goal here is to use <code>nls()</code> (Nonlinear Least Squares) to find <span class="math inline">\(k\)</span> and <span class="math inline">\(T_{inf}\)</span>.
+For the sack of clarity, I simulate the data, i.e. I use the saturation curve
+with known parameter values, then I add some noise (here a <a href="https://en.wikipedia.org/wiki/White_noise">white noise</a>):</p>
+<pre class="r"><code>library(magrittr)
+# Parameters
+## known
+T0 = 10
+## the ones we are looking for
+k = 0.2
+Tinf = 20
+
+# Simulate data
+## time
+seqt &lt;- seq(0, 50, .25)
+## create a data frame
+simdata &lt;- cbind(
+  seqt = seqt,
+  sim = Tinf - (Tinf- T0)*exp(-k*seqt) + .5*rnorm(length(seqt))
+) %&gt;% as.data.frame
+head(simdata)
+#R&gt;   seqt      sim
+#R&gt; 1 0.00 10.95667
+#R&gt; 2 0.25 11.21328
+#R&gt; 3 0.50 11.20083
+#R&gt; 4 0.75 10.60456
+#R&gt; 5 1.00 10.77357
+#R&gt; 6 1.25 11.75301</code></pre>
+</div>
+<div id="use-nls" class="section level2">
+<h2>Use <code>nls()</code></h2>
+<p>Now I call <code>nls()</code> to fit the data:</p>
+<pre class="r"><code>res &lt;- nls(sim ~ Tinf - (Tinf - 10)*exp(-k*seqt), simdata, list(Tinf = 1, k = .1))</code></pre>
+<p>All the information needed are stored in <code>res</code> and display via the print method:</p>
+<pre class="r"><code>res
+#R&gt; Nonlinear regression model
+#R&gt;   model: sim ~ Tinf - (Tinf - 10) * exp(-k * seqt)
+#R&gt;    data: simdata
+#R&gt;    Tinf       k 
+#R&gt; 20.0651  0.1895 
+#R&gt;  residual sum-of-squares: 54.41
+#R&gt; 
+#R&gt; Number of iterations to convergence: 8 
+#R&gt; Achieved convergence tolerance: 3.92e-06</code></pre>
+<p>Let’s draw a quick plot:</p>
+<pre class="r"><code>## get the coefficients values
+cr &lt;- coef(res)
+fitC &lt;- function(x) cr[1] - (cr[1] - 10)*exp(-cr[2]*x)
+plot(simdata[,1], simdata[,2], xlab = &quot;Time (min)&quot;, ylab = &quot;Temperature (°C)&quot;)
+curve(fitC, 0, 50, add = TRUE, col = &quot;#2f85a4&quot;, lwd = 3)</code></pre>
+<p><img src="/post/archived/nlsex1_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="thats-all-folks" class="section level4">
+<h4>That’s all folks!</h4>
+</div>
+</div>

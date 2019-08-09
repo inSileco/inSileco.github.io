@@ -1,0 +1,257 @@
+---
+title: R as a ruler? How to calculate distances between geographical objects
+author: [elliot]
+reviewer: [remi, kevin]
+date: 2019-04-08
+tags: [R, GIS, utils]
+rpkgs: [sf, gdistance, igraph, knitr, sp, raster]
+draft: false
+estime: 13
+---
+
+
+
+<p>When working in Ecology, it is often necessary to produce maps and calculate distances between objects such as sampled stations, species distribution ranges or geographical features. A <a href="/tuto/rinspace/rinspace_homepage/">tutorial on this blog</a> describes many techniques to create maps with different packages in R, such as <code>sf</code> and <code>raster</code>. In this post, I will go further and use these tools to calculate distances in our spatial environment.</p>
+<div id="how-to-define-a-distance" class="section level1">
+<h1>How to define a distance?</h1>
+<p>Before stepping in our topic, let’s define what we are talking about. What is a <em>distance</em>? This concept has various applications in ecology we need to present here, to make sure we are on the same page.</p>
+<p>Distances are frequently used to describe how the characteristics of two (or more) samples are different from each other (abiotic parameters, species composition, functional traits…). This particular definition presents a distance as an index of similarity/dissimilarity. Such indices include functions like Euclidean distance, Sørensen coefficient, Bray-Curtis dissimilarity or Mahalanobis distance, which can be applied to different types of data with different results (see Legendre &amp; Legendre 2012). We will not cover these aspects here, more information can be found in Chapter 7 of <em>Numerical Ecology</em>, which is a must-have for every ecologist!</p>
+<p>Instead of using a distance as a ressemblance measure, we will use it with its first meaning: a measure of how distant in space two points are. The most straightforward geographical measure is the Euclidean distance, based on Pythagoras’ theorem of triangular equality. In an Euclidean plane, we will compute the difference between the X and Y coordinates of two points A and B (other formulae can be found for different coordinate systems):</p>
+<p><span class="math display">\[D_{A,B} = \sqrt{(x_{B} - x_{A})^{2} + (y_{B} - y_{A})^{2}}\]</span></p>
+<center>
+<img src="Figures/Euclidean.png" alt="Euclidean Distance" />
+</center>
+</div>
+<div id="geographical-distances-and-the-problem-of-heterogeneity" class="section level1">
+<h1>Geographical distances and the problem of heterogeneity</h1>
+<p>Let’s choose a concrete example: let me introduce Herbert the lobster. Herbert is a wild lobster living in the bay of Sept-Îles (Québec, Canada).</p>
+<center>
+<img src="Figures/Zoidberg1.gif" alt="No, not this lobster… (imgur.com)" style="width:40.0%" />
+</center>
+<p>We, as researchers, are interested in knowing the connectivity of its actual distribution to other potential living places close by. Why so? Because it is a crucial piece of information to predict its future distribution under a scenario of habitat loss due to human perturbation!</p>
+<p>Euclidean distance is a great tool to calculate the distance between initial and potential living places for Herbert, assuming the space between these locations is homogeneous. Typically, marine ecosystems are particularly relevant for this measure. However, depending on the scale and/or location, the presence of islands, bays or anthropogenic structures can be problematic as they constitute barriers between locations that a species cannot cross. Distances ‘as the crow flies’ will then be meaningless!</p>
+<p>So what do we do? Well, we can still use the Euclidean distance, but with the specification of forbidden regions in the space we are considering. Then, the path between the two locations will not be straight anymore (as above), but with intermediate steps only in allowed regions. In this case, many different paths can exist, so we will have to compute all possible paths between the start and end point, then select the best one <em>i.e.</em> the path with the shortest distance.</p>
+<center>
+<img src="Figures/Pathfinding1.gif" alt="Example of a pathfinding algorithm (Wikipedia)" />
+</center>
+<p>This is a frequent problem used for many applications, in particular for artificial intelligence (robot movements, characters evolution in video games…). Many algorithms exist to answer this problem, with various computational performances, as some problems can be highly difficult to solve! One of the most widely used algorithm in the one proposed by Dijkstra in 1959 that allows to add weights for path points. We won’t go into details here, but remember that Dijkstra’s algorithm is used in the methods presented below.</p>
+</div>
+<div id="applications-in-r" class="section level1">
+<h1>Applications in R</h1>
+<p>We will work with the <code>sf</code> package (Pebesma 2018), as described in the previous <a href="/tuto/rinspace/rinspace_homepage/">inSileco GIS series</a>. Also, we present here a case study with <em>point</em> data, but these methods can be adapted to <em>lines</em>, <em>polygons</em> or <em>objects with multiple geometries</em>.</p>
+<p>First, we will have to import the shapefile of the study area. All shapefiles are projected with the WGS84 (EPSG code: 4326) coordinate reference system (CRS), but analyses will be done with the UTM 19N (EPSG code: 32619) CRS. UTM consideres units in meters instead of degrees, <em>i.e</em> it is a projected CRS with corrections for longitude and latitude, and we use UTM 19N which includes the area of Sept-Îles.</p>
+<pre class="r"><code>library(knitr)
+library(sf)
+library(sp)
+
+bay &lt;- st_read(&quot;Data/poly_bay.shp&quot;) %&gt;%
+       st_transform(crs = 32619)
+
+coords &lt;- data.frame(station = c(&quot;INIT&quot;, &quot;P1&quot;, &quot;P2&quot;, &quot;P3&quot;),
+                     longitude = c(-66.437, -66.508, -66.363, -66.385),
+                     latitude = c(50.152, 50.162, 50.133, 50.095))
+
+coords &lt;- st_as_sf(coords, coords = c(&quot;longitude&quot;, &quot;latitude&quot;),
+                   crs = 4326, stringsAsFactors = FALSE) %&gt;%
+          st_transform(crs = 32619)</code></pre>
+<p><img src="/post/current/distInGIS/index_files/figure-html/plot1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>The initial position of Herbert is on the turquoise dot (init), and we are interested in three possible locations (P1, P2 and P3).</p>
+<div id="classic-geographical-distances" class="section level2">
+<h2>Classic geographical distances</h2>
+<p>We can compute the Euclidean distances between each points by using <code>sf::st_distance()</code>. Let’s try this here, even if we know that we do not consider the coast as a forbidden area.</p>
+<pre class="r"><code>dist1 &lt;- st_distance(x = coords[1,], y = coords[-1,])
+
+dist1_df &lt;- data.frame(dist1, row.names = &quot;Distance from init:&quot;)
+colnames(dist1_df) &lt;- c(&quot;P1&quot;, &quot;P2&quot;, &quot;P3&quot;)
+
+kable(dist1_df)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">P1</th>
+<th align="right">P2</th>
+<th align="right">P3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Distance from init:</td>
+<td align="right">5194.299 [m]</td>
+<td align="right">5696.479 [m]</td>
+<td align="right">7350.401 [m]</td>
+</tr>
+</tbody>
+</table>
+<p>Based on these results, P1 is the closest site to the initial location of Herbert implying that P1 could be the preferential site where he would migrate under the human perturbation scenario (where its initial position would not be available anymore). However, we know that Herbert, even if he is an awesome lobster, cannot go on land which is necessary to attain P1. So, we need to refine our analysis to take this into account.</p>
+<p><img src="/post/current/distInGIS/index_files/figure-html/plot2-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="least-cost-distances-with-gdistance" class="section level2">
+<h2>Least Cost Distances with <code>gdistance</code></h2>
+<p>To take the geographical barriers into consideration, we will use the package <code>gdistance</code>, which have a very useful sets of functions to calculate functions (ven Etten 2017). In particular, <code>costDistance()</code> will do the trick. To use it, we will need to convert our polygon for the Bay of Sept-Îles to a raster specifying which cell can be considered by the pathfinding and so:</p>
+<ul>
+<li>forbidden cells will have a value of 0;</li>
+<li>allowed cells will have a value of 1 (each cell has the same “cost”, meaning no weighting have been applied for particular paths).</li>
+</ul>
+<blockquote>
+<p>Note that the calculation is highly dependent on the <strong>raster resolution</strong>. A better resolution will bring better results, but at the cost of computing resources. Also, the cells of this raster are <strong>squares</strong>.</p>
+</blockquote>
+<pre class="r"><code>library(gdistance)
+library(raster)</code></pre>
+<pre class="r"><code>raster_bay &lt;- raster(x = extent(bay), nrow = 250,  ncol = 250)
+raster_bay &lt;- rasterize(x = bay, y = raster_bay, field = 1)
+raster_bay[is.na(raster_bay)] &lt;- 0</code></pre>
+<p><img src="/post/current/distInGIS/index_files/figure-html/plot3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<blockquote>
+<p>We have to add <code>field = 1</code> in function <code>rasterize()</code> otherwise the id number will be automatically assigned to each cell as a weighting parameter, which will bias the distance calculation by introducing a cost for choosing the cell.</p>
+</blockquote>
+<p>Before calculating the distance, <code>costDistance()</code> needs a transition matrix. This matrix is an object that will define the cost to choose a cell (which in our case is inherited from the values of <code>raster_bay</code>) and the direction from which it is possible to choose a cell as the next one in the path. The direction is based on movements of soldiers on a chessboard:</p>
+<ul>
+<li><code>4</code> is only from straight lines, <em>i.e.</em> rooks in chess;</li>
+<li><code>bishop</code> is only from diagonal lines, <em>i.e.</em> bishops;</li>
+<li><code>8</code> is straight and diagonal lines, <em>i.e.</em> queen;</li>
+<li><code>16</code> is straight, diagonal lines and tilted diagonals, <em>i.e.</em> queen and knights.</li>
+</ul>
+<center>
+<img src="Figures/Chess.png" alt="Direction selection for the transition matrix (J van Etten)" />
+</center>
+<p>The <code>geoCorrection()</code> function is needed to apply a correction to the transition matrix so that units and map distortion are taken into account (this may be more or less relevant depending on the CRS used).</p>
+<pre class="r"><code>raster_bay_tr &lt;- transition(raster_bay, transitionFunction = mean, directions = 16)
+raster_bay_tr &lt;- geoCorrection(raster_bay_tr, type = &quot;c&quot;)</code></pre>
+<blockquote>
+<p>The <code>type</code> argument defines the correction method for longitude and latitude. For the Least Cost Distances, <code>type = &quot;c&quot;</code> corrects coordinates in an East-West direction. If you want to use other algorithms such as Random Walks, you can use <code>type = &quot;r&quot;</code> to apply a correction in a North-South direction.</p>
+</blockquote>
+<p>And now, let’s calculate distances with the least cost path analysis!</p>
+<pre class="r"><code>dist2 &lt;- costDistance(raster_bay_tr,
+                      fromCoords = as(as_Spatial(coords[1,]), &quot;SpatialPoints&quot;),
+                      toCoords = as(as_Spatial(coords[-1,]), &quot;SpatialPoints&quot;))
+
+dist2_df &lt;- data.frame(dist2, row.names = &quot;Distance from init:&quot;)
+colnames(dist2_df) &lt;- c(&quot;P1&quot;, &quot;P2&quot;, &quot;P3&quot;)
+
+kable(dist2_df)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">P1</th>
+<th align="right">P2</th>
+<th align="right">P3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Distance from init:</td>
+<td align="right">8543.394</td>
+<td align="right">5823.122</td>
+<td align="right">7798.219</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><code>costDistance()</code> needs a conversion to <code>SpatialPoints</code> class, as the package has been created with <code>sp</code> objects.</p>
+</blockquote>
+<p>These results show that P2 is the closest potential site for Herbert now, without any coast between the two points. This result is much more relevant than previously calculated with <code>st_distance()</code>! If you want to represent the shortest path between two points (based on the transition matrix), you can plot the result of function <code>shortestPath()</code>.</p>
+<p><img src="/post/current/distInGIS/index_files/figure-html/plot4-1.png" width="672" style="display: block; margin: auto;" /></p>
+</div>
+<div id="least-cost-distances-with-igraph" class="section level2">
+<h2>Least Cost Distances with <code>igraph</code></h2>
+<p>The <code>gdistance</code> package is excellent, but not particularly flexible. You may need a custom workflow if you need to handle very large datasets or you want to use a hexagonal grid (<em>i.e.</em> you don’t want to worry about chessboard moves). If this is so, you will need package <code>igraph</code> (Csardi &amp; Nepusz 2006).</p>
+<pre class="r"><code>library(igraph)</code></pre>
+<p>Let’s create another grid, but this time, let’s make it hexagonal. For this example, the cell centroids are 250m apart (in any of the 6 directions), but you could increase the resolution if you don’t mind waiting a bit. As you can see from the map below, this resolution may ignore the presence of some smaller islands, which can be a problem.</p>
+<pre class="r"><code>hex_bay &lt;- st_make_grid(bay, cellsize = 250, square = FALSE)</code></pre>
+<p><img src="/post/current/distInGIS/index_files/figure-html/plot5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Now that we have our basic grid, we need to create an <code>igraph</code> network. The network in this case will represent neighbouring cells (<em>i.e.</em> right next to one another) which Herbert has the possibility to move through. We must first create an edgelist (<em>i.e.</em> list to ‘from’ and ‘to’ cell id’s that represent neighbours), then convert into a network.</p>
+<pre class="r"><code>edgelist &lt;- as.matrix(as.data.frame(st_intersects(hex_bay)))
+  # yes, the as.matrix and as.data.frame is a bit silly, but required to have the right format
+
+gr &lt;- graph_from_edgelist(edgelist)</code></pre>
+<p><img src="/post/current/distInGIS/index_files/figure-html/plot6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Yes, this plot no longer looks like the bay because we have abstracted out the actual coordinates and are looking only at the distances between cells. In this particular example we know that the distance between each neighbouring cell is 250m since we defined this when we created the grid. At this phase, you could also incorporate ‘fancier’ weights that incorporate habitat resistance (<em>i.e.</em> the influence of habitat type on the facilitation or prevention of movement) to calcuate isolation by resistance. But for this example, let’s keep it simple.</p>
+<pre class="r"><code>E(gr)$weight &lt;- 250
+  # setting the weight for ALL edges, alternatively could supply a vector here</code></pre>
+<p>Now we have a weighted graph ready for Least Cost Path analysis! We just need to figure out where the stations are relative to the hexagonal grid.</p>
+<pre class="r"><code>whereisHerbert &lt;- as.numeric(st_intersects(coords, hex_bay))
+dist3 &lt;- distances(gr, whereisHerbert[1], whereisHerbert[-1])
+
+dist3_df &lt;- data.frame(dist3, row.names = &quot;Distance from init:&quot;)
+colnames(dist3_df) &lt;- c(&quot;P1&quot;, &quot;P2&quot;, &quot;P3&quot;)
+
+kable(dist3_df)</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th></th>
+<th align="right">P1</th>
+<th align="right">P2</th>
+<th align="right">P3</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Distance from init:</td>
+<td align="right">8750</td>
+<td align="right">6500</td>
+<td align="right">8000</td>
+</tr>
+</tbody>
+</table>
+<p>You will notice that we find a comparable result from what we calculated previsouly with <code>gdistance</code> (P2 being the closest potential site), even if this is a bit further than the <code>gdistance</code> estimates. This is likely mostly because of the difference in resolution (and somewhat because of cell shape).</p>
+<p>If you are just calculating a handful of distances such as in this example, <code>gdistance</code> is probably faster. But if you are doing millions, <code>igraph</code> is typically more effective since much of the work is done ‘upfront’ when you create the graph. It would also be possible to create an <code>igraph</code> network from a <code>gdistance</code> transition raster which would combine the best of both packages.</p>
+<p>Techniques above will be highly useful for many research questions, <em>e.g.</em> determining the influence of a perturbation in an ecosystem, characterizing species movements or community connectivity… The method presented in this post is one of the many that exist to answer these questions. You can find many tutorials for softwares like ArcGIS or QGIS, but I thought a simple presentation for R users would be welcomed. Enjoy!</p>
+<center>
+<img src="Figures/Zoidberg2.gif" />
+</center>
+</div>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<ul>
+<li>Csardi G, Nepusz T (2006). The igraph software package for complex network research. <em>InterJournal</em>, Complex Systems 1695. <a href="http://igraph.org" class="uri">http://igraph.org</a></li>
+<li>Dijkstra EW (1959). A note on two problems in connexion with graphs. <em>Numerische Mathematik</em> 1:269–271. <a href="doi:10.1007/BF01386390" class="uri">doi:10.1007/BF01386390</a></li>
+<li>Legendre P, Legendre L (2012). Numerical Ecology, 3rd edition.</li>
+<li>Pebesma E (2018). Simple Features for R: Standardized Support for Spatial Vector Data. <em>The R Journal</em>,
+<a href="https://journal.r-project.org/archive/2018/RJ-2018-009/" class="uri">https://journal.r-project.org/archive/2018/RJ-2018-009/</a></li>
+<li>van Etten J (2017). R Package gdistance: Distances and Routes on Geographical Grids. <em>Journal of Statistical Software</em> 76(13). <a href="doi:10.18637/jss.v076.i13" class="uri">doi:10.18637/jss.v076.i13</a>.</li>
+</ul>
+<p><br></p>
+<details>
+<summary>
+<h4>
+<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info <i class="fa fa-cogs" aria-hidden="true">
+</h4>
+<p></i></summary></p>
+<pre class="r"><code>sessionInfo()
+#R&gt; R version 3.5.2 (2018-12-20)
+#R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
+#R&gt; Running under: Debian GNU/Linux 10 (buster)
+#R&gt; 
+#R&gt; Matrix products: default
+#R&gt; BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
+#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.5.so
+#R&gt; 
+#R&gt; locale:
+#R&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+#R&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+#R&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+#R&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#R&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+#R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#R&gt; 
+#R&gt; attached base packages:
+#R&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
+#R&gt; 
+#R&gt; other attached packages:
+#R&gt; [1] gdistance_1.2-2 Matrix_1.2-17   igraph_1.2.4.1  raster_2.8-19  
+#R&gt; [5] sp_1.3-1        sf_0.7-3        knitr_1.23     
+#R&gt; 
+#R&gt; loaded via a namespace (and not attached):
+#R&gt;  [1] Rcpp_1.0.0       magrittr_1.5     units_0.6-2      lattice_0.20-38 
+#R&gt;  [5] stringr_1.4.0    highr_0.7        tools_3.5.2      rgdal_1.4-3     
+#R&gt;  [9] grid_3.5.2       xfun_0.7         e1071_1.7-0.1    DBI_1.0.0       
+#R&gt; [13] htmltools_0.3.6  class_7.3-15     yaml_2.2.0       digest_0.6.18   
+#R&gt; [17] bookdown_0.9.2   codetools_0.2-16 evaluate_0.13    rmarkdown_1.12  
+#R&gt; [21] blogdown_0.12    stringi_1.4.3    compiler_3.5.2   classInt_0.3-1  
+#R&gt; [25] pkgconfig_2.0.2</code></pre>
+</details>
+</div>
