@@ -167,7 +167,7 @@ kable(dist2_df)</code></pre>
 
 gr &lt;- graph_from_edgelist(edgelist)</code></pre>
 <p><img src="/post/current/distInGIS/index_files/figure-html/plot6-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Yes, this plot no longer looks like the bay because we have abstracted out the actual coordinates and are looking only at the distances between cells. In this particular example we know that the distance between each neighbouring cell is 250m since we defined this when we created the grid. At this phase, you could also incorporate ‘fancier’ weights that incorporate habitat resistance (<em>i.e.</em> the influence of habitat type on the facilitation or prevention of movement) to calcuate isolation by resistance. But for this example, let’s keep it simple.</p>
+<p>Yes, this plot no longer looks like the bay because we have abstracted out the actual coordinates and are looking only at the distances between cells. In this particular example we know that the distance between each neighbouring cell is 250m since we defined this when we created the grid. At this phase, you could also incorporate ‘fancier’ weights that incorporate habitat resistance (<em>i.e.</em> the influence of habitat type on the facilitation or prevention of movement) to calculate isolation by resistance. But for this example, let’s keep it simple.</p>
 <pre class="r"><code>E(gr)$weight &lt;- 250
   # setting the weight for ALL edges, alternatively could supply a vector here</code></pre>
 <p>Now we have a weighted graph ready for Least Cost Path analysis! We just need to figure out where the stations are relative to the hexagonal grid.</p>
@@ -218,16 +218,17 @@ kable(dist3_df)</code></pre>
 <details>
 <summary>
 <h4>
-<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info <i class="fa fa-cogs" aria-hidden="true">
+<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
+<i class="fa fa-cogs" aria-hidden="true"></i>
 </h4>
-<p></i></summary></p>
+<p></summary></p>
 <pre class="r"><code>sessionInfo()
-#R&gt; R version 3.5.2 (2018-12-20)
+#R&gt; R version 3.6.1 (2019-07-05)
 #R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
 #R&gt; Running under: Debian GNU/Linux 10 (buster)
 #R&gt; 
 #R&gt; Matrix products: default
-#R&gt; BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
+#R&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
 #R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.5.so
 #R&gt; 
 #R&gt; locale:
@@ -239,19 +240,29 @@ kable(dist3_df)</code></pre>
 #R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #R&gt; 
 #R&gt; attached base packages:
-#R&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
+#R&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
 #R&gt; 
 #R&gt; other attached packages:
-#R&gt; [1] gdistance_1.2-2 Matrix_1.2-17   igraph_1.2.4.1  raster_2.8-19  
-#R&gt; [5] sp_1.3-1        sf_0.7-3        knitr_1.23     
+#R&gt; [1] gdistance_1.2-2 Matrix_1.2-17   igraph_1.2.3    raster_2.9-23  
+#R&gt; [5] sp_1.3-1        sf_0.7-2        knitr_1.23      usethis_1.4.0  
+#R&gt; [9] devtools_2.0.1 
 #R&gt; 
 #R&gt; loaded via a namespace (and not attached):
-#R&gt;  [1] Rcpp_1.0.0       magrittr_1.5     units_0.6-2      lattice_0.20-38 
-#R&gt;  [5] stringr_1.4.0    highr_0.7        tools_3.5.2      rgdal_1.4-3     
-#R&gt;  [9] grid_3.5.2       xfun_0.7         e1071_1.7-0.1    DBI_1.0.0       
-#R&gt; [13] htmltools_0.3.6  class_7.3-15     yaml_2.2.0       digest_0.6.18   
-#R&gt; [17] bookdown_0.9.2   codetools_0.2-16 evaluate_0.13    rmarkdown_1.12  
-#R&gt; [21] blogdown_0.12    stringi_1.4.3    compiler_3.5.2   classInt_0.3-1  
-#R&gt; [25] pkgconfig_2.0.2</code></pre>
+#R&gt;  [1] Rcpp_1.0.2        highr_0.7         compiler_3.6.1   
+#R&gt;  [4] prettyunits_1.0.2 remotes_2.0.2     class_7.3-15     
+#R&gt;  [7] tools_3.6.1       testthat_2.0.1    digest_0.6.18    
+#R&gt; [10] pkgbuild_1.0.2    pkgload_1.0.2     lattice_0.20-38  
+#R&gt; [13] evaluate_0.13     memoise_1.1.0     pkgconfig_2.0.2  
+#R&gt; [16] rlang_0.4.0       cli_1.0.1         DBI_1.0.0        
+#R&gt; [19] rgdal_1.4-4       yaml_2.2.0        blogdown_0.14    
+#R&gt; [22] xfun_0.8          e1071_1.7-0.1     withr_2.1.2      
+#R&gt; [25] stringr_1.4.0     desc_1.2.0        fs_1.2.6         
+#R&gt; [28] grid_3.6.1        classInt_0.3-1    rprojroot_1.3-2  
+#R&gt; [31] glue_1.3.1        R6_2.4.0          processx_3.2.1   
+#R&gt; [34] rmarkdown_1.14    bookdown_0.12     sessioninfo_1.1.1
+#R&gt; [37] callr_3.1.1       magrittr_1.5      codetools_0.2-16 
+#R&gt; [40] units_0.6-2       backports_1.1.3   ps_1.3.0         
+#R&gt; [43] htmltools_0.3.6   assertthat_0.2.1  stringi_1.2.4    
+#R&gt; [46] crayon_1.3.4</code></pre>
 </details>
 </div>

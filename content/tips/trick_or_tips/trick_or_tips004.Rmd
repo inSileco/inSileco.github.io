@@ -1,0 +1,134 @@
+---
+title: Trick or tips 004 {R}
+author: [kevin]
+date: 2019-08-09
+tags: [R, tips, trickortips]
+rpkgs: [base, utils, graphics]
+tweet: First post of the Fish and Tips series
+draft: true
+output:
+  rmarkdown::html_page:
+    fig_width: 3
+    dev: svg
+---
+
+
+![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+
+`r htmltools::HTML("{{< trickortips >}}")`
+
+
+```{r codeChunkSetUp, include = FALSE}
+source('../codeChunkSetUp.R')
+```
+
+## *Fish and tips* 0004
+
+For the first post of the series, let's introduce 5 **R** tips:
+
+  1. Subset arrays with arrays!
+  2. `nzchar()`
+  3. Do you need `return()`?
+  4. `invisible()`
+  5. `bquote()` and `substitute()`
+
+
+
+## Subset arrays with arrays!
+
+```{r mat}
+(mat <- matrix(1:9, 3))
+(arr <- array(1:27, 3))
+```
+
+https://stackoverflow.com/questions/26935395/accessing-n-dimensional-array-in-r-using-a-function-of-vector-of-indexes
+
+
+```{r}
+mat[c(1,2)]
+mat[c(1,9)]
+mat[t(c(1,2))]
+```
+
+```{r}
+mat[rbind(c(1,3), c(2,2))]
+```
+
+Matrix are an array in 2 dimension same behavior with arrwy in higher dimensions.
+
+
+
+## `nzchar()`
+
+```{r nzchar}
+nchar("cool")
+nzchar(c("cool", "", ""))
+```
+
+
+## Do you need to use `return()`?
+
+Return the result of the last command line.
+
+
+## `invisible()`
+
+
+```{r invis, fig.width = 8}
+add_v <- function(x, y) {
+  x + y
+}
+##
+add_i <- function(x, y) {
+  invisible(x + y)
+}
+add_v(2, 3)
+add_i(2, 3)
+res <- add_i(2, 3)
+res
+```
+
+But why? Do plot write files silently
+
+```r
+fun_i <- function(x, y) {
+  ## plot / write and read files
+  invisible(NULL)
+}
+```
+
+and optionally check something.
+
+```r
+fun_i <- function(x, y) {
+  ## plot / write and read files
+  ## do a test
+  test <- x<y
+  invisible(test)
+}
+```
+
+
+
+## `bquote()` and `substitute()`
+
+```{r bquote, fig.width = 8}
+delta <- 10
+plot(c(0,1), c(0,1), type = "n", axes = FALSE, ann = FALSE)
+text(0.5, .75, labels = bquote(beta^j == .(delta)+bold("h")), cex = 4)
+text(0.5, .25, labels = substitute(alpha[i] == a + b, list(a = 10)), cex = 4)
+```
+
+
+<br>
+
+#### **That's all folks... until next time!**
+
+<br>
+
+<details>
+<summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
+```{r sessionInfo}
+sessionInfo()
+```
+</details>
