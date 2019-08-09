@@ -5,15 +5,34 @@
 <div class="container">
 
   <div class="col-sm-12">
-    <h1 style="margin-top:50px;margin-bottom:20px;">Softwares</h1> {{ range $.Site.Data.softwares }}
+    <h1 style="margin-top:50px;margin-bottom:20px;">Software</h1>
+    <br><br>
+    {{ range $.Site.Data.softwares }}
     <div class="col-sm-6 text-left">
       <div class="panel panel-default">
         <div class="panel-body">
           <div class="col-sm-12">
             {{ with .github }} <a href="https://github.com/{{.}}" style="display:inline;"><i class="fa fa-2x fa-github" aria-hidden="true"></i>&nbsp;&nbsp;</a>{{ end }}<h3 style="font-weight:bold;display:inline;"> {{ .name }} </h3>
             <h4 style="font-weight:bold;display:inline;"> &nbsp;-&nbsp; {{ .category }} </h4>
+            {{ with .website }}<h3 style="font-weight:bold;display:inline;"> &nbsp;&nbsp; <a href="{{ . }}"><i class="fa fa-globe" aria-hidden="true"></i></a></h3>{{ end }}
             <hr>
             <p> {{ .description }} </p>
+            {{ with .badges }}
+              {{ with .travis }}
+                <a href="https://travis-ci.org/{{ .repo }}">
+                <img alt = "Build Status"  src="https://travis-ci.org/{{ .repo }}.svg?branch={{ .branch | default "master" }}"></img></a>
+              {{ end }}
+              {{ with .appveyor }}
+                <a href="https://ci.appveyor.com/project/{{ .repo }}/branch/{{ .branch | default "master" }}"><img alt = "Build Status"  src="https://ci.appveyor.com/api/projects/status/{{ .status }}/branch/{{ .branch | default "master" }}?svg=true"></img></a>
+              {{ end }}
+              {{ with .codecov }}
+                <a href="https://codecov.io/{{ .repo }}"><img alt = "codecov"  src="https://codecov.io/{{ .repo }}/branch/{{ .branch | default "master" }}/graph/badge.svg"></img></a>
+              {{ end }}
+              {{ with .repostatus }}
+                  <a href="https://www.repostatus.org/#{{.}}"><img alt = "Repostatus" src="https://www.repostatus.org/badges/latest/{{.}}.svg"></img></a>
+              {{ end }}
+              {{ with .zenodo }} {{ . | markdownify }} {{ end }}
+            {{ end }}
             <p style="margin-top:10px;">
                {{ with .travis }} <a href="https://travis-ci.org/{{ .repo }}">
                <img alt = "Build Status"  src="https://travis-ci.org/{{ .repo }}.svg?branch={{ .branch }}"></img></a> {{ end }}
