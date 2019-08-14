@@ -1,6 +1,7 @@
 ---
 title: Trick or tips 004 {R}
 author: [kevin]
+reviewer: [marieh]
 date: 2019-08-13
 tags: [R, tips, trickortips]
 rpkgs: [base, utils, graphics, microbenchmark]
@@ -12,7 +13,6 @@ output:
 ---
 
 
-![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
 
 `r htmltools::HTML("{{< trickortips >}}")`
 
@@ -65,7 +65,7 @@ Now we consider the case where you have a vector of positions (one value per dim
 ```{r}
 # with the line below, we get the 1rst and 3rd elements because we're using a column vector
 arr2[c(1,3)]
-# with a row vector, we get 1rst row and the 3rd column cause we now are using
+# whereas with a row vector, we obtain the element of the 1rst row and the 3rd column
 arr2[t(c(1,3))]
 ```
 
@@ -79,7 +79,7 @@ arr2[mat]
 Similarly, with an array of 3 dimensions, the matrix will have three columns and as many row as there are elements:
 
 ```{r}
-# Let's subset `E`,`C` and `O` and `C` (again)
+# Let us subset `E`,`C` and `O` and `C` (again)
 (msub <- rbind(c(2,2,1), c(3, 1, 1), c(3, 2, 2), c(3, 1, 1)))
 arr3[msub]
 ```
@@ -155,7 +155,7 @@ add_v2 <- function(x, y) {
 }
 ```
 
-`add_v()` and `add_v2()` are equivalent! So.. do we car? Well, you must bear in mind that whenever `return()` is encountered, the evaluation of the set of expressions within the function is stopped and so some time can be saved:
+`add_v()` and `add_v2()` are equivalent! So.. do we care? Well, you must bear in mind that whenever `return()` is encountered, the evaluation of the set of expressions within the function is stopped and therefore some time can be saved:
 
 ```{R}
 foo <- function(x) {
@@ -225,14 +225,14 @@ ty
 
 ## `bquote()` and `substitute()`
 
-When using mathematical annotations, we sometimes need to do include the value
+When using mathematical annotations, we sometimes need to include the value
 of a variable. In such case, `bquote()` or `substitute()` are the functions you
 would need (rather than `expression()` you may already be familiar with).
 
 If you opt for `bquote()`, then variables to be evaluated must be put in
 brackets and preceded by a dot, e.g. `.(var)`. If you choose `substitute()`,
-then variables evaluated will be the ones included in the environment passed as
-argument `env` that could be a list.
+then variables evaluated will be the ones included in the list passed as
+argument `env` (which can also be the name of a environment).
 
 Let's use both functions in to add mathematical expressions in an empty plot:
 
