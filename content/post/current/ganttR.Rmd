@@ -3,7 +3,7 @@ title: Gantt charts in R
 author: [david]
 reviewer: [kevin]
 date: 2017-09-20
-tags: [R, time management, gantt]
+tags: [R, time management, gantt chart, data visualization]
 rpkgs: [graphics, tidyverse, RColorBrewer, kableExtra]
 draft: false
 estime: 15
@@ -15,9 +15,8 @@ output:
 ---
 
 
-
 ```{r codeChunkSetUp, echo=FALSE}
-source('../../../static/Rscript/codeChunkSetUp.R')
+source('../codeChunkSetUp.R')
 ```
 
 <br/>
@@ -40,7 +39,7 @@ jump to the end, copy the `ganttR` function I created and Gantt away!
 
 ## Initiate R
 
-```{r init, message = F, warnings = F}
+```{r init, message = FALSE, warnings = FALSE}
 rm(list=ls())
 # R version
 sessionInfo()[[1]]$version.string
