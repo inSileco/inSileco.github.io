@@ -8,6 +8,9 @@ disqusShortname = "letir"
 ignoreFiles = ["\\.Rmd$", "_files$", "_cache$"]
 enableEmoji = true
 
+[markup.goldmark.renderer]
+unsafe = true
+
 [permalinks]
     post = "/:year/:month/:day/:slug/"
 
