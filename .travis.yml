@@ -1,5 +1,5 @@
 language: r
-dist: xenial
+dist: bionic
 sudo: required
 
 branches:
@@ -16,10 +16,10 @@ notifications:
         - "website: https://insileco.github.io/"
         - "duration: %{duration}"
 
-cache:
-  packages: yes
-  directories:
-    - $HOME/bin
+# cache:
+#   packages: yes
+#   directories:
+#     - $HOME/bin
 
 apt_packages:
   - libgdal-dev

@@ -1,7 +1,4 @@
-## inSileco blog
-
-Our blog built with [blogdown](https://bookdown.org/yihui/blogdown/).
-
+# inSileco blog
 [![Build Status](https://travis-ci.org/inSileco/inSileco.github.io.svg?branch=dev)](https://travis-ci.org/inSileco/inSileco.github.io)
 [![Build status](https://ci.appveyor.com/api/projects/status/kxa7ht9m3b1eke22?svg=true)](https://ci.appveyor.com/project/KevCaz/insileco-github-io)
 
@@ -12,17 +9,18 @@ intensive research in the field of ecology.
 
 
 
-### Getting started
+## Getting started
 
-All information related to how to use our blog are now in our
-[wiki](https://github.com/inSileco/inSileco.github.io/wiki) :book:!
+Our blog created with the great [blogdown :package:](https://bookdown.org/yihui/blogdown/), built and deployed by [Travis CI](https://travis-ci.org/inSileco/inSileco.github.io.svg?branch=dev).
 
-
-
-### Extra details
+See [our wiki :book:](https://github.com/inSileco/inSileco.github.io/wiki)
+to learn how to use our blog!
 
 
-#### Colors
+
+## Extra details :gear:
+
+### Colors
 
 We used a set of color throughout the website:
 
@@ -34,66 +32,13 @@ We used a set of color throughout the website:
 - So the palette is `c("#3fb3b2". "#ffdd55", "#c7254e", "#1b95e0", "#8555b4")`
 
 
-#### Badges
+### Badges
 
 We use our own badges to notify the status of a given post that is not completed:
 
 - ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg) for posts that still require some work.
 
 - ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg) for posts that have reached at certain level of quality and submitted to the review of members of the blog.
-
-#### Add code chunks set up
-
-
-    ```{r codeChunkSetUp, include = FALSE}
-      source('/../../static/Rscript/codeChunkSetUp.R')
-    ```
-
-
-#### Add session Info
-
-<details>
-<summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
-```{r sessionInfo}
-sessionInfo()
-```
-</details>
-
-
-#### Full list of packages required for all post
-
-```
-blogdown,
-devtools,
-DiagrammeR,
-animation,
-biomod2,
-gdistance,
-graphicsutils,
-inSilecoRef,
-inSilecoMisc,
-kableExtra,
-latex2exp,
-lwgeom,
-htmltools,
-mapview,
-plyr,
-rcrossref,
-RefManageR,
-rgdal,
-rgeos,
-rfishbase,
-rglobi,
-rmarkdown,
-robis,
-sdmpredictors,
-showtext,
-sf,
-taxize,
-tidyverse,
-tm,
-yaml
-```
 
 
 #### JS/CSS libraries used
