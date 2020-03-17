@@ -12,14 +12,14 @@ edits:
     comment: "Fix paths to icon files"
   - date: 2018-04-15
     comment: "Change URLs to download Font-Awesome"
+  - date: 2020-03-18
+    comment: "Fix image links"
 output:
   rmarkdown::html_page:
     toc: true
     fig_width: 3
     dev: svg
 ---
-
-
 
 
 
@@ -56,7 +56,7 @@ Here, we exemplify the first strategy and leave the second one for another post
 
 All of these frameworks propose either a `.ttf` (TrueType Font) or a `.otf`
 file (OpenType Font) or both. These files make our life very easy and we can
-make a direct **link** with a [previous blog post]({{ "content/post/archived/hylianStyle/" | relURL }}).
+make a direct **link** with a [previous blog post](/2017/04/14/make-your-r-plot-hylian/).
 
 
 
@@ -170,7 +170,7 @@ unicode characters to be used. Fortunately, this is fairly doable:
 
 <br>
 
-<center> ![Academicons on LibreOffice](assets/academicons.png) </center>
+<center><img src = "assets/academicons.png" width = "80%"></img></center>
 
 <br>
 <br>
@@ -212,9 +212,7 @@ par(family = "academicons")
 points(coord[,1], coord[,2], pch=-as.hexmode(acs), cex=4.8, col=cols)
 ```
 
-<img src="/post/current/iconsInR/index_files/figure-html/figacadem-1.png" width="912" style="display: block; margin: auto;" />
-
-<center><img src = "assets/academiconR.png" width = "90%"></img></center>
+<center><img src = "assets/academiconR.png" width = "80%"></img></center>
 
 
 ### Adding FontAwesome's icons
@@ -314,11 +312,11 @@ sessionInfo()
 #R> R version 3.5.2 (2018-12-20)
 #R> Platform: x86_64-pc-linux-gnu (64-bit)
 #R> Running under: Debian GNU/Linux 10 (buster)
-#R> 
+#R>
 #R> Matrix products: default
 #R> BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
 #R> LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.5.so
-#R> 
+#R>
 #R> locale:
 #R>  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
 #R>  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
@@ -326,17 +324,17 @@ sessionInfo()
 #R>  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
 #R>  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
 #R> [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
-#R> 
+#R>
 #R> attached base packages:
 #R> [1] stats     graphics  grDevices utils     datasets  methods   base     
-#R> 
+#R>
 #R> other attached packages:
 #R> [1] showtext_0.6   showtextdb_2.0 sysfonts_0.8   magrittr_1.5  
-#R> 
+#R>
 #R> loaded via a namespace (and not attached):
 #R>  [1] Rcpp_1.0.0      bookdown_0.9.2  digest_0.6.18   evaluate_0.13  
 #R>  [5] blogdown_0.12   stringi_1.4.3   rmarkdown_1.12  tools_3.5.2    
-#R>  [9] stringr_1.4.0   xfun_0.7        yaml_2.2.0      compiler_3.5.2 
+#R>  [9] stringr_1.4.0   xfun_0.7        yaml_2.2.0      compiler_3.5.2
 #R> [13] htmltools_0.3.6 knitr_1.23
 ```
 </details>

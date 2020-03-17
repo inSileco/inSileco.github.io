@@ -13,8 +13,6 @@ output:
     dev: svg
 ---
 
-<b>cool</b>
-
 
 ## Context
 
@@ -167,6 +165,3 @@ I use [Okular](https://okular.kde.org/)
 
 - relatively easy
 
-
-
-## Go Zotero!

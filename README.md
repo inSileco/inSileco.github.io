@@ -41,6 +41,7 @@ We use our own badges to notify the status of a given post that is not completed
 - ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg) for posts that have reached at certain level of quality and submitted to the review of members of the blog.
 
 
+
 #### JS/CSS libraries used
 
 - [jQuerryUI](https://jqueryui.com/)
