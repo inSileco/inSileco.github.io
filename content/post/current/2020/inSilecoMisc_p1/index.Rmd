@@ -90,30 +90,30 @@ adjustStrings(1:10, n = 2)
 
 But I was rapidly interested in having a more flexible function. So, I added several parameters to do that! In the last version of `inSilecoMisc`, `adjustStrings()` have 5 arguments:
 
-1. `x`: the vector of strings to be adjusted;
+1. `x`: the input character vector to be adjusted;
 2. `n`: the number of characters to be added or used to constrain on the length of the  output strings;
 3. `extra`: the character(s) to be added (`0` is the default value);
 4. `align`: the string alignment ("right", "left" or "center");
 5. `add`: whether `n` should be the constraint or a number of characters to be added (a constraint by default).
 
 
-
-By default behavior of `adjustStrings()` use `n` as a constrain on the length
-so I we
+By default, `adjustStrings()` uses `n` as a constrain for the length of the output strings. so if use `n = 4` instead of `n = 2` in the first example, all
+elements of the output vector will have 4 characters:
 
 ```{R n}
 adjustStrings(1:10, n = 4)
 ```
 
-and extra allows to use any charcater strng
+Add I change the value of `extra` to specify the replacement character(s) to be used :
 
 ```{R extra}
 adjustStrings(1:10, n = 4, extra = 1)
 adjustStrings(1:10, n = 4, extra = "a")
 adjustStrings(1:10, n = 4, extra = "-")
+adjustStrings(1:10, n = 4, extra = "ab")
 ```
 
-and "align" allows use how sting should be aligned `x`
+With `align`, I can choose where extra characters are added:
 
 
 ```{R align}
@@ -122,7 +122,7 @@ adjustStrings(1:10, n = 4, extra = "-", align = "left")
 adjustStrings(1:10, n = 4, extra = "-", align = "center")
 ```
 
-If `add = TRUE`, then exactly `n` extra characters are added to strings (and so they may have different lengths):
+And if I want to add exactly `n` extra characters, `add = TRUE`, then exactly `n` extra characters are added to strings ():
 
 ```{R add}
 adjustStrings(1:10, n = 4, extra = "-", align = "right", add = TRUE)
@@ -130,8 +130,8 @@ adjustStrings(1:10, n = 4, extra = "-", align = "left", add = TRUE)
 adjustStrings(1:10, n = 4, extra = "-", align = "center", add = TRUE)
 ```
 
-
-One last remark about how `adjustStrings()` works when `add = FALSE`, for a given string, there are 3 scenarios :
+Note that in this case, lengths of out strings differ!
+One last remark about how `adjustStrings()` works when `add = FALSE`: for a given string, there are 3 scenarios :
 
 1. the string to be adjusted has more characters than `n`; in this case, the string is simply cut off:
 
