@@ -5,7 +5,7 @@ reviewer: [azenor, marieh]
 date: 2019-02-03
 tags: [R, data frame, data frames generation, row binding]
 rpkgs: [inSilecoMisc]
-draft: false
+estime: 8
 tweet: "Creating empty data frames with columns of different classes"
 output:
   rmarkdown::html_page:
@@ -151,44 +151,44 @@ df8</code></pre>
 )
 lsdf</code></pre>
 <pre><code>## [[1]]
-##   H J G A D
-## 1 h j g a d
-## 2 h j g a d
-## 3 h j g a d
-## 4 h j g a d
-## 5 h j g a d
+##   G A C E H
+## 1 g a c e h
+## 2 g a c e h
+## 3 g a c e h
+## 4 g a c e h
+## 5 g a c e h
 ## 
 ## [[2]]
-##   C B H F E
-## 1 c b h f e
-## 2 c b h f e
-## 3 c b h f e
-## 4 c b h f e
-## 5 c b h f e
+##   G C D A H
+## 1 g c d a h
+## 2 g c d a h
+## 3 g c d a h
+## 4 g c d a h
+## 5 g c d a h
 ## 
 ## [[3]]
-##   B E G A D
-## 1 b e g a d
-## 2 b e g a d
-## 3 b e g a d
-## 4 b e g a d
-## 5 b e g a d
+##   I H J G C
+## 1 i h j g c
+## 2 i h j g c
+## 3 i h j g c
+## 4 i h j g c
+## 5 i h j g c
 ## 
 ## [[4]]
-##   F A I D G
-## 1 f a i d g
-## 2 f a i d g
-## 3 f a i d g
-## 4 f a i d g
-## 5 f a i d g
+##   I F B J H
+## 1 i f b j h
+## 2 i f b j h
+## 3 i f b j h
+## 4 i f b j h
+## 5 i f b j h
 ## 
 ## [[5]]
-##   I J E C F
-## 1 i j e c f
-## 2 i j e c f
-## 3 i j e c f
-## 4 i j e c f
-## 5 i j e c f</code></pre>
+##   G D J A F
+## 1 g d j a f
+## 2 g d j a f
+## 3 g d j a f
+## 4 g d j a f
+## 5 g d j a f</code></pre>
 <p>So the goal here is to create a data frame that contains only the five first
 columns, i.e. A, B, C, D, E, the remaining columns must be discarded and
 when one selected column is missing, it must be added (filled out with <code>NA</code>).
@@ -196,73 +196,73 @@ To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
 <pre class="r"><code>lsdf2 &lt;- lapply(lsdf, dfTemplateMatch, LETTERS[1:5], yonly = TRUE)
 lsdf2</code></pre>
 <pre><code>## [[1]]
-##   A D  B  C  E
-## 1 a d NA NA NA
-## 2 a d NA NA NA
-## 3 a d NA NA NA
-## 4 a d NA NA NA
-## 5 a d NA NA NA
+##   A C E  B  D
+## 1 a c e NA NA
+## 2 a c e NA NA
+## 3 a c e NA NA
+## 4 a c e NA NA
+## 5 a c e NA NA
 ## 
 ## [[2]]
-##   C B E  A  D
-## 1 c b e NA NA
-## 2 c b e NA NA
-## 3 c b e NA NA
-## 4 c b e NA NA
-## 5 c b e NA NA
+##   C D A  B  E
+## 1 c d a NA NA
+## 2 c d a NA NA
+## 3 c d a NA NA
+## 4 c d a NA NA
+## 5 c d a NA NA
 ## 
 ## [[3]]
-##   B E A D  C
-## 1 b e a d NA
-## 2 b e a d NA
-## 3 b e a d NA
-## 4 b e a d NA
-## 5 b e a d NA
+##   C  A  B  D  E
+## 1 c NA NA NA NA
+## 2 c NA NA NA NA
+## 3 c NA NA NA NA
+## 4 c NA NA NA NA
+## 5 c NA NA NA NA
 ## 
 ## [[4]]
-##   A D  B  C  E
-## 1 a d NA NA NA
-## 2 a d NA NA NA
-## 3 a d NA NA NA
-## 4 a d NA NA NA
-## 5 a d NA NA NA
+##   B  A  C  D  E
+## 1 b NA NA NA NA
+## 2 b NA NA NA NA
+## 3 b NA NA NA NA
+## 4 b NA NA NA NA
+## 5 b NA NA NA NA
 ## 
 ## [[5]]
-##   E C  A  B  D
-## 1 e c NA NA NA
-## 2 e c NA NA NA
-## 3 e c NA NA NA
-## 4 e c NA NA NA
-## 5 e c NA NA NA</code></pre>
+##   D A  B  C  E
+## 1 d a NA NA NA
+## 2 d a NA NA NA
+## 3 d a NA NA NA
+## 4 d a NA NA NA
+## 5 d a NA NA NA</code></pre>
 <p>And now I can seamlessly <code>rbind()</code> the list <code>lsdf2</code>!</p>
 <pre class="r"><code>do.call(rbind, lsdf2)</code></pre>
-<pre><code>##       A    D    B    C    E
-## 1     a    d &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 2     a    d &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 3     a    d &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 4     a    d &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 5     a    d &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 6  &lt;NA&gt; &lt;NA&gt;    b    c    e
-## 7  &lt;NA&gt; &lt;NA&gt;    b    c    e
-## 8  &lt;NA&gt; &lt;NA&gt;    b    c    e
-## 9  &lt;NA&gt; &lt;NA&gt;    b    c    e
-## 10 &lt;NA&gt; &lt;NA&gt;    b    c    e
-## 11    a    d    b &lt;NA&gt;    e
-## 12    a    d    b &lt;NA&gt;    e
-## 13    a    d    b &lt;NA&gt;    e
-## 14    a    d    b &lt;NA&gt;    e
-## 15    a    d    b &lt;NA&gt;    e
-## 16    a    d &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 17    a    d &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 18    a    d &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 19    a    d &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 20    a    d &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 21 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    c    e
-## 22 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    c    e
-## 23 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    c    e
-## 24 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    c    e
-## 25 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    c    e</code></pre>
-<div id="voila-this-is-what-i-call-a-flexible-rbind-i-hope-youll-find-this-helpful-boom" class="section level4">
+<pre><code>##       A    C    E    B    D
+## 1     a    c    e &lt;NA&gt; &lt;NA&gt;
+## 2     a    c    e &lt;NA&gt; &lt;NA&gt;
+## 3     a    c    e &lt;NA&gt; &lt;NA&gt;
+## 4     a    c    e &lt;NA&gt; &lt;NA&gt;
+## 5     a    c    e &lt;NA&gt; &lt;NA&gt;
+## 6     a    c &lt;NA&gt; &lt;NA&gt;    d
+## 7     a    c &lt;NA&gt; &lt;NA&gt;    d
+## 8     a    c &lt;NA&gt; &lt;NA&gt;    d
+## 9     a    c &lt;NA&gt; &lt;NA&gt;    d
+## 10    a    c &lt;NA&gt; &lt;NA&gt;    d
+## 11 &lt;NA&gt;    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 12 &lt;NA&gt;    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 13 &lt;NA&gt;    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 14 &lt;NA&gt;    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 15 &lt;NA&gt;    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
+## 16 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
+## 17 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
+## 18 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
+## 19 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
+## 20 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
+## 21    a &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
+## 22    a &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
+## 23    a &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
+## 24    a &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
+## 25    a &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d</code></pre>
+<div id="voilà-this-is-what-i-call-a-flexible-rbind-i-hope-youll-find-this-helpful-boom" class="section level4">
 <h4>Voilà! This is what I call a <em>flexible</em> <code>rbind</code>! I hope you’ll find this helpful! :boom:</h4>
 <p><br></p>
 <details>
@@ -273,7 +273,7 @@ lsdf2</code></pre>
 </h4>
 <p></summary></p>
 <pre class="r"><code>sessionInfo()</code></pre>
-<pre><code>## R version 3.6.1 (2019-07-05)
+<pre><code>## R version 3.6.3 (2020-02-29)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Debian GNU/Linux 10 (buster)
 ## 
@@ -293,21 +293,21 @@ lsdf2</code></pre>
 ## [1] stats     graphics  grDevices datasets  utils     methods   base     
 ## 
 ## other attached packages:
-## [1] inSilecoMisc_0.2.0.9000 usethis_1.4.0           devtools_2.0.1         
+## [1] inSilecoMisc_0.3.0.9000
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.2        knitr_1.23        magrittr_1.5     
-##  [4] pkgload_1.0.2     R6_2.4.0          rlang_0.4.0      
-##  [7] stringr_1.4.0     tools_3.6.1       pkgbuild_1.0.2   
-## [10] xfun_0.8          sessioninfo_1.1.1 cli_1.0.1        
-## [13] withr_2.1.2       htmltools_0.3.6   remotes_2.0.2    
-## [16] yaml_2.2.0        assertthat_0.2.1  rprojroot_1.3-2  
-## [19] digest_0.6.18     bookdown_0.12     crayon_1.3.4     
-## [22] processx_3.2.1    callr_3.1.1       fs_1.2.6         
-## [25] ps_1.3.0          testthat_2.0.1    memoise_1.1.0    
-## [28] glue_1.3.1        evaluate_0.13     rmarkdown_1.14   
-## [31] blogdown_0.14     stringi_1.2.4     compiler_3.6.1   
-## [34] desc_1.2.0        backports_1.1.3   prettyunits_1.0.2</code></pre>
+##  [1] Rcpp_1.0.4         compiler_3.6.3     base64enc_0.1-3    class_7.3-15      
+##  [5] tools_3.6.3        digest_0.6.25      satellite_1.0.2    evaluate_0.14     
+##  [9] lifecycle_0.2.0    lattice_0.20-40    viridisLite_0.3.0  png_0.1-7         
+## [13] rlang_0.4.5        DBI_1.1.0          crosstalk_1.1.0.1  yaml_2.2.1        
+## [17] blogdown_0.18      xfun_0.12          e1071_1.7-3        stringr_1.4.0     
+## [21] raster_3.0-12      knitr_1.28         htmlwidgets_1.5.1  stats4_3.6.3      
+## [25] classInt_0.4-2     leaflet_2.0.3      grid_3.6.3         webshot_0.5.2     
+## [29] glue_1.4.0         sf_0.8-1           R6_2.4.1           rmarkdown_2.1     
+## [33] bookdown_0.18      sp_1.4-1           magrittr_1.5       scales_1.1.0      
+## [37] codetools_0.2-16   htmltools_0.4.0    units_0.6-6        colorspace_1.4-1  
+## [41] mapview_2.7.0      KernSmooth_2.23-16 stringi_1.4.6      munsell_0.5.0     
+## [45] crayon_1.3.4</code></pre>
 </details>
 </div>
 </div>

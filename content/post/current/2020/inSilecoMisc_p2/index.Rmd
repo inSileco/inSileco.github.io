@@ -1,0 +1,89 @@
+---
+title: "inSilecoMisc 0.4.0 (part 2/2)"
+author: [kevin]
+date: 2020-03-17
+tags: [R, data visualization]
+tweet: "Empty your R plots!"
+draft: true
+estime: 10
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+
+Already in this blog reporter post Note that one feature was also reported here.
+[`dfTemplate()`](/2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/)
+
+Part 2 see part 1 (link)
+
+```R
+remotes::install_github("inSileco/inSilecoMisc")
+```
+
+```{R}
+library("inSilecoMisc")
+packageVersion("inSilecoMisc")
+```
+
+
+
+
+## `scaleWithin()`
+
+```{R}
+val <- runif(50, 0, 100)
+scaleWithin(val, 20, 20, 80)
+```
+
+
+
+## Message
+
+Not essential but very useful to see what happening that is why I like
+package such as []() []() or []
+
+
+## New feature `tblDown()`
+
+This is something . Of course if you are using R Markkwon but if your are not
+if a couple of manipulations. `tblDown()` makes it very easy.
+
+Caption written using with a non exported function
+
+
+
+See outpout in zip file.s
+
+
+
+
+```
+keepLetters()
+```
+
+See previous post for data template
+
+
+
+
+
+#### That's all folks :smile:!!
+
+
+<br><br>
+<details>
+<summary>
+  <h4>
+    <i class="fa fa-cogs" aria-hidden="true"></i> Session info
+    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+  </h4>
+</summary>
+
+```{R sessionInfo}
+sessionInfo()
+```
+</details>

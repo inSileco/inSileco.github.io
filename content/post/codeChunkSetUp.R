@@ -6,5 +6,6 @@ knitr::opts_chunk$set(
   #fig.width = 7.5,
   #fig.height = 6,
   fig.align = 'center',
-  width = 120
+  width = 100
 )
+library(inSilecoRef)
