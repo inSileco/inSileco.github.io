@@ -21,23 +21,23 @@
 
     <h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
 
-    <h5>{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</h5>
+    <h4>{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</h4>
 
-    <p> <i class="fa fa-tags" aria-hidden="true"></i> &nbsp; {{ range .Params.tags }} <a href="/tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}</p>
-
-    {{ if .Params.rpkgs }}
-    <p> <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width=7%></img> &nbsp; {{ range .Params.rpkgs }} <a href="/rpkgs/{{ . | urlize }}"><kbd class="item-tag2">{{ . }}</kbd></a> {{ end }}</p>
-    {{ end }}
-
+    <p>
+      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp; {{ range .Params.tags }} <a href="/tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}
+      <br>
+      {{ if .Params.rpkgs }}
+       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp; {{ range .Params.rpkgs }} <a href="/rpkgs/{{ . | urlize }}"><kbd class="item-tag2">{{ . }}</kbd></a> {{ end }}
+      {{ end }}
+    </p>
 
     {{ if .Params.author }}
-      <p style = "font-size: 1.8em; margin-top: 20px"> <i class="fa fa-pencil" aria-hidden="true"></i>
+      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true"></i>
       {{ range $auth := .Params.author }} {{ $info := index $.Site.Data.authors $auth }}
         <a href="/about/">{{ $info.given_name }} {{ $info.family_name }}</a> &nbsp;
       {{ end }}
      <a href="#"></a></p>
     {{ end }}
-
 
     {{ if .Params.reviewer }}
       <p> <i class="fa fa-check-square" aria-hidden="true"></i>
@@ -47,12 +47,22 @@
       <a href="#"></a></p>
     {{ end }}
 
-    {{ with .Params.estime }} <i class="fa fa-clock-o" aria-hidden="true"></i> {{ . }}min {{ end }}
-
-
-    <p> <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true" data-text="{{ .Params.tweet }}">Tweet</a>
-      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-    </p>
+    <p>
+    {{ if .Params.draft }}
+      <img src='{{ (print "https://img.shields.io/static/v1?style=flat&label=inSileco&message=inDevelopment&color=c7254e&logo="  $.Site.Data.logos.inSileco.code64) | safeURL }}'>
+    {{ end }}
+    {{ if .Params.review }}
+      <img src='{{ (print "https://img.shields.io/static/v1?style=flat&label=inSileco&message=underReview&color=8555b4&logo="  $.Site.Data.logos.inSileco.code64) | safeURL }}'>
+    {{ end }}
+    {{ with .Params.estime }}
+      <img src='{{ (print "https://img.shields.io/static/v1?style=flat&label=time&message=" . "min&color=3fb3b2&logo="  $.Site.Data.logos.clock.code64) | safeURL }}'>
+    {{ end }}
+    &nbsp;&nbsp;
+    <!-- cf https://insileco.github.io/{{ .Permalink }} -->
+    <a href="http://twitter.com/share?url=https://insileco.github.io/{{ .Permalink }}&text={{ .Params.tweet }}" target="_blank">
+      <img src='https://img.shields.io/twitter/url?style=social&url=https://insileco.github.io/{{ .Permalink }}?link=http://left&link=http://right}'>
+    </a>
+  </p>
 
 
     <div class="text-justify">
