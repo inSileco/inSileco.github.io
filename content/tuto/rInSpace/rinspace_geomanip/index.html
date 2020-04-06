@@ -18,11 +18,7 @@ output:
 
 
 
-<p>To manipulate geometries, there are few options. For spatial objects defined
-with <code>sp</code>, there is a specific package to manipulate vector objects: <code>rgeos</code>.
-The equivalent of most common functions in <code>sp</code> are found in <code>sf</code>.
-Finally, there are a set of interesting functions in <code>raster</code> to handle
-the manipulation of rasters with vector objects.</p>
+<p>To manipulate geometries, there are few options. For spatial objects defined with <code>sp</code>, there is a specific package to manipulate vector objects: <code>rgeos</code>. The equivalent of most common functions in <code>sp</code> are found in <code>sf</code>. Finally, there are a set of interesting functions in <code>raster</code> to handle the manipulation of rasters with vector objects.</p>
 <p>Let’s first load the packages required and download a simple shapefile of Belgium.</p>
 <pre class="r"><code>library(sp)
 library(sf)
@@ -99,9 +95,7 @@ plot(bel_south, add = TRUE, col = 2)</code></pre>
 </div>
 <div id="overlays" class="section level2">
 <h2>Overlays</h2>
-<p>One very useful tool is the <strong>over()</strong> function which provides a consistent
-spatial overlay. For instance, here, I create a set of random points and
-look which one are in <code>bel2</code>, <code>bel_north</code> and <code>bel_south</code>:</p>
+<p>One very useful tool is the <strong>over()</strong> function which provides a consistent spatial overlay. For instance, here, I create a set of random points and look which one are in <code>bel2</code>, <code>bel_north</code> and <code>bel_south</code>:</p>
 <pre class="r"><code>pts &lt;- SpatialPoints(
   coords = cbind(
     runif(50, bel2@bbox[1, 1], bel2@bbox[1, 2]),
@@ -145,49 +139,38 @@ par(mfrow = c(1,2))
 plot(elv_south)
 plot(elv_north)</code></pre>
 <p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<p><summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary></p>
+<p><details> <summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary></p>
 <pre class="r"><code>sessionInfo()
-#R&gt; R version 3.5.2 (2018-12-20)
+#R&gt; R version 3.6.3 (2020-02-29)
 #R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
-#R&gt; Running under: Debian GNU/Linux buster/sid
+#R&gt; Running under: Ubuntu 18.04.4 LTS
 #R&gt; 
 #R&gt; Matrix products: default
-#R&gt; BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
-#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.5.so
+#R&gt; BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
 #R&gt; 
 #R&gt; locale:
-#R&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-#R&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-#R&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-#R&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#R&gt;  [1] LC_CTYPE=en_CA.UTF-8       LC_NUMERIC=C              
+#R&gt;  [3] LC_TIME=en_CA.UTF-8        LC_COLLATE=en_CA.UTF-8    
+#R&gt;  [5] LC_MONETARY=en_CA.UTF-8    LC_MESSAGES=en_CA.UTF-8   
+#R&gt;  [7] LC_PAPER=en_CA.UTF-8       LC_NAME=C                 
 #R&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-#R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#R&gt; [11] LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       
 #R&gt; 
 #R&gt; attached base packages:
-#R&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#R&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #R&gt; 
 #R&gt; other attached packages:
-#R&gt; [1] raster_2.8-19  rgeos_0.4-2    sf_0.7-3       sp_1.3-1      
-#R&gt; [5] usethis_1.4.0  devtools_2.0.2
+#R&gt; [1] raster_3.0-12 rgeos_0.5-2   sf_0.9-0      sp_1.4-1     
 #R&gt; 
 #R&gt; loaded via a namespace (and not attached):
-#R&gt;  [1] Rcpp_1.0.0        compiler_3.5.2    class_7.3-15     
-#R&gt;  [4] prettyunits_1.0.2 remotes_2.0.2     tools_3.5.2      
-#R&gt;  [7] testthat_2.0.1    digest_0.6.18     pkgbuild_1.0.2   
-#R&gt; [10] pkgload_1.0.2     evaluate_0.13     memoise_1.1.0    
-#R&gt; [13] lattice_0.20-38   rlang_0.3.1       cli_1.0.1        
-#R&gt; [16] DBI_1.0.0         parallel_3.5.2    rgdal_1.4-3      
-#R&gt; [19] yaml_2.2.0        blogdown_0.11     xfun_0.5         
-#R&gt; [22] e1071_1.7-0.1     withr_2.1.2       stringr_1.4.0    
-#R&gt; [25] knitr_1.22        desc_1.2.0        fs_1.2.6         
-#R&gt; [28] classInt_0.3-1    rprojroot_1.3-2   grid_3.5.2       
-#R&gt; [31] glue_1.3.0        R6_2.4.0          processx_3.2.1   
-#R&gt; [34] rmarkdown_1.12    bookdown_0.9.2    sessioninfo_1.1.1
-#R&gt; [37] callr_3.1.1       magrittr_1.5      codetools_0.2-16 
-#R&gt; [40] units_0.6-2       backports_1.1.3   ps_1.3.0         
-#R&gt; [43] htmltools_0.3.6   assertthat_0.2.0  stringi_1.4.3    
-#R&gt; [46] crayon_1.3.4</code></pre>
-</details>
+#R&gt;  [1] Rcpp_1.0.4         knitr_1.28         magrittr_1.5       units_0.6-6       
+#R&gt;  [5] lattice_0.20-40    rlang_0.4.5        stringr_1.4.0      tools_3.6.3       
+#R&gt;  [9] parallel_3.6.3     rgdal_1.4-8        grid_3.6.3         xfun_0.12         
+#R&gt; [13] KernSmooth_2.23-16 e1071_1.7-3        DBI_1.1.0          htmltools_0.4.0   
+#R&gt; [17] class_7.3-16       yaml_2.2.1         digest_0.6.25      bookdown_0.18     
+#R&gt; [21] codetools_0.2-16   evaluate_0.14      rmarkdown_2.1      blogdown_0.18.1   
+#R&gt; [25] stringi_1.4.6      compiler_3.6.3     classInt_0.4-2</code></pre>
+<p></details></p>
 </div>
 </div>

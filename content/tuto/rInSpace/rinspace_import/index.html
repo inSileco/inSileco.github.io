@@ -16,28 +16,15 @@ navposts:
 
 <div id="reading-and-writing-spatial-objects-with-sf-and-raster" class="section level2">
 <h2>Reading and writing spatial objects with <code>sf</code> and <code>raster</code></h2>
-<p>Spatial data are encoded in various <a href="https://en.wikipedia.org/wiki/GIS_file_formats">GIS file formats</a>
-such as Shapefiles (.shp), Geodatabase (.gdb), GeoPackage (.gpkg) and GeoJSON (.geojson),
-GeoTIFF (.tiff). In this post we show how to read commonly used formats and
-import the data they include in you R session. We start by describing the steps
-to turn a set of coordinates included in a <code>.csv</code> file into a spatial object and
-write it to a GIS file format. We then exemplify the use of two functions:
-<code>st_read()</code> from the <code>sf</code> package and <code>raster()</code> from the <code>raster</code> package and
-import different GIS file available on the <a href="http://donnees.ville.montreal.qc.ca/dataset">Portail de données ouvertes de
-Montreal</a>.</p>
+<p>Spatial data are encoded in various <a href="https://en.wikipedia.org/wiki/GIS_file_formats">GIS file formats</a> such as Shapefiles (.shp), Geodatabase (.gdb), GeoPackage (.gpkg) and GeoJSON (.geojson), GeoTIFF (.tiff). In this post we show how to read commonly used formats and import the data they include in you R session. We start by describing the steps to turn a set of coordinates included in a <code>.csv</code> file into a spatial object and write it to a GIS file format. We then exemplify the use of two functions: <code>st_read()</code> from the <code>sf</code> package and <code>raster()</code> from the <code>raster</code> package and import different GIS file available on the <a href="http://donnees.ville.montreal.qc.ca/dataset">Portail de données ouvertes de Montreal</a>.</p>
 <p>Let us start by loading the packages required:</p>
 <pre class="r"><code>library(sf)
 library(raster)</code></pre>
 </div>
 <div id="import-spatial-data-from-.csv-file" class="section level2">
 <h2>Import spatial data from .csv file</h2>
-<p>Spatial data are sometimes stored in a text file format (.txt or .csv), in such
-case columns providing the coordinates must be included and the user must know
-the CRS (Coordinate Reference System). A <code>sf</code> object allows us to store both
-the coordinates of each point as well as associated attribute data, <em>i.e.</em>
-columns describing each feature in the spatial object.</p>
-<p>The dataset we work with below represents sampling points of a monitoring
-program of water quality in Montreal (available <a href="http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4">here</a>).</p>
+<p>Spatial data are sometimes stored in a text file format (.txt or .csv), in such case columns providing the coordinates must be included and the user must know the CRS (Coordinate Reference System). A <code>sf</code> object allows us to store both the coordinates of each point as well as associated attribute data, <em>i.e.</em> columns describing each feature in the spatial object.</p>
+<p>The dataset we work with below represents sampling points of a monitoring program of water quality in Montreal (available <a href="http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4">here</a>).</p>
 <pre class="r"><code># Create a new directory to download data
 dir.create(&quot;data&quot;)
 
@@ -49,13 +36,7 @@ if (!file.exists(&quot;data/ruisso.csv&quot;))
 pts &lt;- read.csv(&quot;data/ruisso.csv&quot;, header = T, dec = &quot;,&quot;)</code></pre>
 <div id="convert-a-data-frame-to-simple-feature-objects" class="section level3">
 <h3>Convert a data frame to simple feature objects</h3>
-<p>The data frame containing sampling points can be converted into simple feature
-objects using <code>st_as_sf()</code>. To do so, we need to specify where coordinates are,
-<em>i.e.</em> columns <code>LATITUDE</code> and <code>LONGITUDE</code> as well as the CRS. In our example,
-the CRS is specified in the <a href="http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4">metadata of the data set</a>: the <a href="http://www.nrcan.gc.ca/node/9791">datum</a> is WGS84 and the <a href="http://www.epsg.org/">EPSG</a> is <strong>4326</strong>.
-Remember that without the CRS, you cannot locate correctly your coordinates on the
-Earth’s surface. In the package <code>sf</code>, the reference system can be define using
-the <code>proj4</code> format or directly with the EPSG code.</p>
+<p>The data frame containing sampling points can be converted into simple feature objects using <code>st_as_sf()</code>. To do so, we need to specify where coordinates are, <em>i.e.</em> columns <code>LATITUDE</code> and <code>LONGITUDE</code> as well as the CRS. In our example, the CRS is specified in the <a href="http://donnees.ville.montreal.qc.ca/dataset/rsma-points-d-echantillonnage-ruisso/resource/adad6c48-fb48-40fc-a031-1ac870d978b4">metadata of the data set</a>: the <a href="http://www.nrcan.gc.ca/node/9791">datum</a> is WGS84 and the <a href="http://www.epsg.org/">EPSG</a> is <strong>4326</strong>. Remember that without the CRS, you cannot locate correctly your coordinates on the Earth’s surface. In the package <code>sf</code>, the reference system can be define using the <code>proj4</code> format or directly with the EPSG code.</p>
 <pre class="r"><code>pts_sf &lt;- st_as_sf(x = pts,
   coords = c(&quot;LONGITUDE&quot;, &quot;LATITUDE&quot;),
   crs = 4326)
@@ -64,8 +45,7 @@ head(pts_sf)
 #R&gt; geometry type:  POINT
 #R&gt; dimension:      XY
 #R&gt; bbox:           xmin: -73.93704 ymin: 45.43462 xmax: -73.9012 ymax: 45.45022
-#R&gt; epsg (SRID):    4326
-#R&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#R&gt; CRS:            EPSG:4326
 #R&gt;         Plan.d.eau Point.d.échantillonnage
 #R&gt; 1 Rivière à l&#39;Orme                 AAO-0.0
 #R&gt; 2 Rivière à l&#39;Orme               AAO-1.5P1
@@ -87,40 +67,25 @@ head(pts_sf)
 #R&gt; 4                Kirkland    Actif POINT (-73.90147 45.43689)
 #R&gt; 5 Sainte-Anne-de-Bellevue    Actif POINT (-73.90144 45.43566)
 #R&gt; 6             Baie d&#39;Urfé    Actif  POINT (-73.9012 45.43462)</code></pre>
-<p>As you can see, we now have a <code>MULTIPOINT</code> geometry, and the spatial information
-is now stored in a simple feature list-column (<code>sfc</code>). The other columns contain
-all the attributes related to the sample points.</p>
+<p>As you can see, we now have a <code>MULTIPOINT</code> geometry, and the spatial information is now stored in a simple feature list-column (<code>sfc</code>). The other columns contain all the attributes related to the sample points.</p>
 <p>The default plot of a simple features object is a multi-facet of all attributes.</p>
 <pre class="r"><code>plot(pts_sf)</code></pre>
 <p><img src="/tuto/rInSpace/rinspace_import/index_files/figure-html/plot_pts-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>As you can see, instead of creating a single map, as with sp object, the
-default plot of sf object creates multiple maps, one for each attribute,
-which can sometimes be useful for exploring the spatial distribution of different
-variables.</p>
+<p>As you can see, instead of creating a single map, as with sp object, the default plot of sf object creates multiple maps, one for each attribute, which can sometimes be useful for exploring the spatial distribution of different variables.</p>
 </div>
 <div id="export-your-points-in-a-shapefile" class="section level3">
 <h3>Export your points in a Shapefile</h3>
-<p>We can write a simple features object to a file (<em>e.g.</em> a shapefile) using the
-<code>st_write()</code> function in <code>sf</code>, which needs at least two arguments, the object
-and a filename:</p>
+<p>We can write a simple features object to a file (<em>e.g.</em> a shapefile) using the <code>st_write()</code> function in <code>sf</code>, which needs at least two arguments, the object and a filename:</p>
 <pre class="r"><code>st_write(pts_sf, &quot;data/pts_sf.shp&quot;, delete_dsn = T)
 #R&gt; Deleting source `data/pts_sf.shp&#39; using driver `ESRI Shapefile&#39;
 #R&gt; Writing layer `pts_sf&#39; to data source `data/pts_sf.shp&#39; using driver `ESRI Shapefile&#39;
-#R&gt; features:       66
-#R&gt; fields:         5
-#R&gt; geometry type:  Point</code></pre>
-<p>Note that <code>st_write()</code> selected one driver base on the file extension provided.
-The driver can also be made explicit using the <code>driver</code> argument like so:
-<code>st_write(pts_sf, &quot;data/pts_sf.shp&quot;, driver = &quot;ESRI Shapefile&quot;)</code>. Last but not
-least, in order to have details about drivers available, have a look at the data
-frame <code>st_drivers()</code> returns.</p>
+#R&gt; Writing 66 features with 5 fields and geometry type Point.</code></pre>
+<p>Note that <code>st_write()</code> selected one driver base on the file extension provided. The driver can also be made explicit using the <code>driver</code> argument like so: <code>st_write(pts_sf, &quot;data/pts_sf.shp&quot;, driver = &quot;ESRI Shapefile&quot;)</code>. Last but not least, in order to have details about drivers available, have a look at the data frame <code>st_drivers()</code> returns.</p>
 </div>
 </div>
 <div id="import-shapefile-data" class="section level2">
 <h2>Import Shapefile data</h2>
-<p>The shapefile contains polygons delimiting the woods of the Montreal
-agglomeration and information about the forest composition (found
-<a href="http://donnees.ville.montreal.qc.ca/dataset/29791562-f050-401e-b405-5c1fbf427f65">here</a>).</p>
+<p>The shapefile contains polygons delimiting the woods of the Montreal agglomeration and information about the forest composition (found <a href="http://donnees.ville.montreal.qc.ca/dataset/29791562-f050-401e-b405-5c1fbf427f65">here</a>).</p>
 <pre class="r"><code># Download shapefile from web page in your working directory
 if (!file.exists(&quot;data/bois.zip&quot;))
   download.file(&quot;http://donnees.ville.montreal.qc.ca/dataset/29791562-f050-401e-b405-5c1fbf427f65/resource/9fa20d3a-5dee-43d6-9bc9-5d86fe225e16/download/bois.zip&quot;, destfile = &quot;data/bois.zip&quot;)
@@ -129,21 +94,19 @@ unzip(&quot;data/bois.zip&quot;, exdir = &quot;data&quot;)
 
 # Read shapefile in R
 bois &lt;- st_read(dsn = &quot;data/&quot;, layer = &quot;bois&quot;)
-#R&gt; Reading layer `bois&#39; from data source `/home/kevcaz/Github/Websites/inSileco.github.io/content/tuto/rInSpace/rinspace_import/data&#39; using driver `ESRI Shapefile&#39;
+#R&gt; Reading layer `bois&#39; from data source `/home/steve/Documents/Git/inSileco.github.io/content/tuto/rInSpace/rinspace_import/data&#39; using driver `ESRI Shapefile&#39;
 #R&gt; Simple feature collection with 2716 features and 4 fields
 #R&gt; geometry type:  MULTIPOLYGON
 #R&gt; dimension:      XY
 #R&gt; bbox:           xmin: -73.97557 ymin: 45.40957 xmax: -73.48204 ymax: 45.69943
-#R&gt; epsg (SRID):    4326
-#R&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#R&gt; CRS:            4326
 
 head(bois)
 #R&gt; Simple feature collection with 6 features and 4 fields
 #R&gt; geometry type:  MULTIPOLYGON
 #R&gt; dimension:      XY
 #R&gt; bbox:           xmin: -73.86056 ymin: 45.43293 xmax: -73.49655 ymax: 45.69584
-#R&gt; epsg (SRID):    4326
-#R&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#R&gt; CRS:            4326
 #R&gt;   OBJECTID GR_ESSENC Shape_Leng Shape_Area                       geometry
 #R&gt; 1        2  Feuillus   515.4464   7199.995 MULTIPOLYGON (((-73.49961 4...
 #R&gt; 2        3  Feuillus   364.7666   8354.159 MULTIPOLYGON (((-73.51461 4...
@@ -151,22 +114,16 @@ head(bois)
 #R&gt; 4        6  Feuillus   336.2568   4222.548 MULTIPOLYGON (((-73.4967 45...
 #R&gt; 5        8  Feuillus   510.9489   5168.669 MULTIPOLYGON (((-73.85932 4...
 #R&gt; 6        9  Feuillus   605.2992  10936.294 MULTIPOLYGON (((-73.85413 4...</code></pre>
-<p>The <code>bois</code> dataset has been turned into a <code>MULTIPOLYGON</code> object and has the same
-CRS (EPSG: 4326) than the sample points we have manipulated above. This allows
-us to work directly with the two objects otherwise we should have transformed
-one dataset using the CRS of the other. To plot only the geometry and not all
-attributes, we retrieve the geometry list-column using <code>st_geometry()</code>:</p>
+<p>The <code>bois</code> dataset has been turned into a <code>MULTIPOLYGON</code> object and has the same CRS (EPSG: 4326) than the sample points we have manipulated above. This allows us to work directly with the two objects otherwise we should have transformed one dataset using the CRS of the other. To plot only the geometry and not all attributes, we retrieve the geometry list-column using <code>st_geometry()</code>:</p>
 <pre class="r"><code>plot(st_geometry(bois))</code></pre>
 <p><img src="/tuto/rInSpace/rinspace_import/index_files/figure-html/plot_poly_geom-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>To plot the polygons with a thematic color scale according to one attribute of
-interest, we actually subset the object (here we use the name of the column):</p>
+<p>To plot the polygons with a thematic color scale according to one attribute of interest, we actually subset the object (here we use the name of the column):</p>
 <pre class="r"><code>plot(bois[&quot;Shape_Area&quot;])</code></pre>
 <p><img src="/tuto/rInSpace/rinspace_import/index_files/figure-html/plot_poly_area-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="import-geojson-file" class="section level2">
 <h2>Import GeoJSON file</h2>
-<p>This GeoJSON dataset contains watercourses (stream, river) and main ditches of
-the Montreal agglomeration (available <a href="http://donnees.ville.montreal.qc.ca/dataset/c128aff5-325c-4599-ab66-1c9d0b3abc94">here</a>). Hence, it is a <code>MULTILINE</code> object.</p>
+<p>This GeoJSON dataset contains watercourses (stream, river) and main ditches of the Montreal agglomeration (available <a href="http://donnees.ville.montreal.qc.ca/dataset/c128aff5-325c-4599-ab66-1c9d0b3abc94">here</a>). Hence, it is a <code>MULTILINE</code> object.</p>
 <pre class="r"><code># Download shapefile from web page in your working directory
 if (!file.exists(&quot;data/courseau.geojson&quot;))
   download.file(&quot;http://donnees.ville.montreal.qc.ca/dataset/c128aff5-325c-4599-ab66-1c9d0b3abc94/resource/0f64976e-19c1-4d29-bcc5-4b663a392617/download/courseau.geojson&quot;, destfile=&quot;data/courseau.geojson&quot;)
@@ -174,21 +131,19 @@ if (!file.exists(&quot;data/courseau.geojson&quot;))
 # For GeoJSON, dsn may be the character string holding the geojson data
 
 courseau &lt;- st_read(dsn = &quot;data/courseau.geojson&quot;)
-#R&gt; Reading layer `courseau&#39; from data source `/home/kevcaz/Github/Websites/inSileco.github.io/content/tuto/rInSpace/rinspace_import/data/courseau.geojson&#39; using driver `GeoJSON&#39;
+#R&gt; Reading layer `courseau&#39; from data source `/home/steve/Documents/Git/inSileco.github.io/content/tuto/rInSpace/rinspace_import/data/courseau.geojson&#39; using driver `GeoJSON&#39;
 #R&gt; Simple feature collection with 1306 features and 5 fields
 #R&gt; geometry type:  MULTILINESTRING
 #R&gt; dimension:      XY
 #R&gt; bbox:           xmin: -73.97268 ymin: 45.41593 xmax: -73.4975 ymax: 45.69939
-#R&gt; epsg (SRID):    4326
-#R&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#R&gt; CRS:            4326
 
 head(courseau)
 #R&gt; Simple feature collection with 6 features and 5 fields
 #R&gt; geometry type:  MULTILINESTRING
 #R&gt; dimension:      XY
 #R&gt; bbox:           xmin: -73.9206 ymin: 45.42815 xmax: -73.9066 ymax: 45.47614
-#R&gt; epsg (SRID):    4326
-#R&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#R&gt; CRS:            4326
 #R&gt;   OBJECTID_1              NOM     TYPE Shape_Le_1 NuméroRui
 #R&gt; 1          1 rivière à l&#39;Orme  rivière  177.95299      &lt;NA&gt;
 #R&gt; 2          2 rivière à l&#39;Orme  rivière  128.51146      &lt;NA&gt;
@@ -209,12 +164,7 @@ plot(st_geometry(courseau))</code></pre>
 </div>
 <div id="import-raster-data" class="section level2">
 <h2>Import raster data</h2>
-<p>We now import raster data use a <a href="https://en.wikipedia.org/wiki/TIFF">.tif file</a>
-file of a canopy index from Montreal (found <a href="http://cmm.qc.ca/donnees-et-territoire/observatoire-grand-montreal/produits-cartographiques/donnees-georeferencees/">here</a>).
-The canopy index, computed by the Montreal Metropolitain Community (CMM) from
-an NDVI index and an elevation surface model, represents the low vegetation
-cover, the high vegetation cover of more than 3 meters (the canopy), the low
-mineral surfaces and the high mineral surfaces more than 3 meters (roof).</p>
+<p>We now import raster data use a <a href="https://en.wikipedia.org/wiki/TIFF">.tif file</a> file of a canopy index from Montreal (found <a href="http://cmm.qc.ca/donnees-et-territoire/observatoire-grand-montreal/produits-cartographiques/donnees-georeferencees/">here</a>). The canopy index, computed by the Montreal Metropolitain Community (CMM) from an NDVI index and an elevation surface model, represents the low vegetation cover, the high vegetation cover of more than 3 meters (the canopy), the low mineral surfaces and the high mineral surfaces more than 3 meters (roof).</p>
 <pre class="r"><code># Download tif file from web page in your working directory
 if (!file.exists(&quot;data/canopee.zip&quot;))
   download.file(&quot;http://cmm.qc.ca/fileadmin/user_upload/geomatique/IndiceCanopee/2015/660_Canopee2015_3m.zip&quot;, destfile=&quot;data/canopee.zip&quot;)
@@ -225,62 +175,50 @@ unzip(&quot;data/canopee.zip&quot;, exdir = &quot;data&quot;)
 # The file named &quot;660_CLASS_3m.tif&quot; contains the canopy index for all the Montreal area, so we can read this file only
 
 canopee_mtl &lt;- raster(&quot;data/660_CLASS_3m.tif&quot;)</code></pre>
-<p>The canopy index raster has values from 1 to 5, has <code>nrow(canopee_mtl)</code> pixels
-by row and <code>ncol(canopee_mtl)</code> pixels by column. Note that raster uses the
-<code>proj4string</code> representation of the coordinate reference system.</p>
+<p>The canopy index raster has values from 1 to 5, has <code>nrow(canopee_mtl)</code> pixels by row and <code>ncol(canopee_mtl)</code> pixels by column. Note that raster uses the <code>proj4string</code> representation of the coordinate reference system.</p>
 <pre class="r"><code>canopee_mtl
-#R&gt; class       : RasterLayer 
-#R&gt; dimensions  : 35754, 40854, 1460693916  (nrow, ncol, ncell)
-#R&gt; resolution  : 1, 1  (x, y)
-#R&gt; extent      : 265961, 306815, 5027324, 5063078  (xmin, xmax, ymin, ymax)
-#R&gt; coord. ref. : +proj=tmerc +lat_0=0 +lon_0=-73.5 +k=0.9999 +x_0=304800 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
-#R&gt; data source : /home/kevcaz/Github/Websites/inSileco.github.io/content/tuto/rInSpace/rinspace_import/data/660_CLASS_3m.tif 
-#R&gt; names       : X660_CLASS_3m 
-#R&gt; values      : 1, 5  (min, max)</code></pre>
+#R&gt; class      : RasterLayer 
+#R&gt; dimensions : 35754, 40854, 1460693916  (nrow, ncol, ncell)
+#R&gt; resolution : 1, 1  (x, y)
+#R&gt; extent     : 265961, 306815, 5027324, 5063078  (xmin, xmax, ymin, ymax)
+#R&gt; crs        : +proj=tmerc +lat_0=0 +lon_0=-73.5 +k=0.9999 +x_0=304800 +y_0=0 +ellps=GRS80 +towgs84=0,0,0,0,0,0,0 +units=m +no_defs 
+#R&gt; source     : /home/steve/Documents/Git/inSileco.github.io/content/tuto/rInSpace/rinspace_import/data/660_CLASS_3m.tif 
+#R&gt; names      : X660_CLASS_3m 
+#R&gt; values     : 1, 5  (min, max)</code></pre>
 <p>Similar to the sf package, raster also provides <code>plot</code> methods for its own classes.</p>
 <pre class="r"><code>plot(canopee_mtl)</code></pre>
 <p><img src="/tuto/rInSpace/rinspace_import/index_files/figure-html/plot_tif-1.png" width="672" style="display: block; margin: auto;" /></p>
-<details>
-<p><summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary></p>
+<p><details> <summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary></p>
 <pre class="r"><code>sessionInfo()
-#R&gt; R version 3.5.2 (2018-12-20)
+#R&gt; R version 3.6.3 (2020-02-29)
 #R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
-#R&gt; Running under: Debian GNU/Linux buster/sid
+#R&gt; Running under: Ubuntu 18.04.4 LTS
 #R&gt; 
 #R&gt; Matrix products: default
-#R&gt; BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
-#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.5.so
+#R&gt; BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
 #R&gt; 
 #R&gt; locale:
-#R&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-#R&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-#R&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-#R&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#R&gt;  [1] LC_CTYPE=en_CA.UTF-8       LC_NUMERIC=C              
+#R&gt;  [3] LC_TIME=en_CA.UTF-8        LC_COLLATE=en_CA.UTF-8    
+#R&gt;  [5] LC_MONETARY=en_CA.UTF-8    LC_MESSAGES=en_CA.UTF-8   
+#R&gt;  [7] LC_PAPER=en_CA.UTF-8       LC_NAME=C                 
 #R&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-#R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#R&gt; [11] LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       
 #R&gt; 
 #R&gt; attached base packages:
-#R&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#R&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #R&gt; 
 #R&gt; other attached packages:
-#R&gt; [1] raster_2.8-19  sp_1.3-1       sf_0.7-3       usethis_1.4.0 
-#R&gt; [5] devtools_2.0.2
+#R&gt; [1] raster_3.0-12 sp_1.4-1      sf_0.9-0     
 #R&gt; 
 #R&gt; loaded via a namespace (and not attached):
-#R&gt;  [1] Rcpp_1.0.0        compiler_3.5.2    prettyunits_1.0.2
-#R&gt;  [4] remotes_2.0.2     class_7.3-15      tools_3.5.2      
-#R&gt;  [7] testthat_2.0.1    digest_0.6.18     pkgbuild_1.0.2   
-#R&gt; [10] pkgload_1.0.2     lattice_0.20-38   evaluate_0.13    
-#R&gt; [13] memoise_1.1.0     rlang_0.3.1       cli_1.0.1        
-#R&gt; [16] DBI_1.0.0         rgdal_1.4-3       yaml_2.2.0       
-#R&gt; [19] blogdown_0.11     xfun_0.5          e1071_1.7-0.1    
-#R&gt; [22] withr_2.1.2       stringr_1.4.0     knitr_1.22       
-#R&gt; [25] desc_1.2.0        fs_1.2.6          grid_3.5.2       
-#R&gt; [28] classInt_0.3-1    rprojroot_1.3-2   glue_1.3.0       
-#R&gt; [31] R6_2.4.0          processx_3.2.1    rmarkdown_1.12   
-#R&gt; [34] bookdown_0.9.2    sessioninfo_1.1.1 callr_3.1.1      
-#R&gt; [37] magrittr_1.5      codetools_0.2-16  units_0.6-2      
-#R&gt; [40] backports_1.1.3   ps_1.3.0          htmltools_0.3.6  
-#R&gt; [43] assertthat_0.2.0  stringi_1.4.3     crayon_1.3.4</code></pre>
-</details>
+#R&gt;  [1] Rcpp_1.0.4         knitr_1.28         magrittr_1.5       units_0.6-6       
+#R&gt;  [5] lattice_0.20-40    rlang_0.4.5        stringr_1.4.0      tools_3.6.3       
+#R&gt;  [9] rgdal_1.4-8        grid_3.6.3         xfun_0.12          KernSmooth_2.23-16
+#R&gt; [13] e1071_1.7-3        DBI_1.1.0          htmltools_0.4.0    class_7.3-16      
+#R&gt; [17] yaml_2.2.1         digest_0.6.25      bookdown_0.18      codetools_0.2-16  
+#R&gt; [21] evaluate_0.14      rmarkdown_2.1      blogdown_0.18.1    stringi_1.4.6     
+#R&gt; [25] compiler_3.6.3     classInt_0.4-2</code></pre>
+<p></details></p>
 </div>

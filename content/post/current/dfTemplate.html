@@ -62,8 +62,7 @@ class(df4[, 1])
 class(df4[, 2])</code></pre>
 <pre><code>## [1] &quot;factor&quot;
 ## [1] &quot;factor&quot;</code></pre>
-<p>Arguments <code>fill</code> and <code>col_classes</code> can be vectors that specify content and class
-for every columns:</p>
+<p>Arguments <code>fill</code> and <code>col_classes</code> can be vectors that specify content and class for every columns:</p>
 <pre class="r"><code>df5 &lt;- dfTemplate(2, 5, col_classes = c(&quot;character&quot;, &quot;numeric&quot;), fill = c(&quot;&quot;, 5))
 df5
 class(df5[, 1])
@@ -151,163 +150,152 @@ df8</code></pre>
 )
 lsdf</code></pre>
 <pre><code>## [[1]]
-##   G A C E H
-## 1 g a c e h
-## 2 g a c e h
-## 3 g a c e h
-## 4 g a c e h
-## 5 g a c e h
+##   G A J F D
+## 1 g a j f d
+## 2 g a j f d
+## 3 g a j f d
+## 4 g a j f d
+## 5 g a j f d
 ## 
 ## [[2]]
-##   G C D A H
-## 1 g c d a h
-## 2 g c d a h
-## 3 g c d a h
-## 4 g c d a h
-## 5 g c d a h
+##   G J E C D
+## 1 g j e c d
+## 2 g j e c d
+## 3 g j e c d
+## 4 g j e c d
+## 5 g j e c d
 ## 
 ## [[3]]
-##   I H J G C
-## 1 i h j g c
-## 2 i h j g c
-## 3 i h j g c
-## 4 i h j g c
-## 5 i h j g c
+##   E A C H J
+## 1 e a c h j
+## 2 e a c h j
+## 3 e a c h j
+## 4 e a c h j
+## 5 e a c h j
 ## 
 ## [[4]]
-##   I F B J H
-## 1 i f b j h
-## 2 i f b j h
-## 3 i f b j h
-## 4 i f b j h
-## 5 i f b j h
+##   H F I G E
+## 1 h f i g e
+## 2 h f i g e
+## 3 h f i g e
+## 4 h f i g e
+## 5 h f i g e
 ## 
 ## [[5]]
-##   G D J A F
-## 1 g d j a f
-## 2 g d j a f
-## 3 g d j a f
-## 4 g d j a f
-## 5 g d j a f</code></pre>
-<p>So the goal here is to create a data frame that contains only the five first
-columns, i.e. A, B, C, D, E, the remaining columns must be discarded and
-when one selected column is missing, it must be added (filled out with <code>NA</code>).
-To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
+##   F H A E C
+## 1 f h a e c
+## 2 f h a e c
+## 3 f h a e c
+## 4 f h a e c
+## 5 f h a e c</code></pre>
+<p>So the goal here is to create a data frame that contains only the five first columns, i.e. A, B, C, D, E, the remaining columns must be discarded and when one selected column is missing, it must be added (filled out with <code>NA</code>). To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
 <pre class="r"><code>lsdf2 &lt;- lapply(lsdf, dfTemplateMatch, LETTERS[1:5], yonly = TRUE)
 lsdf2</code></pre>
 <pre><code>## [[1]]
-##   A C E  B  D
-## 1 a c e NA NA
-## 2 a c e NA NA
-## 3 a c e NA NA
-## 4 a c e NA NA
-## 5 a c e NA NA
+##   A D  B  C  E
+## 1 a d NA NA NA
+## 2 a d NA NA NA
+## 3 a d NA NA NA
+## 4 a d NA NA NA
+## 5 a d NA NA NA
 ## 
 ## [[2]]
-##   C D A  B  E
-## 1 c d a NA NA
-## 2 c d a NA NA
-## 3 c d a NA NA
-## 4 c d a NA NA
-## 5 c d a NA NA
+##   E C D  A  B
+## 1 e c d NA NA
+## 2 e c d NA NA
+## 3 e c d NA NA
+## 4 e c d NA NA
+## 5 e c d NA NA
 ## 
 ## [[3]]
-##   C  A  B  D  E
-## 1 c NA NA NA NA
-## 2 c NA NA NA NA
-## 3 c NA NA NA NA
-## 4 c NA NA NA NA
-## 5 c NA NA NA NA
+##   E A C  B  D
+## 1 e a c NA NA
+## 2 e a c NA NA
+## 3 e a c NA NA
+## 4 e a c NA NA
+## 5 e a c NA NA
 ## 
 ## [[4]]
-##   B  A  C  D  E
-## 1 b NA NA NA NA
-## 2 b NA NA NA NA
-## 3 b NA NA NA NA
-## 4 b NA NA NA NA
-## 5 b NA NA NA NA
+##   E  A  B  C  D
+## 1 e NA NA NA NA
+## 2 e NA NA NA NA
+## 3 e NA NA NA NA
+## 4 e NA NA NA NA
+## 5 e NA NA NA NA
 ## 
 ## [[5]]
-##   D A  B  C  E
-## 1 d a NA NA NA
-## 2 d a NA NA NA
-## 3 d a NA NA NA
-## 4 d a NA NA NA
-## 5 d a NA NA NA</code></pre>
+##   A E C  B  D
+## 1 a e c NA NA
+## 2 a e c NA NA
+## 3 a e c NA NA
+## 4 a e c NA NA
+## 5 a e c NA NA</code></pre>
 <p>And now I can seamlessly <code>rbind()</code> the list <code>lsdf2</code>!</p>
 <pre class="r"><code>do.call(rbind, lsdf2)</code></pre>
-<pre><code>##       A    C    E    B    D
-## 1     a    c    e &lt;NA&gt; &lt;NA&gt;
-## 2     a    c    e &lt;NA&gt; &lt;NA&gt;
-## 3     a    c    e &lt;NA&gt; &lt;NA&gt;
-## 4     a    c    e &lt;NA&gt; &lt;NA&gt;
-## 5     a    c    e &lt;NA&gt; &lt;NA&gt;
-## 6     a    c &lt;NA&gt; &lt;NA&gt;    d
-## 7     a    c &lt;NA&gt; &lt;NA&gt;    d
-## 8     a    c &lt;NA&gt; &lt;NA&gt;    d
-## 9     a    c &lt;NA&gt; &lt;NA&gt;    d
-## 10    a    c &lt;NA&gt; &lt;NA&gt;    d
-## 11 &lt;NA&gt;    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 12 &lt;NA&gt;    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 13 &lt;NA&gt;    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 14 &lt;NA&gt;    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 15 &lt;NA&gt;    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-## 16 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
-## 17 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
-## 18 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
-## 19 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
-## 20 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
-## 21    a &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
-## 22    a &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
-## 23    a &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
-## 24    a &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
-## 25    a &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d</code></pre>
+<pre><code>##       A    D  B    C    E
+## 1     a    d NA &lt;NA&gt; &lt;NA&gt;
+## 2     a    d NA &lt;NA&gt; &lt;NA&gt;
+## 3     a    d NA &lt;NA&gt; &lt;NA&gt;
+## 4     a    d NA &lt;NA&gt; &lt;NA&gt;
+## 5     a    d NA &lt;NA&gt; &lt;NA&gt;
+## 6  &lt;NA&gt;    d NA    c    e
+## 7  &lt;NA&gt;    d NA    c    e
+## 8  &lt;NA&gt;    d NA    c    e
+## 9  &lt;NA&gt;    d NA    c    e
+## 10 &lt;NA&gt;    d NA    c    e
+## 11    a &lt;NA&gt; NA    c    e
+## 12    a &lt;NA&gt; NA    c    e
+## 13    a &lt;NA&gt; NA    c    e
+## 14    a &lt;NA&gt; NA    c    e
+## 15    a &lt;NA&gt; NA    c    e
+## 16 &lt;NA&gt; &lt;NA&gt; NA &lt;NA&gt;    e
+## 17 &lt;NA&gt; &lt;NA&gt; NA &lt;NA&gt;    e
+## 18 &lt;NA&gt; &lt;NA&gt; NA &lt;NA&gt;    e
+## 19 &lt;NA&gt; &lt;NA&gt; NA &lt;NA&gt;    e
+## 20 &lt;NA&gt; &lt;NA&gt; NA &lt;NA&gt;    e
+## 21    a &lt;NA&gt; NA    c    e
+## 22    a &lt;NA&gt; NA    c    e
+## 23    a &lt;NA&gt; NA    c    e
+## 24    a &lt;NA&gt; NA    c    e
+## 25    a &lt;NA&gt; NA    c    e</code></pre>
 <div id="voilà-this-is-what-i-call-a-flexible-rbind-i-hope-youll-find-this-helpful-boom" class="section level4">
 <h4>Voilà! This is what I call a <em>flexible</em> <code>rbind</code>! I hope you’ll find this helpful! :boom:</h4>
 <p><br></p>
-<details>
-<summary>
+<details> <summary>
 <h4>
-<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
-<i class="fa fa-cogs" aria-hidden="true"></i>
+<pre><code>&lt;i class=&quot;fa fa-chevron-right&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;Session info
+&lt;i class=&quot;fa fa-cogs&quot; aria-hidden=&quot;true&quot;&gt;&lt;/i&gt;</code></pre>
 </h4>
 <p></summary></p>
 <pre class="r"><code>sessionInfo()</code></pre>
 <pre><code>## R version 3.6.3 (2020-02-29)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Debian GNU/Linux 10 (buster)
+## Running under: Ubuntu 18.04.4 LTS
 ## 
 ## Matrix products: default
-## BLAS:   /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
-## LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.5.so
+## BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+## LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
 ## 
 ## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [1] LC_CTYPE=en_CA.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_CA.UTF-8        LC_COLLATE=en_CA.UTF-8    
+##  [5] LC_MONETARY=en_CA.UTF-8    LC_MESSAGES=en_CA.UTF-8   
+##  [7] LC_PAPER=en_CA.UTF-8       LC_NAME=C                 
 ##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## [11] LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
-## [1] stats     graphics  grDevices datasets  utils     methods   base     
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
 ## [1] inSilecoMisc_0.3.0.9000
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.4         compiler_3.6.3     base64enc_0.1-3    class_7.3-15      
-##  [5] tools_3.6.3        digest_0.6.25      satellite_1.0.2    evaluate_0.14     
-##  [9] lifecycle_0.2.0    lattice_0.20-40    viridisLite_0.3.0  png_0.1-7         
-## [13] rlang_0.4.5        DBI_1.1.0          crosstalk_1.1.0.1  yaml_2.2.1        
-## [17] blogdown_0.18      xfun_0.12          e1071_1.7-3        stringr_1.4.0     
-## [21] raster_3.0-12      knitr_1.28         htmlwidgets_1.5.1  stats4_3.6.3      
-## [25] classInt_0.4-2     leaflet_2.0.3      grid_3.6.3         webshot_0.5.2     
-## [29] glue_1.4.0         sf_0.8-1           R6_2.4.1           rmarkdown_2.1     
-## [33] bookdown_0.18      sp_1.4-1           magrittr_1.5       scales_1.1.0      
-## [37] codetools_0.2-16   htmltools_0.4.0    units_0.6-6        colorspace_1.4-1  
-## [41] mapview_2.7.0      KernSmooth_2.23-16 stringi_1.4.6      munsell_0.5.0     
-## [45] crayon_1.3.4</code></pre>
-</details>
+##  [1] Rcpp_1.0.4      bookdown_0.18   digest_0.6.25   crayon_1.3.4   
+##  [5] magrittr_1.5    evaluate_0.14   blogdown_0.18.1 rlang_0.4.5    
+##  [9] stringi_1.4.6   rmarkdown_2.1   tools_3.6.3     stringr_1.4.0  
+## [13] glue_1.4.0      xfun_0.12       yaml_2.2.1      compiler_3.6.3 
+## [17] htmltools_0.4.0 knitr_1.28</code></pre>
+<p></details></p>
 </div>
 </div>
