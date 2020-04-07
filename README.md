@@ -13,14 +13,11 @@ intensive research in the field of ecology.
 
 Our blog created with the great [blogdown :package:](https://bookdown.org/yihui/blogdown/), built and deployed by [Travis CI](https://travis-ci.org/inSileco/inSileco.github.io.svg?branch=dev).
 
-See [our wiki :book:](https://github.com/inSileco/inSileco.github.io/wiki)
-to learn how to use our blog!
+See [our wiki :book:](https://github.com/inSileco/inSileco.github.io/wiki/GetStarted) to learn how to contribute to the blog!
 
 
 
-## Extra details :gear:
-
-### Colors
+### Color palette
 
 We used a set of color throughout the website:
 
@@ -32,17 +29,8 @@ We used a set of color throughout the website:
 - So the palette is `c("#3fb3b2". "#ffdd55", "#c7254e", "#1b95e0", "#8555b4")`
 
 
-### Badges
 
-We use our own badges to notify the status of a given post that is not completed:
-
-- ![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg) for posts that still require some work.
-
-- ![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg) for posts that have reached at certain level of quality and submitted to the review of members of the blog.
-
-
-
-#### JS/CSS libraries used
+### JS/CSS libraries used
 
 - [jQuerryUI](https://jqueryui.com/)
 - [Disqus](https://disqus.com/)

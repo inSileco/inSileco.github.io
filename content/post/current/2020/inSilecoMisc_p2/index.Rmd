@@ -1,7 +1,7 @@
 ---
 title: "inSilecoMisc 0.4.0 (part 2/2)"
 author: [kevin]
-date: 2020-03-17
+date: 2020-04-05
 tags: [R, data visualization]
 tweet: "Empty your R plots!"
 draft: true
@@ -13,7 +13,16 @@ output:
     dev: svg
 ---
 
-![](https://img.shields.io/badge/inSileco-InDevelopment-3fb3b2.svg)
+
+```{r codeChunkSetUp, include = FALSE}
+knitr::opts_chunk$set(
+  comment = "#R>",
+  fig.align = 'center',
+  collapse = TRUE,
+  width = 100
+)
+library(inSilecoRef)
+```
 
 Already in this blog reporter post Note that one feature was also reported here.
 [`dfTemplate()`](/2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/)
@@ -34,6 +43,9 @@ packageVersion("inSilecoMisc")
 
 ## `scaleWithin()`
 
+This functions is meant to ease the creation of scale ().
+
+
 ```{R}
 val <- runif(50, 0, 100)
 scaleWithin(val, 20, 20, 80)
@@ -41,15 +53,24 @@ scaleWithin(val, 20, 20, 80)
 
 
 
-## Message
+## Messages
 
 Not essential but very useful to see what happening that is why I like
-package such as []() []() or []
+package such as [`cli`](https://CRAN.R-project.org/package=cli) and [`crayon`](https://CRAN.R-project.org/package=crayon)
+
+It is somewhat convenient to have standardized messages when u
+
+```{R, results = "hold"}
+msgInfo("computing")
+msgSuccess("done")
+msgError("you got it wrong")
+msgWarning("be careful")
+```
 
 
 ## New feature `tblDown()`
 
-This is something . Of course if you are using R Markkwon but if your are not
+This is something . Of course if you are using R Markdown but if your are not
 if a couple of manipulations. `tblDown()` makes it very easy.
 
 Caption written using with a non exported function
@@ -61,15 +82,7 @@ See outpout in zip file.s
 
 
 
-```
-keepLetters()
-```
-
-See previous post for data template
-
-
-
-
+<br>
 
 #### That's all folks :smile:!!
 

@@ -189,7 +189,7 @@ but also allow the user to chose a number of words:
 loremIpsum(18)
 ```
 
-Note the escape characters (`\n`)! Now let's focus on `keepWords()`. Assuming I I need the second word, all I have to do is:
+Note the escape characters (`\n`)! Now let's focus on `keepWords()`. Assuming I need the second word, all I have to do is:
 
 
 ```{R}
@@ -217,7 +217,7 @@ Also `collapse = "-"` allows the user to change the character used to separate w
 keepWords(loremIpsum(18), c(1:6, 14:18), collapse = "-")
 ```
 
-and if `collapse=NULL` then list will be returned including a vector of the selected words per input string:
+and if `collapse = NULL` then list will be returned including a vector of the selected words per input string:
 
 ```{R}
 keepWords(c(loremIpsum(18), "be or not to be"), c(2:3), collapse = NULL)
@@ -270,7 +270,7 @@ R"](https://www.gastonsanchez.com/r4strings/) by [Gaston
 Sanchez](https://www.gastonsanchez.com/). There are also various blog posts on this topic (for
 instance
 [http://uc-r.github.io](http://uc-r.github.io/string_manipulation_baseR/) or on
-[data-flair](https://data-flair.training/blogs/r-string-manipulation/)) and, obviously, the documentation of packages that do such manipulations (e.g. `r url_pkg_cran("stringi")`).
+[data-flair](https://data-flair.training/blogs/r-string-manipulation/)) and, obviously, the documentation of packages that do such manipulations (e.g. `r url_cran("stringi")`).
 
 This concludes the first part of this post, additional features of the  `inSilecoMisc` package will be introduced the second part of this post :tada:!
 
