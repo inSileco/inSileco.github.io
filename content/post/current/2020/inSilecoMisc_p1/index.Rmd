@@ -27,24 +27,22 @@ source('../../../codeChunkSetUp.R')
 
 [`inSilecoMisc`](https://github.com/inSileco/inSilecoMisc) is an R :package: I
 have been maintaining for four years now. It was originally designed as a
-convenient way to share handy functions: instead of stacking them in my
+convenient way to share handy functions. Instead of stacking them in my
 `.Rprofile`, I created a package available on GitHub. `inSilecoMisc` is
 therefore a set of miscellaneous functions, just as other R packages (e.g.
 [Hmisc](https://github.com/harrelfe/Hmisc)) but as I frequently change its API,
-it is meant to stay in a experimental! I like having `inSilecoMisc` on GitHub in
-such a experimental mode: it gives a large degree of freedom to experiment new
-ideas, new functions, new packages, etc., but still, any version of the code is
-available and easy to install! Despite the "API instability", the overall
-quality of the package is constantly improving (at least, I hope so :smile:). I
-have even included some of the matured functions in the research compendium of
-recent manuscripts (see the following <i class="fa fa-github"
-aria-hidden="true"></i> repositories:
-[HomogenFishOntario](https://github.com/McCannLab/HomogenFishOntario)
-and
+it is meant to stay at experimental stage! I like having `inSilecoMisc` on
+GitHub because it gives a large degree of freedom to experiment new ideas, new
+functions and the code remains available and easy to install! Despite the "API
+instability", the overall quality of the package is constantly improving (at
+least, I hope so :smile:). I have even included some of the matured functions in
+the research compendium of recent manuscripts (see the following <i class="fa
+fa-github" aria-hidden="true"></i> repositories:
+[HomogenFishOntario](https://github.com/McCannLab/HomogenFishOntario) and
 [coocc_not_inter](https://github.com/TheoreticalEcosystemEcology/coocc_not_inter)).
 
-Over the last month, I made substantial  changes throughout the package: I
-re-wrote some functions, improved the documentation of other and added new
+Over the last month, I made substantial changes throughout the package. I
+re-wrote some functions, improved the documentation of others and added new
 features. I also changed the way the [pkgdown
 website](https://insileco.github.io/inSilecoMisc/) is deployed by
 [Travis](https://travis-ci.org/github/inSileco/inSilecoMisc) (I followed the
@@ -70,11 +68,9 @@ packageVersion("inSilecoMisc")
 ```
 
 
-
-
 ## adjustStrings
 
-As an ecologist, I work with multiple data sets, and I often need to name/rename
+As an ecologist, I work with multiple datasets, and I often need to name/rename
 a bunch of files. One function I often use to do so is `sprintf()`:
 
 ```{R}
@@ -88,10 +84,11 @@ a similar fashion:
 adjustStrings(1:10, n = 2)
 ```
 
-But I was rapidly interested in having a more flexible function. So, I added several parameters to do that! In the last version of `inSilecoMisc`, `adjustStrings()` have 5 arguments:
+But I was rapidly interested in having a more flexible function. So, I added several parameters to do that! 
+In the last version of `inSilecoMisc`, `adjustStrings()` have 5 arguments:
 
 1. `x`: the input character vector to be adjusted;
-2. `n`: the number of characters to be added or used to constrain on the length of the  output strings;
+2. `n`: the number of characters to be added or used to determine the length of output strings;
 3. `extra`: the character(s) to be added (`0` is the default value);
 4. `align`: the string alignment ("right", "left" or "center");
 5. `add`: whether `n` should be the constraint or a number of characters to be added (a constraint by default).
@@ -152,9 +149,10 @@ adjustStrings("ABCD", n = 6, extra = "efgh")
  ```
 
 
-All these features allow the user to create various handy functions. For
-instance, when running a long script, it is convenient to create recognizable
-piece of information reporting where we at and `adjustStrings()` can help!
+These combinations give flexibility to the user. One application of the
+`adjustStrings()` function comes when running a long script. In such situation,
+it is convenient to create recognizable code section to ease the navigation
+across long output!
 
 ```{R, results = "hold"}
 report <- function(title, symbol = "#") {
@@ -164,8 +162,6 @@ report(" part 1 ")
 report(" Solving ODE ", "~")
 report(" Last but not least! ", "=")
 ```
-
-
 
 
 ## keepWords
@@ -183,27 +179,30 @@ By default, this `loremIpsum()` function returns two paragraphs of text
 ```{R}
 cat(loremIpsum())
 ```
-but also allow the user to chose a number of words:
+but also allow the user to choose a number of words:
 
 ```{R}
 loremIpsum(18)
 ```
 
-Note the escape characters (`\n`)! Now let's focus on `keepWords()`. Assuming I need the second word, all I have to do is:
+Note the escape characters (`\n`)! Now let's focus on `keepWords()`. Assuming I
+want to extract the second word in both sentences `loremIpsum(18)` and `be or not to be`, all I have to do is:
+
 
 
 ```{R}
 keepWords(c(loremIpsum(18), "be or not to be"), 2)
 ```
 
-and if I want a specific selection of words I cas use a sequence:
+and if I want specific word positions, I can pass a numerical vector:
 
 ```{R}
 keepWords(c(loremIpsum(18), "be or not to be"), c(1:4, 12:16))
 ```
 
-As you may have notted, `NA`s are added when the position selected does not exist, this is useful but also annoying! Fortunately, a agument allow to
-remove na
+As you may have notted, `NA`s are added when the position selected does not
+exist. This behaviour could be useful but also annoying! Fortunately, an
+argument allows to remove `NA`s.
 
 
 ```{R}
@@ -223,10 +222,10 @@ and if `collapse = NULL` then list will be returned including a vector of the se
 keepWords(c(loremIpsum(18), "be or not to be"), c(2:3), collapse = NULL)
 ```
 
-Not that all punctuation signs will be removed (this can be changed with argument `split_words `)!
+Note that all punctuation characters will be removed (this can be changed with argument `split_words `)!
 
 
-There are two other functions that work similarly: `keepLetters()` and `keepInitials()`. The former allows the used to select letters
+There are two other functions that work similarly: `keepLetters()` and `keepInitials()`. The former selects letters instead of words.
 
 
 ```{R}
@@ -267,12 +266,13 @@ strings (all of them call
 at some point). If you are interested in learning more about strings
 manipulations, you should checkout the ebook ["Handling Strings with
 R"](https://www.gastonsanchez.com/r4strings/) by [Gaston
-Sanchez](https://www.gastonsanchez.com/). There are also various blog posts on this topic (for
-instance
+Sanchez](https://www.gastonsanchez.com/). There are also various blog posts on
+this topic (for instance
 [http://uc-r.github.io](http://uc-r.github.io/string_manipulation_baseR/) or on
 [data-flair](https://data-flair.training/blogs/r-string-manipulation/)) and, obviously, the documentation of packages that do such manipulations (e.g. `r url_cran("stringi")`).
 
-This concludes the first part of this post, additional features of the  `inSilecoMisc` package will be introduced the second part of this post :tada:!
+This concludes the first part of this post, additional features of the
+`inSilecoMisc` package will be introduced the second part of this post :tada:!
 
 
 <br>
