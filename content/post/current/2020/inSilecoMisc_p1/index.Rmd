@@ -221,7 +221,7 @@ and if `collapse=NULL` then list will be returned including a vector of the sele
 keepWords(c(loremIpsum(18), "be or not to be"), c(2:3), collapse = NULL)
 ```
 
-Note that all punctuations signs will be removed (this can be changed with argument `split_words `)!
+Note that all punctuation characters will be removed (this can be changed with argument `split_words `)!
 
 
 There are two other functions that work similarly: `keepLetters()` and `keepInitials()`. The former selects letters instead of words.
