@@ -135,8 +135,9 @@ check out the research compendium
 
 ## tblDown()
 
-Last but not least, I'd like to introduce a function to quickly export a
-data frame (or a list of data frames) in various formats. I actually created
+Last but not least, I'd like to introduce a function to quickly write table data
+frame (or a list of data frames) in document of various formats. I actually
+created
 [`tblDown()`](https://insileco.github.io/inSilecoMisc/reference/tblDownn.html)
 for a colleague of mine that was looking for a quick way to export a table. In
 the package `r url_cran("knitr")`, there is the very handy function `kable()`
@@ -160,7 +161,7 @@ tblDown(head(CO2), output_file = "table.odt")
 <center><img src = "table_odt.png" width = "92%"></img></center>
 
 
-As I mentioned above `tblDown()` handles lists of data frames and the user can also pass a set of captions for every table and even seprate then with section header (header 1)
+As I mentioned above `tblDown()` handles lists of data frames and the user can also pass a set of captions for every table and even separates them with section headers (of level 1).
 
 ```{R}
 tblDown(list(head(CO2), tail(CO2)), output_file = "tables.pdf",
@@ -169,10 +170,10 @@ tblDown(list(head(CO2), tail(CO2)), output_file = "tables.pdf",
 ```
 
 Check out the output file :arrow_right: [<i class="fa
-fa-file-pdf-o"></i>](tables.pdf)! Not that in the example above I only use one
+fa-file-pdf-o"></i>](tables.pdf)! Note that in the example above I only use one
 character string for `section` and `tblDown()` has appended an index, this is
-also the default behavior for `caption` : if there is less captions
-or sections titles than data frames, vectors of captions (and/or sections) are repeated and a index is appended.
+also the default behavior for `caption` : if there are less captions
+or sections titles than data frames, vectors of captions (and/or sections) are repeated and an index is appended.
 
 
 Note that if you are already writing your documents with [R
