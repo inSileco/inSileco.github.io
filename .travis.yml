@@ -10,25 +10,28 @@ cache:
   directories:
   - "$HOME/bin"
 
-apt_packages:
-- libgdal-dev
-- libgeos-dev
-- libgeos++-dev
-- libproj-dev
-- r-cran-ncdf4
-- libudunits2-dev
-- libfreetype6-dev
-- libpoppler-cpp-dev
-- libssl-dev
-- libmagick++-dev
+addons:
+  apt:
+    update: true
+    packages:
+      - libudunits2-dev
+      - libproj-dev
+      - libgeos-dev
+      - libgdal-dev
+      - r-cran-ncdf4
+      - r-cran-lwgeom
+      - r-cran-sf
+      - libfreetype6-dev
+      - libpoppler-cpp-dev
+      - libssl-dev
+      - libmagick++-dev
+  snaps:
+      - hugo
 
-before_install:
-- wget https://github.com/gohugoio/hugo/releases/download/v0.53/hugo_0.53_Linux-64bit.deb
-- sudo dpkg -i hugo_0.53_Linux-64bit.deb
 before_script:
-- apt-cache policy libstdc++6
+  - apt-cache policy libstdc++6
 script:
-- Rscript -e 'blogdown::build_site()'
+  - Rscript -e 'blogdown::build_site()'
 deploy:
   provider: pages
   skip_cleanup: true
@@ -41,7 +44,7 @@ deploy:
 notifications:
   slack:
     rooms:
-      secure: $encrypted_key_slack
+      secure: "$encrypted_key_slack"
     template:
     - "%{repository} (%{commit}) : %{message} %{foo} "
     - 'Build: %{build_url}'
