@@ -2,12 +2,10 @@
 title: "inSilecoMisc 0.4.0 (part 1/2)"
 author: [kevin]
 reviewer: [steve]
-date: 2020-04-05
+date: 2020-04-10
 tags: [R, package, development, inSilecoMisc]
 rpkgs: [remotes, inSilecoMisc]
 tweet: "inSilecoMisc 0.4.0"
-draft: true
-review: true
 estime: 12
 output:
   rmarkdown::html_page:
@@ -35,23 +33,19 @@ it is meant to stay at experimental stage! I like having `inSilecoMisc` on
 GitHub because it gives a large degree of freedom to experiment new ideas, new
 functions and the code remains available and easy to install! Despite the "API
 instability", the overall quality of the package is constantly improving (at
-least, I hope so :smile:). I have even included some of the matured functions in
-the research compendium of recent manuscripts (see the following <i class="fa
-fa-github" aria-hidden="true"></i> repositories:
+least, I hope so :smile:). I have even included some of the somewhat more
+matured functions in the research compendium of recent manuscripts (see the
+following <i class="fa fa-github" aria-hidden="true"></i> repositories:
 [HomogenFishOntario](https://github.com/McCannLab/HomogenFishOntario) and
 [coocc_not_inter](https://github.com/TheoreticalEcosystemEcology/coocc_not_inter)).
 
 Over the last month, I made substantial changes throughout the package. I
 re-wrote some functions, improved the documentation of others and added new
 features. I also changed the way the [pkgdown
-website](https://insileco.github.io/inSilecoMisc/) is deployed by
-[Travis](https://travis-ci.org/github/inSileco/inSilecoMisc) (I followed the
-steps described in this
-[gist](https://gist.github.com/gaborcsardi/68960fb01bec74d89611bb9c2b0b7e5a) by
-[Gábor Csárdi](https://github.com/gaborcsardi) -- very clear and extremely
-useful). In what follows, I introduced several functions included in
+website is deployed](https://kevcaz.github.io/notes/ci/deploypkgdown2/) by
+[Travis](https://travis-ci.org/github/inSileco/inSilecoMisc). In what follows, I introduced several functions included in
 versions 0.4.0. Note that as `inSilecoMisc` is on GitHub, an easy way
-to install `inSilecoMisc` is to use
+to install `inSilecoMisc` is provided by the package
 [`remotes`](https://cran.r-project.org/web/packages/remotes/index.html)
 
 
@@ -70,21 +64,22 @@ packageVersion("inSilecoMisc")
 
 ## adjustStrings
 
-As an ecologist, I work with multiple datasets, and I often need to name/rename
-a bunch of files. One function I often use to do so is `sprintf()`:
+As an ecologist, I frequently work with multiple datasets, and I often need to
+name/rename a bunch of files. One function I often use to do so is `sprintf()`:
 
 ```{R}
 sprintf("file_%02d", 1:10)
 ```
 
-I originally designed `adjustStrings()` to adjust the number of 0 to a string in
-a similar fashion:
+I originally designed
+[`adjustStrings()`](https://insileco.github.io/inSilecoMisc/reference/adjustStrings.html)
+to adjust the number of 0 to a string in a similar fashion:
 
 ```{R}
 adjustStrings(1:10, n = 2)
 ```
 
-But I was rapidly interested in having a more flexible function. So, I added several parameters to do that! 
+But I was rapidly interested in having a more flexible function. So, I added several parameters to do that!
 In the last version of `inSilecoMisc`, `adjustStrings()` have 5 arguments:
 
 1. `x`: the input character vector to be adjusted;
@@ -119,7 +114,7 @@ adjustStrings(1:10, n = 4, extra = "-", align = "left")
 adjustStrings(1:10, n = 4, extra = "-", align = "center")
 ```
 
-And if I want to add exactly `n` extra characters, `add = TRUE`, then exactly `n` extra characters are added to strings ():
+Also, if `add = TRUE`, then exactly `n` extra characters are added:
 
 ```{R add}
 adjustStrings(1:10, n = 4, extra = "-", align = "right", add = TRUE)
@@ -127,7 +122,7 @@ adjustStrings(1:10, n = 4, extra = "-", align = "left", add = TRUE)
 adjustStrings(1:10, n = 4, extra = "-", align = "center", add = TRUE)
 ```
 
-Note that in this case, lengths of out strings differ!
+Note that in this case, lengths of output strings may differ!
 One last remark about how `adjustStrings()` works when `add = FALSE`: for a given string, there are 3 scenarios :
 
 1. the string to be adjusted has more characters than `n`; in this case, the string is simply cut off:
@@ -166,7 +161,7 @@ report(" Last but not least! ", "=")
 
 ## keepWords
 
-`keepWords()` allows the user to select words based on their position in
+[`keepWords()`](https://insileco.github.io/inSilecoMisc/reference/keepWords.html) allows the user to select words based on their position in
 character strings. Before using it, I would like to introduce `loremIpsum()`
 that generates [placeholder texts](https://en.wikipedia.org/wiki/Lorem_ipsum).
 Note that there are several functions to generate placeholder texts available
@@ -179,7 +174,7 @@ By default, this `loremIpsum()` function returns two paragraphs of text
 ```{R}
 cat(loremIpsum())
 ```
-but also allow the user to choose a number of words:
+but it also allows the user to choose a number of words:
 
 ```{R}
 loremIpsum(18)
