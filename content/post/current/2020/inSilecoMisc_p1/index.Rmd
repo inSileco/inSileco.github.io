@@ -2,11 +2,11 @@
 title: "inSilecoMisc 0.4.0 (part 1/2)"
 author: [kevin]
 reviewer: [steve]
-date: 2020-04-10
+date: 2020-04-11
 tags: [R, package, development, inSilecoMisc]
 rpkgs: [remotes, inSilecoMisc]
 tweet: "inSilecoMisc 0.4.0"
-estime: 12
+estime: 8
 output:
   rmarkdown::html_page:
     toc: true
@@ -26,18 +26,15 @@ source('../../../codeChunkSetUp.R')
 [`inSilecoMisc`](https://github.com/inSileco/inSilecoMisc) is an R :package: I
 have been maintaining for four years now. It was originally designed as a
 convenient way to share handy functions. Instead of stacking them in my
-`.Rprofile`, I created a package available on GitHub. `inSilecoMisc` is
-therefore a set of miscellaneous functions, just as other R packages (e.g.
+`.Rprofile`, I created a package and made it available on GitHub. `inSilecoMisc`
+is therefore a set of miscellaneous functions, just as other R packages (e.g.
 [Hmisc](https://github.com/harrelfe/Hmisc)) but as I frequently change its API,
-it is meant to stay at experimental stage! I like having `inSilecoMisc` on
+it is meant to stay in the experimental stage! I like having `inSilecoMisc` on
 GitHub because it gives a large degree of freedom to experiment new ideas, new
 functions and the code remains available and easy to install! Despite the "API
 instability", the overall quality of the package is constantly improving (at
 least, I hope so :smile:). I have even included some of the somewhat more
-matured functions in the research compendium of recent manuscripts (see the
-following <i class="fa fa-github" aria-hidden="true"></i> repositories:
-[HomogenFishOntario](https://github.com/McCannLab/HomogenFishOntario) and
-[coocc_not_inter](https://github.com/TheoreticalEcosystemEcology/coocc_not_inter)).
+matured functions in the research compendium of recent manuscripts[^n1].
 
 Over the last month, I made substantial changes throughout the package. I
 re-wrote some functions, improved the documentation of others and added new
@@ -122,7 +119,7 @@ adjustStrings(1:10, n = 4, extra = "-", align = "left", add = TRUE)
 adjustStrings(1:10, n = 4, extra = "-", align = "center", add = TRUE)
 ```
 
-Note that in this case, lengths of output strings may differ!
+Note that in this last case, lengths of output character strings may differ!
 One last remark about how `adjustStrings()` works when `add = FALSE`: for a given string, there are 3 scenarios :
 
 1. the string to be adjusted has more characters than `n`; in this case, the string is simply cut off:
@@ -131,7 +128,7 @@ One last remark about how `adjustStrings()` works when `add = FALSE`: for a give
 adjustStrings("ABCD", n = 2, extra = "efgh")
 ```
 
-2. the string has more character but the number of character for the adjustment is smaller than the number of `extra`'s character; in this case, `extra` is cut off:
+2. the string has more characters but the number of character for the adjustment is smaller than the number of `extra`'s character; in this case, `extra` is cut off:
 
 ```{R}
 adjustStrings("ABCD", n = 6, extra = "efgh")
@@ -169,12 +166,12 @@ elsewhere. For instance, `stringi` has
 [`stri_rand_lipsum()`](https://jangorecki.gitlab.io/data.cube/library/stringi/html/stri_rand_lipsum.html)
 and [`UsingR` includes
 `lorem()`](https://www.rdocumentation.org/packages/UsingR/versions/2.0-6/topics/lorem).
-By default, this `loremIpsum()` function returns two paragraphs of text
+By default, this `loremIpsum()` function returns two paragraphs of text:
 
 ```{R}
 cat(loremIpsum())
 ```
-but it also allows the user to choose a number of words:
+but it also allows the user to set the number of words of the character string returned:
 
 ```{R}
 loremIpsum(18)
@@ -189,14 +186,14 @@ want to extract the second word in both sentences `loremIpsum(18)` and `be or no
 keepWords(c(loremIpsum(18), "be or not to be"), 2)
 ```
 
-and if I want specific word positions, I can pass a numerical vector:
+and if I am interested in extracting specific word positions, I can pass a numerical vector:
 
 ```{R}
 keepWords(c(loremIpsum(18), "be or not to be"), c(1:4, 12:16))
 ```
 
-As you may have notted, `NA`s are added when the position selected does not
-exist. This behaviour could be useful but also annoying! Fortunately, an
+As you may have noted, `NA`s are added when the position selected does not
+exist. This behavior could be useful but also annoying! Fortunately, an
 argument allows to remove `NA`s.
 
 
@@ -204,7 +201,7 @@ argument allows to remove `NA`s.
 keepWords(c(loremIpsum(18), "be or not to be"), c(1:4, 12:16), na.rm = TRUE)
 ```
 
-Also `collapse = "-"` allows the user to change the character used to separate words:
+Also, `collapse` allows the user to change the character used to separate words:
 
 
 ```{R}
@@ -217,7 +214,7 @@ and if `collapse = NULL` then list will be returned including a vector of the se
 keepWords(c(loremIpsum(18), "be or not to be"), c(2:3), collapse = NULL)
 ```
 
-Note that all punctuation characters will be removed (this can be changed with argument `split_words `)!
+Note that all punctuation characters will be removed. This can be changed by tweaking argument `split_words`!
 
 
 There are two other functions that work similarly: `keepLetters()` and `keepInitials()`. The former selects letters instead of words.
@@ -236,7 +233,7 @@ keepInitials("National Basketball Association")
 keepInitials("National Basketball Association", "-")
 ```
 
-Note that is you have a mixture of lower and upper case, so will the output
+Note that if the input character vector has a mixture of lower and upper case, so will the output
 
 ```{R}
 keepInitials("National basketball association")
@@ -284,3 +281,10 @@ sessionInfo()
 ```
 </details>
 <br>
+
+
+
+[^n1]: see the following <i class="fa fa-github" aria-hidden="true"></i>
+repositories:
+[HomogenFishOntario](https://github.com/McCannLab/HomogenFishOntario) and
+[coocc_not_inter](https://github.com/TheoreticalEcosystemEcology/coocc_not_inter).
