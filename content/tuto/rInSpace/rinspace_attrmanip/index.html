@@ -19,12 +19,21 @@ output:
 
 <div id="spatial-objects-attributes-manipulations" class="section level2">
 <h2>Spatial objects attributes manipulations</h2>
-<p>Now that we know how to import and transform different classes of spatial objects in R, we can start manipulating their attributes. In this post, we will make a brief overview of some useful basic manipulations that we can perform on spatial object attributes. By no means are those examples exhaustive, but they constitute common manipulations that are made with spatial objects.</p>
+<p>Now that we know how to import and transform different classes of spatial objects
+in R, we can start manipulating their attributes. In this post, we will
+make a brief overview of some useful basic manipulations that we can perform
+on spatial object attributes. By no means are those examples exhaustive, but
+they constitute common manipulations that are made with spatial objects.</p>
 <p><br/></p>
 <div id="vector-objects" class="section level3">
 <h3>Vector objects</h3>
-<p>For this part, we discuss how to manipulate attributes of objects from the <code>sf</code> package. <code>sf</code> objects have the advantage of being structured like data frames, making their manipulations more intuitive than for objects of class <code>sp</code>. However, if the structure of <code>sp</code> objects is well understood, then the same principles will mostly apply.</p>
-<p>Let’s begin by creating an <code>sf</code> points object as seen in the post on <a href="">Spatial objects in R</a> <!-- to add --></p>
+<p>For this part, we discuss how to manipulate attributes of objects from the <code>sf</code>
+package. <code>sf</code> objects have the advantage of being structured like data frames,
+making their manipulations more intuitive than for objects of class <code>sp</code>. However,
+if the structure of <code>sp</code> objects is well understood, then the same principles
+will mostly apply.</p>
+<p>Let’s begin by creating an <code>sf</code> points object as seen in the post on
+<a href="">Spatial objects in R</a> <!-- to add --></p>
 <pre class="r"><code>mydata &lt;- data.frame(
   id = 1:20,
   long = -82+2*runif(20),
@@ -34,7 +43,7 @@ output:
 )
 
 library(sf)</code></pre>
-<pre><code>## Linking to GEOS 3.6.2, GDAL 2.2.3, PROJ 4.9.3</code></pre>
+<pre><code>## Linking to GEOS 3.7.1, GDAL 2.4.0, PROJ 5.2.0</code></pre>
 <pre class="r"><code>spatData &lt;- st_as_sf(mydata,
                      coords = c(&quot;long&quot;, &quot;lat&quot;),
                      crs = &quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0&quot;)
@@ -52,39 +61,39 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-0.0133028</td>
-<td align="right">2.5093978</td>
-<td align="left">c(-81.2394270547666, 42.9103987105191)</td>
+<td align="right">-1.0267648</td>
+<td align="right">8.4542397</td>
+<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.3312294</td>
-<td align="right">4.7545414</td>
-<td align="left">c(-80.6632348881103, 43.8173838742077)</td>
+<td align="right">1.1246386</td>
+<td align="right">4.0373757</td>
+<td align="left">c(-81.0976512846537, 43.054596089758)</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">1.0611746</td>
-<td align="right">1.3511124</td>
-<td align="left">c(-81.5120799145661, 42.3619761648588)</td>
+<td align="right">-0.2933716</td>
+<td align="right">8.2054899</td>
+<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">1.2772955</td>
-<td align="right">0.4160259</td>
-<td align="left">c(-80.5203735968098, 42.4931593951769)</td>
+<td align="right">0.4489808</td>
+<td align="right">7.9223191</td>
+<td align="left">c(-80.6801737099886, 43.879158008378)</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.4608933</td>
-<td align="right">4.2753918</td>
-<td align="left">c(-81.6710929060355, 43.9926111674868)</td>
+<td align="right">0.8092022</td>
+<td align="right">0.5893049</td>
+<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">1.3675139</td>
-<td align="right">8.2960781</td>
-<td align="left">c(-80.0958058405668, 42.5434107771143)</td>
+<td align="right">0.4255668</td>
+<td align="right">5.9483464</td>
+<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
 </tr>
 </tbody>
 </table>
@@ -93,7 +102,8 @@ knitr::kable(head(spatData))</code></pre>
 </div>
 <div id="adding-and-removing-attributes" class="section level3">
 <h3>Adding and removing attributes</h3>
-<p>The object we currently have has to variables <code>var1</code> and <code>var2</code>. Additional attributes can quickly be added to the attributes table of our objects.</p>
+<p>The object we currently have has to variables <code>var1</code> and <code>var2</code>. Additional
+attributes can quickly be added to the attributes table of our objects.</p>
 <pre class="r"><code>spatData$var3 &lt;- runif(20)
 spatData$var4 &lt;- spatData$var1 * spatData$var2
 knitr::kable(head(spatData))</code></pre>
@@ -111,51 +121,51 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-0.0133028</td>
-<td align="right">2.5093978</td>
-<td align="left">c(-81.2394270547666, 42.9103987105191)</td>
-<td align="right">0.4697217</td>
-<td align="right">-0.0333821</td>
+<td align="right">-1.0267648</td>
+<td align="right">8.4542397</td>
+<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
+<td align="right">0.7088460</td>
+<td align="right">-8.6805160</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.3312294</td>
-<td align="right">4.7545414</td>
-<td align="left">c(-80.6632348881103, 43.8173838742077)</td>
-<td align="right">0.8057799</td>
-<td align="right">6.3293853</td>
+<td align="right">1.1246386</td>
+<td align="right">4.0373757</td>
+<td align="left">c(-81.0976512846537, 43.054596089758)</td>
+<td align="right">0.1066025</td>
+<td align="right">4.5405885</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">1.0611746</td>
-<td align="right">1.3511124</td>
-<td align="left">c(-81.5120799145661, 42.3619761648588)</td>
-<td align="right">0.5623127</td>
-<td align="right">1.4337661</td>
+<td align="right">-0.2933716</td>
+<td align="right">8.2054899</td>
+<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
+<td align="right">0.5702835</td>
+<td align="right">-2.4072579</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">1.2772955</td>
-<td align="right">0.4160259</td>
-<td align="left">c(-80.5203735968098, 42.4931593951769)</td>
-<td align="right">0.3028453</td>
-<td align="right">0.5313880</td>
+<td align="right">0.4489808</td>
+<td align="right">7.9223191</td>
+<td align="left">c(-80.6801737099886, 43.879158008378)</td>
+<td align="right">0.0174181</td>
+<td align="right">3.5569693</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.4608933</td>
-<td align="right">4.2753918</td>
-<td align="left">c(-81.6710929060355, 43.9926111674868)</td>
-<td align="right">0.2356625</td>
-<td align="right">1.9704995</td>
+<td align="right">0.8092022</td>
+<td align="right">0.5893049</td>
+<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
+<td align="right">0.5777652</td>
+<td align="right">0.4768668</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">1.3675139</td>
-<td align="right">8.2960781</td>
-<td align="left">c(-80.0958058405668, 42.5434107771143)</td>
-<td align="right">0.6800459</td>
-<td align="right">11.3450024</td>
+<td align="right">0.4255668</td>
+<td align="right">5.9483464</td>
+<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
+<td align="right">0.4564015</td>
+<td align="right">2.5314187</td>
 </tr>
 </tbody>
 </table>
@@ -175,44 +185,47 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-0.0133028</td>
-<td align="right">2.5093978</td>
-<td align="left">c(-81.2394270547666, 42.9103987105191)</td>
+<td align="right">-1.0267648</td>
+<td align="right">8.4542397</td>
+<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.3312294</td>
-<td align="right">4.7545414</td>
-<td align="left">c(-80.6632348881103, 43.8173838742077)</td>
+<td align="right">1.1246386</td>
+<td align="right">4.0373757</td>
+<td align="left">c(-81.0976512846537, 43.054596089758)</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">1.0611746</td>
-<td align="right">1.3511124</td>
-<td align="left">c(-81.5120799145661, 42.3619761648588)</td>
+<td align="right">-0.2933716</td>
+<td align="right">8.2054899</td>
+<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">1.2772955</td>
-<td align="right">0.4160259</td>
-<td align="left">c(-80.5203735968098, 42.4931593951769)</td>
+<td align="right">0.4489808</td>
+<td align="right">7.9223191</td>
+<td align="left">c(-80.6801737099886, 43.879158008378)</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.4608933</td>
-<td align="right">4.2753918</td>
-<td align="left">c(-81.6710929060355, 43.9926111674868)</td>
+<td align="right">0.8092022</td>
+<td align="right">0.5893049</td>
+<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">1.3675139</td>
-<td align="right">8.2960781</td>
-<td align="left">c(-80.0958058405668, 42.5434107771143)</td>
+<td align="right">0.4255668</td>
+<td align="right">5.9483464</td>
+<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
 </tr>
 </tbody>
 </table>
 <p><br/></p>
-<p>However, if you have a very big dataset, you may want to remove columns without having to write all column names manually! You could do this based on the names of the columns you wish to remove or, alternatively, on the names of the attributes you wish to keep.</p>
+<p>However, if you have a very big dataset, you may want to remove columns without
+having to write all column names manually! You could do this based on the names
+of the columns you wish to remove or, alternatively, on the names of the
+attributes you wish to keep.</p>
 <pre class="r"><code># Remove last 20 attributes
 for(i in 1:5) spatData &lt;- cbind(spatData, varSup = runif(20))
 knitr::kable(head(spatData))</code></pre>
@@ -233,69 +246,69 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-0.0133028</td>
-<td align="right">2.5093978</td>
-<td align="right">0.6822735</td>
-<td align="right">0.8432316</td>
-<td align="right">0.4193548</td>
-<td align="right">0.6481329</td>
-<td align="right">0.1453353</td>
-<td align="left">c(-81.2394270547666, 42.9103987105191)</td>
+<td align="right">-1.0267648</td>
+<td align="right">8.4542397</td>
+<td align="right">0.0062569</td>
+<td align="right">0.0449318</td>
+<td align="right">0.1608233</td>
+<td align="right">0.4593727</td>
+<td align="right">0.5866952</td>
+<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.3312294</td>
-<td align="right">4.7545414</td>
-<td align="right">0.2632276</td>
-<td align="right">0.9082745</td>
-<td align="right">0.9070570</td>
-<td align="right">0.9696803</td>
-<td align="right">0.3591987</td>
-<td align="left">c(-80.6632348881103, 43.8173838742077)</td>
+<td align="right">1.1246386</td>
+<td align="right">4.0373757</td>
+<td align="right">0.3708413</td>
+<td align="right">0.1905070</td>
+<td align="right">0.0117531</td>
+<td align="right">0.7916720</td>
+<td align="right">0.3006898</td>
+<td align="left">c(-81.0976512846537, 43.054596089758)</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">1.0611746</td>
-<td align="right">1.3511124</td>
-<td align="right">0.8814736</td>
-<td align="right">0.3034644</td>
-<td align="right">0.7399158</td>
-<td align="right">0.8867388</td>
-<td align="right">0.4958108</td>
-<td align="left">c(-81.5120799145661, 42.3619761648588)</td>
+<td align="right">-0.2933716</td>
+<td align="right">8.2054899</td>
+<td align="right">0.1269874</td>
+<td align="right">0.1621362</td>
+<td align="right">0.0701545</td>
+<td align="right">0.6697946</td>
+<td align="right">0.9392467</td>
+<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">1.2772955</td>
-<td align="right">0.4160259</td>
-<td align="right">0.6518166</td>
-<td align="right">0.5087944</td>
-<td align="right">0.5371152</td>
-<td align="right">0.5474078</td>
-<td align="right">0.7366109</td>
-<td align="left">c(-80.5203735968098, 42.4931593951769)</td>
+<td align="right">0.4489808</td>
+<td align="right">7.9223191</td>
+<td align="right">0.9068886</td>
+<td align="right">0.2320155</td>
+<td align="right">0.0137410</td>
+<td align="right">0.4102778</td>
+<td align="right">0.7495885</td>
+<td align="left">c(-80.6801737099886, 43.879158008378)</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.4608933</td>
-<td align="right">4.2753918</td>
-<td align="right">0.5376949</td>
-<td align="right">0.6009522</td>
-<td align="right">0.9460372</td>
-<td align="right">0.3332643</td>
-<td align="right">0.2671574</td>
-<td align="left">c(-81.6710929060355, 43.9926111674868)</td>
+<td align="right">0.8092022</td>
+<td align="right">0.5893049</td>
+<td align="right">0.6611143</td>
+<td align="right">0.1971694</td>
+<td align="right">0.9439894</td>
+<td align="right">0.8940173</td>
+<td align="right">0.6097949</td>
+<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">1.3675139</td>
-<td align="right">8.2960781</td>
-<td align="right">0.9740697</td>
-<td align="right">0.7684742</td>
-<td align="right">0.7001056</td>
-<td align="right">0.1543327</td>
-<td align="right">0.5830187</td>
-<td align="left">c(-80.0958058405668, 42.5434107771143)</td>
+<td align="right">0.4255668</td>
+<td align="right">5.9483464</td>
+<td align="right">0.5386856</td>
+<td align="right">0.6150150</td>
+<td align="right">0.6178516</td>
+<td align="right">0.9773974</td>
+<td align="right">0.0515854</td>
+<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
 </tr>
 </tbody>
 </table>
@@ -314,39 +327,39 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-0.0133028</td>
-<td align="right">2.5093978</td>
-<td align="left">c(-81.2394270547666, 42.9103987105191)</td>
+<td align="right">-1.0267648</td>
+<td align="right">8.4542397</td>
+<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.3312294</td>
-<td align="right">4.7545414</td>
-<td align="left">c(-80.6632348881103, 43.8173838742077)</td>
+<td align="right">1.1246386</td>
+<td align="right">4.0373757</td>
+<td align="left">c(-81.0976512846537, 43.054596089758)</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">1.0611746</td>
-<td align="right">1.3511124</td>
-<td align="left">c(-81.5120799145661, 42.3619761648588)</td>
+<td align="right">-0.2933716</td>
+<td align="right">8.2054899</td>
+<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">1.2772955</td>
-<td align="right">0.4160259</td>
-<td align="left">c(-80.5203735968098, 42.4931593951769)</td>
+<td align="right">0.4489808</td>
+<td align="right">7.9223191</td>
+<td align="left">c(-80.6801737099886, 43.879158008378)</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.4608933</td>
-<td align="right">4.2753918</td>
-<td align="left">c(-81.6710929060355, 43.9926111674868)</td>
+<td align="right">0.8092022</td>
+<td align="right">0.5893049</td>
+<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">1.3675139</td>
-<td align="right">8.2960781</td>
-<td align="left">c(-80.0958058405668, 42.5434107771143)</td>
+<td align="right">0.4255668</td>
+<td align="right">5.9483464</td>
+<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
 </tr>
 </tbody>
 </table>
@@ -370,69 +383,69 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-0.0133028</td>
-<td align="right">2.5093978</td>
-<td align="right">0.5789838</td>
-<td align="right">0.1844571</td>
-<td align="right">0.3872437</td>
-<td align="right">0.6146898</td>
-<td align="right">0.7315196</td>
-<td align="left">c(-81.2394270547666, 42.9103987105191)</td>
+<td align="right">-1.0267648</td>
+<td align="right">8.4542397</td>
+<td align="right">0.9118424</td>
+<td align="right">0.8004523</td>
+<td align="right">0.8483931</td>
+<td align="right">0.0522425</td>
+<td align="right">0.0695536</td>
+<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.3312294</td>
-<td align="right">4.7545414</td>
-<td align="right">0.0241602</td>
-<td align="right">0.6158781</td>
-<td align="right">0.0844602</td>
-<td align="right">0.6887896</td>
-<td align="right">0.6065051</td>
-<td align="left">c(-80.6632348881103, 43.8173838742077)</td>
+<td align="right">1.1246386</td>
+<td align="right">4.0373757</td>
+<td align="right">0.5384673</td>
+<td align="right">0.9913008</td>
+<td align="right">0.3660500</td>
+<td align="right">0.4223425</td>
+<td align="right">0.1983925</td>
+<td align="left">c(-81.0976512846537, 43.054596089758)</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">1.0611746</td>
-<td align="right">1.3511124</td>
-<td align="right">0.0155505</td>
-<td align="right">0.2772905</td>
-<td align="right">0.9269341</td>
-<td align="right">0.2750238</td>
-<td align="right">0.0804681</td>
-<td align="left">c(-81.5120799145661, 42.3619761648588)</td>
+<td align="right">-0.2933716</td>
+<td align="right">8.2054899</td>
+<td align="right">0.7032141</td>
+<td align="right">0.7869746</td>
+<td align="right">0.6255780</td>
+<td align="right">0.5471421</td>
+<td align="right">0.5031198</td>
+<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">1.2772955</td>
-<td align="right">0.4160259</td>
-<td align="right">0.5206229</td>
-<td align="right">0.8753494</td>
-<td align="right">0.1281967</td>
-<td align="right">0.1509016</td>
-<td align="right">0.9017126</td>
-<td align="left">c(-80.5203735968098, 42.4931593951769)</td>
+<td align="right">0.4489808</td>
+<td align="right">7.9223191</td>
+<td align="right">0.5466403</td>
+<td align="right">0.7982802</td>
+<td align="right">0.2901893</td>
+<td align="right">0.5990219</td>
+<td align="right">0.8028074</td>
+<td align="left">c(-80.6801737099886, 43.879158008378)</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.4608933</td>
-<td align="right">4.2753918</td>
-<td align="right">0.2516493</td>
-<td align="right">0.9444186</td>
-<td align="right">0.6666578</td>
-<td align="right">0.8626735</td>
-<td align="right">0.9087580</td>
-<td align="left">c(-81.6710929060355, 43.9926111674868)</td>
+<td align="right">0.8092022</td>
+<td align="right">0.5893049</td>
+<td align="right">0.3626646</td>
+<td align="right">0.1244677</td>
+<td align="right">0.9353560</td>
+<td align="right">0.9967933</td>
+<td align="right">0.0949772</td>
+<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">1.3675139</td>
-<td align="right">8.2960781</td>
-<td align="right">0.1466359</td>
-<td align="right">0.1925935</td>
-<td align="right">0.9787776</td>
-<td align="right">0.0866515</td>
-<td align="right">0.6194362</td>
-<td align="left">c(-80.0958058405668, 42.5434107771143)</td>
+<td align="right">0.4255668</td>
+<td align="right">5.9483464</td>
+<td align="right">0.5727739</td>
+<td align="right">0.5711491</td>
+<td align="right">0.1417716</td>
+<td align="right">0.7144480</td>
+<td align="right">0.9987460</td>
+<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
 </tr>
 </tbody>
 </table>
@@ -451,39 +464,39 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-0.0133028</td>
-<td align="right">2.5093978</td>
-<td align="left">c(-81.2394270547666, 42.9103987105191)</td>
+<td align="right">-1.0267648</td>
+<td align="right">8.4542397</td>
+<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.3312294</td>
-<td align="right">4.7545414</td>
-<td align="left">c(-80.6632348881103, 43.8173838742077)</td>
+<td align="right">1.1246386</td>
+<td align="right">4.0373757</td>
+<td align="left">c(-81.0976512846537, 43.054596089758)</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">1.0611746</td>
-<td align="right">1.3511124</td>
-<td align="left">c(-81.5120799145661, 42.3619761648588)</td>
+<td align="right">-0.2933716</td>
+<td align="right">8.2054899</td>
+<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">1.2772955</td>
-<td align="right">0.4160259</td>
-<td align="left">c(-80.5203735968098, 42.4931593951769)</td>
+<td align="right">0.4489808</td>
+<td align="right">7.9223191</td>
+<td align="left">c(-80.6801737099886, 43.879158008378)</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.4608933</td>
-<td align="right">4.2753918</td>
-<td align="left">c(-81.6710929060355, 43.9926111674868)</td>
+<td align="right">0.8092022</td>
+<td align="right">0.5893049</td>
+<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">1.3675139</td>
-<td align="right">8.2960781</td>
-<td align="left">c(-80.0958058405668, 42.5434107771143)</td>
+<td align="right">0.4255668</td>
+<td align="right">5.9483464</td>
+<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
 </tr>
 </tbody>
 </table>
@@ -491,7 +504,9 @@ knitr::kable(head(spatData))</code></pre>
 </div>
 <div id="subsets" class="section level3">
 <h3>Subsets</h3>
-<p>You may also wish to subset your object based on certain attribute values. We will begin by adding some factorial attributes to our spatial object to discuss this in more detail.</p>
+<p>You may also wish to subset your object based on certain attribute values. We
+will begin by adding some factorial attributes to our spatial object to discuss
+this in more detail.</p>
 <pre class="r"><code>spatData$fact1 &lt;- paste0(&#39;a&#39;, 1:2) # Create factor with 2 levels
 spatData$fact2 &lt;- paste0(&#39;b&#39;, 1:5) # Create factor with 5 levels
 knitr::kable(head(spatData))</code></pre>
@@ -509,62 +524,68 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-0.0133028</td>
-<td align="right">2.5093978</td>
-<td align="left">c(-81.2394270547666, 42.9103987105191)</td>
+<td align="right">-1.0267648</td>
+<td align="right">8.4542397</td>
+<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
 <td align="left">a1</td>
 <td align="left">b1</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.3312294</td>
-<td align="right">4.7545414</td>
-<td align="left">c(-80.6632348881103, 43.8173838742077)</td>
+<td align="right">1.1246386</td>
+<td align="right">4.0373757</td>
+<td align="left">c(-81.0976512846537, 43.054596089758)</td>
 <td align="left">a2</td>
 <td align="left">b2</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">1.0611746</td>
-<td align="right">1.3511124</td>
-<td align="left">c(-81.5120799145661, 42.3619761648588)</td>
+<td align="right">-0.2933716</td>
+<td align="right">8.2054899</td>
+<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
 <td align="left">a1</td>
 <td align="left">b3</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">1.2772955</td>
-<td align="right">0.4160259</td>
-<td align="left">c(-80.5203735968098, 42.4931593951769)</td>
+<td align="right">0.4489808</td>
+<td align="right">7.9223191</td>
+<td align="left">c(-80.6801737099886, 43.879158008378)</td>
 <td align="left">a2</td>
 <td align="left">b4</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.4608933</td>
-<td align="right">4.2753918</td>
-<td align="left">c(-81.6710929060355, 43.9926111674868)</td>
+<td align="right">0.8092022</td>
+<td align="right">0.5893049</td>
+<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
 <td align="left">a1</td>
 <td align="left">b5</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">1.3675139</td>
-<td align="right">8.2960781</td>
-<td align="left">c(-80.0958058405668, 42.5434107771143)</td>
+<td align="right">0.4255668</td>
+<td align="right">5.9483464</td>
+<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
 <td align="left">a2</td>
 <td align="left">b1</td>
 </tr>
 </tbody>
 </table>
 <p><br/></p>
-<p>The most simple way to subset an attributes table would be to manually select the rows that we wish to view. In this instance, let’s say we only wish to use the first 10 rows of our data.</p>
+<p>The most simple way to subset an attributes table would be to manually select
+the rows that we wish to view. In this instance, let’s say we only wish to
+use the first 10 rows of our data.</p>
 <pre class="r"><code>selectID &lt;- 1:10
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
 <p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/manualSub-1.png" width="672" /></p>
 <p><br/></p>
-<p>However, subsets based on certain criteria, <em>e.g.</em> all values greater to or equal to 0, can be much more efficient to create subsets. These are conditional statements and there is a vast body of material available discussing them, so we will only present a few examples and invite you to consult other resources like <a href="https://stackoverflow.com/">StackOverflow</a> for more specific questions.</p>
+<p>However, subsets based on certain criteria, <em>e.g.</em> all values greater to or
+equal to 0, can be much more efficient to create subsets. These are conditional
+statements and there is a vast body of material available discussing them, so
+we will only present a few examples and invite you to consult other resources
+like <a href="https://stackoverflow.com/">StackOverflow</a> for more specific questions.</p>
 <pre class="r"><code># Select all values for var1 greater to or equal to 0
 selectID &lt;- spatData$var1 &gt;= 0
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
@@ -594,7 +615,8 @@ plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex
 </div>
 <div id="join" class="section level3">
 <h3>Join</h3>
-<p>Joining tables based on their shared id is another common manipulation. This can be quickly accomplished using the <code>left_join</code> function from the <code>dplyr</code> package.</p>
+<p>Joining tables based on their shared id is another common manipulation. This can
+be quickly accomplished using the <code>left_join</code> function from the <code>dplyr</code> package.</p>
 <pre class="r"><code># Create data.frame with id field similar to that in the spatial object
 joinData &lt;- data.frame(id = seq(1, 20, by = 2),
                        var3 = rnorm(10))
@@ -627,57 +649,57 @@ library(dplyr)</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-0.0133028</td>
-<td align="right">2.5093978</td>
+<td align="right">-1.0267648</td>
+<td align="right">8.4542397</td>
 <td align="left">a1</td>
 <td align="left">b1</td>
-<td align="right">-1.1426490</td>
-<td align="left">c(-81.2394270547666, 42.9103987105191)</td>
+<td align="right">-0.9816253</td>
+<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.3312294</td>
-<td align="right">4.7545414</td>
+<td align="right">1.1246386</td>
+<td align="right">4.0373757</td>
 <td align="left">a2</td>
 <td align="left">b2</td>
 <td align="right">NA</td>
-<td align="left">c(-80.6632348881103, 43.8173838742077)</td>
+<td align="left">c(-81.0976512846537, 43.054596089758)</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">1.0611746</td>
-<td align="right">1.3511124</td>
+<td align="right">-0.2933716</td>
+<td align="right">8.2054899</td>
 <td align="left">a1</td>
 <td align="left">b3</td>
-<td align="right">0.8974425</td>
-<td align="left">c(-81.5120799145661, 42.3619761648588)</td>
+<td align="right">-1.2577694</td>
+<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">1.2772955</td>
-<td align="right">0.4160259</td>
+<td align="right">0.4489808</td>
+<td align="right">7.9223191</td>
 <td align="left">a2</td>
 <td align="left">b4</td>
 <td align="right">NA</td>
-<td align="left">c(-80.5203735968098, 42.4931593951769)</td>
+<td align="left">c(-80.6801737099886, 43.879158008378)</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.4608933</td>
-<td align="right">4.2753918</td>
+<td align="right">0.8092022</td>
+<td align="right">0.5893049</td>
 <td align="left">a1</td>
 <td align="left">b5</td>
-<td align="right">-0.6094335</td>
-<td align="left">c(-81.6710929060355, 43.9926111674868)</td>
+<td align="right">-0.6799290</td>
+<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">1.3675139</td>
-<td align="right">8.2960781</td>
+<td align="right">0.4255668</td>
+<td align="right">5.9483464</td>
 <td align="left">a2</td>
 <td align="left">b1</td>
 <td align="right">NA</td>
-<td align="left">c(-80.0958058405668, 42.5434107771143)</td>
+<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
 </tr>
 </tbody>
 </table>
@@ -699,13 +721,13 @@ knitr::kable(head(aggData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left">a1</td>
-<td align="right">4.101616</td>
-<td align="left">c(-81.7587249907665, -81.6710929060355, -81.5120799145661, -81.370079388842, -81.3168988251127, -81.2773431036621, -81.2394270547666, -80.7451553451829, -80.5682902922854, -80.3971190270968, 42.2487379466183, 43.9926111674868, 42.3619761648588, 43.0228895009495, 43.9081214750186, 43.3055720967241, 42.9103987105191, 42.6901902952231, 43.2435658234172, 42.3197915754281)</td>
+<td align="right">-3.120556</td>
+<td align="left">c(-81.8319124481641, -81.5562618379481, -81.3365434338339, -81.3290259437636, -80.7683806573041, -80.6463522166014, -80.4815384736285, -80.3627320681699, -80.1265919236466, -80.1232470246032, 43.9310032064095, 43.3135412568226, 42.011193505954, 42.1274951859377, 42.1813552249223, 43.1289180954918, 42.4340660944581, 42.9919733195566, 43.1979077588767, 42.8657332030125)</td>
 </tr>
 <tr class="even">
 <td align="left">a2</td>
-<td align="right">2.634517</td>
-<td align="left">c(-81.983674146235, -80.879890229553, -80.6632348881103, -80.6172099914402, -80.5203735968098, -80.3980129868723, -80.1999753462151, -80.1902947141789, -80.0958058405668, -80.0479152253829, 42.2328020706773, 43.5907583660446, 43.8173838742077, 42.5839122319594, 42.4931593951769, 42.6778233544901, 42.4954987997189, 43.5984978219494, 42.5434107771143, 42.7406842508353)</td>
+<td align="right">-1.290463</td>
+<td align="left">c(-81.9474913701415, -81.9177640662529, -81.6204512761906, -81.4051731484942, -81.1391569706611, -81.0976512846537, -81.0645886640996, -80.6801737099886, -80.633068212308, -80.4129736586474, 43.278471886646, 42.9079479505308, 43.3025015844032, 42.4729753397405, 43.0010784780607, 43.054596089758, 43.5313358386047, 43.879158008378, 42.5428555426188, 42.2572145871818)</td>
 </tr>
 </tbody>
 </table>
@@ -715,7 +737,9 @@ knitr::kable(head(aggData))</code></pre>
 </div>
 <div id="raster-objects" class="section level2">
 <h2>Raster objects</h2>
-<p>Attributes tables associated with raster objects can also be manipulated, although the data attached to a raster will typically be less amenable to changes and multiple parameters.</p>
+<p>Attributes tables associated with raster objects can also be manipulated, although
+the data attached to a raster will typically be less amenable to changes and
+multiple parameters.</p>
 <div id="setting-values" class="section level3">
 <h3>Setting values</h3>
 </div>
