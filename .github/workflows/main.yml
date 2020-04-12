@@ -34,4 +34,14 @@ jobs:
           ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           PUBLISH_BRANCH: master
           PUBLISH_DIR: ./public
+      - name: Slack Notification
+        uses: rtCamp/action-slack-notify@v2.0.0
+        env:
+          SLACK_CHANNEL: blog
+          SLACK_COLOR: '#3fb3b2'
+          SLACK_ICON: https://insileco.github.io/img/inSilecoLogo.png
+          SLACK_MESSAGE: 'update deployed on gh-pages :heavy_check_mark:'
+          SLACK_TITLE: ':robot_face: Message to humans'
+          SLACK_USERNAME: Bobot
+          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
 
