@@ -2,8 +2,8 @@
 title: "inSilecoMisc 0.4.0 (part 2/2)"
 author: [kevin]
 date: 2020-04-07
-tags: [R, data visualization]
-tweet: "Empty your R plots!"
+tags: [R, package, development, inSilecoMisc]
+tweet: "inSilecoMisc 0.4.0 (part 2/2)"
 draft: true
 estime: 6
 output:
@@ -27,11 +27,12 @@ In the [first part of this post](/2020/04/05/insilecomisc-0.4.0-part-1/2/)  I
 introduced several functions available in the package `r url_gh("inSilecoMisc",
 "inSileco")`. In this post, I keep on introducing features of the package you
 might find useful! If you did not read the first part of this post and are
-interested in reproducing the examples below, simply install `inSilecoMisc` using the following:
+interested in reproducing the examples below, simply install `inSilecoMisc`:
 
 
 ```R
-install.packages("remotes") # if not already installed
+# Run if package is not already installed
+install.packages("remotes")
 remotes::install_github("inSileco/inSilecoMisc")
 ```
 
@@ -42,46 +43,45 @@ library("inSilecoMisc")
 packageVersion("inSilecoMisc")
 ```
 
-You're good to go!
+and you're good to go!
 
 
 ## scaleWithin()
 
-I wrote [`scaleWithin()`](https://insileco.github.io/inSilecoMisc/reference/scaleWithin.html) to easily handle color scale for a specific, yet frequent, situation. Let say I have a 40 values in a vector `val` that are percentages (so distributed between 0 and 100)
+I wrote [`scaleWithin()`](https://insileco.github.io/inSilecoMisc/reference/scaleWithin.html) to handle color scales for a specific yet frequent situation. Let us say that I have 40 percentage values -- meaning 0 to 100 -- in a vector `val`...
 
 ```{R}
 val <- runif(40, 0, 100)
 val
 ```
 
-**and** that I need to create a color scale with 25 tones (I used [`showPalette()`](http://insileco.github.io/graphicsutils/reference/showPalette.html) to show the color palette):
+... **and** that I wish to create a color scale with 25 tones. I use [`showPalette()`](http://insileco.github.io/graphicsutils/reference/showPalette.html) to show the color palette:
 
 ```{R}
 pal <- colorRampPalette(c("#f9fa98", "#500127"))(25)
 graphicsutils::showPalette(pal)
 ```
 
-**But** the color scale should be used for the range [30%-70%] (values below should have the lowest values and values above, the highest one), in the caption you would indicate ($\geqslant$ 30% and $\leqslant$ 70%). Then `scaleWithin()` comes in handy
+**But** the color scale should be used for the range [30%-70%], meaning that values below 30% should have the lowest values and values above 70%, the highest one. The caption should thus indicate $\geqslant$ 30% and $\leqslant$ 70%. Then the function `scaleWithin()` is very handy!
 
 ```{R}
 scaleWithin(val, n = 25, mn = 30, mx = 70)
 graphicsutils::showPalette(pal[scaleWithin(val, n = 25, mn = 30, mx = 70)], add_codecolor = FALSE)
 ```
 
-Even though this function is, in my opinion, pretty useful, I had a lot of trouble explaining why! So, in the last version of `inSilecoMisc` I re-wrote its entire documentation and I hope that together with this example, others will find it useful.
+Even though this function is pretty useful -- at least I think it is! -- I had a lot of trouble conveying why! So, in the last version of `inSilecoMisc`, I re-wrote the entire documentation and I hope that, together with this example, others will, as I so, find it useful.
 
 
 ## Messages
 
-In my day to day I **use** R packages, R functions to analyse data, create
-model, run simulations, etc. So I write scripts that combine functions for
-various packages to create pipelines that do the analysis I need. In these
-scripts, I like having information reported when they are running and I like
-having a nice clear visual and that is why I value packages such as
+Daily, I **use** R packages and R functions to analyse data, create
+model, run simulations, and a number of other things! So I write scripts that combine functions from
+various packages to create pipelines that do the analyses I need. When running
+scripts, I like having information and a nice clear visual reported and that is why I value packages such as
 `r url_cran("progress")`, `r url_cran("crayon")` and `r url_cran("cli")`. In
 `inSilecoMisc`, inspired by messages reported by `r url_cran("devtools")` when
-building a package, I created four simple message functions using the two latter
-package to standardize the message in my scripts
+building a package, I created four simple message functions using `r url_cran("crayon")` and `r url_cran("cli")` <!-- avoid things like latter when referencing sentences earlier in a paragraph, it forces the reader to go back and read it again to make sure he understands what you are writing -->
+packages to standardize messages in my scripts.
 
 ```{R}
 # 1. msgInfo() indicates what the upcoming computation
@@ -103,7 +103,7 @@ msgError("Something wrong")
 msgSuccess("All good")
 ```
 
-These functions help me structuring my scripts, here is a somewhat contrived example:
+These functions help me structure my scripts. Here is a contrived example:
 
 ```{R}
 scr_min <- function() {
@@ -118,14 +118,14 @@ scr_min <- function() {
 scr_min()
 ```
 
-Another helpful aspect of these functions is that they all are based on `message()` and so, if I want to execute a script quietly all I need to do is to call `suppressMessages()` beforehand
+Another helpful aspect of these functions is that they all are based on `message()`. As such, if I want to execute a script quietly, all I need to do is to call `suppressMessages()` beforehand
 
 ```{R}
 # quiet run
 suppressMessages(scr_min())
 ```
 
-Note that if you want to see how I used it in a script use for a manuscript,
+If you want to see an example of how I use these functions in a script for a scientific manuscript,
 check out the research compendium
 [coocNotInteract](https://github.com/TheoreticalEcosystemEcology/coocNotInteract).
 
@@ -136,8 +136,7 @@ check out the research compendium
 ## tblDown()
 
 Last but not least, I'd like to introduce a function to quickly write table data
-frame (or a list of data frames) in document of various formats. I actually
-created
+frame (or a list of data frames) in documents of various formats. I created
 [`tblDown()`](https://insileco.github.io/inSilecoMisc/reference/tblDownn.html)
 for a colleague of mine that was looking for a quick way to export a table. In
 the package `r url_cran("knitr")`, there is the very handy function `kable()`
@@ -147,10 +146,10 @@ that quickly writes a data frame in various formats.
 knitr::kable(head(CO2))
 ```
 
-All I did was writing a function that calls `kable()` to write the data frame
-and then calls [pandoc](https://pandoc.org/) to render the table(s) in the
-desired format that is indicated by the extension of the output file (`docx` by
-default).
+I wrote a function that calls `kable()` to write the data frame
+and then renders the table(s) in the
+desired format indicated by the extension of the output file (`docx` by
+default) using [pandoc](https://pandoc.org/).
 
 
 ```{R}
@@ -161,7 +160,7 @@ tblDown(head(CO2), output_file = "table.odt")
 <center><img src = "table_odt.png" width = "92%"></img></center>
 
 
-As I mentioned above `tblDown()` handles lists of data frames and the user can also pass a set of captions for every table and even separates them with section headers (of level 1).
+As I mentioned above `tblDown()` handles lists of data frames and the user can also provide a set of captions for every table and even separate them with section headers (of level 1).
 
 ```{R}
 tblDown(list(head(CO2), tail(CO2)), output_file = "tables.pdf",
@@ -171,13 +170,13 @@ tblDown(list(head(CO2), tail(CO2)), output_file = "tables.pdf",
 
 Check out the output file :arrow_right: [<i class="fa
 fa-file-pdf-o"></i>](tables.pdf)! Note that in the example above I only use one
-character string for `section` and `tblDown()` has appended an index, this is
-also the default behavior for `caption` : if there are less captions
+character string for `section` and `tblDown()` has appended an index; this is
+also the default behavior for `caption`: if there are less captions
 or sections titles than data frames, vectors of captions (and/or sections) are repeated and an index is appended.
 
 
-Note that if you are already writing your documents with [R
-Markdown](https://rmarkdown.rstudio.com/), you may not need this, but still
+If you are already writing your documents with [R
+Markdown](https://rmarkdown.rstudio.com/), you may not need this. Yet keep in mind that
 `tblDown()` quickly exports tables in various formats with only one line of
 command!
 
