@@ -1,11 +1,11 @@
 ---
 title: "inSilecoMisc 0.4.0 (part 2/2)"
 author: [kevin]
-date: 2020-04-07
+reviewer: [david]
+date: 2020-04-18
 tags: [R, package, development, inSilecoMisc]
 tweet: "inSilecoMisc 0.4.0 (part 2/2)"
-draft: true
-estime: 6
+estime: 7
 output:
   rmarkdown::html_page:
     toc: true
@@ -69,7 +69,10 @@ scaleWithin(val, n = 25, mn = 30, mx = 70)
 graphicsutils::showPalette(pal[scaleWithin(val, n = 25, mn = 30, mx = 70)], add_codecolor = FALSE)
 ```
 
-Even though this function is pretty useful -- at least I think it is! -- I had a lot of trouble conveying why! So, in the last version of `inSilecoMisc`, I re-wrote the entire documentation and I hope that, together with this example, others will, as I so, find it useful.
+Even though this function is pretty useful -- at least I think it is! -- I had a
+lot of trouble conveying why! So, in the last version of `inSilecoMisc`, I
+re-wrote the entire documentation and I hope that, together with this example,
+others will, as I so, find it useful.
 
 
 ## Messages
@@ -77,11 +80,10 @@ Even though this function is pretty useful -- at least I think it is! -- I had a
 Daily, I **use** R packages and R functions to analyse data, create
 model, run simulations, and a number of other things! So I write scripts that combine functions from
 various packages to create pipelines that do the analyses I need. When running
-scripts, I like having information and a nice clear visual reported and that is why I value packages such as
+such scripts, I like having information reported on a clear and visual way, that is why I value packages such as
 `r url_cran("progress")`, `r url_cran("crayon")` and `r url_cran("cli")`. In
 `inSilecoMisc`, inspired by messages reported by `r url_cran("devtools")` when
-building a package, I created four simple message functions using `r url_cran("crayon")` and `r url_cran("cli")` <!-- avoid things like latter when referencing sentences earlier in a paragraph, it forces the reader to go back and read it again to make sure he understands what you are writing -->
-packages to standardize messages in my scripts.
+building a package, I created four simple message functions using `r url_cran("crayon")` and `r url_cran("cli")` packages to standardize messages in my scripts.
 
 ```{R}
 # 1. msgInfo() indicates what the upcoming computation
