@@ -291,7 +291,7 @@ For now on, my personal approach with R packages will be:
 
 ### Misc
 
-- [You can make a package in 20 minutes](https://www.rstudio.com/resources/videos/you-can-make-a-package-in-20-minutes/)
+- [You can make a package in 20 minutes](https://resources.rstudio.com/rstudio-conf-2018/you-can-make-a-package-in-20-minutes-jim-hester)
 
 
 <br>
