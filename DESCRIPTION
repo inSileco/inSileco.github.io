@@ -1,7 +1,7 @@
 Package: placeholder
 Type: Website
-Title: inSileco website.
-Version: 0.1.0
+Title: inSileco website
+Version: 0.2.0
 Authors@R: c(
   person("Team", "inSileco", role = c("aut", "cre"), email = "kevin.cazelles@gmail.com")
   )
@@ -10,13 +10,13 @@ Imports:
   blogdown,
   gdistance,
   graphicsutils,
+  htmltools,
   igraph,
   inSilecoRef,
   inSilecoMisc,
   kableExtra,
   latex2exp,
   lwgeom,
-  htmltools,
   mapview,
   microbenchmark,
   RColorBrewer,
@@ -30,7 +30,6 @@ Imports:
   tidyverse,
   yaml
 Remotes:
-  rstudio/blogdown,
   inSileco/graphicsutils,
   inSileco/inSilecoRef,
   inSileco/inSilecoMisc

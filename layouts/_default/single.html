@@ -55,7 +55,13 @@
       <img src='{{ (print "https://img.shields.io/static/v1?style=flat&label=inSileco&message=underReview&color=8555b4&logo="  $.Site.Data.logos.inSileco.code64) | safeURL }}'>
     {{ end }}
     {{ with .Params.estime }}
-      <img src='{{ (print "https://img.shields.io/static/v1?style=flat&label=time&message=" . "min&color=3fb3b2&logo="  $.Site.Data.logos.clock.code64) | safeURL }}'>
+      <img src='{{ (print "https://img.shields.io/static/v1?style=flat&label=reading time&message=" . "min&color=3fb3b2&logo="  $.Site.Data.logos.clock.code64) | safeURL }}'>
+    {{ end }}
+    {{ if .Params.rbloggers }}
+      <a href = "http://www.R-bloggers.com">
+      <img src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
+      <a>
+       <!-- http://www.R-bloggers.com -->
     {{ end }}
     &nbsp;&nbsp;
     <!-- cf https://insileco.github.io/{{ .Permalink }} -->
