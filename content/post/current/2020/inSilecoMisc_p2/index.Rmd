@@ -1,0 +1,203 @@
+---
+title: "inSilecoMisc 0.4.0 (part 2/2)"
+author: [kevin]
+reviewer: [david]
+date: 2020-04-18
+tags: [R, package, development, inSilecoMisc]
+tweet: "inSilecoMisc 0.4.0 (part 2/2)"
+estime: 7
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+```{r codeChunkSetUp, include = FALSE}
+knitr::opts_chunk$set(
+  comment = "#R>",
+  collapse = TRUE,
+  fig.align = 'center',
+  width = 100
+)
+library(inSilecoRef)
+```
+
+In the [first part of this post](/2020/04/05/insilecomisc-0.4.0-part-1/2/)  I
+introduced several functions available in the package `r url_gh("inSilecoMisc",
+"inSileco")`. In this post, I keep on introducing features of the package you
+might find useful! If you did not read the first part of this post and are
+interested in reproducing the examples below, simply install `inSilecoMisc`:
+
+
+```R
+# Run if package is not already installed
+install.packages("remotes")
+remotes::install_github("inSileco/inSilecoMisc")
+```
+
+Load it:
+
+```{R}
+library("inSilecoMisc")
+packageVersion("inSilecoMisc")
+```
+
+and you're good to go!
+
+
+## scaleWithin()
+
+I wrote [`scaleWithin()`](https://insileco.github.io/inSilecoMisc/reference/scaleWithin.html) to handle color scales for a specific yet frequent situation. Let us say that I have 40 percentage values -- meaning 0 to 100 -- in a vector `val`...
+
+```{R}
+val <- runif(40, 0, 100)
+val
+```
+
+... **and** that I wish to create a color scale with 25 tones. I use [`showPalette()`](http://insileco.github.io/graphicsutils/reference/showPalette.html) to show the color palette:
+
+```{R}
+pal <- colorRampPalette(c("#f9fa98", "#500127"))(25)
+graphicsutils::showPalette(pal)
+```
+
+**But** the color scale should be used for the range [30%-70%], meaning that values below 30% should have the lowest values and values above 70%, the highest one. The caption should thus indicate $\geqslant$ 30% and $\leqslant$ 70%. Then the function `scaleWithin()` is very handy!
+
+```{R}
+scaleWithin(val, n = 25, mn = 30, mx = 70)
+graphicsutils::showPalette(pal[scaleWithin(val, n = 25, mn = 30, mx = 70)], add_codecolor = FALSE)
+```
+
+Even though this function is pretty useful -- at least I think it is! -- I had a
+lot of trouble conveying why! So, in the last version of `inSilecoMisc`, I
+re-wrote the entire documentation and I hope that, together with this example,
+others will, as I so, find it useful.
+
+
+## Messages
+
+Daily, I **use** R packages and R functions to analyse data, create
+model, run simulations, and a number of other things! So I write scripts that combine functions from
+various packages to create pipelines that do the analyses I need. When running
+such scripts, I like having information reported on a clear and visual way, that is why I value packages such as
+`r url_cran("progress")`, `r url_cran("crayon")` and `r url_cran("cli")`. In
+`inSilecoMisc`, inspired by messages reported by `r url_cran("devtools")` when
+building a package, I created four simple message functions using `r url_cran("crayon")` and `r url_cran("cli")` packages to standardize messages in my scripts.
+
+```{R}
+# 1. msgInfo() indicates what the upcoming computation
+msgInfo("this is what's gonna happen next")
+```
+
+```{R}
+# 2. msgWarning() reminds me something important that should not affect the run
+msgWarning("Got to be careful")
+```
+
+```{R}
+# 3. msgError() when something went wrong (and I anticipated that it could happen)
+msgError("Something wrong")
+```
+
+```{R}
+# 4. msgSuccess() when a step/ a computation has been successfully completed
+msgSuccess("All good")
+```
+
+These functions help me structure my scripts. Here is a contrived example:
+
+```{R}
+scr_min <- function() {
+  # msgInfo() lets me know where I am in the script
+  msgInfo("Average random values")
+  set.seed(111)
+  out <- mean(runif(100))
+  msgSuccess("Done!")
+  # msgSuccess() indicates the successful completion of this part
+  out
+}
+scr_min()
+```
+
+Another helpful aspect of these functions is that they all are based on `message()`. As such, if I want to execute a script quietly, all I need to do is to call `suppressMessages()` beforehand
+
+```{R}
+# quiet run
+suppressMessages(scr_min())
+```
+
+If you want to see an example of how I use these functions in a script for a scientific manuscript,
+check out the research compendium
+[coocNotInteract](https://github.com/TheoreticalEcosystemEcology/coocNotInteract).
+
+
+
+
+
+## tblDown()
+
+Last but not least, I'd like to introduce a function to quickly write table data
+frame (or a list of data frames) in documents of various formats. I created
+[`tblDown()`](https://insileco.github.io/inSilecoMisc/reference/tblDownn.html)
+for a colleague of mine that was looking for a quick way to export a table. In
+the package `r url_cran("knitr")`, there is the very handy function `kable()`
+that quickly writes a data frame in various formats.
+
+```{R}
+knitr::kable(head(CO2))
+```
+
+I wrote a function that calls `kable()` to write the data frame
+and then renders the table(s) in the
+desired format indicated by the extension of the output file (`docx` by
+default) using [pandoc](https://pandoc.org/).
+
+
+```{R}
+# NB tblDown(head(CO2)) returns table.docx by default
+tblDown(head(CO2), output_file = "table.odt")
+```
+
+<center><img src = "table_odt.png" width = "92%"></img></center>
+
+
+As I mentioned above `tblDown()` handles lists of data frames and the user can also provide a set of captions for every table and even separate them with section headers (of level 1).
+
+```{R}
+tblDown(list(head(CO2), tail(CO2)), output_file = "tables.pdf",
+  caption = c("This is the head of CO2", "This is the tail of CO2"),
+  section = "Table")
+```
+
+Check out the output file :arrow_right: [<i class="fa
+fa-file-pdf-o"></i>](tables.pdf)! Note that in the example above I only use one
+character string for `section` and `tblDown()` has appended an index; this is
+also the default behavior for `caption`: if there are less captions
+or sections titles than data frames, vectors of captions (and/or sections) are repeated and an index is appended.
+
+
+If you are already writing your documents with [R
+Markdown](https://rmarkdown.rstudio.com/), you may not need this. Yet keep in mind that
+`tblDown()` quickly exports tables in various formats with only one line of
+command!
+
+
+
+
+#### That's all folks :tada:!
+
+
+<br><br>
+<details>
+<summary>
+  <h4>
+    <i class="fa fa-cogs" aria-hidden="true"></i> Session info
+    <i class="fa fa-chevron-down" aria-hidden="true"></i>
+  </h4>
+</summary>
+
+```{R sessionInfo}
+sessionInfo()
+```
+</details>
