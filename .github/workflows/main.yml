@@ -1,3 +1,5 @@
+name: deploy inSileco blog
+
 on:
   push:
     branches:
@@ -16,9 +18,9 @@ jobs:
       - name: Install apt-get package(s)
         run: |-
           sudo apt-get update
-          sudo apt-get install -y hugo
-          sudo apt-get install -y libudunits2-0 libudunits2-dev libgeos-dev
-          sudo apt-get install -y libgeos++-dev libgdal-dev r-cran-ncdf4
+          sudo apt-get install -y hugo libudunits2-0 libudunits2-dev
+          sudo apt-get install -y libproj-dev libgeos-dev liblwgeom-dev
+          sudo apt-get install -y libgdal-dev r-cran-ncdf4
       - name: Install Dependencies
         run: |-
           Rscript -e "install.packages(c('remotes', 'blogdown'), repos = 'https://muug.ca/mirror/cran/')"
