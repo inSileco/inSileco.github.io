@@ -31,15 +31,11 @@
               {{ with .repostatus }}
                   <a href="https://www.repostatus.org/#{{.}}"><img alt = "Repostatus" src="https://www.repostatus.org/badges/latest/{{.}}.svg"></img></a>
               {{ end }}
+              {{ with .ghactions }}
+                <a href="https://github.com/{{ .reposlug }}/actions"><img alt = "Build Status"  src="https://github.com/{{ .reposlug }}/workflows/{{ .workflow }}/badge.svg"></a>
+              {{ end }}
               {{ with .zenodo }} {{ . | markdownify }} {{ end }}
             {{ end }}
-            <p style="margin-top:10px;">
-               {{ with .travis }} <a href="https://travis-ci.org/{{ .repo }}">
-               <img alt = "Build Status"  src="https://travis-ci.org/{{ .repo }}.svg?branch={{ .branch }}"></img></a> {{ end }}
-               {{ with .appveyor }} {{ . | markdownify }} {{ end }}
-               {{ with .codecov }} {{ . | markdownify }} {{ end }}
-               {{ with .zenodo }} {{ . | markdownify }} {{ end }}
-            </p>
           </div>
         </div>
       </div>

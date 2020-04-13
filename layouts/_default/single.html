@@ -57,19 +57,27 @@
     {{ with .Params.estime }}
       <img src='{{ (print "https://img.shields.io/static/v1?style=flat&label=reading time&message=" . "min&color=3fb3b2&logo="  $.Site.Data.logos.clock.code64) | safeURL }}'>
     {{ end }}
+    <!-- http://www.R-bloggers.com -->
     {{ if .Params.rbloggers }}
       <a href = "http://www.R-bloggers.com">
       <img src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
       <a>
-       <!-- http://www.R-bloggers.com -->
+    {{ end }} &nbsp;
+    <!-- license -->
+    {{ with .Params.licence }}
+      <a href = "{{ .url }}">
+      <img src="https://img.shields.io/static/v1?style=flat&label=license&message={{ .name }}&logo=creative-commons">
+      <a>
+    {{ else }}
+      <a href = "https://creativecommons.org/licenses/by/4.0/">
+      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+      </a>
     {{ end }}
     &nbsp;&nbsp;
-    <!-- cf https://insileco.github.io/{{ .Permalink }} -->
     <a href="http://twitter.com/share?url=https://insileco.github.io/{{ .Permalink }}&text={{ .Params.tweet }}" target="_blank">
       <img src='https://img.shields.io/twitter/url?style=social&url=https://insileco.github.io/{{ .Permalink }}?link=http://left&link=http://right}'>
     </a>
   </p>
-
 
     <div class="text-justify">
       <p>

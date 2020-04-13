@@ -33,7 +33,7 @@ jobs:
       - name: Install R packages with renv
         run: |
           Rscript -e "install.packages('renv', repos = 'https://muug.ca/mirror/cran/')"
-          Rscript -e "renv::consent(provided = TRUE); renv::restore()"
+          Rscript -e "renv::restore()"
       - name: Build inSileco Blog
         run: |-
           Rscript -e 'blogdown::build_site()'
