@@ -5,7 +5,6 @@ date: 2018-11-21
 update: 2018-11-21
 categories: [about R]
 tags: [plot, R, wiki]
-draft: false
 ---
 
 
@@ -55,7 +54,9 @@ draft: false
 
 ### Blogs
 
-  - [R-bloggers](http://www.r-bloggers.com)
+If you want to find people online writing about R, you should definitively check out [R-bloggers](http://www.r-bloggers.com). R-bloggers is "a blog aggregator of content contributed by bloggers who write about R" and there are
+literally [**hundreds** of bloggers](https://www.r-bloggers.com/blogs-list/) that contribute to it. 
+
   - [inside-R](http://www.inside-r.org)
   - [Quick-R](http://www.statmethods.net/about/learningcurve.html)
   - [Revolutions](http://blog.revolutionanalytics.com/about.html)
@@ -64,7 +65,7 @@ draft: false
   - [ggplot2 extensions](http://www.ggplot2-exts.org/gallery/)
   - [Reproducible Random Thoughts](https://yonicd.netlify.com/)
   - [Rcpp Gallery](gallery.rcpp.org)
-  - [Blog of dirk eddelbuettel](http://dirk.eddelbuettel.com/blog/)
+  - [Thinking inside the box (blog by Dirk Eddelbuettel)](http://dirk.eddelbuettel.com/blog/)
   - [datascienceplus](https://datascienceplus.com/)
   - [business-science](https://www.business-science.io/)
   - [insightR](https://insightr.wordpress.com/)
@@ -76,6 +77,8 @@ draft: false
   - [Recology](https://recology.info/index.html)
   - [Once upon Data](https://www.onceupondata.com/)
   - [r-spatial](https://www.r-spatial.org)
+  - [rOpenSci's blog](https://ropensci.org/blog/)
+  - [R Views (RStudio blog)](https://rviews.rstudio.com/)
 
 
 

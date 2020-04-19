@@ -4,7 +4,6 @@ tags: [Windows, Ubuntu, dual partition, chocolatey, apt-get]
 author: [kevin]
 reviewer: [marieh]
 date: 2018-12-09
-draft: false
 estime: 7
 tweet: My R setup on Debian
 output:
@@ -14,10 +13,7 @@ output:
 ---
 
 
-![](https://img.shields.io/badge/inSileco-UnderReview-ffdd55.svg)
-
-
-Long story short, I recently had access to a [Dell Studio XPS 8100 ](https://www.dell.com/en-ca/shop/cty/dell-studio-xps-8100-desktop-details-reviews/spd/studio-xps-8100) with [Windows 7](https://en.wikipedia.org/wiki/Windows_7) on it. I was told that the computer was not working well and so was allowed to tweak it. The computer was actually working well so I simply decided to add a partition Ubuntu.
+Long story short, I recently had access to a [Dell Studio XPS 8100 ](https://www.dell.com/en-ca/shop/cty/dell-studio-xps-8100-desktop-details-reviews/spd/studio-xps-8100) with [Windows 7](https://en.wikipedia.org/wiki/Windows_7) on it. I was told that the computer was not working well and so was allowed to tweak it. The computer was actually working well, so I simply decided to add a partition Ubuntu.
 
 [Ubuntu](https://www.ubuntu.com/) is based on Debian and arguably more beginner-friendly than the latter. Roughly speaking:
 
