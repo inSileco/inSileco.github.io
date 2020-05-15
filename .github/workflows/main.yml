@@ -12,14 +12,13 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-latest
     container: rocker/verse:latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@master
       - name: Install apt-get packages
         run: |-
-          sudo apt-get update
           sudo apt-get install -y hugo libudunits2-0 libudunits2-dev
           sudo apt-get install -y libproj-dev libgeos-dev liblwgeom-dev
           sudo apt-get install -y libgdal-dev r-cran-ncdf4
