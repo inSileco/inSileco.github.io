@@ -5,7 +5,7 @@ reviewer: [marieh]
 date: 2018-12-03
 tags: [R, package, development, GitHub, CRAN, rOpenSci]
 rpkgs: [devtools, testthtat, pkgdown, goodpractice, rcites, roxygen2, usethis]
-draft: false
+rbloggers: true
 tweet: "A few thoughts on R packages"
 estime: 18
 output:
@@ -23,7 +23,9 @@ output:
 
 <br>
 
-<center> ![rcites on CRAN](assets/rcites_cran.png){width=100%} </center>
+
+{{< figcenter "rcites_cran.png" >}}
+
 
 <br>
 
