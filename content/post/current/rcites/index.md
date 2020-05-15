@@ -23,7 +23,9 @@ output:
 
 <br>
 
-<center> ![rcites on CRAN](assets/rcites_cran.png){width=100%} </center>
+
+{{< figcenter "rcites_cran.png" >}}
+
 
 <br>
 

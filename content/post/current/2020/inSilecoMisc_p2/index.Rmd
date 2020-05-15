@@ -155,12 +155,15 @@ desired format indicated by the extension of the output file (`docx` by
 default) using [pandoc](https://pandoc.org/).
 
 
-```{R}
+```{R, output.width = "92%"}
 # NB tblDown(head(CO2)) returns table.docx by default
 tblDown(head(CO2), output_file = "table.odt")
 ```
 
-<center><img src = "table_odt.png" width = "92%"></img></center>
+```{r echo = FALSE}
+blogdown::shortcode("figcenter", "table_odt.png", "table_odt.png (screenshot)",
+  "90%")
+```
 
 
 As I mentioned above `tblDown()` handles lists of data frames and the user can also provide a set of captions for every table and even separate them with section headers (of level 1).
