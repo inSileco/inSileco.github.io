@@ -32,7 +32,7 @@
     </p>
 
     {{ if .Params.author }}
-      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true"></i>
+      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
       {{ range $auth := .Params.author }} {{ $info := index $.Site.Data.authors $auth }}
         <a href="/about/">{{ $info.given_name }} {{ $info.family_name }}</a> &nbsp;
       {{ end }}
@@ -40,7 +40,7 @@
     {{ end }}
 
     {{ if .Params.reviewer }}
-      <p> <i class="fa fa-check-square" aria-hidden="true"></i>
+      <p> <i class="fa fa-check-square" aria-hidden="true", title="Reviewer(s)"></i>
       {{ range $rev := .Params.reviewer }} {{ $info := index $.Site.Data.authors $rev }}
       <a href="/about/">{{ $info.given_name }} {{ $info.family_name }}</a> &nbsp;
       {{ end }}
