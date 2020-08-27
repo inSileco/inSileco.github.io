@@ -1,6 +1,7 @@
 ---
 title: "Custom tick marks with R's base graphics system"
 author: [kevin]
+reviewer: [willian]
 date: 2020-08-26
 tags: [R, ticks, axes]
 rpkgs: [graphics]
@@ -44,27 +45,45 @@ ticks!
 
 ## Remove axes and add them back
 
-The first step is to remove all axes. This basically requires to set `axes` to
-`FALSE` in `plot()`:
+The first step is to remove all axes. There are basically two ways. One option
+is to use `xaxt = "n"` and `yaxt = "n"` to selectively remove the x-axis and
+the y-axis, respectively.
+
+```{R}
+plot(cx, cy, xaxt = "n")
+```
+
+```{R}
+plot(cx, cy, xaxt = "n", yaxt = "n")
+```
+
+The second option is to set `axes` to `FALSE` in `plot()`:
 
 ```{R}
 plot(cx, cy, axes = FALSE)
 ```
 
-Then I add the axes back, for the moment, let's just add the y-axis back without
-any change
+As you can see, when `axes = FALSE` the box is also removed and you can actually add it back with `box()`:
 
 ```{R}
 plot(cx, cy, axes = FALSE)
-axis(2)
+box()
 ```
 
-Then, let's add the 0, 0.5, 1, 1.5 and 2 to the x-axis:
+and change its style, if desired:
 
 
 ```{R}
 plot(cx, cy, axes = FALSE)
-axis(2)
+box(bty = "l")
+```
+
+
+That being said, let's only remove the x-axis for the moment and add ticks at 0,
+0.5, 1, 1.5 and 2 to the x-axis using `axis()`:
+
+```{R}
+plot(cx, cy, xaxt = "n")
 axis(1, at = seq(0, 2, .5))
 ```
 
@@ -72,8 +91,7 @@ I can easily change the labels if values on the axis are not the ones that
 should be displayed, e.g.
 
 ```{R}
-plot(cx, cy, axes = FALSE)
-axis(2)
+plot(cx, cy, xaxt = "n")
 axis(1, at = seq(0, 2, .5), labels = letters[1:5])
 ```
 
@@ -85,8 +103,7 @@ Now, let's add a second set tick marks! This can be done by calling `axis()` one
 more time.
 
 ```{R}
-plot(cx, cy, axes = FALSE)
-axis(2)
+plot(cx, cy, xaxt = "n")
 axis(1, at = seq(0, 2, .5))
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA)
 ```
@@ -97,27 +114,6 @@ between two ticks (here 0.1) and create the sequence with `seq()`, then create
 the main set of tick marks and finally use `setdiff()` will to add the
 remaining tick marks. Also here, as I don't want to add extra labels, I just set
 the labels to `NA`.
-
-Now, before tweaking the visual aspect of the ticks, let's add the box.
-
-
-```{R}
-plot(cx, cy, axes = FALSE)
-axis(2)
-axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5))
-axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA)
-box()
-```
-
-By the way, you can change its visual aspect pretty easily, e.g.
-
-```{R}
-plot(cx, cy, axes = FALSE)
-axis(2)
-axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5))
-axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA)
-box(bty = "l")
-```
 
 
 ## Remove the extra line
@@ -140,14 +136,13 @@ plot(cx, cy, axes = FALSE)
 box()
 ```
 
-This may frequently goes unnoticed, but I tend to notice such overlap this and
-it annoys me... Anyway, one way to handle this is to set the line width to 0 in
-`axis()`.
+This may frequently goes unnoticed, but I personally tend to notice such overlap
+this and it annoys me... Anyway, one way to handle this is to set the line width
+to 0 in `axis()`.
 
 
 ```{R}
-plot(cx, cy, axes = FALSE)
-axis(2)
+plot(cx, cy, xaxt = "n")
 axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd = 0)
 ```
@@ -156,8 +151,7 @@ and then to set the line with of the ticks, controlled by `lwd.ticks`, to
 something greater than 0
 
 ```{R}
-plot(cx, cy, axes = FALSE)
-axis(2)
+plot(cx, cy, xaxt = "n")
 axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, lwd.ticks = 1)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd = NA, lwd.ticks = 1)
 box()
@@ -166,8 +160,7 @@ box()
 Note that if you only wish to remove the marks you can use `tick = FALSE`.
 
 ```{R}
-plot(cx, cy, axes = FALSE)
-axis(2)
+plot(cx, cy, xaxt = "n")
 axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), tick = FALSE)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, tick = FALSE)
 box()
@@ -184,22 +177,31 @@ Having done the steps above, you may have realized that fine-tuning `lwd.ticks`
 is a good way to custom your tick marks!
 
 ```{R}
-plot(cx, cy, axes = FALSE)
-axis(2)
+plot(cx, cy, xaxt = "n")
 axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, lwd.ticks = 1.5)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd = 0, lwd.ticks = .5)
 box()
 ```
 
-A second parameter to further customize the tick marks is `tck`, which allows
-you to adjust the length of tick marks. To read the documentation of this
-parameter, you need to check the documentation of `par()`, but you can pass it
-directly to `axis()`.
+A second parameter to further customize the tick marks is `tck` that actually
+belongs to `par()`
 
 
-```{R}
-plot(cx, cy, axes = FALSE)
-axis(2)
+```{R tckinpar}
+par(tck = -0.07)
+plot(cx, cy, xaxt = "n")
+axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0,
+  lwd.ticks = 1)
+axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = 1)
+box()
+```
+
+but can also be used with `axis()` thanks to the ellipsis (`...`) which allow me
+to change it only for one set of ticks
+
+
+```{R tckinaxis}
+plot(cx, cy, xaxt = "n")
 axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, tck = -0.07,
   lwd.ticks = 1)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = 1)
@@ -207,12 +209,10 @@ box()
 ```
 
 
-
 Moreover, using positive value you can make the tick go up!
 
 ```{R}
-plot(cx, cy, axes = FALSE)
-axis(2)
+plot(cx, cy, xaxt = "n")
 axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, tck = 0.07,
   lwd.ticks = 1)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = 1)
@@ -223,8 +223,7 @@ And finally you change many aspect of them, including color then and line type:
 
 
 ```{R}
-plot(cx, cy, axes = FALSE)
-axis(2)
+plot(cx, cy, xaxt = "n")
 axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, lwd.ticks = 1.5, tck = -.07, col = 2, lty = 2)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = .5, tck = -.03, col = 3)
 box()
@@ -234,20 +233,32 @@ One more tip, if you need to adjust the position of the tick you would have to
 use `mgp` (also documented in `par`) which is a vector of three elements
 controlling the following features:
 
-1. the position of the axis label,
+1. the position of the axis labels,
 2. the position of the tick labels,
 3. the positon on the tick marks.
 
 
 ```{R mgp}
 par(mgp = c(2.5, 1.6, 0))
-plot(cx, cy, axes = FALSE)
-axis(2)
+plot(cx, cy, xaxt = "n")
 axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, lwd.ticks = 1.5,
   tck = -.1, col = 2, lty = 2)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = .5, tck = -.03, col = 3)
 box()
 ```
+
+Note that, just as for `tck`, I can use `mgp` in `axis()`. In this example,  it
+won't affected the axis labels because they were added by `plot()`.
+
+
+```{R mgpinaxis}
+plot(cx, cy, xaxt = "n")
+axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, lwd.ticks = 1.5,
+  tck = -.1, col = 2, lty = 2)
+axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = .5, tck = -.03, col = 3, mgp = c(2.5, 1.6, 0))
+box()
+```
+
 
 
 
@@ -271,10 +282,9 @@ myaxis <- function(side, all, main, lab = main, col1 = 1, col2 = 1, ...) {
 which is basically makes the customization of tick marks very easy!
 
 ```{R final}
-plot(cx, cy, axes = FALSE)
+plot(cx, cy, xaxt = "n", yaxt = "n")
 myaxis(1, cx, seq(0, 2, .5))
 myaxis(2, seq(-0.5, 2.8, .1), seq(-0.5, 2.5, .5), las = 1)
-box()
 ```
 
 <br>
