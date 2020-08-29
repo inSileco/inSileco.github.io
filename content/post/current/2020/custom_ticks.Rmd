@@ -2,13 +2,13 @@
 title: "Custom tick marks with R's base graphics system"
 author: [kevin]
 reviewer: [willian]
-date: 2020-08-26
+date: 2020-08-29
 tags: [R, ticks, axes]
 rpkgs: [graphics]
-tweet: "Custom tick marks with R's base graphics system"
+tweet: "Custom your tick marks with #rstats base graphics system"
 draft: false
-review: true
-rbloggers: false
+review: false
+rbloggers: true
 estime: 9
 output:
   rmarkdown::html_page:
@@ -263,13 +263,13 @@ box()
 
 
 
-## Wrap that up in a function
+## Wrap all that up in a function
 
-All what I've done above may appear overwhelming at first because you need to
+All the steps above may appear overwhelming at first because you need to
 memorize where is what... But once everything gets clear, you would realize that
-for most of your plots you need to tweak the same parameters and so that you
-can create your own function that would cover your needs. For instance, I often
-use a function similar to the one below:
+for most of your plots you need to tweak the same parameters and so that you can
+create your own function that would cover your needs. For instance, I often use
+a function similar to the one below:
 
 ```{R fun}
 myaxis <- function(side, all, main, lab = main, col1 = 1, col2 = 1, ...) {
@@ -279,7 +279,7 @@ myaxis <- function(side, all, main, lab = main, col1 = 1, col2 = 1, ...) {
 }
 ```
 
-which is basically makes the customization of tick marks very easy!
+which basically makes the customization of tick marks very easy!
 
 ```{R final}
 plot(cx, cy, xaxt = "n", yaxt = "n")
