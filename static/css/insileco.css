@@ -74,15 +74,6 @@ p > img {
   padding: 15px;
 }
 
-/* see for the one below http://www.ebadf.net/2016/10/19/centering-images-in-hugo/ */
-img[src$='#center']
-{
-    display: block;
-    margin: 0.1rem auto; /* you can replace the vertical '0.7rem' by
-                            whatever floats your boat, but keep the
-                            horizontal 'auto' for this to work */
-    /* whatever else styles you fancy here */
-}
 
 .endpost {
   font-size: 1.5em;
@@ -130,3 +121,52 @@ hr.style1 {
 	background: url(http://ibrahimjabbari.com/english/images/hr-11.png) repeat-x 0 0;
     border: 0;
 }
+
+
+
+
+/* https://stackoverflow.com/questions/255170/markdown-and-image-alignment */
+
+img[alt$=">"] {
+  float: right;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+img[alt$="<"] {
+  float: left;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+img[alt$="><"] {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  float: none!important;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+/* see for the one below http://www.ebadf.net/2016/10/19/centering-images-in-hugo/ */
+img[src$='#center']
+{
+    display: block;
+    margin: 0.1rem auto; /* you can replace the vertical '0.7rem' by
+                            whatever floats your boat, but keep the
+                            horizontal 'auto' for this to work */
+    /* whatever else styles you fancy here */
+}
+
+.caption {
+  display: block;
+  max-width: 92%;
+  height: auto;
+  margin: auto;
+  float: none!important;
+  font-size: 1.15em;
+  margin-bottom: 20px;
+  text-align: center;
+}
+

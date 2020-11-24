@@ -1,0 +1,250 @@
+---
+title: "Continuous integration for R projects: from Travis CI to GH actions  step by step"
+author: [kevin]
+reviewer: [marieh]
+date: 2020-11-23
+tags: [Continuous Integration, Travis CI, GitHub Actions, R package]
+rpkgs: [covr, pkgdown, usethis]
+tweet: "Writing an R Client for a web API: rowlbot as a use case"
+draft: false
+review: false
+rbloggers: false
+estime: 4
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+
+I have been using Travis CI (https://travis-ci.org/) since 2015 and GitHub
+Actions (hereafter GH Actions; https://github.com/features/actions) for over a
+year now[^note1]. While using these two hosted continuous integration services,
+I came to realize that I was spending less time troubleshooting with GH Actions
+than I was with Travis. For this reason, I am now setting GH Actions workflows
+for my new projects (mainly R and Julia projects) and slowly migrating older
+projects from Travis to GH Actions. Turns out that was the right move! Indeed,
+as Jeroen Ooms explains in his recent post ["Moving away from Travis
+CI"](https://discuss.ropensci.org/t/ropensci-moving-away-from-travis-ci/2267),
+by next year, [Travis will no longer be free for open source
+projects](https://blog.travis-ci.com/2020-11-02-travis-ci-new-billing) (see
+[also](https://www.theregister.com/2020/11/02/travis_ci_pricng/)), which gives
+me a good reason to speed up the migration process! As I was working on such
+migration recently, I felt that I should to share some notes about this! 
+
+
+[^note1]: see [my first post about GitHub Actions](https://kevcaz.github.io/notes/ci/githubactions/) on my personal blog. 
+
+
+
+## inSilecoMisc as an example 
+
+The package I worked on was
+[`inSilecoMisc`](https://github.com/inSileco/inSilecoMisc). Note that I have
+already detailed elsewhere various features including in inSilecoMisc (e.g.
+[here](https://insileco.github.io/2020/04/14/insilecomisc-0.4.0-part-1/2/) and
+[there](https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/)).
+What matters here, is what was Travis CI doing for me. The screenshot below
+shows the different jobs I set (described in
+[.travis.yml](https://github.com/inSileco/inSilecoMisc/blob/38724e2e9710fb35d87fe1b69aaae8fe4e8cdeff/.travis.yml)).
+
+![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of the inSilecoMisc project page on [travis-ci.org](https://travis-ci.org/).](on_travis.png){width=90% alt="><"}
+
+
+Travis was set to check `inSilecoMisc` on macOS and Linux (Ubuntu Bionic and Focal), for different versions of R (oldrel, rel and devel). The last job, checked the package on Ubuntu Focal, uploaded [`covr`](https://CRAN.R-project.org/package=covr) results to 
+[CodeCov](https://codecov.io), built `inSilecoMisc`'s website (via [`pkgdown`](https://CRAN.R-project.org/package=pkgdown)) and deploy to a [GitHub Pages](https://pages.github.com/). So my goal was to set up a workflow with GitHub Actions that would do the same jobs.
+
+
+## Ciao Travis!
+
+The first step was to stop using Travis CI. To do so, I first needed to go on 
+<https://travis-ci.org> and turn off the jobs described above. To do sio, I looked for  `inSilecoMisc` in my list of projects and switched it off (see screenshot below).
+
+
+![<i class="fa fa-info" aria-hidden="true"></i> Screenshots of `inSilecoMisc`'s status  on <https://travis-ci.org> (left: on/before, right: off/after).](switch_off.png){width=90% alt="><"}
+
+Then, as I was using a [deploy
+key](https://developer.github.com/v3/guides/managing-deploy-keys/) for the
+website, I deleted it in the settings on GitHub repository (<i class="fa
+fa-arrow-circle-down" aria-hidden="true"></i>). Last, on my local <i class="fa
+fa-git" aria-hidden="true"></i> repository I removed `.travis.yaml` (e.g. `git
+rm .travis.yaml`). Note that I still have a version of this file as a
+[gist](https://gist.github.com/KevCaz/622c92cc1f7b00e66f078418882ad407). Once
+this was done, I committed my changes and pushed! 
+
+![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of `inSileco`'s home page (commit [`500d5ef`](https://github.com/inSileco/inSilecoMisc/commit/500d5ef332a407e48037ce422a9a14e7c4634fe7)).](ciao.png){width=90% alt="><"}
+
+
+
+## Add a workflow 
+
+[GH Actions](https://github.com/features/actions) are well-documented and my
+goal here is not to explain how to set an entire workflow. Rather I would like
+to focus on certain part of the workflow. That said, one should keep in mind
+that thanks to  [Docker](https://www.docker.com/) images and the large diversity
+of Actions available, GH Actions are powerful and extremely flexible. For R
+users interested in using GH Actions to check their package, it is worth noting
+that [`usethis`](https://CRAN.R-project.org/package=usethis) has several
+functions to add such workflows:
+
+```R
+library(usethis)
+use_github_action() 
+# there are different level of completeness, see the documentation 
+# and select the one you need! 
+use_github_action_check_release()
+use_github_action_check_standard()
+use_github_action_check_full()
+```
+
+
+The workflow I ended up using, [R-CMD-check.yaml](https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml) is based on one of the template file available in [`usethis`](https://CRAN.R-project.org/package=usethis)
+that I've simplified a bit (I use only 4 combinations OS / R versions) and extended to use the [CodeCov](chttps://codecov.io/) and deploy the website.
+ 
+
+## Code coverage 
+
+To use [CodeCov](chttps://codecov.io/) with Actions, a token is required. So, I clicked on the `Settings` tab of the `inSilecoMisc` page and copied the upload token:
+
+![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of the CodeCov settings page of `inSilecoMisc`.](codecov.png){width=90% alt="><"}
+
+Then I created a new secret `CODECOV_TOKEN` on `inSileco`'s GitHub repository and I pasted the token.
+
+![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of the Secret tab of the setting of the GitHub `inSilecoMisc` repository.](token_codecov.png){width=90% alt="><"}
+
+
+I chose `CODECOV_TOKEN` because it's pretty clear, but the name does not matter as long as the same variable name is used in [R-CMD-check.yaml](https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml). Below is the code bloc in the workflow that handles code coverage: 
+
+
+```yaml
+- name: Test coverage
+  if: matrix.config.os == 'macOS-latest' && matrix.config.r == 'release'
+  run: |
+    remotes::install_cran("covr")
+    covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")
+  shell: Rscript {0}
+```
+
+Note that `${{secrets.CODECOV_TOKEN}}` returns the token value I set as a secret
+above. Also, I used an `if:` filed to upload the results of the code coverage
+only once. I chose to do it on macOS (for no specific reason) and I kept the
+part `matrix.config.r == 'release'` in case I would add another configuration
+(currently, this is useless).
+
+
+## Website 
+
+### Build 
+
+In order to build the package I simply install [`pkgdown`](https://CRAN.R-project.org/package=pkdown) and use it to generates the HTML pages. Below is the code bloc I wrote for this: 
+
+
+```yaml
+- name: Build website 
+  if: matrix.config.os == 'ubuntu-20.04' && matrix.config.r == 'release'
+  run: |
+    sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
+    Rscript -e 'remotes::install_cran(c("pkgdown")); pkgdown::build_site()'
+    git fetch origin gh-pages:gh-pages
+    git --work-tree=docs checkout gh-pages -- .
+```  
+
+There are a few lines that require some explainations. First, I decided to build this on Ubuntu (again, this is arbitrary). Second, the following line: 
+
+
+```sh
+sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
+```
+
+was required as dependencies were missing for
+[`curl`](https://CRAN.R-project.org/package=curl) and
+[`textshaping`](https://CRAN.R-project.org/package=textshaping). Third, the two
+last lines are two git operations that I used to retrieve te content of the
+previous commit. I did so to be able to have both the "main" website at
+https://insileco.github.io/inSilecoMisc/ and "dev" version  at
+https://insileco.github.io/inSilecoMisc/dev (this is detailed in another post
+["Deploy a pkgdown website on gh-pages
+manually"](https://kevcaz.github.io/notes/ci/deploypkgdown2/)). 
+
+
+### Deploy
+
+To deploy the website to [GitHub Pages](https://pages.github.com/), I used
+[`peaceiris/actions-gh-pages`](https://github.com/peaceiris/actions-gh-pages)
+(version 3). There are two
+ways to deploy the website that are well explained in the README of
+[`peaceiris/actions-gh-pages`](https://github.com/peaceiris/actions-gh-pages).
+
+### via a deploy key 
+
+For this, one needs to generate a [pair of ssh keys](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key). On my Debian machine, I used the following in 
+my terminal: 
+
+
+```sh
+$ ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages
+```
+
+Then I set the public key as a deploy key 
+
+![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of the deploy key setting.](deploy_key.png){width=80% alt="><"}
+
+and the private one as a secret. 
+
+![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of the secret `ACTIONS_DEPLOY_KEY`.](private.png){width=80% alt="><"}
+
+Again I chose `ACTIONS_DEPLOY_KEY` for its clarity, but the name does not matter as long as the correct variable name is used in [R-CMD-check.yaml](https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml).
+
+
+
+```yaml 
+- name: Deploy website 
+  if: matrix.config.os == 'ubuntu-20.04' && matrix.config.r == 'release'
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+    publish_dir: ./docs
+```
+
+I used `publish_dir: ./docs` as this is where [`pkgdown` stores
+](https://CRAN.R-project.org/package=pkgdown) stored the web pages in my case
+(see the file
+[_pkgdown.yml](https://github.com/inSileco/inSilecoMisc/blob/master/_pkgdown.yml)).
+Note that I didn't need to specify the branch to be used for the website as
+the default is `gh-pages` and I already had a branch `gh-pages` set up[^note2].
+
+[^note2]: Use `publish_branch: your-branch` to set `your-branch` as the branch were files will be published. 
+
+
+### via a personal access token 
+
+The second option is to [create and use a personal access token](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token) (this is the solution I opted for in the end). 
+
+![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of the page to generate the personal token.](perso_token.png){width=90% alt="><"}
+
+And then set this token as a secret for the repository.
+
+![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of the secret `PERSO_TOKEN`.](pat_secret.png){width=90% alt="><"}
+
+Once the secret is set, the variable name should be passed as `github_token` (instead of `deploy_key`), like so: 
+
+
+
+```yaml
+- name: Deploy website 
+  if: matrix.config.os == 'ubuntu-20.04' && matrix.config.r == 'release'
+  uses: peaceiris/actions-gh-pages@v3
+  with:
+    github_token: ${{ secrets.PERSO_TOKEN }}
+    publish_dir: ./docs
+```
+
+Incidentally, [organization secrets](https://github.blog/changelog/2020-05-14-organization-secrets/) allow user to have secrets at the organisation level, so that the same token can be used for several repositories! 
+
+<br/>
+<br/>
+
+Everything is working fine now :fireworks:, check out [`inSilecoMisc`](https://github.com/inSileco/inSilecoMisc)! Hope this could be of help :smile:!
+
+<br/>
