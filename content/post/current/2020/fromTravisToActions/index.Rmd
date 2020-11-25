@@ -1,15 +1,15 @@
 ---
-title: "Continuous integration for R projects: from Travis CI to GH actions  step by step"
+title: "Continuous integration for R projects: from Travis CI to GitHub actions step by step"
 author: [kevin]
-reviewer: [marieh]
-date: 2020-11-23
+reviewer: [marieh, willian]
+date: 2020-11-24
 tags: [Continuous Integration, Travis CI, GitHub Actions, R package]
 rpkgs: [covr, pkgdown, usethis]
-tweet: "Writing an R Client for a web API: rowlbot as a use case"
+tweet: "Continuous integration for R projects: from Travis CI to GitHub actions step by step"
 draft: false
 review: false
-rbloggers: false
-estime: 4
+rbloggers: true
+estime: 5
 output:
   rmarkdown::html_page:
     toc: true
@@ -33,9 +33,7 @@ projects](https://blog.travis-ci.com/2020-11-02-travis-ci-new-billing) (see
 me a good reason to speed up the migration process! As I was working on such
 migration recently, I felt that I should to share some notes about this! 
 
-
 [^note1]: see [my first post about GitHub Actions](https://kevcaz.github.io/notes/ci/githubactions/) on my personal blog. 
-
 
 
 ## inSilecoMisc as an example 
@@ -59,7 +57,7 @@ Travis was set to check `inSilecoMisc` on macOS and Linux (Ubuntu Bionic and Foc
 ## Ciao Travis!
 
 The first step was to stop using Travis CI. To do so, I first needed to go on 
-<https://travis-ci.org> and turn off the jobs described above. To do sio, I looked for  `inSilecoMisc` in my list of projects and switched it off (see screenshot below).
+<https://travis-ci.org> and turn off the jobs described above, so I looked for `inSilecoMisc` in my list of projects and switched it off (see screenshot below).
 
 
 ![<i class="fa fa-info" aria-hidden="true"></i> Screenshots of `inSilecoMisc`'s status  on <https://travis-ci.org> (left: on/before, right: off/after).](switch_off.png){width=90% alt="><"}
@@ -74,7 +72,6 @@ rm .travis.yaml`). Note that I still have a version of this file as a
 this was done, I committed my changes and pushed! 
 
 ![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of `inSileco`'s home page (commit [`500d5ef`](https://github.com/inSileco/inSilecoMisc/commit/500d5ef332a407e48037ce422a9a14e7c4634fe7)).](ciao.png){width=90% alt="><"}
-
 
 
 ## Add a workflow 
@@ -99,7 +96,7 @@ use_github_action_check_full()
 ```
 
 
-The workflow I ended up using, [R-CMD-check.yaml](https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml) is based on one of the template file available in [`usethis`](https://CRAN.R-project.org/package=usethis)
+The workflow I ended up using, [R-CMD-check.yaml](https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml) (appended at the end of the post) is based on one of the template file available in [`usethis`](https://CRAN.R-project.org/package=usethis)
 that I've simplified a bit (I use only 4 combinations OS / R versions) and extended to use the [CodeCov](chttps://codecov.io/) and deploy the website.
  
 
@@ -128,7 +125,7 @@ I chose `CODECOV_TOKEN` because it's pretty clear, but the name does not matter 
 
 Note that `${{secrets.CODECOV_TOKEN}}` returns the token value I set as a secret
 above. Also, I used an `if:` filed to upload the results of the code coverage
-only once. I chose to do it on macOS (for no specific reason) and I kept the
+only once. I chose to do it on MacOS (for no specific reason) and I kept the
 part `matrix.config.r == 'release'` in case I would add another configuration
 (currently, this is useless).
 
@@ -150,7 +147,7 @@ In order to build the package I simply install [`pkgdown`](https://CRAN.R-projec
     git --work-tree=docs checkout gh-pages -- .
 ```  
 
-There are a few lines that require some explainations. First, I decided to build this on Ubuntu (again, this is arbitrary). Second, the following line: 
+There are a few lines that require some explanations. First, I decided to build this on Ubuntu (again, this is arbitrary). Second, the following line: 
 
 
 ```sh
@@ -162,7 +159,7 @@ was required as dependencies were missing for
 [`textshaping`](https://CRAN.R-project.org/package=textshaping). Third, the two
 last lines are two git operations that I used to retrieve te content of the
 previous commit. I did so to be able to have both the "main" website at
-https://insileco.github.io/inSilecoMisc/ and "dev" version  at
+https://insileco.github.io/inSilecoMisc/ and "dev" version at
 https://insileco.github.io/inSilecoMisc/dev (this is detailed in another post
 ["Deploy a pkgdown website on gh-pages
 manually"](https://kevcaz.github.io/notes/ci/deploypkgdown2/)). 
@@ -178,8 +175,9 @@ ways to deploy the website that are well explained in the README of
 
 ### via a deploy key 
 
-For this, one needs to generate a [pair of ssh keys](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key). On my Debian machine, I used the following in 
-my terminal: 
+For this, one needs to generate a [pair of ssh
+keys](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key).
+On my Debian machine, I used the following command line in my terminal: 
 
 
 ```sh
@@ -194,7 +192,9 @@ and the private one as a secret.
 
 ![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of the secret `ACTIONS_DEPLOY_KEY`.](private.png){width=80% alt="><"}
 
-Again I chose `ACTIONS_DEPLOY_KEY` for its clarity, but the name does not matter as long as the correct variable name is used in [R-CMD-check.yaml](https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml).
+Again, I chose `ACTIONS_DEPLOY_KEY` for its clarity, but the name does not
+matter as long as the correct variable name is used in
+[R-CMD-check.yaml](https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml).
 
 
 
@@ -229,8 +229,6 @@ And then set this token as a secret for the repository.
 
 Once the secret is set, the variable name should be passed as `github_token` (instead of `deploy_key`), like so: 
 
-
-
 ```yaml
 - name: Deploy website 
   if: matrix.config.os == 'ubuntu-20.04' && matrix.config.r == 'release'
@@ -243,8 +241,118 @@ Once the secret is set, the variable name should be passed as `github_token` (in
 Incidentally, [organization secrets](https://github.blog/changelog/2020-05-14-organization-secrets/) allow user to have secrets at the organisation level, so that the same token can be used for several repositories! 
 
 <br/>
-<br/>
 
-Everything is working fine now :fireworks:, check out [`inSilecoMisc`](https://github.com/inSileco/inSilecoMisc)! Hope this could be of help :smile:!
+Everything is working fine now :fireworks:, check out [`inSilecoMisc`](https://github.com/inSileco/inSilecoMisc)! Below is the entire workflow 
+
+
+## Entire workflow 
+
+Below is the whole [R-CMD-check.yaml](https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml) file I ended using (note that for recent projects [the default branch name is `main` instead of `master`](https://github.blog/changelog/2020-08-26-set-the-default-branch-for-newly-created-repositories/)).
+
+```yaml
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+name: R-CMD-check
+
+jobs:
+  R-CMD-check:
+    runs-on: ${{ matrix.config.os }}
+
+    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+          - {os: windows-latest, r: 'release'}
+          - {os: macOS-latest, r: 'release'}
+          - {os: ubuntu-20.04, r: 'release', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+          - {os: ubuntu-20.04, r: 'devel', rspm: "https://packagemanager.rstudio.com/cran/__linux__/focal/latest"}
+
+    env:
+      R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
+      CRAN: ${{ matrix.config.cran }}
+
+    steps:
+      - uses: actions/checkout@v1
+
+      - uses: r-lib/actions/setup-r@master
+        with:
+          r-version: ${{ matrix.config.r }}
+
+      - uses: r-lib/actions/setup-pandoc@master
+
+      - name: Query dependencies
+        run: |
+          install.packages('remotes')
+          saveRDS(remotes::dev_package_deps(dependencies = TRUE), "depends.Rds", version = 2)
+        shell: Rscript {0}
+
+      - name: Cache R packages
+        if: runner.os != 'Windows'
+        uses: actions/cache@v1
+        with:
+          path: ${{ env.R_LIBS_USER }}
+          key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles('depends.Rds') }}
+          restore-keys: ${{ runner.os }}-r-${{ matrix.config.r }}-
+
+      - name: Install system dependencies
+        if: runner.os == 'Linux'
+        env:
+          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
+        run: |
+          Rscript -e "remotes::install_github('r-hub/sysreqs')"
+          sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
+          sudo -s eval "$sysreqs"
+      - name: Install dependencies
+        run: |
+          library(remotes)
+          deps <- readRDS("depends.Rds")
+          deps[["installed"]] <- vapply(deps[["package"]], remotes:::local_sha, character(1))
+          update(deps)
+          remotes::install_cran("rcmdcheck")
+        shell: Rscript {0}
+
+      - name: Check
+        run: rcmdcheck::rcmdcheck(args = "--no-manual", error_on = "warning", check_dir = "check")
+        shell: Rscript {0}
+
+      - name: Upload check results
+        if: failure()
+        uses: actions/upload-artifact@master
+        with:
+          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
+          path: check
+
+      - name: Test coverage
+        if: matrix.config.os == 'macOS-latest' && matrix.config.r == 'release'
+        run: |
+          remotes::install_cran("covr")
+          covr::codecov(token = "${{secrets.CODECOV_TOKEN}}")
+        shell: Rscript {0}
+    
+      - name: Build website 
+        if: matrix.config.os == 'ubuntu-20.04' && matrix.config.r == 'release'
+        run: |
+          sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
+          Rscript -e 'remotes::install_cran(c("pkgdown")); pkgdown::build_site()'
+          git fetch origin gh-pages:gh-pages
+          git --work-tree=docs checkout gh-pages -- .
+            
+      - name: Deploy website 
+        if: matrix.config.os == 'ubuntu-20.04' && matrix.config.r == 'release'
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.PERSO_TOKEN }}
+          publish_dir: ./docs
+```
+
+Hope this could be of help :smile:!
 
 <br/>
