@@ -19,7 +19,7 @@ See [our wiki :book:](https://github.com/inSileco/inSileco.github.io/wiki/GetSta
 
 ### Color palette
 
-We used a set of color throughout the website:
+We used a set of colors throughout the website:
 
 - Main: "#3fb3b2";
 - Yellow-logo: "#ffdd55";
