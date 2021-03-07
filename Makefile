@@ -6,6 +6,11 @@ biblio:
 	Rscript static/Rscript/bibSetUp.R
 	bibtool -d $(doi) $(nodoi) -o $(bib)
 
+build:
+	Rscript -e 'blogdown::build_site()'
+
+serve:
+	Rscript -e 'blogdown::serve_site()'
 
 clean:
 	rm post/*.html
