@@ -1,4 +1,4 @@
-name: deploy inSileco blog
+name: built and deploy inSileco blog
 
 on:
   push:
@@ -8,10 +8,27 @@ on:
     branches:
       - dev
   schedule:
-    - cron: '0 0 7 * *'
+    - cron: '0 0 11 * *'
+
 
 jobs:
-  build:
+  
+  windows:
+    runs-on: windows-latest
+    steps:
+      - name: install Hugo and Pandoc
+        run: choco install hugo pandoc
+      - name: Checkout Repository
+        uses: actions/checkout@master 
+      - name: Install R packages with renv
+        run: |
+          Rscript -e "install.packages('renv', repos = 'https://muug.ca/mirror/cran/')"
+          Rscript -e "renv::restore()"
+      - name: Build inSileco Blog
+        run: |-
+          Rscript -e 'blogdown::build_site()'
+      
+  linux:
     runs-on: ubuntu-latest
     container: rocker/verse:latest
     steps:
