@@ -15,6 +15,7 @@ output:
     dev: svg
 ---
 
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 
 <div id="spatial-objects-attributes-manipulations" class="section level2">
@@ -43,7 +44,7 @@ will mostly apply.</p>
 )
 
 library(sf)</code></pre>
-<pre><code>## Linking to GEOS 3.7.1, GDAL 2.4.0, PROJ 5.2.0</code></pre>
+<pre><code>## Linking to GEOS 3.9.0, GDAL 3.2.1, PROJ 7.2.0</code></pre>
 <pre class="r"><code>spatData &lt;- st_as_sf(mydata,
                      coords = c(&quot;long&quot;, &quot;lat&quot;),
                      crs = &quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0&quot;)
@@ -61,44 +62,44 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-1.0267648</td>
-<td align="right">8.4542397</td>
-<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.1246386</td>
-<td align="right">4.0373757</td>
-<td align="left">c(-81.0976512846537, 43.054596089758)</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">-0.2933716</td>
-<td align="right">8.2054899</td>
-<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">0.4489808</td>
-<td align="right">7.9223191</td>
-<td align="left">c(-80.6801737099886, 43.879158008378)</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.8092022</td>
-<td align="right">0.5893049</td>
-<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">0.4255668</td>
-<td align="right">5.9483464</td>
-<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
 </tr>
 </tbody>
 </table>
 <pre class="r"><code>plot(spatData)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/sim_points-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/sim_points-1.png" width="672" /></p>
 </div>
 <div id="adding-and-removing-attributes" class="section level3">
 <h3>Adding and removing attributes</h3>
@@ -121,51 +122,51 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-1.0267648</td>
-<td align="right">8.4542397</td>
-<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
-<td align="right">0.7088460</td>
-<td align="right">-8.6805160</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
+<td align="right">0.7659922</td>
+<td align="right">9.3327977</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.1246386</td>
-<td align="right">4.0373757</td>
-<td align="left">c(-81.0976512846537, 43.054596089758)</td>
-<td align="right">0.1066025</td>
-<td align="right">4.5405885</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
+<td align="right">0.9233627</td>
+<td align="right">-13.1693385</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">-0.2933716</td>
-<td align="right">8.2054899</td>
-<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
-<td align="right">0.5702835</td>
-<td align="right">-2.4072579</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
+<td align="right">0.2053183</td>
+<td align="right">-1.0363916</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">0.4489808</td>
-<td align="right">7.9223191</td>
-<td align="left">c(-80.6801737099886, 43.879158008378)</td>
-<td align="right">0.0174181</td>
-<td align="right">3.5569693</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
+<td align="right">0.3490653</td>
+<td align="right">-0.6394805</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.8092022</td>
-<td align="right">0.5893049</td>
-<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
-<td align="right">0.5777652</td>
-<td align="right">0.4768668</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
+<td align="right">0.3726703</td>
+<td align="right">5.8128685</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">0.4255668</td>
-<td align="right">5.9483464</td>
-<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
-<td align="right">0.4564015</td>
-<td align="right">2.5314187</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
+<td align="right">0.4062502</td>
+<td align="right">1.0306076</td>
 </tr>
 </tbody>
 </table>
@@ -185,39 +186,39 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-1.0267648</td>
-<td align="right">8.4542397</td>
-<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.1246386</td>
-<td align="right">4.0373757</td>
-<td align="left">c(-81.0976512846537, 43.054596089758)</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">-0.2933716</td>
-<td align="right">8.2054899</td>
-<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">0.4489808</td>
-<td align="right">7.9223191</td>
-<td align="left">c(-80.6801737099886, 43.879158008378)</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.8092022</td>
-<td align="right">0.5893049</td>
-<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">0.4255668</td>
-<td align="right">5.9483464</td>
-<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
 </tr>
 </tbody>
 </table>
@@ -230,6 +231,17 @@ attributes you wish to keep.</p>
 for(i in 1:5) spatData &lt;- cbind(spatData, varSup = runif(20))
 knitr::kable(head(spatData))</code></pre>
 <table>
+<colgroup>
+<col width="3%" />
+<col width="11%" />
+<col width="9%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="27%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="right">id</th>
@@ -246,69 +258,69 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-1.0267648</td>
-<td align="right">8.4542397</td>
-<td align="right">0.0062569</td>
-<td align="right">0.0449318</td>
-<td align="right">0.1608233</td>
-<td align="right">0.4593727</td>
-<td align="right">0.5866952</td>
-<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="right">0.8487243</td>
+<td align="right">0.8091955</td>
+<td align="right">0.1044840</td>
+<td align="right">0.3354558</td>
+<td align="right">0.6911664</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.1246386</td>
-<td align="right">4.0373757</td>
-<td align="right">0.3708413</td>
-<td align="right">0.1905070</td>
-<td align="right">0.0117531</td>
-<td align="right">0.7916720</td>
-<td align="right">0.3006898</td>
-<td align="left">c(-81.0976512846537, 43.054596089758)</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="right">0.7396073</td>
+<td align="right">0.3146486</td>
+<td align="right">0.2200441</td>
+<td align="right">0.7882463</td>
+<td align="right">0.9214560</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">-0.2933716</td>
-<td align="right">8.2054899</td>
-<td align="right">0.1269874</td>
-<td align="right">0.1621362</td>
-<td align="right">0.0701545</td>
-<td align="right">0.6697946</td>
-<td align="right">0.9392467</td>
-<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="right">0.2528796</td>
+<td align="right">0.3915918</td>
+<td align="right">0.9740126</td>
+<td align="right">0.1349120</td>
+<td align="right">0.0131993</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">0.4489808</td>
-<td align="right">7.9223191</td>
-<td align="right">0.9068886</td>
-<td align="right">0.2320155</td>
-<td align="right">0.0137410</td>
-<td align="right">0.4102778</td>
-<td align="right">0.7495885</td>
-<td align="left">c(-80.6801737099886, 43.879158008378)</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="right">0.3428503</td>
+<td align="right">0.7673011</td>
+<td align="right">0.6336684</td>
+<td align="right">0.8532938</td>
+<td align="right">0.1308096</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.8092022</td>
-<td align="right">0.5893049</td>
-<td align="right">0.6611143</td>
-<td align="right">0.1971694</td>
-<td align="right">0.9439894</td>
-<td align="right">0.8940173</td>
-<td align="right">0.6097949</td>
-<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="right">0.8249070</td>
+<td align="right">0.8289782</td>
+<td align="right">0.2955275</td>
+<td align="right">0.7012094</td>
+<td align="right">0.9824780</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">0.4255668</td>
-<td align="right">5.9483464</td>
-<td align="right">0.5386856</td>
-<td align="right">0.6150150</td>
-<td align="right">0.6178516</td>
-<td align="right">0.9773974</td>
-<td align="right">0.0515854</td>
-<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="right">0.5847032</td>
+<td align="right">0.5597996</td>
+<td align="right">0.5304258</td>
+<td align="right">0.6579064</td>
+<td align="right">0.1436091</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
 </tr>
 </tbody>
 </table>
@@ -327,39 +339,39 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-1.0267648</td>
-<td align="right">8.4542397</td>
-<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.1246386</td>
-<td align="right">4.0373757</td>
-<td align="left">c(-81.0976512846537, 43.054596089758)</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">-0.2933716</td>
-<td align="right">8.2054899</td>
-<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">0.4489808</td>
-<td align="right">7.9223191</td>
-<td align="left">c(-80.6801737099886, 43.879158008378)</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.8092022</td>
-<td align="right">0.5893049</td>
-<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">0.4255668</td>
-<td align="right">5.9483464</td>
-<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
 </tr>
 </tbody>
 </table>
@@ -367,6 +379,17 @@ knitr::kable(head(spatData))</code></pre>
 for(i in 1:5) spatData &lt;- cbind(spatData, varSup = runif(20))
 knitr::kable(head(spatData))</code></pre>
 <table>
+<colgroup>
+<col width="3%" />
+<col width="11%" />
+<col width="9%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="27%" />
+</colgroup>
 <thead>
 <tr class="header">
 <th align="right">id</th>
@@ -383,69 +406,69 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-1.0267648</td>
-<td align="right">8.4542397</td>
-<td align="right">0.9118424</td>
-<td align="right">0.8004523</td>
-<td align="right">0.8483931</td>
-<td align="right">0.0522425</td>
-<td align="right">0.0695536</td>
-<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="right">0.9149653</td>
+<td align="right">0.2630857</td>
+<td align="right">0.2578204</td>
+<td align="right">0.4041629</td>
+<td align="right">0.7733253</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.1246386</td>
-<td align="right">4.0373757</td>
-<td align="right">0.5384673</td>
-<td align="right">0.9913008</td>
-<td align="right">0.3660500</td>
-<td align="right">0.4223425</td>
-<td align="right">0.1983925</td>
-<td align="left">c(-81.0976512846537, 43.054596089758)</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="right">0.3369910</td>
+<td align="right">0.9887964</td>
+<td align="right">0.8665354</td>
+<td align="right">0.3604829</td>
+<td align="right">0.0442941</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">-0.2933716</td>
-<td align="right">8.2054899</td>
-<td align="right">0.7032141</td>
-<td align="right">0.7869746</td>
-<td align="right">0.6255780</td>
-<td align="right">0.5471421</td>
-<td align="right">0.5031198</td>
-<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="right">0.8353906</td>
+<td align="right">0.4426284</td>
+<td align="right">0.5973717</td>
+<td align="right">0.5272144</td>
+<td align="right">0.3403896</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">0.4489808</td>
-<td align="right">7.9223191</td>
-<td align="right">0.5466403</td>
-<td align="right">0.7982802</td>
-<td align="right">0.2901893</td>
-<td align="right">0.5990219</td>
-<td align="right">0.8028074</td>
-<td align="left">c(-80.6801737099886, 43.879158008378)</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="right">0.6417498</td>
+<td align="right">0.6811652</td>
+<td align="right">0.2726596</td>
+<td align="right">0.8755331</td>
+<td align="right">0.4469280</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.8092022</td>
-<td align="right">0.5893049</td>
-<td align="right">0.3626646</td>
-<td align="right">0.1244677</td>
-<td align="right">0.9353560</td>
-<td align="right">0.9967933</td>
-<td align="right">0.0949772</td>
-<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="right">0.1704178</td>
+<td align="right">0.9477681</td>
+<td align="right">0.4850738</td>
+<td align="right">0.8679383</td>
+<td align="right">0.7945812</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">0.4255668</td>
-<td align="right">5.9483464</td>
-<td align="right">0.5727739</td>
-<td align="right">0.5711491</td>
-<td align="right">0.1417716</td>
-<td align="right">0.7144480</td>
-<td align="right">0.9987460</td>
-<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="right">0.9340137</td>
+<td align="right">0.9726622</td>
+<td align="right">0.7927882</td>
+<td align="right">0.8974221</td>
+<td align="right">0.9409012</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
 </tr>
 </tbody>
 </table>
@@ -464,39 +487,39 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-1.0267648</td>
-<td align="right">8.4542397</td>
-<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.1246386</td>
-<td align="right">4.0373757</td>
-<td align="left">c(-81.0976512846537, 43.054596089758)</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">-0.2933716</td>
-<td align="right">8.2054899</td>
-<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">0.4489808</td>
-<td align="right">7.9223191</td>
-<td align="left">c(-80.6801737099886, 43.879158008378)</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.8092022</td>
-<td align="right">0.5893049</td>
-<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">0.4255668</td>
-<td align="right">5.9483464</td>
-<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
 </tr>
 </tbody>
 </table>
@@ -524,49 +547,49 @@ knitr::kable(head(spatData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-1.0267648</td>
-<td align="right">8.4542397</td>
-<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
 <td align="left">a1</td>
 <td align="left">b1</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.1246386</td>
-<td align="right">4.0373757</td>
-<td align="left">c(-81.0976512846537, 43.054596089758)</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
 <td align="left">a2</td>
 <td align="left">b2</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">-0.2933716</td>
-<td align="right">8.2054899</td>
-<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
 <td align="left">a1</td>
 <td align="left">b3</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">0.4489808</td>
-<td align="right">7.9223191</td>
-<td align="left">c(-80.6801737099886, 43.879158008378)</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
 <td align="left">a2</td>
 <td align="left">b4</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.8092022</td>
-<td align="right">0.5893049</td>
-<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
 <td align="left">a1</td>
 <td align="left">b5</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">0.4255668</td>
-<td align="right">5.9483464</td>
-<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
 <td align="left">a2</td>
 <td align="left">b1</td>
 </tr>
@@ -579,7 +602,7 @@ use the first 10 rows of our data.</p>
 <pre class="r"><code>selectID &lt;- 1:10
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/manualSub-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/manualSub-1.png" width="672" /></p>
 <p><br/></p>
 <p>However, subsets based on certain criteria, <em>e.g.</em> all values greater to or
 equal to 0, can be much more efficient to create subsets. These are conditional
@@ -590,27 +613,27 @@ like <a href="https://stackoverflow.com/">StackOverflow</a> for more specific qu
 selectID &lt;- spatData$var1 &gt;= 0
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/autoSub-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/autoSub-1.png" width="672" /></p>
 <pre class="r"><code># var1 smaller than 0 and var2 higher than 5
 selectID &lt;- spatData$var1 &lt; 0 &amp; spatData$var2 &lt; 5
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/autoSub-2.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/autoSub-2.png" width="672" /></p>
 <pre class="r"><code># fact1 equal to a1
 selectID &lt;- spatData$fact1 == &#39;a1&#39;
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/autoSub-3.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/autoSub-3.png" width="672" /></p>
 <pre class="r"><code># fact1 equal to a1 or var1 greater than 0
 selectID &lt;- spatData$fact1 == &#39;a1&#39; | spatData$var1 &gt; 0
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/autoSub-4.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/autoSub-4.png" width="672" /></p>
 <pre class="r"><code># fact2 equal to b3 or b4
 selectID &lt;- spatData$fact2 %in% c(&#39;b3&#39;,&#39;b4&#39;)
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/autoSub-5.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/autoSub-5.png" width="672" /></p>
 <p><br/></p>
 </div>
 <div id="join" class="section level3">
@@ -649,57 +672,57 @@ library(dplyr)</code></pre>
 <tbody>
 <tr class="odd">
 <td align="right">1</td>
-<td align="right">-1.0267648</td>
-<td align="right">8.4542397</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
 <td align="left">a1</td>
 <td align="left">b1</td>
-<td align="right">-0.9816253</td>
-<td align="left">c(-81.8319124481641, 43.9310032064095)</td>
+<td align="right">-0.3912476</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
 </tr>
 <tr class="even">
 <td align="right">2</td>
-<td align="right">1.1246386</td>
-<td align="right">4.0373757</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
 <td align="left">a2</td>
 <td align="left">b2</td>
 <td align="right">NA</td>
-<td align="left">c(-81.0976512846537, 43.054596089758)</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
 </tr>
 <tr class="odd">
 <td align="right">3</td>
-<td align="right">-0.2933716</td>
-<td align="right">8.2054899</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
 <td align="left">a1</td>
 <td align="left">b3</td>
-<td align="right">-1.2577694</td>
-<td align="left">c(-80.1232470246032, 42.8657332030125)</td>
+<td align="right">0.3002510</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
 </tr>
 <tr class="even">
 <td align="right">4</td>
-<td align="right">0.4489808</td>
-<td align="right">7.9223191</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
 <td align="left">a2</td>
 <td align="left">b4</td>
 <td align="right">NA</td>
-<td align="left">c(-80.6801737099886, 43.879158008378)</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
 </tr>
 <tr class="odd">
 <td align="right">5</td>
-<td align="right">0.8092022</td>
-<td align="right">0.5893049</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
 <td align="left">a1</td>
 <td align="left">b5</td>
-<td align="right">-0.6799290</td>
-<td align="left">c(-80.4815384736285, 42.4340660944581)</td>
+<td align="right">-0.2407612</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
 </tr>
 <tr class="even">
 <td align="right">6</td>
-<td align="right">0.4255668</td>
-<td align="right">5.9483464</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
 <td align="left">a2</td>
 <td align="left">b1</td>
 <td align="right">NA</td>
-<td align="left">c(-81.9177640662529, 42.9079479505308)</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
 </tr>
 </tbody>
 </table>
@@ -721,18 +744,18 @@ knitr::kable(head(aggData))</code></pre>
 <tbody>
 <tr class="odd">
 <td align="left">a1</td>
-<td align="right">-3.120556</td>
-<td align="left">c(-81.8319124481641, -81.5562618379481, -81.3365434338339, -81.3290259437636, -80.7683806573041, -80.6463522166014, -80.4815384736285, -80.3627320681699, -80.1265919236466, -80.1232470246032, 43.9310032064095, 43.3135412568226, 42.011193505954, 42.1274951859377, 42.1813552249223, 43.1289180954918, 42.4340660944581, 42.9919733195566, 43.1979077588767, 42.8657332030125)</td>
+<td align="right">7.597874</td>
+<td align="left">MULTIPOINT ((-81.87412 42.0…</td>
 </tr>
 <tr class="even">
 <td align="left">a2</td>
-<td align="right">-1.290463</td>
-<td align="left">c(-81.9474913701415, -81.9177640662529, -81.6204512761906, -81.4051731484942, -81.1391569706611, -81.0976512846537, -81.0645886640996, -80.6801737099886, -80.633068212308, -80.4129736586474, 43.278471886646, 42.9079479505308, 43.3025015844032, 42.4729753397405, 43.0010784780607, 43.054596089758, 43.5313358386047, 43.879158008378, 42.5428555426188, 42.2572145871818)</td>
+<td align="right">3.911068</td>
+<td align="left">MULTIPOINT ((-81.66379 43.1…</td>
 </tr>
 </tbody>
 </table>
 <pre class="r"><code>plot(aggData, cex = abs(aggData$var1))</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_attrmanip/index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 </div>
 <div id="raster-objects" class="section level2">

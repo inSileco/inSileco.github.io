@@ -11,9 +11,10 @@ output:
     dev: svg
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
-{{< trickortips >}}
+<p>{{< trickortips >}}</p>
 <p><br></p>
 <div id="the-drop-argument-of-the-operator" class="section level2">
 <h2>The <code>drop</code> argument of the <code>[]</code> operator</h2>
@@ -28,21 +29,21 @@ columns:</p>
 )
 head(df)
 #R&gt;         var1       var2       var3
-#R&gt; 1 0.70465260 0.14620585 0.40686448
-#R&gt; 2 0.76242887 0.42367707 0.58340884
-#R&gt; 3 0.88372092 0.31168384 0.33885976
-#R&gt; 4 0.97596232 0.18833431 0.02306371
-#R&gt; 5 0.70329889 0.02406606 0.54115890
-#R&gt; 6 0.09716752 0.38753542 0.77172556</code></pre>
+#R&gt; 1 0.73329858 0.68169838 0.53840892
+#R&gt; 2 0.22220023 0.05108088 0.64650370
+#R&gt; 3 0.07815174 0.19105496 0.08595736
+#R&gt; 4 0.71810811 0.03260451 0.33645035
+#R&gt; 5 0.90089032 0.09547572 0.32058019
+#R&gt; 6 0.99360450 0.49535415 0.18485869</code></pre>
 <p>To extract the first column, I use the <code>[]</code> operator and either type the number
 of the column like so:</p>
 <pre class="r"><code>df[, 1]
-#R&gt;  [1] 0.70465260 0.76242887 0.88372092 0.97596232 0.70329889 0.09716752
-#R&gt;  [7] 0.12284649 0.08908524 0.57538278 0.52640585</code></pre>
+#R&gt;  [1] 0.73329858 0.22220023 0.07815174 0.71810811 0.90089032 0.99360450
+#R&gt;  [7] 0.58911317 0.04568335 0.76437533 0.43986967</code></pre>
 <p>or the name of the column to be extracted:</p>
 <pre class="r"><code>df[, &#39;var1&#39;]
-#R&gt;  [1] 0.70465260 0.76242887 0.88372092 0.97596232 0.70329889 0.09716752
-#R&gt;  [7] 0.12284649 0.08908524 0.57538278 0.52640585</code></pre>
+#R&gt;  [1] 0.73329858 0.22220023 0.07815174 0.71810811 0.90089032 0.99360450
+#R&gt;  [7] 0.58911317 0.04568335 0.76437533 0.43986967</code></pre>
 <p>Interestingly enough, this returns a <strong>vector</strong> not a data.frame</p>
 <pre class="r"><code>class(df)
 #R&gt; [1] &quot;data.frame&quot;
@@ -61,16 +62,16 @@ a work around. By default it is set to <code>TRUE</code> and a 1-column datafram
 a vector, but using <code>drop=FALSE</code> prevents this from happening. Let’s try this:</p>
 <pre class="r"><code>df[, 1, drop=FALSE]
 #R&gt;          var1
-#R&gt; 1  0.70465260
-#R&gt; 2  0.76242887
-#R&gt; 3  0.88372092
-#R&gt; 4  0.97596232
-#R&gt; 5  0.70329889
-#R&gt; 6  0.09716752
-#R&gt; 7  0.12284649
-#R&gt; 8  0.08908524
-#R&gt; 9  0.57538278
-#R&gt; 10 0.52640585</code></pre>
+#R&gt; 1  0.73329858
+#R&gt; 2  0.22220023
+#R&gt; 3  0.07815174
+#R&gt; 4  0.71810811
+#R&gt; 5  0.90089032
+#R&gt; 6  0.99360450
+#R&gt; 7  0.58911317
+#R&gt; 8  0.04568335
+#R&gt; 9  0.76437533
+#R&gt; 10 0.43986967</code></pre>
 <p>Let’s check its class:</p>
 <pre class="r"><code>class(df[, 1, drop=FALSE])
 #R&gt; [1] &quot;data.frame&quot;</code></pre>
@@ -78,23 +79,23 @@ a vector, but using <code>drop=FALSE</code> prevents this from happening. Let’
 number without comma.</p>
 <pre class="r"><code>df[1]
 #R&gt;          var1
-#R&gt; 1  0.70465260
-#R&gt; 2  0.76242887
-#R&gt; 3  0.88372092
-#R&gt; 4  0.97596232
-#R&gt; 5  0.70329889
-#R&gt; 6  0.09716752
-#R&gt; 7  0.12284649
-#R&gt; 8  0.08908524
-#R&gt; 9  0.57538278
-#R&gt; 10 0.52640585</code></pre>
+#R&gt; 1  0.73329858
+#R&gt; 2  0.22220023
+#R&gt; 3  0.07815174
+#R&gt; 4  0.71810811
+#R&gt; 5  0.90089032
+#R&gt; 6  0.99360450
+#R&gt; 7  0.58911317
+#R&gt; 8  0.04568335
+#R&gt; 9  0.76437533
+#R&gt; 10 0.43986967</code></pre>
 <p>But if you need a specific selection of rows, you better use <code>drop</code>!</p>
 <pre class="r"><code>df[2:5, 1, drop=F]
-#R&gt;        var1
-#R&gt; 2 0.7624289
-#R&gt; 3 0.8837209
-#R&gt; 4 0.9759623
-#R&gt; 5 0.7032989</code></pre>
+#R&gt;         var1
+#R&gt; 2 0.22220023
+#R&gt; 3 0.07815174
+#R&gt; 4 0.71810811
+#R&gt; 5 0.90089032</code></pre>
 <p>Now you know ;-)</p>
 <p><br></p>
 </div>
@@ -110,8 +111,8 @@ of the reference for the package <code>knitr</code> as of version 1.17 using fun
 #R&gt; 
 #R&gt; To cite the &#39;knitr&#39; package in publications use:
 #R&gt; 
-#R&gt;   Yihui Xie (2020). knitr: A General-Purpose Package for Dynamic Report
-#R&gt;   Generation in R. R package version 1.28.
+#R&gt;   Yihui Xie (2021). knitr: A General-Purpose Package for Dynamic Report
+#R&gt;   Generation in R. R package version 1.31.
 #R&gt; 
 #R&gt;   Yihui Xie (2015) Dynamic Documents with R and knitr. 2nd edition.
 #R&gt;   Chapman and Hall/CRC. ISBN 978-1498716963
@@ -130,8 +131,8 @@ format with the <code>toBibtex</code> function, let’s do this:</p>
 #R&gt; @Manual{,
 #R&gt;   title = {knitr: A General-Purpose Package for Dynamic Report Generation in R},
 #R&gt;   author = {Yihui Xie},
-#R&gt;   year = {2020},
-#R&gt;   note = {R package version 1.28},
+#R&gt;   year = {2021},
+#R&gt;   note = {R package version 1.31},
 #R&gt;   url = {https://yihui.org/knitr/},
 #R&gt; }
 #R&gt; 
@@ -177,17 +178,17 @@ df &lt;- data.frame(
   var2 = runif(10)
   )
 extract(df, &#39;var1&#39;)
-#R&gt;         var1
-#R&gt; 1  0.5072275
-#R&gt; 2  0.3513905
-#R&gt; 3  0.9519099
-#R&gt; 4  0.4121635
-#R&gt; 5  0.1777282
-#R&gt; 6  0.2239092
-#R&gt; 7  0.8311185
-#R&gt; 8  0.3490619
-#R&gt; 9  0.1568221
-#R&gt; 10 0.9501883</code></pre>
+#R&gt;          var1
+#R&gt; 1  0.91072338
+#R&gt; 2  0.94045693
+#R&gt; 3  0.11001111
+#R&gt; 4  0.55952976
+#R&gt; 5  0.19324254
+#R&gt; 6  0.57397545
+#R&gt; 7  0.11408166
+#R&gt; 8  0.84241766
+#R&gt; 9  0.02907831
+#R&gt; 10 0.07271501</code></pre>
 <p>Here I use the function <code>extract()</code> from the magrittr package that act as <code>[]</code>
 and I extract the column <code>var1</code> from <code>df</code>. This function is actually designed
 to be use with pipes (if this sounds weird, have a look at the
@@ -214,17 +215,17 @@ specific package, functions have different names and on CRAN packages must have
 different names, so the combination of the two is unique (this holds true if you
 only package from the CRAN). Let’s use it:</p>
 <pre class="r"><code>magrittr::extract(df, &#39;var1&#39;)
-#R&gt;         var1
-#R&gt; 1  0.5072275
-#R&gt; 2  0.3513905
-#R&gt; 3  0.9519099
-#R&gt; 4  0.4121635
-#R&gt; 5  0.1777282
-#R&gt; 6  0.2239092
-#R&gt; 7  0.8311185
-#R&gt; 8  0.3490619
-#R&gt; 9  0.1568221
-#R&gt; 10 0.9501883</code></pre>
+#R&gt;          var1
+#R&gt; 1  0.91072338
+#R&gt; 2  0.94045693
+#R&gt; 3  0.11001111
+#R&gt; 4  0.55952976
+#R&gt; 5  0.19324254
+#R&gt; 6  0.57397545
+#R&gt; 7  0.11408166
+#R&gt; 8  0.84241766
+#R&gt; 9  0.02907831
+#R&gt; 10 0.07271501</code></pre>
 <p>Using this is also very helpful when you develop a package and functions from
 different packages. Even if you script and use a large number
 of function from various packages, it could be better to remember
@@ -301,38 +302,35 @@ plot(vec, main=&#39;las=2&#39;)</code></pre>
 <details>
 <p><summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary></p>
 <pre class="r"><code>sessionInfo()
-#R&gt; R version 3.6.3 (2020-02-29)
+#R&gt; R version 4.0.4 (2021-02-15)
 #R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
-#R&gt; Running under: Debian GNU/Linux 10 (buster)
+#R&gt; Running under: Debian GNU/Linux bullseye/sid
 #R&gt; 
 #R&gt; Matrix products: default
-#R&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
-#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.5.so
+#R&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
+#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.13.so
 #R&gt; 
 #R&gt; locale:
-#R&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-#R&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-#R&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-#R&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#R&gt;  [1] LC_CTYPE=en_CA.UTF-8       LC_NUMERIC=C              
+#R&gt;  [3] LC_TIME=en_CA.UTF-8        LC_COLLATE=en_CA.UTF-8    
+#R&gt;  [5] LC_MONETARY=en_CA.UTF-8    LC_MESSAGES=en_CA.UTF-8   
+#R&gt;  [7] LC_PAPER=en_CA.UTF-8       LC_NAME=C                 
 #R&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-#R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#R&gt; [11] LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       
 #R&gt; 
 #R&gt; attached base packages:
 #R&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
 #R&gt; 
 #R&gt; other attached packages:
-#R&gt; [1] raster_3.0-12 sp_1.4-1      magrittr_1.5 
+#R&gt; [1] raster_3.4-5   sp_1.4-5       magrittr_2.0.1
 #R&gt; 
 #R&gt; loaded via a namespace (and not attached):
-#R&gt;  [1] Rcpp_1.0.4         knitr_1.28         units_0.6-6        munsell_0.5.0     
-#R&gt;  [5] colorspace_1.4-1   viridisLite_0.3.0  lattice_0.20-40    R6_2.4.1          
-#R&gt;  [9] rlang_0.4.5        stringr_1.4.0      tools_3.6.3        webshot_0.5.2     
-#R&gt; [13] grid_3.6.3         xfun_0.12          png_0.1-7          KernSmooth_2.23-16
-#R&gt; [17] e1071_1.7-3        DBI_1.1.0          htmltools_0.4.0    crosstalk_1.1.0.1 
-#R&gt; [21] class_7.3-15       yaml_2.2.1         leaflet_2.0.3      digest_0.6.25     
-#R&gt; [25] lifecycle_0.2.0    bookdown_0.18      sf_0.8-1           mapview_2.7.0     
-#R&gt; [29] base64enc_0.1-3    htmlwidgets_1.5.1  codetools_0.2-16   evaluate_0.14     
-#R&gt; [33] rmarkdown_2.1      blogdown_0.18      stringi_1.4.6      compiler_3.6.3    
-#R&gt; [37] scales_1.1.0       classInt_0.4-2     stats4_3.6.3       satellite_1.0.2</code></pre>
+#R&gt;  [1] Rcpp_1.0.6        knitr_1.31        lattice_0.20-41   R6_2.5.0         
+#R&gt;  [5] rlang_0.4.10      highr_0.8         stringr_1.4.0     tools_4.0.4      
+#R&gt;  [9] grid_4.0.4        xfun_0.21         jquerylib_0.1.3   htmltools_0.5.1.1
+#R&gt; [13] yaml_2.2.1        digest_0.6.27     bookdown_0.21     sass_0.3.1       
+#R&gt; [17] codetools_0.2-18  evaluate_0.14     rmarkdown_2.7     blogdown_1.2     
+#R&gt; [21] stringi_1.5.3     compiler_4.0.4    bslib_0.2.4       jsonlite_1.7.2   
+#R&gt; [25] renv_0.13.0</code></pre>
 </details>
 </div>

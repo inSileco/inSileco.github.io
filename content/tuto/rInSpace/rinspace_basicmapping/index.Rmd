@@ -25,7 +25,7 @@ source('../codeChunkSetUp.R')
 
 Let's first get some data:
 
-```{r getdata, message = F}
+```{r getdata, message = FALSE}
 library(sp)
 library(sf)
 library(raster)
@@ -52,7 +52,7 @@ Slightly customized plots:
 
 ```{r plotsp3}
 plot(bel1, col = "grey85", main = "Belgium")
-plot(bel2, lwd = .5, add = T)
+plot(bel2, lwd = .5, add = TRUE)
 points(coordinates(bel2), pch = 19, cex = .4)
 city = coordinates(bel2)[1,]
 text(city[1], city[2], labels = "Bruxelles", pos = 3, col = "#9728eb")
@@ -85,7 +85,7 @@ an `sfc` object must be used:
 plot(st_geometry(bel1_sf), lwd = 1.5, col = "grey85")
 # same as :
 # plot(bel1_sf$geometry, lwd = 1.5, col = "grey85")
-plot(st_geometry(bel2_sf), lwd = .5, add = T)
+plot(st_geometry(bel2_sf), lwd = .5, add = TRUE)
 ```
 
 
@@ -108,7 +108,7 @@ We can also add different layers of information on this maps:
 
 ```{r plot_alt2, message = F}
 plot(alt)
-contour(alt, add = T)
+contour(alt, add = TRUE)
 ```
 
 Or reclassify and change the color palette:
@@ -137,12 +137,12 @@ plot(alt,
   ylab = "Latitude")
 
 # Add Belgium boundary map
-plot(st_geometry(bel2_sf), add = T)
+plot(st_geometry(bel2_sf), add = TRUE)
 
 # Add a point at the centroid of Bruxelles
 brux <- bel2_sf[bel2_sf$NAME_1 == "Bruxelles",]
 
-plot(st_geometry(st_centroid(brux)), pch = 20, add = T)
+plot(st_geometry(st_centroid(brux)), pch = 20, add = TRUE)
 
 # Add a label for Bruxelles on the map
 text(st_coordinates(st_centroid(brux)), labels = "Bruxelles", pos = 3, col = "#9728eb")

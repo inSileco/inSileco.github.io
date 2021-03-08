@@ -17,6 +17,7 @@ output:
     dev: svg
 ---
 
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 
 <p><br><br></p>
@@ -50,7 +51,7 @@ represent a location where an animal was trapped, and the attributes could
 include the capture date, the size, the sex, and information about the physical
 environment.</p>
 <p><br /></p>
-<p><img src="/tuto/rInSpace/rinspace_spobjects/index_files/figure-html/vector-data-1.png" width="810" height="270" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/vector-data-1.png" width="810" height="270" style="display: block; margin: auto;" /></p>
 <p><br /></p>
 </div>
 <div id="lines-data" class="section level3">
@@ -101,7 +102,7 @@ raster data will therefore be more efficient than working with polygons data.</p
 <p>Raster can be used to represent a very broad range of data: continuous
 (temperature values), discrete (habitat classes) or even binary (species occurrence)
 variables.</p>
-<p><img src="/tuto/rInSpace/rinspace_spobjects/index_files/figure-html/raster-data-1.png" width="810" height="270" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/raster-data-1.png" width="810" height="270" style="display: block; margin: auto;" /></p>
 <p><br /></p>
 <p>Several file formats exist to store raster data. The most commons are: <strong>GeoTIFF</strong>, <strong>NetCDF</strong>, <strong>grd</strong> and <strong>ascii</strong> formats. Even the package <code>rgdal</code> can be used to import/export raster data, we will prefer the package <code>raster</code>.</p>
 </div>
@@ -134,40 +135,40 @@ mydata &lt;- data.frame(
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">-81.60340</td>
-<td align="right">42.64468</td>
-<td align="right">1.0055278</td>
-<td align="right">0.7032999</td>
+<td align="right">-80.56988</td>
+<td align="right">43.59141</td>
+<td align="right">0.8603992</td>
+<td align="right">6.443241</td>
 </tr>
 <tr class="even">
-<td align="right">-80.77383</td>
-<td align="right">42.37361</td>
-<td align="right">-0.6614992</td>
-<td align="right">4.9732100</td>
+<td align="right">-80.28547</td>
+<td align="right">42.19754</td>
+<td align="right">1.1630514</td>
+<td align="right">3.316337</td>
 </tr>
 <tr class="odd">
-<td align="right">-81.72267</td>
-<td align="right">42.73658</td>
-<td align="right">-0.7566521</td>
-<td align="right">7.7438379</td>
+<td align="right">-81.11223</td>
+<td align="right">42.97091</td>
+<td align="right">-0.7481550</td>
+<td align="right">1.673062</td>
 </tr>
 <tr class="even">
-<td align="right">-80.75430</td>
-<td align="right">43.87218</td>
-<td align="right">-0.8364688</td>
-<td align="right">6.1451915</td>
+<td align="right">-80.90499</td>
+<td align="right">42.61472</td>
+<td align="right">0.4882821</td>
+<td align="right">0.109419</td>
 </tr>
 <tr class="odd">
-<td align="right">-81.68151</td>
-<td align="right">42.48658</td>
-<td align="right">-0.6506097</td>
-<td align="right">8.9932428</td>
+<td align="right">-80.88224</td>
+<td align="right">42.90063</td>
+<td align="right">0.4420026</td>
+<td align="right">4.958106</td>
 </tr>
 <tr class="even">
-<td align="right">-81.28542</td>
-<td align="right">42.76220</td>
-<td align="right">0.5678263</td>
-<td align="right">0.0223405</td>
+<td align="right">-80.99385</td>
+<td align="right">42.85081</td>
+<td align="right">-0.8053816</td>
+<td align="right">7.196482</td>
 </tr>
 </tbody>
 </table>
@@ -265,26 +266,25 @@ dim(mysp)
 <code>SpatialPointsDataFrame</code>. All slot names refer to attribute that are accessible
 <em>via</em> and <code>@</code>:</p>
 <pre class="r"><code>mysp@proj4string
-#R&gt; CRS arguments:
-#R&gt;  +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0
+#R&gt; CRS arguments: +proj=longlat +datum=WGS84 +no_defs
 head(mysp@data)
-#R&gt;         var1       var2
-#R&gt; 1  1.0055278 0.70329994
-#R&gt; 2 -0.6614992 4.97321004
-#R&gt; 3 -0.7566521 7.74383792
-#R&gt; 4 -0.8364688 6.14519150
-#R&gt; 5 -0.6506097 8.99324282
-#R&gt; 6  0.5678263 0.02234049</code></pre>
+#R&gt;         var1     var2
+#R&gt; 1  0.8603992 6.443241
+#R&gt; 2  1.1630514 3.316337
+#R&gt; 3 -0.7481550 1.673062
+#R&gt; 4  0.4882821 0.109419
+#R&gt; 5  0.4420026 4.958105
+#R&gt; 6 -0.8053816 7.196482</code></pre>
 <p>In order to change projection, the user must call <code>spTransform()</code>, like so:</p>
 <pre class="r"><code>(mysp2 &lt;- spTransform(mysp, CRS=CRS(&quot;+proj=merc +ellps=GRS80&quot;)))
 #R&gt; class       : SpatialPointsDataFrame 
 #R&gt; features    : 20 
-#R&gt; extent      : -9097326, -8907384, 5138833, 5429327  (xmin, xmax, ymin, ymax)
-#R&gt; crs         : +proj=merc +ellps=GRS80 
+#R&gt; extent      : -9115284, -8921940, 5145841, 5425351  (xmin, xmax, ymin, ymax)
+#R&gt; crs         : +proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +ellps=GRS80 +units=m +no_defs 
 #R&gt; variables   : 2
-#R&gt; names       :              var1,               var2 
-#R&gt; min values  : -2.38497527146834, 0.0223404890857637 
-#R&gt; max values  :  1.93701834973207,   9.98728499747813</code></pre>
+#R&gt; names       :              var1,              var2 
+#R&gt; min values  : -1.95830284789345, 0.109418965876102 
+#R&gt; max values  :  1.35201624239638,  9.00185342179611</code></pre>
 </div>
 </div>
 <div id="package-sf" class="section level3">
@@ -323,21 +323,20 @@ class(x)
 #R&gt; Simple feature collection with 20 features and 2 fields
 #R&gt; geometry type:  POINT
 #R&gt; dimension:      XY
-#R&gt; bbox:           xmin: -81.72267 ymin: 42.04322 xmax: -80.01639 ymax: 43.95834
-#R&gt; epsg (SRID):    4326
-#R&gt; proj4string:    +proj=longlat +datum=WGS84 +no_defs
+#R&gt; bbox:           xmin: -81.88399 ymin: 42.09013 xmax: -80.14715 ymax: 43.93253
+#R&gt; CRS:            +proj=longlat +datum=WGS84 +no_defs
 #R&gt; First 10 features:
-#R&gt;           var1       var2                   geometry
-#R&gt; 1   1.00552779 0.70329994  POINT (-81.6034 42.64468)
-#R&gt; 2  -0.66149924 4.97321004 POINT (-80.77383 42.37361)
-#R&gt; 3  -0.75665211 7.74383792 POINT (-81.72267 42.73658)
-#R&gt; 4  -0.83646878 6.14519150  POINT (-80.7543 43.87218)
-#R&gt; 5  -0.65060966 8.99324282 POINT (-81.68151 42.48658)
-#R&gt; 6   0.56782635 0.02234049  POINT (-81.28542 42.7622)
-#R&gt; 7  -0.65460049 8.29352053  POINT (-80.21529 42.8949)
-#R&gt; 8  -0.06742491 9.02451215 POINT (-80.72631 42.44637)
-#R&gt; 9  -0.92255939 2.71032543 POINT (-80.02537 43.72744)
-#R&gt; 10  0.83033192 1.30320360  POINT (-80.4918 42.31184)</code></pre>
+#R&gt;           var1     var2                   geometry
+#R&gt; 1   0.86039921 6.443241 POINT (-80.56988 43.59141)
+#R&gt; 2   1.16305142 3.316337 POINT (-80.28547 42.19754)
+#R&gt; 3  -0.74815502 1.673062 POINT (-81.11223 42.97091)
+#R&gt; 4   0.48828208 0.109419 POINT (-80.90499 42.61472)
+#R&gt; 5   0.44200265 4.958105 POINT (-80.88224 42.90063)
+#R&gt; 6  -0.80538157 7.196482 POINT (-80.99385 42.85081)
+#R&gt; 7  -0.55768258 3.563470  POINT (-81.04931 43.2336)
+#R&gt; 8   0.84160912 1.523593 POINT (-80.93763 42.09013)
+#R&gt; 9  -0.20213744 3.266755  POINT (-80.8948 42.93066)
+#R&gt; 10 -0.04254887 2.692978 POINT (-81.33922 42.26212)</code></pre>
 </div>
 </div>
 </div>
@@ -369,9 +368,9 @@ class(ras1)
 dim(ras1)
 #R&gt; [1] 100 100   1
 head(values(ras1))
-#R&gt; [1] 0.8302824 9.8413011 4.3951540 9.3848939 0.3229356 2.6673875
+#R&gt; [1] 6.129586 6.181843 4.822082 6.655235 8.520532 5.204559
 projection(ras1)
-#R&gt; [1] &quot;+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0&quot;</code></pre>
+#R&gt; [1] &quot;+proj=longlat +datum=WGS84 +no_defs&quot;</code></pre>
 </div>
 <div id="rasterstack-and-rasterbrick" class="section level3">
 <h3>RasterStack and RasterBrick</h3>
@@ -402,40 +401,41 @@ class(bri1)
 <details>
 <p><summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary></p>
 <pre class="r"><code>sessionInfo()
-#R&gt; R version 3.6.3 (2020-02-29)
+#R&gt; R version 4.0.4 (2021-02-15)
 #R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
-#R&gt; Running under: Debian GNU/Linux 10 (buster)
+#R&gt; Running under: Debian GNU/Linux bullseye/sid
 #R&gt; 
 #R&gt; Matrix products: default
-#R&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
-#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.5.so
+#R&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
+#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.13.so
 #R&gt; 
 #R&gt; locale:
-#R&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-#R&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-#R&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-#R&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#R&gt;  [1] LC_CTYPE=en_CA.UTF-8       LC_NUMERIC=C              
+#R&gt;  [3] LC_TIME=en_CA.UTF-8        LC_COLLATE=en_CA.UTF-8    
+#R&gt;  [5] LC_MONETARY=en_CA.UTF-8    LC_MESSAGES=en_CA.UTF-8   
+#R&gt;  [7] LC_PAPER=en_CA.UTF-8       LC_NAME=C                 
 #R&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-#R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#R&gt; [11] LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       
 #R&gt; 
 #R&gt; attached base packages:
 #R&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
 #R&gt; 
 #R&gt; other attached packages:
-#R&gt; [1] sf_0.8-1      rgdal_1.4-8   raster_3.0-12 sp_1.4-1     
+#R&gt; [1] sf_0.9-7     rgdal_1.5-21 raster_3.4-5 sp_1.4-5    
 #R&gt; 
 #R&gt; loaded via a namespace (and not attached):
-#R&gt;  [1] Rcpp_1.0.4         highr_0.8          compiler_3.6.3     base64enc_0.1-3   
-#R&gt;  [5] class_7.3-15       tools_3.6.3        digest_0.6.25      satellite_1.0.2   
-#R&gt;  [9] evaluate_0.14      lifecycle_0.2.0    lattice_0.20-40    viridisLite_0.3.0 
-#R&gt; [13] png_0.1-7          rlang_0.4.5        DBI_1.1.0          crosstalk_1.1.0.1 
-#R&gt; [17] yaml_2.2.1         blogdown_0.18      xfun_0.12          e1071_1.7-3       
-#R&gt; [21] stringr_1.4.0      knitr_1.28         htmlwidgets_1.5.1  stats4_3.6.3      
-#R&gt; [25] classInt_0.4-2     leaflet_2.0.3      grid_3.6.3         webshot_0.5.2     
-#R&gt; [29] R6_2.4.1           rmarkdown_2.1      bookdown_0.18      magrittr_1.5      
-#R&gt; [33] scales_1.1.0       codetools_0.2-16   htmltools_0.4.0    units_0.6-6       
-#R&gt; [37] colorspace_1.4-1   mapview_2.7.0      KernSmooth_2.23-16 stringi_1.4.6     
-#R&gt; [41] munsell_0.5.0</code></pre>
+#R&gt;  [1] Rcpp_1.0.6         pillar_1.5.0       bslib_0.2.4        compiler_4.0.4    
+#R&gt;  [5] jquerylib_0.1.3    highr_0.8          class_7.3-18       tools_4.0.4       
+#R&gt;  [9] digest_0.6.27      tibble_3.1.0       lifecycle_1.0.0    jsonlite_1.7.2    
+#R&gt; [13] evaluate_0.14      lattice_0.20-41    pkgconfig_2.0.3    rlang_0.4.10      
+#R&gt; [17] DBI_1.1.1          yaml_2.2.1         blogdown_1.2       xfun_0.21         
+#R&gt; [21] e1071_1.7-4        stringr_1.4.0      dplyr_1.0.4        knitr_1.31        
+#R&gt; [25] generics_0.1.0     sass_0.3.1         vctrs_0.3.6        tidyselect_1.1.0  
+#R&gt; [29] classInt_0.4-3     grid_4.0.4         glue_1.4.2         R6_2.5.0          
+#R&gt; [33] fansi_0.4.2        rmarkdown_2.7      bookdown_0.21      purrr_0.3.4       
+#R&gt; [37] magrittr_2.0.1     ellipsis_0.3.1     codetools_0.2-18   htmltools_0.5.1.1 
+#R&gt; [41] units_0.7-0        assertthat_0.2.1   renv_0.13.0        utf8_1.1.4        
+#R&gt; [45] KernSmooth_2.23-18 stringi_1.5.3      crayon_1.4.1</code></pre>
 </details>
 </div>
 </div>

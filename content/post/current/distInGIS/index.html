@@ -2,13 +2,14 @@
 title: R as a ruler? How to calculate distances between geographical objects
 author: [elliot]
 reviewer: [remi, kevin]
-date: 2019-04-08
+date: 2020-04-08
 tags: [R, GIS, utils]
 rpkgs: [sf, gdistance, igraph, knitr, sp, raster]
 draft: false
 estime: 13
 ---
 
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 
 <p>When working in Ecology, it is often necessary to produce maps and calculate distances between objects such as sampled stations, species distribution ranges or geographical features. A <a href="/tuto/rinspace/rinspace_homepage/">tutorial on this blog</a> describes many techniques to create maps with different packages in R, such as <code>sf</code> and <code>raster</code>. In this post, I will go further and use these tools to calculate distances in our spatial environment.</p>
@@ -54,7 +55,7 @@ coords &lt;- data.frame(station = c(&quot;INIT&quot;, &quot;P1&quot;, &quot;P2&q
 coords &lt;- st_as_sf(coords, coords = c(&quot;longitude&quot;, &quot;latitude&quot;),
                    crs = 4326, stringsAsFactors = FALSE) %&gt;%
           st_transform(crs = 32619)</code></pre>
-<p><img src="/post/current/distInGIS/index_files/figure-html/plot1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/plot1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The initial position of Herbert is on the turquoise dot (init), and we are interested in three possible locations (P1, P2 and P3).</p>
 <div id="classic-geographical-distances" class="section level2">
 <h2>Classic geographical distances</h2>
@@ -68,7 +69,7 @@ kable(dist1_df)</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="right">P1</th>
 <th align="right">P2</th>
 <th align="right">P3</th>
@@ -76,7 +77,7 @@ kable(dist1_df)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Distance from init:</td>
+<td align="left">Distance from init:</td>
 <td align="right">5194.299 [m]</td>
 <td align="right">5696.479 [m]</td>
 <td align="right">7350.401 [m]</td>
@@ -84,7 +85,7 @@ kable(dist1_df)</code></pre>
 </tbody>
 </table>
 <p>Based on these results, P1 is the closest site to the initial location of Herbert implying that P1 could be the preferential site where he would migrate under the human perturbation scenario (where its initial position would not be available anymore). However, we know that Herbert, even if he is an awesome lobster, cannot go on land which is necessary to attain P1. So, we need to refine our analysis to take this into account.</p>
-<p><img src="/post/current/distInGIS/index_files/figure-html/plot2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/plot2-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="least-cost-distances-with-gdistance" class="section level2">
 <h2>Least Cost Distances with <code>gdistance</code></h2>
@@ -101,7 +102,7 @@ library(raster)</code></pre>
 <pre class="r"><code>raster_bay &lt;- raster(x = extent(bay), nrow = 250,  ncol = 250)
 raster_bay &lt;- rasterize(x = bay, y = raster_bay, field = 1)
 raster_bay[is.na(raster_bay)] &lt;- 0</code></pre>
-<p><img src="/post/current/distInGIS/index_files/figure-html/plot3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/plot3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>We have to add <code>field = 1</code> in function <code>rasterize()</code> otherwise the id number will be automatically assigned to each cell as a weighting parameter, which will bias the distance calculation by introducing a cost for choosing the cell.</p>
 </blockquote>
@@ -133,7 +134,7 @@ kable(dist2_df)</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="right">P1</th>
 <th align="right">P2</th>
 <th align="right">P3</th>
@@ -141,7 +142,7 @@ kable(dist2_df)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Distance from init:</td>
+<td align="left">Distance from init:</td>
 <td align="right">8543.394</td>
 <td align="right">5823.122</td>
 <td align="right">7798.219</td>
@@ -152,7 +153,7 @@ kable(dist2_df)</code></pre>
 <p><code>costDistance()</code> needs a conversion to <code>SpatialPoints</code> class, as the package has been created with <code>sp</code> objects.</p>
 </blockquote>
 <p>These results show that P2 is the closest potential site for Herbert now, without any coast between the two points. This result is much more relevant than previously calculated with <code>st_distance()</code>! If you want to represent the shortest path between two points (based on the transition matrix), you can plot the result of function <code>shortestPath()</code>.</p>
-<p><img src="/post/current/distInGIS/index_files/figure-html/plot4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/plot4-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="least-cost-distances-with-igraph" class="section level2">
 <h2>Least Cost Distances with <code>igraph</code></h2>
@@ -160,13 +161,13 @@ kable(dist2_df)</code></pre>
 <pre class="r"><code>library(igraph)</code></pre>
 <p>Let’s create another grid, but this time, let’s make it hexagonal. For this example, the cell centroids are 250m apart (in any of the 6 directions), but you could increase the resolution if you don’t mind waiting a bit. As you can see from the map below, this resolution may ignore the presence of some smaller islands, which can be a problem.</p>
 <pre class="r"><code>hex_bay &lt;- st_make_grid(bay, cellsize = 250, square = FALSE)</code></pre>
-<p><img src="/post/current/distInGIS/index_files/figure-html/plot5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/plot5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Now that we have our basic grid, we need to create an <code>igraph</code> network. The network in this case will represent neighbouring cells (<em>i.e.</em> right next to one another) which Herbert has the possibility to move through. We must first create an edgelist (<em>i.e.</em> list to ‘from’ and ‘to’ cell id’s that represent neighbours), then convert into a network.</p>
 <pre class="r"><code>edgelist &lt;- as.matrix(as.data.frame(st_intersects(hex_bay)))
   # yes, the as.matrix and as.data.frame is a bit silly, but required to have the right format
 
 gr &lt;- graph_from_edgelist(edgelist)</code></pre>
-<p><img src="/post/current/distInGIS/index_files/figure-html/plot6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/plot6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Yes, this plot no longer looks like the bay because we have abstracted out the actual coordinates and are looking only at the distances between cells. In this particular example we know that the distance between each neighbouring cell is 250m since we defined this when we created the grid. At this phase, you could also incorporate ‘fancier’ weights that incorporate habitat resistance (<em>i.e.</em> the influence of habitat type on the facilitation or prevention of movement) to calculate isolation by resistance. But for this example, let’s keep it simple.</p>
 <pre class="r"><code>E(gr)$weight &lt;- 250
   # setting the weight for ALL edges, alternatively could supply a vector here</code></pre>
@@ -181,7 +182,7 @@ kable(dist3_df)</code></pre>
 <table>
 <thead>
 <tr class="header">
-<th></th>
+<th align="left"></th>
 <th align="right">P1</th>
 <th align="right">P2</th>
 <th align="right">P3</th>
@@ -189,10 +190,10 @@ kable(dist3_df)</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Distance from init:</td>
-<td align="right">8750</td>
+<td align="left">Distance from init:</td>
+<td align="right">5750</td>
 <td align="right">6500</td>
-<td align="right">8000</td>
+<td align="right">7500</td>
 </tr>
 </tbody>
 </table>
@@ -223,49 +224,47 @@ kable(dist3_df)</code></pre>
 </h4>
 <p></summary></p>
 <pre class="r"><code>sessionInfo()
-#R&gt; R version 3.6.3 (2020-02-29)
+#R&gt; R version 4.0.4 (2021-02-15)
 #R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
-#R&gt; Running under: Debian GNU/Linux 10 (buster)
+#R&gt; Running under: Debian GNU/Linux bullseye/sid
 #R&gt; 
 #R&gt; Matrix products: default
-#R&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
-#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.5.so
+#R&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
+#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.13.so
 #R&gt; 
 #R&gt; locale:
-#R&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-#R&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-#R&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-#R&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#R&gt;  [1] LC_CTYPE=en_CA.UTF-8       LC_NUMERIC=C              
+#R&gt;  [3] LC_TIME=en_CA.UTF-8        LC_COLLATE=en_CA.UTF-8    
+#R&gt;  [5] LC_MONETARY=en_CA.UTF-8    LC_MESSAGES=en_CA.UTF-8   
+#R&gt;  [7] LC_PAPER=en_CA.UTF-8       LC_NAME=C                 
 #R&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-#R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#R&gt; [11] LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       
 #R&gt; 
 #R&gt; attached base packages:
 #R&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
 #R&gt; 
 #R&gt; other attached packages:
-#R&gt; [1] gdistance_1.3-1        Matrix_1.2-18          igraph_1.2.5          
-#R&gt; [4] raster_3.0-12          sp_1.4-1               sf_0.8-1              
-#R&gt; [7] knitr_1.28             inSilecoRef_0.0.1.9000
+#R&gt; [1] gdistance_1.3-6        Matrix_1.3-2           igraph_1.2.6          
+#R&gt; [4] raster_3.4-5           sp_1.4-5               sf_0.9-7              
+#R&gt; [7] knitr_1.31             inSilecoRef_0.0.1.9000
 #R&gt; 
 #R&gt; loaded via a namespace (and not attached):
-#R&gt;  [1] httr_1.4.1         jsonlite_1.6.1     viridisLite_0.3.0  shiny_1.4.0.2     
-#R&gt;  [5] assertthat_0.2.1   highr_0.8          stats4_3.6.3       yaml_2.2.1        
-#R&gt;  [9] pillar_1.4.3       lattice_0.20-40    glue_1.4.0         digest_0.6.25     
-#R&gt; [13] promises_1.1.0     RefManageR_1.2.12  colorspace_1.4-1   htmltools_0.4.0   
-#R&gt; [17] httpuv_1.5.2       plyr_1.8.6         pkgconfig_2.0.3    bibtex_0.4.2.2    
-#R&gt; [21] httpcode_0.2.0     bookdown_0.18      purrr_0.3.3        xtable_1.8-4      
-#R&gt; [25] scales_1.1.0       webshot_0.5.2      satellite_1.0.2    later_1.0.0       
-#R&gt; [29] tibble_3.0.0       ellipsis_0.3.0     DT_0.13            cli_2.0.2         
-#R&gt; [33] mapview_2.7.0      magrittr_1.5       crayon_1.3.4       mime_0.9          
-#R&gt; [37] evaluate_0.14      fansi_0.4.1        xml2_1.3.1         class_7.3-15      
-#R&gt; [41] blogdown_0.18      tools_3.6.3        lifecycle_0.2.0    stringr_1.4.0     
-#R&gt; [45] munsell_0.5.0      compiler_3.6.3     e1071_1.7-3        rlang_0.4.5       
-#R&gt; [49] classInt_0.4-2     units_0.6-6        grid_3.6.3         htmlwidgets_1.5.1 
-#R&gt; [53] crosstalk_1.1.0.1  miniUI_0.1.1.1     base64enc_0.1-3    rmarkdown_2.1     
-#R&gt; [57] codetools_0.2-16   DBI_1.1.0          curl_4.3           R6_2.4.1          
-#R&gt; [61] lubridate_1.7.4    rgdal_1.4-8        dplyr_0.8.5        fastmap_1.0.1     
-#R&gt; [65] rcrossref_1.0.0    KernSmooth_2.23-16 stringi_1.4.6      crul_0.9.0        
-#R&gt; [69] Rcpp_1.0.4         vctrs_0.2.4        png_0.1-7          leaflet_2.0.3     
-#R&gt; [73] tidyselect_1.0.0   xfun_0.12</code></pre>
+#R&gt;  [1] Rcpp_1.0.6         lubridate_1.7.10   lattice_0.20-41    class_7.3-18      
+#R&gt;  [5] assertthat_0.2.1   digest_0.6.27      utf8_1.1.4         mime_0.10         
+#R&gt;  [9] R6_2.5.0           plyr_1.8.6         evaluate_0.14      e1071_1.7-4       
+#R&gt; [13] httr_1.4.2         highr_0.8          blogdown_1.2       pillar_1.5.0      
+#R&gt; [17] rlang_0.4.10       curl_4.3           miniUI_0.1.1.1     jquerylib_0.1.3   
+#R&gt; [21] DT_0.17            rmarkdown_2.7      rgdal_1.5-21       RefManageR_1.3.0  
+#R&gt; [25] rcrossref_1.1.0    stringr_1.4.0      htmlwidgets_1.5.3  shiny_1.6.0       
+#R&gt; [29] compiler_4.0.4     httpuv_1.5.5       xfun_0.21          pkgconfig_2.0.3   
+#R&gt; [33] htmltools_0.5.1.1  tidyselect_1.1.0   tibble_3.1.0       httpcode_0.3.0    
+#R&gt; [37] bookdown_0.21      codetools_0.2-18   fansi_0.4.2        crayon_1.4.1      
+#R&gt; [41] dplyr_1.0.4        later_1.1.0.1      crul_1.1.0         grid_4.0.4        
+#R&gt; [45] jsonlite_1.7.2     xtable_1.8-4       lifecycle_1.0.0    DBI_1.1.1         
+#R&gt; [49] magrittr_2.0.1     units_0.7-0        KernSmooth_2.23-18 stringi_1.5.3     
+#R&gt; [53] renv_0.13.0        promises_1.2.0.1   xml2_1.3.2         bslib_0.2.4       
+#R&gt; [57] ellipsis_0.3.1     vctrs_0.3.6        generics_0.1.0     tools_4.0.4       
+#R&gt; [61] glue_1.4.2         purrr_0.3.4        fastmap_1.1.0      yaml_2.2.1        
+#R&gt; [65] classInt_0.4-3     sass_0.3.1</code></pre>
 </details>
 </div>

@@ -16,6 +16,7 @@ output:
     dev: svg
 ---
 
+<script src="{{< blogdown/postref >}}index_files/header-attrs/header-attrs.js"></script>
 
 
 <p>To manipulate geometries, there are few options. For spatial objects defined
@@ -32,7 +33,7 @@ dir.create(&quot;data&quot;)
 bel2 &lt;- getData(name=&quot;GADM&quot;, country=&quot;BEL&quot;, path=&quot;data&quot;, level = 2)
 plot(bel2)
 text(bel2, 1:11)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="sp-objects" class="section level2">
 <h2><code>sp</code> objects</h2>
 <div id="subset" class="section level3">
@@ -47,7 +48,7 @@ class(bel_slc)
 #R&gt; [1] &quot;sp&quot;</code></pre>
 <p>Let’s plot our selection:</p>
 <pre class="r"><code>plot(bel_slc)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="unions" class="section level3">
 <h3>Unions</h3>
@@ -59,14 +60,14 @@ par(mfrow=c(1,3), mar=c(1,1,1,1))
 plot(bel_south)
 plot(bel_north)
 plot(bel_one)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Let’s combine them on one plot:</p>
 <pre class="r"><code>plot(bel2, lwd = .1)
 plot(bel_south, add=T, col=2)
 plot(bel_north, add=T, col=4)
 plot(bel2, lwd = .5, add = T)
 plot(bel_one, lwd = 2, add = T, border = &quot;grey55&quot;)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="buffers" class="section level3">
 <h3>Buffers</h3>
@@ -76,7 +77,7 @@ bufs &lt;- gBuffer(bel_south, width=0.4)
 bufn &lt;- gBuffer(bel_north, width=0.1)
 plot(bufs, add=T, lwd=2, lty=2)
 plot(bufn, add=T, lwd=3)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="intersections" class="section level3">
 <h3>Intersections</h3>
@@ -86,7 +87,7 @@ plot(bel_one)
 plot(gIntersection(bel_south, bel_north), col=5, add=T, lwd=2)
 plot(bel_one)
 plot(gIntersection(bufs, bufn), col=5, add=T, lwd=2)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="differences" class="section level3">
 <h3>Differences</h3>
@@ -94,7 +95,7 @@ plot(gIntersection(bufs, bufn), col=5, add=T, lwd=2)</code></pre>
 plot(bel_one)
 plot(bel_diff, add = TRUE, lwd = 2, lty = 3, col = 2)
 plot(bel_south, add = TRUE, col = 2)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 </div>
 <div id="overlays" class="section level2">
@@ -114,7 +115,7 @@ bel2_geom &lt;- SpatialPolygons(bel2@polygons, proj4string = bel2@proj4string)
 # plots
 plot(bel2_geom)
 points(pts, col = is.na(over(pts, bel2_geom))+2, pch =19)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="sf-objects" class="section level2">
 <h2><code>sf</code> objects</h2>
@@ -125,7 +126,7 @@ points(pts, col = is.na(over(pts, bel2_geom))+2, pch =19)</code></pre>
 <p>Let’s now download a simple raster of elevation using <code>getData()</code>.</p>
 <pre class="r"><code>bel_elv &lt;- getData(name=&quot;alt&quot;, country=&quot;BEL&quot;, path=&quot;data&quot;, level = 2)
 plot(bel_elv)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="extract-values" class="section level3">
 <h3>Extract values</h3>
 <p>Note that <code>extract()</code> is in <code>raster</code></p>
@@ -135,7 +136,7 @@ val_north &lt;- extract(bel_elv, bel_north)
 par(mfrow = c(1,2))
 hist(val_south[[1]])
 hist(val_north[[1]])</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="mask" class="section level3">
 <h3>Mask</h3>
@@ -144,44 +145,46 @@ elv_north &lt;- rasterize(bel_north, bel_elv, mask = TRUE)
 par(mfrow = c(1,2))
 plot(elv_south)
 plot(elv_north)</code></pre>
-<p><img src="/tuto/rInSpace/rinspace_geomanip/index_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
 <details>
 <p><summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary></p>
 <pre class="r"><code>sessionInfo()
-#R&gt; R version 3.6.3 (2020-02-29)
+#R&gt; R version 4.0.4 (2021-02-15)
 #R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
-#R&gt; Running under: Debian GNU/Linux 10 (buster)
+#R&gt; Running under: Debian GNU/Linux bullseye/sid
 #R&gt; 
 #R&gt; Matrix products: default
-#R&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
-#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.5.so
+#R&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
+#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.13.so
 #R&gt; 
 #R&gt; locale:
-#R&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-#R&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-#R&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-#R&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#R&gt;  [1] LC_CTYPE=en_CA.UTF-8       LC_NUMERIC=C              
+#R&gt;  [3] LC_TIME=en_CA.UTF-8        LC_COLLATE=en_CA.UTF-8    
+#R&gt;  [5] LC_MONETARY=en_CA.UTF-8    LC_MESSAGES=en_CA.UTF-8   
+#R&gt;  [7] LC_PAPER=en_CA.UTF-8       LC_NAME=C                 
 #R&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-#R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#R&gt; [11] LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       
 #R&gt; 
 #R&gt; attached base packages:
 #R&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
 #R&gt; 
 #R&gt; other attached packages:
-#R&gt; [1] raster_3.0-12 rgeos_0.5-2   sf_0.8-1      sp_1.4-1     
+#R&gt; [1] raster_3.4-5 rgeos_0.5-5  sf_0.9-7     sp_1.4-5    
 #R&gt; 
 #R&gt; loaded via a namespace (and not attached):
-#R&gt;  [1] Rcpp_1.0.4         compiler_3.6.3     base64enc_0.1-3    class_7.3-15      
-#R&gt;  [5] tools_3.6.3        digest_0.6.25      satellite_1.0.2    evaluate_0.14     
-#R&gt;  [9] lifecycle_0.2.0    lattice_0.20-40    viridisLite_0.3.0  png_0.1-7         
-#R&gt; [13] rlang_0.4.5        DBI_1.1.0          crosstalk_1.1.0.1  parallel_3.6.3    
-#R&gt; [17] rgdal_1.4-8        yaml_2.2.1         blogdown_0.18      xfun_0.12         
-#R&gt; [21] e1071_1.7-3        stringr_1.4.0      knitr_1.28         htmlwidgets_1.5.1 
-#R&gt; [25] stats4_3.6.3       classInt_0.4-2     leaflet_2.0.3      grid_3.6.3        
-#R&gt; [29] webshot_0.5.2      R6_2.4.1           rmarkdown_2.1      bookdown_0.18     
-#R&gt; [33] magrittr_1.5       scales_1.1.0       codetools_0.2-16   htmltools_0.4.0   
-#R&gt; [37] units_0.6-6        colorspace_1.4-1   mapview_2.7.0      KernSmooth_2.23-16
-#R&gt; [41] stringi_1.4.6      munsell_0.5.0</code></pre>
+#R&gt;  [1] Rcpp_1.0.6         highr_0.8          pillar_1.5.0       bslib_0.2.4       
+#R&gt;  [5] compiler_4.0.4     jquerylib_0.1.3    class_7.3-18       tools_4.0.4       
+#R&gt;  [9] digest_0.6.27      tibble_3.1.0       jsonlite_1.7.2     evaluate_0.14     
+#R&gt; [13] lifecycle_1.0.0    lattice_0.20-41    pkgconfig_2.0.3    rlang_0.4.10      
+#R&gt; [17] DBI_1.1.1          parallel_4.0.4     rgdal_1.5-21       yaml_2.2.1        
+#R&gt; [21] blogdown_1.2       xfun_0.21          e1071_1.7-4        stringr_1.4.0     
+#R&gt; [25] dplyr_1.0.4        knitr_1.31         generics_0.1.0     sass_0.3.1        
+#R&gt; [29] vctrs_0.3.6        tidyselect_1.1.0   classInt_0.4-3     grid_4.0.4        
+#R&gt; [33] glue_1.4.2         R6_2.5.0           fansi_0.4.2        rmarkdown_2.7     
+#R&gt; [37] bookdown_0.21      purrr_0.3.4        magrittr_2.0.1     codetools_0.2-18  
+#R&gt; [41] ellipsis_0.3.1     htmltools_0.5.1.1  units_0.7-0        assertthat_0.2.1  
+#R&gt; [45] renv_0.13.0        utf8_1.1.4         KernSmooth_2.23-18 stringi_1.5.3     
+#R&gt; [49] crayon_1.4.1</code></pre>
 </details>
 </div>
 </div>

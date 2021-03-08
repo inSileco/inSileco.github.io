@@ -168,7 +168,7 @@ blogdown::shortcode("figcenter", "table_odt.png", "table_odt.png (screenshot)",
 
 As I mentioned above `tblDown()` handles lists of data frames and the user can also provide a set of captions for every table and even separate them with section headers (of level 1).
 
-```{R}
+```{R, eval = FALSE}
 tblDown(list(head(CO2), tail(CO2)), output_file = "tables.pdf",
   caption = c("This is the head of CO2", "This is the tail of CO2"),
   section = "Table")

@@ -33,7 +33,7 @@ jobs:
           Rscript -e "renv::restore()"
       - name: Build inSileco Blog
         run: |-
-          Rscript -e 'blogdown::build_site(build_rmd = TRUE)'
+          Rscript -e "blogdown::build_site()"
       
   linux:
     runs-on: ubuntu-latest
@@ -61,13 +61,13 @@ jobs:
           Rscript -e "renv::restore()"
       - name: Build inSileco Blog
         run: |-
-          Rscript -e 'blogdown::build_site(build_rmd = TRUE)'
+          Rscript -e "blogdown::build_site(build_rmd = 'md5sum')"
       - name: Deploy inSileco Blog to gh-pages
-        uses: peaceiris/actions-gh-pages@v2
-        env:
-          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-          PUBLISH_BRANCH: master
-          PUBLISH_DIR: ./public
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          publish_branch: master
+          publish_dir: ./public
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2.0.0
         env:

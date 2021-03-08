@@ -18,9 +18,10 @@ navposts:
   next: exponentialGrowth
 ---
 
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
-{{< distecolintro >}}
+<p>{{< distecolintro >}}</p>
 <div id="geometric-growth" class="section level2">
 <h2>Geometric growth</h2>
 <p>In this first post we start by looking at the most simple population dynamic
@@ -216,11 +217,11 @@ pop &lt;- data.frame(year = 0:nt,
                     pop4 = pop$pop4[2:(nt+1)] / pop$pop4[1:nt])
 rates
 #R&gt;       pop1     pop2     pop3     pop4
-#R&gt; 1 1.031754 1.552166 1.088455 2.000278
-#R&gt; 2 1.228038 1.888714 2.065405 1.180798
-#R&gt; 3 1.135065 1.143601 1.590183 1.547135
-#R&gt; 4 2.089345 2.180376 1.791257 1.478933
-#R&gt; 5 2.016450 1.913403 1.417619 2.277602
+#R&gt; 1 1.673452 2.039574 2.145151 1.860967
+#R&gt; 2 1.280094 1.513446 2.005377 1.915038
+#R&gt; 3 1.390719 1.549634 2.134300 1.413861
+#R&gt; 4 1.019390 1.365899 1.443247 1.874900
+#R&gt; 5 1.766902 1.613006 1.722854 1.004376
 
 par(mfrow = c(1,2), mar = c(4,4,1,1))
 matplot(pop[, 2:5], type = &#39;l&#39;, col = cols, lwd = 1.25, ylab = &#39;Population size&#39;)
