@@ -33,7 +33,7 @@ jobs:
           Rscript -e "renv::restore()"
       - name: Build inSileco Blog
         run: |-
-          Rscript -e 'blogdown::build_site()'
+          Rscript -e 'blogdown::build_site(build_rmd = TRUE)'
       
   linux:
     runs-on: ubuntu-latest
@@ -61,7 +61,7 @@ jobs:
           Rscript -e "renv::restore()"
       - name: Build inSileco Blog
         run: |-
-          Rscript -e 'blogdown::build_site()'
+          Rscript -e 'blogdown::build_site(build_rmd = TRUE)'
       - name: Deploy inSileco Blog to gh-pages
         uses: peaceiris/actions-gh-pages@v2
         env:

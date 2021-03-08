@@ -1,7 +1,5 @@
 # inSileco blog
 [![deploy inSileco blog](https://github.com/inSileco/inSileco.github.io/workflows/deploy%20inSileco%20blog/badge.svg)](https://github.com/inSileco/inSileco.github.io/actions)
-[![Build status](https://ci.appveyor.com/api/projects/status/kxa7ht9m3b1eke22?svg=true)](https://ci.appveyor.com/project/KevCaz/insileco-github-io)
-
 
 The overarching goal of this blog is quite straightforward: tackle challenges
 and opportunities provided by this new era of open-access and computationally
