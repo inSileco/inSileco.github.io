@@ -1,5 +1,5 @@
 # inSileco blog
-[![deploy inSileco blog](https://github.com/inSileco/inSileco.github.io/workflows/deploy%20inSileco%20blog/badge.svg)](https://github.com/inSileco/inSileco.github.io/actions)
+[![built and deploy inSileco blog](https://github.com/inSileco/inSileco.github.io/actions/workflows/main.yml/badge.svg)](https://github.com/inSileco/inSileco.github.io/actions/workflows/main.yml)
 
 The overarching goal of this blog is quite straightforward: tackle challenges
 and opportunities provided by this new era of open-access and computationally

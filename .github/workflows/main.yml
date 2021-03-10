@@ -1,4 +1,4 @@
-name: built and deploy inSileco blog
+name: Build and deploy our blog
 
 on:
   push:
@@ -65,7 +65,7 @@ jobs:
       - name: Deploy inSileco Blog to gh-pages
         uses: peaceiris/actions-gh-pages@v3
         with:
-          deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+           personal_token: ${{ secrets.DEPLOY_TOKEN }}
           publish_branch: master
           publish_dir: ./public
       - name: Slack Notification
