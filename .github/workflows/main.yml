@@ -13,27 +13,27 @@ on:
 
 jobs:
   
-  windows:
-    runs-on: windows-latest
-    steps:
-      - name: install Hugo and Pandoc
-        run: choco install hugo pandoc
-      - name: Checkout Repository
-        uses: actions/checkout@master 
-      - name: Use cache
-        uses: actions/cache@v2
-        with:
-          path: ~\AppData\Local\renv
-          key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-renv-
-      - name: Install R packages with renv
-        run: |
-          Rscript -e "install.packages('renv', repos = 'https://muug.ca/mirror/cran/')"
-          Rscript -e "renv::restore()"
-      - name: Build inSileco Blog
-        run: |-
-          Rscript -e "blogdown::build_site()"
+  # windows:
+  #   runs-on: windows-latest
+  #   steps:
+  #     - name: install Hugo and Pandoc
+  #       run: choco install hugo pandoc
+  #     - name: Checkout Repository
+  #       uses: actions/checkout@master 
+  #     - name: Use cache
+  #       uses: actions/cache@v2
+  #       with:
+  #         path: ~\AppData\Local\renv
+  #         key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
+  #         restore-keys: |
+  #           ${{ runner.os }}-renv-
+  #     - name: Install R packages with renv
+  #       run: |
+  #         Rscript -e "install.packages('renv', repos = 'https://muug.ca/mirror/cran/')"
+  #         Rscript -e "renv::restore()"
+  #     - name: Build inSileco Blog
+  #       run: |-
+  #         Rscript -e "blogdown::build_site()"
       
   linux:
     runs-on: ubuntu-latest
@@ -46,8 +46,7 @@ jobs:
           echo "Set disable_coredump false" >> /etc/sudo.conf
           sudo apt-get update
           sudo apt-get install -y hugo libudunits2-0 libudunits2-dev
-          sudo apt-get install -y libproj-dev libgeos-dev
-          sudo apt-get install -y libgdal-dev r-cran-ncdf4
+          sudo apt-get install -y libproj-dev libgeos-dev libgdal-dev r-cran-ncdf4
       - name: Use cache
         uses: actions/cache@v2
         with:
@@ -66,7 +65,7 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${{ secrets.DEPLOY_TOKEN }}
-          publish_branch: master
+          publish_branch: gh-pages
           publish_dir: ./public
       - name: Slack Notification
         uses: rtCamp/action-slack-notify@v2.0.0
