@@ -12,5 +12,8 @@ build:
 serve:
 	Rscript -e 'blogdown::serve_site()'
 
+deps:
+	Rscript -e 'renv::snapshot()'
+
 clean:
 	rm post/*.html
