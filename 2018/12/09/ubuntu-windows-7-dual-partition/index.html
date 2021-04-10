@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+
+        <title>Ubuntu &#43; Windows 7 - dual partition</title>
+
+        <style>
+
+    html body {
+        font-family: Lato, sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="../../../../css/main.css">
+
+
+
+  <link rel="stylesheet" href="../../../../css/academicons.min.css">
+
+  <link rel="stylesheet" href="../../../../css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="../../../../css/insileco.css">
+
+  <link rel="stylesheet" href="../../../../css/jquery.tocify.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+  <script src="../../../../js/jquery-1.8.3.min.js"></script>
+
+  <script src="../../../../js/jquery-ui-1.9.1.custom.min.js"></script>
+
+  <script src="../../../../js/jquery.tocify.min.js"></script>
+
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'UA-109508556-1');
+        </script>
+        
+
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Ubuntu &#43; Windows 7 - dual partition</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="../../../../">Home</a></li>
+                            
+                                <li><a href="../../../../about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="../../../../post/">Posts</a></li>
+                            
+                                <li><a href="../../../../software/">Software</a></li>
+                            
+                                <li><a href="../../../../tips/">Tips</a></li>
+                            
+                                <li><a href="../../../../tuto/">Tutorials</a></li>
+                            
+                                <li><a href="../../../../wiki/">Wiki</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<img class="full-width" width="100%" src="../../../../img/banner4.png"></img>
+
+
+
+<div>
+
+  <div class="col-md-3">
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+          <div id="toc"></div>
+
+        </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-md-8">
+
+    <h1><a href="../../../../2018/12/09/ubuntu-windows-7-dual-partition/">Ubuntu &#43; Windows 7 - dual partition</a></h1>
+
+    <h4>December 9, 2018</h4>
+
+    <p>
+      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="../../../../tags/windows"><kbd class="item-tag">Windows</kbd></a>  <a href="../../../../tags/ubuntu"><kbd class="item-tag">Ubuntu</kbd></a>  <a href="../../../../tags/dual-partition"><kbd class="item-tag">dual partition</kbd></a>  <a href="../../../../tags/chocolatey"><kbd class="item-tag">chocolatey</kbd></a>  <a href="../../../../tags/apt-get"><kbd class="item-tag">apt-get</kbd></a> 
+      <br>
+      
+    </p>
+
+    
+      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+       
+        <a href="../../../../about/">Kevin Cazelles</a> &nbsp;
+      
+     <a href="#"></a></p>
+    
+
+    
+      <p> <i class="fa fa-check-square" aria-hidden="true", title="Reviewer(s)"></i>
+       
+      <a href="../../../../about/">Marie-Hélène Brice</a> &nbsp;
+      
+      <a href="#"></a></p>
+    
+
+    <p>
+    
+    
+    
+      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=7min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+    
+    
+     &nbsp;
+    
+    
+      <a href = "https://creativecommons.org/licenses/by/4.0/">
+      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+      </a>
+    
+    &nbsp;&nbsp;
+    <a href="http://twitter.com/share?url=%2f2018%2f12%2f09%2fubuntu-windows-7-dual-partition%2f&text=My%20R%20setup%20on%20Debian" target="_blank">
+      <img src='https://img.shields.io/twitter/url?style=social&url=%2f2018%2f12%2f09%2fubuntu-windows-7-dual-partition%2f?link=http://left&link=http://right}'>
+    </a>
+  </p>
+
+    <div class="text-justify">
+      <p>
+      
+      </p>
+    </div>
+
+
+
+    <br>
+
+    <div class="text-justify">
+
+      <p>Long story short, I recently had access to a <a href="https://www.dell.com/en-ca/shop/cty/dell-studio-xps-8100-desktop-details-reviews/spd/studio-xps-8100">Dell Studio XPS 8100 </a> with <a href="https://en.wikipedia.org/wiki/Windows_7">Windows 7</a> on it. I was told that the computer was not working well and so was allowed to tweak it. The computer was actually working well, so I simply decided to add a partition Ubuntu.</p>
+<p><a href="https://www.ubuntu.com/">Ubuntu</a> is based on Debian and arguably more beginner-friendly than the latter. Roughly speaking:</p>
+<pre><code>Ubuntu = Debian Testing + software to simplify its use
+</code></pre><p>There are a couple of articles online that are opposing these two Linux distributions, which makes no real sense to me. I prefer the reading of this <a href="https://wiki.ubuntu.com/Ubuntu/ForDebianDevelopers?action=show&amp;redirect=UbuntuForDebianDevelopers">article that explains the technical differences</a>. As I mentioned in a
+<a href="../../../../post/archived/setUps/goDebianTesting/">previous post</a>, I am currently working on Debian with GNOME (3.30) and it is very similar to the latest Ubuntu (18.04, <a href="http://releases.ubuntu.com/18.04/">Bionic Beaver</a>).</p>
+<h2 id="cleaning-up-the-windows-7-partition">Cleaning up the Windows 7 partition</h2>
+<p>I took the opportunity to spend some time on Windows 7. What I did first was a <a href="https://support.microsoft.com/en-ca/help/300887/how-to-use-system-information-msinfo32-command-line-tool-switches">checkout of the hardware with the <code>msinfo32</code> command</a>. Then I installed the package manager <a href="https://chocolatey.org/docs/installation">chocolatey</a>. To do so, I used <a href="https://en.wikipedia.org/wiki/PowerShell">PowerShell</a>, version v2.+ was required (see <a href="https://chocolatey.org/docs/installation">https://chocolatey.org/docs/installation</a> and use <code>$PSVersionTable.PSVersion</code> to check out the version available). One line of command completes the installation of <a href="https://chocolatey.org/docs/installation">chocolatey</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">Set-ExecutionPolicy Bypass -Scope Process -Force; iex <span style="color:#f92672">((</span>New-Object System.Net.WebClient<span style="color:#f92672">)</span>.DownloadString<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;https://chocolatey.org/install.ps1&#39;</span><span style="color:#f92672">))</span>
+</code></pre></div><p>Before installing Ubuntu, I installed a couple of software to experiment <a href="https://chocolatey.org/docs/installation">chocolatey</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">cinst pandoc R R.Studio imagemagick QGIS
+</code></pre></div><p>Note that this is equivalent to:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">choco install pandoc R R.Studio imagemagick QGIS
+</code></pre></div><h2 id="creating-a-bootable-usb-stick-to-install-ubuntu">Creating a bootable USB stick to install Ubuntu</h2>
+<p>There are various tutorials online that adress this topic, for instance <a href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-ubuntu#0">this one on tutorials.ubuntu.com</a>. I created a bootable USB stick on my Debian machine but before I <a href="https://www.tecmint.com/find-usb-device-name-in-linux/">identified the USB device</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ df -h
+Filesystem      Size  Used Avail Use% Mounted on
+udev            7.8G     <span style="color:#ae81ff">0</span>  7.8G   0% /dev
+tmpfs           1.6G   34M  1.6G   3% /run
+/dev/nvme0n1p2  922G  226G  650G  26% /
+tmpfs           7.8G   53M  7.8G   1% /dev/shm
+tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+tmpfs           7.8G     <span style="color:#ae81ff">0</span>  7.8G   0% /sys/fs/cgroup
+/dev/loop1       87M   87M     <span style="color:#ae81ff">0</span> 100% /snap/core/5145
+/dev/loop3       88M   88M     <span style="color:#ae81ff">0</span> 100% /snap/core/5548
+/dev/loop5       88M   88M     <span style="color:#ae81ff">0</span> 100% /snap/core/5328
+/dev/nvme0n1p1  511M  132K  511M   1% /boot/efi
+tmpfs           1.6G  9.6M  1.6G   1% /run/user/1000
+/dev/sda         15G  809M   14G   6% /media/kevcaz/myusbstick
+</code></pre></div><p>I unmounted the right device: <code>myusbstick</code> (last line above) like so:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo umount /dev/sda
+</code></pre></div><p>Then I created the bootable key with the <a href="https://www.ubuntu.com/download/desktop/thank-you?country=CA&amp;version=18.04.1&amp;architecture=amd64">downloaded desktop image</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ sudo dd bs<span style="color:#f92672">=</span>4M <span style="color:#66d9ef">if</span><span style="color:#f92672">=</span>ubuntu-18.04.1-desktop-amd64.iso of<span style="color:#f92672">=</span>/dev/sda conv<span style="color:#f92672">=</span>fdatasync
+</code></pre></div><h2 id="installing-ubuntu">Installing Ubuntu</h2>
+<p>The final step is straightforward: I plugged the bootable USB stick, rebooted the Dell machine and press F12 to access the BIOS on boot, then booted on the USB device,
+and finally followed the instructions. Then on the Ubuntu partition I checkout
+the system:</p>
+<pre><code>$ uname -a
+Linux mhb 4.15.0-42-generic #45-Ubuntu SMP Thu Nov 15 19:32:57 UTC 2018 x86_64 x86_64 x86_64 GN
+U/Linux
+</code></pre><p>During the installation process I was offline and I realized afterwards
+that I was not able to get the wifi working. So I plugged the computer on the Ethernet and found out that the Broadcom wireless driver was not properly installed. I solved this issue following this answer on <a href="%5Bwifi%5D(https://askubuntu.com/questions/55868/installing-broadcom-wireless-drivers)">Stack Exchange</a>. Then I installed a couple of freeware:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo apt install calibre inkscape gimp vlc xournal hugo pandoc pandoc-citeproc imagemagick ffmpeg inxi tree curl openssh-server pass
+</code></pre></div><p>Below, I used <a href="https://www.tecmint.com/inxi-command-to-find-linux-system-information/">inxi</a> to get details about the hardware:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">$ inxi -SMCNDP
+System:    Host: mhb Kernel: 4.15.0-42-generic x86_64 bits: <span style="color:#ae81ff">64</span> Console: tty <span style="color:#ae81ff">1</span>
+           Distro: Ubuntu 18.04.1 LTS
+Machine:   Device: desktop System: Dell product: Studio XPS <span style="color:#ae81ff">8100</span> serial: N/A
+           Mobo: Dell model: 0G3HR7 v: A00 serial: N/A
+           BIOS: Dell v: A05 date: 07/08/2010
+CPU:       Quad core Intel Core i5 <span style="color:#ae81ff">750</span> <span style="color:#f92672">(</span>-MCP-<span style="color:#f92672">)</span> cache: <span style="color:#ae81ff">8192</span> KB
+           clock speeds: max: <span style="color:#ae81ff">2668</span> MHz 1: <span style="color:#ae81ff">1496</span> MHz 2: <span style="color:#ae81ff">1207</span> MHz 3: <span style="color:#ae81ff">1210</span> MHz
+           4: <span style="color:#ae81ff">1283</span> MHz
+Network:   Card-1: Broadcom and subsidiaries NetLink BCM57780 Gigabit Ethernet PCIe
+           driver: tg3
+           Card-2: Broadcom and subsidiaries BCM4306 802.11b/g Wireless LAN Controller
+           driver: b43-pci-bridge
+Drives:    HDD Total Size: 1000.2GB <span style="color:#f92672">(</span>19.1% used<span style="color:#f92672">)</span>
+           ID-1: /dev/sda model: WDC_WD1001FAES size: 1000.2GB
+Partition: ID-1: / size: 550G used: 179G <span style="color:#f92672">(</span>35%<span style="color:#f92672">)</span> fs: ext4 dev: /dev/sda5
+</code></pre></div><p>and then I installed R packages and some dependencies required for <a href="https://cran.r-project.org/web/packages/sf/index.html">sf</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo apt-get install xvfb libudunits2-dev libgeos-dev libproj-dev libgdal-dev r-base r-recommended r-base-dev <span style="color:#e6db74">&#34;^r-cran-.*&#34;</span>
+sudo Rsript -e <span style="color:#e6db74">&#34;install.packages(&#39;sf&#39;)&#34;</span>
+</code></pre></div><p>I finally I downloaded
+<a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a> and then
+I was done.</p>
+<p>I still have to write a post about my <a href="https://www.raspberrypi.org/">Raspberry Pi</a> setup, hopefully I&rsquo;ll do so soon. Also, next time I am given carte blanche, I&rsquo;ll
+install a <a href="https://upload.wikimedia.org/wikipedia/commons/1/1b/Linux_Distribution_Timeline.svg">Linux distribution</a> quite different: Arch, FreeBSD, Fedora, etc. We shall see!</p>
+
+
+
+    
+
+    </center>
+
+    </div>
+
+      <br>
+
+  
+  <script>
+    var $jq = jQuery.noConflict();
+      $jq(function() {
+          var toc = $jq("#toc").tocify({
+            selectors: "h2, h3",
+            scrollTo: 50
+          }).data("toc-tocify");
+    });
+  </script>
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+  
+  
+
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <div id="disqus_thread"></div>
+
+  
+  
+
+  
+
+
+
+
+
+  <script>
+    
+
+
+    var disqus_config = function() {
+      this.page.url = "https://insileco.github.io" + "/2018/12/09/ubuntu-windows-7-dual-partition/"; 
+      this.page.identifier = "Ubuntu + Windows 7 - dual partition"; 
+    };
+
+    (function() { 
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://insileco.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+
+</div>
+
+
+</div>
+
+        <footer>
+
+          <script src="//yihui.name/js/math-code.js"></script>
+          <script async
+            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+          </script>
+
+
+            <p class="copyright text-muted">&copy; 2017-2021 inSileco | All rights reserved | Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,  <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+
+        </footer>
+
+    </body>
+
+</html>
+

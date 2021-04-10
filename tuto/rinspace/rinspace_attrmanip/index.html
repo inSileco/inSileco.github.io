@@ -1,0 +1,1144 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+
+        <title>R in Space - Attribute manipulations</title>
+
+        <style>
+
+    html body {
+        font-family: Lato, sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="../../../css/main.css">
+
+
+
+  <link rel="stylesheet" href="../../../css/academicons.min.css">
+
+  <link rel="stylesheet" href="../../../css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="../../../css/insileco.css">
+
+  <link rel="stylesheet" href="../../../css/jquery.tocify.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+  <script src="../../../js/jquery-1.8.3.min.js"></script>
+
+  <script src="../../../js/jquery-ui-1.9.1.custom.min.js"></script>
+
+  <script src="../../../js/jquery.tocify.min.js"></script>
+
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'UA-109508556-1');
+        </script>
+        
+
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">R in Space - Attribute manipulations</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="../../../">Home</a></li>
+                            
+                                <li><a href="../../../about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="../../../post/">Posts</a></li>
+                            
+                                <li><a href="../../../software/">Software</a></li>
+                            
+                                <li><a href="../../../tips/">Tips</a></li>
+                            
+                                <li><a href="../../../tuto/">Tutorials</a></li>
+                            
+                                <li><a href="../../../wiki/">Wiki</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<img class="full-width" width="100%" src="../../../img/banner4.png"></img>
+
+
+
+<div>
+
+  <div class="col-md-3">
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+          <div id="toc"></div>
+
+        </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-md-8">
+
+    <h1><a href="../../../tuto/rinspace/rinspace_attrmanip/">R in Space - Attribute manipulations</a></h1>
+
+    <h5>April 9, 2018</h5>
+
+    <p> <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="../../../tags/r-in-space"><kbd class="item-tag">R in Space</kbd></a>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/spatial"><kbd class="item-tag">Spatial</kbd></a> </p>
+
+    
+
+
+    
+      <p style = "font-size: 1.8em; margin-top: 20px"> <i class="fa fa-pencil" aria-hidden="true"></i>
+       
+        <a href="../../../about/">David Beauchesne</a> &nbsp;
+       
+        <a href="../../../about/">Marie-Hélène Brice</a> &nbsp;
+       
+        <a href="../../../about/">Nicolas Casajus</a> &nbsp;
+       
+        <a href="../../../about/">Kevin Cazelles</a> &nbsp;
+       
+        <a href="../../../about/">Elliot Dreujou</a> &nbsp;
+       
+        <a href="../../../about/">Steve Vissault</a> &nbsp;
+      
+     <a href="#"></a></p>
+    
+
+
+    
+
+    
+
+
+    <p> <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true" data-text="R in Space - Attribute manipulations">Tweet</a>
+      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </p>
+
+
+    <div class="text-justify">
+      <p>
+      
+      </p>
+    </div>
+
+
+
+
+    <br>
+
+    <div class="text-justify">
+
+      
+<script src="../../../tuto/rinspace/rinspace_attrmanip/index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="spatial-objects-attributes-manipulations" class="section level2">
+<h2>Spatial objects attributes manipulations</h2>
+<p>Now that we know how to import and transform different classes of spatial objects
+in R, we can start manipulating their attributes. In this post, we will
+make a brief overview of some useful basic manipulations that we can perform
+on spatial object attributes. By no means are those examples exhaustive, but
+they constitute common manipulations that are made with spatial objects.</p>
+<p><br/></p>
+<div id="vector-objects" class="section level3">
+<h3>Vector objects</h3>
+<p>For this part, we discuss how to manipulate attributes of objects from the <code>sf</code>
+package. <code>sf</code> objects have the advantage of being structured like data frames,
+making their manipulations more intuitive than for objects of class <code>sp</code>. However,
+if the structure of <code>sp</code> objects is well understood, then the same principles
+will mostly apply.</p>
+<p>Let’s begin by creating an <code>sf</code> points object as seen in the post on
+<a href="">Spatial objects in R</a> <!-- to add --></p>
+<pre class="r"><code>mydata &lt;- data.frame(
+  id = 1:20,
+  long = -82+2*runif(20),
+  lat = 42+2*runif(20),
+  var1 = rnorm(20),
+  var2 = 10*runif(20)
+)
+
+library(sf)</code></pre>
+<pre><code>## Linking to GEOS 3.9.0, GDAL 3.2.1, PROJ 7.2.0</code></pre>
+<pre class="r"><code>spatData &lt;- st_as_sf(mydata,
+                     coords = c(&quot;long&quot;, &quot;lat&quot;),
+                     crs = &quot;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0&quot;)
+
+knitr::kable(head(spatData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>plot(spatData)</code></pre>
+<p><img src="../../../tuto/rinspace/rinspace_attrmanip/index_files/figure-html/sim_points-1.png" width="672" /></p>
+</div>
+<div id="adding-and-removing-attributes" class="section level3">
+<h3>Adding and removing attributes</h3>
+<p>The object we currently have has to variables <code>var1</code> and <code>var2</code>. Additional
+attributes can quickly be added to the attributes table of our objects.</p>
+<pre class="r"><code>spatData$var3 &lt;- runif(20)
+spatData$var4 &lt;- spatData$var1 * spatData$var2
+knitr::kable(head(spatData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="left">geometry</th>
+<th align="right">var3</th>
+<th align="right">var4</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
+<td align="right">0.7659922</td>
+<td align="right">9.3327977</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
+<td align="right">0.9233627</td>
+<td align="right">-13.1693385</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
+<td align="right">0.2053183</td>
+<td align="right">-1.0363916</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
+<td align="right">0.3490653</td>
+<td align="right">-0.6394805</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
+<td align="right">0.3726703</td>
+<td align="right">5.8128685</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
+<td align="right">0.4062502</td>
+<td align="right">1.0306076</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<p>Similarly, unwanted columns can be removed.</p>
+<pre class="r"><code>spatData$var3 &lt;- spatData$var4 &lt;- NULL
+knitr::kable(head(spatData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<p>However, if you have a very big dataset, you may want to remove columns without
+having to write all column names manually! You could do this based on the names
+of the columns you wish to remove or, alternatively, on the names of the
+attributes you wish to keep.</p>
+<pre class="r"><code># Remove last 20 attributes
+for(i in 1:5) spatData &lt;- cbind(spatData, varSup = runif(20))
+knitr::kable(head(spatData))</code></pre>
+<table>
+<colgroup>
+<col width="3%" />
+<col width="11%" />
+<col width="9%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="right">varSup</th>
+<th align="right">varSup.1</th>
+<th align="right">varSup.2</th>
+<th align="right">varSup.3</th>
+<th align="right">varSup.4</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="right">0.8487243</td>
+<td align="right">0.8091955</td>
+<td align="right">0.1044840</td>
+<td align="right">0.3354558</td>
+<td align="right">0.6911664</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="right">0.7396073</td>
+<td align="right">0.3146486</td>
+<td align="right">0.2200441</td>
+<td align="right">0.7882463</td>
+<td align="right">0.9214560</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="right">0.2528796</td>
+<td align="right">0.3915918</td>
+<td align="right">0.9740126</td>
+<td align="right">0.1349120</td>
+<td align="right">0.0131993</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="right">0.3428503</td>
+<td align="right">0.7673011</td>
+<td align="right">0.6336684</td>
+<td align="right">0.8532938</td>
+<td align="right">0.1308096</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="right">0.8249070</td>
+<td align="right">0.8289782</td>
+<td align="right">0.2955275</td>
+<td align="right">0.7012094</td>
+<td align="right">0.9824780</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="right">0.5847032</td>
+<td align="right">0.5597996</td>
+<td align="right">0.5304258</td>
+<td align="right">0.6579064</td>
+<td align="right">0.1436091</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>rem &lt;- colnames(spatData)[4:8]
+spatData &lt;- spatData[, !colnames(spatData) %in% rem]
+knitr::kable(head(spatData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code># Keep id, var1 and var2
+for(i in 1:5) spatData &lt;- cbind(spatData, varSup = runif(20))
+knitr::kable(head(spatData))</code></pre>
+<table>
+<colgroup>
+<col width="3%" />
+<col width="11%" />
+<col width="9%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="27%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="right">varSup</th>
+<th align="right">varSup.1</th>
+<th align="right">varSup.2</th>
+<th align="right">varSup.3</th>
+<th align="right">varSup.4</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="right">0.9149653</td>
+<td align="right">0.2630857</td>
+<td align="right">0.2578204</td>
+<td align="right">0.4041629</td>
+<td align="right">0.7733253</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="right">0.3369910</td>
+<td align="right">0.9887964</td>
+<td align="right">0.8665354</td>
+<td align="right">0.3604829</td>
+<td align="right">0.0442941</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="right">0.8353906</td>
+<td align="right">0.4426284</td>
+<td align="right">0.5973717</td>
+<td align="right">0.5272144</td>
+<td align="right">0.3403896</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="right">0.6417498</td>
+<td align="right">0.6811652</td>
+<td align="right">0.2726596</td>
+<td align="right">0.8755331</td>
+<td align="right">0.4469280</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="right">0.1704178</td>
+<td align="right">0.9477681</td>
+<td align="right">0.4850738</td>
+<td align="right">0.8679383</td>
+<td align="right">0.7945812</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="right">0.9340137</td>
+<td align="right">0.9726622</td>
+<td align="right">0.7927882</td>
+<td align="right">0.8974221</td>
+<td align="right">0.9409012</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>keep &lt;- c(&#39;id&#39;,&#39;var1&#39;,&#39;var2&#39;)
+spatData &lt;- spatData[, keep]
+knitr::kable(head(spatData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+</div>
+<div id="subsets" class="section level3">
+<h3>Subsets</h3>
+<p>You may also wish to subset your object based on certain attribute values. We
+will begin by adding some factorial attributes to our spatial object to discuss
+this in more detail.</p>
+<pre class="r"><code>spatData$fact1 &lt;- paste0(&#39;a&#39;, 1:2) # Create factor with 2 levels
+spatData$fact2 &lt;- paste0(&#39;b&#39;, 1:5) # Create factor with 5 levels
+knitr::kable(head(spatData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="left">geometry</th>
+<th align="left">fact1</th>
+<th align="left">fact2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
+<td align="left">a1</td>
+<td align="left">b1</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
+<td align="left">a2</td>
+<td align="left">b2</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
+<td align="left">a1</td>
+<td align="left">b3</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
+<td align="left">a2</td>
+<td align="left">b4</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
+<td align="left">a1</td>
+<td align="left">b5</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
+<td align="left">a2</td>
+<td align="left">b1</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+<p>The most simple way to subset an attributes table would be to manually select
+the rows that we wish to view. In this instance, let’s say we only wish to
+use the first 10 rows of our data.</p>
+<pre class="r"><code>selectID &lt;- 1:10
+plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
+plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
+<p><img src="../../../tuto/rinspace/rinspace_attrmanip/index_files/figure-html/manualSub-1.png" width="672" /></p>
+<p><br/></p>
+<p>However, subsets based on certain criteria, <em>e.g.</em> all values greater to or
+equal to 0, can be much more efficient to create subsets. These are conditional
+statements and there is a vast body of material available discussing them, so
+we will only present a few examples and invite you to consult other resources
+like <a href="https://stackoverflow.com/">StackOverflow</a> for more specific questions.</p>
+<pre class="r"><code># Select all values for var1 greater to or equal to 0
+selectID &lt;- spatData$var1 &gt;= 0
+plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
+plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
+<p><img src="../../../tuto/rinspace/rinspace_attrmanip/index_files/figure-html/autoSub-1.png" width="672" /></p>
+<pre class="r"><code># var1 smaller than 0 and var2 higher than 5
+selectID &lt;- spatData$var1 &lt; 0 &amp; spatData$var2 &lt; 5
+plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
+plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
+<p><img src="../../../tuto/rinspace/rinspace_attrmanip/index_files/figure-html/autoSub-2.png" width="672" /></p>
+<pre class="r"><code># fact1 equal to a1
+selectID &lt;- spatData$fact1 == &#39;a1&#39;
+plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
+plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
+<p><img src="../../../tuto/rinspace/rinspace_attrmanip/index_files/figure-html/autoSub-3.png" width="672" /></p>
+<pre class="r"><code># fact1 equal to a1 or var1 greater than 0
+selectID &lt;- spatData$fact1 == &#39;a1&#39; | spatData$var1 &gt; 0
+plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
+plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
+<p><img src="../../../tuto/rinspace/rinspace_attrmanip/index_files/figure-html/autoSub-4.png" width="672" /></p>
+<pre class="r"><code># fact2 equal to b3 or b4
+selectID &lt;- spatData$fact2 %in% c(&#39;b3&#39;,&#39;b4&#39;)
+plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
+plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
+<p><img src="../../../tuto/rinspace/rinspace_attrmanip/index_files/figure-html/autoSub-5.png" width="672" /></p>
+<p><br/></p>
+</div>
+<div id="join" class="section level3">
+<h3>Join</h3>
+<p>Joining tables based on their shared id is another common manipulation. This can
+be quickly accomplished using the <code>left_join</code> function from the <code>dplyr</code> package.</p>
+<pre class="r"><code># Create data.frame with id field similar to that in the spatial object
+joinData &lt;- data.frame(id = seq(1, 20, by = 2),
+                       var3 = rnorm(10))
+
+# Join with attributes table of spatial object
+library(dplyr)</code></pre>
+<pre><code>## 
+## Attaching package: &#39;dplyr&#39;</code></pre>
+<pre><code>## The following objects are masked from &#39;package:stats&#39;:
+## 
+##     filter, lag</code></pre>
+<pre><code>## The following objects are masked from &#39;package:base&#39;:
+## 
+##     intersect, setdiff, setequal, union</code></pre>
+<pre class="r"><code>spatData &lt;- left_join(spatData, joinData)</code></pre>
+<pre><code>## Joining, by = &quot;id&quot;</code></pre>
+<pre class="r"><code>knitr::kable(head(spatData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="right">id</th>
+<th align="right">var1</th>
+<th align="right">var2</th>
+<th align="left">fact1</th>
+<th align="left">fact2</th>
+<th align="right">var3</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="right">1</td>
+<td align="right">1.0799657</td>
+<td align="right">8.641754</td>
+<td align="left">a1</td>
+<td align="left">b1</td>
+<td align="right">-0.3912476</td>
+<td align="left">POINT (-81.10036 42.69807)</td>
+</tr>
+<tr class="even">
+<td align="right">2</td>
+<td align="right">-2.0242251</td>
+<td align="right">6.505866</td>
+<td align="left">a2</td>
+<td align="left">b2</td>
+<td align="right">NA</td>
+<td align="left">POINT (-80.83311 43.57589)</td>
+</tr>
+<tr class="odd">
+<td align="right">3</td>
+<td align="right">-0.1960668</td>
+<td align="right">5.285910</td>
+<td align="left">a1</td>
+<td align="left">b3</td>
+<td align="right">0.3002510</td>
+<td align="left">POINT (-80.15665 42.20629)</td>
+</tr>
+<tr class="even">
+<td align="right">4</td>
+<td align="right">-0.1113501</td>
+<td align="right">5.742973</td>
+<td align="left">a2</td>
+<td align="left">b4</td>
+<td align="right">NA</td>
+<td align="left">POINT (-81.06492 43.8947)</td>
+</tr>
+<tr class="odd">
+<td align="right">5</td>
+<td align="right">0.7895549</td>
+<td align="right">7.362210</td>
+<td align="left">a1</td>
+<td align="left">b5</td>
+<td align="right">-0.2407612</td>
+<td align="left">POINT (-80.01044 42.60873)</td>
+</tr>
+<tr class="even">
+<td align="right">6</td>
+<td align="right">0.1909243</td>
+<td align="right">5.397990</td>
+<td align="left">a2</td>
+<td align="left">b1</td>
+<td align="right">NA</td>
+<td align="left">POINT (-80.01858 43.35267)</td>
+</tr>
+</tbody>
+</table>
+<p><br/></p>
+</div>
+<div id="aggregate" class="section level3">
+<h3>Aggregate</h3>
+<p>Information contained in a table can also be used to aggregate</p>
+<pre class="r"><code>aggData &lt;- aggregate(spatData[&#39;var1&#39;], by = list(spatData$fact1), FUN = sum)
+knitr::kable(head(aggData))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Group.1</th>
+<th align="right">var1</th>
+<th align="left">geometry</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">a1</td>
+<td align="right">7.597874</td>
+<td align="left">MULTIPOINT ((-81.87412 42.0…</td>
+</tr>
+<tr class="even">
+<td align="left">a2</td>
+<td align="right">3.911068</td>
+<td align="left">MULTIPOINT ((-81.66379 43.1…</td>
+</tr>
+</tbody>
+</table>
+<pre class="r"><code>plot(aggData, cex = abs(aggData$var1))</code></pre>
+<p><img src="../../../tuto/rinspace/rinspace_attrmanip/index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+</div>
+</div>
+<div id="raster-objects" class="section level2">
+<h2>Raster objects</h2>
+<p>Attributes tables associated with raster objects can also be manipulated, although
+the data attached to a raster will typically be less amenable to changes and
+multiple parameters.</p>
+<div id="setting-values" class="section level3">
+<h3>Setting values</h3>
+</div>
+<div id="subsets-1" class="section level3">
+<h3>Subsets</h3>
+</div>
+<div id="section" class="section level3">
+<h3></h3>
+</div>
+</div>
+
+
+
+    
+
+    <center>
+
+      <br><br>
+
+      
+        <a href = "/tuto/rinspace/rinspace_basicmapping/"><i class="fa fa-arrow-circle-left fa-3x" aria-hidden="true"></i></a>
+      
+
+      &nbsp;&nbsp;
+      
+        <a href = "/tuto/rinspace/rinspace_homepage/"><i class="fa fa-home fa-3x" aria-hidden="true"></i></a>
+      
+
+      &nbsp;&nbsp;
+      
+        <a href = "/tuto/rinspace/rinspace_geomanip/"><i class="fa fa-arrow-circle-right fa-3x" aria-hidden="true"></i></a>
+      
+    
+
+    </center>
+
+    </div>
+
+
+    <br>
+
+  
+  <script>
+    var $jq = jQuery.noConflict();
+      $jq(function() {
+          var toc = $jq("#toc").tocify({
+            selectors: "h2, h3",
+            scrollTo: 50
+          }).data("toc-tocify");
+    });
+  </script>
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+  
+  
+
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <div id="disqus_thread"></div>
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/">R as a ruler? How to calculate distances between geographical objects</a> <small>April 8, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/gis"><kbd class="item-tag">GIS</kbd></a>  <a href="../../../tags/utils"><kbd class="item-tag">utils</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/">Creating empty data frames with dfTemplate() and dfTemplateMatch()</a> <small>February 3, 2019</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/data-frame"><kbd class="item-tag">data frame</kbd></a>  <a href="../../../tags/data-frames-generation"><kbd class="item-tag">data frames generation</kbd></a>  <a href="../../../tags/row-binding"><kbd class="item-tag">row binding</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../2018/12/03/a-few-thoughts-on-r-packages/">A few thoughts on R packages</a> <small>December 3, 2018</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../tags/github"><kbd class="item-tag">GitHub</kbd></a>  <a href="../../../tags/cran"><kbd class="item-tag">CRAN</kbd></a>  <a href="../../../tags/ropensci"><kbd class="item-tag">rOpenSci</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+
+
+
+  <script>
+    
+
+
+    var disqus_config = function() {
+      this.page.url = "https://insileco.github.io" + "/tuto/rinspace/rinspace_attrmanip/"; 
+      this.page.identifier = "R in Space - Attribute manipulations"; 
+    };
+
+    (function() { 
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://insileco.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+
+</div>
+
+
+</div>
+
+        <footer>
+
+          <script src="//yihui.name/js/math-code.js"></script>
+          <script async
+            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+          </script>
+
+
+            <p class="copyright text-muted">&copy; 2017-2021 inSileco | All rights reserved | Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,  <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+
+        </footer>
+
+    </body>
+
+</html>
+

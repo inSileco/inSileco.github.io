@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+
+        <title>A few thoughts on R packages</title>
+
+        <style>
+
+    html body {
+        font-family: Lato, sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="../../../../css/main.css">
+
+
+
+  <link rel="stylesheet" href="../../../../css/academicons.min.css">
+
+  <link rel="stylesheet" href="../../../../css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="../../../../css/insileco.css">
+
+  <link rel="stylesheet" href="../../../../css/jquery.tocify.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+  <script src="../../../../js/jquery-1.8.3.min.js"></script>
+
+  <script src="../../../../js/jquery-ui-1.9.1.custom.min.js"></script>
+
+  <script src="../../../../js/jquery.tocify.min.js"></script>
+
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'UA-109508556-1');
+        </script>
+        
+
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">A few thoughts on R packages</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="../../../../">Home</a></li>
+                            
+                                <li><a href="../../../../about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="../../../../post/">Posts</a></li>
+                            
+                                <li><a href="../../../../software/">Software</a></li>
+                            
+                                <li><a href="../../../../tips/">Tips</a></li>
+                            
+                                <li><a href="../../../../tuto/">Tutorials</a></li>
+                            
+                                <li><a href="../../../../wiki/">Wiki</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<img class="full-width" width="100%" src="../../../../img/banner4.png"></img>
+
+
+
+<div>
+
+  <div class="col-md-3">
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+          <div id="toc"></div>
+
+        </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-md-8">
+
+    <h1><a href="../../../../2018/12/03/a-few-thoughts-on-r-packages/">A few thoughts on R packages</a></h1>
+
+    <h4>December 3, 2018</h4>
+
+    <p>
+      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../../tags/github"><kbd class="item-tag">GitHub</kbd></a>  <a href="../../../../tags/cran"><kbd class="item-tag">CRAN</kbd></a>  <a href="../../../../tags/ropensci"><kbd class="item-tag">rOpenSci</kbd></a> 
+      <br>
+      
+       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="../../../../rpkgs/devtools"><kbd class="item-tag2">devtools</kbd></a>  <a href="../../../../rpkgs/testthtat"><kbd class="item-tag2">testthtat</kbd></a>  <a href="../../../../rpkgs/pkgdown"><kbd class="item-tag2">pkgdown</kbd></a>  <a href="../../../../rpkgs/goodpractice"><kbd class="item-tag2">goodpractice</kbd></a>  <a href="../../../../rpkgs/rcites"><kbd class="item-tag2">rcites</kbd></a>  <a href="../../../../rpkgs/roxygen2"><kbd class="item-tag2">roxygen2</kbd></a>  <a href="../../../../rpkgs/usethis"><kbd class="item-tag2">usethis</kbd></a> 
+      
+    </p>
+
+    
+      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+       
+        <a href="../../../../about/">Kevin Cazelles</a> &nbsp;
+      
+     <a href="#"></a></p>
+    
+
+    
+      <p> <i class="fa fa-check-square" aria-hidden="true", title="Reviewer(s)"></i>
+       
+      <a href="../../../../about/">Marie-Hélène Brice</a> &nbsp;
+      
+      <a href="#"></a></p>
+    
+
+    <p>
+    
+    
+    
+      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=18min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+    
+    
+    
+      <a href = "http://www.R-bloggers.com">
+      <img src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
+      <a>
+     &nbsp;
+    
+    
+      <a href = "https://creativecommons.org/licenses/by/4.0/">
+      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+      </a>
+    
+    &nbsp;&nbsp;
+    <a href="http://twitter.com/share?url=%2f2018%2f12%2f03%2fa-few-thoughts-on-r-packages%2f&text=A%20few%20thoughts%20on%20R%20packages" target="_blank">
+      <img src='https://img.shields.io/twitter/url?style=social&url=%2f2018%2f12%2f03%2fa-few-thoughts-on-r-packages%2f?link=http://left&link=http://right}'>
+    </a>
+  </p>
+
+    <div class="text-justify">
+      <p>
+      
+      </p>
+    </div>
+
+
+
+    <br>
+
+    <div class="text-justify">
+
+      <p><a href="https://www.linkedin.com/in/jonasgeschke/">Jonas Geschke</a>,
+<a href="https://bartomeuslab.com/">Ignasi Bartomeus</a> and I have recently released <a href="https://cran.r-project.org/web/packages/rcites/index.html">rcites v-1.0.0</a> on CRAN, a R client for the <a href="https://api.speciesplus.net/">Species+ API</a> after it has been reviewed by <a href="https://rOpenSci.org/">rOpenSci</a>. In this post, I would like to share this recent experience as well as several valuable resources.</p>
+<br>
+
+<center>
+  <figure>
+    <img class="mg-bot" src="../../../../2018/12/03/a-few-thoughts-on-r-packages/rcites_cran.png" alt="" width="100%" >
+    <figcaption><span class="highlight"></span></figcaption>
+  </figure>
+</center>
+
+
+
+<br>
+<h2 id="what-is-an-r-package">What is an R package?</h2>
+<p>In the introduction of his book <a href="http://r-pkgs.had.co.nz/intro.html">R packages</a>, Hadley Wickham wrote:</p>
+<blockquote>
+<p>A package bundles together code, data, documentation, and tests, and is easy to share with others.</p>
+</blockquote>
+<p>I like the way the famous R developer presents a package, it is straightforward and crystal clear. Interestingly enough, it describes what a package <em>does</em>, not what a package <em>is</em>. Defining an R package is actually harder than I thought! I remember the first time, I&rsquo;ve tried to characterize an R package, I tried to answer a couple of questions and found the answers quite surprising:</p>
+<ul>
+<li>Are R packages extensions available on <a href="https://cran.r-project.org/">CRAN</a> or <a href="https://www.bioconductor.org/">Bioconductor</a>? <strong>Not necessarily!</strong></li>
+</ul>
+<p>The answer sounds obvious nowadays with over than <a href="https://rdrr.io/">40K R packages on Github</a>, but 10 years ago it wasn&rsquo;t. That said, we shall recall that an R package that only exists on a single computer still is an R package.</p>
+<ul>
+<li>Should a package have a minimum number of functions? <strong>No</strong></li>
+</ul>
+<p>Even among popular packages, the number of functions is not a criterion. For instance, <a href="https://cran.r-project.org/web/packages/vegan/">vegan</a> exports 192 functions (as of version 2.5.2) while <a href="https://cran.r-project.org/web/packages/png/">png</a> only includes two functions.</p>
+<ul>
+<li>Should a package be designed to perform a specific analysis? <strong>No</strong></li>
+</ul>
+<p>Two comments here. First, R packages do many things: they <a href="../../../../tuto/rinspace/rinspace_homepage/index.html">can turn R into a powerful Geographic Information System</a> or make your R session crash every time you load it (see <a href="https://github.com/romainfrancois/trump">trump</a>)! Packages such as <a href="https://cran.r-project.org/web/packages/ape/">ape</a> provide try to be as exhaustive as possible for a certain type of analysis while other such as <a href="https://cran.r-project.org/web/packages/Hmisc/">Hmisc</a> are sets of miscellaneous functions. Second, it sometimes make more sense for development purposes to split the full pipeline into several packages so that more than one package are required for certain analysis.</p>
+<p>So <strong>what is an R package?</strong> Well, my own definition would be something along this line:</p>
+<blockquote>
+<p>A set of files that passes the command <code>R CMD INSTALL</code>.</p>
+</blockquote>
+<p>From this definition, one should understand that an R package does not perform
+any analysis correctly. Rather, an R package is an organized set of files that
+passes a set of tests, <em>a lot of tests</em>!</p>
+<h2 id="why-write-an-r-package">Why write an R package?</h2>
+<p>This is another crucial question. In <a href="http://r-pkgs.had.co.nz/intro.html">his introduction</a>,
+Hadley Wickham emphasized that R packages are a standard way to organize your
+project: it saves you time, gives you an opportunity to acquire good practices when writing functions and makes the sharing of your code easy.
+Once you get used to create and handle R packages, it becomes natural to use
+the standard file organisation to structure your project. With this habit, the question &ldquo;where is this file?&rdquo; vanishes and you stop using <code>setwd()</code>. Note that, some authors propose similar structure of R projects, e.g. <a href="https://nicercode.github.io/blog/2013-04-05-projects/">this post on nicercode</a>, but you&rsquo;ll need to tweak a little bit if you want to test your code with standard tools.</p>
+<p>I would like to point out that one of the main reasons of creating a package is for efficiency purposes, not necessarily to submit it to the CRAN. To me, this is <em>extremely</em> important. This means that you do not need to have a good reason to write a package, if you work regularly with R you can write packages, whenever you decide to turn your set of functions for a particular project into an actual package, then the step to do so will be small. Of course the sharing of your package is an important question, but I think this is different question: <em>If you write a package it does not imply you&rsquo;ll share it</em>.</p>
+<h2 id="why-share-your-r-package">Why share your R package?</h2>
+<p>There are different answers to this question and depending on the answer, you
+may consider different options to share your code. I do not intend to be exhaustive here rather I provide three examples I am familiar with.</p>
+<h3 id="1--my-personal-helper-functions">1- My personal helper functions</h3>
+<p>When I keep repeating the same lines of code in a project, I write a function.
+Sometimes, the function can actually be used in different projects. I used to write this kind of function in a dedicated <code>.R</code> file that was loaded during my custom startup process (see <code>?Startup</code> in R). Three years ago, I decided to make a package out of these functions. There were three main reasons for doing so. First, I was still learning how to write packages, so this was another opportunity to practice. Second, I wanted to document these functions. Last but not least, I thought these functions might be useful to other people so writing an R package was an efficient way to share them. The package is now on GitHub: <a href="https://github.com/inSileco/inSilecoMisc">inSilecoMisc</a>, everyone can use it, borrow one or more functions for his own project, report issues, etc. Even though the package is exhaustively tested, <a href="https://github.com/inSileco/inSilecoMisc">inSilecoMisc</a> remains a collection of sub-optimal functions which according to me does not deserve to be published on the CRAN, GitHub and the additional web services I use cover all my needs!</p>
+<h3 id="2--the-code-to-reproduce-a-paper">2- The code to reproduce a paper</h3>
+<p>Reproducible science matters to me, when I publish a paper I cannot see any reason to not share the analysis pipeline with the rest of the scientific community: it demands a little more of my time to save a huge amount of time for them. To do so, I now create a small package that contains the analysis. The first time I did so was for a paper we did with a couple of colleagues where we compared <a href="https://www.frontiersin.org/articles/10.3389/fevo.2017.00175/ful">media coverage for climate change and biodiversity</a>. Unfortunately, we were not able to make the gathering of data reproducible (believe me, we&rsquo;ve tried, the only solution was to work on private API, so, making the code not reproducible for the majority of researchers), we however turned the data collected into <code>.Rdata</code> files and the set of functions were stored on a GitHub repository: <a href="https://github.com/KevCaz/burningHouse">burningHouse</a>. This ensures the interoperability of the package, shows to other researchers how we did it the analysis and let them report issues with the code. Moreover, <a href="https://zenodo.org/">Zenodo</a> makes it simple to assign a DOI to the repository so that people can reference this work if needed. Note that it becomes quite common for researchers to share their code that way, see for instance <a href="https://github.com/hyenaproject/vullioud2018">this repository</a> associated with this <a href="https://doi.org/10.1038/s41559-018-0718-9">nice paper about the girl power in the clans of Hyenas</a>.</p>
+<h3 id="3--a-r-client-for-a-web-api">3- A R-Client for a web API</h3>
+<p>A year ago now, I was in a hackathon in Ghent (my first hackathon) and I sat on the same table as <a href="https://www.linkedin.com/in/jonasgeschke/">Jonas Geschke</a>, <a href="https://bartomeuslab.com/">Ignasi Bartomeus</a> (among other colleagues). We worked intensively on a prototype of a package listed in <a href="https://github.com/rOpenSci/wishlist/issues/29">the wishlist of rOpenSci</a>:
+an R-Client to the CITES-API. After we completed the first version, we <a href="https://github.com/rOpenSci/onboarding/issues/244">submitted it to the review process of rOpenSci</a>. And now <a href="https://github.com/rOpenSci/rcites">rcites is part of rOpenSci</a> (more about this story <a href="https://github.com/rOpenSci/roweb2/pull/344#issuecomment-442945039">here</a>). So here is a tangible example where the package is worth making the CRAN (I think so) and even a dedicated organization (<a href="https://github.com/ropensci">rOpenSci</a>) on GitHub. The package is general, has a specific goal, helps people retrieving data to do science and helps them to do it in a reproducible way. So it should be broadly shared. Plus, making the package part of an organization such as rOpenSci means that the package will likely keep being maintained properly.</p>
+<h2 id="how-to-proceed">How to proceed?</h2>
+<p>Below, I give a brief overview of how we proceeded for <a href="https://cran.r-project.org/web/packages/rcites/index.html">rcites</a>. Note that if you are interested in writing an R package, you must read more about what I am quickly mentioning below, so scroll down to the end of this post where I listed a couple of very helpful resources. After 3 years of experience with packages, I do not frequently have to look at documentation, but when I do, I always find the answers in <a href="http://r-pkgs.had.co.nz/">R packages</a> or
+<a href="http://adv-r.had.co.nz/">Advanced R</a> both by Hadley Wickham or in the exhaustive and technical documentation <a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html">Writing R extensions</a> available on the CRAN.</p>
+<h3 id="local-development">Local development</h3>
+<p>I personally use the set of packages developed by Hadley Wickham and colleagues. His book <a href="http://r-pkgs.had.co.nz/">R packages</a> explains how to write your package with them. Installing these packages and start working on package is a simple as the line of command below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">install.packages</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;devtools&#34;</span>, <span style="color:#e6db74">&#34;roxygen2&#34;</span>, <span style="color:#e6db74">&#34;testthat&#34;</span>, <span style="color:#e6db74">&#34;knitr&#34;</span>))
+</code></pre></div><p>Briefly:</p>
+<ul>
+<li><a href="https://cran.r-project.org/web/packages/devtools/index.html">roxygen2</a>: document the functions;</li>
+<li><a href="https://cran.r-project.org/web/packages/devtools/index.html">testthat</a>: test your code;</li>
+<li><a href="https://cran.r-project.org/web/packages/devtools/index.html">knitr</a>: build the vignette;</li>
+<li><a href="https://cran.r-project.org/web/packages/devtools/index.html">devtools</a>: rule them all! (<a href="https://www.tidyverse.org/articles/2018/10/devtools-2-0-0/">version 2.0</a> has recently been released).</li>
+</ul>
+<p>In a nutshell, the workflow with this setup looks like this:</p>
+<pre><code>1-&quot;fix/write code&quot; =&gt; 2-load_all() =&gt; 3-document() =&gt; 4-test() =&gt; 5-check()
+</code></pre><p>Basically, you follow these steps for every feature you are adding to your package and go back to step 1- if one of the subsequent steps fails. The package <a href="https://github.com/r-lib/usethis">usethis</a> is also worth mentioning as it automates many steps of the process. Moreover, <code>package.skeleton()</code>
+creates a package skeleton for you and <a href="http://dirk.eddelbuettel.com/">Dirk Eddelbuettel</a> has extended the function for packages that are linked to <a href="http://www.rcpp.org/">Rcpp</a>, see
+<a href="https://github.com/RcppCore/Rcpp/blob/master/R/Rcpp.package.skeleton.R"><code>Rcpp.package.skeleton()</code></a>.</p>
+<p>I would like to conclude this part by pointing out that using the set of packages Hadley Wickham and colleagues isn&rsquo;t mandatory, but remember, their developers have cleverly automated many steps for writing R packages, so why not use the fruit of their labor?</p>
+<h3 id="version-control-and-continuous-integration">Version control and Continuous Integration</h3>
+<p>Web-based <a href="https://git-scm.com/"><i class="fa fa-git" aria-hidden="true"></i></a>-repository managers such (GitHub <i class="fa fa-github" aria-hidden="true"></i>, GitLab <i class="fa fa-gitlab" aria-hidden="true"></i>, Bitbucket <i class="fa fa-bitbucket" aria-hidden="true"></i>, etc.) are very powerful tools to develop your packages
+especially to work with collaborators, get feed back and add web-services to improve your workflow. First, <a href="https://git-scm.com/"><i class="fa fa-git" aria-hidden="true"></i></a>
+it-self is a fantastic tool (beyond the scope of this post, I recommend you the reading of <a href="https://git-scm.com/book/en/v2">Pro Git</a>). Second, by hosting your package on GitHub, your are basically sending an invitation at large to contribute to your project: &ldquo;hey devs, this is the project I am working on, if you are interested, please star, clone, fork, report issues, submit pull requests, etc.&quot;! Furthermore, once on GitHub, people can easily install your package directly from R:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">devtools<span style="color:#f92672">::</span><span style="color:#a6e22e">install_github</span>(<span style="color:#e6db74">&#34;rOpenSci/rcites&#34;</span>)
+</code></pre></div><p>Last, the number of <a href="https://github.com/marketplace">web-services</a> you can add to your repository is tremendous (sign in with GitHub and let the <a href="https://oauth.net/2/">protocol OAuth 2.0</a> do the rest). There are two kind services I always use for all my R packages: <a href="https://en.wikipedia.org/wiki/Continuous_integration">continuous integration (CI)</a> and <a href="https://en.wikipedia.org/wiki/Code_coverage">code coverage</a>. I would like to expand a little bit on this two.</p>
+<h4 id="continuous-integration">Continuous integration</h4>
+<p>I personally use <a href="http://docs.travis-ci.com/user/languages/r/">Travis</a> that covers MacOS +  Ubuntu and <a href="https://github.com/krlmlr/r-appveyor">AppVeyor</a> for Windows. As <a href="https://www.slant.co/topics/186/~best-hosted-continuous-integration-services#8">continuous integration services</a> they allow me to check that my package can be seamlessly built on different systems freshly installed, for a specific version of R. I am very grateful to developers that makes the use of this service really easy!</p>
+<h4 id="code-coverage">Code coverage</h4>
+<p>The code coverage is the percentage of coding lines checked by your
+<a href="https://en.wikipedia.org/wiki/Unit_testing">unit testing</a>. Unit testing plays two critical roles. First, it checks that your code do what you want it to do. Second, once your tests are already written, they are extremely useful when you are fixing a bug, restructuring the code or adding new features as you can immediately be aware whether or not the changes you are doing affect the behavior of the other part of your package and therefore unit testing avoids multiplying bugs via side effects brought by the new lines of code. I personally use <a href="https://cran.r-project.org/web/packages/testthat/index.html">testhat</a> to write my tests and <a href="https://codecov.io/">codecov</a> to show the code coverage and benefit from the neat visualizations it automatically produces (see for instance the <a href="https://codecov.io/gh/rOpenSci/rcites">results for rcites</a>). I must also mention that I&rsquo;ve recently tried <a href="https://coveralls.io/">coveralls</a> and I like its design very much, so I may use it more in a near future!
+Many thanks to <a href="https://github.com/jimhester">Jim Hester</a> for <a href="https://cran.r-project.org/web/packages/covr/vignettes/how_it_works.html">his work on the integration of these services for R packages</a>.</p>
+<h3 id="license">License</h3>
+<p>Even though I am no expert on this topic, I can tell that choosing your license matters it specifies what people can do with your code. I recommend you to go and visit this website: <a href="http://choosealicense.com">&ldquo;ChooseALicense&rdquo;</a> and if this question is critical to your project, you should better ask somebody that is knowledgeable about <a href="https://en.wikipedia.org/wiki/Intellectual_property">Intellectual Property (IP)</a>.</p>
+<h3 id="release-on-github-and-on-the-cran">Release on GitHub and on the CRAN</h3>
+<p>This topic is also well covered in Hadley&rsquo;s book, so I suggest you read <a href="r-pkgs.had.co.nz/release.html">this chapter</a>.
+A release is an achievement, you have reached a milestone and the package works great, so you are basically spreading the news &ldquo;I/we&rsquo;ve reached a milestone guys, here it is!&quot;. Doing a release is as simple as changing the number of the version in the <code>DESCRIPTION</code> file. That said, there are ways of making it more official and more useful.</p>
+<p>First on GitHub, you can <a href="https://help.github.com/articles/creating-releases/">create releases</a>. After editing the version number in <code>DESCRIPTION</code>, you can push and create a release and even add a DOI with the version via <a href="https://zenodo.org/">Zenodo</a>. You can also submit your package to the <a href="https://cran.r-project.org/">CRAN</a> or <a href="https://www.bioconductor.org/">Bioconductor</a> which demands a little more work.
+Either way, at this stage you must choose a version number. Easy peasy? Yes, but this choice does matter. It is all about making the numbers used as meaningful as possible to provide useful landmarks as you keep on developing your package. <a href="http://semver.org">Semantic Versioning</a> does a great work at explaining this, check this website out! I also suggest that you spend some time thinking about how useful it is to make the <a href="https://en.wikipedia.org/wiki/TeX">version number converging to pi</a>.</p>
+<p>I have no experience submitting my package to <a href="https://www.bioconductor.org/">Bioconductor</a>. I can only tell about the <a href="https://cran.r-project.org/submit.html">CRAN</a>. I&rsquo;ll be brief as you can read how to do so in <a href="r-pkgs.had.co.nz/release.html">Hadley&rsquo;s book</a>:</p>
+<ol>
+<li>
+<p>You must test your package on the main platforms (MacOS, Windows, Linux) and report warnings/notes if any. Travis and AppVeyor I introduced above are very useful for this, if they are part of your workflow, basically this step is done, I however recommend to use <a href="https://win-builder.r-project.org/">win-builder</a> (one command line <code>devtools::build_win()</code>) and also to have a look at <a href="https://builder.r-hub.io/">the r-hub builder</a>.</p>
+</li>
+<li>
+<p>You must write the results in <code>cran-comments.md</code> where you must mention if it is your first submission and if your package has downstream dependencies.</p>
+</li>
+</ol>
+<p>Below is the <a href="https://github.com/rOpenSci/rcites/blob/master/cran-comments.md">most recent one for rcites</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-md" data-lang="md"><span style="color:#75715e">## This is our second submission
+</span><span style="color:#75715e"></span>
+<span style="color:#75715e">## Test environments
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">*</span> local Debian testing (4.18.0-2-amd64), R 3.5.1
+<span style="color:#66d9ef">*</span> MacOSX 10.13.3 (on Travis-ci), R:release
+<span style="color:#66d9ef">*</span> Ubuntu 14.04 (on Travis-ci), R 3.4.4, R:release, R:devel
+<span style="color:#66d9ef">*</span> win-builder (R:release and R:devel)
+
+
+<span style="color:#75715e">## R CMD check results (win-builder)
+</span><span style="color:#75715e"></span>
+There were no ERRORs, WARNINGs or NOTEs.
+
+Installation time in seconds: 7
+Check time in seconds: 99
+Status: OK
+R Under development (unstable) (2018-11-12 r75592)
+
+
+<span style="color:#75715e">## Downstream dependencies
+</span><span style="color:#75715e"></span>
+There are currently no downstream dependencies for this package.
+</code></pre></div><p>Once done, you are ready to submit, so thanks to <a href="https://cran.r-project.org/web/packages/devtools/">devtools</a>, just one command line:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">devtools<span style="color:#f92672">::</span><span style="color:#a6e22e">submit_cran</span>()
+</code></pre></div><p>After this, you&rsquo;ll receive an email (the one you wrote in the maintainer field of <code>DESCRIPTION</code>) to confirm the submission. You may receive emails from people that manage the CRAN because of issues or potential improvements. So far, they have given me one good advice: using <code>\donttest{}</code> instead of commenting out examples that cannot be tested on the CRAN.</p>
+<h2 id="why-submit-your-package-to-a-peer-review-process">Why submit your package to a peer review process?</h2>
+<p>Let&rsquo;s assume your package is already on GitHub and the built passes on both Travis and Appveyor and that the code coverage is above 90%, is it enough? Does that mean you wrote a good package? What is a good package? To me, a good package does not need to be among most downloaded ones but rather one that is well coded. There are a set of criteria that can actually be objectively evaluated:</p>
+<ul>
+<li>
+<p><strong>good practice</strong>: is your package compliant to good practices? Given the number of ways R offers to do the same things, e.g. <code>&lt;-</code> or <code>=</code> to assign a value to a variable (that puzzles some people), it is recommended to follow good practice. <a href="https://github.com/MangoTheCat/goodpractice">goodpractice</a> checks if your package follows them. For instance, <code>goodpractice::gp()</code> checks that you are using <code>&lt;-</code> rather than <code>=</code>, that your lines of code do not exceed 80 character, that you are using <code>TRUE</code> and <code>FALSE</code> instead of <code>T</code> and <code>F</code>, etc..</p>
+</li>
+<li>
+<p><strong>readability</strong> is your code well-commented and easy to understand? This determines how easy it would be for new contributors to understand your code and thus how easy it would be for them to contribute. Note that for efficiency purposes, some steps may sometimes be hard to understand, in such case, you must comment how you did it and why, this is also relevant for the future you.</p>
+</li>
+<li>
+<p><strong>Dependencies</strong>: there is nothing wrong with <a href="http://www.stat.tugraz.at/AJS/ausg121/121Hornik.pdf">depending on other packages</a>. However,
+<a href="https://recology.info/2018/10/limiting-dependencies/">being parsimonious and using adequate package matter</a> (the <a href="https://en.wikipedia.org/wiki/Occam%27s_razor">Occam&rsquo;s razor</a> version for packages). The first release of <a href="https://cran.r-project.org/web/packages/rcites/">rcites</a> imported <a href="https://cran.r-project.org/web/packages/data.table/">data.table</a>. During the review of the package <a href="https://github.com/noamross">Noam Ross</a> suggested that data.table is actually used for efficiency purposes and that in the context of <a href="https://cran.r-project.org/web/packages/rcites/">rcites</a>, it was an extra dependency for no real benefice, which is true, so we changed this.</p>
+</li>
+<li>
+<p><strong>Code redundancy</strong>: is your code a bunch of copy paste or is it well-designed so that it avoids redundancy and makes the debug efficient? This may sound technical but a code well-structured is also a code that is easy to debug and to further develop.</p>
+</li>
+<li>
+<p><strong>Efficiency</strong> is your code efficient? There are many tips given by Colin Gillespie and Robin Lovelace in <a href="https://csgillespie.github.io/efficientR/">Efficient R programming</a>, have a look!</p>
+</li>
+<li>
+<p><strong>User experience</strong> Never wondered why Hadley&rsquo;s packages are among the most popular ones? Well, he cares a lot about the users. I am sure he thinks a lot about how people will use a package and how to make it as intuitive as possible. Moreover, he exhaustively documents his works. This is a critical part. Making your package user friendly is about its design and documenting your package. Without a good documentation, you&rsquo;ll miss your shot. Build vignettes! Explain carefully how your package works, build a website! You can no longer say that this is hard because <a href="https://pkgdown.r-lib.org/">pkgdown</a> makes this real easy!</p>
+</li>
+</ul>
+<p>To evaluate all these aspects, you (still) need human reviewers! That&rsquo;s why I value so much initiatives such as <a href="https://ropensci.org/">rOpenSci</a>, their members <a href="https://ropensci.org/blog/2017/09/01/nf-softwarereview/">review packages</a>, advertise the packages they&rsquo;ve reviewed, write tutorials and <a href="https://ropensci.org/blog/"> blog on what they are doing</a>. Our experience was awesome, we had very positive feed back, very clever suggestions that made <a href="https://github.com/ropensci/rcites">rcites</a> a better package. I would love to say more about it but guess what, the review process  in 100% transparent, so check out what really happened <code>=&gt;</code> <a href="https://github.com/ropensci/onboarding/issues/244"><img src="https://badges.ropensci.org/244_status.svg" alt="ROpenSci status"></a>. You may wonder whether your package is in the scope of rOpenSci? How to submit your package? Well, they are completing a book to answer all this question, <a href="https://ropensci.github.io/dev_guide/">check it out</a>! If your package is not in rOpenSci book, you have other options such as <a href="https://joss.theoj.org">The Journal of Open Source Software (JOSS)</a> or <a href="https://www.jstatsoft.org/index">Journal of statistical software</a>. Note that <a href="https://ropensci.org/blog/2017/11/29/review-collaboration-mee/">rOpenSci has Software Review Collaboration with Methods in Ecology and Evolution</a> and with JOSS. So in our case, it meant that <a href="https://joss.theoj.org/papers/ad23e358f208568c4913cf5fb99a030d">our JOSS paper</a> was accepted after the review completed by rOpenSci.</p>
+<p>There are <a href="https://cran.r-project.org/web/packages/">thousands of packages on the CRAN</a>, I personally
+think that it is worth sending packages of good quality (again quality means that the package does what it was meant to do and does it well). After this experience, I&rsquo;ll always do my best to get reviews of the code before sending the package to the CRAN. People are sometimes wondering how to <a href="https://simplystatistics.org/2015/11/06/how-i-decide-when-to-trust-an-r-package/">trust an R package</a>, getting packages peer-reviewed is definitively a good solution.
+For now on, my personal approach with R packages will be:</p>
+<ol>
+<li>Development of GitHub (or similar);</li>
+<li>Review;</li>
+<li>Development until package accepted;</li>
+<li>Submit first version to CRAN;</li>
+<li>Advertise <i class="fa fa-twitter" aria-hidden="true"></i>, blog, etc.</li>
+<li>Regular life cycle: new features/ fixing bugs / new release on CRAN when ready / keep advertising.</li>
+</ol>
+<h2 id="curated-list-of-resources-mentioned-in-the-post">Curated list of resources mentioned in the post</h2>
+<h3 id="packages">Packages</h3>
+<ul>
+<li><a href="https://github.com/r-lib/devtools/issues">devtools</a></li>
+<li><a href="https://github.com/r-lib/usethis">usethis</a></li>
+<li><a href="https://github.com/r-lib/pkgdown">pkgdown</a></li>
+<li><a href="https://github.com/MangoTheCat/goodpractice">goodpractice</a></li>
+</ul>
+<h3 id="builders">Builders</h3>
+<ul>
+<li><a href="https://r-hub.github.io/rhub/">r-hub</a> see <a href="https://builder.r-hub.io/">https://builder.r-hub.io/</a></li>
+<li><a href="https://win-builder.r-project.org/">win-builder</a></li>
+</ul>
+<h3 id="documentation">Documentation</h3>
+<ul>
+<li><a href="http://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/">&ldquo;Writing an R package from scratch&rdquo; by Hilary Parker</a> (that actually is the first thing I read on this topic)</li>
+<li><a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html">Writing R extension, on the CRAN</a></li>
+<li><a href="http://r-pkgs.had.co.nz/">R packages by Hadley Wickham</a></li>
+<li><a href="https://rOpenSci.github.io/dev_guide/">rOpenSci Packages: Development, Maintenance, and Peer Review</a></li>
+<li><a href="http://adv-r.had.co.nz/">Advanced R by Hadley Wickham</a></li>
+<li><a href="https://csgillespie.github.io/efficientR/index.html">Efficient R programming by Colin Gillespie Robin Lovelace</a></li>
+<li><a href="https://git-scm.com/book/en/v2">Pro Git</a></li>
+</ul>
+<h3 id="journals">Journals</h3>
+<ul>
+<li><a href="https://journal.r-project.org/">R Journal</a></li>
+<li><a href="https://joss.theoj.org/">The Journal of Open Source Software (JOSS)</a></li>
+<li><a href="https://besjournals.onlinelibrary.wiley.com/journal/2041210x">Methods in Ecology and Evolution (MEE)</a>, <a href="https://rOpenSci.org/blog/2017/11/29/review-collaboration-mee/">it partnered up with rOpenSci</a></li>
+</ul>
+<h3 id="misc">Misc</h3>
+<ul>
+<li><a href="https://resources.rstudio.com/rstudio-conf-2018/you-can-make-a-package-in-20-minutes-jim-hester">You can make a package in 20 minutes</a></li>
+</ul>
+<br>
+<h4 id="thats-all-folks">That&rsquo;s all folks!</h4>
+
+
+
+    
+
+    </center>
+
+    </div>
+
+      <br>
+
+  
+  <script>
+    var $jq = jQuery.noConflict();
+      $jq(function() {
+          var toc = $jq("#toc").tocify({
+            selectors: "h2, h3",
+            scrollTo: 50
+          }).data("toc-tocify");
+    });
+  </script>
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+  
+  
+
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <div id="disqus_thread"></div>
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../../2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/">R as a ruler? How to calculate distances between geographical objects</a> <small>April 8, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/gis"><kbd class="item-tag">GIS</kbd></a>  <a href="../../../../tags/utils"><kbd class="item-tag">utils</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../../2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/">Creating empty data frames with dfTemplate() and dfTemplateMatch()</a> <small>February 3, 2019</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/data-frame"><kbd class="item-tag">data frame</kbd></a>  <a href="../../../../tags/data-frames-generation"><kbd class="item-tag">data frames generation</kbd></a>  <a href="../../../../tags/row-binding"><kbd class="item-tag">row binding</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../../2018/11/18/non-linear-regression-with-nls/">Non linear regression with nls()</a> <small>November 18, 2018</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/regression"><kbd class="item-tag">regression</kbd></a>  <a href="../../../../tags/nls"><kbd class="item-tag">nls</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+
+
+
+  <script>
+    
+
+
+    var disqus_config = function() {
+      this.page.url = "https://insileco.github.io" + "/2018/12/03/a-few-thoughts-on-r-packages/"; 
+      this.page.identifier = "A few thoughts on R packages"; 
+    };
+
+    (function() { 
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://insileco.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+
+</div>
+
+
+</div>
+
+        <footer>
+
+          <script src="//yihui.name/js/math-code.js"></script>
+          <script async
+            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+          </script>
+
+
+            <p class="copyright text-muted">&copy; 2017-2021 inSileco | All rights reserved | Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,  <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+
+        </footer>
+
+    </body>
+
+</html>
+

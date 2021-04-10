@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+
+        <title>Animations in R: Time series of erythemal irradiance in the St. Lawrence</title>
+
+        <style>
+
+    html body {
+        font-family: Lato, sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="../../../../css/main.css">
+
+
+
+  <link rel="stylesheet" href="../../../../css/academicons.min.css">
+
+  <link rel="stylesheet" href="../../../../css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="../../../../css/insileco.css">
+
+  <link rel="stylesheet" href="../../../../css/jquery.tocify.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+  <script src="../../../../js/jquery-1.8.3.min.js"></script>
+
+  <script src="../../../../js/jquery-ui-1.9.1.custom.min.js"></script>
+
+  <script src="../../../../js/jquery.tocify.min.js"></script>
+
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'UA-109508556-1');
+        </script>
+        
+
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Animations in R: Time series of erythemal irradiance in the St. Lawrence</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="../../../../">Home</a></li>
+                            
+                                <li><a href="../../../../about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="../../../../post/">Posts</a></li>
+                            
+                                <li><a href="../../../../software/">Software</a></li>
+                            
+                                <li><a href="../../../../tips/">Tips</a></li>
+                            
+                                <li><a href="../../../../tuto/">Tutorials</a></li>
+                            
+                                <li><a href="../../../../wiki/">Wiki</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<img class="full-width" width="100%" src="../../../../img/banner4.png"></img>
+
+
+
+<div>
+
+  <div class="col-md-3">
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+          <div id="toc"></div>
+
+        </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-md-8">
+
+    <h1><a href="../../../../2017/07/05/animations-in-r-time-series-of-erythemal-irradiance-in-the-st.-lawrence/">Animations in R: Time series of erythemal irradiance in the St. Lawrence</a></h1>
+
+    <h4>July 5, 2017</h4>
+
+    <p>
+      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/plot"><kbd class="item-tag">plot</kbd></a>  <a href="../../../../tags/animation"><kbd class="item-tag">animation</kbd></a>  <a href="../../../../tags/nasa"><kbd class="item-tag">NASA</kbd></a>  <a href="../../../../tags/radiation"><kbd class="item-tag">radiation</kbd></a>  <a href="../../../../tags/st.-lawrence"><kbd class="item-tag">St. Lawrence</kbd></a> 
+      <br>
+      
+       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="../../../../rpkgs/animation"><kbd class="item-tag2">animation</kbd></a>  <a href="../../../../rpkgs/magrittr"><kbd class="item-tag2">magrittr</kbd></a>  <a href="../../../../rpkgs/graphics"><kbd class="item-tag2">graphics</kbd></a>  <a href="../../../../rpkgs/plyr"><kbd class="item-tag2">plyr</kbd></a>  <a href="../../../../rpkgs/raster"><kbd class="item-tag2">raster</kbd></a> 
+      
+    </p>
+
+    
+      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+       
+        <a href="../../../../about/">David Beauchesne</a> &nbsp;
+       
+        <a href="../../../../about/">Kevin Cazelles</a> &nbsp;
+      
+     <a href="#"></a></p>
+    
+
+    
+
+    <p>
+    
+    
+    
+    
+     &nbsp;
+    
+    
+      <a href = "https://creativecommons.org/licenses/by/4.0/">
+      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+      </a>
+    
+    &nbsp;&nbsp;
+    <a href="http://twitter.com/share?url=%2f2017%2f07%2f05%2fanimations-in-r-time-series-of-erythemal-irradiance-in-the-st.-lawrence%2f&text=Animations%20in%20R%3a%20Time%20series%20of%20erythemal%20irradiance%20in%20the%20St.%20Lawrence" target="_blank">
+      <img src='https://img.shields.io/twitter/url?style=social&url=%2f2017%2f07%2f05%2fanimations-in-r-time-series-of-erythemal-irradiance-in-the-st.-lawrence%2f?link=http://left&link=http://right}'>
+    </a>
+  </p>
+
+    <div class="text-justify">
+      <p>
+      
+      </p>
+    </div>
+
+
+
+    <br>
+
+    <div class="text-justify">
+
+      
+
+
+<div id="the-need-for-animations" class="section level2">
+<h2>The “<em>need</em>” for animations</h2>
+<p><br/></p>
+<p>As part of my PhD thesis, I am currently characterizing the intensity of multiple stressors in the estuary and gulf of St. Lawrence (see ResearchGate <a href="https://www.researchgate.net/project/Evaluating-the-cumulative-impacts-of-human-activities-on-the-structure-and-function-the-trophic-network-of-the-estuary-and-gulf-of-StLawrence">project</a> for more details). I have recently <em>needed</em> (read: <em>thought it would be cool</em>) to create an animation of the temporal variations in ultra-violet intensity in the St. Lawrence. Here is how I did it.</p>
+<p><br/></p>
+</div>
+<div id="setting-up-r" class="section level2">
+<h2>Setting up R</h2>
+<div id="r-version-used-to-build-the-last-update-of-this-post" class="section level3">
+<h3>R version used to build the last update of this post</h3>
+<pre class="r"><code>sessionInfo()[[1]]$version.string
+#R&gt; [1] &quot;R version 3.5.2 (2018-12-20)&quot;</code></pre>
+<p><br/></p>
+</div>
+<div id="installing-imagemagick" class="section level3">
+<h3>Installing imagemagick</h3>
+<p>The package <code>animation</code>, which I used to create the animations in R, works with the application <a href="https://www.imagemagick.org/script/index.php"><code>imagemagick</code></a>, which can be installed using <a href="https://brew.sh/"><code>Homebrew</code></a> on MacOS.</p>
+<pre class="bash"><code>brew install imagemagick</code></pre>
+</div>
+<div id="installing-the-package-animation" class="section level3">
+<h3>Installing the package animation</h3>
+<p><code>install.packages('animation', repos = 'http://yihui.name/xran')</code></p>
+<p><br/></p>
+</div>
+</div>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<p>There is a incredible amount of data available on the <a href="https://disc.gsfc.nasa.gov/uui/datasets?keywords=%22Aura%20OMI%22">NASA website</a>. For this post, we downloaded all available data from NASA’s Ozone Monitoring Instrument (OMI) aboard the Earth Observing System’s (EOS) Aura satellite. More specifically, we used <a href="https://disc.gsfc.nasa.gov/uui/datasets/OMUVBG_V003/summary?keywords=%22Aura%20OMI%22">OMI/Aura Surface UVB Irradiance and Erythemal Dose Daily at a scale of 0.25 x 0.25 degree</a> and selected the daily erythemal irradiance (mW/m<sup>2</sup>), <em>i.e.</em> the potentially harmful range of UV radiations, from October 1<sup>st</sup> 2004 to April 5<sup>th</sup> 2017. We then selected only the years with 12 months worth of data to create the following figures, <em>i.e.</em> from January 1<sup>st</sup> 2005 to December 31<sup>st</sup> 2016.
+<!-- The resulting dataset is available here in the [letiR github page](https://github.com/letiR/letir.github.io/blob/master/assets/AnimationInR/MonthOMI.rds). --></p>
+<p>The maps generated in this post require the user to load <a href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_ocean.zip"><code>ocean</code></a> shapefile from <a href="http://www.naturalearthdata.com/">Natural Earth</a>.</p>
+<p><br/></p>
+<pre class="r"><code># UV data
+  UV &lt;- readRDS(&#39;MonthOMI.rds&#39;)
+
+# Projection
+  spatProj &lt;- &#39;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&#39;
+
+# Ocean shapefile
+  ocean &lt;- readOGR(dsn = &quot;shpfile&quot;, layer = &quot;ne_10m_ocean&quot;) %&gt;%
+             spTransform(CRSobj = CRS(spatProj))
+#R&gt; OGR data source with driver: ESRI Shapefile 
+#R&gt; Source: &quot;/home/kevcaz/Github/Websites/inSileco.github.io/content/post/archived/animationinR/shpfile&quot;, layer: &quot;ne_10m_ocean&quot;
+#R&gt; with 1 features
+#R&gt; It has 2 fields
+
+  class(ocean)
+#R&gt; [1] &quot;SpatialPolygonsDataFrame&quot;
+#R&gt; attr(,&quot;package&quot;)
+#R&gt; [1] &quot;sp&quot;</code></pre>
+<p><br/></p>
+</div>
+<div id="set-parameters-and-functions" class="section level2">
+<h2>Set parameters and functions</h2>
+<p>We start be setting the different parameters and functions required to build the animation.</p>
+<p><br/></p>
+<pre class="r"><code># Graphical parameters
+    min_ &lt;- min(UV[[1]], na.rm = T) %&gt;% plyr::round_any(., 100, floor) # Minimum values in UV dataset
+    max_ &lt;- max(UV[[1]], na.rm = T) %&gt;% plyr::round_any(., 100, ceiling) # Minimum values in UV dataset
+    ext &lt;- c(-72, -54, 44, 53) # c(xmin, xmax, ymin, ymax)
+    rbPal &lt;- colorRampPalette(c(&#39;#2f6eb9&#39;,&#39;#2aadba&#39;,&#39;#c4c726&#39;,&#39;#b45f5f&#39;)) # color palette
+    labels &lt;- matrix(seq(4,(151-4)), ncol = 12, nrow = 12, dimnames = list(2005:2016, month.abb), byrow = T)  # Select only full years (start: 2004/10; end: 2017/04)
+
+# Monthly trends
+    monthMean &lt;- apply(X = UV[[1]], MARGIN = 3, FUN = mean, na.rm = T) # monthly mean
+    monthSd &lt;- apply(X = UV[[1]], MARGIN = 3, FUN = sd, na.rm = T) # monthly sd
+    years &lt;- 2005:2016
+    lowCI &lt;- monthMean - (1.96*monthSd) # Lower confidence interval
+    upCI &lt;- monthMean + (1.96*monthSd) # Upper confidence interval
+
+# Empty plot function
+    eplot &lt;- function(x = 1, y = 1, xmin = 0, xmax = 1, ymin = 0, ymax = 1) {
+      plot(x = x,y = y,bty = &quot;n&quot;,ann = FALSE,xaxt = &quot;n&quot;,yaxt = &quot;n&quot;,type = &quot;n&quot;,bg = &#39;grey&#39;,ylim = c(ymin,ymax),xlim = c(xmin,xmax))
+    }
+
+# Legend function
+    colorBar &lt;- function(colRamp, min, max, nticks=11, ticks=seq(min, max, len=nticks)) {
+        scale = (length(colRamp)-1)/(max-min)
+        par(mar = c(5,0.5,5,4))
+        plot(c(0,10), c(min_,max_), type=&#39;n&#39;, bty=&#39;n&#39;, xaxt=&#39;n&#39;, xlab=&#39;&#39;, yaxt=&#39;n&#39;, ylab=&#39;&#39;)
+        axis(4, ticks, las=1, cex = 1.5)
+        for (i in 1:(length(colRamp)-1)) {
+            y = (i-1)/scale + min
+            rect(0,y,10,y+1/scale, col=colRamp[i], border=NA)
+        }
+    }</code></pre>
+<p><br/></p>
+</div>
+<div id="create-first-animation" class="section level2">
+<h2>Create first animation</h2>
+<p>Let’s start with a simple animation of erythemal irradiance for 2005.</p>
+<p><br/></p>
+<pre class="r"><code>saveGIF({
+        for(i in 1:ncol(labels)){
+            par(mar = c(0,0,0,0), pch = 21,  xaxs = &quot;i&quot;, yaxs = &quot;i&quot;, family = &quot;serif&quot;)
+            r &lt;- raster::raster(UV[[1]][,,labels[1,i]], xmn = ext[1], xmx = ext[2], ymn = ext[3], ymx = ext[4], crs = spatProj) %&gt;%
+                mask(ocean)
+            eplot(xmin = ext[1], xmax = ext[2], ymin = ext[3], ymax = ext[4])
+            plot(r, col= rbPal(100), breaks = seq(min_,max_,length.out=100), legend = F, add = T)
+            plot(ocean, add = T, lwd = 2)
+            text(x = -54.5, y = 45, labels = paste(colnames(labels)[1], rownames(labels)[i]), adj = 1, cex = 1.5)
+        }
+}, movie.name = &quot;UV2005animate.gif&quot;)</code></pre>
+<p><br/></p>
+<center>
+<img src="../../../../img/UV2005animate.gif" style="width:50.0%" />
+</center>
+<p><br/></p>
+</div>
+<div id="create-complex-animation" class="section level2">
+<h2>Create complex animation</h2>
+<p>Now let’s make a more informative and complex animation that allows to visualize monthly erythemal irradiance through the years as well as annual trends.</p>
+<p><br/></p>
+<pre class="r"><code>ani.options(ani.height = 720, ani.width = 720)
+saveGIF({
+    for(i in 1:nrow(labels)) {
+        #layout
+            mat &lt;- matrix(c(13:15,1:3,16:18,4:6,19:21,7:9,22:24,10:12), ncol = 3, nrow = 8, byrow = T) %&gt;%
+                    cbind(c(0,0,25,25,25,25,0,0)) %&gt;%
+                    rbind(26, .)
+            layout(mat, widths = c(3,3,3,1.25), heights = c(1,rep(c(2,3),4)))
+
+        # Rasters
+            for(j in 1:ncol(labels)) {
+                par(pch = 21,  xaxs = &quot;i&quot;, yaxs = &quot;i&quot;, family = &quot;serif&quot;, mar = c(0,0,0,0))
+                r &lt;- raster::raster(UV[[1]][,,labels[i,j]], xmn = ext[1], xmx = ext[2], ymn = ext[3], ymx = ext[4], crs = spatProj) %&gt;%
+                     mask(ocean)
+                eplot(xmin = ext[1], xmax = ext[2], ymin = ext[3], ymax = ext[4])
+                image(r, col= rbPal(100), breaks = seq(0,max_,length.out=101), legend = F, add = T)
+                plot(ocean, add = T)
+                text(x = -54.5, y = 45, labels = paste(colnames(labels)[j], rownames(labels)[i]), adj = 1, cex = 1.5)
+            }
+
+        # Plot trends
+            for(j in 1:ncol(labels)) {
+                temporal &lt;- data.frame(years = years[1:i], monthMean = monthMean[labels[1:i,j]], lowCI = lowCI[labels[1:i,j]], upCI = upCI[labels[1:i,j]]) %&gt;%
+                            na.omit()
+                polyY &lt;- c(temporal$upCI, rev(temporal$lowCI)) # Y coordinates for confidence interval polygon
+                polyX &lt;- c(temporal$years, rev(temporal$years)) # X coordinates for confidence interval polygon
+
+                par(mar = c(0,3,1,1), family = &quot;serif&quot;)
+                eplot(xmin = 2005, xmax = 2016, ymin = 0, ymax = max(upCI))
+                polygon(polyX, polyY, border = &#39;transparent&#39;, col = &quot;#d9e5f4&quot;)
+                lines(temporal$monthMean ~ temporal$years, lwd = 0.5, col = &#39;#0057bb&#39;)
+                axis(side = 2, at = seq(0, plyr::round_any(max(upCI), 1000, ceiling), by = 2500), las = 1, pos = 2004.75, cex =  1.5)
+            }
+
+        # Plot legend
+            colorBar(rbPal(101), min = 0, max = max_)
+
+        # Graph title
+            par(mar = c(0,0,0,0))
+            eplot(xmin = 0, xmax = 10, ymin = 0, ymax = 10)
+            text(x = 5, y = 5, labels = bquote(&quot;Erythemal UV Irradiance (mW/m&quot; ^2 *&quot;)&quot;), cex = 2)
+
+    }
+}, movie.name = &quot;UVanimate.gif&quot;)</code></pre>
+<p><br/></p>
+<p><img src="../../../../img/UVanimate.gif" style="width:95.0%" /></p>
+<p><br/></p>
+</div>
+<div id="concluding-remarks" class="section level2">
+<h2>Concluding remarks</h2>
+<p>As you can see, it is quite straightforward to create powerful and informative animations in R.</p>
+<details>
+<p><summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary></p>
+<pre class="r"><code>sessionInfo()
+#R&gt; R version 3.5.2 (2018-12-20)
+#R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
+#R&gt; Running under: Debian GNU/Linux buster/sid
+#R&gt; 
+#R&gt; Matrix products: default
+#R&gt; BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
+#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.5.so
+#R&gt; 
+#R&gt; locale:
+#R&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+#R&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+#R&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+#R&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#R&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+#R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#R&gt; 
+#R&gt; attached base packages:
+#R&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#R&gt; 
+#R&gt; other attached packages:
+#R&gt; [1] rgdal_1.4-3    plyr_1.8.4     raster_2.8-19  sp_1.3-1      
+#R&gt; [5] magrittr_1.5   animation_2.6  usethis_1.4.0  devtools_2.0.2
+#R&gt; 
+#R&gt; loaded via a namespace (and not attached):
+#R&gt;  [1] Rcpp_1.0.0        compiler_3.5.2    prettyunits_1.0.2
+#R&gt;  [4] remotes_2.0.2     tools_3.5.2       testthat_2.0.1   
+#R&gt;  [7] digest_0.6.18     pkgbuild_1.0.2    pkgload_1.0.2    
+#R&gt; [10] evaluate_0.13     memoise_1.1.0     lattice_0.20-38  
+#R&gt; [13] rlang_0.3.1       cli_1.0.1         yaml_2.2.0       
+#R&gt; [16] blogdown_0.11     xfun_0.5          withr_2.1.2      
+#R&gt; [19] stringr_1.4.0     knitr_1.22        desc_1.2.0       
+#R&gt; [22] fs_1.2.6          rprojroot_1.3-2   grid_3.5.2       
+#R&gt; [25] glue_1.3.0        R6_2.4.0          processx_3.2.1   
+#R&gt; [28] rmarkdown_1.12    bookdown_0.9.2    sessioninfo_1.1.1
+#R&gt; [31] callr_3.1.1       codetools_0.2-16  backports_1.1.3  
+#R&gt; [34] ps_1.3.0          htmltools_0.3.6   assertthat_0.2.0 
+#R&gt; [37] stringi_1.4.3     crayon_1.3.4</code></pre>
+</details>
+</div>
+
+
+
+    
+
+    </center>
+
+    </div>
+
+      <br>
+
+  
+  <script>
+    var $jq = jQuery.noConflict();
+      $jq(function() {
+          var toc = $jq("#toc").tocify({
+            selectors: "h2, h3",
+            scrollTo: 50
+          }).data("toc-tocify");
+    });
+  </script>
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+  
+  
+
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <div id="disqus_thread"></div>
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../../2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/">R as a ruler? How to calculate distances between geographical objects</a> <small>April 8, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/gis"><kbd class="item-tag">GIS</kbd></a>  <a href="../../../../tags/utils"><kbd class="item-tag">utils</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../../2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/">Creating empty data frames with dfTemplate() and dfTemplateMatch()</a> <small>February 3, 2019</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/data-frame"><kbd class="item-tag">data frame</kbd></a>  <a href="../../../../tags/data-frames-generation"><kbd class="item-tag">data frames generation</kbd></a>  <a href="../../../../tags/row-binding"><kbd class="item-tag">row binding</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../../2018/12/03/a-few-thoughts-on-r-packages/">A few thoughts on R packages</a> <small>December 3, 2018</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../../tags/github"><kbd class="item-tag">GitHub</kbd></a>  <a href="../../../../tags/cran"><kbd class="item-tag">CRAN</kbd></a>  <a href="../../../../tags/ropensci"><kbd class="item-tag">rOpenSci</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+
+
+
+  <script>
+    
+
+
+    var disqus_config = function() {
+      this.page.url = "https://insileco.github.io" + "/2017/07/05/animations-in-r-time-series-of-erythemal-irradiance-in-the-st.-lawrence/"; 
+      this.page.identifier = "Animations in R: Time series of erythemal irradiance in the St. Lawrence"; 
+    };
+
+    (function() { 
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://insileco.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+
+</div>
+
+
+</div>
+
+        <footer>
+
+          <script src="//yihui.name/js/math-code.js"></script>
+          <script async
+            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+          </script>
+
+
+            <p class="copyright text-muted">&copy; 2017-2021 inSileco | All rights reserved | Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,  <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+
+        </footer>
+
+    </body>
+
+</html>
+

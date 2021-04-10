@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+
+        <title>Non linear regression with nls()</title>
+
+        <style>
+
+    html body {
+        font-family: Lato, sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="../../../../css/main.css">
+
+
+
+  <link rel="stylesheet" href="../../../../css/academicons.min.css">
+
+  <link rel="stylesheet" href="../../../../css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="../../../../css/insileco.css">
+
+  <link rel="stylesheet" href="../../../../css/jquery.tocify.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+  <script src="../../../../js/jquery-1.8.3.min.js"></script>
+
+  <script src="../../../../js/jquery-ui-1.9.1.custom.min.js"></script>
+
+  <script src="../../../../js/jquery.tocify.min.js"></script>
+
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'UA-109508556-1');
+        </script>
+        
+
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Non linear regression with nls()</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="../../../../">Home</a></li>
+                            
+                                <li><a href="../../../../about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="../../../../post/">Posts</a></li>
+                            
+                                <li><a href="../../../../software/">Software</a></li>
+                            
+                                <li><a href="../../../../tips/">Tips</a></li>
+                            
+                                <li><a href="../../../../tuto/">Tutorials</a></li>
+                            
+                                <li><a href="../../../../wiki/">Wiki</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<img class="full-width" width="100%" src="../../../../img/banner4.png"></img>
+
+
+
+<div>
+
+  <div class="col-md-3">
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+          <div id="toc"></div>
+
+        </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-md-8">
+
+    <h1><a href="../../../../2018/11/18/non-linear-regression-with-nls/">Non linear regression with nls()</a></h1>
+
+    <h4>November 18, 2018</h4>
+
+    <p>
+      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/regression"><kbd class="item-tag">regression</kbd></a>  <a href="../../../../tags/nls"><kbd class="item-tag">nls</kbd></a> 
+      <br>
+      
+       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="../../../../rpkgs/stats"><kbd class="item-tag2">stats</kbd></a> 
+      
+    </p>
+
+    
+      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+       
+        <a href="../../../../about/">Kevin Cazelles</a> &nbsp;
+      
+     <a href="#"></a></p>
+    
+
+    
+
+    <p>
+    
+    
+    
+    
+     &nbsp;
+    
+    
+      <a href = "https://creativecommons.org/licenses/by/4.0/">
+      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+      </a>
+    
+    &nbsp;&nbsp;
+    <a href="http://twitter.com/share?url=%2f2018%2f11%2f18%2fnon-linear-regression-with-nls%2f&text=Non%20linear%20regression%20with%20nls%2c%20an%20example." target="_blank">
+      <img src='https://img.shields.io/twitter/url?style=social&url=%2f2018%2f11%2f18%2fnon-linear-regression-with-nls%2f?link=http://left&link=http://right}'>
+    </a>
+  </p>
+
+    <div class="text-justify">
+      <p>
+      
+      </p>
+    </div>
+
+
+
+    <br>
+
+    <div class="text-justify">
+
+      
+
+
+<div id="context" class="section level2">
+<h2>Context</h2>
+<p>Last week, I was discussing about how to use <code>nls()</code> for a specific
+model with one of my colleague and I ended creating a piece of code to
+show what I was talking about! Even though there are many posts exploring <code>nls()</code>
+in more depth that I did (for instance <a href="https://datascienceplus.com/first-steps-with-non-linear-regression-in-r/">this post on datascienceplus by Lionel Herzog</a>),
+I thought I could share these lines of command here!</p>
+<p>Basically, we were talking about a model where the temperature (<span class="math inline">\(T\)</span>) follows
+a saturation curve starting from 10°C at t=0 (so T(0) = 10) and plateauing at <span class="math inline">\(T_{\inf}\)</span>.</p>
+<p><span class="math display">\[T(t) = T_{\inf} - (T_{\inf} - T_0)\exp(-kt)\]</span></p>
+</div>
+<div id="goal-and-data" class="section level2">
+<h2>Goal and data</h2>
+<p>The goal here is to use <code>nls()</code> (Nonlinear Least Squares) to find <span class="math inline">\(k\)</span> and <span class="math inline">\(T_{inf}\)</span>.
+For the sack of clarity, I simulate the data, i.e. I use the saturation curve
+with known parameter values, then I add some noise (here a <a href="https://en.wikipedia.org/wiki/White_noise">white noise</a>):</p>
+<pre class="r"><code>library(magrittr)
+# Parameters
+## known
+T0 = 10
+## the ones we are looking for
+k = 0.2
+Tinf = 20
+
+# Simulate data
+## time
+seqt &lt;- seq(0, 50, .25)
+## create a data frame
+simdata &lt;- cbind(
+  seqt = seqt,
+  sim = Tinf - (Tinf- T0)*exp(-k*seqt) + .5*rnorm(length(seqt))
+) %&gt;% as.data.frame
+head(simdata)
+#R&gt;   seqt      sim
+#R&gt; 1 0.00 10.95667
+#R&gt; 2 0.25 11.21328
+#R&gt; 3 0.50 11.20083
+#R&gt; 4 0.75 10.60456
+#R&gt; 5 1.00 10.77357
+#R&gt; 6 1.25 11.75301</code></pre>
+</div>
+<div id="use-nls" class="section level2">
+<h2>Use <code>nls()</code></h2>
+<p>Now I call <code>nls()</code> to fit the data:</p>
+<pre class="r"><code>res &lt;- nls(sim ~ Tinf - (Tinf - 10)*exp(-k*seqt), simdata, list(Tinf = 1, k = .1))</code></pre>
+<p>All the information needed are stored in <code>res</code> and display via the print method:</p>
+<pre class="r"><code>res
+#R&gt; Nonlinear regression model
+#R&gt;   model: sim ~ Tinf - (Tinf - 10) * exp(-k * seqt)
+#R&gt;    data: simdata
+#R&gt;    Tinf       k 
+#R&gt; 20.0651  0.1895 
+#R&gt;  residual sum-of-squares: 54.41
+#R&gt; 
+#R&gt; Number of iterations to convergence: 8 
+#R&gt; Achieved convergence tolerance: 3.92e-06</code></pre>
+<p>Let’s draw a quick plot:</p>
+<pre class="r"><code>## get the coefficients values
+cr &lt;- coef(res)
+fitC &lt;- function(x) cr[1] - (cr[1] - 10)*exp(-cr[2]*x)
+plot(simdata[,1], simdata[,2], xlab = &quot;Time (min)&quot;, ylab = &quot;Temperature (°C)&quot;)
+curve(fitC, 0, 50, add = TRUE, col = &quot;#2f85a4&quot;, lwd = 3)</code></pre>
+<p><img src="../../../../post/archived/nlsex1_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div id="thats-all-folks" class="section level4">
+<h4>That’s all folks!</h4>
+</div>
+</div>
+
+
+
+    
+
+    </center>
+
+    </div>
+
+      <br>
+
+  
+  <script>
+    var $jq = jQuery.noConflict();
+      $jq(function() {
+          var toc = $jq("#toc").tocify({
+            selectors: "h2, h3",
+            scrollTo: 50
+          }).data("toc-tocify");
+    });
+  </script>
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+  
+  
+
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <div id="disqus_thread"></div>
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../../2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/">R as a ruler? How to calculate distances between geographical objects</a> <small>April 8, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/gis"><kbd class="item-tag">GIS</kbd></a>  <a href="../../../../tags/utils"><kbd class="item-tag">utils</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../../2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/">Creating empty data frames with dfTemplate() and dfTemplateMatch()</a> <small>February 3, 2019</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/data-frame"><kbd class="item-tag">data frame</kbd></a>  <a href="../../../../tags/data-frames-generation"><kbd class="item-tag">data frames generation</kbd></a>  <a href="../../../../tags/row-binding"><kbd class="item-tag">row binding</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../../2018/12/03/a-few-thoughts-on-r-packages/">A few thoughts on R packages</a> <small>December 3, 2018</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../../tags/github"><kbd class="item-tag">GitHub</kbd></a>  <a href="../../../../tags/cran"><kbd class="item-tag">CRAN</kbd></a>  <a href="../../../../tags/ropensci"><kbd class="item-tag">rOpenSci</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+
+
+
+  <script>
+    
+
+
+    var disqus_config = function() {
+      this.page.url = "https://insileco.github.io" + "/2018/11/18/non-linear-regression-with-nls/"; 
+      this.page.identifier = "Non linear regression with nls()"; 
+    };
+
+    (function() { 
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://insileco.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+
+</div>
+
+
+</div>
+
+        <footer>
+
+          <script src="//yihui.name/js/math-code.js"></script>
+          <script async
+            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+          </script>
+
+
+            <p class="copyright text-muted">&copy; 2017-2021 inSileco | All rights reserved | Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,  <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+
+        </footer>
+
+    </body>
+
+</html>
+

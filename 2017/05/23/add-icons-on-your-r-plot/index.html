@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+
+        <title>Add icons on your R plot</title>
+
+        <style>
+
+    html body {
+        font-family: Lato, sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="../../../../css/main.css">
+
+
+
+  <link rel="stylesheet" href="../../../../css/academicons.min.css">
+
+  <link rel="stylesheet" href="../../../../css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="../../../../css/insileco.css">
+
+  <link rel="stylesheet" href="../../../../css/jquery.tocify.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+  <script src="../../../../js/jquery-1.8.3.min.js"></script>
+
+  <script src="../../../../js/jquery-ui-1.9.1.custom.min.js"></script>
+
+  <script src="../../../../js/jquery.tocify.min.js"></script>
+
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'UA-109508556-1');
+        </script>
+        
+
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Add icons on your R plot</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="../../../../">Home</a></li>
+                            
+                                <li><a href="../../../../about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="../../../../post/">Posts</a></li>
+                            
+                                <li><a href="../../../../software/">Software</a></li>
+                            
+                                <li><a href="../../../../tips/">Tips</a></li>
+                            
+                                <li><a href="../../../../tuto/">Tutorials</a></li>
+                            
+                                <li><a href="../../../../wiki/">Wiki</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<img class="full-width" width="100%" src="../../../../img/banner4.png"></img>
+
+
+
+<div>
+
+  <div class="col-md-3">
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+          <div id="toc"></div>
+
+        </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-md-8">
+
+    <h1><a href="../../../../2017/05/23/add-icons-on-your-r-plot/">Add icons on your R plot</a></h1>
+
+    <h4>May 23, 2017</h4>
+
+    <p>
+      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/plot"><kbd class="item-tag">plot</kbd></a>  <a href="../../../../tags/fonts"><kbd class="item-tag">fonts</kbd></a>  <a href="../../../../tags/icons"><kbd class="item-tag">icons</kbd></a> 
+      <br>
+      
+       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="../../../../rpkgs/showtext"><kbd class="item-tag2">showtext</kbd></a>  <a href="../../../../rpkgs/utils"><kbd class="item-tag2">utils</kbd></a>  <a href="../../../../rpkgs/graphics"><kbd class="item-tag2">graphics</kbd></a> 
+      
+    </p>
+
+    
+      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+       
+        <a href="../../../../about/">Kevin Cazelles</a> &nbsp;
+       
+        <a href="../../../../about/">David Beauchesne</a> &nbsp;
+      
+     <a href="#"></a></p>
+    
+
+    
+
+    <p>
+    
+    
+    
+      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=10min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+    
+    
+     &nbsp;
+    
+    
+      <a href = "https://creativecommons.org/licenses/by/4.0/">
+      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+      </a>
+    
+    &nbsp;&nbsp;
+    <a href="http://twitter.com/share?url=%2f2017%2f05%2f23%2fadd-icons-on-your-r-plot%2f&text=How%20to%20add%20icons%20on%20your%20R%20plot" target="_blank">
+      <img src='https://img.shields.io/twitter/url?style=social&url=%2f2017%2f05%2f23%2fadd-icons-on-your-r-plot%2f?link=http://left&link=http://right}'>
+    </a>
+  </p>
+
+    <div class="text-justify">
+      <p>
+      
+        
+          <i class="fa fa-edit" aria-hidden="true"></i> Nov 11, 2017 -- Fix paths to icon files <br>
+        
+          <i class="fa fa-edit" aria-hidden="true"></i> Apr 15, 2018 -- Change URLs to download Font-Awesome <br>
+        
+          <i class="fa fa-edit" aria-hidden="true"></i> Mar 18, 2020 -- Fix image links <br>
+        
+      
+      </p>
+    </div>
+
+
+
+    <br>
+
+    <div class="text-justify">
+
+      <h2 id="introduction">Introduction</h2>
+<p>Icons are very popular on websites to improve the visual grepping (<em>i.e.</em> visual
+optimization of <em>eyeball</em> search). We all know how to go at the top or the
+bottom of a website clicking on chevrons (<i class="fa fa-chevron-down"
+aria-hidden="true"></i> <i class="fa fa-chevron-up" aria-hidden="true"></i>).
+We are also familiar with simple symbols that allow us to click and edit the
+text we are typing (<i class="fa fa-align-left" aria-hidden="true"></i>
+<i class="fa fa-align-center" aria-hidden="true"></i>
+<i class="fa fa-align-right" aria-hidden="true"></i>). Moreover, some web
+applications are so widespread than their logo appears in thousands of websites
+(i.e Twitter <i class="fa fa-twitter" aria-hidden="true"></i> or
+Github <i class="fa fa-github" aria-hidden="true"></i>). Here, we explain how
+to use these icons in your R plots. Why use icons on an R plot? It simply
+increases the possibilities for the number of markers you could use and thus
+efficiently and usefully refine your plots.</p>
+<p>There are two strategies to include icons on a R plot:</p>
+<ol>
+<li>using icons as a font when possible;</li>
+<li>using icons as images.</li>
+</ol>
+<p>Here, we exemplify the first strategy and leave the second one for another post
+(hopefully). We will use icons from three different iconic frameworks:</p>
+<ol>
+<li><a href="jpswalsh.github.io/academicons/">Academicon</a>;</li>
+<li><a href="http://fontawesome.io">Font Awesome</a>;</li>
+<li><a href="http://ionicons.com">Ionicons</a>.</li>
+</ol>
+<p>All of these frameworks propose either a <code>.ttf</code> (TrueType Font) or a <code>.otf</code>
+file (OpenType Font) or both. These files make our life very easy and we can
+make a direct <strong>link</strong> with a <a href="../../../../2017/04/14/make-your-r-plot-hylian/">previous blog post</a>.</p>
+<h2 id="setting-up-r">Setting up R</h2>
+<h4 id="r-version-used-to-build-the-last-update-of-this-post">R version used to build the last update of this post</h4>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">sessionInfo</span>()[[1L]]<span style="color:#f92672">$</span>version.string
+<span style="color:#75715e">#R&gt; [1] &#34;R version 3.5.2 (2018-12-20)&#34;</span>
+</code></pre></div><h4 id="list-of-packages-to-be-used">List of packages to be used</h4>
+<ul>
+<li>the <code>showtext</code> package and its dependency <code>sysfont</code> (see details on line <a href="https://cran.r-project.org/web/packages/showtext/index.html"><i class="fa fa-link" aria-hidden="true"></i></a>);</li>
+<li>the <code>magrittr</code> package for the pipes (see the <a href="http://magrittr.tidyverse.org">associated websites</a>).</li>
+</ul>
+<p>Here is line of code you need to install these packages:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">install.packages</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#39;magrittr&#39;</span>, <span style="color:#e6db74">&#39;showtext&#39;</span>))
+</code></pre></div><p>Then, we load them:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">library</span>(magrittr)
+<span style="color:#a6e22e">library</span>(showtext)
+<span style="color:#a6e22e">packageVersion</span>(<span style="color:#e6db74">&#34;showtext&#34;</span>)
+<span style="color:#75715e">#R&gt; [1] &#39;0.6&#39;</span>
+</code></pre></div><h4 id="material-to-be-downloaded">Material to be downloaded</h4>
+<p>We first need to download the 3 fonts we will be using. Links to retrieve them
+are available below and the next code chunk describes how
+use the R to get these fonts.</p>
+<ol>
+<li><a href="https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf">the <em>Academicons</em> font</a></li>
+<li><a href="https://github.com/FortAwesome/Font-Awesome/blob/master/web-fonts-with-css/webfonts/fa-regular-400.ttf">the <em>FontAwesome</em> font</a></li>
+<li><a href="https://github.com/driftyco/ionicons/raw/master/fonts/ionicons.ttf">the <em>Ionicons</em> font</a></li>
+</ol>
+<p>If you have decided to downloaded theses fonts, you can then either install them
+on your computer (there is most likely an application on your computer to do so
+and you will be able to use them in other softwares <em>e.g.</em> LibreOffice) or
+store them in a dedicated folder whose path will be denoted <code>dr</code> hereafter.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">dir.create</span>(<span style="color:#e6db74">&#34;assets&#34;</span>, showWarnings <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+<span style="color:#75715e">##-- URLs</span>
+urls <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(
+  <span style="color:#e6db74">&#39;https://github.com/jpswalsh/academicons/raw/master/fonts/academicons.ttf&#39;</span>,
+  <span style="color:#e6db74">&#39;https://github.com/xdanaux/fontawesome-latex/raw/master/FontAwesome.otf&#39;</span>,
+  <span style="color:#e6db74">&#39;https://github.com/ionic-team/ionicons/raw/master/docs/fonts/ionicons.ttf&#39;</span>
+  )
+<span style="color:#75715e">##-- download the fonts</span>
+<span style="color:#a6e22e">for </span>(i in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>){
+  <span style="color:#a6e22e">download.file</span>(urls[i], destfile<span style="color:#f92672">=</span><span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;assets/&#34;</span>, <span style="color:#a6e22e">basename</span>(urls[i])))
+}
+</code></pre></div><h2 id="loading-the-fonts">Loading the fonts</h2>
+<p>To activate the facilities <code>showtext</code> provides, use <code>showtext_auto()</code>
+(by the way, the author of the package deserves a medal!):</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">showtext_auto</span>()
+</code></pre></div><!-- help rebuilding the website without downloading font as they are
+included in this folder -->
+<p>We add the path to our fonts:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">font_paths</span>(<span style="color:#e6db74">&#34;assets&#34;</span>)
+</code></pre></div><p>Then, we add <code>academicons.ttf</code>, <code>FontAwesome.otf</code> and <code>ionicons.ttf</code> to our
+session with the <code>font_add()</code> function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">font_add</span>(family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;academicons&#39;</span>, regular <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;assets/academicons.ttf&#39;</span>)
+<span style="color:#a6e22e">font_add</span>(family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;FontAwesome&#39;</span>, regular <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;FontAwesome.otf&#39;</span>)
+<span style="color:#a6e22e">font_add</span>(family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;ionicons&#39;</span>, regular <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;ionicons.ttf&#39;</span>)
+<span style="color:#75715e">##-- check the font families available</span>
+<span style="color:#a6e22e">font_families</span>()
+<span style="color:#75715e">#R&gt; [1] &#34;sans&#34;         &#34;serif&#34;        &#34;mono&#34;         &#34;wqy-microhei&#34;</span>
+<span style="color:#75715e">#R&gt; [5] &#34;academicons&#34;  &#34;FontAwesome&#34;  &#34;ionicons&#34;</span>
+</code></pre></div><p>Here, things are going to be a little bit trickier than they were in the
+<a href="../../../../post/archived/hylianStyle/">Hylian blog post</a>, as we should first locate the
+unicode characters to be used. Fortunately, this is fairly doable:</p>
+<ol>
+<li>FontAwesome provides a very <a href="http://fontawesome.io/cheatsheet/">helpful cheatsheet</a>;</li>
+<li><code>.ttf</code> files are easy to explore, for instance using LibreOffice and
+inserting a special character (see the figure below).</li>
+</ol>
+<br>
+<center><img src = "assets/academicons.png" width = "80%"></img></center>
+<br>
+<br>
+<p>To use unicode characters in R, there are several possibilities, this
+<a href="https://www.r-bloggers.com/unicode-symbols-in-r/">blog post</a> explains it well.
+Below, we use different way to deal with the unicode characters.</p>
+<h2 id="lets-add-icons-our-plot">Let&rsquo;s add icons our plot</h2>
+<h3 id="academicons">Academicons</h3>
+<p>There are 36 unicode characters available. They are numbered like so: &ldquo;E9&rdquo; +
+numbers ranging from 00 to 35 (version 1.8.0). To use them, we create a
+sequence using <code>sprintf()</code> and <code>paste0()</code> function:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">nb <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">54</span>
+acs <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sprintf</span>(<span style="color:#e6db74">&#34;%02d&#34;</span>, <span style="color:#ae81ff">5+1</span><span style="color:#f92672">:</span>nb) <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;E8&#34;</span>,.)
+coord <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">expand.grid</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">6</span>)
+cols <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;#3fb3b2&#34;</span>, <span style="color:#e6db74">&#34;#8555b4&#34;</span>, <span style="color:#e6db74">&#34;#ffdd55&#34;</span>, <span style="color:#e6db74">&#34;#1b95e0&#34;</span>)
+</code></pre></div><p>We now plot them as if they were on a regular grid and we add the decimal value
+below:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">par</span>(mar<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>))
+<span style="color:#a6e22e">plot</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">10</span>), <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">7</span>), type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;n&#34;</span>, ann<span style="color:#f92672">=</span><span style="color:#66d9ef">FALSE</span>, axes<span style="color:#f92672">=</span><span style="color:#66d9ef">FALSE</span>)
+<span style="color:#a6e22e">text</span>(coord[,<span style="color:#ae81ff">1</span>], coord[,<span style="color:#ae81ff">2</span>], labels<span style="color:#f92672">=</span> acs, offset <span style="color:#f92672">=</span> <span style="color:#ae81ff">2.2</span>, cex<span style="color:#f92672">=</span><span style="color:#ae81ff">1.6</span>, pos<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>)
+<span style="color:#75715e">##</span>
+<span style="color:#a6e22e">par</span>(family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;academicons&#34;</span>)
+<span style="color:#a6e22e">points</span>(coord[,<span style="color:#ae81ff">1</span>], coord[,<span style="color:#ae81ff">2</span>], pch<span style="color:#f92672">=-</span><span style="color:#a6e22e">as.hexmode</span>(acs), cex<span style="color:#f92672">=</span><span style="color:#ae81ff">4.8</span>, col<span style="color:#f92672">=</span>cols)
+</code></pre></div><center><img src = "assets/academiconR.png" width = "80%"></img></center>
+<h3 id="adding-fontawesomes-icons">Adding FontAwesome&rsquo;s icons</h3>
+<p>The unicode hexadecimal for the FontAwesome&rsquo;s icons range from <code>f000</code>
+(<i class="fa fa-glass" aria-hidden="true"></i>) to <code>f2e0</code>
+(<i class="fa fa-meetup" aria-hidden="true"></i>) in version 4.7. Version</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">nsq <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">12</span>
+fas <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>(nsq<span style="color:#f92672">*</span>nsq) <span style="color:#f92672">%&gt;%</span> as.hexmode <span style="color:#f92672">%&gt;%</span> <span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;f0&#34;</span>, .)
+coord <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">expand.grid</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>nsq, <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>nsq)
+<span style="color:#a6e22e">par</span>(mar<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>), family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;FontAwesome&#39;</span>)
+<span style="color:#a6e22e">plot</span>(coord[,<span style="color:#ae81ff">1</span>], coord[,<span style="color:#ae81ff">2</span>], pch<span style="color:#f92672">=-</span><span style="color:#a6e22e">as.hexmode</span>(fas), cex<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, col<span style="color:#f92672">=</span>cols, ann<span style="color:#f92672">=</span><span style="color:#66d9ef">FALSE</span>, axes<span style="color:#f92672">=</span><span style="color:#66d9ef">FALSE</span>)
+</code></pre></div><p><img src="../../../../post/current/iconsInR/index_files/figure-html/figfontawe-1.png" width="912" style="display: block; margin: auto;" /></p>
+<h3 id="adding-ionicons">Adding Ionicons</h3>
+<p>The unicode decimal value of Ionicons&rsquo;s icons range from 61696 to 62711.
+There are 765 icons available (version 2.0.1), therefore some hexidecimal are
+not assigned. Here we&rsquo;ll use the <code>intToUtf8()</code> function to convert the decimal
+value into an unicode character.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r">val <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">61970</span><span style="color:#f92672">:</span><span style="color:#ae81ff">62046</span>
+ias <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">sapply</span>(val, FUN<span style="color:#f92672">=</span>intToUtf8)
+coord <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">expand.grid</span>(<span style="color:#a6e22e">rev</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">11</span>), <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">7</span>)
+<span style="color:#75715e">##</span>
+<span style="color:#a6e22e">par</span>(mar<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>,<span style="color:#ae81ff">2</span>), family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ionicons&#34;</span>)
+<span style="color:#a6e22e">plot</span>(coord[,<span style="color:#ae81ff">1</span>], coord[,<span style="color:#ae81ff">2</span>], ann<span style="color:#f92672">=</span><span style="color:#66d9ef">FALSE</span>, axes<span style="color:#f92672">=</span><span style="color:#66d9ef">FALSE</span>, pch<span style="color:#f92672">=</span>ias, cex<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>, col<span style="color:#f92672">=</span>cols)
+</code></pre></div><p><img src="../../../../post/current/iconsInR/index_files/figure-html/figionic-1.png" width="912" style="display: block; margin: auto;" /></p>
+<h3 id="combining-them">Combining them</h3>
+<p>To combine, we have to switch from one font to another. Here is a simple
+example that combines the three icon frameworks.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">par</span>(las<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, mar<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">4</span>,<span style="color:#ae81ff">4</span>))
+<span style="color:#a6e22e">image</span>(datasets<span style="color:#f92672">::</span>volcano, col<span style="color:#f92672">=</span><span style="color:#a6e22e">colorRampPalette</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;grey10&#34;</span>, <span style="color:#e6db74">&#34;grey90&#34;</span>))(<span style="color:#ae81ff">100</span>), axes<span style="color:#f92672">=</span><span style="color:#66d9ef">FALSE</span>)
+<span style="color:#a6e22e">contour</span>(datasets<span style="color:#f92672">::</span>volcano, add<span style="color:#f92672">=</span>T, col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#ffdd55&#34;</span>)
+<span style="color:#a6e22e">title</span>(main <span style="color:#f92672">=</span> <span style="color:#a6e22e">toupper</span>(<span style="color:#e6db74">&#34;My volcano&#34;</span>), cex.main<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+<span style="color:#75715e">##</span>
+<span style="color:#a6e22e">par</span>(family<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;FontAwesome&#34;</span>)
+<span style="color:#a6e22e">title</span>(ylab<span style="color:#f92672">=</span><span style="color:#a6e22e">intToUtf8</span>(<span style="color:#ae81ff">61552</span>), cex.lab<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
+<span style="color:#a6e22e">points</span>(<span style="color:#ae81ff">0.336</span>, <span style="color:#ae81ff">0.58</span>, pch<span style="color:#f92672">=-</span><span style="color:#a6e22e">as.hexmode</span>(<span style="color:#e6db74">&#34;F041&#34;</span>), col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#3fb3b2&#34;</span>, cex<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+<span style="color:#75715e">##</span>
+<span style="color:#a6e22e">par</span>(family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ionicons&#34;</span>)
+<span style="color:#a6e22e">points</span>(<span style="color:#ae81ff">0.946</span>, <span style="color:#ae81ff">0.943</span>, pch<span style="color:#f92672">=-</span><span style="color:#a6e22e">as.hexmode</span>(<span style="color:#e6db74">&#34;F203&#34;</span>), col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;grey95&#34;</span>, cex<span style="color:#f92672">=</span><span style="color:#ae81ff">5</span>)
+<span style="color:#a6e22e">points</span>(<span style="color:#ae81ff">0.451</span>, <span style="color:#ae81ff">0.091</span>, pch<span style="color:#f92672">=-</span><span style="color:#a6e22e">as.hexmode</span>(<span style="color:#e6db74">&#34;F448&#34;</span>), col<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#3fb3b2&#34;</span>, cex<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>)
+<span style="color:#75715e">##</span>
+<span style="color:#a6e22e">par</span>(family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;academicons&#34;</span>)
+<span style="color:#a6e22e">mtext</span>(text<span style="color:#f92672">=</span><span style="color:#a6e22e">intToUtf8</span>(<span style="color:#ae81ff">59476</span>), side<span style="color:#f92672">=</span><span style="color:#ae81ff">4</span>, adj<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, line<span style="color:#f92672">=</span><span style="color:#ae81ff">3</span>, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#8555b4&#34;</span>, cex<span style="color:#f92672">=</span><span style="color:#ae81ff">6</span>)
+</code></pre></div><p><img src="../../../../post/current/iconsInR/index_files/figure-html/volcano-1.png" width="912" style="display: block; margin: auto;" /></p>
+<h2 id="additional-remarks">Additional remarks</h2>
+<ol>
+<li>
+<p>Note that the steps described here are useful to include any kind of police
+you have on your computer or you may find online. Therefore this post should
+help you deal with font if you intend to publish a figure in a journal that
+requests a specific font. By the way, <code>showtext</code> allows you to search directly
+on <a href="https://fonts.google.com/">Google Fonts</a> (see the <code>font_add_google()</code> function).</p>
+</li>
+<li>
+<p>As you may have realized reading this post there are different ways to write
+a character in unicode. Fortunately, many online converters help you get from
+one standard to another (<em>e.g.</em>
+<a href="http://www.endmemo.com/unicode/unicodeconverter.php">unicodeconverter</a> does the job).</p>
+</li>
+<li>
+<p>You may also want to use emoji to cheer your plot up! See the emojifont
+package available on <a href="https://cran.r-project.org/web/packages/emojifont/">CRAN</a>
+and <a href="https://guangchuangyu.github.io/emojifont/">Github</a>. It now support
+fontawsome <a href="https://guangchuangyu.github.io/2016/03/font-awesome-supported-in-emojifont/">as explained here</a>.</p>
+</li>
+<li>
+<p><a href="https://fontstruct.com">fontstruct</a> is a great web application that helps
+you creating your own font (you can save your font as a <code>.tff</code> on your computer
+and now you know how to deal with it!)</p>
+</li>
+</ol>
+<br>
+<details>
+<summary><h4> <i class="fa fa-chevron-right" aria-hidden="true"></i>Session info <i class="fa fa-cogs" aria-hidden="true"></h4></i></summary>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">sessionInfo</span>()
+<span style="color:#75715e">#R&gt; R version 3.5.2 (2018-12-20)</span>
+<span style="color:#75715e">#R&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
+<span style="color:#75715e">#R&gt; Running under: Debian GNU/Linux 10 (buster)</span>
+<span style="color:#75715e">#R&gt;</span>
+<span style="color:#75715e">#R&gt; Matrix products: default</span>
+<span style="color:#75715e">#R&gt; BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3</span>
+<span style="color:#75715e">#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.5.so</span>
+<span style="color:#75715e">#R&gt;</span>
+<span style="color:#75715e">#R&gt; locale:</span>
+<span style="color:#75715e">#R&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span>
+<span style="color:#75715e">#R&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span>
+<span style="color:#75715e">#R&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span>
+<span style="color:#75715e">#R&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span>
+<span style="color:#75715e">#R&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
+<span style="color:#75715e">#R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span>
+<span style="color:#75715e">#R&gt;</span>
+<span style="color:#75715e">#R&gt; attached base packages:</span>
+<span style="color:#75715e">#R&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
+<span style="color:#75715e">#R&gt;</span>
+<span style="color:#75715e">#R&gt; other attached packages:</span>
+<span style="color:#75715e">#R&gt; [1] showtext_0.6   showtextdb_2.0 sysfonts_0.8   magrittr_1.5  </span>
+<span style="color:#75715e">#R&gt;</span>
+<span style="color:#75715e">#R&gt; loaded via a namespace (and not attached):</span>
+<span style="color:#75715e">#R&gt;  [1] Rcpp_1.0.0      bookdown_0.9.2  digest_0.6.18   evaluate_0.13  </span>
+<span style="color:#75715e">#R&gt;  [5] blogdown_0.12   stringi_1.4.3   rmarkdown_1.12  tools_3.5.2    </span>
+<span style="color:#75715e">#R&gt;  [9] stringr_1.4.0   xfun_0.7        yaml_2.2.0      compiler_3.5.2</span>
+<span style="color:#75715e">#R&gt; [13] htmltools_0.3.6 knitr_1.23</span>
+</code></pre></div></details>
+
+
+
+    
+
+    </center>
+
+    </div>
+
+      <br>
+
+  
+  <script>
+    var $jq = jQuery.noConflict();
+      $jq(function() {
+          var toc = $jq("#toc").tocify({
+            selectors: "h2, h3",
+            scrollTo: 50
+          }).data("toc-tocify");
+    });
+  </script>
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+  
+  
+
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <div id="disqus_thread"></div>
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../../2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/">R as a ruler? How to calculate distances between geographical objects</a> <small>April 8, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/gis"><kbd class="item-tag">GIS</kbd></a>  <a href="../../../../tags/utils"><kbd class="item-tag">utils</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../../2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/">Creating empty data frames with dfTemplate() and dfTemplateMatch()</a> <small>February 3, 2019</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/data-frame"><kbd class="item-tag">data frame</kbd></a>  <a href="../../../../tags/data-frames-generation"><kbd class="item-tag">data frames generation</kbd></a>  <a href="../../../../tags/row-binding"><kbd class="item-tag">row binding</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../../2018/12/03/a-few-thoughts-on-r-packages/">A few thoughts on R packages</a> <small>December 3, 2018</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../../tags/github"><kbd class="item-tag">GitHub</kbd></a>  <a href="../../../../tags/cran"><kbd class="item-tag">CRAN</kbd></a>  <a href="../../../../tags/ropensci"><kbd class="item-tag">rOpenSci</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+
+
+
+  <script>
+    
+
+
+    var disqus_config = function() {
+      this.page.url = "https://insileco.github.io" + "/2017/05/23/add-icons-on-your-r-plot/"; 
+      this.page.identifier = "Add icons on your R plot"; 
+    };
+
+    (function() { 
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://insileco.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+
+</div>
+
+
+</div>
+
+        <footer>
+
+          <script src="//yihui.name/js/math-code.js"></script>
+          <script async
+            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+          </script>
+
+
+            <p class="copyright text-muted">&copy; 2017-2021 inSileco | All rights reserved | Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,  <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+
+        </footer>
+
+    </body>
+
+</html>
+

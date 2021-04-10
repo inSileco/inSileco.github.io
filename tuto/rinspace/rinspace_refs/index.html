@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+
+        <title>R in Space - Useful resources</title>
+
+        <style>
+
+    html body {
+        font-family: Lato, sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="../../../css/main.css">
+
+
+
+  <link rel="stylesheet" href="../../../css/academicons.min.css">
+
+  <link rel="stylesheet" href="../../../css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="../../../css/insileco.css">
+
+  <link rel="stylesheet" href="../../../css/jquery.tocify.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+  <script src="../../../js/jquery-1.8.3.min.js"></script>
+
+  <script src="../../../js/jquery-ui-1.9.1.custom.min.js"></script>
+
+  <script src="../../../js/jquery.tocify.min.js"></script>
+
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'UA-109508556-1');
+        </script>
+        
+
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">R in Space - Useful resources</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="../../../">Home</a></li>
+                            
+                                <li><a href="../../../about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="../../../post/">Posts</a></li>
+                            
+                                <li><a href="../../../software/">Software</a></li>
+                            
+                                <li><a href="../../../tips/">Tips</a></li>
+                            
+                                <li><a href="../../../tuto/">Tutorials</a></li>
+                            
+                                <li><a href="../../../wiki/">Wiki</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<img class="full-width" width="100%" src="../../../img/banner4.png"></img>
+
+
+
+<div>
+
+  <div class="col-md-3">
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+          <div id="toc"></div>
+
+        </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-md-8">
+
+    <h1><a href="../../../tuto/rinspace/rinspace_refs/">R in Space - Useful resources</a></h1>
+
+    <h5>April 13, 2018</h5>
+
+    <p> <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="../../../tags/r-in-space"><kbd class="item-tag">R in Space</kbd></a>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/spatial"><kbd class="item-tag">Spatial</kbd></a>  <a href="../../../tags/wiki"><kbd class="item-tag">wiki</kbd></a> </p>
+
+    
+
+
+    
+      <p style = "font-size: 1.8em; margin-top: 20px"> <i class="fa fa-pencil" aria-hidden="true"></i>
+       
+        <a href="../../../about/">Marie-Hélène Brice</a> &nbsp;
+       
+        <a href="../../../about/">Nicolas Casajus</a> &nbsp;
+       
+        <a href="../../../about/">Kevin Cazelles</a> &nbsp;
+       
+        <a href="../../../about/">David Beauchesne</a> &nbsp;
+       
+        <a href="../../../about/">Elliot Dreujou</a> &nbsp;
+       
+        <a href="../../../about/">Steve Vissault</a> &nbsp;
+      
+     <a href="#"></a></p>
+    
+
+
+    
+
+    
+
+
+    <p> <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true" data-text="R in Space - Useful resources">Tweet</a>
+      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </p>
+
+
+    <div class="text-justify">
+      <p>
+      
+      </p>
+    </div>
+
+
+
+
+    <br>
+
+    <div class="text-justify">
+
+      <h2 id="the-mapping-landscape-has-changed">The mapping landscape has changed!</h2>
+<p>Over the last decade it has become increasingly easy to create and edit maps.
+As explained by Mark Zastrow in <a href="http://www.nature.com/news/data-visualization-science-on-the-map-1.17024">“Science on the Map&rdquo;</a>,
+the mapping landscape has dramatically changed over the last decade.
+Scientists can now readily draw valuable spatial representations
+of their work, even with large data sets and perform powerful analyses
+using specific packages of programming languages such as R and Python.
+In order to give you a taste of the diversity of tool to manipulate,
+analyze and visualize geographic information, we listed a few software
+available:</p>
+<h3 id="geographic-information-system-gis">Geographic Information System (GIS)</h3>
+<ul>
+<li><a href="http://qgis.org/en/site/">Quantum GIS</a>;</li>
+<li><a href="http://www.arcgis.com/features/">ArcGIS</a>;</li>
+<li><a href="http://www.diva-gis.org">DIVA-GIS</a>;</li>
+<li><a href="http://grass.osgeo.org">GRASS GIS</a>;</li>
+<li><a href="http://www.postgis.org">PostGIS</a>;</li>
+<li><a href="http://www.saga-gis.org/en/index.html">SAGA GIS</a>.</li>
+</ul>
+<h3 id="web-mapping-tools">Web mapping tools</h3>
+<ul>
+<li><a href="http://cartodb.com">CartoDB</a>;</li>
+<li><a href="http://geojson.io/#map=2/20.0/0.0">GeoJson</a>;</li>
+<li><a href="https://www.google.fr/maps">Google Map</a>;</li>
+<li><a href="http://www.google.fr/intl/eng/earth/index.html">Goole Earth</a>;</li>
+<li><a href="https://www.openstreetmap.org/">OpenStreetmap</a>;</li>
+<li><a href="https://www.mapbox.com/">Mapbox</a>.</li>
+</ul>
+<h3 id="specific-packages-of-various-programming-languages">Specific packages of various programming languages</h3>
+<h4 id="cc-libraries">C/C++ libraries:</h4>
+<ul>
+<li><a href="http://proj4.org/">proj4</a>;</li>
+<li><a href="http://www.gdal.org/index.html">gdal</a>;</li>
+<li><a href="https://trac.osgeo.org/geosc">geos</a>.</li>
+</ul>
+<h4 id="javascript">JavaScript:</h4>
+<ul>
+<li><a href="http://leafletjs.com">Leaflet</a></li>
+<li><a href="http://turfjs.org/">Turf</a></li>
+<li>more information <a href="https://codepen.io/stevepepple/post/javascript-geospatial-examples">here</a></li>
+</ul>
+<h4 id="julia-packages">Julia packages</h4>
+<ul>
+<li><a href="https://github.com/JuliaGeo">JuliaGeo</a>.</li>
+</ul>
+<h4 id="python-packages">Python packages</h4>
+<ul>
+<li><a href="http://scitools.org.uk/cartopy/">cartopy</a>;</li>
+<li><a href="https://github.com/geopy/geopy">geopy</a>;</li>
+<li>more information <a href="http://geopandas.org/">here</a>.</li>
+</ul>
+<p>And if you want to see MORE, look at the Awesome GIS <a href="https://github.com/sshuair/awesome-gis"><img src="https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg" alt="Awesome"></a> and the Awesome Geospatial
+<a href="https://github.com/sacridini/Awesome-Geospatial"><img src="https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg" alt="Awesome"></a> 🔥!</p>
+<h3 id="free-gis-data">Free GIS data</h3>
+<p>If you are looking for free GIS data, you should definitively start by carefully
+examine the resources listed on this page: <a href="https://freegisdata.rtwilson.com/">https://freegisdata.rtwilson.com/</a>.
+Note that in R the function <code>getData()</code> from the raster package is fantastic and
+some R packages are great data provider, for instance, <code>osmdata</code> (see below).</p>
+<h2 id="so-why-use-r-for-mapping">So&hellip; why use R for mapping?</h2>
+<p>Given the number of tools dedicated to visualization and analyses of spatial
+data, it is important that users ask this question and take some time to balance
+pros and cons of using R for mapping. According to us, the choice strongly
+relies on:</p>
+<ol>
+<li>your ambition in terms of mapping;</li>
+<li>your skills in R.</li>
+</ol>
+<p>If you aim at creating a good-looking map without analysis and you are not
+familiar with R, it does not make sense to use R only for mapping. But if
+you are familiar with R or plan on becoming familiar with it to perform and
+replicate spatial analyses in R, you can quickly get a good-looking map (a R
+plot basically) and then benefit from the plot system you already know. Also,
+when you need tricky spatial analysis, even if you are not familiar with R,
+you will doubtlessly may benefit from learning it.</p>
+<p>Using R to create your maps and perform spatial analyses also means
+that you will write your data pipeline in a specific language and thus create
+scripts. Such scripts are easy to share and key element to make your analyses
+transparent and reproducible. Last but not least, the vast and active R
+community, which explains the incredible richness of packages, the abundance
+of documentation and tutorials available on line as well as the massive stack
+of answered questions on question and answer sites such as
+<a href="https://stackoverflow.com/questions/tagged/r">StackOverflow</a>.
+To give you something more tangible regarding the abundance of R packages,
+we propose below a curated list of R packages you will doubtlessly find very helpful:</p>
+<ul class="list-group row">
+
+  
+
+    <li class="list-group-item col-xs-3">
+      <b>fields</b> &nbsp;&nbsp;
+      <a href="https://cran.r-project.org/web/packages/fields" style="display:inline;">CRAN</a>
+      <a href="http://www.image.ucar.edu/fields/" style="display:inline;"><i class="fa fa-1x fa-link" aria-hidden="true"></i></a>
+      
+    </li>
+
+  
+
+    <li class="list-group-item col-xs-3">
+      <b>geojsonio</b> &nbsp;&nbsp;
+      <a href="https://cran.r-project.org/web/packages/geojsonio" style="display:inline;">CRAN</a>
+      
+       <a href="https://github.com/ropensci/geojsonio" style="display:inline;"><i class="fa fa-1x fa-github" aria-hidden="true"></i></a>
+    </li>
+
+  
+
+    <li class="list-group-item col-xs-3">
+      <b>gstat</b> &nbsp;&nbsp;
+      <a href="https://cran.r-project.org/web/packages/gstat" style="display:inline;">CRAN</a>
+      
+       <a href="https://github.com/edzer/gstat" style="display:inline;"><i class="fa fa-1x fa-github" aria-hidden="true"></i></a>
+    </li>
+
+  
+
+    <li class="list-group-item col-xs-3">
+      <b>leaflet</b> &nbsp;&nbsp;
+      <a href="https://cran.r-project.org/web/packages/leaflet" style="display:inline;">CRAN</a>
+      <a href="https://rstudio.github.io/leaflet/" style="display:inline;"><i class="fa fa-1x fa-link" aria-hidden="true"></i></a>
+       <a href="https://github.com/rstudio/leaflet" style="display:inline;"><i class="fa fa-1x fa-github" aria-hidden="true"></i></a>
+    </li>
+
+  
+
+    <li class="list-group-item col-xs-3">
+      <b>maps</b> &nbsp;&nbsp;
+      <a href="https://cran.r-project.org/web/packages/maps" style="display:inline;">CRAN</a>
+      
+      
+    </li>
+
+  
+
+    <li class="list-group-item col-xs-3">
+      <b>maptools</b> &nbsp;&nbsp;
+      <a href="https://cran.r-project.org/web/packages/maptools" style="display:inline;">CRAN</a>
+      <a href="http://r-forge.r-project.org/projects/maptools/" style="display:inline;"><i class="fa fa-1x fa-link" aria-hidden="true"></i></a>
+      
+    </li>
+
+  
+
+    <li class="list-group-item col-xs-3">
+      <b>mapview</b> &nbsp;&nbsp;
+      <a href="https://cran.r-project.org/web/packages/mapview" style="display:inline;">CRAN</a>
+      <a href="https://r-spatial.github.io/mapview/" style="display:inline;"><i class="fa fa-1x fa-link" aria-hidden="true"></i></a>
+       <a href="https://github.com/mapview/issues" style="display:inline;"><i class="fa fa-1x fa-github" aria-hidden="true"></i></a>
+    </li>
+
+  
+
+    <li class="list-group-item col-xs-3">
+      <b>ncdf4</b> &nbsp;&nbsp;
+      <a href="https://cran.r-project.org/web/packages/ncdf4" style="display:inline;">CRAN</a>
+      
+      
+    </li>
+
+  
+
+    <li class="list-group-item col-xs-3">
+      <b>osmdata</b> &nbsp;&nbsp;
+      <a href="https://cran.r-project.org/web/packages/osmdata" style="display:inline;">CRAN</a>
+      <a href="https://ropensci.github.io/osmdata/" style="display:inline;"><i class="fa fa-1x fa-link" aria-hidden="true"></i></a>
+       <a href="https://github.com/ropensci/osmdata" style="display:inline;"><i class="fa fa-1x fa-github" aria-hidden="true"></i></a>
+    </li>
+
+  
+
+    <li class="list-group-item col-xs-3">
+      <b>raster</b> &nbsp;&nbsp;
+      <a href="https://cran.r-project.org/web/packages/raster" style="display:inline;">CRAN</a>
+      <a href="http://www.rspatial.org/" style="display:inline;"><i class="fa fa-1x fa-link" aria-hidden="true"></i></a>
+      
+    </li>
+
+  
+
+    <li class="list-group-item col-xs-3">
+      <b>rasterVis</b> &nbsp;&nbsp;
+      <a href="https://cran.r-project.org/web/packages/rasterVis" style="display:inline;">CRAN</a>
+      <a href="https://oscarperpinan.github.io/rastervis/" style="display:inline;"><i class="fa fa-1x fa-link" aria-hidden="true"></i></a>
+       <a href="https://github.com/oscarperpinan/rastervis" style="display:inline;"><i class="fa fa-1x fa-github" aria-hidden="true"></i></a>
+    </li>
+
+  
+
+    <li class="list-group-item col-xs-3">
+      <b>rgeos</b> &nbsp;&nbsp;
+      <a href="https://cran.r-project.org/web/packages/rgeos" style="display:inline;">CRAN</a>
+      <a href="https://r-forge.r-project.org/projects/rgeos/" style="display:inline;"><i class="fa fa-1x fa-link" aria-hidden="true"></i></a>
+      
+    </li>
+
+  
+
+    <li class="list-group-item col-xs-3">
+      <b>rgdal</b> &nbsp;&nbsp;
+      <a href="https://cran.r-project.org/web/packages/rgdal" style="display:inline;">CRAN</a>
+      <a href="https://r-forge.r-project.org/projects/rgdal/" style="display:inline;"><i class="fa fa-1x fa-link" aria-hidden="true"></i></a>
+      
+    </li>
+
+  
+
+    <li class="list-group-item col-xs-3">
+      <b>sf</b> &nbsp;&nbsp;
+      <a href="https://cran.r-project.org/web/packages/sf" style="display:inline;">CRAN</a>
+      <a href="https://r-spatial.github.io/sf/" style="display:inline;"><i class="fa fa-1x fa-link" aria-hidden="true"></i></a>
+       <a href="https://github.com/r-spatial/sf" style="display:inline;"><i class="fa fa-1x fa-github" aria-hidden="true"></i></a>
+    </li>
+
+  
+
+    <li class="list-group-item col-xs-3">
+      <b>sp</b> &nbsp;&nbsp;
+      <a href="https://cran.r-project.org/web/packages/sp" style="display:inline;">CRAN</a>
+      <a href="https://edzer.github.io/sp/" style="display:inline;"><i class="fa fa-1x fa-link" aria-hidden="true"></i></a>
+       <a href="https://github.com/https://github.com/r-spatial/sp" style="display:inline;"><i class="fa fa-1x fa-github" aria-hidden="true"></i></a>
+    </li>
+
+  
+
+    <li class="list-group-item col-xs-3">
+      <b>spdep</b> &nbsp;&nbsp;
+      <a href="https://cran.r-project.org/web/packages/spdep" style="display:inline;">CRAN</a>
+      
+       <a href="https://github.com/r-spatial/spdep/" style="display:inline;"><i class="fa fa-1x fa-github" aria-hidden="true"></i></a>
+    </li>
+
+  
+
+
+</ul>
+
+<p>For a more detailed list of packages, have a look at the
+<a href="https://cran.r-project.org/web/views/Spatial.html">CRAN task view &ldquo;Spatial&rdquo;</a>.
+Note that there is a quick way to install all packages listed in the task view
+through the <a href="https://cran.r-project.org/web/packages/ctv">package</a>:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-r" data-lang="r"><span style="color:#a6e22e">install.packages</span>(<span style="color:#e6db74">&#34;ctv&#34;</span>)
+ctv<span style="color:#f92672">::</span><span style="color:#a6e22e">install.views</span>(<span style="color:#e6db74">&#34;Spatial&#34;</span>)
+</code></pre></div><p>Also, according to us, a good set of tutorials/documentation to start with
+spatial data in R is:</p>
+<ul>
+<li><a href="http://r-spatial.org/">r-spatial.org</a>;</li>
+<li><a href="http://www.rspatial.org/">rspatial.org</a>;</li>
+<li><a href="https://www.datacamp.com/courses/spatial-analysis-in-r-with-sf-and-raster">A DataCamp tutorial</a>;</li>
+<li><a href="https://geocompr.robinlovelace.net/intro.html">Geocomputation with R</a>;</li>
+<li><a href="https://qcbs.ca/wiki/_media/gisonr.pdf">Analyses spatiale sous R</a> (fr).</li>
+<li><a href="https://cengel.github.io/rspatial">Another tutorial by Claudia Engel</a></li>
+</ul>
+
+
+
+    
+
+    <center>
+
+      <br><br>
+
+      
+        <a href = "/tuto/rinspace/rinspace_homepage/"><i class="fa fa-arrow-circle-left fa-3x" aria-hidden="true"></i></a>
+      
+
+      &nbsp;&nbsp;
+      
+        <a href = "/tuto/rinspace/rinspace_homepage/"><i class="fa fa-home fa-3x" aria-hidden="true"></i></a>
+      
+
+      &nbsp;&nbsp;
+      
+        <a href = "/tuto/rinspace/rinspace_spobjects/"><i class="fa fa-arrow-circle-right fa-3x" aria-hidden="true"></i></a>
+      
+    
+
+    </center>
+
+    </div>
+
+
+    <br>
+
+  
+  <script>
+    var $jq = jQuery.noConflict();
+      $jq(function() {
+          var toc = $jq("#toc").tocify({
+            selectors: "h2, h3",
+            scrollTo: 50
+          }).data("toc-tocify");
+    });
+  </script>
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+  
+  
+
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <div id="disqus_thread"></div>
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/">R as a ruler? How to calculate distances between geographical objects</a> <small>April 8, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/gis"><kbd class="item-tag">GIS</kbd></a>  <a href="../../../tags/utils"><kbd class="item-tag">utils</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/">Creating empty data frames with dfTemplate() and dfTemplateMatch()</a> <small>February 3, 2019</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/data-frame"><kbd class="item-tag">data frame</kbd></a>  <a href="../../../tags/data-frames-generation"><kbd class="item-tag">data frames generation</kbd></a>  <a href="../../../tags/row-binding"><kbd class="item-tag">row binding</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../2018/12/03/a-few-thoughts-on-r-packages/">A few thoughts on R packages</a> <small>December 3, 2018</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../tags/github"><kbd class="item-tag">GitHub</kbd></a>  <a href="../../../tags/cran"><kbd class="item-tag">CRAN</kbd></a>  <a href="../../../tags/ropensci"><kbd class="item-tag">rOpenSci</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+
+
+
+  <script>
+    
+
+
+    var disqus_config = function() {
+      this.page.url = "https://insileco.github.io" + "/tuto/rinspace/rinspace_refs/"; 
+      this.page.identifier = "R in Space - Useful resources"; 
+    };
+
+    (function() { 
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://insileco.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+
+</div>
+
+
+</div>
+
+        <footer>
+
+          <script src="//yihui.name/js/math-code.js"></script>
+          <script async
+            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+          </script>
+
+
+            <p class="copyright text-muted">&copy; 2017-2021 inSileco | All rights reserved | Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,  <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+
+        </footer>
+
+    </body>
+
+</html>
+

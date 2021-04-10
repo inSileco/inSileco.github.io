@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>inSileco</title>
+    <link>/</link>
+    <description>Recent content on inSileco</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <copyright>Copyright © 2017-2021 inSileco</copyright>
+    <lastBuildDate>Thu, 05 May 2016 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>R as a ruler? How to calculate distances between geographical objects</title>
+      <link>/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/</link>
+      <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/</guid>
+      <description>When working in Ecology, it is often necessary to produce maps and calculate distances between objects such as sampled stations, species distribution ranges or geographical features. A tutorial on this blog describes many techniques to create maps with different packages in R, such as sf and raster. In this post, I will go further and use these tools to calculate distances in our spatial environment.
+How to define a distance?</description>
+    </item>
+    
+    <item>
+      <title>Creating empty data frames with dfTemplate() and dfTemplateMatch()</title>
+      <link>/2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/</link>
+      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/</guid>
+      <description>Creating a data frame is fairly simple but when you need to create a large empty data frame with columns that have different classes it takes several command lines. A few days ago, I decided to write a function to simplify this operation and I came to realize that such a function would actually be very useful to ease the row binding of data frames whose column names partially match.</description>
+    </item>
+    
+    <item>
+      <title>Ubuntu &#43; Windows 7 - dual partition</title>
+      <link>/2018/12/09/ubuntu-windows-7-dual-partition/</link>
+      <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/12/09/ubuntu-windows-7-dual-partition/</guid>
+      <description>Long story short, I recently had access to a Dell Studio XPS 8100  with Windows 7 on it. I was told that the computer was not working well and so was allowed to tweak it. The computer was actually working well, so I simply decided to add a partition Ubuntu.
+Ubuntu is based on Debian and arguably more beginner-friendly than the latter. Roughly speaking:
+Ubuntu = Debian Testing + software to simplify its use There are a couple of articles online that are opposing these two Linux distributions, which makes no real sense to me.</description>
+    </item>
+    
+    <item>
+      <title>A few thoughts on R packages</title>
+      <link>/2018/12/03/a-few-thoughts-on-r-packages/</link>
+      <pubDate>Mon, 03 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/12/03/a-few-thoughts-on-r-packages/</guid>
+      <description>Jonas Geschke, Ignasi Bartomeus and I have recently released rcites v-1.0.0 on CRAN, a R client for the Species+ API after it has been reviewed by rOpenSci. In this post, I would like to share this recent experience as well as several valuable resources.
+     What is an R package? In the introduction of his book R packages, Hadley Wickham wrote:
+ A package bundles together code, data, documentation, and tests, and is easy to share with others.</description>
+    </item>
+    
+    <item>
+      <title>Curated list of R resources available online</title>
+      <link>/wiki/usefulr/</link>
+      <pubDate>Wed, 21 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/wiki/usefulr/</guid>
+      <description>Main sources of resources Comprehensive R Archive Network: CRAN  Manuals Contributed manuals and cheat sheets  Journals  R journal Journal of Statistical Software JOSS  Books  Bookdown  RStudio  Website: https://www.rstudio.com Books Cheat Sheet R Views  ROpensci  Website: https://ropensci.org/about/ ROpensci&amp;rsquo;s blog ROpensci&amp;rsquo;s packages Learn R  Tutorials  DataCamp  Tools  METACRAN A curation of R packages rdrr rdocumentation cloudyr  Blogs If you want to find people online writing about R, you should definitively check out R-bloggers.</description>
+    </item>
+    
+    <item>
+      <title>Non linear regression with nls()</title>
+      <link>/2018/11/18/non-linear-regression-with-nls/</link>
+      <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/11/18/non-linear-regression-with-nls/</guid>
+      <description>Context Last week, I was discussing about how to use nls() for a specific model with one of my colleague and I ended creating a piece of code to show what I was talking about! Even though there are many posts exploring nls() in more depth that I did (for instance this post on datascienceplus by Lionel Herzog), I thought I could share these lines of command here!
+Basically, we were talking about a model where the temperature (\(T\)) follows a saturation curve starting from 10°C at t=0 (so T(0) = 10) and plateauing at \(T_{\inf}\).</description>
+    </item>
+    
+    <item>
+      <title>My MacOS Setup</title>
+      <link>/2018/07/13/my-macos-setup/</link>
+      <pubDate>Fri, 13 Jul 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/07/13/my-macos-setup/</guid>
+      <description>My MacOS Setup Inspired by Kevin&amp;rsquo;s recent post on setting up his new laptop on Debian Stretch, I decided that it was time to reset my Mac BookPro to factory settings. I bought it after a year in my thesis and I&amp;rsquo;ve grown quite a bit since then in my understanding of programming and computers in general. That also meant that I had a lot of accumulated junk!
+I also figured that I should do so using a bash script so that I could make this whole process as reproducible as possible for the next time or if I have to change my laptop for some obscure reason!</description>
+    </item>
+    
+    <item>
+      <title>My R setup on Debian</title>
+      <link>/2018/06/18/my-r-setup-on-debian/</link>
+      <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/06/18/my-r-setup-on-debian/</guid>
+      <description>R 3.5.0 &amp;ldquo;Joy in playing&amp;rdquo; was released April 23rd this year. It took a couple of weeks before it was made available on Debian testing due to the work required to rebuild the packages and as a Debian user that spend a lot of time on R, I am extremely grateful to the work of Dirk, Michael and Johannes on this!
+I thought it was a good opportunity to write few notes about my R setup.</description>
+    </item>
+    
+    <item>
+      <title>Go Debian Testing!</title>
+      <link>/2018/05/21/go-debian-testing/</link>
+      <pubDate>Mon, 21 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/05/21/go-debian-testing/</guid>
+      <description>For almost a year now I&amp;rsquo;ve being spending most of my computer time on Debian. I began with Debian Stretch and switched to Debian Testing two months ago. This was another good opportunity to gain skills and I&amp;rsquo;d like to report about my transition in this post.
+What really happened? The hope of a seamless transition Last Easter, after a couple of months on Debian Stretch, I felt like the time had come for me to go Debian Testing.</description>
+    </item>
+    
+    <item>
+      <title>Markdown everywhere!</title>
+      <link>/2018/05/13/markdown-everywhere/</link>
+      <pubDate>Sun, 13 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/05/13/markdown-everywhere/</guid>
+      <description>According to Wikipedia:
+ Markdown is a lightweight markup language with plain text formatting syntax. It is designed so that it can be converted to HTML and many other formats using a tool by the same name Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor. As the initial description of Markdown contained ambiguities and unanswered questions, many implementations and extensions of Markdown appeared over the years to answer these issues.</description>
+    </item>
+    
+    <item>
+      <title>R in Space - A Series</title>
+      <link>/tuto/rinspace/rinspace_homepage/</link>
+      <pubDate>Sat, 14 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tuto/rinspace/rinspace_homepage/</guid>
+      <description>So it begins A fair proportion of people involved in inSileco have one particular expertise in common: we work extensively with spatial data. This expertise has been developed through extensive time importing, creating and formatting spatial data, performing spatial analyses and building static and dynamic spatial visualizations.
+In this blog post series, we propose an educational tour of spatial possibilities offered by tools developed in the R environment. This series could thus be used in an educational setting to learn how to use R in Space!</description>
+    </item>
+    
+    <item>
+      <title>R in Space - Useful resources</title>
+      <link>/tuto/rinspace/rinspace_refs/</link>
+      <pubDate>Fri, 13 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tuto/rinspace/rinspace_refs/</guid>
+      <description>The mapping landscape has changed! Over the last decade it has become increasingly easy to create and edit maps. As explained by Mark Zastrow in “Science on the Map&amp;rdquo;, the mapping landscape has dramatically changed over the last decade. Scientists can now readily draw valuable spatial representations of their work, even with large data sets and perform powerful analyses using specific packages of programming languages such as R and Python. In order to give you a taste of the diversity of tool to manipulate, analyze and visualize geographic information, we listed a few software available:</description>
+    </item>
+    
+    <item>
+      <title>R in Space - About spatial data</title>
+      <link>/tuto/rinspace/rinspace_spobjects/</link>
+      <pubDate>Thu, 12 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tuto/rinspace/rinspace_spobjects/</guid>
+      <description>Spatial data refer to phenomenon or information that can be observed geographically. What a definition! In short spatial data concern every information that could be reported on a map, i.e. on a two-dimensions geographical coordinates system. Two kinds of spatial data exist: vector data and raster data. Generally vectors refer to discrete locations, i.e. objects with boundaries (for instance a city, a road, a country) whereas raster data refer to continuous phenomenon that can be observed everywhere, but without natural boundaries (for instance the surface temperature).</description>
+    </item>
+    
+    <item>
+      <title>R in Space - Import spatial objects</title>
+      <link>/tuto/rinspace/rinspace_import/</link>
+      <pubDate>Wed, 11 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tuto/rinspace/rinspace_import/</guid>
+      <description>Reading and writing spatial objects with sf and raster Spatial data are encoded in various GIS file formats such as Shapefiles (.shp), Geodatabase (.gdb), GeoPackage (.gpkg) and GeoJSON (.geojson), GeoTIFF (.tiff). In this post we show how to read commonly used formats and import the data they include in you R session. We start by describing the steps to turn a set of coordinates included in a .csv file into a spatial object and write it to a GIS file format.</description>
+    </item>
+    
+    <item>
+      <title>R in Space - Basic mapping</title>
+      <link>/tuto/rinspace/rinspace_basicmapping/</link>
+      <pubDate>Tue, 10 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tuto/rinspace/rinspace_basicmapping/</guid>
+      <description>Plot methods for sp objects Let’s first get some data:
+library(sp) library(sf) library(raster) dir.create(&amp;quot;data&amp;quot;) bel1 &amp;lt;- getData(&amp;quot;GADM&amp;quot;, country = &amp;quot;BEL&amp;quot;, level = 1, path = &amp;quot;data/&amp;quot;) bel2 &amp;lt;- getData(&amp;quot;GADM&amp;quot;, country = &amp;quot;BEL&amp;quot;, level = 2, path = &amp;quot;data/&amp;quot;) Quick plot:
+plot(bel1) Two quick plots:
+par(mfrow = c(1,2), mar = c(0,0,0,0)) plot(bel1, col = 1:3) plot(bel2, lty = 2) Slightly customized plots:</description>
+    </item>
+    
+    <item>
+      <title>R in Space - Attribute manipulations</title>
+      <link>/tuto/rinspace/rinspace_attrmanip/</link>
+      <pubDate>Mon, 09 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tuto/rinspace/rinspace_attrmanip/</guid>
+      <description>Spatial objects attributes manipulations Now that we know how to import and transform different classes of spatial objects in R, we can start manipulating their attributes. In this post, we will make a brief overview of some useful basic manipulations that we can perform on spatial object attributes. By no means are those examples exhaustive, but they constitute common manipulations that are made with spatial objects.
+
+Vector objects For this part, we discuss how to manipulate attributes of objects from the sf package.</description>
+    </item>
+    
+    <item>
+      <title>R in Space - Geometry manipulation</title>
+      <link>/tuto/rinspace/rinspace_geomanip/</link>
+      <pubDate>Sun, 08 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tuto/rinspace/rinspace_geomanip/</guid>
+      <description>To manipulate geometries, there are few options. For spatial objects defined with sp, there is a specific package to manipulate vector objects: rgeos. The equivalent of most common functions in sp are found in sf. Finally, there are a set of interesting functions in raster to handle the manipulation of rasters with vector objects.
+Let’s first load the packages required and download a simple shapefile of Belgium.
+library(sp) library(sf) library(rgeos) library(raster) dir.</description>
+    </item>
+    
+    <item>
+      <title>R in Space - R spatial data resources</title>
+      <link>/tuto/rinspace/rinspace_rdataresources/</link>
+      <pubDate>Sat, 07 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tuto/rinspace/rinspace_rdataresources/</guid>
+      <description>R data resources With the R community as vibrant and dynamic as it is, there are an increasingly high number of online data resources readily available to users through simple lines of command. The best hub of R packages making online data available to R users is actively developed by the rOpenSci group. This non-profit organization aims at foster[ing] a culture that values open and reproducible research using shared data and reusable software.</description>
+    </item>
+    
+    <item>
+      <title>R in Space - Custom mapping</title>
+      <link>/tuto/rinspace/rinspace_custommaps/</link>
+      <pubDate>Fri, 06 Apr 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tuto/rinspace/rinspace_custommaps/</guid>
+      <description>Creating a thematic map In this post, we go through all the steps required to produce a complete good-looking map. We will see how to add a title, a legend, a scale, axis and a North arrow and choose a good color palette. To do so, we will use the Quebec province as our sampled area.
+So, first, we import 2 vector layers readily available in R, the Canadian provincial boundaries and USA country boundary.</description>
+    </item>
+    
+    <item>
+      <title>Hugo, Github, Travis: a step in continuous deployment!</title>
+      <link>/2018/03/30/hugo-github-travis-a-step-in-continuous-deployment/</link>
+      <pubDate>Fri, 30 Mar 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/03/30/hugo-github-travis-a-step-in-continuous-deployment/</guid>
+      <description>I (Kevin) recently rebuilt my personal website and I was eager to set up the same workflow Steve built for our blog (this blog!), i.e. a combination of Hugo, Github and Travis. I though this was a good opportunity to detail how it works and so I wrote this post with Steve. Note that there are several blog posts on the topic available online, for instance here and here. We did our best to complement them in the following post.</description>
+    </item>
+    
+    <item>
+      <title>Hierarchical edge bundling using base plot</title>
+      <link>/2018/02/21/hierarchical-edge-bundling-using-base-plot/</link>
+      <pubDate>Wed, 21 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/02/21/hierarchical-edge-bundling-using-base-plot/</guid>
+      <description>I recently came across a very interesting paper from Laura Dee and collaborators focused on the concept of metanetworks and entitled “Operationalizing Network Theory for Ecosystem Service Assessments” (Dee et al 2017, TREE 32(2):118-130). After reading that article I have begun to revamp the context of my thesis around the concept of metanetworks to include environmental impact assessment and cumulative impacts assessment within such a framework.
+Work extensively with networks, you quickly realize that coming up with meaningful and useful visualization can be a bit of a challenge.</description>
+    </item>
+    
+    <item>
+      <title>Trick or Tips 003 {R}</title>
+      <link>/tips/trick_or_tips/trick_or_tips003/</link>
+      <pubDate>Sun, 11 Feb 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/tips/trick_or_tips/trick_or_tips003/</guid>
+      <description>Trick or Tips? Ever tumbled on a code chunk that made you say: &#34;I should have known this ¶ø?!@~&amp;* piece of code long ago!?&#34; Chances are you have, frustratingly, just like we have, and on multiple occasions too. In comes Trick or Tips! Trick or Tips is a series of blog posts that each present 5 -- hopefully helpful -- coding tips for a specific programming language. Posts should be short (i.</description>
+    </item>
+    
+    <item>
+      <title>Setting my Debian Stretch up</title>
+      <link>/2018/01/21/setting-my-debian-stretch-up/</link>
+      <pubDate>Sun, 21 Jan 2018 00:00:00 +0000</pubDate>
+      
+      <guid>/2018/01/21/setting-my-debian-stretch-up/</guid>
+      <description>This post details my Debian Stretch setup on my Lenovo ThinkPad T470p. I got this machine in early August 2017, so I now have almost 6 months worth of experience on Debian and I thought it was a good time to 1- document the rationale behind my move from MacOS to Debian 2- explain how I set my computer up and 3- how I rate my appreciation of working on Debian.</description>
+    </item>
+    
+    <item>
+      <title>Trick or Tips 002 {R}</title>
+      <link>/tips/trick_or_tips/trick_or_tips002/</link>
+      <pubDate>Sun, 12 Nov 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tips/trick_or_tips/trick_or_tips002/</guid>
+      <description>Trick or Tips? Ever tumbled on a code chunk that made you say: &#34;I should have known this ¶ø?!@~&amp;* piece of code long ago!?&#34; Chances are you have, frustratingly, just like we have, and on multiple occasions too. In comes Trick or Tips! Trick or Tips is a series of blog posts that each present 5 -- hopefully helpful -- coding tips for a specific programming language. Posts should be short (i.</description>
+    </item>
+    
+    <item>
+      <title>Efficiency of spatial intersects in R</title>
+      <link>/2017/09/12/efficiency-of-spatial-intersects-in-r/</link>
+      <pubDate>Tue, 12 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/09/12/efficiency-of-spatial-intersects-in-r/</guid>
+      <description>Intersects &amp;amp; R We are increasingly performing spatial analyses in R. The replicability and the efficiency of programming languages is much more appealing than using user friendly softwares like ArcGIS, even though you can still code your way through analyses when using those softwares (latter versions of QGIS do a fantastic job in that regard!). The performance of tools available for spatial analyses in R is however not completely certain.</description>
+    </item>
+    
+    <item>
+      <title>Useful web links</title>
+      <link>/wiki/usefulurl/</link>
+      <pubDate>Mon, 11 Sep 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/wiki/usefulurl/</guid>
+      <description>The Internet… what an amazing network! So many websites, so many resources, how easy it is to get lost when navigating the vast digital ocean! Teaching how to identify credible online material is doubtlessly one of the biggest educational challenge of our time. As researchers with strong interests in computational methods in ecology, we spend a substantial amount of our time searching various kind of information online ranging from a small piece of code to massive ecological database.</description>
+    </item>
+    
+    <item>
+      <title>Animations in R: Time series of erythemal irradiance in the St. Lawrence</title>
+      <link>/2017/07/05/animations-in-r-time-series-of-erythemal-irradiance-in-the-st.-lawrence/</link>
+      <pubDate>Wed, 05 Jul 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/07/05/animations-in-r-time-series-of-erythemal-irradiance-in-the-st.-lawrence/</guid>
+      <description>The “need” for animations 
+As part of my PhD thesis, I am currently characterizing the intensity of multiple stressors in the estuary and gulf of St. Lawrence (see ResearchGate project for more details). I have recently needed (read: thought it would be cool) to create an animation of the temporal variations in ultra-violet intensity in the St. Lawrence. Here is how I did it.
+
+ Setting up R R version used to build the last update of this post sessionInfo()[[1]]$version.</description>
+    </item>
+    
+    <item>
+      <title>Trick or tips 001 {R}</title>
+      <link>/tips/trick_or_tips/trick_or_tips001/</link>
+      <pubDate>Fri, 30 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/tips/trick_or_tips/trick_or_tips001/</guid>
+      <description>Trick or Tips? Ever tumbled on a code chunk that made you say: &#34;I should have known this ¶ø?!@~&amp;* piece of code long ago!?&#34; Chances are you have, frustratingly, just like we have, and on multiple occasions too. In comes Trick or Tips! Trick or Tips is a series of blog posts that each present 5 -- hopefully helpful -- coding tips for a specific programming language. Posts should be short (i.</description>
+    </item>
+    
+    <item>
+      <title>Online ecology - Individual species description</title>
+      <link>/2017/06/19/online-ecology-individual-species-description/</link>
+      <pubDate>Mon, 19 Jun 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/06/19/online-ecology-individual-species-description/</guid>
+      <description>Online ecology Let’s imagine that we are interested in a species in a given area and wish to know as much as possible about it. But, you can’t go out in the field because funding is running short. What we do have, however, is a certain knowledge of the open data science tools that are at our disposal.</description>
+    </item>
+    
+    <item>
+      <title>Add icons on your R plot</title>
+      <link>/2017/05/23/add-icons-on-your-r-plot/</link>
+      <pubDate>Tue, 23 May 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/05/23/add-icons-on-your-r-plot/</guid>
+      <description>Introduction Icons are very popular on websites to improve the visual grepping (i.e. visual optimization of eyeball search). We all know how to go at the top or the bottom of a website clicking on chevrons ( ). We are also familiar with simple symbols that allow us to click and edit the text we are typing (  ). Moreover, some web applications are so widespread than their logo appears in thousands of websites (i.</description>
+    </item>
+    
+    <item>
+      <title>Make your R plot Hylian</title>
+      <link>/2017/04/14/make-your-r-plot-hylian/</link>
+      <pubDate>Fri, 14 Apr 2017 00:00:00 +0000</pubDate>
+      
+      <guid>/2017/04/14/make-your-r-plot-hylian/</guid>
+      <description>Below are presented the 6 steps you need to make your plot a Hylian one! May the triforce be with you! 0. R Version sessionInfo()[[1L]]$version.string #R&amp;gt; [1] &amp;#34;R version 3.5.2 (2018-12-20)&amp;#34; 1. Open R and download the font The Triforce font is available on line. Below we download it using R. Alternatively, you may simply download and install it using a couple of clicks, if you proceed so, skip step 1.</description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Thu, 05 May 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>About All authors of this blog are ecologists and modelers and therefore inclined to write blog posts related to both ecology and modeling. As modelers, we use various computational tools. However, given the current prevalence of R among ecologists, we tend to write more about R than other programming languages. This website it-self is built with blogdown, a very convenient way to write about R. Note that we are sharing our R-related post on R-bloggers &amp;ldquo;a blog aggregator of content contributed by bloggers who write about R&amp;rdquo; and there are literally hundreds of bloggers that contribute to it.</description>
+    </item>
+    
+    <item>
+      <title>List of R packages to create and edit plots</title>
+      <link>/wiki/rgraphpkgs/</link>
+      <pubDate>Fri, 04 Dec 2015 00:00:00 +0000</pubDate>
+      
+      <guid>/wiki/rgraphpkgs/</guid>
+      <description>Note that the list of packages below would be updated as soon as we find a new package. If you know a package that should be in the list, please feel mention it in the disqus section below.
+
+Why use R to produce graphics? S, R’s ancestor, was first designed to be an interactive interface for calling routines from the SCS (Statistical Computing Subroutines) FORTRAN library. It expanded to be a complete programming language dedicated to data manipulation, statistical analysis and data visualization (see A brief History of S).</description>
+    </item>
+    
+    <item>
+      <title>Our posts on R-bloggers</title>
+      <link>/r-bloggers/index.xml</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/r-bloggers/index.xml</guid>
+      <description>R-bloggers is &amp;ldquo;a blog aggregator of content contributed by bloggers who write about R&amp;rdquo; and there are literally hundreds of bloggers that contribute to it, since 2020, inSileco is a member of R-bloggers.</description>
+    </item>
+    
+    <item>
+      <title>software</title>
+      <link>/software/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/software/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Tutorials</title>
+      <link>/tuto/tutorials/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/tuto/tutorials/</guid>
+      <description>Below are the tutorials one or more co-authors of the blog created. For each of them we provide a title, a category, a very short description and links to the material:
+   a link to the github repository;
+   a link to a html presentation.
+  </description>
+    </item>
+    
+  </channel>
+</rss>

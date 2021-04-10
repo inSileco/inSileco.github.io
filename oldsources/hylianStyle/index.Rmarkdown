@@ -1,0 +1,128 @@
+---
+title: Make your R plot Hylian
+author: [kevin, david, nicolas]
+date: 2017-04-14
+tags: [R, plot, fonts, icons, zelda]
+rpkgs: [showtext, utils, graphics]
+draft: false
+tweet: Make your R plot Hylian
+estime: 8
+edits:
+  - date: 2017-11-11
+    comment: "Change paths to font files"
+  - date: 2018-10-11
+    comment: "Simplify the downloading of the font"
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+
+
+```{r codeChunkSetUp, include = FALSE}
+source('../../codeChunkSetUp.R')
+```
+
+
+#### Below are presented the 6 steps you need to make your plot a Hylian one! **May the triforce be with you**!
+
+### 0. R Version
+
+```{r, echo = TRUE, eval = TRUE}
+sessionInfo()[[1L]]$version.string
+```
+
+
+### 1. Open R and download the font
+
+The [*Triforce* font](https://zeldauniverse.net/media/fonts/) is available on line.
+Below we download it using R. Alternatively, you may simply download and install
+it using a couple of clicks, if you proceed so, skip step 1.
+
+
+
+```{r, echo = TRUE}
+# Download Triforce font < Triforce.ttf >
+url <- "http://zeldauniverse.net/wp-content/uploads/2014/01/Triforce.ttf_.zip"
+download.file(url, destfile = basename(url))
+
+# Unzip the file
+unzip(basename(url))
+
+# Remove .zip
+file.remove(basename(url))
+```
+
+### 2. Install the `showtext` package
+
+```{r, echo = TRUE, eval = FALSE}
+install.packages("showtext")
+```
+
+### 3. Look at the list of fonts available locally
+
+```{r, echo = TRUE, eval = TRUE, R.options=list(max.print=30)}
+library(showtext)
+showtext_auto()
+font_files()
+```
+
+If you have installed the font on your computer, it should be in the list,
+then you can skip step 4.
+
+
+### 4. Add a path to your font
+
+If you have downloaded the font using R, you must notify showtext about to
+folder `dr` where the font has been stored. To so do, use the `font_paths()`
+function:
+
+```{r, echo = TRUE, eval = TRUE}
+font_paths(".")
+```
+
+### 5. Add the *Triforce* font to your session:
+
+
+Either way, the Triforce font should now be available
+
+```{r, echo = TRUE, eval = TRUE}
+# Is the TTF present?
+font_files()[grep("Triforce", font_files())]
+```
+
+Let's add it to our session:
+
+```{r, echo = TRUE, eval = TRUE}
+font_add(family = 'Triforce', regular = 'Triforce.ttf')
+font_families()
+```
+
+### 6. Finally, let's make our Hylian plot!
+
+```{r, echo = TRUE, eval = TRUE, fig.width = 9, fig.height = 7, fig.showtext=TRUE}
+showtext_begin()
+par(family = "Triforce", las = 1, cex.lab = 3, cex.main = 3, cex.axis=2, mar = c(4, 5, 5, 0))
+plot(x = c(0, 1), y = c(0, 1), type = "n", xlab = "X-axis", ylab = "Y-axis")
+title(main = "Hylian Style - Link must be proud of us!")
+##-- triforce symbols / rubies / swords
+points(x = runif(5), y = runif(5), pch = "*", cex = 4)
+points(x = runif(5), y = runif(5), pch = "$", cex = 4, col = "#1b95e0")
+points(x = runif(5), y = runif(5), pch = "@", cex = 4, col = "#8555b4")
+##-- big Links
+points(x = 0.1, y = 0.1, pch = "%", cex = 10, col = "#3fb3b2", lwd=2)
+points(x = 0.9, y = 0.9, pch = "^", cex = 10, col = "#ffdd55", lwd=2)
+```
+
+<br><br>
+
+#### YEAH! :sunglasses:
+
+<details>
+<summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
+```{r sessionInfo}
+sessionInfo()
+```
+</details>
