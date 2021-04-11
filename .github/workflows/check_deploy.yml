@@ -1,39 +1,14 @@
-name: Build and deploy our blog
+name: Build blog
 
 on:
   push:
     branches:
-      - dev
-  pull_request:
-    branches:
-      - dev
+      - main
   schedule:
     - cron: '0 0 11 * *'
 
 
 jobs:
-  
-  # windows:
-  #   runs-on: windows-latest
-  #   steps:
-  #     - name: install Hugo and Pandoc
-  #       run: choco install hugo pandoc
-  #     - name: Checkout Repository
-  #       uses: actions/checkout@master 
-  #     - name: Use cache
-  #       uses: actions/cache@v2
-  #       with:
-  #         path: ~\AppData\Local\renv
-  #         key: ${{ runner.os }}-renv-${{ hashFiles('**/renv.lock') }}
-  #         restore-keys: |
-  #           ${{ runner.os }}-renv-
-  #     - name: Install R packages with renv
-  #       run: |
-  #         Rscript -e "install.packages('renv', repos = 'https://muug.ca/mirror/cran/')"
-  #         Rscript -e "renv::restore()"
-  #     - name: Build inSileco Blog
-  #       run: |-
-  #         Rscript -e "blogdown::build_site()"
       
   linux:
     runs-on: ubuntu-latest
@@ -81,4 +56,3 @@ jobs:
           SLACK_TITLE: ':robot_face: Message to humans'
           SLACK_MESSAGE: ':heavy_check_mark: Blog updated and deployed'
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-
