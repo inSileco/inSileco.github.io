@@ -362,10 +362,10 @@ microbenchmark(nchar(vec)&gt;0, !!nchar(vec), nchar(vec)&amp;1, nzchar(vec),
   times = 1000L)
 #R&gt; Unit: nanoseconds
 #R&gt;            expr  min   lq   mean median   uq   max neval
-#R&gt;  nchar(vec) &gt; 0 1600 1700 1838.1   1800 1800  5000  1000
-#R&gt;    !!nchar(vec) 1700 1800 1945.3   1900 2000  5400  1000
-#R&gt;  nchar(vec) &amp; 1 1800 1800 2001.5   1900 2000 22400  1000
-#R&gt;     nzchar(vec)    0  100  112.3    100  100  3300  1000</code></pre>
+#R&gt;  nchar(vec) &gt; 0 1500 1600 1838.4   1700 1800 19200  1000
+#R&gt;    !!nchar(vec) 1600 1800 2209.7   1800 1950 78500  1000
+#R&gt;  nchar(vec) &amp; 1 1600 1800 2239.5   1900 2000 24100  1000
+#R&gt;     nzchar(vec)    0  100  116.7    100  100 16200  1000</code></pre>
 <p>Yep yep!<code>nzchar()</code> is indeed way faster 🚀!</p>
 </div>
 <div id="do-you-need-to-use-return" class="section level2">
@@ -400,9 +400,9 @@ foo2 &lt;- function(x) {
 }
 microbenchmark(foo(4), foo2(4), times = 1e5)
 #R&gt; Unit: nanoseconds
-#R&gt;     expr min  lq     mean median  uq      max neval
-#R&gt;   foo(4) 500 600 1016.748    600 700 21730200 1e+05
-#R&gt;  foo2(4) 300 400  591.892    400 400  4065300 1e+05</code></pre>
+#R&gt;     expr min  lq    mean median  uq      max neval
+#R&gt;   foo(4) 400 600 924.359    600 700  4981100 1e+05
+#R&gt;  foo2(4) 200 300 782.528    400 400 22704300 1e+05</code></pre>
 </div>
 <div id="invisible" class="section level2">
 <h2><code>invisible()</code></h2>
