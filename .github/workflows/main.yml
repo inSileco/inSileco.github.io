@@ -60,6 +60,7 @@ jobs:
           Rscript -e "renv::restore()"
       - name: Build inSileco Blog
         run: |-
+          tree .
           Rscript -e "blogdown::build_site()"
           tree ./public
       - name: Deploy inSileco Blog to gh-pages
