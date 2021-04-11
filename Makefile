@@ -7,7 +7,7 @@ biblio:
 	bibtool -d $(doi) $(nodoi) -o $(bib)
 
 check: 
-	Rscript -e 'blogdown::build_site()'
+	Rscript -e 'blogdown::check_config(); check_content()'
 
 build:
 	Rscript -e 'blogdown::build_site()'
