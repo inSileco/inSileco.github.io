@@ -1,24 +1,24 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Our posts on R-bloggers on inSileco</title>
-    <link>/r-bloggers/index.xml</link>
+    <link>https://insileco.github.io/r-bloggers/index.xml</link>
     <description>Recent content in Our posts on R-bloggers on inSileco</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright © 2017-2021 inSileco</copyright>
-    <atom:link href="/r-bloggers/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://insileco.github.io/r-bloggers/index.xml" rel="self" type="application/rss+xml" />
     
 		
     
 		
     <item>
       <title>Continuous integration for R projects: from Travis CI to GitHub actions step by step</title>
-      <link>/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/</link>
+      <link>https://insileco.github.io/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/</link>
       <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/</guid>
+      <guid>https://insileco.github.io/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/</guid>
       <description>
-<script src="/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/index_files/header-attrs/header-attrs.js"></script>
+<script src="https://insileco.github.io/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/index_files/header-attrs/header-attrs.js"></script>
 
 
 <p>I have been using Travis CI (<a href="https://travis-ci.org/" class="uri">https://travis-ci.org/</a>) since 2015 and GitHub
@@ -349,12 +349,12 @@ jobs:
 		
     <item>
       <title>Custom tick marks with R&#39;s base graphics system</title>
-      <link>/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/</link>
+      <link>https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/</link>
       <pubDate>Sat, 29 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/</guid>
+      <guid>https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/</guid>
       <description>
-<script src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/header-attrs/header-attrs.js"></script>
+<script src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/header-attrs/header-attrs.js"></script>
 
 
 <div id="context" class="section level2">
@@ -366,7 +366,7 @@ explaining how I do so. Let’s consider the following plot,</p>
 <pre class="r"><code>cx &lt;- seq(0, 2, 0.1)
 cy &lt;- cx + .5*rnorm(length(cx))
 plot(cx, cy)</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/prob-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/prob-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>By default, <code>plot.default</code> internally has its way to decide where tick marks
 should be added. It is always a good default choice, but sometimes not the one
 you’re looking for. Fortunately, the core package <code>graphics</code> includes all what
@@ -379,30 +379,30 @@ ticks!</p>
 is to use <code>xaxt = "n"</code> and <code>yaxt = "n"</code> to selectively remove the x-axis and
 the y-axis, respectively.</p>
 <pre class="r"><code>plot(cx, cy, xaxt = &quot;n&quot;)</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <pre class="r"><code>plot(cx, cy, xaxt = &quot;n&quot;, yaxt = &quot;n&quot;)</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-2-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The second option is to set <code>axes</code> to <code>FALSE</code> in <code>plot()</code>:</p>
 <pre class="r"><code>plot(cx, cy, axes = FALSE)</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>As you can see, when <code>axes = FALSE</code> the box is also removed and you can actually add it back with <code>box()</code>:</p>
 <pre class="r"><code>plot(cx, cy, axes = FALSE)
 box()</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>and change its style, if desired:</p>
 <pre class="r"><code>plot(cx, cy, axes = FALSE)
 box(bty = &quot;l&quot;)</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>That being said, let’s only remove the x-axis for the moment and add ticks at 0,
 0.5, 1, 1.5 and 2 to the x-axis using <code>axis()</code>:</p>
 <pre class="r"><code>plot(cx, cy, xaxt = &quot;n&quot;)
 axis(1, at = seq(0, 2, .5))</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>I can easily change the labels if values on the axis are not the ones that
 should be displayed, e.g.</p>
 <pre class="r"><code>plot(cx, cy, xaxt = &quot;n&quot;)
 axis(1, at = seq(0, 2, .5), labels = letters[1:5])</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-7-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="second-set-of-tick-marks" class="section level2">
 <h2>Second set of tick marks</h2>
@@ -411,7 +411,7 @@ more time.</p>
 <pre class="r"><code>plot(cx, cy, xaxt = &quot;n&quot;)
 axis(1, at = seq(0, 2, .5))
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA)</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-8-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>As you may have noticed, I use <code>setdiff()</code> to select the complementary set of
 ticks. I think it is an efficient of proceeding: I first select the finest gap
 between two ticks (here 0.1) and create the sequence with <code>seq()</code>, then create
@@ -428,31 +428,31 @@ default behavior of <code>plot()</code>): the lines that comes along with the ti
 axis(2)
 axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5))
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA)</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-9-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>overlap with the box</p>
 <pre class="r"><code>plot(cx, cy, axes = FALSE)
 box()</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-10-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>This may frequently goes unnoticed, but I personally tend to notice such overlap
 this and it annoys me… Anyway, one way to handle this is to set the line width
 to 0 in <code>axis()</code>.</p>
 <pre class="r"><code>plot(cx, cy, xaxt = &quot;n&quot;)
 axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd = 0)</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>and then to set the line with of the ticks, controlled by <code>lwd.ticks</code>, to
 something greater than 0</p>
 <pre class="r"><code>plot(cx, cy, xaxt = &quot;n&quot;)
 axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, lwd.ticks = 1)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd = NA, lwd.ticks = 1)
 box()</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Note that if you only wish to remove the marks you can use <code>tick = FALSE</code>.</p>
 <pre class="r"><code>plot(cx, cy, xaxt = &quot;n&quot;)
 axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), tick = FALSE)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, tick = FALSE)
 box()</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-13-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>But if you just want to get rid of the extra line, but not the ticks, then you
 need set <code>lwd</code> to 0 and <code>lwd.ticks</code> to a positive values.</p>
 </div>
@@ -464,7 +464,7 @@ is a good way to custom your tick marks!</p>
 axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, lwd.ticks = 1.5)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd = 0, lwd.ticks = .5)
 box()</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-14-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>A second parameter to further customize the tick marks is <code>tck</code> that actually
 belongs to <code>par()</code></p>
 <pre class="r"><code>par(tck = -0.07)
@@ -473,7 +473,7 @@ axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0,
   lwd.ticks = 1)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = 1)
 box()</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/tckinpar-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/tckinpar-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>but can also be used with <code>axis()</code> thanks to the ellipsis (<code>...</code>) which allow me
 to change it only for one set of ticks</p>
 <pre class="r"><code>plot(cx, cy, xaxt = &quot;n&quot;)
@@ -481,20 +481,20 @@ axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, tck = -0.07,
   lwd.ticks = 1)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = 1)
 box()</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/tckinaxis-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/tckinaxis-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Moreover, using positive value you can make the tick go up!</p>
 <pre class="r"><code>plot(cx, cy, xaxt = &quot;n&quot;)
 axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, tck = 0.07,
   lwd.ticks = 1)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = 1)
 box()</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-15-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>And finally you change many aspect of them, including color then and line type:</p>
 <pre class="r"><code>plot(cx, cy, xaxt = &quot;n&quot;)
 axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, lwd.ticks = 1.5, tck = -.07, col = 2, lty = 2)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = .5, tck = -.03, col = 3)
 box()</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/unnamed-chunk-16-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>One more tip, if you need to adjust the position of the tick you would have to
 use <code>mgp</code> (also documented in <code>par</code>) which is a vector of three elements
 controlling the following features:</p>
@@ -509,7 +509,7 @@ axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, lwd.ticks = 1.5,
   tck = -.1, col = 2, lty = 2)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = .5, tck = -.03, col = 3)
 box()</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/mgp-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/mgp-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Note that, just as for <code>tck</code>, I can use <code>mgp</code> in <code>axis()</code>. In this example, it
 won’t affected the axis labels because they were added by <code>plot()</code>.</p>
 <pre class="r"><code>plot(cx, cy, xaxt = &quot;n&quot;)
@@ -517,7 +517,7 @@ axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, lwd.ticks = 1.5,
   tck = -.1, col = 2, lty = 2)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = .5, tck = -.03, col = 3, mgp = c(2.5, 1.6, 0))
 box()</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/mgpinaxis-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/mgpinaxis-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="wrap-all-that-up-in-a-function" class="section level2">
 <h2>Wrap all that up in a function</h2>
@@ -535,7 +535,7 @@ a function similar to the one below:</p>
 <pre class="r"><code>plot(cx, cy, xaxt = &quot;n&quot;, yaxt = &quot;n&quot;)
 myaxis(1, cx, seq(0, 2, .5))
 myaxis(2, seq(-0.5, 2.8, .1), seq(-0.5, 2.5, .5), las = 1)</code></pre>
-<p><img src="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/final-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/index_files/figure-html/final-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><br></p>
 <div id="thats-all-folks-smile" class="section level4">
 <h4>That’s all folks 😄!</h4>
@@ -602,12 +602,12 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 		
     <item>
       <title>inSilecoMisc 0.4.0 (part 2/2)</title>
-      <link>/2020/04/21/insilecomisc-0.4.0-part-2/2/</link>
+      <link>https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/</link>
       <pubDate>Tue, 21 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/04/21/insilecomisc-0.4.0-part-2/2/</guid>
+      <guid>https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/</guid>
       <description>
-<script src="/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/header-attrs/header-attrs.js"></script>
+<script src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/header-attrs/header-attrs.js"></script>
 
 
 <p>In the <a href="/2020/04/05/insilecomisc-0.4.0-part-1/2/">first part of this post</a> I
@@ -627,23 +627,23 @@ packageVersion(&quot;inSilecoMisc&quot;)
 <p>I wrote <a href="https://insileco.github.io/inSilecoMisc/reference/scaleWithin.html"><code>scaleWithin()</code></a> to handle color scales for a specific yet frequent situation. Let us say that I have 40 percentage values – meaning 0 to 100 – in a vector <code>val</code>…</p>
 <pre class="r"><code>val &lt;- runif(40, 0, 100)
 val
-#R&gt;  [1] 63.4993828 68.5356327 41.7746460  9.9668010 32.9446547 28.3085516
-#R&gt;  [7] 66.5568603 28.2655056 59.8883228 35.9341631 27.5033088 84.4676136
-#R&gt; [13] 34.3934065 39.7354135 51.2560282 37.1602871 27.6295237 83.9588794
-#R&gt; [19] 33.5238463 26.7789463 16.5514162 19.8312140 38.6745918 59.2085481
-#R&gt; [25] 86.5726864 30.4555957 55.7698294 66.2596554  0.8602066 26.3812454
-#R&gt; [31] 74.6272153 92.6446517 95.5110635 39.1301120 97.4036562 90.4035081
-#R&gt; [37] 20.5714416 37.2548273 29.6937135 68.9160900</code></pre>
+#R&gt;  [1] 74.9427800 38.1665088 29.7692264 47.1517256 88.4016741  7.7443802
+#R&gt;  [7] 71.8278577  9.5457574 89.3220819 33.4107839 24.5011342 28.2698014
+#R&gt; [13] 27.1510493 32.0213523 37.3680610 18.0566694 85.1953706 18.8135943
+#R&gt; [19] 71.5551080  7.4371140 46.1394063 64.2616936 87.1572603  0.6683812
+#R&gt; [25] 69.6970627 24.5286821  7.5573741 63.4350846  3.1615508 35.3055426
+#R&gt; [31] 62.5470714 98.0249045 27.3023897 40.7104092 45.4050947 69.2828350
+#R&gt; [37]  3.4097830  7.3533351 48.9190386 53.3323966</code></pre>
 <p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
 <pre class="r"><code>pal &lt;- colorRampPalette(c(&quot;#f9fa98&quot;, &quot;#500127&quot;))(25)
 graphicsutils::showPalette(pal)</code></pre>
-<p><img src="/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>But</strong> the color scale should be used for the range [30%-70%], meaning that values below 30% should have the lowest values and values above 70%, the highest one. The caption should thus indicate <span class="math inline">\(\geqslant\)</span> 30% and <span class="math inline">\(\leqslant\)</span> 70%. Then the function <code>scaleWithin()</code> is very handy!</p>
 <pre class="r"><code>scaleWithin(val, n = 25, mn = 30, mx = 70)
-#R&gt;  [1] 21 25  8  1  2  1 23  1 19  4  1 25  3  7 14  5  1 25  3  1  1  1  6 19 25
-#R&gt; [26]  1 17 23  1  1 25 25 25  6 25 25  1  5  1 25
+#R&gt;  [1] 25  6  1 11 25  1 25  1 25  3  1  1  1  2  5  1 25  1 25  1 11 22 25  1 25
+#R&gt; [26]  1  1 21  1  4 21 25  1  7 10 25  1  1 12 15
 graphicsutils::showPalette(pal[scaleWithin(val, n = 25, mn = 30, mx = 70)], add_codecolor = FALSE)</code></pre>
-<p><img src="/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Even though this function is pretty useful – at least I think it is! – I had a
 lot of trouble conveying why! So, in the last version of <code>inSilecoMisc</code>, I
 re-wrote the entire documentation and I hope that, together with this example,
@@ -853,12 +853,12 @@ command!</p>
 		
     <item>
       <title>inSilecoMisc 0.4.0 (part 1/2)</title>
-      <link>/2020/04/14/insilecomisc-0.4.0-part-1/2/</link>
+      <link>https://insileco.github.io/2020/04/14/insilecomisc-0.4.0-part-1/2/</link>
       <pubDate>Tue, 14 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/04/14/insilecomisc-0.4.0-part-1/2/</guid>
+      <guid>https://insileco.github.io/2020/04/14/insilecomisc-0.4.0-part-1/2/</guid>
       <description>
-<script src="/2020/04/14/insilecomisc-0.4.0-part-1/2/index_files/header-attrs/header-attrs.js"></script>
+<script src="https://insileco.github.io/2020/04/14/insilecomisc-0.4.0-part-1/2/index_files/header-attrs/header-attrs.js"></script>
 
 
 <div id="insilecomisc" class="section level2">
@@ -1168,10 +1168,10 @@ repositories:
 		
     <item>
       <title>Creating empty data frames with dfTemplate() and dfTemplateMatch()</title>
-      <link>/2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/</link>
+      <link>https://insileco.github.io/2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/</link>
       <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/</guid>
+      <guid>https://insileco.github.io/2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/</guid>
       <description>
 <script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
@@ -1490,10 +1490,10 @@ lsdf2</code></pre>
 		
     <item>
       <title>A few thoughts on R packages</title>
-      <link>/2018/12/03/a-few-thoughts-on-r-packages/</link>
+      <link>https://insileco.github.io/2018/12/03/a-few-thoughts-on-r-packages/</link>
       <pubDate>Mon, 03 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/12/03/a-few-thoughts-on-r-packages/</guid>
+      <guid>https://insileco.github.io/2018/12/03/a-few-thoughts-on-r-packages/</guid>
       <description><p><a href="https://www.linkedin.com/in/jonasgeschke/">Jonas Geschke</a>,
 <a href="https://bartomeuslab.com/">Ignasi Bartomeus</a> and I have recently released <a href="https://cran.r-project.org/web/packages/rcites/index.html">rcites v-1.0.0</a> on CRAN, a R client for the <a href="https://api.speciesplus.net/">Species+ API</a> after it has been reviewed by <a href="https://rOpenSci.org/">rOpenSci</a>. In this post, I would like to share this recent experience as well as several valuable resources.</p>
 <br>

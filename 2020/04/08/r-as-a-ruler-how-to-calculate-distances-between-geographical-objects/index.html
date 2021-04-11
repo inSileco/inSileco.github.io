@@ -20,17 +20,17 @@
 </style>
 
 
-<link rel="stylesheet" href="../../../../css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 
 
 
-  <link rel="stylesheet" href="../../../../css/academicons.min.css">
+  <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="../../../../css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="../../../../css/insileco.css">
+  <link rel="stylesheet" href="/css/insileco.css">
 
-  <link rel="stylesheet" href="../../../../css/jquery.tocify.css">
+  <link rel="stylesheet" href="/css/jquery.tocify.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
 
@@ -65,11 +65,11 @@
 
 
 
-  <script src="../../../../js/jquery-1.8.3.min.js"></script>
+  <script src="/js/jquery-1.8.3.min.js"></script>
 
-  <script src="../../../../js/jquery-ui-1.9.1.custom.min.js"></script>
+  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
-  <script src="../../../../js/jquery.tocify.min.js"></script>
+  <script src="/js/jquery.tocify.min.js"></script>
 
 
         <meta charset="utf-8">
@@ -113,21 +113,21 @@
                     
                         <ul class="nav navbar-nav">
                             
-                                <li><a href="../../../../">Home</a></li>
+                                <li><a href="/">Home</a></li>
                             
-                                <li><a href="../../../../about/">About</a></li>
+                                <li><a href="/about/">About</a></li>
                             
                                 <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
                             
-                                <li><a href="../../../../post/">Posts</a></li>
+                                <li><a href="/post/">Posts</a></li>
                             
-                                <li><a href="../../../../software/">Software</a></li>
+                                <li><a href="/software/">Software</a></li>
                             
-                                <li><a href="../../../../tips/">Tips</a></li>
+                                <li><a href="/tips/">Tips</a></li>
                             
-                                <li><a href="../../../../tuto/">Tutorials</a></li>
+                                <li><a href="/tuto/">Tutorials</a></li>
                             
-                                <li><a href="../../../../wiki/">Wiki</a></li>
+                                <li><a href="/wiki/">Wiki</a></li>
                             
                         </ul>
                     
@@ -151,7 +151,7 @@
         </nav>
 
 
-<img class="full-width" width="100%" src="../../../../img/banner4.png"></img>
+<img class="full-width" width="100%" src="/img/banner4.png"></img>
 
 
 
@@ -170,22 +170,22 @@
 
   <div class="col-md-8">
 
-    <h1><a href="../../../../2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/">R as a ruler? How to calculate distances between geographical objects</a></h1>
+    <h1><a href="/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/">R as a ruler? How to calculate distances between geographical objects</a></h1>
 
     <h4>April 8, 2020</h4>
 
     <p>
-      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/gis"><kbd class="item-tag">GIS</kbd></a>  <a href="../../../../tags/utils"><kbd class="item-tag">utils</kbd></a> 
+      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/gis"><kbd class="item-tag">GIS</kbd></a>  <a href="/tags/utils"><kbd class="item-tag">utils</kbd></a> 
       <br>
       
-       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="../../../../rpkgs/sf"><kbd class="item-tag2">sf</kbd></a>  <a href="../../../../rpkgs/gdistance"><kbd class="item-tag2">gdistance</kbd></a>  <a href="../../../../rpkgs/igraph"><kbd class="item-tag2">igraph</kbd></a>  <a href="../../../../rpkgs/knitr"><kbd class="item-tag2">knitr</kbd></a>  <a href="../../../../rpkgs/sp"><kbd class="item-tag2">sp</kbd></a>  <a href="../../../../rpkgs/raster"><kbd class="item-tag2">raster</kbd></a> 
+       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/sf"><kbd class="item-tag2">sf</kbd></a>  <a href="/rpkgs/gdistance"><kbd class="item-tag2">gdistance</kbd></a>  <a href="/rpkgs/igraph"><kbd class="item-tag2">igraph</kbd></a>  <a href="/rpkgs/knitr"><kbd class="item-tag2">knitr</kbd></a>  <a href="/rpkgs/sp"><kbd class="item-tag2">sp</kbd></a>  <a href="/rpkgs/raster"><kbd class="item-tag2">raster</kbd></a> 
       
     </p>
 
     
       <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
        
-        <a href="../../../../about/">Elliot Dreujou</a> &nbsp;
+        <a href="/about/">Elliot Dreujou</a> &nbsp;
       
      <a href="#"></a></p>
     
@@ -193,9 +193,9 @@
     
       <p> <i class="fa fa-check-square" aria-hidden="true", title="Reviewer(s)"></i>
        
-      <a href="../../../../about/">Rémi Daigle</a> &nbsp;
+      <a href="/about/">Rémi Daigle</a> &nbsp;
        
-      <a href="../../../../about/">Kevin Cazelles</a> &nbsp;
+      <a href="/about/">Kevin Cazelles</a> &nbsp;
       
       <a href="#"></a></p>
     
@@ -214,9 +214,9 @@
       <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
       </a>
     
-    &nbsp;&nbsp;
-    <a href="http://twitter.com/share?url=%2f2020%2f04%2f08%2fr-as-a-ruler-how-to-calculate-distances-between-geographical-objects%2f&text=" target="_blank">
-      <img src='https://img.shields.io/twitter/url?style=social&url=%2f2020%2f04%2f08%2fr-as-a-ruler-how-to-calculate-distances-between-geographical-objects%2f?link=http://left&link=http://right}'>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f08%2fr-as-a-ruler-how-to-calculate-distances-between-geographical-objects%2f&text=" target="_blank">
+      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f08%2fr-as-a-ruler-how-to-calculate-distances-between-geographical-objects%2f?link=http://left&link=http://right}'>
     </a>
   </p>
 
@@ -233,10 +233,10 @@
     <div class="text-justify">
 
       
-<script src="../../../../2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/header-attrs/header-attrs.js"></script>
+<script src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/header-attrs/header-attrs.js"></script>
 
 
-<p>When working in Ecology, it is often necessary to produce maps and calculate distances between objects such as sampled stations, species distribution ranges or geographical features. A <a href="../../../../tuto/rinspace/rinspace_homepage/">tutorial on this blog</a> describes many techniques to create maps with different packages in R, such as <code>sf</code> and <code>raster</code>. In this post, I will go further and use these tools to calculate distances in our spatial environment.</p>
+<p>When working in Ecology, it is often necessary to produce maps and calculate distances between objects such as sampled stations, species distribution ranges or geographical features. A <a href="/tuto/rinspace/rinspace_homepage/">tutorial on this blog</a> describes many techniques to create maps with different packages in R, such as <code>sf</code> and <code>raster</code>. In this post, I will go further and use these tools to calculate distances in our spatial environment.</p>
 <div id="how-to-define-a-distance" class="section level1">
 <h1>How to define a distance?</h1>
 <p>Before stepping in our topic, let’s define what we are talking about. What is a <em>distance</em>? This concept has various applications in ecology we need to present here, to make sure we are on the same page.</p>
@@ -263,7 +263,7 @@
 </div>
 <div id="applications-in-r" class="section level1">
 <h1>Applications in R</h1>
-<p>We will work with the <code>sf</code> package (Pebesma 2018), as described in the previous <a href="../../../../tuto/rinspace/rinspace_homepage/">inSileco GIS series</a>. Also, we present here a case study with <em>point</em> data, but these methods can be adapted to <em>lines</em>, <em>polygons</em> or <em>objects with multiple geometries</em>.</p>
+<p>We will work with the <code>sf</code> package (Pebesma 2018), as described in the previous <a href="/tuto/rinspace/rinspace_homepage/">inSileco GIS series</a>. Also, we present here a case study with <em>point</em> data, but these methods can be adapted to <em>lines</em>, <em>polygons</em> or <em>objects with multiple geometries</em>.</p>
 <p>First, we will have to import the shapefile of the study area. All shapefiles are projected with the WGS84 (EPSG code: 4326) coordinate reference system (CRS), but analyses will be done with the UTM 19N (EPSG code: 32619) CRS. UTM consideres units in meters instead of degrees, <em>i.e</em> it is a projected CRS with corrections for longitude and latitude, and we use UTM 19N which includes the area of Sept-Îles.</p>
 <pre class="r"><code>library(knitr)
 library(sf)
@@ -279,7 +279,7 @@ coords &lt;- data.frame(station = c(&quot;INIT&quot;, &quot;P1&quot;, &quot;P2&q
 coords &lt;- st_as_sf(coords, coords = c(&quot;longitude&quot;, &quot;latitude&quot;),
                    crs = 4326, stringsAsFactors = FALSE) %&gt;%
           st_transform(crs = 32619)</code></pre>
-<p><img src="../../../../2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot1-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>The initial position of Herbert is on the turquoise dot (init), and we are interested in three possible locations (P1, P2 and P3).</p>
 <div id="classic-geographical-distances" class="section level2">
 <h2>Classic geographical distances</h2>
@@ -309,7 +309,7 @@ kable(dist1_df)</code></pre>
 </tbody>
 </table>
 <p>Based on these results, P1 is the closest site to the initial location of Herbert implying that P1 could be the preferential site where he would migrate under the human perturbation scenario (where its initial position would not be available anymore). However, we know that Herbert, even if he is an awesome lobster, cannot go on land which is necessary to attain P1. So, we need to refine our analysis to take this into account.</p>
-<p><img src="../../../../2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot2-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot2-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="least-cost-distances-with-gdistance" class="section level2">
 <h2>Least Cost Distances with <code>gdistance</code></h2>
@@ -326,7 +326,7 @@ library(raster)</code></pre>
 <pre class="r"><code>raster_bay &lt;- raster(x = extent(bay), nrow = 250,  ncol = 250)
 raster_bay &lt;- rasterize(x = bay, y = raster_bay, field = 1)
 raster_bay[is.na(raster_bay)] &lt;- 0</code></pre>
-<p><img src="../../../../2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <blockquote>
 <p>We have to add <code>field = 1</code> in function <code>rasterize()</code> otherwise the id number will be automatically assigned to each cell as a weighting parameter, which will bias the distance calculation by introducing a cost for choosing the cell.</p>
 </blockquote>
@@ -377,7 +377,7 @@ kable(dist2_df)</code></pre>
 <p><code>costDistance()</code> needs a conversion to <code>SpatialPoints</code> class, as the package has been created with <code>sp</code> objects.</p>
 </blockquote>
 <p>These results show that P2 is the closest potential site for Herbert now, without any coast between the two points. This result is much more relevant than previously calculated with <code>st_distance()</code>! If you want to represent the shortest path between two points (based on the transition matrix), you can plot the result of function <code>shortestPath()</code>.</p>
-<p><img src="../../../../2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot4-1.png" width="672" style="display: block; margin: auto;" /></p>
 </div>
 <div id="least-cost-distances-with-igraph" class="section level2">
 <h2>Least Cost Distances with <code>igraph</code></h2>
@@ -385,13 +385,13 @@ kable(dist2_df)</code></pre>
 <pre class="r"><code>library(igraph)</code></pre>
 <p>Let’s create another grid, but this time, let’s make it hexagonal. For this example, the cell centroids are 250m apart (in any of the 6 directions), but you could increase the resolution if you don’t mind waiting a bit. As you can see from the map below, this resolution may ignore the presence of some smaller islands, which can be a problem.</p>
 <pre class="r"><code>hex_bay &lt;- st_make_grid(bay, cellsize = 250, square = FALSE)</code></pre>
-<p><img src="../../../../2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot5-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot5-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Now that we have our basic grid, we need to create an <code>igraph</code> network. The network in this case will represent neighbouring cells (<em>i.e.</em> right next to one another) which Herbert has the possibility to move through. We must first create an edgelist (<em>i.e.</em> list to ‘from’ and ‘to’ cell id’s that represent neighbours), then convert into a network.</p>
 <pre class="r"><code>edgelist &lt;- as.matrix(as.data.frame(st_intersects(hex_bay)))
   # yes, the as.matrix and as.data.frame is a bit silly, but required to have the right format
 
 gr &lt;- graph_from_edgelist(edgelist)</code></pre>
-<p><img src="../../../../2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot6-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot6-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Yes, this plot no longer looks like the bay because we have abstracted out the actual coordinates and are looking only at the distances between cells. In this particular example we know that the distance between each neighbouring cell is 250m since we defined this when we created the grid. At this phase, you could also incorporate ‘fancier’ weights that incorporate habitat resistance (<em>i.e.</em> the influence of habitat type on the facilitation or prevention of movement) to calculate isolation by resistance. But for this example, let’s keep it simple.</p>
 <pre class="r"><code>E(gr)$weight &lt;- 250
   # setting the weight for ALL edges, alternatively could supply a vector here</code></pre>
@@ -537,10 +537,10 @@ kable(dist3_df)</code></pre>
   
 
   <h1>
-    <a href="../../../../2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
+    <a href="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="../../../../tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
 
   
 
@@ -554,10 +554,10 @@ kable(dist3_df)</code></pre>
   
 
   <h1>
-    <a href="../../../../2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
+    <a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../../tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
 
   
 
@@ -571,10 +571,10 @@ kable(dist3_df)</code></pre>
   
 
   <h1>
-    <a href="../../../../2020/04/14/insilecomisc-0.4.0-part-1/2/">inSilecoMisc 0.4.0 (part 1/2)</a> <small>April 14, 2020</small>
+    <a href="/2020/04/14/insilecomisc-0.4.0-part-1/2/">inSilecoMisc 0.4.0 (part 1/2)</a> <small>April 14, 2020</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../../tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
 
   
 
@@ -595,7 +595,7 @@ kable(dist3_df)</code></pre>
 
 
     var disqus_config = function() {
-      this.page.url = "https://insileco.github.io" + "/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/"; 
+      this.page.url = "https://insileco.github.io" + "https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/"; 
       this.page.identifier = "R as a ruler? How to calculate distances between geographical objects"; 
     };
 

@@ -20,17 +20,17 @@
 </style>
 
 
-<link rel="stylesheet" href="../../../css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 
 
 
-  <link rel="stylesheet" href="../../../css/academicons.min.css">
+  <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="../../../css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="../../../css/insileco.css">
+  <link rel="stylesheet" href="/css/insileco.css">
 
-  <link rel="stylesheet" href="../../../css/jquery.tocify.css">
+  <link rel="stylesheet" href="/css/jquery.tocify.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
 
@@ -65,11 +65,11 @@
 
 
 
-  <script src="../../../js/jquery-1.8.3.min.js"></script>
+  <script src="/js/jquery-1.8.3.min.js"></script>
 
-  <script src="../../../js/jquery-ui-1.9.1.custom.min.js"></script>
+  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
-  <script src="../../../js/jquery.tocify.min.js"></script>
+  <script src="/js/jquery.tocify.min.js"></script>
 
 
         <meta charset="utf-8">
@@ -113,21 +113,21 @@
                     
                         <ul class="nav navbar-nav">
                             
-                                <li><a href="../../../">Home</a></li>
+                                <li><a href="/">Home</a></li>
                             
-                                <li><a href="../../../about/">About</a></li>
+                                <li><a href="/about/">About</a></li>
                             
                                 <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
                             
-                                <li><a href="../../../post/">Posts</a></li>
+                                <li><a href="/post/">Posts</a></li>
                             
-                                <li><a href="../../../software/">Software</a></li>
+                                <li><a href="/software/">Software</a></li>
                             
-                                <li><a href="../../../tips/">Tips</a></li>
+                                <li><a href="/tips/">Tips</a></li>
                             
-                                <li><a href="../../../tuto/">Tutorials</a></li>
+                                <li><a href="/tuto/">Tutorials</a></li>
                             
-                                <li><a href="../../../wiki/">Wiki</a></li>
+                                <li><a href="/wiki/">Wiki</a></li>
                             
                         </ul>
                     
@@ -151,7 +151,7 @@
         </nav>
 
 
-<img class="full-width" width="100%" src="../../../img/banner4.png"></img>
+<img class="full-width" width="100%" src="/img/banner4.png"></img>
 
 
 
@@ -169,21 +169,21 @@
 
   <div class="col-md-8">
 
-    <h1><a href="../../../tips/trick_or_tips/trick_or_tips001/">Trick or tips 001 {R}</a></h1>
+    <h1><a href="/tips/trick_or_tips/trick_or_tips001/">Trick or tips 001 {R}</a></h1>
 
     <h5>June 30, 2017</h5>
 
-    <p> <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="../../../tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> </p>
+    <p> <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> </p>
 
     
-    <p> <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width=7%></img> &nbsp;  <a href="../../../rpkgs/base"><kbd class="item-tag2">base</kbd></a>  <a href="../../../rpkgs/utils"><kbd class="item-tag2">utils</kbd></a>  <a href="../../../rpkgs/graphics"><kbd class="item-tag2">graphics</kbd></a> </p>
+    <p> <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width=7%></img> &nbsp;  <a href="/rpkgs/base"><kbd class="item-tag2">base</kbd></a>  <a href="/rpkgs/utils"><kbd class="item-tag2">utils</kbd></a>  <a href="/rpkgs/graphics"><kbd class="item-tag2">graphics</kbd></a> </p>
     
 
 
     
       <p style = "font-size: 1.8em; margin-top: 20px"> <i class="fa fa-pencil" aria-hidden="true"></i>
        
-        <a href="../../../about/">Kevin Cazelles</a> &nbsp;
+        <a href="/about/">Kevin Cazelles</a> &nbsp;
       
      <a href="#"></a></p>
     
@@ -213,7 +213,7 @@
     <div class="text-justify">
 
       
-<script src="../../../rmarkdown-libs/header-attrs/header-attrs.js"></script>
+<script src="/rmarkdown-libs/header-attrs/header-attrs.js"></script>
 
 
 <h3>Trick or Tips?</h3>
@@ -398,7 +398,7 @@ a plot using the default parameters’ values and the same plot using the tip:</
 plot(0:10, 0:10, pch=20)
 par(xaxs=&quot;i&quot;, yaxs=&quot;i&quot;)
 plot(0:10, 0:10, pch=20)</code></pre>
-<p><img src="../../../tips/trick_or_tips/trick_or_tips001_files/figure-html/xaxsYaxs-1.png" width="912" style="display: block; margin: auto;" /></p>
+<p><img src="/tips/trick_or_tips/trick_or_tips001_files/figure-html/xaxsYaxs-1.png" width="912" style="display: block; margin: auto;" /></p>
 <p>Can you tell the difference? I now add two extra lines to stress the differences out.</p>
 <pre class="r"><code>par(mfrow=c(1,2), bty=&quot;l&quot;)
 plot(0:10, 0:10, pch=20)
@@ -406,7 +406,7 @@ abline(v=c(0,10), h=c(0,10), col=2)
 par(xaxs=&quot;i&quot;, yaxs=&quot;i&quot;)
 plot(0:10, 0:10, pch=20)
 abline(v=c(0,10), h=c(0,10), col=2)</code></pre>
-<p><img src="../../../tips/trick_or_tips/trick_or_tips001_files/figure-html/xaxsYaxsV2-1.png" width="912" style="display: block; margin: auto;" /></p>
+<p><img src="/tips/trick_or_tips/trick_or_tips001_files/figure-html/xaxsYaxsV2-1.png" width="912" style="display: block; margin: auto;" /></p>
 <p><strong>That’s all folks… until next time!</strong></p>
 <details>
 <p><summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary></p>
@@ -484,10 +484,10 @@ abline(v=c(0,10), h=c(0,10), col=2)</code></pre>
   
 
   <h1>
-    <a href="../../../2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
+    <a href="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="../../../tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
 
   
 
@@ -501,10 +501,10 @@ abline(v=c(0,10), h=c(0,10), col=2)</code></pre>
   
 
   <h1>
-    <a href="../../../2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
+    <a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
 
   
 
@@ -518,10 +518,10 @@ abline(v=c(0,10), h=c(0,10), col=2)</code></pre>
   
 
   <h1>
-    <a href="../../../2020/04/14/insilecomisc-0.4.0-part-1/2/">inSilecoMisc 0.4.0 (part 1/2)</a> <small>April 14, 2020</small>
+    <a href="/2020/04/14/insilecomisc-0.4.0-part-1/2/">inSilecoMisc 0.4.0 (part 1/2)</a> <small>April 14, 2020</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
 
   
 
@@ -542,7 +542,7 @@ abline(v=c(0,10), h=c(0,10), col=2)</code></pre>
 
 
     var disqus_config = function() {
-      this.page.url = "https://insileco.github.io" + "/tips/trick_or_tips/trick_or_tips001/"; 
+      this.page.url = "https://insileco.github.io" + "https://insileco.github.io/tips/trick_or_tips/trick_or_tips001/"; 
       this.page.identifier = "Trick or tips 001 {R}"; 
     };
 

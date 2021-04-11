@@ -20,17 +20,17 @@
 </style>
 
 
-<link rel="stylesheet" href="../../../css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 
 
 
-  <link rel="stylesheet" href="../../../css/academicons.min.css">
+  <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="../../../css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="../../../css/insileco.css">
+  <link rel="stylesheet" href="/css/insileco.css">
 
-  <link rel="stylesheet" href="../../../css/jquery.tocify.css">
+  <link rel="stylesheet" href="/css/jquery.tocify.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
 
@@ -65,11 +65,11 @@
 
 
 
-  <script src="../../../js/jquery-1.8.3.min.js"></script>
+  <script src="/js/jquery-1.8.3.min.js"></script>
 
-  <script src="../../../js/jquery-ui-1.9.1.custom.min.js"></script>
+  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
-  <script src="../../../js/jquery.tocify.min.js"></script>
+  <script src="/js/jquery.tocify.min.js"></script>
 
 
         <meta charset="utf-8">
@@ -113,21 +113,21 @@
                     
                         <ul class="nav navbar-nav">
                             
-                                <li><a href="../../../">Home</a></li>
+                                <li><a href="/">Home</a></li>
                             
-                                <li><a href="../../../about/">About</a></li>
+                                <li><a href="/about/">About</a></li>
                             
                                 <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
                             
-                                <li><a href="../../../post/">Posts</a></li>
+                                <li><a href="/post/">Posts</a></li>
                             
-                                <li><a href="../../../software/">Software</a></li>
+                                <li><a href="/software/">Software</a></li>
                             
-                                <li><a href="../../../tips/">Tips</a></li>
+                                <li><a href="/tips/">Tips</a></li>
                             
-                                <li><a href="../../../tuto/">Tutorials</a></li>
+                                <li><a href="/tuto/">Tutorials</a></li>
                             
-                                <li><a href="../../../wiki/">Wiki</a></li>
+                                <li><a href="/wiki/">Wiki</a></li>
                             
                         </ul>
                     
@@ -151,7 +151,7 @@
         </nav>
 
 
-<img class="full-width" width="100%" src="../../../img/banner4.png"></img>
+<img class="full-width" width="100%" src="/img/banner4.png"></img>
 
 
 
@@ -170,11 +170,11 @@
 
   <div class="col-md-8">
 
-    <h1><a href="../../../tuto/rinspace/rinspace_attrmanip/">R in Space - Attribute manipulations</a></h1>
+    <h1><a href="/tuto/rinspace/rinspace_attrmanip/">R in Space - Attribute manipulations</a></h1>
 
     <h5>April 9, 2018</h5>
 
-    <p> <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="../../../tags/r-in-space"><kbd class="item-tag">R in Space</kbd></a>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/spatial"><kbd class="item-tag">Spatial</kbd></a> </p>
+    <p> <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/r-in-space"><kbd class="item-tag">R in Space</kbd></a>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/spatial"><kbd class="item-tag">Spatial</kbd></a> </p>
 
     
 
@@ -182,17 +182,17 @@
     
       <p style = "font-size: 1.8em; margin-top: 20px"> <i class="fa fa-pencil" aria-hidden="true"></i>
        
-        <a href="../../../about/">David Beauchesne</a> &nbsp;
+        <a href="/about/">David Beauchesne</a> &nbsp;
        
-        <a href="../../../about/">Marie-Hélène Brice</a> &nbsp;
+        <a href="/about/">Marie-Hélène Brice</a> &nbsp;
        
-        <a href="../../../about/">Nicolas Casajus</a> &nbsp;
+        <a href="/about/">Nicolas Casajus</a> &nbsp;
        
-        <a href="../../../about/">Kevin Cazelles</a> &nbsp;
+        <a href="/about/">Kevin Cazelles</a> &nbsp;
        
-        <a href="../../../about/">Elliot Dreujou</a> &nbsp;
+        <a href="/about/">Elliot Dreujou</a> &nbsp;
        
-        <a href="../../../about/">Steve Vissault</a> &nbsp;
+        <a href="/about/">Steve Vissault</a> &nbsp;
       
      <a href="#"></a></p>
     
@@ -222,7 +222,7 @@
     <div class="text-justify">
 
       
-<script src="../../../tuto/rinspace/rinspace_attrmanip/index_files/header-attrs/header-attrs.js"></script>
+<script src="https://insileco.github.io/tuto/rinspace/rinspace_attrmanip/index_files/header-attrs/header-attrs.js"></script>
 
 
 <div id="spatial-objects-attributes-manipulations" class="section level2">
@@ -306,7 +306,7 @@ knitr::kable(head(spatData))</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>plot(spatData)</code></pre>
-<p><img src="../../../tuto/rinspace/rinspace_attrmanip/index_files/figure-html/sim_points-1.png" width="672" /></p>
+<p><img src="https://insileco.github.io/tuto/rinspace/rinspace_attrmanip/index_files/figure-html/sim_points-1.png" width="672" /></p>
 </div>
 <div id="adding-and-removing-attributes" class="section level3">
 <h3>Adding and removing attributes</h3>
@@ -809,7 +809,7 @@ use the first 10 rows of our data.</p>
 <pre class="r"><code>selectID &lt;- 1:10
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="../../../tuto/rinspace/rinspace_attrmanip/index_files/figure-html/manualSub-1.png" width="672" /></p>
+<p><img src="https://insileco.github.io/tuto/rinspace/rinspace_attrmanip/index_files/figure-html/manualSub-1.png" width="672" /></p>
 <p><br/></p>
 <p>However, subsets based on certain criteria, <em>e.g.</em> all values greater to or
 equal to 0, can be much more efficient to create subsets. These are conditional
@@ -820,27 +820,27 @@ like <a href="https://stackoverflow.com/">StackOverflow</a> for more specific qu
 selectID &lt;- spatData$var1 &gt;= 0
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="../../../tuto/rinspace/rinspace_attrmanip/index_files/figure-html/autoSub-1.png" width="672" /></p>
+<p><img src="https://insileco.github.io/tuto/rinspace/rinspace_attrmanip/index_files/figure-html/autoSub-1.png" width="672" /></p>
 <pre class="r"><code># var1 smaller than 0 and var2 higher than 5
 selectID &lt;- spatData$var1 &lt; 0 &amp; spatData$var2 &lt; 5
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="../../../tuto/rinspace/rinspace_attrmanip/index_files/figure-html/autoSub-2.png" width="672" /></p>
+<p><img src="https://insileco.github.io/tuto/rinspace/rinspace_attrmanip/index_files/figure-html/autoSub-2.png" width="672" /></p>
 <pre class="r"><code># fact1 equal to a1
 selectID &lt;- spatData$fact1 == &#39;a1&#39;
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="../../../tuto/rinspace/rinspace_attrmanip/index_files/figure-html/autoSub-3.png" width="672" /></p>
+<p><img src="https://insileco.github.io/tuto/rinspace/rinspace_attrmanip/index_files/figure-html/autoSub-3.png" width="672" /></p>
 <pre class="r"><code># fact1 equal to a1 or var1 greater than 0
 selectID &lt;- spatData$fact1 == &#39;a1&#39; | spatData$var1 &gt; 0
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="../../../tuto/rinspace/rinspace_attrmanip/index_files/figure-html/autoSub-4.png" width="672" /></p>
+<p><img src="https://insileco.github.io/tuto/rinspace/rinspace_attrmanip/index_files/figure-html/autoSub-4.png" width="672" /></p>
 <pre class="r"><code># fact2 equal to b3 or b4
 selectID &lt;- spatData$fact2 %in% c(&#39;b3&#39;,&#39;b4&#39;)
 plot(spatData$geometry, col = &#39;#00000055&#39;, pch = 20, cex = 1.25, main = &#39;&#39;)
 plot(spatData$geometry[selectID], col = &#39;#000000&#39;, add = T, pch = 1, cex = 2, lwd = 2)</code></pre>
-<p><img src="../../../tuto/rinspace/rinspace_attrmanip/index_files/figure-html/autoSub-5.png" width="672" /></p>
+<p><img src="https://insileco.github.io/tuto/rinspace/rinspace_attrmanip/index_files/figure-html/autoSub-5.png" width="672" /></p>
 <p><br/></p>
 </div>
 <div id="join" class="section level3">
@@ -962,7 +962,7 @@ knitr::kable(head(aggData))</code></pre>
 </tbody>
 </table>
 <pre class="r"><code>plot(aggData, cex = abs(aggData$var1))</code></pre>
-<p><img src="../../../tuto/rinspace/rinspace_attrmanip/index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="https://insileco.github.io/tuto/rinspace/rinspace_attrmanip/index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
 </div>
 </div>
 <div id="raster-objects" class="section level2">
@@ -990,17 +990,17 @@ multiple parameters.</p>
       <br><br>
 
       
-        <a href = "/tuto/rinspace/rinspace_basicmapping/"><i class="fa fa-arrow-circle-left fa-3x" aria-hidden="true"></i></a>
+        <a href = "https://insileco.github.io/tuto/rinspace/rinspace_basicmapping/"><i class="fa fa-arrow-circle-left fa-3x" aria-hidden="true"></i></a>
       
 
       &nbsp;&nbsp;
       
-        <a href = "/tuto/rinspace/rinspace_homepage/"><i class="fa fa-home fa-3x" aria-hidden="true"></i></a>
+        <a href = "https://insileco.github.io/tuto/rinspace/rinspace_homepage/"><i class="fa fa-home fa-3x" aria-hidden="true"></i></a>
       
 
       &nbsp;&nbsp;
       
-        <a href = "/tuto/rinspace/rinspace_geomanip/"><i class="fa fa-arrow-circle-right fa-3x" aria-hidden="true"></i></a>
+        <a href = "https://insileco.github.io/tuto/rinspace/rinspace_geomanip/"><i class="fa fa-arrow-circle-right fa-3x" aria-hidden="true"></i></a>
       
     
 
@@ -1045,10 +1045,10 @@ multiple parameters.</p>
   
 
   <h1>
-    <a href="../../../2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
+    <a href="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="../../../tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
 
   
 
@@ -1062,10 +1062,10 @@ multiple parameters.</p>
   
 
   <h1>
-    <a href="../../../2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
+    <a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
 
   
 
@@ -1079,10 +1079,10 @@ multiple parameters.</p>
   
 
   <h1>
-    <a href="../../../2020/04/14/insilecomisc-0.4.0-part-1/2/">inSilecoMisc 0.4.0 (part 1/2)</a> <small>April 14, 2020</small>
+    <a href="/2020/04/14/insilecomisc-0.4.0-part-1/2/">inSilecoMisc 0.4.0 (part 1/2)</a> <small>April 14, 2020</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
 
   
 
@@ -1103,7 +1103,7 @@ multiple parameters.</p>
 
 
     var disqus_config = function() {
-      this.page.url = "https://insileco.github.io" + "/tuto/rinspace/rinspace_attrmanip/"; 
+      this.page.url = "https://insileco.github.io" + "https://insileco.github.io/tuto/rinspace/rinspace_attrmanip/"; 
       this.page.identifier = "R in Space - Attribute manipulations"; 
     };
 

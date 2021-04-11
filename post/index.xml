@@ -2,41 +2,41 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on inSileco</title>
-    <link>/post/</link>
+    <link>https://insileco.github.io/post/</link>
     <description>Recent content in Posts on inSileco</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Copyright © 2017-2021 inSileco</copyright>
     <lastBuildDate>Tue, 24 Nov 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://insileco.github.io/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Continuous integration for R projects: from Travis CI to GitHub actions step by step</title>
-      <link>/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/</link>
+      <link>https://insileco.github.io/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/</link>
       <pubDate>Tue, 24 Nov 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/</guid>
+      <guid>https://insileco.github.io/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/</guid>
       <description>I have been using Travis CI (https://travis-ci.org/) since 2015 and GitHub Actions (hereafter GH Actions; https://github.com/features/actions) for over a year now1. While using these two hosted continuous integration services, I came to realize that I was spending less time troubleshooting with GH Actions than I was with Travis. For this reason, I am now setting GH Actions workflows for my new projects (mainly R and Julia projects) and slowly migrating older projects from Travis to GH Actions.</description>
     </item>
     
     <item>
       <title>Custom tick marks with R&#39;s base graphics system</title>
-      <link>/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/</link>
+      <link>https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/</link>
       <pubDate>Sat, 29 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/</guid>
+      <guid>https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/</guid>
       <description>Context If you are using R’s base graphics system for your plots and if you like customizing your plots, you may have already wondered how to custom the tick marks of your plots! I do that quite a lot and I thought it would be worth explaining how I do so. Let’s consider the following plot,
 cx &amp;lt;- seq(0, 2, 0.1) cy &amp;lt;- cx + .5*rnorm(length(cx)) plot(cx, cy) By default, plot.</description>
     </item>
     
     <item>
       <title>inSilecoMisc 0.4.0 (part 2/2)</title>
-      <link>/2020/04/21/insilecomisc-0.4.0-part-2/2/</link>
+      <link>https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/</link>
       <pubDate>Tue, 21 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/04/21/insilecomisc-0.4.0-part-2/2/</guid>
+      <guid>https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/</guid>
       <description>In the first part of this post I introduced several functions available in the package inSilecoMisc. In this post, I keep on introducing features of the package you might find useful! If you did not read the first part of this post and are interested in reproducing the examples below, simply install inSilecoMisc:
 # Run if package is not already installed install.packages(&amp;quot;remotes&amp;quot;) remotes::install_github(&amp;quot;inSileco/inSilecoMisc&amp;quot;) Load it:
 library(&amp;quot;inSilecoMisc&amp;quot;) packageVersion(&amp;quot;inSilecoMisc&amp;quot;) #R&amp;gt; [1] &amp;#39;0.</description>
@@ -44,38 +44,38 @@ library(&amp;quot;inSilecoMisc&amp;quot;) packageVersion(&amp;quot;inSilecoMisc&
     
     <item>
       <title>inSilecoMisc 0.4.0 (part 1/2)</title>
-      <link>/2020/04/14/insilecomisc-0.4.0-part-1/2/</link>
+      <link>https://insileco.github.io/2020/04/14/insilecomisc-0.4.0-part-1/2/</link>
       <pubDate>Tue, 14 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/04/14/insilecomisc-0.4.0-part-1/2/</guid>
+      <guid>https://insileco.github.io/2020/04/14/insilecomisc-0.4.0-part-1/2/</guid>
       <description>inSilecoMisc inSilecoMisc is an R 📦 I have been maintaining for four years now. It was originally designed as a convenient way to share handy functions. Instead of stacking them in my .Rprofile, I created a package and made it available on GitHub. inSilecoMisc is therefore a set of miscellaneous functions, just as other R packages (e.g. Hmisc) but as I frequently change its API, it is meant to stay in the experimental stage!</description>
     </item>
     
     <item>
       <title>R as a ruler? How to calculate distances between geographical objects</title>
-      <link>/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/</link>
+      <link>https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/</link>
       <pubDate>Wed, 08 Apr 2020 00:00:00 +0000</pubDate>
       
-      <guid>/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/</guid>
+      <guid>https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/</guid>
       <description>When working in Ecology, it is often necessary to produce maps and calculate distances between objects such as sampled stations, species distribution ranges or geographical features. A tutorial on this blog describes many techniques to create maps with different packages in R, such as sf and raster. In this post, I will go further and use these tools to calculate distances in our spatial environment.
 How to define a distance?</description>
     </item>
     
     <item>
       <title>Creating empty data frames with dfTemplate() and dfTemplateMatch()</title>
-      <link>/2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/</link>
+      <link>https://insileco.github.io/2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/</link>
       <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/</guid>
+      <guid>https://insileco.github.io/2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/</guid>
       <description>Creating a data frame is fairly simple but when you need to create a large empty data frame with columns that have different classes it takes several command lines. A few days ago, I decided to write a function to simplify this operation and I came to realize that such a function would actually be very useful to ease the row binding of data frames whose column names partially match.</description>
     </item>
     
     <item>
       <title>Ubuntu &#43; Windows 7 - dual partition</title>
-      <link>/2018/12/09/ubuntu-windows-7-dual-partition/</link>
+      <link>https://insileco.github.io/2018/12/09/ubuntu-windows-7-dual-partition/</link>
       <pubDate>Sun, 09 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/12/09/ubuntu-windows-7-dual-partition/</guid>
+      <guid>https://insileco.github.io/2018/12/09/ubuntu-windows-7-dual-partition/</guid>
       <description>Long story short, I recently had access to a Dell Studio XPS 8100  with Windows 7 on it. I was told that the computer was not working well and so was allowed to tweak it. The computer was actually working well, so I simply decided to add a partition Ubuntu.
 Ubuntu is based on Debian and arguably more beginner-friendly than the latter. Roughly speaking:
 Ubuntu = Debian Testing + software to simplify its use There are a couple of articles online that are opposing these two Linux distributions, which makes no real sense to me.</description>
@@ -83,10 +83,10 @@ Ubuntu = Debian Testing + software to simplify its use There are a couple of art
     
     <item>
       <title>A few thoughts on R packages</title>
-      <link>/2018/12/03/a-few-thoughts-on-r-packages/</link>
+      <link>https://insileco.github.io/2018/12/03/a-few-thoughts-on-r-packages/</link>
       <pubDate>Mon, 03 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/12/03/a-few-thoughts-on-r-packages/</guid>
+      <guid>https://insileco.github.io/2018/12/03/a-few-thoughts-on-r-packages/</guid>
       <description>Jonas Geschke, Ignasi Bartomeus and I have recently released rcites v-1.0.0 on CRAN, a R client for the Species+ API after it has been reviewed by rOpenSci. In this post, I would like to share this recent experience as well as several valuable resources.
      What is an R package? In the introduction of his book R packages, Hadley Wickham wrote:
  A package bundles together code, data, documentation, and tests, and is easy to share with others.</description>
@@ -94,106 +94,106 @@ Ubuntu = Debian Testing + software to simplify its use There are a couple of art
     
     <item>
       <title>Non linear regression with nls()</title>
-      <link>/2018/11/18/non-linear-regression-with-nls/</link>
+      <link>https://insileco.github.io/2018/11/18/non-linear-regression-with-nls/</link>
       <pubDate>Sun, 18 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/11/18/non-linear-regression-with-nls/</guid>
+      <guid>https://insileco.github.io/2018/11/18/non-linear-regression-with-nls/</guid>
       <description>Context Last week, I was discussing about how to use nls() for a specific model with one of my colleague and I ended creating a piece of code to show what I was talking about! Even though there are many posts exploring nls() in more depth that I did (for instance this post on datascienceplus by Lionel Herzog), I thought I could share these lines of command here!
 Basically, we were talking about a model where the temperature (\(T\)) follows a saturation curve starting from 10°C at t=0 (so T(0) = 10) and plateauing at \(T_{\inf}\).</description>
     </item>
     
     <item>
       <title>My MacOS Setup</title>
-      <link>/2018/07/13/my-macos-setup/</link>
+      <link>https://insileco.github.io/2018/07/13/my-macos-setup/</link>
       <pubDate>Fri, 13 Jul 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/07/13/my-macos-setup/</guid>
+      <guid>https://insileco.github.io/2018/07/13/my-macos-setup/</guid>
       <description>My MacOS Setup Inspired by Kevin&amp;rsquo;s recent post on setting up his new laptop on Debian Stretch, I decided that it was time to reset my Mac BookPro to factory settings. I bought it after a year in my thesis and I&amp;rsquo;ve grown quite a bit since then in my understanding of programming and computers in general. That also meant that I had a lot of accumulated junk!
 I also figured that I should do so using a bash script so that I could make this whole process as reproducible as possible for the next time or if I have to change my laptop for some obscure reason!</description>
     </item>
     
     <item>
       <title>My R setup on Debian</title>
-      <link>/2018/06/18/my-r-setup-on-debian/</link>
+      <link>https://insileco.github.io/2018/06/18/my-r-setup-on-debian/</link>
       <pubDate>Mon, 18 Jun 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/06/18/my-r-setup-on-debian/</guid>
+      <guid>https://insileco.github.io/2018/06/18/my-r-setup-on-debian/</guid>
       <description>R 3.5.0 &amp;ldquo;Joy in playing&amp;rdquo; was released April 23rd this year. It took a couple of weeks before it was made available on Debian testing due to the work required to rebuild the packages and as a Debian user that spend a lot of time on R, I am extremely grateful to the work of Dirk, Michael and Johannes on this!
 I thought it was a good opportunity to write few notes about my R setup.</description>
     </item>
     
     <item>
       <title>Go Debian Testing!</title>
-      <link>/2018/05/21/go-debian-testing/</link>
+      <link>https://insileco.github.io/2018/05/21/go-debian-testing/</link>
       <pubDate>Mon, 21 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/05/21/go-debian-testing/</guid>
+      <guid>https://insileco.github.io/2018/05/21/go-debian-testing/</guid>
       <description>For almost a year now I&amp;rsquo;ve being spending most of my computer time on Debian. I began with Debian Stretch and switched to Debian Testing two months ago. This was another good opportunity to gain skills and I&amp;rsquo;d like to report about my transition in this post.
 What really happened? The hope of a seamless transition Last Easter, after a couple of months on Debian Stretch, I felt like the time had come for me to go Debian Testing.</description>
     </item>
     
     <item>
       <title>Markdown everywhere!</title>
-      <link>/2018/05/13/markdown-everywhere/</link>
+      <link>https://insileco.github.io/2018/05/13/markdown-everywhere/</link>
       <pubDate>Sun, 13 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/05/13/markdown-everywhere/</guid>
+      <guid>https://insileco.github.io/2018/05/13/markdown-everywhere/</guid>
       <description>According to Wikipedia:
  Markdown is a lightweight markup language with plain text formatting syntax. It is designed so that it can be converted to HTML and many other formats using a tool by the same name Markdown is often used to format readme files, for writing messages in online discussion forums, and to create rich text using a plain text editor. As the initial description of Markdown contained ambiguities and unanswered questions, many implementations and extensions of Markdown appeared over the years to answer these issues.</description>
     </item>
     
     <item>
       <title>Hugo, Github, Travis: a step in continuous deployment!</title>
-      <link>/2018/03/30/hugo-github-travis-a-step-in-continuous-deployment/</link>
+      <link>https://insileco.github.io/2018/03/30/hugo-github-travis-a-step-in-continuous-deployment/</link>
       <pubDate>Fri, 30 Mar 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/03/30/hugo-github-travis-a-step-in-continuous-deployment/</guid>
+      <guid>https://insileco.github.io/2018/03/30/hugo-github-travis-a-step-in-continuous-deployment/</guid>
       <description>I (Kevin) recently rebuilt my personal website and I was eager to set up the same workflow Steve built for our blog (this blog!), i.e. a combination of Hugo, Github and Travis. I though this was a good opportunity to detail how it works and so I wrote this post with Steve. Note that there are several blog posts on the topic available online, for instance here and here. We did our best to complement them in the following post.</description>
     </item>
     
     <item>
       <title>Hierarchical edge bundling using base plot</title>
-      <link>/2018/02/21/hierarchical-edge-bundling-using-base-plot/</link>
+      <link>https://insileco.github.io/2018/02/21/hierarchical-edge-bundling-using-base-plot/</link>
       <pubDate>Wed, 21 Feb 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/02/21/hierarchical-edge-bundling-using-base-plot/</guid>
+      <guid>https://insileco.github.io/2018/02/21/hierarchical-edge-bundling-using-base-plot/</guid>
       <description>I recently came across a very interesting paper from Laura Dee and collaborators focused on the concept of metanetworks and entitled “Operationalizing Network Theory for Ecosystem Service Assessments” (Dee et al 2017, TREE 32(2):118-130). After reading that article I have begun to revamp the context of my thesis around the concept of metanetworks to include environmental impact assessment and cumulative impacts assessment within such a framework.
 Work extensively with networks, you quickly realize that coming up with meaningful and useful visualization can be a bit of a challenge.</description>
     </item>
     
     <item>
       <title>Setting my Debian Stretch up</title>
-      <link>/2018/01/21/setting-my-debian-stretch-up/</link>
+      <link>https://insileco.github.io/2018/01/21/setting-my-debian-stretch-up/</link>
       <pubDate>Sun, 21 Jan 2018 00:00:00 +0000</pubDate>
       
-      <guid>/2018/01/21/setting-my-debian-stretch-up/</guid>
+      <guid>https://insileco.github.io/2018/01/21/setting-my-debian-stretch-up/</guid>
       <description>This post details my Debian Stretch setup on my Lenovo ThinkPad T470p. I got this machine in early August 2017, so I now have almost 6 months worth of experience on Debian and I thought it was a good time to 1- document the rationale behind my move from MacOS to Debian 2- explain how I set my computer up and 3- how I rate my appreciation of working on Debian.</description>
     </item>
     
     <item>
       <title>Gantt charts in R</title>
-      <link>/2017/09/20/gantt-charts-in-r/</link>
+      <link>https://insileco.github.io/2017/09/20/gantt-charts-in-r/</link>
       <pubDate>Wed, 20 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/09/20/gantt-charts-in-r/</guid>
+      <guid>https://insileco.github.io/2017/09/20/gantt-charts-in-r/</guid>
       <description>Gantt charts Gantt charts are a very useful way to organize projects into milestones and tasks visually. They are also dead useful when comes the time to create a timeline for a project, whether it be for a research project, field work or grant applications. I recently wanted to create one, but was unsatisfied by what was available out there in terms of visuals (although there are neat R examples, see here, here and here).</description>
     </item>
     
     <item>
       <title>Efficiency of spatial intersects in R</title>
-      <link>/2017/09/12/efficiency-of-spatial-intersects-in-r/</link>
+      <link>https://insileco.github.io/2017/09/12/efficiency-of-spatial-intersects-in-r/</link>
       <pubDate>Tue, 12 Sep 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/09/12/efficiency-of-spatial-intersects-in-r/</guid>
+      <guid>https://insileco.github.io/2017/09/12/efficiency-of-spatial-intersects-in-r/</guid>
       <description>Intersects &amp;amp; R We are increasingly performing spatial analyses in R. The replicability and the efficiency of programming languages is much more appealing than using user friendly softwares like ArcGIS, even though you can still code your way through analyses when using those softwares (latter versions of QGIS do a fantastic job in that regard!). The performance of tools available for spatial analyses in R is however not completely certain.</description>
     </item>
     
     <item>
       <title>Animations in R: Time series of erythemal irradiance in the St. Lawrence</title>
-      <link>/2017/07/05/animations-in-r-time-series-of-erythemal-irradiance-in-the-st.-lawrence/</link>
+      <link>https://insileco.github.io/2017/07/05/animations-in-r-time-series-of-erythemal-irradiance-in-the-st.-lawrence/</link>
       <pubDate>Wed, 05 Jul 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/07/05/animations-in-r-time-series-of-erythemal-irradiance-in-the-st.-lawrence/</guid>
+      <guid>https://insileco.github.io/2017/07/05/animations-in-r-time-series-of-erythemal-irradiance-in-the-st.-lawrence/</guid>
       <description>The “need” for animations 
 As part of my PhD thesis, I am currently characterizing the intensity of multiple stressors in the estuary and gulf of St. Lawrence (see ResearchGate project for more details). I have recently needed (read: thought it would be cool) to create an animation of the temporal variations in ultra-violet intensity in the St. Lawrence. Here is how I did it.
 
@@ -202,28 +202,28 @@ As part of my PhD thesis, I am currently characterizing the intensity of multipl
     
     <item>
       <title>Online ecology - Individual species description</title>
-      <link>/2017/06/19/online-ecology-individual-species-description/</link>
+      <link>https://insileco.github.io/2017/06/19/online-ecology-individual-species-description/</link>
       <pubDate>Mon, 19 Jun 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/06/19/online-ecology-individual-species-description/</guid>
+      <guid>https://insileco.github.io/2017/06/19/online-ecology-individual-species-description/</guid>
       <description>Online ecology Let’s imagine that we are interested in a species in a given area and wish to know as much as possible about it. But, you can’t go out in the field because funding is running short. What we do have, however, is a certain knowledge of the open data science tools that are at our disposal.</description>
     </item>
     
     <item>
       <title>Add icons on your R plot</title>
-      <link>/2017/05/23/add-icons-on-your-r-plot/</link>
+      <link>https://insileco.github.io/2017/05/23/add-icons-on-your-r-plot/</link>
       <pubDate>Tue, 23 May 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/05/23/add-icons-on-your-r-plot/</guid>
+      <guid>https://insileco.github.io/2017/05/23/add-icons-on-your-r-plot/</guid>
       <description>Introduction Icons are very popular on websites to improve the visual grepping (i.e. visual optimization of eyeball search). We all know how to go at the top or the bottom of a website clicking on chevrons ( ). We are also familiar with simple symbols that allow us to click and edit the text we are typing (  ). Moreover, some web applications are so widespread than their logo appears in thousands of websites (i.</description>
     </item>
     
     <item>
       <title>Make your R plot Hylian</title>
-      <link>/2017/04/14/make-your-r-plot-hylian/</link>
+      <link>https://insileco.github.io/2017/04/14/make-your-r-plot-hylian/</link>
       <pubDate>Fri, 14 Apr 2017 00:00:00 +0000</pubDate>
       
-      <guid>/2017/04/14/make-your-r-plot-hylian/</guid>
+      <guid>https://insileco.github.io/2017/04/14/make-your-r-plot-hylian/</guid>
       <description>Below are presented the 6 steps you need to make your plot a Hylian one! May the triforce be with you! 0. R Version sessionInfo()[[1L]]$version.string #R&amp;gt; [1] &amp;#34;R version 3.5.2 (2018-12-20)&amp;#34; 1. Open R and download the font The Triforce font is available on line. Below we download it using R. Alternatively, you may simply download and install it using a couple of clicks, if you proceed so, skip step 1.</description>
     </item>
     

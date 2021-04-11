@@ -20,17 +20,17 @@
 </style>
 
 
-<link rel="stylesheet" href="../../../../css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 
 
 
-  <link rel="stylesheet" href="../../../../css/academicons.min.css">
+  <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="../../../../css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="../../../../css/insileco.css">
+  <link rel="stylesheet" href="/css/insileco.css">
 
-  <link rel="stylesheet" href="../../../../css/jquery.tocify.css">
+  <link rel="stylesheet" href="/css/jquery.tocify.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
 
@@ -65,11 +65,11 @@
 
 
 
-  <script src="../../../../js/jquery-1.8.3.min.js"></script>
+  <script src="/js/jquery-1.8.3.min.js"></script>
 
-  <script src="../../../../js/jquery-ui-1.9.1.custom.min.js"></script>
+  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
-  <script src="../../../../js/jquery.tocify.min.js"></script>
+  <script src="/js/jquery.tocify.min.js"></script>
 
 
         <meta charset="utf-8">
@@ -113,21 +113,21 @@
                     
                         <ul class="nav navbar-nav">
                             
-                                <li><a href="../../../../">Home</a></li>
+                                <li><a href="/">Home</a></li>
                             
-                                <li><a href="../../../../about/">About</a></li>
+                                <li><a href="/about/">About</a></li>
                             
                                 <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
                             
-                                <li><a href="../../../../post/">Posts</a></li>
+                                <li><a href="/post/">Posts</a></li>
                             
-                                <li><a href="../../../../software/">Software</a></li>
+                                <li><a href="/software/">Software</a></li>
                             
-                                <li><a href="../../../../tips/">Tips</a></li>
+                                <li><a href="/tips/">Tips</a></li>
                             
-                                <li><a href="../../../../tuto/">Tutorials</a></li>
+                                <li><a href="/tuto/">Tutorials</a></li>
                             
-                                <li><a href="../../../../wiki/">Wiki</a></li>
+                                <li><a href="/wiki/">Wiki</a></li>
                             
                         </ul>
                     
@@ -151,7 +151,7 @@
         </nav>
 
 
-<img class="full-width" width="100%" src="../../../../img/banner4.png"></img>
+<img class="full-width" width="100%" src="/img/banner4.png"></img>
 
 
 
@@ -170,22 +170,22 @@
 
   <div class="col-md-8">
 
-    <h1><a href="../../../../2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/">Continuous integration for R projects: from Travis CI to GitHub actions step by step</a></h1>
+    <h1><a href="/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/">Continuous integration for R projects: from Travis CI to GitHub actions step by step</a></h1>
 
     <h4>November 24, 2020</h4>
 
     <p>
-      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="../../../../tags/continuous-integration"><kbd class="item-tag">Continuous Integration</kbd></a>  <a href="../../../../tags/travis-ci"><kbd class="item-tag">Travis CI</kbd></a>  <a href="../../../../tags/github-actions"><kbd class="item-tag">GitHub Actions</kbd></a>  <a href="../../../../tags/r-package"><kbd class="item-tag">R package</kbd></a> 
+      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/continuous-integration"><kbd class="item-tag">Continuous Integration</kbd></a>  <a href="/tags/travis-ci"><kbd class="item-tag">Travis CI</kbd></a>  <a href="/tags/github-actions"><kbd class="item-tag">GitHub Actions</kbd></a>  <a href="/tags/r-package"><kbd class="item-tag">R package</kbd></a> 
       <br>
       
-       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="../../../../rpkgs/covr"><kbd class="item-tag2">covr</kbd></a>  <a href="../../../../rpkgs/pkgdown"><kbd class="item-tag2">pkgdown</kbd></a>  <a href="../../../../rpkgs/usethis"><kbd class="item-tag2">usethis</kbd></a> 
+       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/covr"><kbd class="item-tag2">covr</kbd></a>  <a href="/rpkgs/pkgdown"><kbd class="item-tag2">pkgdown</kbd></a>  <a href="/rpkgs/usethis"><kbd class="item-tag2">usethis</kbd></a> 
       
     </p>
 
     
       <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
        
-        <a href="../../../../about/">Kevin Cazelles</a> &nbsp;
+        <a href="/about/">Kevin Cazelles</a> &nbsp;
       
      <a href="#"></a></p>
     
@@ -193,9 +193,9 @@
     
       <p> <i class="fa fa-check-square" aria-hidden="true", title="Reviewer(s)"></i>
        
-      <a href="../../../../about/">Marie-Hélène Brice</a> &nbsp;
+      <a href="/about/">Marie-Hélène Brice</a> &nbsp;
        
-      <a href="../../../../about/">Willian Vieira</a> &nbsp;
+      <a href="/about/">Willian Vieira</a> &nbsp;
       
       <a href="#"></a></p>
     
@@ -218,9 +218,9 @@
       <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
       </a>
     
-    &nbsp;&nbsp;
-    <a href="http://twitter.com/share?url=%2f2020%2f11%2f24%2fcontinuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step%2f&text=Continuous%20integration%20for%20R%20projects%3a%20from%20Travis%20CI%20to%20GitHub%20actions%20step%20by%20step" target="_blank">
-      <img src='https://img.shields.io/twitter/url?style=social&url=%2f2020%2f11%2f24%2fcontinuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step%2f?link=http://left&link=http://right}'>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2020%2f11%2f24%2fcontinuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step%2f&text=Continuous%20integration%20for%20R%20projects%3a%20from%20Travis%20CI%20to%20GitHub%20actions%20step%20by%20step" target="_blank">
+      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2020%2f11%2f24%2fcontinuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step%2f?link=http://left&link=http://right}'>
     </a>
   </p>
 
@@ -237,7 +237,7 @@
     <div class="text-justify">
 
       
-<script src="../../../../2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/index_files/header-attrs/header-attrs.js"></script>
+<script src="https://insileco.github.io/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/index_files/header-attrs/header-attrs.js"></script>
 
 
 <p>I have been using Travis CI (<a href="https://travis-ci.org/" class="uri">https://travis-ci.org/</a>) since 2015 and GitHub
@@ -586,7 +586,7 @@ jobs:
 
 
     var disqus_config = function() {
-      this.page.url = "https://insileco.github.io" + "/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/"; 
+      this.page.url = "https://insileco.github.io" + "https://insileco.github.io/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/"; 
       this.page.identifier = "Continuous integration for R projects: from Travis CI to GitHub actions step by step"; 
     };
 

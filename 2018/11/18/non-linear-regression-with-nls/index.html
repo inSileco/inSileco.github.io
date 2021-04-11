@@ -20,17 +20,17 @@
 </style>
 
 
-<link rel="stylesheet" href="../../../../css/main.css">
+<link rel="stylesheet" href="/css/main.css">
 
 
 
-  <link rel="stylesheet" href="../../../../css/academicons.min.css">
+  <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="../../../../css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
-  <link rel="stylesheet" href="../../../../css/insileco.css">
+  <link rel="stylesheet" href="/css/insileco.css">
 
-  <link rel="stylesheet" href="../../../../css/jquery.tocify.css">
+  <link rel="stylesheet" href="/css/jquery.tocify.css">
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
 
@@ -65,11 +65,11 @@
 
 
 
-  <script src="../../../../js/jquery-1.8.3.min.js"></script>
+  <script src="/js/jquery-1.8.3.min.js"></script>
 
-  <script src="../../../../js/jquery-ui-1.9.1.custom.min.js"></script>
+  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
-  <script src="../../../../js/jquery.tocify.min.js"></script>
+  <script src="/js/jquery.tocify.min.js"></script>
 
 
         <meta charset="utf-8">
@@ -113,21 +113,21 @@
                     
                         <ul class="nav navbar-nav">
                             
-                                <li><a href="../../../../">Home</a></li>
+                                <li><a href="/">Home</a></li>
                             
-                                <li><a href="../../../../about/">About</a></li>
+                                <li><a href="/about/">About</a></li>
                             
                                 <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
                             
-                                <li><a href="../../../../post/">Posts</a></li>
+                                <li><a href="/post/">Posts</a></li>
                             
-                                <li><a href="../../../../software/">Software</a></li>
+                                <li><a href="/software/">Software</a></li>
                             
-                                <li><a href="../../../../tips/">Tips</a></li>
+                                <li><a href="/tips/">Tips</a></li>
                             
-                                <li><a href="../../../../tuto/">Tutorials</a></li>
+                                <li><a href="/tuto/">Tutorials</a></li>
                             
-                                <li><a href="../../../../wiki/">Wiki</a></li>
+                                <li><a href="/wiki/">Wiki</a></li>
                             
                         </ul>
                     
@@ -151,7 +151,7 @@
         </nav>
 
 
-<img class="full-width" width="100%" src="../../../../img/banner4.png"></img>
+<img class="full-width" width="100%" src="/img/banner4.png"></img>
 
 
 
@@ -170,22 +170,22 @@
 
   <div class="col-md-8">
 
-    <h1><a href="../../../../2018/11/18/non-linear-regression-with-nls/">Non linear regression with nls()</a></h1>
+    <h1><a href="/2018/11/18/non-linear-regression-with-nls/">Non linear regression with nls()</a></h1>
 
     <h4>November 18, 2018</h4>
 
     <p>
-      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/regression"><kbd class="item-tag">regression</kbd></a>  <a href="../../../../tags/nls"><kbd class="item-tag">nls</kbd></a> 
+      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/regression"><kbd class="item-tag">regression</kbd></a>  <a href="/tags/nls"><kbd class="item-tag">nls</kbd></a> 
       <br>
       
-       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="../../../../rpkgs/stats"><kbd class="item-tag2">stats</kbd></a> 
+       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/stats"><kbd class="item-tag2">stats</kbd></a> 
       
     </p>
 
     
       <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
        
-        <a href="../../../../about/">Kevin Cazelles</a> &nbsp;
+        <a href="/about/">Kevin Cazelles</a> &nbsp;
       
      <a href="#"></a></p>
     
@@ -204,9 +204,9 @@
       <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
       </a>
     
-    &nbsp;&nbsp;
-    <a href="http://twitter.com/share?url=%2f2018%2f11%2f18%2fnon-linear-regression-with-nls%2f&text=Non%20linear%20regression%20with%20nls%2c%20an%20example." target="_blank">
-      <img src='https://img.shields.io/twitter/url?style=social&url=%2f2018%2f11%2f18%2fnon-linear-regression-with-nls%2f?link=http://left&link=http://right}'>
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2018%2f11%2f18%2fnon-linear-regression-with-nls%2f&text=Non%20linear%20regression%20with%20nls%2c%20an%20example." target="_blank">
+      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2018%2f11%2f18%2fnon-linear-regression-with-nls%2f?link=http://left&link=http://right}'>
     </a>
   </p>
 
@@ -287,7 +287,7 @@ cr &lt;- coef(res)
 fitC &lt;- function(x) cr[1] - (cr[1] - 10)*exp(-cr[2]*x)
 plot(simdata[,1], simdata[,2], xlab = &quot;Time (min)&quot;, ylab = &quot;Temperature (°C)&quot;)
 curve(fitC, 0, 50, add = TRUE, col = &quot;#2f85a4&quot;, lwd = 3)</code></pre>
-<p><img src="../../../../post/archived/nlsex1_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="/post/archived/nlsex1_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <div id="thats-all-folks" class="section level4">
 <h4>That’s all folks!</h4>
 </div>
@@ -337,10 +337,10 @@ curve(fitC, 0, 50, add = TRUE, col = &quot;#2f85a4&quot;, lwd = 3)</code></pre>
   
 
   <h1>
-    <a href="../../../../2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
+    <a href="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="../../../../tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
 
   
 
@@ -354,10 +354,10 @@ curve(fitC, 0, 50, add = TRUE, col = &quot;#2f85a4&quot;, lwd = 3)</code></pre>
   
 
   <h1>
-    <a href="../../../../2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
+    <a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../../tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
 
   
 
@@ -371,10 +371,10 @@ curve(fitC, 0, 50, add = TRUE, col = &quot;#2f85a4&quot;, lwd = 3)</code></pre>
   
 
   <h1>
-    <a href="../../../../2020/04/14/insilecomisc-0.4.0-part-1/2/">inSilecoMisc 0.4.0 (part 1/2)</a> <small>April 14, 2020</small>
+    <a href="/2020/04/14/insilecomisc-0.4.0-part-1/2/">inSilecoMisc 0.4.0 (part 1/2)</a> <small>April 14, 2020</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../../tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
 
   
 
@@ -395,7 +395,7 @@ curve(fitC, 0, 50, add = TRUE, col = &quot;#2f85a4&quot;, lwd = 3)</code></pre>
 
 
     var disqus_config = function() {
-      this.page.url = "https://insileco.github.io" + "/2018/11/18/non-linear-regression-with-nls/"; 
+      this.page.url = "https://insileco.github.io" + "https://insileco.github.io/2018/11/18/non-linear-regression-with-nls/"; 
       this.page.identifier = "Non linear regression with nls()"; 
     };
 
