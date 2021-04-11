@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+
+        <title>Trick or tips 004 {R}</title>
+
+        <style>
+
+    html body {
+        font-family: Lato, sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="../../../css/main.css">
+
+
+
+  <link rel="stylesheet" href="../../../css/academicons.min.css">
+
+  <link rel="stylesheet" href="../../../css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="../../../css/insileco.css">
+
+  <link rel="stylesheet" href="../../../css/jquery.tocify.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+  <script src="../../../js/jquery-1.8.3.min.js"></script>
+
+  <script src="../../../js/jquery-ui-1.9.1.custom.min.js"></script>
+
+  <script src="../../../js/jquery.tocify.min.js"></script>
+
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'UA-109508556-1');
+        </script>
+        
+
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Trick or tips 004 {R}</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="../../../">Home</a></li>
+                            
+                                <li><a href="../../../about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="../../../post/">Posts</a></li>
+                            
+                                <li><a href="../../../software/">Software</a></li>
+                            
+                                <li><a href="../../../tips/">Tips</a></li>
+                            
+                                <li><a href="../../../tuto/">Tutorials</a></li>
+                            
+                                <li><a href="../../../wiki/">Wiki</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<img class="full-width" width="100%" src="../../../img/banner4.png"></img>
+
+
+
+<div>
+
+  <div class="col-md-3">
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+          <div id="toc"></div>
+        </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-md-8">
+
+    <h1><a href="../../../tips/trick_or_tips/trick_or_tips004/">Trick or tips 004 {R}</a></h1>
+
+    <h5>August 13, 2019</h5>
+
+    <p> <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="../../../tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> </p>
+
+    
+    <p> <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width=7%></img> &nbsp;  <a href="../../../rpkgs/base"><kbd class="item-tag2">base</kbd></a>  <a href="../../../rpkgs/utils"><kbd class="item-tag2">utils</kbd></a>  <a href="../../../rpkgs/graphics"><kbd class="item-tag2">graphics</kbd></a>  <a href="../../../rpkgs/microbenchmark"><kbd class="item-tag2">microbenchmark</kbd></a> </p>
+    
+
+
+    
+      <p style = "font-size: 1.8em; margin-top: 20px"> <i class="fa fa-pencil" aria-hidden="true"></i>
+       
+        <a href="../../../about/">Kevin Cazelles</a> &nbsp;
+      
+     <a href="#"></a></p>
+    
+
+
+    
+      <p> <i class="fa fa-check-square" aria-hidden="true"></i>
+       
+      <a href="../../../about/">Marie-Hélène Brice</a> &nbsp;
+      
+      <a href="#"></a></p>
+    
+
+    
+
+
+    <p> <a href="https://twitter.com/share" class="twitter-share-button" data-show-count="true" data-text="Subset an array with a matrix and 4 more R tips">Tweet</a>
+      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </p>
+
+
+    <div class="text-justify">
+      <p>
+      
+      </p>
+    </div>
+
+
+
+
+    <br>
+
+    <div class="text-justify">
+
+      
+<script src="../../../rmarkdown-libs/header-attrs/header-attrs.js"></script>
+
+
+<h3>Trick or Tips?</h3>
+
+Ever tumbled on a code chunk that made you say:
+"<em>I should have known this ¶ø?!@~&* piece of code long ago!?</em>"
+Chances are you have, frustratingly, just like we have, and on multiple occasions too.
+
+<br><br>
+
+In comes <b>Trick or Tips</b>!
+
+<br><br>
+
+<b>Trick or Tips</b> is a series of blog posts that each
+present 5 -- hopefully helpful -- coding tips for a specific programming
+language. Posts should be short (<em>i.e.</em> no more than 5 lines of code,
+max 80 characters per line, except when appropriate) and provide tips of
+many kind: a function, a way of combining of functions, a single argument,
+a note about the philosophy of the language and practical consequences,
+tricks to improve the way you code, good practices, etc.
+
+<br><br>
+
+Note that while some tips might be obvious for careful documentation readers
+(God bless them for their wisdom), we do our best to present what we find very
+useful and underestimated. By the way, there are undoubtedly similar initiatives on the web (<em>e.g.</em>
+<a href = "https://twitter.com/RLangTip">"One R Tip a Day" Twitter account</a>). Also, feel
+free to comment below tip ideas or a post of code tips of your own which we will be
+happy to incorporate to <b>Trick or Tips</b>.
+
+Enjoy <i class="fas fa-smile" aria-hidden></i> and get ready to frustratingly appreciate our tips!
+
+<div id="trick-or-tips-0004" class="section level2">
+<h2><em>Trick or tips</em> 0004</h2>
+<p>Today’s menu:</p>
+<ol style="list-style-type: decimal">
+<li>Subset an array with a matrix</li>
+<li><code>nzchar()</code></li>
+<li>Do you need to call <code>return()</code>?</li>
+<li><code>invisible()</code></li>
+<li><code>bquote()</code> and <code>substitute()</code></li>
+</ol>
+<p><br></p>
+</div>
+<div id="subset-an-array-with-a-matrix" class="section level2">
+<h2>Subset an array with a matrix</h2>
+<p>Let’s consider two arrays of letters: the first has two dimensions (i.e. a matrix) and the second one has 3.</p>
+<pre class="r"><code>(arr2 &lt;- array(LETTERS[1:9], dim = c(3,3)))
+#R&gt;      [,1] [,2] [,3]
+#R&gt; [1,] &quot;A&quot;  &quot;D&quot;  &quot;G&quot; 
+#R&gt; [2,] &quot;B&quot;  &quot;E&quot;  &quot;H&quot; 
+#R&gt; [3,] &quot;C&quot;  &quot;F&quot;  &quot;I&quot;
+class(arr2)
+#R&gt; [1] &quot;matrix&quot; &quot;array&quot;
+(arr3 &lt;- array(LETTERS[1:18], dim = c(3, 3, 2)))
+#R&gt; , , 1
+#R&gt; 
+#R&gt;      [,1] [,2] [,3]
+#R&gt; [1,] &quot;A&quot;  &quot;D&quot;  &quot;G&quot; 
+#R&gt; [2,] &quot;B&quot;  &quot;E&quot;  &quot;H&quot; 
+#R&gt; [3,] &quot;C&quot;  &quot;F&quot;  &quot;I&quot; 
+#R&gt; 
+#R&gt; , , 2
+#R&gt; 
+#R&gt;      [,1] [,2] [,3]
+#R&gt; [1,] &quot;J&quot;  &quot;M&quot;  &quot;P&quot; 
+#R&gt; [2,] &quot;K&quot;  &quot;N&quot;  &quot;Q&quot; 
+#R&gt; [3,] &quot;L&quot;  &quot;O&quot;  &quot;R&quot;
+class(arr3)
+#R&gt; [1] &quot;array&quot;</code></pre>
+<p>Let’s say, you need to subset a specific set of values based on the position of the elements. To subset a single element, say <code>"G"</code>, there are a couple of options, but I guess the most common approach is to use <code>[</code> with one value per dimension:</p>
+<pre class="r"><code>arr2[1,3]
+#R&gt; [1] &quot;G&quot;
+arr3[1,3,1]
+#R&gt; [1] &quot;G&quot;</code></pre>
+<p>or with a single value giving the position of the element:</p>
+<pre class="r"><code>arr2[7]
+#R&gt; [1] &quot;G&quot;
+arr3[7]
+#R&gt; [1] &quot;G&quot;</code></pre>
+<p>Now we consider the case where you have a vector of positions (one value per dimension of the array), in this case, beware the orientation of the vector!</p>
+<pre class="r"><code># with the line below, we get the 1rst and 3rd elements because we&#39;re using a column vector
+arr2[c(1,3)]
+#R&gt; [1] &quot;A&quot; &quot;C&quot;
+# whereas with a row vector, we obtain the element of the 1rst row and the 3rd column
+arr2[t(c(1,3))]
+#R&gt; [1] &quot;G&quot;</code></pre>
+<p>And for more than one element, you need to use a matrix with one row per element to be subset:</p>
+<pre class="r"><code>(mat &lt;- rbind(c(1,3), c(2,2)))
+#R&gt;      [,1] [,2]
+#R&gt; [1,]    1    3
+#R&gt; [2,]    2    2
+arr2[mat]
+#R&gt; [1] &quot;G&quot; &quot;E&quot;</code></pre>
+<p>Similarly, with an array of 3 dimensions, the matrix will have three columns and as many row as there are elements:</p>
+<pre class="r"><code># Let us subset `E`,`C` and `O` and `C` (again)
+(msub &lt;- rbind(c(2,2,1), c(3, 1, 1), c(3, 2, 2), c(3, 1, 1)))
+#R&gt;      [,1] [,2] [,3]
+#R&gt; [1,]    2    2    1
+#R&gt; [2,]    3    1    1
+#R&gt; [3,]    3    2    2
+#R&gt; [4,]    3    1    1
+arr3[msub]
+#R&gt; [1] &quot;E&quot; &quot;C&quot; &quot;O&quot; &quot;C&quot;</code></pre>
+<p>Two additional comments. First, we should always keep in mind that data frames and arrays are different:</p>
+<pre class="r"><code># this gives you the 1rst and 3rd **entire columns**
+as.data.frame(arr2)[c(1,3)]
+#R&gt;   V1 V3
+#R&gt; 1  A  G
+#R&gt; 2  B  H
+#R&gt; 3  C  I
+# this still gives you the element on the 1rst row and the 3rd column
+as.data.frame(arr2)[t(c(1,3))]
+#R&gt; [1] &quot;G&quot;</code></pre>
+<p>Second, if you are a <a href="https://www.tidyverse.org/">tidyverse</a> user, there is a new article dealing with <a href="https://tibble.tidyverse.org/dev/articles/subassign.html#section">subassigment with tibble</a> 🕶.</p>
+</div>
+<div id="nzchar" class="section level2">
+<h2><code>nzchar()</code></h2>
+<p>You may already be aware of <code>nchar()</code>, a function that returns the number of characters of a given character vector:</p>
+<pre class="r"><code>nchar(c(&quot;insil&quot;, &quot;eco&quot;, &quot;&quot;))
+#R&gt; [1] 5 3 0</code></pre>
+<p><code>nzchar()</code> returns <code>TRUE</code> for every character string in the vector that has at least 1 character:</p>
+<pre class="r"><code>vec &lt;- c(&quot;insil&quot;, &quot;eco&quot;, &quot;&quot;)
+nzchar(vec)
+#R&gt; [1]  TRUE  TRUE FALSE
+# is there any empty character string in `vec`?
+any(nzchar(vec))
+#R&gt; [1] TRUE</code></pre>
+<p>Interesting, but let’s dig deeper: I can think about no less than 3 ways of writing a equivalent function with one more character:</p>
+<pre class="r"><code>nchar(vec)&gt;0
+#R&gt; [1]  TRUE  TRUE FALSE
+!!nchar(vec)
+#R&gt; [1]  TRUE  TRUE FALSE
+nchar(vec)&amp;1
+#R&gt; [1]  TRUE  TRUE FALSE</code></pre>
+<p>One more character… so why bother? 💡 It should be a matter of performance! Let’s check that out with the cool 📦 <a href="https://cran.r-project.org/web/packages/microbenchmark/index.html">microbenchmark</a>:</p>
+<pre class="r"><code>library(microbenchmark)
+microbenchmark(nchar(vec)&gt;0, !!nchar(vec), nchar(vec)&amp;1, nzchar(vec),
+  times = 1000L)
+#R&gt; Unit: nanoseconds
+#R&gt;            expr  min   lq   mean median   uq   max neval
+#R&gt;  nchar(vec) &gt; 0 1100 1200 1482.4   1300 1400 29100  1000
+#R&gt;    !!nchar(vec) 1200 1300 1652.8   1400 1500 57500  1000
+#R&gt;  nchar(vec) &amp; 1 1200 1300 1653.6   1400 1500 39200  1000
+#R&gt;     nzchar(vec)    0    0   50.4      0  100  2900  1000</code></pre>
+<p>Yep yep!<code>nzchar()</code> is indeed way faster 🚀!</p>
+</div>
+<div id="do-you-need-to-use-return" class="section level2">
+<h2>Do you need to use <code>return()</code>?</h2>
+<p>If you have already written your own function, you must have used <code>return()</code>
+to specify what your function should return. There are programming langages where this instruction is mandatory, not in R! Check out the documentation <code>?return</code>:</p>
+<blockquote>
+<p>If the end of a function is reached without calling ‘return’, the
+value of the last evaluated expression is returned.</p>
+</blockquote>
+<p>Let me write 2 functions:</p>
+<pre class="r"><code>add_v &lt;- function(x, y) {
+   x + y
+}
+add_v2 &lt;- function(x, y) {
+   return(x + y)
+}</code></pre>
+<p><code>add_v()</code> and <code>add_v2()</code> are equivalent! So.. do we care? Well, you must bear in mind that whenever <code>return()</code> is encountered, the evaluation of the set of expressions within the function is stopped and therefore some time can be saved:</p>
+<pre class="r"><code>foo &lt;- function(x) {
+    out &lt;- 0
+    if (x&gt;3) out &lt;- 3
+    if (x&gt;2) out &lt;- 2
+    if (x&gt;1) out &lt;- 1
+    return(out)
+}
+foo2 &lt;- function(x) {
+  out &lt;- 0
+  if (x&gt;3) return(3)
+  if (x&gt;2) return(2)
+  if (x&gt;1) return(1)
+  return(out)
+}
+microbenchmark(foo(4), foo2(4), times = 1e5)
+#R&gt; Unit: nanoseconds
+#R&gt;     expr min  lq     mean median  uq      max neval
+#R&gt;   foo(4) 300 500 1030.714    500 600 21049700 1e+05
+#R&gt;  foo2(4) 200 300  527.635    300 400  4490300 1e+05</code></pre>
+</div>
+<div id="invisible" class="section level2">
+<h2><code>invisible()</code></h2>
+<p>Let’s keep talking about what functions return. The function <code>invisible()</code> allows you to return an invisible copy of an object, meaning that nothing is (apparently) return if not assigned:</p>
+<pre class="r"><code>add_v &lt;- function(x, y) {
+  x + y
+}
+##
+add_i &lt;- function(x, y) {
+  invisible(x + y)
+}
+add_v(2, 3)
+#R&gt; [1] 5
+add_i(2, 3)
+res &lt;- add_i(2, 3)
+res
+#R&gt; [1] 5</code></pre>
+<p>But… why? As explained in the documentation (<code>?invisible</code>):</p>
+<blockquote>
+<p>This function can be useful when it is desired to have functions
+return values which can be assigned, but which do not print when
+they are not assigned.</p>
+</blockquote>
+<p>This is indeed helpful when you have a function that creates a plot (and you don’t normally to assign the result) for which you sometimes need to use an object that was created during the evaluation of the function:</p>
+<pre class="r"><code>plot_logy &lt;- function(x, y) {
+  # create ty
+  ty &lt;- log10(y+1)
+  plot(x, ty)
+  invisible(ty)
+}
+plot_logy(0:10, 0:10)</code></pre>
+<p><img src="../../../tips/trick_or_tips/trick_or_tips004_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code># get ty
+ty &lt;- plot_logy(0:10, 0:10)</code></pre>
+<p><img src="../../../tips/trick_or_tips/trick_or_tips004_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>ty
+#R&gt;  [1] 0.0000000 0.3010300 0.4771213 0.6020600 0.6989700 0.7781513 0.8450980
+#R&gt;  [8] 0.9030900 0.9542425 1.0000000 1.0413927</code></pre>
+</div>
+<div id="bquote-and-substitute" class="section level2">
+<h2><code>bquote()</code> and <code>substitute()</code></h2>
+<p>When using mathematical annotations, we sometimes need to include the value
+of a variable. In such case, <code>bquote()</code> or <code>substitute()</code> are the functions you
+would need (rather than <code>expression()</code> you may already be familiar with).</p>
+<p>If you opt for <code>bquote()</code>, then variables to be evaluated must be put in
+brackets and preceded by a dot, e.g. <code>.(var)</code>. If you choose <code>substitute()</code>,
+then variables evaluated will be the ones included in the list passed as
+argument <code>env</code> (which can also be the name of a environment).</p>
+<p>Let’s use both functions in to add mathematical expressions in an empty plot:</p>
+<pre class="r"><code>delta &lt;- 1.5
+plot(c(0,1), c(0,1), type = &quot;n&quot;, axes = FALSE, ann = FALSE)
+text(0.5, .75, labels = bquote(beta^j == .(delta)+bold(&quot;h&quot;)), cex = 3)
+text(0.5, .25, labels = substitute(alpha[i] == a + delta, env = list(a = 2)), cex = 3)
+box()</code></pre>
+<p><img src="../../../tips/trick_or_tips/trick_or_tips004_files/figure-html/bquote-1.png" width="768" style="display: block; margin: auto;" /></p>
+<div id="thats-all-folks" class="section level4">
+<h4><strong>That’s all folks!</strong></h4>
+<p><br></p>
+<details>
+<summary>
+Session info <i class="fa fa-cogs" aria-hidden="true"></i>
+</summary>
+<pre class="r"><code>sessionInfo()
+#R&gt; R version 4.0.5 (2021-03-31)
+#R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
+#R&gt; Running under: Ubuntu 20.04 LTS
+#R&gt; 
+#R&gt; Matrix products: default
+#R&gt; BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
+#R&gt; 
+#R&gt; locale:
+#R&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+#R&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+#R&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             
+#R&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#R&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+#R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#R&gt; 
+#R&gt; attached base packages:
+#R&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#R&gt; 
+#R&gt; other attached packages:
+#R&gt; [1] microbenchmark_1.4-7
+#R&gt; 
+#R&gt; loaded via a namespace (and not attached):
+#R&gt;  [1] bookdown_0.21.7   digest_0.6.27     R6_2.5.0          jsonlite_1.7.2   
+#R&gt;  [5] magrittr_2.0.1    evaluate_0.14     highr_0.8         blogdown_1.2     
+#R&gt;  [9] stringi_1.5.3     rlang_0.4.10      renv_0.13.2       jquerylib_0.1.3  
+#R&gt; [13] bslib_0.2.4       rmarkdown_2.7     tools_4.0.5       stringr_1.4.0    
+#R&gt; [17] xfun_0.22         yaml_2.2.1        compiler_4.0.5    htmltools_0.5.1.1
+#R&gt; [21] knitr_1.31        sass_0.3.1</code></pre>
+</details>
+</div>
+</div>
+
+
+
+    
+
+    </center>
+
+    </div>
+
+      <br>
+
+  
+  <script>
+    var $jq = jQuery.noConflict();
+      $jq(function() {
+          var toc = $jq("#toc").tocify({
+            selectors: "h2, h3",
+            scrollTo: 50
+          }).data("toc-tocify");
+    });
+  </script>
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+  
+  
+
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <div id="disqus_thread"></div>
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="../../../tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../2020/04/14/insilecomisc-0.4.0-part-1/2/">inSilecoMisc 0.4.0 (part 1/2)</a> <small>April 14, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+
+
+
+  <script>
+    
+
+
+    var disqus_config = function() {
+      this.page.url = "https://insileco.github.io" + "/tips/trick_or_tips/trick_or_tips004/"; 
+      this.page.identifier = "Trick or tips 004 {R}"; 
+    };
+
+    (function() { 
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://insileco.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+
+</div>
+
+
+
+
+</div>
+
+        <footer>
+
+          <script src="//yihui.name/js/math-code.js"></script>
+          <script async
+            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+          </script>
+
+
+            <p class="copyright text-muted">&copy; 2017-2021 inSileco | All rights reserved | Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,  <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+
+        </footer>
+
+    </body>
+
+</html>
+

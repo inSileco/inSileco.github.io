@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+
+        <title>inSilecoMisc 0.4.0 (part 2/2)</title>
+
+        <style>
+
+    html body {
+        font-family: Lato, sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="../../../../../css/main.css">
+
+
+
+  <link rel="stylesheet" href="../../../../../css/academicons.min.css">
+
+  <link rel="stylesheet" href="../../../../../css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="../../../../../css/insileco.css">
+
+  <link rel="stylesheet" href="../../../../../css/jquery.tocify.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+  <script src="../../../../../js/jquery-1.8.3.min.js"></script>
+
+  <script src="../../../../../js/jquery-ui-1.9.1.custom.min.js"></script>
+
+  <script src="../../../../../js/jquery.tocify.min.js"></script>
+
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'UA-109508556-1');
+        </script>
+        
+
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">inSilecoMisc 0.4.0 (part 2/2)</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="../../../../../">Home</a></li>
+                            
+                                <li><a href="../../../../../about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="../../../../../post/">Posts</a></li>
+                            
+                                <li><a href="../../../../../software/">Software</a></li>
+                            
+                                <li><a href="../../../../../tips/">Tips</a></li>
+                            
+                                <li><a href="../../../../../tuto/">Tutorials</a></li>
+                            
+                                <li><a href="../../../../../wiki/">Wiki</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<img class="full-width" width="100%" src="../../../../../img/banner4.png"></img>
+
+
+
+<div>
+
+  <div class="col-md-3">
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+          <div id="toc"></div>
+
+        </div>
+    </div>
+  </div>
+
+
+
+  <div class="col-md-8">
+
+    <h1><a href="../../../../../2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a></h1>
+
+    <h4>April 21, 2020</h4>
+
+    <p>
+      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="../../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../../../tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> 
+      <br>
+      
+    </p>
+
+    
+      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+       
+        <a href="../../../../../about/">Kevin Cazelles</a> &nbsp;
+      
+     <a href="#"></a></p>
+    
+
+    
+      <p> <i class="fa fa-check-square" aria-hidden="true", title="Reviewer(s)"></i>
+       
+      <a href="../../../../../about/">David Beauchesne</a> &nbsp;
+      
+      <a href="#"></a></p>
+    
+
+    <p>
+    
+    
+    
+      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=7min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+    
+    
+    
+      <a href = "http://www.R-bloggers.com">
+      <img src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
+      <a>
+     &nbsp;
+    
+    
+      <a href = "https://creativecommons.org/licenses/by/4.0/">
+      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+      </a>
+    
+    &nbsp;&nbsp;
+    <a href="http://twitter.com/share?url=%2f2020%2f04%2f21%2finsilecomisc-0.4.0-part-2%2f2%2f&text=inSilecoMisc%200.4.0%20%28part%202%2f2%29" target="_blank">
+      <img src='https://img.shields.io/twitter/url?style=social&url=%2f2020%2f04%2f21%2finsilecomisc-0.4.0-part-2%2f2%2f?link=http://left&link=http://right}'>
+    </a>
+  </p>
+
+    <div class="text-justify">
+      <p>
+      
+      </p>
+    </div>
+
+
+
+    <br>
+
+    <div class="text-justify">
+
+      
+<script src="../../../../../2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/header-attrs/header-attrs.js"></script>
+
+
+<p>In the <a href="../../../../../2020/04/05/insilecomisc-0.4.0-part-1/2/">first part of this post</a> I
+introduced several functions available in the package <a href="https://github.com/inSileco/inSilecoMisc"><code>inSilecoMisc</code></a>. In this post, I keep on introducing features of the package you
+might find useful! If you did not read the first part of this post and are
+interested in reproducing the examples below, simply install <code>inSilecoMisc</code>:</p>
+<pre class="r"><code># Run if package is not already installed
+install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;inSileco/inSilecoMisc&quot;)</code></pre>
+<p>Load it:</p>
+<pre class="r"><code>library(&quot;inSilecoMisc&quot;)
+packageVersion(&quot;inSilecoMisc&quot;)
+#R&gt; [1] &#39;0.6.0.9000&#39;</code></pre>
+<p>and you’re good to go!</p>
+<div id="scalewithin" class="section level2">
+<h2>scaleWithin()</h2>
+<p>I wrote <a href="https://insileco.github.io/inSilecoMisc/reference/scaleWithin.html"><code>scaleWithin()</code></a> to handle color scales for a specific yet frequent situation. Let us say that I have 40 percentage values – meaning 0 to 100 – in a vector <code>val</code>…</p>
+<pre class="r"><code>val &lt;- runif(40, 0, 100)
+val
+#R&gt;  [1]  6.138540 72.457081 38.566776  6.060084 40.353870  9.553400 50.948455
+#R&gt;  [8] 94.593950  7.418465 27.833459 33.891706 63.580170 73.473016 95.674149
+#R&gt; [15] 74.992428 84.930649 76.186293 20.344803 48.360441  9.948559 84.987648
+#R&gt; [22] 85.310178 67.412621 17.121198  6.163382 93.642914 93.976717 82.865956
+#R&gt; [29] 87.069086 90.317063 71.561671 40.500171  7.513903 66.453054 86.199373
+#R&gt; [36] 90.333062 21.787596 87.483606 54.930471 63.184609</code></pre>
+<p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
+<pre class="r"><code>pal &lt;- colorRampPalette(c(&quot;#f9fa98&quot;, &quot;#500127&quot;))(25)
+graphicsutils::showPalette(pal)</code></pre>
+<p><img src="../../../../../2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p><strong>But</strong> the color scale should be used for the range [30%-70%], meaning that values below 30% should have the lowest values and values above 70%, the highest one. The caption should thus indicate <span class="math inline">\(\geqslant\)</span> 30% and <span class="math inline">\(\leqslant\)</span> 70%. Then the function <code>scaleWithin()</code> is very handy!</p>
+<pre class="r"><code>scaleWithin(val, n = 25, mn = 30, mx = 70)
+#R&gt;  [1]  1 25  6  1  7  1 14 25  1  1  3 21 25 25 25 25 25  1 12  1 25 25 24  1  1
+#R&gt; [26] 25 25 25 25 25 25  7  1 23 25 25  1 25 16 21
+graphicsutils::showPalette(pal[scaleWithin(val, n = 25, mn = 30, mx = 70)], add_codecolor = FALSE)</code></pre>
+<p><img src="../../../../../2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p>Even though this function is pretty useful – at least I think it is! – I had a
+lot of trouble conveying why! So, in the last version of <code>inSilecoMisc</code>, I
+re-wrote the entire documentation and I hope that, together with this example,
+others will, as I so, find it useful.</p>
+</div>
+<div id="messages" class="section level2">
+<h2>Messages</h2>
+<p>Daily, I <strong>use</strong> R packages and R functions to analyse data, create
+model, run simulations, and a number of other things! So I write scripts that combine functions from
+various packages to create pipelines that do the analyses I need. When running
+such scripts, I like having information reported on a clear and visual way, that is why I value packages such as
+<a href="https://CRAN.R-project.org/package=progress"><code>progress</code></a>, <a href="https://CRAN.R-project.org/package=crayon"><code>crayon</code></a> and <a href="https://CRAN.R-project.org/package=cli"><code>cli</code></a>. In
+<code>inSilecoMisc</code>, inspired by messages reported by <a href="https://CRAN.R-project.org/package=devtools"><code>devtools</code></a> when
+building a package, I created four simple message functions using <a href="https://CRAN.R-project.org/package=crayon"><code>crayon</code></a> and <a href="https://CRAN.R-project.org/package=cli"><code>cli</code></a> packages to standardize messages in my scripts.</p>
+<pre class="r"><code># 1. msgInfo() indicates what the upcoming computation
+msgInfo(&quot;this is what&#39;s gonna happen next&quot;)
+#R&gt; ℹ this is what&#39;s gonna happen next</code></pre>
+<pre class="r"><code># 2. msgWarning() reminds me something important that should not affect the run
+msgWarning(&quot;Got to be careful&quot;)
+#R&gt; ⚠ Got to be careful</code></pre>
+<pre class="r"><code># 3. msgError() when something went wrong (and I anticipated that it could happen)
+msgError(&quot;Something wrong&quot;)
+#R&gt; ✖ Something wrong</code></pre>
+<pre class="r"><code># 4. msgSuccess() when a step/ a computation has been successfully completed
+msgSuccess(&quot;All good&quot;)
+#R&gt; ✔ All good</code></pre>
+<p>These functions help me structure my scripts. Here is a contrived example:</p>
+<pre class="r"><code>scr_min &lt;- function() {
+  # msgInfo() lets me know where I am in the script
+  msgInfo(&quot;Average random values&quot;)
+  set.seed(111)
+  out &lt;- mean(runif(100))
+  msgSuccess(&quot;Done!&quot;)
+  # msgSuccess() indicates the successful completion of this part
+  out
+}
+scr_min()
+#R&gt; ℹ Average random values
+#R&gt; ✔ Done!
+#R&gt; [1] 0.4895239</code></pre>
+<p>Another helpful aspect of these functions is that they all are based on <code>message()</code>. As such, if I want to execute a script quietly, all I need to do is to call <code>suppressMessages()</code> beforehand</p>
+<pre class="r"><code># quiet run
+suppressMessages(scr_min())
+#R&gt; [1] 0.4895239</code></pre>
+<p>If you want to see an example of how I use these functions in a script for a scientific manuscript,
+check out the research compendium
+<a href="https://github.com/TheoreticalEcosystemEcology/coocNotInteract">coocNotInteract</a>.</p>
+</div>
+<div id="tbldown" class="section level2">
+<h2>tblDown()</h2>
+<p>Last but not least, I’d like to introduce a function to quickly write table data
+frame (or a list of data frames) in documents of various formats. I created
+<a href="https://insileco.github.io/inSilecoMisc/reference/tblDownn.html"><code>tblDown()</code></a>
+for a colleague of mine that was looking for a quick way to export a table. In
+the package <a href="https://CRAN.R-project.org/package=knitr"><code>knitr</code></a>, there is the very handy function <code>kable()</code>
+that quickly writes a data frame in various formats.</p>
+<pre class="r"><code>knitr::kable(head(CO2))</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Plant</th>
+<th align="left">Type</th>
+<th align="left">Treatment</th>
+<th align="right">conc</th>
+<th align="right">uptake</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Qn1</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">95</td>
+<td align="right">16.0</td>
+</tr>
+<tr class="even">
+<td align="left">Qn1</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">175</td>
+<td align="right">30.4</td>
+</tr>
+<tr class="odd">
+<td align="left">Qn1</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">250</td>
+<td align="right">34.8</td>
+</tr>
+<tr class="even">
+<td align="left">Qn1</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">350</td>
+<td align="right">37.2</td>
+</tr>
+<tr class="odd">
+<td align="left">Qn1</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">500</td>
+<td align="right">35.3</td>
+</tr>
+<tr class="even">
+<td align="left">Qn1</td>
+<td align="left">Quebec</td>
+<td align="left">nonchilled</td>
+<td align="right">675</td>
+<td align="right">39.2</td>
+</tr>
+</tbody>
+</table>
+<p>I wrote a function that calls <code>kable()</code> to write the data frame
+and then renders the table(s) in the
+desired format indicated by the extension of the output file (<code>docx</code> by
+default) using <a href="https://pandoc.org/">pandoc</a>.</p>
+<pre class="r"><code># NB tblDown(head(CO2)) returns table.docx by default
+tblDown(head(CO2), output_file = &quot;table.odt&quot;)</code></pre>
+<p>
+<center>
+  <figure>
+    <img class="mg-bot" src="../../../../../2020/04/21/insilecomisc-0.4.0-part-2/2/table_odt.png" alt="table_odt.png (screenshot)" width="90%%" >
+    <figcaption><span class="highlight">table_odt.png (screenshot)</span></figcaption>
+  </figure>
+</center>
+
+
+</p>
+<p>As I mentioned above <code>tblDown()</code> handles lists of data frames and the user can also provide a set of captions for every table and even separate them with section headers (of level 1).</p>
+<pre class="r"><code>tblDown(list(head(CO2), tail(CO2)), output_file = &quot;tables.pdf&quot;,
+  caption = c(&quot;This is the head of CO2&quot;, &quot;This is the tail of CO2&quot;),
+  section = &quot;Table&quot;)</code></pre>
+<p>Check out the output file ➡ <a href="tables.pdf"><i class="fa
+fa-file-pdf-o"></i></a>! Note that in the example above I only use one
+character string for <code>section</code> and <code>tblDown()</code> has appended an index; this is
+also the default behavior for <code>caption</code>: if there are less captions
+or sections titles than data frames, vectors of captions (and/or sections) are repeated and an index is appended.</p>
+<p>If you are already writing your documents with <a href="https://rmarkdown.rstudio.com/">R
+Markdown</a>, you may not need this. Yet keep in mind that
+<code>tblDown()</code> quickly exports tables in various formats with only one line of
+command!</p>
+<div id="thats-all-folks-tada" class="section level4">
+<h4>That’s all folks 🎉!</h4>
+<br><br>
+<details>
+<summary>
+<h4>
+<i class="fa fa-cogs" aria-hidden="true"></i> Session info
+<i class="fa fa-chevron-down" aria-hidden="true"></i>
+</h4>
+</summary>
+<pre class="r"><code>sessionInfo()
+#R&gt; R version 4.0.5 (2021-03-31)
+#R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
+#R&gt; Running under: Ubuntu 20.04 LTS
+#R&gt; 
+#R&gt; Matrix products: default
+#R&gt; BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
+#R&gt; 
+#R&gt; locale:
+#R&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+#R&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+#R&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=C             
+#R&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#R&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+#R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#R&gt; 
+#R&gt; attached base packages:
+#R&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#R&gt; 
+#R&gt; other attached packages:
+#R&gt; [1] inSilecoMisc_0.6.0.9000 inSilecoRef_0.0.1.9000 
+#R&gt; 
+#R&gt; loaded via a namespace (and not attached):
+#R&gt;  [1] tidyselect_1.1.0         xfun_0.22                bslib_0.2.4             
+#R&gt;  [4] purrr_0.3.4              generics_0.1.0           vctrs_0.3.7             
+#R&gt;  [7] miniUI_0.1.1.1           htmltools_0.5.1.1        yaml_2.2.1              
+#R&gt; [10] utf8_1.2.1               rlang_0.4.10             jquerylib_0.1.3         
+#R&gt; [13] later_1.1.0.1            pillar_1.5.1             glue_1.4.2              
+#R&gt; [16] httpcode_0.3.0           DBI_1.1.1                lifecycle_1.0.0         
+#R&gt; [19] plyr_1.8.6               stringr_1.4.0            blogdown_1.2            
+#R&gt; [22] htmlwidgets_1.5.3        evaluate_0.14            knitr_1.31              
+#R&gt; [25] fastmap_1.1.0            httpuv_1.5.5             curl_4.3                
+#R&gt; [28] fansi_0.4.2              highr_0.8                Rcpp_1.0.6              
+#R&gt; [31] xtable_1.8-4             renv_0.13.2              promises_1.2.0.1        
+#R&gt; [34] DT_0.17                  jsonlite_1.7.2           rcrossref_1.1.0         
+#R&gt; [37] mime_0.10                digest_0.6.27            stringi_1.5.3           
+#R&gt; [40] bookdown_0.21.7          dplyr_1.0.5              shiny_1.6.0             
+#R&gt; [43] cli_2.4.0                tools_4.0.5              graphicsutils_1.6.0.9000
+#R&gt; [46] magrittr_2.0.1           sass_0.3.1               tibble_3.1.0            
+#R&gt; [49] RefManageR_1.3.0         crul_1.1.0               crayon_1.4.1            
+#R&gt; [52] pkgconfig_2.0.3          ellipsis_0.3.1           xml2_1.3.2              
+#R&gt; [55] lubridate_1.7.10         rstudioapi_0.13          assertthat_0.2.1        
+#R&gt; [58] rmarkdown_2.7            httr_1.4.2               R6_2.5.0                
+#R&gt; [61] compiler_4.0.5</code></pre>
+</details>
+</div>
+</div>
+
+
+
+    
+
+    </center>
+
+    </div>
+
+      <br>
+
+  
+  <script>
+    var $jq = jQuery.noConflict();
+      $jq(function() {
+          var toc = $jq("#toc").tocify({
+            selectors: "h2, h3",
+            scrollTo: 50
+          }).data("toc-tocify");
+    });
+  </script>
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+  
+  
+
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <div id="disqus_thread"></div>
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../../../2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../../tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="../../../../../tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../../../2020/04/14/insilecomisc-0.4.0-part-1/2/">inSilecoMisc 0.4.0 (part 1/2)</a> <small>April 14, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../../tags/package"><kbd class="item-tag">package</kbd></a>  <a href="../../../../../tags/development"><kbd class="item-tag">development</kbd></a>  <a href="../../../../../tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="../../../../../2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/">R as a ruler? How to calculate distances between geographical objects</a> <small>April 8, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="../../../../../tags/r"><kbd class="item-tag">R</kbd></a>  <a href="../../../../../tags/gis"><kbd class="item-tag">GIS</kbd></a>  <a href="../../../../../tags/utils"><kbd class="item-tag">utils</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+
+
+
+  <script>
+    
+
+
+    var disqus_config = function() {
+      this.page.url = "https://insileco.github.io" + "/2020/04/21/insilecomisc-0.4.0-part-2/2/"; 
+      this.page.identifier = "inSilecoMisc 0.4.0 (part 2/2)"; 
+    };
+
+    (function() { 
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://insileco.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+
+</div>
+
+
+</div>
+
+        <footer>
+
+          <script src="//yihui.name/js/math-code.js"></script>
+          <script async
+            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+          </script>
+
+
+            <p class="copyright text-muted">&copy; 2017-2021 inSileco | All rights reserved | Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,  <a href="https://gohugo.io">Hugo</a> and <a href="https://github.com/calintat/minimal">Minimal</a>.</p>
+
+        </footer>
+
+    </body>
+
+</html>
+
