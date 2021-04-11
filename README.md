@@ -1,5 +1,6 @@
 # inSileco blog
-[![Build and deploy our blog](https://github.com/inSileco/inSileco.github.io/actions/workflows/main.yml/badge.svg)](https://github.com/inSileco/inSileco.github.io/actions/workflows/main.yml)
+[![Build](https://github.com/inSileco/inSileco.github.io/actions/workflows/check.yml/badge.svg)](https://github.com/inSileco/inSileco.github.io/actions/workflows/check.yml)
+[![Build and deploy](https://github.com/inSileco/inSileco.github.io/actions/workflows/check_deploy.yml/badge.svg)](https://github.com/inSileco/inSileco.github.io/actions/workflows/check_deploy.yml)
 
 The overarching goal of this blog is quite straightforward: tackle challenges
 and opportunities provided by this new era of open-access and computationally

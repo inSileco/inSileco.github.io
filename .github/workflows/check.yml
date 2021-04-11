@@ -1,4 +1,4 @@
-name: Build blog
+name: Build and deploy
 
 on:
   push:
@@ -7,7 +7,6 @@ on:
   pull_request:
     branches:
       - main
-
 
 jobs:
   
@@ -31,7 +30,8 @@ jobs:
           Rscript -e "renv::restore()"
       - name: Build inSileco Blog
         run: |-
-          Rscript -e "blogdown::build_site()"
+          Rscript -e "blogdown::build_site(build_rmd = 'newfile')"
+          Rscript -e "blogdown::build_site(build_rmd = 'timestamp')"
       
   linux:
     runs-on: ubuntu-latest

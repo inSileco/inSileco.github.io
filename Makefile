@@ -6,6 +6,9 @@ biblio:
 	Rscript static/Rscript/bibSetUp.R
 	bibtool -d $(doi) $(nodoi) -o $(bib)
 
+check: 
+	Rscript -e 'blogdown::build_site()'
+
 build:
 	Rscript -e 'blogdown::build_site()'
 
