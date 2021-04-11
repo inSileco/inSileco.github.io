@@ -1,9 +1,6 @@
-name: Build and deploy
+name: Check build
 
 on:
-  push:
-    branches:
-      - main
   pull_request:
     branches:
       - main
@@ -43,7 +40,7 @@ jobs:
         run: |-
           echo "Set disable_coredump false" >> /etc/sudo.conf
           sudo apt-get update
-          sudo apt-get install -y hugo tree libudunits2-0 libudunits2-dev 
+          sudo apt-get install -y hugo libudunits2-0 libudunits2-dev 
           sudo apt-get install -y libproj-dev libgeos-dev libgdal-dev r-cran-ncdf4
       - name: Use cache
         uses: actions/cache@v2
@@ -62,21 +59,3 @@ jobs:
           Rscript -e "blogdown::check_content()"
           Rscript -e "blogdown::build_site(build_rmd = 'newfile')"
           Rscript -e "blogdown::build_site(build_rmd = 'timestamp')"
-          tree ./public
-      - name: Deploy inSileco Blog to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          personal_token: ${{ secrets.DEPLOY_TOKEN }}
-          publish_branch: gh-pages
-          publish_dir: ./public
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2.0.0
-        env:
-          SLACK_CHANNEL: blog
-          SLACK_COLOR: '#3fb3b2'
-          SLACK_ICON: https://github.com/inSileco.png?size=48
-          SLACK_USERNAME: Bobot
-          SLACK_TITLE: ':robot_face: Message to humans'
-          SLACK_MESSAGE: ':heavy_check_mark: Blog updated and deployed'
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-

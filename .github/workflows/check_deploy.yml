@@ -1,4 +1,4 @@
-name: Build
+name: Build and deploy
 
 on:
   push:
@@ -6,6 +6,7 @@ on:
       - main
   schedule:
     - cron: '0 0 11 * *'
+
 
 jobs:
       
@@ -55,3 +56,4 @@ jobs:
           SLACK_TITLE: ':robot_face: Message to humans'
           SLACK_MESSAGE: ':heavy_check_mark: Blog updated and deployed'
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
+
