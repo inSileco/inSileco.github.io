@@ -60,8 +60,10 @@ jobs:
           Rscript -e "renv::restore()"
       - name: Build inSileco Blog
         run: |-
-          tree .
-          Rscript -e "blogdown::build_site()"
+          Rscript -e "blogdown::check_config()"
+          Rscript -e "blogdown::check_content()"
+          Rscript -e "blogdown::build_site(build_rmd = 'newfile')"
+          Rscript -e "blogdown::build_site(build_rmd = 'timestamp')"
           tree ./public
       - name: Deploy inSileco Blog to gh-pages
         uses: peaceiris/actions-gh-pages@v3
