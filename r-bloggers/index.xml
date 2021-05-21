@@ -125,10 +125,11 @@ part <code>matrix.config.r == 'release'</code> in case I would add another confi
 <pre class="yaml"><code>- name: Build website 
   if: matrix.config.os == &#39;ubuntu-20.04&#39; &amp;&amp; matrix.config.r == &#39;release&#39;
   run: |
+    mkdir docs
     sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
-    Rscript -e &#39;remotes::install_cran(c(&quot;pkgdown&quot;)); pkgdown::build_site()&#39;
     git fetch origin gh-pages:gh-pages
-    git --work-tree=docs checkout gh-pages -- .</code></pre>
+    git --work-tree=docs checkout gh-pages -- .
+    Rscript -e &#39;remotes::install_cran(c(&quot;pkgdown&quot;)); pkgdown::build_site()&#39;</code></pre>
 <p>There are a few lines that require some explanations. First, I decided to build this on Ubuntu (again, this is arbitrary). Second, the following line:</p>
 <pre class="sh"><code>sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev</code></pre>
 <p>was required as dependencies were missing for
@@ -298,9 +299,10 @@ jobs:
         if: matrix.config.os == &#39;ubuntu-20.04&#39; &amp;&amp; matrix.config.r == &#39;release&#39;
         run: |
           sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
-          Rscript -e &#39;remotes::install_cran(c(&quot;pkgdown&quot;)); pkgdown::build_site()&#39;
+          mkdir docs
           git fetch origin gh-pages:gh-pages
           git --work-tree=docs checkout gh-pages -- .
+          Rscript -e &#39;remotes::install_cran(c(&quot;pkgdown&quot;)); pkgdown::build_site()&#39;
             
       - name: Deploy website 
         if: matrix.config.os == &#39;ubuntu-20.04&#39; &amp;&amp; matrix.config.r == &#39;release&#39;
@@ -561,27 +563,27 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 #R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #R&gt; 
 #R&gt; attached base packages:
-#R&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#R&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #R&gt; 
 #R&gt; other attached packages:
 #R&gt; [1] inSilecoRef_0.0.1.9000
 #R&gt; 
 #R&gt; loaded via a namespace (and not attached):
-#R&gt;  [1] tidyselect_1.1.0  xfun_0.22         bslib_0.2.4       purrr_0.3.4      
-#R&gt;  [5] generics_0.1.0    vctrs_0.3.7       miniUI_0.1.1.1    htmltools_0.5.1.1
-#R&gt;  [9] yaml_2.2.1        utf8_1.2.1        rlang_0.4.10      jquerylib_0.1.3  
-#R&gt; [13] later_1.1.0.1     pillar_1.5.1      glue_1.4.2        httpcode_0.3.0   
-#R&gt; [17] DBI_1.1.1         lifecycle_1.0.0   plyr_1.8.6        stringr_1.4.0    
-#R&gt; [21] blogdown_1.2      htmlwidgets_1.5.3 evaluate_0.14     knitr_1.31       
-#R&gt; [25] fastmap_1.1.0     httpuv_1.5.5      curl_4.3          fansi_0.4.2      
-#R&gt; [29] highr_0.8         Rcpp_1.0.6        xtable_1.8-4      renv_0.13.2      
-#R&gt; [33] promises_1.2.0.1  DT_0.17           jsonlite_1.7.2    rcrossref_1.1.0  
-#R&gt; [37] mime_0.10         digest_0.6.27     stringi_1.5.3     bookdown_0.21.7  
-#R&gt; [41] dplyr_1.0.5       shiny_1.6.0       tools_4.0.5       magrittr_2.0.1   
-#R&gt; [45] sass_0.3.1        tibble_3.1.0      RefManageR_1.3.0  crul_1.1.0       
-#R&gt; [49] crayon_1.4.1      pkgconfig_2.0.3   ellipsis_0.3.1    xml2_1.3.2       
-#R&gt; [53] lubridate_1.7.10  assertthat_0.2.1  rmarkdown_2.7     httr_1.4.2       
-#R&gt; [57] R6_2.5.0          compiler_4.0.5</code></pre>
+#R&gt;  [1] Rcpp_1.0.6        highr_0.8         pillar_1.6.0      bslib_0.2.4      
+#R&gt;  [5] compiler_4.0.5    later_1.2.0       jquerylib_0.1.4   plyr_1.8.6       
+#R&gt;  [9] tools_4.0.5       digest_0.6.27     tibble_3.1.1      lubridate_1.7.10 
+#R&gt; [13] jsonlite_1.7.2    evaluate_0.14     lifecycle_1.0.0   rcrossref_1.1.0  
+#R&gt; [17] pkgconfig_2.0.3   rlang_0.4.10      DBI_1.1.1         shiny_1.6.0      
+#R&gt; [21] curl_4.3          crul_1.1.0        yaml_2.2.1        blogdown_1.3     
+#R&gt; [25] xfun_0.22         fastmap_1.1.0     dplyr_1.0.6       RefManageR_1.3.0 
+#R&gt; [29] httr_1.4.2        stringr_1.4.0     knitr_1.33        xml2_1.3.2       
+#R&gt; [33] vctrs_0.3.8       htmlwidgets_1.5.3 generics_0.1.0    sass_0.3.1       
+#R&gt; [37] tidyselect_1.1.0  DT_0.17           httpcode_0.3.0    glue_1.4.2       
+#R&gt; [41] R6_2.5.0          fansi_0.4.2       rmarkdown_2.7     bookdown_0.22    
+#R&gt; [45] purrr_0.3.4       magrittr_2.0.1    promises_1.2.0.1  htmltools_0.5.1.1
+#R&gt; [49] ellipsis_0.3.1    assertthat_0.2.1  mime_0.10         xtable_1.8-4     
+#R&gt; [53] httpuv_1.5.5      utf8_1.1.4        stringi_1.5.3     miniUI_0.1.1.1   
+#R&gt; [57] crayon_1.4.1</code></pre>
 </details>
 </div>
 </div>
@@ -627,20 +629,20 @@ packageVersion(&quot;inSilecoMisc&quot;)
 <p>I wrote <a href="https://insileco.github.io/inSilecoMisc/reference/scaleWithin.html"><code>scaleWithin()</code></a> to handle color scales for a specific yet frequent situation. Let us say that I have 40 percentage values – meaning 0 to 100 – in a vector <code>val</code>…</p>
 <pre class="r"><code>val &lt;- runif(40, 0, 100)
 val
-#R&gt;  [1] 58.240916 74.233785 37.383498 86.500496 36.362155 82.075299 24.018616
-#R&gt;  [8] 15.795337 61.204807 26.030641 83.192916 84.346696 37.210687  1.760148
-#R&gt; [15] 25.270790  2.102947  6.287733 95.941885 88.017400 20.582036 30.549722
-#R&gt; [22] 38.986593 82.823903 67.337424 48.722623  5.434750 61.339845 89.001044
-#R&gt; [29] 27.134962 35.228574 72.213490  3.320186 48.140948 69.632656 18.926112
-#R&gt; [36] 66.634706 30.499206 16.361175 29.071453 21.685772</code></pre>
+#R&gt;  [1] 74.030014 84.515258 52.577462 21.703960 85.665990 63.248460 64.255803
+#R&gt;  [8] 43.452844 10.087234 43.849597 59.106290  5.829332 88.087800 98.833623
+#R&gt; [15] 93.072605 22.055420 58.088932 43.152465 64.733837 95.922460 13.999509
+#R&gt; [22] 69.890945 98.060085 63.542404 61.867688 51.267742 22.214860 89.736273
+#R&gt; [29] 97.119664 26.918101 15.408299 15.634939 64.774301 12.290476 47.601040
+#R&gt; [36] 91.246748 92.516930 13.598274 75.465069 43.292532</code></pre>
 <p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
 <pre class="r"><code>pal &lt;- colorRampPalette(c(&quot;#f9fa98&quot;, &quot;#500127&quot;))(25)
 graphicsutils::showPalette(pal)</code></pre>
 <p><img src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>But</strong> the color scale should be used for the range [30%-70%], meaning that values below 30% should have the lowest values and values above 70%, the highest one. The caption should thus indicate <span class="math inline">\(\geqslant\)</span> 30% and <span class="math inline">\(\leqslant\)</span> 70%. Then the function <code>scaleWithin()</code> is very handy!</p>
 <pre class="r"><code>scaleWithin(val, n = 25, mn = 30, mx = 70)
-#R&gt;  [1] 18 25  5 25  4 25  1  1 20  1 25 25  5  1  1  1  1 25 25  1  1  6 25 24 12
-#R&gt; [26]  1 20 25  1  4 25  1 12 25  1 23  1  1  1  1
+#R&gt;  [1] 25 25 15  1 25 21 22  9  1  9 19  1 25 25 25  1 18  9 22 25  1 25 25 21 20
+#R&gt; [26] 14  1 25 25  1  1  1 22  1 12 25 25  1 25  9
 graphicsutils::showPalette(pal[scaleWithin(val, n = 25, mn = 30, mx = 70)], add_codecolor = FALSE)</code></pre>
 <p><img src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Even though this function is pretty useful – at least I think it is! – I had a
@@ -811,33 +813,32 @@ command!</p>
 #R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #R&gt; 
 #R&gt; attached base packages:
-#R&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#R&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #R&gt; 
 #R&gt; other attached packages:
 #R&gt; [1] inSilecoMisc_0.6.0.9000 inSilecoRef_0.0.1.9000 
 #R&gt; 
 #R&gt; loaded via a namespace (and not attached):
 #R&gt;  [1] tidyselect_1.1.0         xfun_0.22                bslib_0.2.4             
-#R&gt;  [4] purrr_0.3.4              generics_0.1.0           vctrs_0.3.7             
+#R&gt;  [4] purrr_0.3.4              generics_0.1.0           vctrs_0.3.8             
 #R&gt;  [7] miniUI_0.1.1.1           htmltools_0.5.1.1        yaml_2.2.1              
-#R&gt; [10] utf8_1.2.1               rlang_0.4.10             jquerylib_0.1.3         
-#R&gt; [13] later_1.1.0.1            pillar_1.5.1             glue_1.4.2              
+#R&gt; [10] utf8_1.1.4               rlang_0.4.10             jquerylib_0.1.4         
+#R&gt; [13] later_1.2.0              pillar_1.6.0             glue_1.4.2              
 #R&gt; [16] httpcode_0.3.0           DBI_1.1.1                lifecycle_1.0.0         
-#R&gt; [19] plyr_1.8.6               stringr_1.4.0            blogdown_1.2            
-#R&gt; [22] htmlwidgets_1.5.3        evaluate_0.14            knitr_1.31              
+#R&gt; [19] plyr_1.8.6               stringr_1.4.0            blogdown_1.3            
+#R&gt; [22] htmlwidgets_1.5.3        evaluate_0.14            knitr_1.33              
 #R&gt; [25] fastmap_1.1.0            httpuv_1.5.5             curl_4.3                
 #R&gt; [28] fansi_0.4.2              highr_0.8                Rcpp_1.0.6              
-#R&gt; [31] xtable_1.8-4             renv_0.13.2              promises_1.2.0.1        
-#R&gt; [34] DT_0.17                  jsonlite_1.7.2           rcrossref_1.1.0         
-#R&gt; [37] mime_0.10                digest_0.6.27            stringi_1.5.3           
-#R&gt; [40] bookdown_0.21.7          dplyr_1.0.5              shiny_1.6.0             
-#R&gt; [43] cli_2.4.0                tools_4.0.5              graphicsutils_1.6.0.9000
-#R&gt; [46] magrittr_2.0.1           sass_0.3.1               tibble_3.1.0            
-#R&gt; [49] RefManageR_1.3.0         crul_1.1.0               crayon_1.4.1            
-#R&gt; [52] pkgconfig_2.0.3          ellipsis_0.3.1           xml2_1.3.2              
-#R&gt; [55] lubridate_1.7.10         rstudioapi_0.13          assertthat_0.2.1        
-#R&gt; [58] rmarkdown_2.7            httr_1.4.2               R6_2.5.0                
-#R&gt; [61] compiler_4.0.5</code></pre>
+#R&gt; [31] xtable_1.8-4             promises_1.2.0.1         DT_0.17                 
+#R&gt; [34] jsonlite_1.7.2           rcrossref_1.1.0          mime_0.10               
+#R&gt; [37] digest_0.6.27            stringi_1.5.3            bookdown_0.22           
+#R&gt; [40] dplyr_1.0.6              shiny_1.6.0              cli_2.5.0               
+#R&gt; [43] tools_4.0.5              magrittr_2.0.1           sass_0.3.1              
+#R&gt; [46] graphicsutils_1.6.0.9000 tibble_3.1.1             RefManageR_1.3.0        
+#R&gt; [49] crul_1.1.0               crayon_1.4.1             pkgconfig_2.0.3         
+#R&gt; [52] ellipsis_0.3.1           xml2_1.3.2               lubridate_1.7.10        
+#R&gt; [55] rstudioapi_0.13          assertthat_0.2.1         rmarkdown_2.7           
+#R&gt; [58] httr_1.4.2               R6_2.5.0                 compiler_4.0.5</code></pre>
 </details>
 </div>
 </div>
@@ -1093,27 +1094,26 @@ this topic (for instance
 #R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #R&gt; 
 #R&gt; attached base packages:
-#R&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     
+#R&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     
 #R&gt; 
 #R&gt; other attached packages:
 #R&gt; [1] inSilecoMisc_0.6.0.9000 inSilecoRef_0.0.1.9000 
 #R&gt; 
 #R&gt; loaded via a namespace (and not attached):
-#R&gt;  [1] tidyselect_1.1.0  xfun_0.22         bslib_0.2.4       purrr_0.3.4      
-#R&gt;  [5] generics_0.1.0    vctrs_0.3.7       miniUI_0.1.1.1    htmltools_0.5.1.1
-#R&gt;  [9] yaml_2.2.1        utf8_1.2.1        rlang_0.4.10      jquerylib_0.1.3  
-#R&gt; [13] later_1.1.0.1     pillar_1.5.1      glue_1.4.2        httpcode_0.3.0   
-#R&gt; [17] DBI_1.1.1         lifecycle_1.0.0   plyr_1.8.6        stringr_1.4.0    
-#R&gt; [21] blogdown_1.2      htmlwidgets_1.5.3 evaluate_0.14     knitr_1.31       
-#R&gt; [25] fastmap_1.1.0     httpuv_1.5.5      curl_4.3          fansi_0.4.2      
-#R&gt; [29] Rcpp_1.0.6        xtable_1.8-4      renv_0.13.2       promises_1.2.0.1 
-#R&gt; [33] DT_0.17           jsonlite_1.7.2    rcrossref_1.1.0   mime_0.10        
-#R&gt; [37] digest_0.6.27     stringi_1.5.3     bookdown_0.21.7   dplyr_1.0.5      
-#R&gt; [41] shiny_1.6.0       tools_4.0.5       magrittr_2.0.1    sass_0.3.1       
-#R&gt; [45] tibble_3.1.0      RefManageR_1.3.0  crul_1.1.0        crayon_1.4.1     
-#R&gt; [49] pkgconfig_2.0.3   ellipsis_0.3.1    xml2_1.3.2        lubridate_1.7.10 
-#R&gt; [53] assertthat_0.2.1  rmarkdown_2.7     httr_1.4.2        R6_2.5.0         
-#R&gt; [57] compiler_4.0.5</code></pre>
+#R&gt;  [1] Rcpp_1.0.6        pillar_1.6.0      bslib_0.2.4       compiler_4.0.5   
+#R&gt;  [5] later_1.2.0       jquerylib_0.1.4   plyr_1.8.6        tools_4.0.5      
+#R&gt;  [9] digest_0.6.27     tibble_3.1.1      lubridate_1.7.10  jsonlite_1.7.2   
+#R&gt; [13] evaluate_0.14     lifecycle_1.0.0   rcrossref_1.1.0   pkgconfig_2.0.3  
+#R&gt; [17] rlang_0.4.10      DBI_1.1.1         shiny_1.6.0       curl_4.3         
+#R&gt; [21] crul_1.1.0        yaml_2.2.1        blogdown_1.3      xfun_0.22        
+#R&gt; [25] fastmap_1.1.0     dplyr_1.0.6       RefManageR_1.3.0  httr_1.4.2       
+#R&gt; [29] stringr_1.4.0     knitr_1.33        xml2_1.3.2        vctrs_0.3.8      
+#R&gt; [33] htmlwidgets_1.5.3 generics_0.1.0    sass_0.3.1        tidyselect_1.1.0 
+#R&gt; [37] DT_0.17           httpcode_0.3.0    glue_1.4.2        R6_2.5.0         
+#R&gt; [41] fansi_0.4.2       rmarkdown_2.7     bookdown_0.22     purrr_0.3.4      
+#R&gt; [45] magrittr_2.0.1    promises_1.2.0.1  htmltools_0.5.1.1 ellipsis_0.3.1   
+#R&gt; [49] assertthat_0.2.1  mime_0.10         xtable_1.8-4      httpuv_1.5.5     
+#R&gt; [53] utf8_1.1.4        stringi_1.5.3     miniUI_0.1.1.1    crayon_1.4.1</code></pre>
 </details>
 <p><br></p>
 </div>

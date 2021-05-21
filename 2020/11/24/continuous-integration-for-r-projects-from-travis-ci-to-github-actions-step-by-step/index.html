@@ -224,11 +224,6 @@
     </a>
   </p>
 
-    <div class="text-justify">
-      <p>
-      
-      </p>
-    </div>
 
 
 
@@ -344,10 +339,11 @@ part <code>matrix.config.r == 'release'</code> in case I would add another confi
 <pre class="yaml"><code>- name: Build website 
   if: matrix.config.os == &#39;ubuntu-20.04&#39; &amp;&amp; matrix.config.r == &#39;release&#39;
   run: |
+    mkdir docs
     sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
-    Rscript -e &#39;remotes::install_cran(c(&quot;pkgdown&quot;)); pkgdown::build_site()&#39;
     git fetch origin gh-pages:gh-pages
-    git --work-tree=docs checkout gh-pages -- .</code></pre>
+    git --work-tree=docs checkout gh-pages -- .
+    Rscript -e &#39;remotes::install_cran(c(&quot;pkgdown&quot;)); pkgdown::build_site()&#39;</code></pre>
 <p>There are a few lines that require some explanations. First, I decided to build this on Ubuntu (again, this is arbitrary). Second, the following line:</p>
 <pre class="sh"><code>sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev</code></pre>
 <p>was required as dependencies were missing for
@@ -517,9 +513,10 @@ jobs:
         if: matrix.config.os == &#39;ubuntu-20.04&#39; &amp;&amp; matrix.config.r == &#39;release&#39;
         run: |
           sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
-          Rscript -e &#39;remotes::install_cran(c(&quot;pkgdown&quot;)); pkgdown::build_site()&#39;
+          mkdir docs
           git fetch origin gh-pages:gh-pages
           git --work-tree=docs checkout gh-pages -- .
+          Rscript -e &#39;remotes::install_cran(c(&quot;pkgdown&quot;)); pkgdown::build_site()&#39;
             
       - name: Deploy website 
         if: matrix.config.os == &#39;ubuntu-20.04&#39; &amp;&amp; matrix.config.r == &#39;release&#39;
@@ -539,7 +536,22 @@ jobs:
 </div>
 
 
+      
+      <div class="text-justify">
+        
+        
+          <h3><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h3>
+          <p>
+          
+            <i class="fa fa-pencil" aria-hidden="true"></i> May 21, 2021 -- Edit the tricks to keep both the versions of the website (dev and last releases). <br>
+          
+          </p>
+        
+        
+      </div>
 
+
+    
     
 
     </center>
