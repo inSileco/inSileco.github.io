@@ -79,15 +79,6 @@
     </a>
   </p>
 
-    <div class="text-justify">
-      <p>
-      {{ if .Params.edits }}
-        {{ range .Params.edits }}
-          <i class="fa fa-edit" aria-hidden="true"></i> {{ dateFormat "Jan 2, 2006" .date }} -- {{ .comment }} <br>
-        {{ end }}
-      {{ end }}
-      </p>
-    </div>
 
 
 
@@ -97,7 +88,22 @@
 
       {{ .Content }}
 
+      
+      <div class="text-justify">
+        
+        {{ if .Params.edits }}
+          <h3><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h3>
+          <p>
+          {{ range .Params.edits }}
+            <i class="fa fa-pencil" aria-hidden="true"></i> {{ dateFormat "Jan 2, 2006" .date }} -- {{ .comment }} <br>
+          {{ end }}
+          </p>
+        {{ end }}
+        
+      </div>
 
+
+    
     {{ if .Params.navposts }}
 
     <center>

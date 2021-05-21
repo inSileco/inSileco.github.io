@@ -9,3 +9,9 @@ knitr::opts_chunk$set(
   width = 100
 )
 library(inSilecoRef)
+
+
+rfa <- function(...) icons::icon_style(icons::fontawesome(...), fill = "currentColor")
+gh <- function() rfa("github")
+rp <- function() rfa("r-project")
+wk <- function() rfa("wikipedia-w")

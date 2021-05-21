@@ -9,6 +9,9 @@ tweet: "Continuous integration for R projects: from Travis CI to GitHub actions 
 review: false
 rbloggers: true
 estime: 5
+edits:
+  - date: 2021-05-21
+    comment: "Edit the tricks to keep both the versions of the website (dev and last releases)."
 output:
   rmarkdown::html_page:
     toc: true
@@ -140,10 +143,11 @@ In order to build the package I simply install [`pkgdown`](https://CRAN.R-projec
 - name: Build website 
   if: matrix.config.os == 'ubuntu-20.04' && matrix.config.r == 'release'
   run: |
+    mkdir docs
     sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
-    Rscript -e 'remotes::install_cran(c("pkgdown")); pkgdown::build_site()'
     git fetch origin gh-pages:gh-pages
     git --work-tree=docs checkout gh-pages -- .
+    Rscript -e 'remotes::install_cran(c("pkgdown")); pkgdown::build_site()'
 ```  
 
 There are a few lines that require some explanations. First, I decided to build this on Ubuntu (again, this is arbitrary). Second, the following line: 
@@ -340,9 +344,10 @@ jobs:
         if: matrix.config.os == 'ubuntu-20.04' && matrix.config.r == 'release'
         run: |
           sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
-          Rscript -e 'remotes::install_cran(c("pkgdown")); pkgdown::build_site()'
+          mkdir docs
           git fetch origin gh-pages:gh-pages
           git --work-tree=docs checkout gh-pages -- .
+          Rscript -e 'remotes::install_cran(c("pkgdown")); pkgdown::build_site()'
             
       - name: Deploy website 
         if: matrix.config.os == 'ubuntu-20.04' && matrix.config.r == 'release'

@@ -2,7 +2,7 @@
 title: "Writing an R Client for a web API: rowlbot as a use case"
 author: [kevin]
 reviewer: [steve]
-date: 2021-04-11
+date: 2021-05-10
 tags: [R, packages, API, R Client]
 rpkgs: [rowlbot, httr, vcr, magick]
 tweet: "Writing an R Client for a web API: rowlbot as a use case,"
@@ -17,52 +17,77 @@ output:
     dev: svg
 ---
 
+```{R setup, include = FALSE}
+source('../../../codeChunkSetUp.R')
+```
+
+In this post, we go over XXX and we explain
 
 
-The web is a vast ocean of data, some of them are organized in databases and some of the are exposed via [Web APIs](https://en.wikipedia.org/wiki/Web_API). 
+## Web APIs 
 
-Over the past three years, I had few experiences writing R clients for web API: 
-I maintain [`rcites`](https://CRAN.R-project.org/package=rcites), I contributed to 
-[`rmangal`](https://CRAN.R-project.org/package=rmangal) (maintained by [Steve Vissaut]()), I made contribution to various other projects. I have also worked on projects that are hosted on GitHub and will probably never end up on CRAN, cause I think that's where they should be! [rowlbot](https://github.com/inSileco/rowlbot) is one of those projects, I started it fo fun, but as I were thinking that I should jot notes about R clients, [rowlbot](https://github.com/inSileco/rowlbot)  turned out to a good case example. In what follows I expand a bit on what are R client for web API and I detail a bit how I worked on `rowlbot`, while doing I have tried to gather a valuable links and references as links. 
+The Internet is a collection of connected computers that collectively host a vast ocean of data[^noteinfo]. Although every datum is ultimately a bunch of [bits](https://en.wikipedia.org/wiki/Bit) that are either magnetically or electronically stored, data are of various forms (e.g digits, text, image, etc.) and more or less organized. At one end of the spectrum, raw documents such as PDFs are sometimes shared without any information about their contents. On the other end, data are carefully curated and stored in well-designed databases that ensure efficient storage and rapid identification of the relevant datum for a given application. Having a data well-organized in a database management system does not necessary mean they will be easy to access. For instance, imagine the database you need is a [SQLite](https://www.sqlite.org/index.html) file that is >1TB[^note_size] and that the only way to access the data is to download this file. In such case, it is extremely likely that you would have a hard time storing the database on your machine. Fortunately, there are solutions to access remote data in a more efficient way, including web APIs.
 
+APIs, you said? The term is frequently used nowadays, but you may not have heard about it and in case you haven't, I suggest you have a quick read of the [Wikipedia article on the topic](https://en.wikipedia.org/wiki/API). As explains in the article, an API (*Application Programming Interface*) defines the underlying implementation and only exposing objects or actions the developer Standard_request_fields . I think a key element to bare in mind is that an API represents an abstraction of what is done. Say you have a plain text you want to mine and you are using the `r rp()` base function `readLines()` to import its content. Whatever the OS you are using, `readLines()` should produce same effect and you are not aware of what happens computer wise even though we are all working on different machine with different hardware... that's a high level of abstract. 
 
-
-
-## R programmatic interfaces for web APIs
-  
-### Data Access via web API
-  
-The web is a vast ocean of data, some of them are organized in databases and some of the data in data base are exposed via [Web APIs](https://en.wikipedia.org/wiki/Web_API). 
-  
-  
-![<i class="fa fa-info" aria-hidden="true"></i> Downloaded from [dev.to](https://dev.to/), see the post ["Ever wondered what happens when you type in a URL in an address bar in a browser?"](https://dev.to/wassimchegham/ever-wondered-what-happens-when-you-type-in-a-url-in-an-address-bar-in-a-browser-3dob).](lya7b81ow94pniln3aif.jpg){width=900 alt="><"}
-
-
-In my opinion, the wikipedia article API [Web APIs](https://en.wikipedia.org/wiki/Web_API) already porvcide abluable informatrion, and I quote what I need here. 
-
-The web is a vast ocean of data, some of them are organized in databases and some of the data in data base are exposed via [Web APIs](https://en.wikipedia.org/wiki/Web_API). In my opinion, the wikipedia article API [Web APIs](https://en.wikipedia.org/wiki/Web_API) already porvcide vabluable informatrion, and I quote what I need here. 
-
-Server side: 
+Let's keep that is mind as we now explain what matter the most for this post, i.e. *web APIs* which has its own [`r wk()`ikipedia article](https://en.wikipedia.org/wiki/Web_API). Server side: 
 
 > A server-side web API is a programmatic interface consisting of one or more publicly exposed **endpoints** to a defined request–response message system, typically expressed in JSON or XML, which is exposed via the web—most commonly by means of an HTTP-based web server.
 
 So basically one send a request, via URL, then  and the responses as JSON or XML. 
-
-HTTP requests are posted, then 
-
-
-Just like a webpage is rendered, APIs can use HTTP requests to get information from a web application or web server.  
+HTTP requests are posted, then Just like a webpage is rendered, APIs can use HTTP requests to get information from a web application or web server.  
 
 https://techolution.com/types-of-apis/
 
 
 
-Olwbo Engli disctionary API is one of thos web abit 
+The wikipedia article it woth reading and I think what it a level of abstraction. You have funciton that does, without,. The idea key point is that API are abstractions. This idea start with abstraction from the hardware, then form the OS, etc. so ultimately software applications can seamlessly interact with each other. This is general be here we will focus on web APIs.
+
+
+
+The way data will be accessed/retrieved varies  
+ Another important aspect of data management is how . A and that goes with Again there is a spectrum that goes from a simple hypertext link that may trigger a download event up to scalable web APIs. 
+
+
+
+Speaking of abstraction. I think sending a request such has... is a pretty good one
+
+![<i class="fa fa-info" aria-hidden="true"></i> Downloaded from [dev.to](https://dev.to/), see the post ["Ever wondered what happens when you type in a URL in an address bar in a browser?"](https://dev.to/wassimchegham/ever-wondered-what-happens-when-you-type-in-a-url-in-an-address-bar-in-a-browser-3dob).](lya7b81ow94pniln3aif.jpg){width=900 alt="><"}
+
+
+
+
+Exemple of API
+  * GH
+  * Owlbot 
+
+
+
+[^noteinfo]: I could have used "information" here but I did not because of its polysemy, I thought data might sound more neutral here.
+
+[^note_size]: Why someone would do such a thing?
+
+
+
+
+## R programmatic interfaces for web APIs
+
+Over the past three years, I had a few experiences writing R clients for web API: 
+I maintain [`rcites`](https://CRAN.R-project.org/package=rcites), I contributed to 
+[`rmangal`](https://CRAN.R-project.org/package=rmangal) (maintained by [Steve Vissaut](https://github.com/SteveViss), I made contribution to various other projects. I have also worked on projects that are solely hosted on GitHub and will probably never end up on CRAN, cause I think that's where they should be! [rowlbot](https://github.com/inSileco/rowlbot) is one of those projects, I started it for fun, but as I were thinking that I should jot notes about R clients, [rowlbot](https://github.com/inSileco/rowlbot) turned out to a good case example. In what follows I expand a bit on what are R client for web API and I detail a bit how I worked on `rowlbot`, while doing I have tried to gather a valuable links and references as links. 
+
+
+  
+### Data Access via web API
+
+### Owlbot
+
+Owlbot English dictionary API is one of thos web abit 
 
 ![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of <https://owlbot.info> (20/11/20) before sending a request.](owlbot1.png){width=900 alt="><"}
 
 
-by default result of a randon request. 
+by default result of a random request. 
 
 that can 
 Instead of a page we can. Every click is actually. 
@@ -75,21 +100,12 @@ basically use query
 
 
 owlbot will provide the service, when you enter use its own API! 
-This is the impotrrnat distingtion, cause when writting the client, I am not trying to access the pacjage, byut the information delivered that owlbot use as website, 
+This is the importation distingtion, cause when writing the client, I am not trying to access the pacjage, but the information delivered that owlbot use as website, 
 In that case, difficult to make the discution acaseu the website side is mininmal and is dedicated for the api, bit you can imaginate a biger website that use extensiveky, 
-same API bu different website!! 
+same API but different website!! 
 
 
 > https://owlbot.info/?q=owl
-
-
-A few concepts: 
-
-- URI 
-- Endpoints 
-
-
-[]()
 
 
 ### R clients
@@ -106,7 +122,7 @@ R clients, R interfaces, R programmatic interfaces for web APIs are plentiful.
 Ropenscience has tens of such [see data Access](https://ropensci.org/packages/data-access/). An R programmatic interface to the Orcid public API. and for all of them report use cases. 
 
 
-A few example are listed belwo: 
+A few example are listed below: 
 
 ```{R clients, echo = FALSE}
 lsr <- yaml::yaml.load_file("rclients.yaml")
@@ -120,7 +136,7 @@ knitr::kable(df, format = "html")
 
 
 
-Scott Chamberlain lots of and tools to help building then for instance ckan, pt as published making tin of then. 
+Scott Chamberlain lots of and tools to help building then for instance ckanr, pt as published making tin of then. 
 
 
 
@@ -130,8 +146,7 @@ Scott Chamberlain lots of and tools to help building then for instance ckan, pt 
 
 ### rowlbot in a nutshell 
 
-
-So, [rowlbot](https://github.com/inSileco/rowlbot) is a R client for the [Owlbot](https://owlbot.info/) Owlbot Dictionary API. But also because it is a very good example of dealing wit an web API. Give it a try! 
+So, [rowlbot](https://github.com/inSileco/rowlbot) is an R client for the [Owlbot Dictionary API](https://owlbot.info/). 
  
 
 
@@ -144,7 +159,9 @@ You need a token that you can easily get by clicking.
 
 ### rowlbot in numbers 
 
-[cloc](https://github.com/AlDanial/cloc)
+Below I am using two command line tool on my Debian machine, but these two should 
+be usable on most (installation maybe more or less complex depending on your OS)
+I first use [cloc](https://github.com/AlDanial/cloc)
 
 ```shell
 $ cloc .
@@ -165,7 +182,10 @@ SUM:                             8            170             45            667
 -------------------------------------------------------------------------------
 ```
 
-with tree 
+Note that there is also a [R package cloc](https://github.com/hrbrmstr/cloc) that alllows you tp 
+
+
+with [tree] 
 
 ```sh
 $ tree -a -I .git
@@ -196,7 +216,6 @@ $ tree -a -I .git
 ```
 
 
-Note that there is also a [R package cloc](https://github.com/hrbrmstr/cloc)
 
 There will be only a single endpoint we need to 
 
@@ -272,7 +291,7 @@ and the request will be
 ### Making the interface clear 
 
 
-[`cli`](https://CRAN.R-project.org/package=cli) and [`crayon`](https://CRAN.R-project.org/package=crayon), just better display on information and impove calrity, not more not lass. I 
+[`cli`](https://CRAN.R-project.org/package=cli) and [`crayon`](https://CRAN.R-project.org/package=crayon), just better display on information and improve clarity, no more but no lass. I 
 
 
 
@@ -284,19 +303,15 @@ working on my machine
 
 ### HTTP testing 
 
-I have less experience about this but I recently read about this topic because 
-we might need it for rmangal as we repetitilevely have some minir isssur to the 
-AMangal APIm not the package itself. 
-
 
 As well explained in [this post by Scott Chamberlain](https://ropensci.org/technotes/2019/12/11/http-testing/), we need tests for robustness (check that the functions works, 
 and that new changes does not affect the behavior). With R client, what we need 
 is to test the client, no the API, but the client uses the API and thus when you test, 
 issues. There are package to, in the  by Scott Chamberlain](https://ropensci.org/technotes/2019/12/11/http-testing/).
 
-To not repeat what is best said by those who know more, I would like to mentiuon that 
-I have found the logical behing [vcr](https://github.com/ropensci/vcr) (I did not [`httptest`](https://CRAN.R-project.org/package=httptest)) quite intuiti as you simply record the 
-respond and, typically when developpin the play it again when, notably on CRAN,.. 
+To not repeat what is best said by those who know more, I would like to mention that 
+I have found the logical behind [vcr](https://github.com/ropensci/vcr) (I did not try [`httptest`](https://CRAN.R-project.org/package=httptest)) quite intuitive as you simply record the 
+respond and, typically when developing the play it again when, notably on CRAN,.. 
 
 So 
 
@@ -310,7 +325,7 @@ tests
 ```
 
 
-```
+```R
 context("Basic unit tests")
 library(vcr)
 
@@ -330,3 +345,6 @@ test_that("Check one known entry", {
 
 produce `owl.yaml` and othersie 
 Note tat library(vcr) is important, some set up. This work offline.!
+
+
+Several post on R opensci on the topic.

@@ -35,6 +35,7 @@ jobs:
           Rscript -e "renv::restore()"
       - name: Build inSileco Blog
         run: |-
+          Rscript -e "icons::download_fontawesome()"
           Rscript -e "blogdown::check_config()"
           Rscript -e "blogdown::check_content()"
           Rscript -e "blogdown::build_site(build_rmd = 'newfile')"
