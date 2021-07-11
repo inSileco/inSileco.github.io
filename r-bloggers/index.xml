@@ -629,21 +629,21 @@ packageVersion(&quot;inSilecoMisc&quot;)
 <p>I wrote <a href="https://insileco.github.io/inSilecoMisc/reference/scaleWithin.html"><code>scaleWithin()</code></a> to handle color scales for a specific yet frequent situation. Let us say that I have 40 percentage values – meaning 0 to 100 – in a vector <code>val</code>…</p>
 <pre class="r"><code>val &lt;- runif(40, 0, 100)
 val
-#R&gt;  [1] 37.58606941 61.40491171 93.03405553 48.86901130 83.12207956 20.77118529
-#R&gt;  [7] 70.80030660 20.24558904 33.50034659 11.15740940 43.05032019 98.76653864
-#R&gt; [13] 26.40171868  0.05113231 96.91908916 94.31932685 40.82751200 58.02688098
-#R&gt; [19] 43.84068681 67.78367963 28.32683926 35.61703037 59.52995131 31.87128201
-#R&gt; [25] 29.77751638 46.82775799 15.46182190 77.41388208 41.37177509  9.71661240
-#R&gt; [31]  3.41295723 86.64828837 89.07883575 18.52159565 31.93859130 46.19229911
-#R&gt; [37] 19.43485362 50.98926085 88.94838768  4.63672988</code></pre>
+#R&gt;  [1] 65.1626309 81.7693937 32.2166222 85.1922520 41.0296074 92.8992694
+#R&gt;  [7] 61.7124782 82.2415797 69.8621016 54.6980060 35.7083143 73.2058567
+#R&gt; [13] 62.2722560 47.8011209 52.8940168 80.3580544 78.6712364 41.5932015
+#R&gt; [19] 24.7497488 54.0517665 80.0389779 31.5518924 70.2270130 33.2216776
+#R&gt; [25]  5.1354901 28.2743302 89.7662556 26.5021664 40.6940918 34.3106302
+#R&gt; [31] 37.6554224 80.3352310  0.9667764 13.1902663 84.8103368 53.1502708
+#R&gt; [37] 44.7908569 94.7104293 93.3242052 56.4119160</code></pre>
 <p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
 <pre class="r"><code>pal &lt;- colorRampPalette(c(&quot;#f9fa98&quot;, &quot;#500127&quot;))(25)
 graphicsutils::showPalette(pal)</code></pre>
 <p><img src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>But</strong> the color scale should be used for the range [30%-70%], meaning that values below 30% should have the lowest values and values above 70%, the highest one. The caption should thus indicate <span class="math inline">\(\geqslant\)</span> 30% and <span class="math inline">\(\leqslant\)</span> 70%. Then the function <code>scaleWithin()</code> is very handy!</p>
 <pre class="r"><code>scaleWithin(val, n = 25, mn = 30, mx = 70)
-#R&gt;  [1]  5 20 25 12 25  1 25  1  3  1  9 25  1  1 25 25  7 18  9 24  1  4 19  2  1
-#R&gt; [26] 11  1 25  8  1  1 25 25  1  2 11  1 14 25  1
+#R&gt;  [1] 22 25  2 25  7 25 20 25 25 16  4 25 21 12 15 25 25  8  1 16 25  1 25  3  1
+#R&gt; [26]  1 25  1  7  3  5 25  1  1 25 15 10 25 25 17
 graphicsutils::showPalette(pal[scaleWithin(val, n = 25, mn = 30, mx = 70)], add_codecolor = FALSE)</code></pre>
 <p><img src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Even though this function is pretty useful – at least I think it is! – I had a
