@@ -361,11 +361,11 @@ nchar(vec)&amp;1
 microbenchmark(nchar(vec)&gt;0, !!nchar(vec), nchar(vec)&amp;1, nzchar(vec),
   times = 1000L)
 #R&gt; Unit: nanoseconds
-#R&gt;            expr  min   lq   mean median   uq   max neval
-#R&gt;  nchar(vec) &gt; 0  900 1000 1152.2   1000 1200 17900  1000
-#R&gt;    !!nchar(vec) 1000 1000 1207.6   1100 1300 18000  1000
-#R&gt;  nchar(vec) &amp; 1 1000 1100 1234.5   1200 1300  8100  1000
-#R&gt;     nzchar(vec)    0    0   93.3    100  100 16100  1000</code></pre>
+#R&gt;            expr min   lq   mean median   uq   max neval
+#R&gt;  nchar(vec) &gt; 0 800  900 1213.5    900 1000 78100  1000
+#R&gt;    !!nchar(vec) 800 1000 1243.9   1000 1100 23700  1000
+#R&gt;  nchar(vec) &amp; 1 900 1000 1280.2   1000 1100 21000  1000
+#R&gt;     nzchar(vec)   0    0   83.2      0  100 16200  1000</code></pre>
 <p>Yep yep!<code>nzchar()</code> is indeed way faster 🚀!</p>
 </div>
 <div id="do-you-need-to-use-return" class="section level2">
@@ -401,8 +401,8 @@ foo2 &lt;- function(x) {
 microbenchmark(foo(4), foo2(4), times = 1e5)
 #R&gt; Unit: nanoseconds
 #R&gt;     expr min  lq    mean median  uq      max neval
-#R&gt;   foo(4) 400 600 932.109    600 700 21028000 1e+05
-#R&gt;  foo2(4) 200 400 556.696    400 400  4466800 1e+05</code></pre>
+#R&gt;   foo(4) 300 500 864.255    500 600  6556000 1e+05
+#R&gt;  foo2(4) 200 300 700.445    300 400 20291500 1e+05</code></pre>
 </div>
 <div id="invisible" class="section level2">
 <h2><code>invisible()</code></h2>
@@ -466,7 +466,7 @@ box()</code></pre>
 Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </summary>
 <pre class="r"><code>sessionInfo()
-#R&gt; R version 4.1.0 (2021-05-18)
+#R&gt; R version 4.1.1 (2021-08-10)
 #R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
 #R&gt; Running under: Ubuntu 20.04.2 LTS
 #R&gt; 
@@ -491,8 +491,8 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 #R&gt;  [1] bookdown_0.22     digest_0.6.27     R6_2.5.0          jsonlite_1.7.2   
 #R&gt;  [5] magrittr_2.0.1    evaluate_0.14     highr_0.8         blogdown_1.3     
 #R&gt;  [9] stringi_1.5.3     rlang_0.4.10      jquerylib_0.1.4   bslib_0.2.4      
-#R&gt; [13] rmarkdown_2.7     tools_4.1.0       stringr_1.4.0     xfun_0.22        
-#R&gt; [17] yaml_2.2.1        compiler_4.1.0    htmltools_0.5.1.1 knitr_1.33       
+#R&gt; [13] rmarkdown_2.7     tools_4.1.1       stringr_1.4.0     xfun_0.22        
+#R&gt; [17] yaml_2.2.1        compiler_4.1.1    htmltools_0.5.1.1 knitr_1.33       
 #R&gt; [21] sass_0.3.1</code></pre>
 </details>
 </div>
