@@ -361,11 +361,11 @@ nchar(vec)&amp;1
 microbenchmark(nchar(vec)&gt;0, !!nchar(vec), nchar(vec)&amp;1, nzchar(vec),
   times = 1000L)
 #R&gt; Unit: nanoseconds
-#R&gt;            expr min   lq   mean median   uq   max neval
-#R&gt;  nchar(vec) &gt; 0 800  900 1213.5    900 1000 78100  1000
-#R&gt;    !!nchar(vec) 800 1000 1243.9   1000 1100 23700  1000
-#R&gt;  nchar(vec) &amp; 1 900 1000 1280.2   1000 1100 21000  1000
-#R&gt;     nzchar(vec)   0    0   83.2      0  100 16200  1000</code></pre>
+#R&gt;            expr  min   lq   mean median   uq   max neval
+#R&gt;  nchar(vec) &gt; 0  900 1000 1118.7   1000 1100 18100  1000
+#R&gt;    !!nchar(vec) 1000 1100 1219.1   1100 1200 14400  1000
+#R&gt;  nchar(vec) &amp; 1 1000 1100 1238.6   1100 1200  6300  1000
+#R&gt;     nzchar(vec)    0    0   75.1    100  100  3200  1000</code></pre>
 <p>Yep yep!<code>nzchar()</code> is indeed way faster 🚀!</p>
 </div>
 <div id="do-you-need-to-use-return" class="section level2">
@@ -401,8 +401,8 @@ foo2 &lt;- function(x) {
 microbenchmark(foo(4), foo2(4), times = 1e5)
 #R&gt; Unit: nanoseconds
 #R&gt;     expr min  lq    mean median  uq      max neval
-#R&gt;   foo(4) 300 500 864.255    500 600  6556000 1e+05
-#R&gt;  foo2(4) 200 300 700.445    300 400 20291500 1e+05</code></pre>
+#R&gt;   foo(4) 400 500 828.246    500 600 19424100 1e+05
+#R&gt;  foo2(4) 200 300 508.416    300 400  5348600 1e+05</code></pre>
 </div>
 <div id="invisible" class="section level2">
 <h2><code>invisible()</code></h2>
@@ -468,7 +468,7 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 <pre class="r"><code>sessionInfo()
 #R&gt; R version 4.1.1 (2021-08-10)
 #R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
-#R&gt; Running under: Ubuntu 20.04.2 LTS
+#R&gt; Running under: Ubuntu 20.04.3 LTS
 #R&gt; 
 #R&gt; Matrix products: default
 #R&gt; BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so

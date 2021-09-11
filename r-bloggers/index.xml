@@ -549,7 +549,7 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 <pre class="r"><code>sessionInfo()
 #R&gt; R version 4.1.1 (2021-08-10)
 #R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
-#R&gt; Running under: Ubuntu 20.04.2 LTS
+#R&gt; Running under: Ubuntu 20.04.3 LTS
 #R&gt; 
 #R&gt; Matrix products: default
 #R&gt; BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
@@ -629,21 +629,20 @@ packageVersion(&quot;inSilecoMisc&quot;)
 <p>I wrote <a href="https://insileco.github.io/inSilecoMisc/reference/scaleWithin.html"><code>scaleWithin()</code></a> to handle color scales for a specific yet frequent situation. Let us say that I have 40 percentage values – meaning 0 to 100 – in a vector <code>val</code>…</p>
 <pre class="r"><code>val &lt;- runif(40, 0, 100)
 val
-#R&gt;  [1] 80.6920455  4.1405296 32.5501964 50.0144613 96.2106133 98.5452960
-#R&gt;  [7] 54.5111992 27.0562668 85.1393828 13.1868136 52.9013798 80.8886289
-#R&gt; [13] 41.0712800  0.8918136 68.5767941 48.5952679 43.5578339  4.6961058
-#R&gt; [19] 73.2530676  1.2520632 55.5185681 88.7767680 91.8930795 69.1171571
-#R&gt; [25] 99.1359399  6.8007565 93.1110105 81.5035294 94.9701782 80.0390850
-#R&gt; [31] 38.4995761 74.3238549 74.9679317 53.1154488 60.4367372 61.1259479
-#R&gt; [37] 20.4602827  9.7465422 56.3905000 71.5046939</code></pre>
+#R&gt;  [1] 12.411268 66.967187 34.194707 79.752682 21.694224 59.240652 90.633803
+#R&gt;  [8] 40.996866 63.087527 52.867944 56.069985 33.605686  7.037208 31.128291
+#R&gt; [15] 24.621871 83.077557 94.548094  4.860352 56.381282 82.561321 99.497509
+#R&gt; [22] 28.292780 27.025976 23.572695 81.761068 60.516309 21.162884  5.430824
+#R&gt; [29] 73.757394 68.573656 71.104828 80.578502 19.643856 88.383740  9.167426
+#R&gt; [36]  2.716919 75.040126 44.773289 83.524977 11.057650</code></pre>
 <p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
 <pre class="r"><code>pal &lt;- colorRampPalette(c(&quot;#f9fa98&quot;, &quot;#500127&quot;))(25)
 graphicsutils::showPalette(pal)</code></pre>
 <p><img src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>But</strong> the color scale should be used for the range [30%-70%], meaning that values below 30% should have the lowest values and values above 70%, the highest one. The caption should thus indicate <span class="math inline">\(\geqslant\)</span> 30% and <span class="math inline">\(\leqslant\)</span> 70%. Then the function <code>scaleWithin()</code> is very handy!</p>
 <pre class="r"><code>scaleWithin(val, n = 25, mn = 30, mx = 70)
-#R&gt;  [1] 25  1  2 13 25 25 16  1 25  1 15 25  7  1 25 12  9  1 25  1 16 25 25 25 25
-#R&gt; [26]  1 25 25 25 25  6 25 25 15 20 20  1  1 17 25
+#R&gt;  [1]  1 24  3 25  1 19 25  7 21 15 17  3  1  1  1 25 25  1 17 25 25  1  1  1 25
+#R&gt; [26] 20  1  1 25 25 25 25  1 25  1  1 25 10 25  1
 graphicsutils::showPalette(pal[scaleWithin(val, n = 25, mn = 30, mx = 70)], add_codecolor = FALSE)</code></pre>
 <p><img src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Even though this function is pretty useful – at least I think it is! – I had a
@@ -800,7 +799,7 @@ command!</p>
 <pre class="r"><code>sessionInfo()
 #R&gt; R version 4.1.1 (2021-08-10)
 #R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
-#R&gt; Running under: Ubuntu 20.04.2 LTS
+#R&gt; Running under: Ubuntu 20.04.3 LTS
 #R&gt; 
 #R&gt; Matrix products: default
 #R&gt; BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
@@ -1081,7 +1080,7 @@ this topic (for instance
 <pre class="r"><code>sessionInfo()
 #R&gt; R version 4.1.1 (2021-08-10)
 #R&gt; Platform: x86_64-pc-linux-gnu (64-bit)
-#R&gt; Running under: Ubuntu 20.04.2 LTS
+#R&gt; Running under: Ubuntu 20.04.3 LTS
 #R&gt; 
 #R&gt; Matrix products: default
 #R&gt; BLAS/LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.8.so
