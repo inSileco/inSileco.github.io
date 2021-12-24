@@ -2,7 +2,7 @@
 title: "Writing an R Client for a web API: rowlbot as a use case"
 author: [kevin]
 reviewer: [steve]
-date: 2021-05-10
+date: 2021-05-26
 tags: [R, packages, API, R Client]
 rpkgs: [rowlbot, httr, vcr, magick]
 tweet: "Writing an R Client for a web API: rowlbot as a use case,"
@@ -26,11 +26,27 @@ In this post, we go over XXX and we explain
 
 ## Web APIs 
 
-The Internet is a collection of connected computers that collectively host a vast ocean of data[^noteinfo]. Although every datum is ultimately a bunch of [bits](https://en.wikipedia.org/wiki/Bit) that are either magnetically or electronically stored, data are of various forms (e.g digits, text, image, etc.) and more or less organized. At one end of the spectrum, raw documents such as PDFs are sometimes shared without any information about their contents. On the other end, data are carefully curated and stored in well-designed databases that ensure efficient storage and rapid identification of the relevant datum for a given application. Having a data well-organized in a database management system does not necessary mean they will be easy to access. For instance, imagine the database you need is a [SQLite](https://www.sqlite.org/index.html) file that is >1TB[^note_size] and that the only way to access the data is to download this file. In such case, it is extremely likely that you would have a hard time storing the database on your machine. Fortunately, there are solutions to access remote data in a more efficient way, including web APIs.
+Internet is a collection of connected computers that collectively host a vast ocean of data[^noteinfo]. Although every datum is ultimately a bunch of [bits](https://en.wikipedia.org/wiki/Bit) that are either magnetically or electronically stored, data are of various forms (e.g digits, text, image, etc.) and more or less organized. At one end of the spectrum, raw documents such as PDFs are sometimes shared without any information about their contents. On the other end, data are carefully curated and stored in well-designed databases that ensure efficient storage and rapid identification of the relevant datum for a given application. Having a data well-organized in a database management system does not necessary mean they will be easy to access. For instance, imagine the database you need is a [SQLite](https://www.sqlite.org/index.html) file that is >1TB[^note_size] and that the only way to access the data is to download this file. In such case, it is extremely likely that you would have a hard time storing the database on your machine and thus accessing a subset of the database would be quite challenging. Fortunately, there are solutions to access remote data in more efficient ways, including web APIs.
 
-APIs, you said? The term is frequently used nowadays, but you may not have heard about it and in case you haven't, I suggest you have a quick read of the [Wikipedia article on the topic](https://en.wikipedia.org/wiki/API). As explains in the article, an API (*Application Programming Interface*) defines the underlying implementation and only exposing objects or actions the developer Standard_request_fields . I think a key element to bare in mind is that an API represents an abstraction of what is done. Say you have a plain text you want to mine and you are using the `r rp()` base function `readLines()` to import its content. Whatever the OS you are using, `readLines()` should produce same effect and you are not aware of what happens computer wise even though we are all working on different machine with different hardware... that's a high level of abstract. 
+APIs, you said? The term is frequently used nowadays, but you may not have heard about it and in case you haven't, I suggest you peruse the [`r wk()`ikipedia article on this topic](https://en.wikipedia.org/wiki/API). As explained in the article there, an API (*Application Programming Interface*) abstracts the underlying implementation. 
+There are various types of API, `r rp()` users are familiar with using package functions and each package has a set of function its developers decided to expose which are abstractions of the actual numerical implementation, in other words, they are API. Say you have a plain text you want to mine and you are using the `r rp()` base function `readLines()` to import its content. Whatever the OS you are using, `readLines()` should produce same effect and you are not necessarily aware of what is happening computer-wise even though we are all working on different machine with different hardware... that's is actually a high level of abstraction. Say now you are developing a `r rp()` package that would do some text mining operation. The users of the package would you the function you decide to expose without the knowledge of how it's done. And as you would have used function in other packages, well they would indirectly use function of other API, you, as the developer, don't even know their implementation. That is how we keep building up on other work, APIs play fundamental role. 
+  
 
-Let's keep that is mind as we now explain what matter the most for this post, i.e. *web APIs* which has its own [`r wk()`ikipedia article](https://en.wikipedia.org/wiki/Web_API). Server side: 
+Let's keep that in mind as we move on what matters the most for this post, i.e. *web APIs*, which has its own [`r wk()`ikipedia article](https://en.wikipedia.org/wiki/Web_API). They also are abstractions, access to a resource via URI and returned. So instead of HTML content + CSS + Javascript, you will get a XML or JSON that contain required data. The idea key point is that API are abstractions. This idea start with abstraction from the hardware, then form the OS, etc. so ultimately software applications can seamlessly interact with each other.
+
+https://stackoverflow.blog/2020/03/02/best-practices-for-rest-api-design/
+
+
+> In programming more generally, the term API, short for Application Programming Interface, refers to a part of a computer program designed to be used or manipulated by another program, as opposed to an interface designed to be used or manipulated by a human. Computer programs frequently need to communicate amongst themselves or with the underlying operating system, and APIs are one way they do it. In this tutorial, however, we’ll be using the term API to refer specifically to web APIs.
+
+
+https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask#installing-python-and-flask
+
+
+**endpoints** to a defined request–response message system
+
+
+Server side: 
 
 > A server-side web API is a programmatic interface consisting of one or more publicly exposed **endpoints** to a defined request–response message system, typically expressed in JSON or XML, which is exposed via the web—most commonly by means of an HTTP-based web server.
 
@@ -40,15 +56,27 @@ HTTP requests are posted, then Just like a webpage is rendered, APIs can use HTT
 https://techolution.com/types-of-apis/
 
 
+Among web APIs, the one that are currently REST (but there are not the only one). [REST](https://en.wikipedia.org/wiki/Representational_state_transfer) (Representational state transfer) is a set of guidlines and when respected a RESTful API. 
 
-The wikipedia article it woth reading and I think what it a level of abstraction. You have funciton that does, without,. The idea key point is that API are abstractions. This idea start with abstraction from the hardware, then form the OS, etc. so ultimately software applications can seamlessly interact with each other. This is general be here we will focus on web APIs.
+How to create web API? there are framework, tool kit packahe in many lanagge, for instance :
+
+<!-- do a table ? -->
+
+you will need more tools to use data base and other tool. 
+
+* Ruby with [Sinatra](http://sinatrarb.com/)
+* NodeJS with [Express](https://expressjs.com/)
+* Go and tool kits such as https://tutorialedge.net/golang/creating-restful-api-with-golang/ with a tool kit such as [Gorilla](https://www.gorillatoolkit.org/) https://hugo-johnsson.medium.com/rest-api-with-golang-mux-mysql-c5915347fa5b
+* Python https://programminghistorian.org/en/lessons/creating-apis-with-python-and-flask#installing-python-and-flask which also provide goo background about API
+* R [plumber]https://www.rplumber.io/
 
 
+https://mangal-wg.github.io/mangal-api/#table-description-211
 
-The way data will be accessed/retrieved varies  
- Another important aspect of data management is how . A and that goes with Again there is a spectrum that goes from a simple hypertext link that may trigger a download event up to scalable web APIs. 
+http://sinatrarb.com/
 
 
+https://github.com/ckan/ckan
 
 Speaking of abstraction. I think sending a request such has... is a pretty good one
 
@@ -65,7 +93,7 @@ Exemple of API
 
 [^noteinfo]: I could have used "information" here but I did not because of its polysemy, I thought data might sound more neutral here.
 
-[^note_size]: Why someone would do such a thing?
+[^note_size]: Why someone would do that :smile:? 
 
 
 
