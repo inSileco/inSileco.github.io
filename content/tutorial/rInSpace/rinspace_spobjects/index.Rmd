@@ -1,0 +1,477 @@
+---
+title: "R in Space - About spatial data"
+author: [david, marieh, nicolas, kevin, elliot, steve]
+date: 2018-04-12
+tags: [R in Space, R, Spatial]
+rpkgs: [raster, sf, sp]
+tweet: "R in Space - About spatial data"
+draft: false
+navposts:
+  prev: rinspace_refs
+  home: rinspace_homepage
+  next: rinspace_import
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+
+```{r codeChunkSetUp, include = FALSE}
+source('../codeChunkSetUp.R')
+```
+
+
+<br><br>
+
+Spatial data refer to phenomenon or information that can be observed geographically.
+What a definition! In short spatial data concern every information that could
+be reported on a map, *i.e.* on a two-dimensions geographical coordinates system.
+Two kinds of spatial data exist: **vector data** and **raster data**. Generally
+vectors refer to discrete locations, *i.e.* objects with boundaries (for
+instance a city, a road, a country) whereas raster data refer to continuous
+phenomenon that can be observed everywhere, but without natural boundaries (for
+instance the surface temperature). Let's take a look at their characteristics.
+
+
+## Vector data
+
+Vector data consist of the description of a spatially explicit phenomenon
+geometry (position and coordinates of its boundaries in a specific spatial
+referential). In addition to this geometry, vector data may contain variables
+(or attributes) with additional information about the phenomenon at each
+location. For instance, cities of a country are vector data (points) and
+attributes could be cities names, population sizes, etc. Borders of a country
+are also vector data (polygons) and could contain the name of the country,
+the population for a given year, and the mean number of crimes as attributes.
+
+There are main symbol types for vector data: **points**, **lines** and **polygons**.
+The geometry of these data structures consists of sets of geographical
+coordinate pairs (longitude, latitude) in a specific Coordinate Reference System
+(CRS).
+
+
+### Points data
+
+Points are the simplest vector object. Each point has one two-dimensional
+coordinates, and several associated variables. For instance, a point might
+represent a location where an animal was trapped, and the attributes could
+include the capture date, the size, the sex, and information about the physical
+environment.
+
+<br />
+
+```{r vector-data, echo=FALSE, eval=TRUE, fig.width=8.6, fig.height=2.86, dpi=300, out.width=810, out.height=270, fig.align='center'}
+library(raster)
+
+corse  <- readRDS("data/corse-admin.rds")
+rivers <- readRDS("data/corse-rivers.rds")
+cities <- readRDS("data/corse-cities.rds")
+
+par(
+  mar      = rep(1.5, 4),
+  xaxs     = "i",
+  yaxs     = "i",
+  mfrow    = c(1, 3),
+  col.axis = "#555555",
+  family   = "serif"
+)
+
+# Vector - POINTS
+plot(corse, col = NA, border = NA)
+points(cities[ , c("lon", "lat")], pch = 21, bg = par()$col.axis, col = "white", cex = 2)
+text(8, 42.8, "Vector data\n(POINTS)", font = 2, col = par()$col.axis, pos = 4, cex = 1.25)
+
+par(mgp = c(3, .5, 0))
+axis(1, lwd = 0, lwd.ticks = 1, col = par()$col.axis)
+par(mgp = c(3, .695, 0))
+axis(4, label = FALSE, lwd = 0, lwd.ticks = 1, col = par()$col.axis, las = 1)
+mtext(side = 2, line = .15, "Latitude (°North)", font = 1, col = par()$col.axis, cex = .75)
+mtext(side = 3, line = .15, "Longitude (°East)", font = 1, col = par()$col.axis, cex = .75)
+box(col = par()$col.axis)
+
+# Vector - LINES
+plot(corse, col = NA, border = NA)
+plot(rivers, add = TRUE, col = "#96DAE8", lwd = 3)
+plot(rivers, add = TRUE, col = "#009BC9", lwd = 1)
+plot(corse, col = NA, border = "white", add=T, lwd = 3)
+text(8, 42.8, "Vector data\n(LINES)", font = 2, col = par()$col.axis, pos = 4, cex = 1.25)
+
+par(mgp = c(3, .5, 0))
+axis(1, lwd = 0, lwd.ticks = 1, col = par()$col.axis)
+par(mgp = c(3, .695, 0))
+axis(2, lwd = 0, lwd.ticks = 1, col = par()$col.axis, las = 1)
+axis(4, label = FALSE, lwd = 0, lwd.ticks = 1, col = par()$col.axis, las = 1)
+mtext(side = 3, line = .15, "Longitude (°East)", font = 1, col = par()$col.axis, cex = .75)
+box(col = par()$col.axis)
+
+# Vector - POLYGONS
+plot(corse, col = "#aaaaaa", border = NA)
+text(8, 42.8, "Vector data\n(POLYGONS)", font = 2, col = par()$col.axis, pos = 4, cex = 1.25)
+
+par(mgp = c(3, .5, 0))
+axis(1, lwd = 0, lwd.ticks = 1, col = par()$col.axis)
+par(mgp = c(3, .695, 0))
+axis(2, lwd = 0, lwd.ticks = 1, col = par()$col.axis, las = 1)
+mtext(side = 4, line = .15, "Latitude (°North)", font = 1, col = par()$col.axis, cex = .75)
+mtext(side = 3, line = .15, "Longitude (°East)", font = 1, col = par()$col.axis, cex = .75)
+box(col = par()$col.axis)
+```
+
+
+
+<br />
+
+### Lines data
+
+Lines are the second type of vector data. A line is a shape consisting of one
+or several segments (or paths) and each segment has two noteworthy points
+(or vertex): a starting point and an ending point. Note that the ending point of
+a segment will have the same coordinates as the starting point of the following
+segment in the case of a line consisting of connected segments. In other words,
+a line with one segment is defined by two coordinates pairs (longitude and
+latitude). A line with two connected segments is defined by three coordinates
+pairs and a line with two isolated segments is defined by four coordinates pairs.
+Thus, the representation of a line is very similar to that of a collection of
+points. The main difference is that the ordering of the points is important,
+because we need to know which points should be connected two-by-two.
+
+
+### Polygons data
+
+Polygons are closed spatial lines where the coordinates of the starting point of
+the first segment is identical to the ending point of the last segment. The
+geometry of a polygon is very similar to that of a line but polygons have three
+characteristics:
+
+1. a polygon cannot self-intersect (whereas a line can),
+
+2. a polygon can contain hole (think about the state of Vatican overlapping the
+  country of Italy but considered as a separated polygon),
+
+3. as a closed feature, a polygon has an inside and a border.
+
+<br />
+
+Vector data are generally stored in **ESRI Shapefile**, **GeoJSON**, **KML**
+or **Simple Features** files. In R, two main packages exist to handle spatial
+vector data: `sp` and `sf`. Note that the package `rgdal` will be used to
+import/export vector data (go next post to learn more).
+
+
+## Raster data
+
+Raster data are commonly used to represent _continuous_ phenomenon that can be
+observed everywhere, but without natural boundaries (but with artificial
+boundaries defined by the user). A raster consists of a grid of equally sized
+cells (or pixels) that all have a values (or a missing value) for one single
+variable.
+
+Unlike vector data, the geometry of raster data is not explicitly stored as
+coordinates. Rather it is implicitly set by setting the spatial extent and the
+number of rows and columns of a regular grid. From this spatial information,
+the size of the raster cells (spatial resolution) can be computed. Working with
+raster data will therefore be more efficient than working with polygons data.
+
+Raster can be used to represent a very broad range of data: continuous
+(temperature values), discrete (habitat classes) or even binary (species occurrence)
+variables.
+
+
+```{r raster-data, echo=FALSE, eval=TRUE, fig.width=8.6, fig.height=2.86, dpi=300, out.width=810, out.height=270, fig.align='center'}
+library(rgdal)
+
+corse      <- readRDS("data/corse-admin.rds")
+elevation  <- readRDS("data/corse-elevation.rds")
+landcover  <- readRDS("data/corse-landcover.rds")
+occurrence <- readRDS("data/corse-occurrence.rds")
+
+par(
+  mar      = rep(1.5, 4),
+  xaxs     = "i",
+  yaxs     = "i",
+  mfrow    = c(1, 3),
+  col.axis = "#555555",
+  family   = "serif"
+)
+
+# CONTINUOUS VARIABLE
+plot(corse, col = NA, border = NA)
+plot(elevation, add = TRUE, axes = FALSE, legend = FALSE, col = heat.colors(n = 255)[255:1])
+# plot(corse, col = NA, border = "#aaaaaa", add = TRUE)
+text(8, 42.85, "Continuous raster", font = 2, col = par()$col.axis, pos = 4, cex = 1.25)
+
+par(mgp = c(3, .5, 0))
+axis(1, lwd = 0, lwd.ticks = 1, col = par()$col.axis)
+par(mgp = c(3, .695, 0))
+axis(4, label = FALSE, lwd = 0, lwd.ticks = 1, col = par()$col.axis, las = 1)
+mtext(side = 2, line = .15, "Latitude (°North)", font = 1, col = par()$col.axis, cex = .75)
+mtext(side = 3, line = .15, "Longitude (°East)", font = 1, col = par()$col.axis, cex = .75)
+box(col = par()$col.axis)
+
+# DISCRETE VARIABLE
+plot(corse, col = NA, border = NA)
+plot(landcover, add = TRUE, axes = FALSE, legend = FALSE)
+# plot(corse, col = NA, border = "#aaaaaa", add = TRUE)
+text(8, 42.85, "Discrete raster", font = 2, col = par()$col.axis, pos = 4, cex = 1.25)
+
+par(mgp = c(3, .5, 0))
+axis(1, lwd = 0, lwd.ticks = 1, col = par()$col.axis)
+par(mgp = c(3, .695, 0))
+axis(2, lwd = 0, lwd.ticks = 1, col = par()$col.axis, las = 1)
+axis(4, label = FALSE, lwd = 0, lwd.ticks = 1, col = par()$col.axis, las = 1)
+mtext(side = 3, line = .15, "Longitude (°East)", font = 1, col = par()$col.axis, cex = .75)
+box(col = par()$col.axis)
+
+# BINARY VARIABLE
+plot(corse, col = NA, border = NA)
+plot(occurrence, add = TRUE, axes = FALSE, legend = FALSE, col = c("#ffb770", "#dc1023"))
+# plot(corse, col = NA, border = "#aaaaaa", add = TRUE)
+text(8, 42.85, "Binary raster", font = 2, col = par()$col.axis, pos = 4, cex = 1.25)
+
+par(mgp = c(3, .5, 0))
+axis(1, lwd = 0, lwd.ticks = 1, col = par()$col.axis)
+par(mgp = c(3, .695, 0))
+axis(2, lwd = 0, lwd.ticks = 1, col = par()$col.axis, las = 1)
+mtext(side = 4, line = .15, "Latitude (°North)", font = 1, col = par()$col.axis, cex = .75)
+mtext(side = 3, line = .15, "Longitude (°East)", font = 1, col = par()$col.axis, cex = .75)
+box(col = par()$col.axis)
+```
+
+<br />
+
+Several file formats exist to store raster data. The most commons are: **GeoTIFF**, **NetCDF**, **grd** and **ascii** formats. Even the package `rgdal` can be used to import/export raster data, we will prefer the package `raster`.
+
+
+
+
+
+## Vector objects in R
+
+In this section we present two packges: `sp` and `sf`. The `sp` package actualy
+defines classes for both vector and raster objects. Below, we
+however focus on the vector ones and so we do not detail `SpatialGrid` and
+`SpatialPixels` objects. Also note that `sf` "[...] aims at succeeding `sp` in
+the long term" ([Simple Features for R](https://cran.r-project.org/web/packages/sf/vignettes/sf1.html),
+`sf` vignette).
+
+Let first create a data frame `mydata`:
+
+```{r sim_points, results='asis'}
+mylon <- -82+2*runif(20)
+mylat <- 42+2*runif(20)
+mydata <- data.frame(
+  lon = mylon,
+  lat = mylat,
+  var1 = rnorm(20),
+  var2 = 10*runif(20)
+)
+```
+
+Let's have a look at thus data frame:
+
+```{r show_points, results='asis', echo=F}
+knitr::kable(head(mydata))
+```
+
+
+
+
+
+
+### Package `sp`
+
+#### Classes
+
+The table below includes a description of the classes for points, lines and polygons.
+Basically all these classes work the same way. For instance, in order to define a
+`SpatialPointsDataPoints` object, three elements are required: a set of coordinates,
+a Coordinate Reference System (CRS) and an attribute table. Intermediate
+class are also defined (for instance points + CRS = `SpatialPoints`) and
+the name of the class is also the name of the function to be called.
+
+Classes and functions       | Contents
+--------------------------- | ---------------
+Points                      | list of points (set of coordinates)
+SpatialPoints               | list of points + CRS
+SpatialPointsDataPoints     | list of points + CRS + attribute table
+Line                        | a line (set of coordinates)
+Lines                       | list of lines
+SpatialLines                | list of lines + CRS
+SpatialLinesDataFrame       | list of lines + CRS + attribute table
+Polygon                     | a line (set of coordinates)
+Polygons                    | list of lines
+SpatialPolygons             | list of lines + CRS
+SpatialPolygonsDataFrame    | list of lines + CRS + attribute table
+
+
+
+#### `SpatialPointsDataFrame`
+
+As an more tangible example, let's now create a `SpatialPointsDataFrame`
+based on our data frame `mydata`.
+
+```{r sppoint, message = F}
+library(sp)
+mysp <- SpatialPointsDataFrame(
+  coords = mydata[, 1:2],
+  data = mydata[, 3:4],
+  proj4string = CRS(
+    "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0"
+  )
+)
+```
+
+Note that [proj4](https://github.com/OSGeo/proj.4) is used and we therefore
+wrote a string that describes the CRS and that proj4 understands. Below are
+listed some properties of the object we have defined.
+
+
+
+```{r sppoint2, results="hold"}
+isS4(mysp)
+class(mysp)
+slotNames(mysp)
+dim(mysp)
+```
+
+Basically, it is a [S4 object](http://adv-r.had.co.nz/S4.html) of class
+`SpatialPointsDataFrame`. All slot names refer to attribute that are accessible
+*via* and `@`:
+
+
+```{r sppoint3}
+mysp@proj4string
+head(mysp@data)
+```
+
+In order to change projection, the user must call `spTransform()`, like so:
+
+```{r spTransform}
+(mysp2 <- spTransform(mysp, CRS=CRS("+proj=merc +ellps=GRS80")))
+```
+
+
+### Package `sf`
+
+Below is a very short overview of classes in `sf`, the reader that requires
+further explanation would find more details on the
+[first vignette of sf](https://cran.r-project.org/web/packages/sf/vignettes/sf1.html#sf-objects-with-simple-features).
+Basically three classes are defined: `sf`, `sfc` and `sfg`.
+
+
+#### Class `sf`
+
+```{r sf1_a}
+library(sf)
+pts_sf <- st_as_sf(
+  x = mydata,
+  coords = c("lon", "lat"),
+  crs = 4326)
+```
+
+Let's examine its class
+
+```{r sf1_b}
+class(pts_sf)
+```
+
+#### Class `sfc`
+
+```{r sf2}
+pts_sfc <- st_geometry(pts_sf)
+class(pts_sfc)
+```
+
+
+#### Class `sfg`
+
+```{r sf3}
+(x <- st_point(c(1,2)))
+class(x)
+```
+
+#### How to import a `sp` object
+
+`st_as_sf()` can also be used to convert a `sp` object into a `sf` one.
+
+```{r sf4}
+st_as_sf(mysp)
+```
+
+
+
+
+
+## Raster objects in R
+
+The R package `raster` provides three main classes of raster object (more details
+[here](http://www.rspatial.org/spatial/rst/4-rasterdata.html#rasterlayer)):
+
+1. **RasterLayer** imports a single-layer (variable) raster,
+2. **RasterStack** imports in one single object several single-layer (variable) rasters stored in one or different files,
+3. **RasterBrick** imports in one single object several single-layer (variable) rasters stored in one single file.
+
+Using **RasterStack** and **RasterBrick** requires that the geometry of all
+raster data is equal.
+
+
+Package `raster` define three classes of rater object we detail below.
+
+
+### RasterLayer
+
+```{r raster, message = F}
+library(raster)
+val1 <- matrix(runif(100*100,0,10), ncol = 100, nrow = 100)
+ras1 <- raster(
+    val1,
+    crs = CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"),
+    xmn = -82, xmx = +80, ymn = +42, ymx = +44
+  )
+class(ras1)
+dim(ras1)
+head(values(ras1))
+projection(ras1)
+```
+
+
+
+### RasterStack and RasterBrick
+
+http://www.rspatial.org/spatial/rst/4-rasterdata.html#rasterstack-and-rasterbrick
+
+Let's first create another raster (with the same CRS)
+
+```{r raster3}
+val2 <- matrix(rnorm(100*100), ncol = 100, nrow = 100)
+ras2 <- raster(
+    val2,
+    crs = CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0"),
+    xmn = -82, xmx = +80, ymn = +42, ymx = +44
+  )
+class(ras2)
+```
+
+Let's `stack()` `ras1` and `ras2`:
+
+```{r raster4}
+sta1 <- stack(ras1, ras2)
+class(sta1)
+```
+
+Let's `brick()` them:
+
+```{r raster5}
+bri1 <- brick(ras1, ras2)
+class(bri1)
+```
+
+
+<details>
+<summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
+```{r sessionInfo}
+sessionInfo()
+```
+</details>

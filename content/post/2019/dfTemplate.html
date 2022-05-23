@@ -1,0 +1,320 @@
+---
+title: "Creating empty data frames with dfTemplate() and dfTemplateMatch()"
+author: [kevin]
+reviewer: [azenor, marieh]
+date: 2019-02-03
+tags: [R, data frame, data frames generation, row binding]
+rpkgs: [inSilecoMisc]
+rbloggers: true
+estime: 8
+tweet: "Creating empty data frames with columns of different classes"
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+
+
+<p>Creating a data frame is fairly simple but when you need to <a href="https://stackoverflow.com/questions/10689055/create-an-empty-data-frame">create a large empty data frame with columns that have different classes</a> it takes several command lines. A few days ago, I decided to write a function to simplify this operation and I came to realize that such a function would actually be very useful to ease the row binding of data frames whose column names partially match. How so? This post is meant to answer this question!</p>
+<div id="insilecomisc" class="section level2">
+<h2>inSilecoMisc</h2>
+<p>First of all, the functions I am using in this post are available in <a href="http://insileco.github.io/inSilecoMisc/">inSilecoMisc</a> which is an R package where we gathered the miscellaneous functions we wrote and deem worth sharing on GitHub. So the first step to reproduce the examples below is to install <code>inSilecoMisc</code> which is straightforward with the <a href="https://cran.r-project.org/web/packages/devtools/index.html%20package">devtools</a> :</p>
+<pre class="r"><code>library(devtools)
+install_github(&quot;inSileco/inSilecoMisc&quot;)</code></pre>
+<p>Then, load it:</p>
+<pre class="r"><code>library(inSilecoMisc)</code></pre>
+<p>In this post, I’ll exemplify how to use <code>dfTemplate()</code> and <code>dfTemplateMatch()</code> but if you are interested in other functions in the packages, <a href="http://insileco.github.io/inSilecoMisc/articles/overview.html">check out the tour vignette</a>.</p>
+</div>
+<div id="generating-empty-data-frames-efficiently" class="section level2">
+<h2>Generating empty data frames efficiently</h2>
+<p>Let’s start with <code>dfTemplate()</code> that creates a data frame with a specific number of columns.</p>
+<pre class="r"><code>df1 &lt;- dfTemplate(cols = 2)
+df1
+#R&gt;    Var1 Var2
+#R&gt;  1   NA   NA
+class(df1)
+#R&gt;  [1] &quot;data.frame&quot;</code></pre>
+<p>By default, the data frame created has only 1 row and the columns are filled out with <code>NA</code>. This can readily be changed using arguments <code>nrows</code> and <code>fill</code>.</p>
+<pre class="r"><code>df2 &lt;- dfTemplate(2, nrows = 4, fill = 0)
+df2
+#R&gt;    Var1 Var2
+#R&gt;  1    0    0
+#R&gt;  2    0    0
+#R&gt;  3    0    0
+#R&gt;  4    0    0
+df3 &lt;- dfTemplate(cols = 2, nrows = 3, fill = &quot;&quot;)
+df3
+#R&gt;    Var1 Var2
+#R&gt;  1          
+#R&gt;  2          
+#R&gt;  3</code></pre>
+<p>Columns classes are determined by <code>fill</code>:</p>
+<pre class="r"><code>class(df1[, 1])
+class(df2[, 1])
+class(df3[, 1])
+#R&gt;  [1] &quot;logical&quot;
+#R&gt;  [1] &quot;numeric&quot;
+#R&gt;  [1] &quot;character&quot;</code></pre>
+<p>And <code>col_classes</code> is used to changed these classes:</p>
+<pre class="r"><code>df4 &lt;- dfTemplate(cols = 2, col_classes = &quot;character&quot;)
+class(df4[, 1])
+class(df4[, 2])
+#R&gt;  [1] &quot;character&quot;
+#R&gt;  [1] &quot;character&quot;</code></pre>
+<p>Arguments <code>fill</code> and <code>col_classes</code> can be vectors that specify content and class
+for every columns:</p>
+<pre class="r"><code>df5 &lt;- dfTemplate(2, 5, col_classes = c(&quot;character&quot;, &quot;numeric&quot;), fill = c(&quot;&quot;, 5))
+df5
+class(df5[, 1])
+class(df5[, 2])
+#R&gt;    Var1 Var2
+#R&gt;  1         5
+#R&gt;  2         5
+#R&gt;  3         5
+#R&gt;  4         5
+#R&gt;  5         5
+#R&gt;  [1] &quot;character&quot;
+#R&gt;  [1] &quot;numeric&quot;</code></pre>
+<p>Another useful feature of <code>dfTemplate()</code> is that column names of the data frame to be created can be passed as first argument (<code>cols</code>) :</p>
+<pre class="r"><code>df5 &lt;- dfTemplate(c(&quot;category&quot;, &quot;value&quot;))</code></pre>
+<p>So, now you are able to create custom data frames with a set of column names!</p>
+<pre class="r"><code>nms &lt;- LETTERS[1:10]
+df6 &lt;- dfTemplate(nms, 10, fill = tolower(nms))
+df6
+#R&gt;     A B C D E F G H I J
+#R&gt;  1  a b c d e f g h i j
+#R&gt;  2  a b c d e f g h i j
+#R&gt;  3  a b c d e f g h i j
+#R&gt;  4  a b c d e f g h i j
+#R&gt;  5  a b c d e f g h i j
+#R&gt;  6  a b c d e f g h i j
+#R&gt;  7  a b c d e f g h i j
+#R&gt;  8  a b c d e f g h i j
+#R&gt;  9  a b c d e f g h i j
+#R&gt;  10 a b c d e f g h i j</code></pre>
+</div>
+<div id="how-to-flexibly-rbind-a-list-of-data-frames" class="section level2">
+<h2>How to <em>flexibly</em> <code>rbind</code> a list of data frames</h2>
+<p>Sometimes we need to <code>rbind</code> data frames that do not have all the columns the final data frame must contain. In such case, we first need to append the missing columns because otherwise the default <code>rbind</code> function won’t work. Another solution is to use a package that has a function that do so. For instance, <a href="https://www.rdocumentation.org/packages/plyr/versions/1.8.4/topics/rbind.fill"><code>rbind.fill()</code> from the <code>plyr</code> package</a> allows to perform such <em>flexible</em> <code>rbind</code>. Also, the package <a href="https://cran.r-project.org/web/packages/data.table/index.html">data.table</a> includes a <code>rbind()</code> method for <code>data.table</code> objects that handles such situation (see <a href="https://stackoverflow.com/questions/18003717/efficient-way-to-rbind-data-frames-with-different-columns">this answer on <i class="fa fa-stack-overflow" aria-hidden="true"></i></a>). In this last section, I would like to show how to <code>rbind</code> data frames flexibly with <code>dfTemplateMatch()</code> that is written in base R.</p>
+<p>Let me first introduces <code>dfTemplateMatch()</code>. This function takes a data frame as the first argument (<code>x</code>) and the second argument (<code>y</code>) could be another data frame or a vector of character strings. Based on <code>x</code> and <code>y</code>, <code>dfTemplateMatch()</code> creates a data frame that has the same number of rows as <code>x</code> and add columns for all names found in <code>y</code> that are not found in <code>x</code>. Before calling <code>dfTemplateMatch()</code> I create two data frames :</p>
+<pre class="r"><code>df7 &lt;- df6[1:5, 1:4]
+df7
+#R&gt;    A B C D
+#R&gt;  1 a b c d
+#R&gt;  2 a b c d
+#R&gt;  3 a b c d
+#R&gt;  4 a b c d
+#R&gt;  5 a b c d
+df8 &lt;- df6[4:6]
+df8
+#R&gt;     D E F
+#R&gt;  1  d e f
+#R&gt;  2  d e f
+#R&gt;  3  d e f
+#R&gt;  4  d e f
+#R&gt;  5  d e f
+#R&gt;  6  d e f
+#R&gt;  7  d e f
+#R&gt;  8  d e f
+#R&gt;  9  d e f
+#R&gt;  10 d e f</code></pre>
+<p>Now I use <code>dfTemplateMatch()</code> to create a third data frame based on two other:</p>
+<pre class="r"><code>dfTemplateMatch(df7, df8)
+#R&gt;    A B C D  E  F
+#R&gt;  1 a b c d NA NA
+#R&gt;  2 a b c d NA NA
+#R&gt;  3 a b c d NA NA
+#R&gt;  4 a b c d NA NA
+#R&gt;  5 a b c d NA NA</code></pre>
+<p>As expected, the output has 5 rows as <code>df6</code> and columns that are not in <code>df6</code> but in <code>df7</code> has been appended to <code>df6</code>. It is possible to use arguments <code>fill</code> and <code>col_classes</code> to custom the columns added.</p>
+<pre class="r"><code>dfTemplateMatch(df7, df8, fill = 1, col_classes = &quot;numeric&quot;)
+#R&gt;    A B C D E F
+#R&gt;  1 a b c d 1 1
+#R&gt;  2 a b c d 1 1
+#R&gt;  3 a b c d 1 1
+#R&gt;  4 a b c d 1 1
+#R&gt;  5 a b c d 1 1</code></pre>
+<p>And there is an argument <code>yonly</code> that allows the user to keep only names of <code>y</code> (when <code>yonly = TRUE</code>).</p>
+<pre class="r"><code>dfTemplateMatch(df7, df8, yonly = TRUE, fill = 1, col_classes = &quot;numeric&quot;)
+#R&gt;    D E F
+#R&gt;  1 d 1 1
+#R&gt;  2 d 1 1
+#R&gt;  3 d 1 1
+#R&gt;  4 d 1 1
+#R&gt;  5 d 1 1</code></pre>
+<p>Now let me show you how to <code>rbind()</code> a specific subset of columns of a list of data frame that may or may not have these columns. Let me start by creating a list of data frames.</p>
+<pre class="r"><code>lsdf &lt;- apply(
+  replicate(5, sample(nms, 5)),
+  2,
+  function(x) dfTemplate(x, nrows = 5, fill = tolower(x))
+)
+lsdf
+#R&gt;  [[1]]
+#R&gt;    D A G E C
+#R&gt;  1 d a g e c
+#R&gt;  2 d a g e c
+#R&gt;  3 d a g e c
+#R&gt;  4 d a g e c
+#R&gt;  5 d a g e c
+#R&gt;  
+#R&gt;  [[2]]
+#R&gt;    B E H F C
+#R&gt;  1 b e h f c
+#R&gt;  2 b e h f c
+#R&gt;  3 b e h f c
+#R&gt;  4 b e h f c
+#R&gt;  5 b e h f c
+#R&gt;  
+#R&gt;  [[3]]
+#R&gt;    H B J I F
+#R&gt;  1 h b j i f
+#R&gt;  2 h b j i f
+#R&gt;  3 h b j i f
+#R&gt;  4 h b j i f
+#R&gt;  5 h b j i f
+#R&gt;  
+#R&gt;  [[4]]
+#R&gt;    J D B I G
+#R&gt;  1 j d b i g
+#R&gt;  2 j d b i g
+#R&gt;  3 j d b i g
+#R&gt;  4 j d b i g
+#R&gt;  5 j d b i g
+#R&gt;  
+#R&gt;  [[5]]
+#R&gt;    E B G F C
+#R&gt;  1 e b g f c
+#R&gt;  2 e b g f c
+#R&gt;  3 e b g f c
+#R&gt;  4 e b g f c
+#R&gt;  5 e b g f c</code></pre>
+<p>So the goal here is to create a data frame that contains only the five first
+columns, i.e. A, B, C, D, E, the remaining columns must be discarded and
+when one selected column is missing, it must be added (filled out with <code>NA</code>).
+To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
+<pre class="r"><code>lsdf2 &lt;- lapply(lsdf, dfTemplateMatch, LETTERS[1:5], yonly = TRUE)
+lsdf2
+#R&gt;  [[1]]
+#R&gt;    D A E C  B
+#R&gt;  1 d a e c NA
+#R&gt;  2 d a e c NA
+#R&gt;  3 d a e c NA
+#R&gt;  4 d a e c NA
+#R&gt;  5 d a e c NA
+#R&gt;  
+#R&gt;  [[2]]
+#R&gt;    B E C  A  D
+#R&gt;  1 b e c NA NA
+#R&gt;  2 b e c NA NA
+#R&gt;  3 b e c NA NA
+#R&gt;  4 b e c NA NA
+#R&gt;  5 b e c NA NA
+#R&gt;  
+#R&gt;  [[3]]
+#R&gt;    B  A  C  D  E
+#R&gt;  1 b NA NA NA NA
+#R&gt;  2 b NA NA NA NA
+#R&gt;  3 b NA NA NA NA
+#R&gt;  4 b NA NA NA NA
+#R&gt;  5 b NA NA NA NA
+#R&gt;  
+#R&gt;  [[4]]
+#R&gt;    D B  A  C  E
+#R&gt;  1 d b NA NA NA
+#R&gt;  2 d b NA NA NA
+#R&gt;  3 d b NA NA NA
+#R&gt;  4 d b NA NA NA
+#R&gt;  5 d b NA NA NA
+#R&gt;  
+#R&gt;  [[5]]
+#R&gt;    E B C  A  D
+#R&gt;  1 e b c NA NA
+#R&gt;  2 e b c NA NA
+#R&gt;  3 e b c NA NA
+#R&gt;  4 e b c NA NA
+#R&gt;  5 e b c NA NA</code></pre>
+<p>And now I can seamlessly <code>rbind()</code> the list <code>lsdf2</code>!</p>
+<pre class="r"><code>do.call(rbind, lsdf2)
+#R&gt;        D    A    E    C    B
+#R&gt;  1     d    a    e    c &lt;NA&gt;
+#R&gt;  2     d    a    e    c &lt;NA&gt;
+#R&gt;  3     d    a    e    c &lt;NA&gt;
+#R&gt;  4     d    a    e    c &lt;NA&gt;
+#R&gt;  5     d    a    e    c &lt;NA&gt;
+#R&gt;  6  &lt;NA&gt; &lt;NA&gt;    e    c    b
+#R&gt;  7  &lt;NA&gt; &lt;NA&gt;    e    c    b
+#R&gt;  8  &lt;NA&gt; &lt;NA&gt;    e    c    b
+#R&gt;  9  &lt;NA&gt; &lt;NA&gt;    e    c    b
+#R&gt;  10 &lt;NA&gt; &lt;NA&gt;    e    c    b
+#R&gt;  11 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b
+#R&gt;  12 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b
+#R&gt;  13 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b
+#R&gt;  14 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b
+#R&gt;  15 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b
+#R&gt;  16    d &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b
+#R&gt;  17    d &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b
+#R&gt;  18    d &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b
+#R&gt;  19    d &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b
+#R&gt;  20    d &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    b
+#R&gt;  21 &lt;NA&gt; &lt;NA&gt;    e    c    b
+#R&gt;  22 &lt;NA&gt; &lt;NA&gt;    e    c    b
+#R&gt;  23 &lt;NA&gt; &lt;NA&gt;    e    c    b
+#R&gt;  24 &lt;NA&gt; &lt;NA&gt;    e    c    b
+#R&gt;  25 &lt;NA&gt; &lt;NA&gt;    e    c    b</code></pre>
+<div id="voilà-this-is-what-i-call-a-flexible-rbind-i-hope-youll-find-this-helpful-boom" class="section level4">
+<h4>Voilà! This is what I call a <em>flexible</em> <code>rbind</code>! I hope you’ll find this helpful! :boom:</h4>
+<div style="padding: 2rem 0rem 2rem 0rem;">
+<details>
+<summary>
+<h4>
+<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
+<i class="fa fa-cogs" aria-hidden="true"></i>
+</h4>
+<p></summary></p>
+<pre class="r"><code>sessionInfo()
+#R&gt;  R version 4.2.0 (2022-04-22)
+#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)
+#R&gt;  Running under: Debian GNU/Linux bookworm/sid
+#R&gt;  
+#R&gt;  Matrix products: default
+#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.1
+#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.10.1
+#R&gt;  
+#R&gt;  locale:
+#R&gt;   [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+#R&gt;   [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+#R&gt;   [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+#R&gt;   [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#R&gt;   [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+#R&gt;  [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#R&gt;  
+#R&gt;  attached base packages:
+#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     
+#R&gt;  
+#R&gt;  other attached packages:
+#R&gt;  [1] inSilecoMisc_0.7.0     inSilecoRef_0.0.1.9000
+#R&gt;  
+#R&gt;  loaded via a namespace (and not attached):
+#R&gt;   [1] Rcpp_1.0.8.3      lubridate_1.8.0   ps_1.7.0          assertthat_0.2.1 
+#R&gt;   [5] digest_0.6.29     utf8_1.2.2        mime_0.12         R6_2.5.1         
+#R&gt;   [9] plyr_1.8.7        backports_1.4.1   evaluate_0.15     httr_1.4.3       
+#R&gt;  [13] blogdown_1.10     pillar_1.7.0      rlang_1.0.2       curl_4.3.2       
+#R&gt;  [17] data.table_1.14.2 miniUI_0.1.1.1    callr_3.7.0       jquerylib_0.1.4  
+#R&gt;  [21] DT_0.23           rmarkdown_2.14    RefManageR_1.3.0  rcrossref_1.1.0  
+#R&gt;  [25] stringr_1.4.0     htmlwidgets_1.5.4 igraph_1.2.11     shiny_1.7.1      
+#R&gt;  [29] compiler_4.2.0    httpuv_1.6.5      xfun_0.31         pkgconfig_2.0.3  
+#R&gt;  [33] htmltools_0.5.2   tidyselect_1.1.2  tibble_3.1.7      httpcode_0.3.0   
+#R&gt;  [37] bookdown_0.26     codetools_0.2-18  fansi_1.0.3       crayon_1.5.1     
+#R&gt;  [41] dplyr_1.0.9       withr_2.5.0       later_1.3.0       crul_1.2.0       
+#R&gt;  [45] jsonlite_1.8.0    xtable_1.8-4      lifecycle_1.0.1   DBI_1.1.2        
+#R&gt;  [49] magrittr_2.0.3    cli_3.3.0         stringi_1.7.6     promises_1.2.0.1 
+#R&gt;  [53] xml2_1.3.3        bslib_0.3.1       ellipsis_0.3.2    targets_0.12.0   
+#R&gt;  [57] generics_0.1.2    vctrs_0.4.1       tools_4.2.0       glue_1.6.2       
+#R&gt;  [61] purrr_0.3.4       processx_3.5.3    fastmap_1.1.0     yaml_2.3.5       
+#R&gt;  [65] base64url_1.4     knitr_1.39        sass_0.4.1</code></pre>
+</details>
+</div>
+</div>
+</div>

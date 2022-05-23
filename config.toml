@@ -7,12 +7,15 @@ GoogleAnalytics = "UA-109508556-1"
 disqusShortname = "letir"
 ignoreFiles = ["\\.Rmd$", "_cache$", "\\.Rmarkdown$", "\\.knit\\.md$", "\\.utf8\\.md$", "renv", "renv\\.lock$"]
 enableEmoji = true
-copyright = "Copyright © 2017-2021 inSileco"
+copyright = "Copyright © 2017-2022 inSileco"
 math = false
-
 
 [markup.goldmark.renderer]
 unsafe = true
+
+# [markup.highlight]
+# style = "dracula"
+# lineNos = true
 
 [permalinks]
     post = "/:year/:month/:day/:slug/"
@@ -30,9 +33,6 @@ unsafe = true
 [[menu.main]]
     name = "Posts"
     url = "/post/"
-[[menu.main]]
-    name = "Tips"
-    url = "/tips/"
 [[menu.main]]
     name = "Software"
     url = "/software/"

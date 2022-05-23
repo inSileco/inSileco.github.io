@@ -1,0 +1,207 @@
+---
+title: R in Space - Attribute manipulations
+author: [david, marieh, nicolas, kevin, elliot, steve]
+tags: [R in Space, R, Spatial]
+date: 2018-04-09
+draft: false
+tweet: "R in Space - Attribute manipulations"
+navposts:
+  prev: rinspace_basicmapping
+  home: rinspace_homepage
+  next: rinspace_geomanip
+output:
+  rmarkdown::html_page:
+    fig_width: 3
+    dev: svg
+---
+
+
+## Spatial objects attributes manipulations
+
+Now that we know how to import and transform different classes of spatial objects
+in R, we can start manipulating their attributes. In this post, we will
+make a brief overview of some useful basic manipulations that we can perform
+on spatial object attributes. By no means are those examples exhaustive, but
+they constitute common manipulations that are made with spatial objects.
+
+<br/>
+
+### Vector objects
+
+For this part, we discuss how to manipulate attributes of objects from the `sf`
+package. `sf` objects have the advantage of being structured like data frames,
+making their manipulations more intuitive than for objects of class `sp`. However,
+if the structure of `sp` objects is well understood, then the same principles
+will mostly apply.
+
+Let's begin by creating an `sf` points object as seen in the post on
+[Spatial objects in R]() <!-- to add -->
+
+```{r sim_points, results='asis'}
+mydata <- data.frame(
+  id = 1:20,
+  long = -82+2*runif(20),
+  lat = 42+2*runif(20),
+  var1 = rnorm(20),
+  var2 = 10*runif(20)
+)
+
+library(sf)
+spatData <- st_as_sf(mydata,
+                     coords = c("long", "lat"),
+                     crs = "+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
+
+knitr::kable(head(spatData))
+plot(spatData)
+```
+
+### Adding and removing attributes
+
+The object we currently have has to variables `var1` and `var2`. Additional
+attributes can quickly be added to the attributes table of our objects.
+
+```{r addAttr}
+spatData$var3 <- runif(20)
+spatData$var4 <- spatData$var1 * spatData$var2
+knitr::kable(head(spatData))
+```
+
+<br/>
+
+Similarly, unwanted columns can be removed.
+
+```{r remAttr}
+spatData$var3 <- spatData$var4 <- NULL
+knitr::kable(head(spatData))
+```
+
+<br/>
+
+However, if you have a very big dataset, you may want to remove columns without
+having to write all column names manually! You could do this based on the names
+of the columns you wish to remove or, alternatively, on the names of the
+attributes you wish to keep.
+
+```{r remAttr2, results='asis'}
+# Remove last 20 attributes
+for(i in 1:5) spatData <- cbind(spatData, varSup = runif(20))
+knitr::kable(head(spatData))
+rem <- colnames(spatData)[4:8]
+spatData <- spatData[, !colnames(spatData) %in% rem]
+knitr::kable(head(spatData))
+
+# Keep id, var1 and var2
+for(i in 1:5) spatData <- cbind(spatData, varSup = runif(20))
+knitr::kable(head(spatData))
+keep <- c('id','var1','var2')
+spatData <- spatData[, keep]
+knitr::kable(head(spatData))
+```
+
+<br/>
+
+### Subsets
+
+You may also wish to subset your object based on certain attribute values. We
+will begin by adding some factorial attributes to our spatial object to discuss
+this in more detail.
+
+```{r factAttr}
+spatData$fact1 <- paste0('a', 1:2) # Create factor with 2 levels
+spatData$fact2 <- paste0('b', 1:5) # Create factor with 5 levels
+knitr::kable(head(spatData))
+```
+
+<br/>
+
+The most simple way to subset an attributes table would be to manually select
+the rows that we wish to view. In this instance, let's say we only wish to
+use the first 10 rows of our data.
+
+```{r manualSub}
+selectID <- 1:10
+plot(spatData$geometry, col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData$geometry[selectID], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
+```
+
+<br/>
+
+However, subsets based on certain criteria, *e.g.* all values greater to or
+equal to 0, can be much more efficient to create subsets. These are conditional
+statements and there is a vast body of material available discussing them, so
+we will only present a few examples and invite you to consult other resources
+like [StackOverflow](https://stackoverflow.com/) for more specific questions.
+
+```{r autoSub, result = 'asis'}
+# Select all values for var1 greater to or equal to 0
+selectID <- spatData$var1 >= 0
+plot(spatData$geometry, col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData$geometry[selectID], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
+
+# var1 smaller than 0 and var2 higher than 5
+selectID <- spatData$var1 < 0 & spatData$var2 < 5
+plot(spatData$geometry, col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData$geometry[selectID], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
+
+# fact1 equal to a1
+selectID <- spatData$fact1 == 'a1'
+plot(spatData$geometry, col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData$geometry[selectID], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
+
+# fact1 equal to a1 or var1 greater than 0
+selectID <- spatData$fact1 == 'a1' | spatData$var1 > 0
+plot(spatData$geometry, col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData$geometry[selectID], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
+
+# fact2 equal to b3 or b4
+selectID <- spatData$fact2 %in% c('b3','b4')
+plot(spatData$geometry, col = '#00000055', pch = 20, cex = 1.25, main = '')
+plot(spatData$geometry[selectID], col = '#000000', add = T, pch = 1, cex = 2, lwd = 2)
+```
+
+<br/>
+
+### Join
+
+Joining tables based on their shared id is another common manipulation. This can
+be quickly accomplished using the `left_join` function from the `dplyr` package.
+
+```{r joinSpat}
+# Create data.frame with id field similar to that in the spatial object
+joinData <- data.frame(id = seq(1, 20, by = 2),
+                       var3 = rnorm(10))
+
+# Join with attributes table of spatial object
+library(dplyr)
+spatData <- left_join(spatData, joinData)
+knitr::kable(head(spatData))
+```
+
+<br/>
+
+### Aggregate
+
+Information contained in a table can also be used to aggregate
+
+```{r}
+aggData <- aggregate(spatData['var1'], by = list(spatData$fact1), FUN = sum)
+knitr::kable(head(aggData))
+plot(aggData, cex = abs(aggData$var1))
+
+```
+
+## Raster objects
+
+Attributes tables associated with raster objects can also be manipulated, although
+the data attached to a raster will typically be less amenable to changes and
+multiple parameters.
+
+```{r rasterObject}
+
+```
+
+### Setting values
+
+### Subsets
+
+###

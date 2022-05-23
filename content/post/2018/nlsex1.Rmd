@@ -1,0 +1,86 @@
+---
+title: "Non linear regression with nls()"
+author: [kevin]
+date: 2018-11-18
+tags: [R, regression, nls]
+rpkgs: [stats]
+draft: false
+estime: 5
+tweet: "Non linear regression with nls(), an example."
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+
+
+## Context
+
+Last week, I was discussing about how to use `nls()` for a specific
+model with one of my colleague and I ended creating a piece of code to
+show what I was talking about! Even though there are many posts exploring `nls()`
+in more depth that I did (for instance [this post on datascienceplus by Lionel Herzog](https://datascienceplus.com/first-steps-with-non-linear-regression-in-r/)),
+I thought I could share these lines of command here!
+
+Basically, we were talking about a model where the temperature ($T$) follows
+a saturation curve starting from 10°C at t=0 (so T(0) = 10) and plateauing at $T_{\inf}$.
+
+$$T(t) = T_{\inf} - (T_{\inf} - T_0)\exp(-kt)$$
+
+## Goal and data
+
+The goal here is to use `nls()` (Nonlinear Least Squares) to find $k$ and $T_{inf}$.
+For the sack of clarity, I simulate the data, i.e. I use the saturation curve
+with known parameter values, then I add some noise (here a [white noise](https://en.wikipedia.org/wiki/White_noise)):
+
+```{R}
+library(magrittr)
+# Parameters
+## known
+T0 = 10
+## the ones we are looking for
+k = 0.2
+Tinf = 20
+
+# Simulate data
+## time
+seqt <- seq(0, 50, .25)
+## create a data frame
+simdata <- cbind(
+  seqt = seqt,
+  sim = Tinf - (Tinf- T0) * exp(-k * seqt) + .5 * rnorm(length(seqt))
+) %>% as.data.frame
+head(simdata)
+```
+
+## Use `nls()`
+
+Now I call `nls()` to fit the data:
+
+```{R}
+res <- nls(sim ~ Tinf - (Tinf - 10)*exp(-k*seqt), simdata, list(Tinf = 1, k = .1))
+```
+
+All the information needed are stored in `res` and display via the print method:
+
+```{R}
+res
+```
+
+Let's draw a quick plot:
+
+```{R}
+## get the coefficients values
+cr <- coef(res)
+fitC <- function(x) cr[1] - (cr[1] - 10)*exp(-cr[2]*x)
+plot(simdata[,1], simdata[,2], xlab = "Time (min)", ylab = "Temperature (°C)")
+curve(fitC, 0, 50, add = TRUE, col = "#2f85a4", lwd = 3)
+```
+
+
+#### That's all folks!
+
+```{R sessionInfo, child = path_session_info}
+```

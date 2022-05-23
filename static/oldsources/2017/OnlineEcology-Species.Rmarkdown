@@ -1,0 +1,440 @@
+---
+title: "Online ecology - Individual species description"
+author: [david, kevin, remi]
+date: 2017-06-19
+tags: [R, ecology, open-data, open-science]
+rpkgs: [biomod2, kableExtra, knitr, magrittr, raster, rfishbase, rglobi, robis, sdmpredictors, sf, taxize]
+archived: 2022-04-23
+tweet: "Online ecology - Individual species description"
+output:
+  rmarkdown::html_page:
+    toc: true
+    fig_width: 3
+    dev: svg
+---
+
+
+```{r include = FALSE}
+library(raster)
+library(magrittr)
+library(knitr)
+library(kableExtra)
+```
+
+
+<br/>
+
+# Online ecology
+
+Let's imagine that we are interested in a species in a given area and wish to
+know as much as possible about it. But, you can't go out in the field because
+funding is running short. What we do have, however, is a certain knowledge of
+the open data science tools that are at our disposal. In a series of post
+about online ecology, we will find out exactly just how far these tools allow
+us to delve into the ecology of the species that interest us.
+
+<br/>
+
+Online ecology posts:
+
+<!-- 1. Individual species description (*this post*)
+2. [Communities: cooccurrence](./docs/OnlineEcology-CommCoocc.html) (*under development*)
+3. [Communities: interactions](./docs/OnlineEcology-CommInter.html) (*under development*)
+4. Scenarios of global change impact on community structure (*under development*)
+5. more to come! -->
+
+<br/>
+
+# Individual species description
+
+This post focuses on the simplest yet still complicated aspect of ecology,
+*i.e.* describing a species as thoroughly as possible with the tools at
+our disposal.
+
+Special thanks to the developers at [ROpenSci](https://ropensci.org/), who built
+many of the R package used to access the open access tools we present in this post.
+
+<br/>
+
+## Setting up R
+
+#### R version used to build the last update of this post
+
+```{r infosession}
+sessionInfo()[[1]]$version.string
+```
+
+<br/>
+
+## Defining species and area of interest
+
+We start by selecting the species and the area in which we are interested. For
+this post, we focus on the Atlantic cod (*Gadus morhua*) in the estuary and
+gulf of St. Lawrence in eastern Canada.
+
+<br/>
+
+Let's set the parameters and create the spatial bounding box that we will be
+using for the area of interest. *Note that all these parameters can be changed
+to extract information for other species in other habitats.*
+
+<br/>
+
+```{r parameters}
+# Species of interest
+    sp <- 'Gadus morhua'
+
+# Extent of area of interest
+    latmax <- 52.01312
+    latmin <- 45.52399
+    lonmax <- -55.73636
+    lonmin <- -71.06333
+
+# Create a spatial bounding box for the area of interest using the 'sf' package:
+# create a matrix:
+    bb <- cbind(c(lonmin,lonmax,lonmax,lonmin,lonmin),
+                   c(latmin,latmin,latmax,latmax,latmin)) %>%
+        # put that matrix into a list, because that's what `st_polygon()` needs
+        list() %>%
+        # Make the matrix a 'simple features' polygon:
+        sf::st_polygon() %>%
+        # and let's make it a simple feature column and give it information about the projection:
+        sf::st_sfc(crs="+proj=longlat +datum=WGS84") %>%
+        # finally, let's put the sfc in a simple features data.frame in the variable `geometry`:
+        sf::st_sf(name="Study Site",geometry=.)
+```
+
+<br/>
+
+## Describe your species
+
+### Retrieve miscellaneous ecological information: ***Fishbase***
+
+We'll start with a description of the species. First, let's see what [fishbase](http://www.fishbase.ca/) has to offer. This online data repository,
+along with [sealifebase](http://www.sealifebase.org/), contains a lot of precious
+information on marine and aquatic species all over the world and is accessible
+through the package [`rfishbase`](https://github.com/ropensci/rfishbase)
+
+<br/>
+
+```{r ecology, eval = TRUE, results = 'asis'}
+# Species ecology
+ecol <- rfishbase::ecology(sp)
+ecol <- cbind(colnames(ecol), t(ecol))
+rownames(ecol) <- NULL
+ecol <- ecol[ecol[,2] != 0, ] # remove 0
+ecol <- ecol[!is.na(ecol[,2]), ] # remove NAs
+
+knitr::kable(ecol, col.names = c('Descriptors', 'Attributes'), "html") %>%
+    kableExtra::kable_styling(full_width = FALSE)
+```
+
+
+<br/>
+
+### Retrieving taxonomic information: ***Taxize***
+
+We can also extract taxonomic information using the package [`taxize`](https://ropensci.org/tutorials/taxize_tutorial.html).
+This package allows you to extract and validate, among other things, the
+taxonomy of millions of species by accessing an important number of online
+databases accessible through their Application Programming Interface (API).
+
+<br/>
+
+```{r taxonomy1, results='asis'}
+# Export the taxonomy of the species of interest
+taxize::classification(sp, db = 'worms', accepted = TRUE, verbose = FALSE)[[1]] %>%
+    knitr::kable("html") %>% kableExtra::kable_styling(full_width = FALSE)
+```
+<br>
+
+```{r taxonomy2, eval=T}
+# Retrieve a tsn for Gadus morhua, i.e. an unique identifier from the itis db
+idtsn <- taxize::get_tsn(sp, accepted=TRUE, verbose = FALSE, row=1)[1]
+```
+
+
+```{r taxonomy3, eval=T}
+# We can also extract the common or scientific names using sci2comm() & comm2sci(), respectively.
+taxize::sci2comm(taxize::as.tsn(idtsn), db = 'itis')
+
+# Or find out whether there are other names under which the species is known
+taxize::synonyms(taxize::as.tsn(idtsn), db = 'itis')
+```
+
+```{r taxonomy4, results='as.is', eval=T}
+# Another really interesting feature is to extract all known species at a given
+# taxonomic scale. With the itis db, you should first find the tsn associated
+# with Gadus. Using `taxize::get_tsn('gadus')` you'll find out that it is 164710
+knitr::kable(taxize::children(164710, db = 'itis')[[1]], "html") %>%
+  kableExtra::kable_styling(full_width = FALSE)
+```
+
+Sounds like this is consistent with [what Wikipedia says](https://en.wikipedia.org/wiki/Gadus)!
+
+
+
+<br/>
+
+### Retrieving trophic informations: ***GloBI***
+
+We can also retrieve information on known biotic interactions involving our species
+of interest. The [Global Biotic Interactions](http://globalbioticinteractions.org)
+web platform contains thousands of empirical binary interactions for multiple types
+of interactions, all over the world, and is accessible using the package [`rglobi`](https://github.com/ropensci/rglobi).
+
+<br/>
+
+```{r trophic1, results='asis'}
+# There are multiple types of interactions available on GloBI
+    knitr::kable(rglobi::get_interaction_types()[,1:3], 'html') %>%
+        kable_styling(full_width = FALSE)
+```
+
+```{r trophic2}
+# For now let's focus on predator-prey interactions
+    prey <- rglobi::get_prey_of(sp)$target_taxon_name # Retrieve prey
+    pred <- rglobi::get_predators_of(sp)$target_taxon_name # Retrieve predators
+    length(prey) # Number of prey
+    length(pred) # Number of predators
+    prey[1:20] # First 20 prey
+    pred[1:20] # First 20 predators
+```
+
+<br/>
+
+## Making our search spatially explicit
+
+Since we are interested in a specific area, making our search spatially explicit
+would be highly valuable. Luckily, there are tools that allow us to do just that.
+
+<br/>
+
+### Retrieving: occurrence data: ***OBIS*** & ***GBIF***
+
+OBIS is the [Ocean Biogeographic Information System](http://www.iobis.org/)
+and their vision is: "To be the most comprehensive gateway to the world’s ocean
+biodiversity and biogeographic data and information required to address pressing
+coastal and world ocean concerns." We can get access to their **HUGE** database
+through the [`robis`](https://github.com/iobis/robis) package.
+
+Similarly, GBIF is the [Global Biodiversity Information Facility](http://www.gbif.org/)
+and it aims at providing free and open access to biodiversity data. This open
+source platform can be accessed through the [`rgbif`](https://github.com/ropensci/rgbif)
+package.
+
+We only cover the OBIS package in this post since the targeted species is marine,
+but visit [`rgbif`](https://github.com/ropensci/rgbif) github repository for more
+information on its use.
+
+<br/>
+
+```{r, OBIS data, eval=TRUE, fig.width=9.5}
+# Download occurrence data for species and area of interest between 2010 and 2017
+    OBIS <- robis::occurrence(scientificname = sp, geometry=sf::st_as_text(bb$geometry), startdate = as.Date("2010-01-01"), enddate = as.Date("2017-01-01"))
+
+# Remove duplicates
+    OBIS <- unique(OBIS)
+
+# Transform as spatial file
+    OBIS <- sf::st_as_sf(OBIS,
+                     coords = c("decimalLongitude", "decimalLatitude"),
+                     crs="+proj=longlat +datum=WGS84",
+                     remove=FALSE)
+
+# Visualize with mapview
+    mapview::mapview(OBIS, cex = 4)@map
+```
+
+
+<br/>
+
+## Retrieving environmental data: ***sdmpredictors***
+
+There are multiple resources available to access environmental data directly
+through R. Bathymetry data can be accessed using the
+[`marmap`](https://github.com/ericpante/marmap) package. Other environmental
+data can also be accessed using other packages like
+[`raster`](https://cran.r-project.org/web/packages/raster/index.html)
+for terrestrial climatic data (*i.e.* bioclim) and
+[`rnoaa`](https://github.com/ropensci/rnoaa) for some environmental
+layers like sea surface temperature and sea ice cover. Finally, a precious
+resource is the recently published [`sdmpredictors`](https://cran.r-project.org/web/packages/sdmpredictors/index.html)
+package, which provides access to multiple important global environmental datasets for marine
+and terrestrial environments and a total of
+`r nrow(sdmpredictors::list_layers(sdmpredictors::list_datasets()))`
+
+<br/>
+
+```{r, sdmpredictors}
+# List sdmpredictors datasets
+    knitr::kable(sdmpredictors::list_datasets()[,1:4], 'html') %>%
+        kable_styling(full_width = FALSE)
+  # issues with the above if all columns included
+```
+
+<br/>
+
+We can then import environmental data using the `sdmpredictors()` function.
+Since our study area of interest is marine, we will select environmental
+variables accordingly from the `Bio-ORACLE` dataset, although data from `MARSPEC`
+could also be used.
+
+<br/>
+
+
+```{r importEnvVar}
+# Import marine layers
+  layers <- c('BO_chlomean','BO_dissox','BO_ph','BO_salinity','BO_sstmean','BO_bathymean')
+# layers <- 'BO_ph'
+  dir.create("downloaded_predictors/", showWarnings = FALSE)
+  envCov <- sdmpredictors::load_layers(layers, datadir = "downloaded_predictors/", rasterstack = TRUE)
+```
+
+
+<br/>
+
+Clip them and plot them:
+
+<br/>
+
+```{r cropEnvCov, eval = TRUE}
+# Clip to study area extent
+envCov <- raster::stack(
+    raster::crop(envCov, raster::extent(lonmin, lonmax, latmin, latmax))
+  )
+```
+
+```{r cropEnvCov2, eval = TRUE}
+# Data description
+knitr::kable(sdmpredictors::get_layers_info(layers)$current[,1:4], 'html') %>%
+  kable_styling()
+```
+
+```{r, plotEnvVar, eval = TRUE, fig.width = 9.5, fig.height = 6}
+# Plot 'em!
+  raster::plot(envCov)
+```
+
+
+
+<br/>
+
+## Evaluating species distribution models: ***biomod2***
+
+Now that we have species occurrence and environmental data, we can evaluate
+species distribution models (SDMs). There are multiple ways and
+packages to perform SDMs and this post [vignette](https://cran.r-project.org/web/packages/dismo/vignettes/sdm.pdf)
+provides an extensive overview of the different methods available. For this
+blog post, we will be using the package [`biomod2`](https://cran.r-project.org/web/packages/biomod2/index.html),
+which implements most of the methods presented in the vignette. There is also
+a thorough explanation of our to use `biomod2` in another very interesting [vignette](https://r-forge.r-project.org/scm/viewvc.php/*checkout*/pkg/biomod2/inst/doc/Simple_species_modelling.pdf?root=biomod).
+
+
+<br/>
+
+### Formatting the data
+
+The first thing to do is to format our data to be able to work with `biomod2`
+functions, which work with `BIOMOD.formated.data.PA` class objects. This entails
+stacking all of our environmental data together to perform analyses. Luckily
+this was accomplished previously when extracting environmental data using the
+`sdmpredictors` package. You can then create your `biomod2` data class...
+
+<br/>
+
+```{r, SDM data, eval = TRUE, results = 'hide'}
+SDMdata <- biomod2::BIOMOD_FormatingData(resp.var = rep(1,nrow(OBIS)),
+                                        expl.var = envCov,
+                                        resp.xy = data.frame(OBIS$decimalLongitude, OBIS$decimalLatitude),
+                                        resp.name = sp,
+                                        PA.nb.rep = 1)
+```
+
+<br/>
+
+...use this object with the `biomod2` functions to generate a distribution
+model for your species of interest...
+
+<br/>
+
+```{r SDM_model, eval = TRUE, results = 'hide', warning = FALSE}
+
+SDM <- biomod2::BIOMOD_Modeling(
+            data = SDMdata,
+            models = "RF",
+            # models = "MAXENT.Tsuruoka",
+            # Basic options for modelling
+            model.options = biomod2::BIOMOD_ModelingOptions(),
+            SaveObj = FALSE)
+```
+
+
+<br/>
+
+...extract the evaluation of the fit of your model...
+
+<br/>
+
+```{r, modelEval}
+# Model evaluation
+  knitr::kable(biomod2::get_evaluations(SDM), 'html')  %>%
+      kable_styling(full_width = FALSE)
+```
+
+
+<br/>
+
+... and finally, once the models are calibrated and evaluated, you can project your
+species spatial distribution:
+
+<br/>
+
+```{r, sdmSpatial, results = 'hide', fig.width = 7, fig.height = 7}
+# Model spatial projection
+  SDMproj <- biomod2::BIOMOD_Projection(modeling.output = SDM,
+                                        new.env = envCov,
+                                        proj.name = 'Awesome!',
+                                        selected.models = 'all',
+                                        binary.meth = 'TSS',
+                                        compress = 'xz',
+                                        clamping.mask = F,
+                                        output.format = '.grd')
+# ... and visualize them!
+  biomod2::plot(SDMproj)
+```
+
+<!-- unlink('./Gadus.morhua/', recursive = T) -->
+
+
+
+<br/>
+
+Riveting!
+
+
+
+<br/>
+
+## Concluding remarks
+
+Starting with a very basic idea, *i.e.* describing the ecology of a species in
+a given area, we ended up with a species description, some known occurrences,
+environmental data describing our area of interest and the potential spatial
+distribution of our species!
+
+...but should we stop there?
+
+The reality is, there is so much more going on in our area of interest than
+the spatial distribution of a single species. In the [next post](OnlineEcology-Communities.html),
+we will look into community scale analyses using some of the tools presented in
+this post, alongside some new ones specifically designed for community ecology.
+
+
+
+<details>
+<summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
+```{r sessionInfo}
+sessionInfo()
+```
+</details>
