@@ -21,23 +21,26 @@ options(
   blogdown.hugo.version = "0.96.0"
 )
 
-knitr::opts_chunk$set(
-  comment = "#R> ",
-  collapse = TRUE,
-  warning = FALSE,
-  message = FALSE,
-  #fig.width = 7.5,
-  #fig.height = 6,
-  fig.align = 'center',
-  width = 100
-)
 
-library(inSilecoRef)
-rfa <- function(...) icons::icon_style(icons::fontawesome(...), fill = "currentColor")
-gh <- function() rfa("github")
-rp <- function() rfa("r-project")
-wk <- function() rfa("wikipedia-w")
+# If is used to avoid problems with GHA worklow when knitr is missing
+if ("knitr" %in% unlist(lapply(.libPaths(), list.files))) {
+  knitr::opts_chunk$set(
+    comment = "#R> ",
+    collapse = TRUE,
+    warning = FALSE,
+    message = FALSE,
+    #fig.width = 7.5,
+    #fig.height = 6,
+    fig.align = 'center',
+    width = 100
+  )
 
+  library(inSilecoRef)
+  rfa <- function(...) icons::icon_style(icons::fontawesome(...), fill = "currentColor")
+  gh <- function() rfa("github")
+  rp <- function() rfa("r-project")
+  wk <- function() rfa("wikipedia-w")
 
-path_root <- getwd()
-path_session_info <- file.path(path_root, 'static/Rscript/sessionInfo.Rmd')
+  path_root <- getwd()
+  path_session_info <- file.path(path_root, 'static/Rscript/sessionInfo.Rmd')
+}
