@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+
+        <title>My R setup on Debian</title>
+
+        <style>
+
+    html body {
+        font-family: Lato, sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+  <link rel="stylesheet" href="/css/academicons.min.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/jquery.tocify.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+  <script src="/js/jquery-1.8.3.min.js"></script>
+
+  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
+
+  <script src="/js/jquery.tocify.min.js"></script>
+
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'UA-109508556-1');
+        </script>
+        
+
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">My R setup on Debian</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                                <li><a href="/software/">Software</a></li>
+                            
+                                <li><a href="/wiki/">Wiki</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<img class="full-width" width="100%" src="/img/banner4.png"></img>
+
+
+<div>
+
+  <div class="col-md-3">
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+          <div id="toc"></div>
+
+        </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-8">
+
+    <h1><a href="/2018/06/18/my-r-setup-on-debian/">My R setup on Debian</a></h1>
+
+    <h4>June 18, 2018</h4>
+
+    <p>
+      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/linux"><kbd class="item-tag">Linux</kbd></a>  <a href="/tags/debian"><kbd class="item-tag">Debian</kbd></a>  <a href="/tags/setup"><kbd class="item-tag">Setup</kbd></a> 
+      <br>
+      
+       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/base"><kbd class="item-tag2">base</kbd></a> 
+      
+    </p>
+
+    
+      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+       
+        <a href="/about/">Kevin Cazelles</a> &nbsp;
+      
+     <a href="#"></a></p>
+    
+
+    
+      <p> <i class="fa fa-check-square" aria-hidden="true", title="Reviewer(s)"></i>
+       
+      <a href="/about/">David Beauchesne</a> &nbsp;
+      
+      <a href="#"></a></p>
+    
+
+    <p>
+    
+    
+    
+      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=6min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+    
+    
+     &nbsp;
+    
+    
+      <a href = "https://creativecommons.org/licenses/by/4.0/">
+      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+      </a>
+     &nbsp;
+    
+     &nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2018%2f06%2f18%2fmy-r-setup-on-debian%2f&text=My%20R%20setup%20on%20Debian" target="_blank">
+      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2018%2f06%2f18%2fmy-r-setup-on-debian%2f?link=http://left&link=http://right}'>
+    </a>
+  </p>
+
+
+    <br>
+
+    <div class="text-justify">
+
+      <p>R 3.5.0 &ldquo;Joy in playing&rdquo; was released April 23rd this year. It took a couple
+of weeks before it was made available on Debian testing due to the work
+required to rebuild the packages and as a Debian user that spend a lot of time
+on R, I am extremely grateful to <a href="http://dirk.eddelbuettel.com/blog/2018/06/11/">the work of Dirk, Michael and Johannes on this</a>!</p>
+<p>I thought it was a good opportunity to write few notes about my R setup. Nothing
+really special or tricky and I guess more advanced users proceed otherwise, yet
+it is nonetheless simple and functional 😄! In this post I&rsquo;ll go over two
+different aspects:</p>
+<ol>
+<li>
+<p>the way I install R and the packages I use,</p>
+</li>
+<li>
+<p>how I customized my R&rsquo;s startup.</p>
+</li>
+</ol>
+<h2 id="how-do-i-install-and-the-package-i-use">How do I install and the package I use?</h2>
+<p>As mentioned in <a href="https://insileco.github.io/2018/05/21/go-debian-testing/">a previous post</a>, I am
+currently working on Debian testing and use <code>apt-get</code> to install my software
+which includes R:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># this lines and the following may need to be run in super user mode</span>
+</span></span><span style="display:flex;"><span>$ apt-get install r-base r-recommended r-base-dev
+</span></span></code></pre></div><p>I use the default location to store the core packages, <em>i.e.</em> <code>/usr/lib/R/library/</code>.
+After the installation of the core packages, I configure Java for R (see <em>Java support</em> on <a href="https://cran.r-project.org/doc/manuals/r-release/R-admin.html">the manual</a> for
+more details):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ R CMD javareconf JAVA_HOME<span style="color:#f92672">=</span>/usr/lib/jvm/java-8-openjdk-amd64/
+</span></span></code></pre></div><p>Then I install all CRAN packages available via <code>apt-get</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ apt-get install <span style="color:#e6db74">&#34;^r-cran-.*&#34;</span>
+</span></span></code></pre></div><p>This actually is very helpful to ensure that dependencies are properly installed!
+The path to those packages is <code>/usr/lib/R/site-library/</code> (again default behavior)
+It is true though that I do not use all these packages, but:</p>
+<ol>
+<li>
+<p>I use a fair portion of them (directly or as dependencies of other packages I use)</p>
+</li>
+<li>
+<p>It is really quick to install (quicker than installing them from inside R)</p>
+</li>
+<li>
+<p>I have space on my computer and it only takes one single line on my script whereas
+a selection would probably have taken tens 😄!</p>
+</li>
+</ol>
+<p>For the remaining packages (not packaged specifically for Debian), I use the
+classical <code>ìnstall.packages()</code> for packages on CRAN and <code>devtools::install_github()</code>
+for GitHub packages. I do not use package from other repositories.
+For those packages, I have created a small <a href="https://gist.github.com/KevCaz/aaa83151e9d12cc07fbe379e2c32a385">gist</a>
+to gather them and I edit it each time I&rsquo;ve found a package relevant for my research.
+In order to install this package I get the gist (an R script) and execute it:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git clone https://gist.github.com/aaa83151e9d12cc07fbe379e2c32a385.git /tmp/pkgsR
+</span></span><span style="display:flex;"><span>$ sudo Rscript /tmp/pkgsR/myPackages.R
+</span></span></code></pre></div><p>The path to these packages is <code>/home/kevcaz/R/x86_64-pc-linux-gnu-library/3.5</code>
+this is not the default behavior but a path commonly used. So, yes, in total
+I use 3 different paths to my R packages 😃:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>R<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">.libPaths</span>()
+</span></span><span style="display:flex;"><span>[1] <span style="color:#e6db74">&#34;/home/kevcaz/R/x86_64-pc-linux-gnu-library/3.5&#34;</span> <span style="color:#e6db74">&#34;/usr/lib/R/site-library&#34;</span>                        <span style="color:#e6db74">&#34;/usr/lib/R/library&#34;</span>
+</span></span></code></pre></div><p>This is actually quite handful, especially to remember how a given package
+was installed:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>R<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">find.package</span>(<span style="color:#e6db74">&#34;stats&#34;</span>)
+</span></span><span style="display:flex;"><span>[1] <span style="color:#e6db74">&#34;/usr/lib/R/library/stats&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>R<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">find.package</span>(<span style="color:#e6db74">&#34;Rcpp&#34;</span>)
+</span></span><span style="display:flex;"><span>[1] <span style="color:#e6db74">&#34;/usr/lib/R/site-library/Rcpp&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>R<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">find.package</span>(<span style="color:#e6db74">&#34;drat&#34;</span>)
+</span></span><span style="display:flex;"><span>[1] <span style="color:#e6db74">&#34;/home/kevcaz/R/x86_64-pc-linux-gnu-library/3.5/drat&#34;</span>
+</span></span></code></pre></div><p>Well, I very much like it that way 😸! Two notes to conclude this section.
+First, in the near future I may consider
+the neat <a href="http://dirk.eddelbuettel.com/code/drat.html"><code>drat</code> package</a> to add
+packages available on GitHub. Second, if you are interested in
+reproducing this installation, have a look at <a href="https://gist.github.com/KevCaz/29536740b9150383a9d543ec1be96103">my installDebian.sh gist</a>.</p>
+<p>Now that R is installed let&rsquo;s see how to customize the launch process.</p>
+<h2 id="my-rs-startup">My R&rsquo;s Startup</h2>
+<p>When you type <code>R</code> and <code>enter</code> in your favorite terminal or when you open
+RStudio, many things happen before you can enter your first line of code for
+the session (even more for RStudio I guess). This is the startup process. It
+is thoroughly explained <a href="http://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html">here</a>
+(also available in R using <code>help(Startup)</code>) and in this post on <a href="https://rviews.rstudio.com/2017/04/19/r-for-enterprise-understanding-r-s-startup/">R Views</a>.
+Below I&rsquo;d like to explain how I take advantage of the possibility of
+personalizing it to make my use of R more comfortable. Basically, during the
+launch process I:</p>
+<ol>
+<li>set up a couple of options (including default packages loaded),</li>
+<li>tweak some paths,</li>
+<li>get nice <em>hello</em> and <em>good bye</em> messages (the most important part!).</li>
+</ol>
+<p>For what I do, you simply must retain how to locate <code>Renviron</code>. First,
+call <code>R.home</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>R<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">R.home</span>()
+</span></span><span style="display:flex;"><span>[1] <span style="color:#e6db74">&#34;/usr/lib/R&#34;</span>
+</span></span></code></pre></div><p><code>Renviron</code> is in <a href="https://unix.stackexchange.com/questions/5665/what-does-etc-stand-for"><code>/etc</code></a>,
+so for me <code>/usr/lib/R/etc</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#f92672">$</span> ls <span style="color:#f92672">/</span>usr<span style="color:#f92672">/</span>lib<span style="color:#f92672">/</span>R<span style="color:#f92672">/</span>etc
+</span></span><span style="display:flex;"><span>javaconf  ldpaths  Makeconf  Renviron  Renviron.orig  Renviron.site  Renviron.ucf  repositories  Rprofile.site
+</span></span></code></pre></div><p>Once you have opened it (it may require the super user mode though),
+you&rsquo;ll find many options you can change. I suggest you do not change
+anything and rather add a new variable <code>R_ENVIRON</code> to point to a site file
+where you will do the changes without touching the original file (well
+this is actually the purpose of this variable). In my case I added:</p>
+<pre tabindex="0"><code>R_ENVIRON = &#34;/usr/lib/R/etc/Renviron.site&#34;
+</code></pre><p>It is not mandatory but it is pretty common to locate where you add your chnages
+next to the default one. On Debian we actually get an empty <code>Renviron.site</code> file:</p>
+<pre tabindex="0"><code>##                                              Emacs please make this -*- R -*-
+## empty Renviron.site for R on Debian
+##
+## Copyright (C) 2008 - 2017  Dirk Eddelbuettel and GPL&#39;ed
+##
+## see help(Startup) for documentation on ~/.Renviron and Renviron.site
+
+# ## Example ~/.Renviron on Unix
+# R_LIBS=~/R/library
+# PAGER=/usr/local/bin/less
+
+# ## Example .Renviron on Windows
+# R_LIBS=C:/R/library
+# MY_TCLTK=&#34;c:/Program Files/Tcl/bin&#34;
+
+# ## Example of setting R_DEFAULT_PACKAGES (from R CMD check)
+# R_DEFAULT_PACKAGES=&#39;utils,grDevices,graphics,stats&#39;
+# # this loads the packages in the order given, so they appear on
+# # the search path in reverse order.
+
+## # We comment out this line in the default Renviron, you can re-enable it here
+## # @R_PLATFORM@ can be eg x86_64-pc-linux-gnu, see /etc/R/Renviron for R_PLATFORM
+## # @MAJ_MIN_VERSION@ is likely something like &#39;3.4&#39;, see /etc/R/Renviron too
+#R_LIBS_USER=${R_LIBS_USER-&#39;~/R/@R_PLATFORM@-library/@MAJ_MIN_VERSION@&#39;}
+</code></pre><p>Thanks Dirk for this! As you can read, several changes are possible and all
+the parameter found in <code>Renviron</code> may be used. In my case I added two lines</p>
+<pre tabindex="0"><code>R_PROFILE_USER = &#34;~/.Rprofile&#34;
+R_LIBS_USER=${R_LIBS_USER-&#39;~/R/x86_64-pc-linux-gnu-library/3.5&#39;}
+</code></pre><p>The latter indicates the path to packages installed with <code>ìnstall.packages()</code>,
+while the former points to another file where I do most of the tweaks!
+Here it is (also available on
+<a href="https://github.com/KevCaz/dotfiles/blob/master/dotfiles/.Rprofile"><i class="fa fa-github" aria-hidden="true"></i></a>):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#75715e">#### KevCaz&#39;s .Rprofile</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## To refresh =&gt; remove the .RData file otherwise .First is found in there</span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">## or use R --no-restore</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##-- Set the RNG</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">1987</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##-- options (exlicit enough)</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">options</span>(
+</span></span><span style="display:flex;"><span>  prompt <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;R&gt;&gt; &#34;</span>,
+</span></span><span style="display:flex;"><span>  continue <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;+... &#34;</span>,
+</span></span><span style="display:flex;"><span>  width <span style="color:#f92672">=</span> <span style="color:#ae81ff">160</span>,
+</span></span><span style="display:flex;"><span>  max.print <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>,
+</span></span><span style="display:flex;"><span>  repos <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://cran.wu.ac.at/&#34;</span>,
+</span></span><span style="display:flex;"><span>  stringsAsFactors <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># Default packages list including my own packages with functions I often use!</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">options</span>(defaultPackages<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getOption</span>(<span style="color:#e6db74">&#34;defaultPackages&#34;</span>),
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;inSilecoMisc&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;devtools&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;knitr&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;magrittr&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;graphicsutils&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;rmarkdown&#34;</span>
+</span></span><span style="display:flex;"><span>    ))
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##-- X11 options</span>
+</span></span><span style="display:flex;"><span>grDevices<span style="color:#f92672">::</span><span style="color:#a6e22e">X11.options</span>(width<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, height<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##-- few useful functions</span>
+</span></span><span style="display:flex;"><span>reset <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>() <span style="color:#a6e22e">system</span>(<span style="color:#e6db74">&#39;reset&#39;</span>)
+</span></span><span style="display:flex;"><span>nautilus <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;.&#39;</span>) <span style="color:#a6e22e">system</span>(<span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#39;nautilus &#39;</span>, x))
+</span></span><span style="display:flex;"><span>deco <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(char <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;-&#34;</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>) <span style="color:#a6e22e">paste</span>(<span style="color:#a6e22e">rep</span>(char, n), collapse<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##-- function triggered when starting a new session / a Hello function</span>
+</span></span><span style="display:flex;"><span>.First <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;\n&#34;</span>, <span style="color:#a6e22e">paste0</span>(<span style="color:#a6e22e">deco</span>(<span style="color:#e6db74">&#34;=&#34;</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">28</span>), <span style="color:#e6db74">&#34;&gt;&gt;&#34;</span>), <span style="color:#e6db74">&#34; KevCaz 92 Hijo &#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;&lt;&lt;&#34;</span>, <span style="color:#a6e22e">deco</span>(<span style="color:#e6db74">&#34;=&#34;</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">28</span>)), <span style="color:#e6db74">&#34;\n &gt;&gt;&#34;</span>, <span style="color:#a6e22e">date</span>(), <span style="color:#e6db74">&#34; \n\n&#34;</span>) ;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">##-- function triggered when exiting a new session / a Good Bye function</span>
+</span></span><span style="display:flex;"><span>.Last <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(){
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">graphics.off</span>()
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;\n&#34;</span>, <span style="color:#a6e22e">paste0</span>(<span style="color:#a6e22e">deco</span>(<span style="color:#e6db74">&#34;~&#34;</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">28</span>), <span style="color:#e6db74">&#34;&lt;&#34;</span>) , <span style="color:#e6db74">&#34; Até mais KevCaz! &#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;&gt;&#34;</span>, <span style="color:#a6e22e">deco</span>(<span style="color:#e6db74">&#34;~&#34;</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">28</span>)),<span style="color:#e6db74">&#34;\n&#34;</span>) ;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><br>
+<h4 id="thats-it-hope-this-helps-see-you-next-post-nbsp-">That&rsquo;s it! Hope this helps! See you next post!   🚀</h4>
+
+
+      <div class="text-justify">
+        
+
+      </div>
+
+
+    
+
+    </center>
+
+    </div>
+
+      <br>
+
+  
+  <script>
+    var $jq = jQuery.noConflict();
+      $jq(function() {
+          var toc = $jq("#toc").tocify({
+            selectors: "h2, h3",
+            scrollTo: 50
+          }).data("toc-tocify");
+    });
+  </script>
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+  
+  
+
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <div id="disqus_thread"></div>
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2020/04/14/insilecomisc-0.4.0-part-1/2/">inSilecoMisc 0.4.0 (part 1/2)</a> <small>April 14, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+
+
+
+  <script>
+    
+
+
+    var disqus_config = function() {
+      this.page.url = "https://insileco.github.io" + "https://insileco.github.io/2018/06/18/my-r-setup-on-debian/"; 
+      this.page.identifier = "My R setup on Debian"; 
+    };
+
+    (function() { 
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://insileco.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+
+</div>
+
+
+</div>
+
+        <footer>
+
+          <script src="//yihui.name/js/math-code.js"></script>
+          <script async
+            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+          </script>
+
+            <hr>
+            <p class="copyright text-muted" style="font-size: 1.6rem;">
+              &copy; 2017-2022 inSileco |
+              All rights reserved |
+              Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+                <a href="https://gohugo.io">Hugo</a>
+                and <a href="https://github.com/calintat/minimal">Minimal</a> |
+              Latest build: 19 Jun 2022 21:07 UTC.
+              </p>
+
+        </footer>
+
+    </body>
+
+</html>
+

@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+
+        <title>Trick or tips 001 {R}</title>
+
+        <style>
+
+    html body {
+        font-family: Lato, sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+  <link rel="stylesheet" href="/css/academicons.min.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/jquery.tocify.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+  <script src="/js/jquery-1.8.3.min.js"></script>
+
+  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
+
+  <script src="/js/jquery.tocify.min.js"></script>
+
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'UA-109508556-1');
+        </script>
+        
+
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Trick or tips 001 {R}</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                                <li><a href="/software/">Software</a></li>
+                            
+                                <li><a href="/wiki/">Wiki</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<img class="full-width" width="100%" src="/img/banner4.png"></img>
+
+
+<div>
+
+  <div class="col-md-3">
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+          <div id="toc"></div>
+
+        </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-8">
+
+    <h1><a href="/2017/06/30/trick-or-tips-001-r/">Trick or tips 001 {R}</a></h1>
+
+    <h4>June 30, 2017</h4>
+
+    <p>
+      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> 
+      <br>
+      
+       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/base"><kbd class="item-tag2">base</kbd></a>  <a href="/rpkgs/utils"><kbd class="item-tag2">utils</kbd></a>  <a href="/rpkgs/graphics"><kbd class="item-tag2">graphics</kbd></a> 
+      
+    </p>
+
+    
+      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+       
+        <a href="/about/">Kevin Cazelles</a> &nbsp;
+      
+     <a href="#"></a></p>
+    
+
+    
+
+    <p>
+    
+    
+    
+      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=6min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+    
+    
+     &nbsp;
+    
+    
+      <a href = "https://creativecommons.org/licenses/by/4.0/">
+      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+      </a>
+     &nbsp;
+    
+     &nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2017%2f06%2f30%2ftrick-or-tips-001-r%2f&text=First%20post%20of%20the%20Trick%20or%20tips%20series" target="_blank">
+      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2017%2f06%2f30%2ftrick-or-tips-001-r%2f?link=http://left&link=http://right}'>
+    </a>
+  </p>
+
+
+    <br>
+
+    <div class="text-justify">
+
+      
+
+
+<h3>Trick or Tips?</h3>
+
+Ever tumbled on a code chunk that made you say:
+"<em>I should have known this ¶ø?!@~&* piece of code long ago!?</em>"
+Chances are you have, frustratingly, just like we have, and on multiple occasions too.
+
+<br><br>
+
+In comes <b>Trick or Tips</b>!
+
+<br><br>
+
+<b>Trick or Tips</b> is a series of blog posts that each
+present 5 -- hopefully helpful -- coding tips for a specific programming
+language. Posts should be short (<em>i.e.</em> no more than 5 lines of code,
+max 80 characters per line, except when appropriate) and provide tips of
+many kind: a function, a way of combining of functions, a single argument,
+a note about the philosophy of the language and practical consequences,
+tricks to improve the way you code, good practices, etc.
+
+<br><br>
+
+Note that while some tips might be obvious for careful documentation readers
+(God bless them for their wisdom), we do our best to present what we find very
+useful and underestimated. By the way, there are undoubtedly similar initiatives on the web (<em>e.g.</em>
+<a href = "https://twitter.com/RLangTip">"One R Tip a Day" Twitter account</a>). Also, feel
+free to comment below tip ideas or a post of code tips of your own which we will be
+happy to incorporate to <b>Trick or Tips</b>.
+
+Enjoy <i class="fas fa-smile" aria-hidden></i> and get ready to frustratingly appreciate our tips!
+
+<div id="trick-or-tips-0001" class="section level2">
+<h2><em>Trick or tips</em> 0001</h2>
+<p>For the first post of the series, let’s introduce 5 <strong>R</strong> tips:</p>
+<ol style="list-style-type: decimal">
+<li>The %in% operator</li>
+<li>The <code>paste0()</code> function</li>
+<li>Using “\r” in <code>cat()</code></li>
+<li>The <code>sprintf()</code> function</li>
+<li>The <code>xaxs</code> and <code>yaxs</code> arguments of <code>par()</code></li>
+</ol>
+</div>
+<div id="the-in-operator" class="section level2">
+<h2>The ‘%in%’ operator</h2>
+<p>I have known this for a while, but I keep remembering how it eases my pain when I
+learned how to use it. Let’s consider two vector <code>vecA</code> and <code>vecB</code>, the
+<code>vecA %in% vecB</code> returns a vector of logical of the length <code>vecA</code> stating whether
+the elements of <code>vecA</code> are in <code>vecB</code>:</p>
+<pre class="r"><code>vecA &lt;- c(&quot;a&quot;, &quot;d&quot;, &quot;2&quot;, &quot;4&quot;, &quot;e&quot;, &quot;;&quot;)
+vecB &lt;- letters # vector of lower case letters the Roman alphabet
+vecA %in% vecB
+#R&gt;  [1]  TRUE  TRUE FALSE FALSE  TRUE FALSE</code></pre>
+<p>the i<sup>th</sup> element of the output vector is <code>TRUE</code> if the i<sup>th</sup> element of <code>vecA</code> is
+among the elements of <code>vecB</code>. Note that you can have a similar result calling the <code>intersect()</code> functions which returns elements that <code>vecA</code> and <code>vecB</code> are sharing.</p>
+<pre class="r"><code>intersect(vecA, vecB)
+#R&gt;  [1] &quot;a&quot; &quot;d&quot; &quot;e&quot;</code></pre>
+<p>By the way, you should have a look to the documentation of <code>intersect()</code>.</p>
+</div>
+<div id="the-paste0-function" class="section level2">
+<h2>The <code>paste0()</code> function</h2>
+<p>I often concatenate strings. The natural way to do this is to use the <code>paste()</code> function. Let’s say I need to create a set of original file names such as: “myfile1”, “myfile2”, “myfile3”, etc. I can call <code>paste()</code> like so:</p>
+<pre class="r"><code>paste(&quot;myfile&quot;, 1:7)
+#R&gt;  [1] &quot;myfile 1&quot; &quot;myfile 2&quot; &quot;myfile 3&quot; &quot;myfile 4&quot; &quot;myfile 5&quot; &quot;myfile 6&quot; &quot;myfile 7&quot;</code></pre>
+<p>BUT, there is a annoying space between “myfile” and the number, to remove the
+space, <code>sep</code> argument is needed:</p>
+<pre class="r"><code>paste(&quot;myfile&quot;, 1:3, sep = &quot;&quot;)
+#R&gt;  [1] &quot;myfile1&quot; &quot;myfile2&quot; &quot;myfile3&quot;</code></pre>
+<p>UNLESS you use the <code>paste0()</code> that is the version of <code>paste()</code> with the desired
+default parameters:</p>
+<pre class="r"><code>paste0(&quot;myfile&quot;, 1:3)
+#R&gt;  [1] &quot;myfile1&quot; &quot;myfile2&quot; &quot;myfile3&quot;</code></pre>
+<p>I know… this means you’ll save 5 previous characters each time you call <code>paste0()</code>!</p>
+</div>
+<div id="using-argument-r-in-cat" class="section level2">
+<h2>Using argument ‘\r’ in <code>cat()</code></h2>
+<p><em>Note that for this tip, you should execute the code-chunk in your own R console</em></p>
+<p>When programming we often need to monitor what we are doing, especially for
+time-consuming calculation. Using <code>cat()</code> with all its default is very helpful
+to report information on progress:</p>
+<pre class="r"><code>for (i in 1:10) {
+  cat(&quot;iteration n°&quot;, i, &quot;\n&quot;)
+}</code></pre>
+<p>Here <code>"\n"</code> is what breaks the line! Instead of breaking the line, we can erase
+the line, i.e. using <code>"\r"</code>:</p>
+<pre class="r"><code>for (i in 1:10) {
+  Sys.sleep(.25) # I added a pause so you can see what&#39;s happening
+  cat(&quot;iteration n°&quot;, i, &quot;\r&quot;)
+}</code></pre>
+<p>I hope this gives you some ideas :). If you are thinking “where the <em>!&amp;)@(</em> is
+he going with this!” let me give you two extra way to monitor a for loop:</p>
+<ol style="list-style-type: decimal">
+<li>Use percentage:</li>
+</ol>
+<pre class="r"><code>nmx &lt;- 222
+for (i in 1:nmx) {
+  Sys.sleep(.01) # replace it by what you are doing
+  cat(&quot;==&gt;&quot;, format(100*i/nmx, digits = 4), &quot;%&quot;, &quot;\r&quot;)
+}</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Create you own progress bar:</li>
+</ol>
+<pre class="r"><code>nmx &lt;- 222
+sz &lt;- 60
+for (i in 1:nmx) {
+  Sys.sleep(.01) # replace it by what you are doing
+  nb &lt;- floor(sz * i / nmx)
+  pgr &lt;- paste(rep(c(&quot;=&quot;,&quot; &quot;), c(nb, sz - nb)), collapse = &quot;&quot;)
+  cat(&quot;|&quot;, pgr, &quot;| &quot;, &quot;\r&quot;)
+}</code></pre>
+<p>I hope you like this! Otherwise, stick to use <code>getTxtProgressBar()</code> and <code>setProgressBar()</code> functions, but I swear you are missing something.</p>
+</div>
+<div id="the-sprintf-function" class="section level2">
+<h2>The <code>sprintf()</code> function</h2>
+<p>The function is a wrapper for a well-known C function <code>sprintf()</code>. There are
+so much to say about it and I won’t (so please have a careful look at the
+documentation) but I think it is worth a tip to present the most used features
+of this function.</p>
+<p>The first argument of <code>sprintf()</code> is a string that includes tag to be replaced
+by the extra arguments. A tag starts with a <code>%</code>, is followed by a
+couple of optional characters tuning the display and ends with a letter
+specifying the nature of the variable(s) to be displayed (number or string). The
+most common letters are:</p>
+<ul>
+<li>“d” for integer value;</li>
+<li>“f” for double precision value;</li>
+<li>“s” for strings.</li>
+</ul>
+<p>The most common options are:</p>
+<ul>
+<li>“n”, an integer values specifying the width of the field;</li>
+<li>“0” indicates whether zero-padding should be used;</li>
+<li>“.m” where n is an integer.</li>
+</ul>
+<p>That being said, to be as clear as possible, let me exemplify!</p>
+<ol style="list-style-type: decimal">
+<li>Different kind of variables:</li>
+</ol>
+<pre class="r"><code>sprintf(&quot;%d&quot;, 1)
+sprintf(&quot;%f&quot;, pi)
+sprintf(&quot;%s&quot;, &quot;A&quot;)
+#R&gt;  [1] &quot;1&quot;
+#R&gt;  [1] &quot;3.141593&quot;
+#R&gt;  [1] &quot;A&quot;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>Combine different variables:</li>
+</ol>
+<pre class="r"><code>sprintf(&quot;An integer: %d, a double: %f, a string: %s&quot;, 1, pi, &quot;A&quot;)
+#R&gt;  [1] &quot;An integer: 1, a double: 3.141593, a string: A&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Tune the field width:</li>
+</ol>
+<pre class="r"><code>sprintf(&quot;%10f&quot;, pi)
+#R&gt;  [1] &quot;  3.141593&quot;</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Zero-padding:</li>
+</ol>
+<pre class="r"><code>sprintf(&quot;%010f&quot;, pi)
+#R&gt;  [1] &quot;003.141593&quot;</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Tune the precision:</li>
+</ol>
+<pre class="r"><code>sprintf(&quot;%.50f&quot;, pi)
+#R&gt;  [1] &quot;3.14159265358979311599796346854418516159057617187500&quot;</code></pre>
+<p>Pretty cool, isn’t it? To conclude two questions. Question 1: do you remember the file naming example using to showcase <code>paste0()</code>? I assume your answer if yes. Let’s say you now have more than 100 files to name and you want to use zero-padding and a constant field width of 3 (e.g. “myfile001”, “myfile010”, “myfile100”). This leads
+me to question 2: what do you do? =&gt; Go <code>sprintf()</code>!</p>
+<pre class="r"><code>paste0(&quot;myfile&quot;, sprintf(&quot;%03d&quot;, c(1, 10, 100)))
+#R&gt;  [1] &quot;myfile001&quot; &quot;myfile010&quot; &quot;myfile100&quot;</code></pre>
+</div>
+<div id="the-xaxs-and-yaxs-arguments-of-par" class="section level2">
+<h2>The <code>xaxs</code> and <code>yaxs</code> arguments of <code>par()</code></h2>
+<p>This is also something I learned years ago and keep using for almost all my
+plots ever since. Default values of graphical parameters generate plot that
+add and extra 4% to the axes limits. This is actually useful to ensure that
+all graphical symbols are entirely displayed. However, I prefer using round
+values as axes limits and handling myself their values so that all symbols stay visible. In order to get rid of the extra 4% added on the x-axis (y-axis), you
+have to pass <code>xaxs = "i"</code> (<code>yaxs = "i"</code>) to the <code>par()</code> function. I compare below
+a plot using the default parameters’ values and the same plot using the tip:</p>
+<pre class="r"><code>par(mfrow = c(1,2), bty = &quot;l&quot;)
+plot(0:10, 0:10, pch = 20)
+par(xaxs = &quot;i&quot;, yaxs = &quot;i&quot;)
+plot(0:10, 0:10, pch = 20)</code></pre>
+<p><img src="/post/2017/trick_or_tips001_files/figure-html/xaxsYaxs-1.png" width="912" style="display: block; margin: auto;" /></p>
+<p>Can you tell the difference? I now add two extra lines to stress the differences out.</p>
+<pre class="r"><code>par(mfrow = c(1,2), bty = &quot;l&quot;)
+plot(0:10, 0:10, pch = 20)
+abline(v = c(0,10), h = c(0,10), col = 2)
+par(xaxs = &quot;i&quot;, yaxs = &quot;i&quot;)
+plot(0:10, 0:10, pch = 20)
+abline(v = c(0,10), h = c(0,10), col = 2)</code></pre>
+<p><img src="/post/2017/trick_or_tips001_files/figure-html/xaxsYaxsV2-1.png" width="912" style="display: block; margin: auto;" /></p>
+<p><strong>That’s all folks… until next time!</strong></p>
+<div style="padding: 2rem 0rem 2rem 0rem;">
+<details>
+<summary>
+<h4>
+<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
+<i class="fa fa-cogs" aria-hidden="true"></i>
+</h4>
+<p></summary></p>
+<pre class="r"><code>sessionInfo()
+#R&gt;  R version 4.2.0 (2022-04-22)
+#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)
+#R&gt;  Running under: Debian GNU/Linux bookworm/sid
+#R&gt;  
+#R&gt;  Matrix products: default
+#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.1
+#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.10.1
+#R&gt;  
+#R&gt;  locale:
+#R&gt;   [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+#R&gt;   [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+#R&gt;   [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+#R&gt;   [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#R&gt;   [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+#R&gt;  [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#R&gt;  
+#R&gt;  attached base packages:
+#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     
+#R&gt;  
+#R&gt;  other attached packages:
+#R&gt;  [1] inSilecoRef_0.0.1.9000
+#R&gt;  
+#R&gt;  loaded via a namespace (and not attached):
+#R&gt;   [1] Rcpp_1.0.8.3      lubridate_1.8.0   ps_1.7.0          assertthat_0.2.1 
+#R&gt;   [5] digest_0.6.29     utf8_1.2.2        mime_0.12         R6_2.5.1         
+#R&gt;   [9] plyr_1.8.7        backports_1.4.1   evaluate_0.15     httr_1.4.3       
+#R&gt;  [13] highr_0.9         blogdown_1.10     pillar_1.7.0      rlang_1.0.2      
+#R&gt;  [17] curl_4.3.2        data.table_1.14.2 miniUI_0.1.1.1    callr_3.7.0      
+#R&gt;  [21] jquerylib_0.1.4   DT_0.23           rmarkdown_2.14    RefManageR_1.3.0 
+#R&gt;  [25] rcrossref_1.1.0   stringr_1.4.0     htmlwidgets_1.5.4 igraph_1.2.11    
+#R&gt;  [29] shiny_1.7.1       compiler_4.2.0    httpuv_1.6.5      xfun_0.31        
+#R&gt;  [33] pkgconfig_2.0.3   htmltools_0.5.2   tidyselect_1.1.2  tibble_3.1.7     
+#R&gt;  [37] httpcode_0.3.0    bookdown_0.26     codetools_0.2-18  fansi_1.0.3      
+#R&gt;  [41] crayon_1.5.1      dplyr_1.0.9       withr_2.5.0       later_1.3.0      
+#R&gt;  [45] crul_1.2.0        jsonlite_1.8.0    xtable_1.8-4      lifecycle_1.0.1  
+#R&gt;  [49] DBI_1.1.2         magrittr_2.0.3    cli_3.3.0         stringi_1.7.6    
+#R&gt;  [53] promises_1.2.0.1  xml2_1.3.3        bslib_0.3.1       ellipsis_0.3.2   
+#R&gt;  [57] targets_0.12.0    generics_0.1.2    vctrs_0.4.1       tools_4.2.0      
+#R&gt;  [61] glue_1.6.2        purrr_0.3.4       processx_3.5.3    fastmap_1.1.0    
+#R&gt;  [65] yaml_2.3.5        base64url_1.4     knitr_1.39        sass_0.4.1</code></pre>
+</details>
+</div>
+</div>
+
+
+      <div class="text-justify">
+        
+          <div class="edits">
+            <h4><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h4>
+            <p style="font-size: 1.5rem">
+              
+              <i class="fa fa-pencil" aria-hidden="true"></i> Apr 23, 2022 -- Beautify code source and add session info section. <br>
+              
+            </p>
+          </div>
+        
+
+      </div>
+
+
+    
+
+    </center>
+
+    </div>
+
+      <br>
+
+  
+  <script>
+    var $jq = jQuery.noConflict();
+      $jq(function() {
+          var toc = $jq("#toc").tocify({
+            selectors: "h2, h3",
+            scrollTo: 50
+          }).data("toc-tocify");
+    });
+  </script>
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+  
+  
+
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <div id="disqus_thread"></div>
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2020/04/14/insilecomisc-0.4.0-part-1/2/">inSilecoMisc 0.4.0 (part 1/2)</a> <small>April 14, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+
+
+
+  <script>
+    
+
+
+    var disqus_config = function() {
+      this.page.url = "https://insileco.github.io" + "https://insileco.github.io/2017/06/30/trick-or-tips-001-r/"; 
+      this.page.identifier = "Trick or tips 001 {R}"; 
+    };
+
+    (function() { 
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://insileco.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+
+</div>
+
+
+</div>
+
+        <footer>
+
+          <script src="//yihui.name/js/math-code.js"></script>
+          <script async
+            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+          </script>
+
+            <hr>
+            <p class="copyright text-muted" style="font-size: 1.6rem;">
+              &copy; 2017-2022 inSileco |
+              All rights reserved |
+              Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+                <a href="https://gohugo.io">Hugo</a>
+                and <a href="https://github.com/calintat/minimal">Minimal</a> |
+              Latest build: 19 Jun 2022 21:07 UTC.
+              </p>
+
+        </footer>
+
+    </body>
+
+</html>
+

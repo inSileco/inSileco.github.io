@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+
+        <title>Markdown everywhere!</title>
+
+        <style>
+
+    html body {
+        font-family: Lato, sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+  <link rel="stylesheet" href="/css/academicons.min.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/jquery.tocify.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+  <script src="/js/jquery-1.8.3.min.js"></script>
+
+  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
+
+  <script src="/js/jquery.tocify.min.js"></script>
+
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'UA-109508556-1');
+        </script>
+        
+
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Markdown everywhere!</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                                <li><a href="/software/">Software</a></li>
+                            
+                                <li><a href="/wiki/">Wiki</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<img class="full-width" width="100%" src="/img/banner4.png"></img>
+
+
+<div>
+
+  <div class="col-md-3">
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+          <div id="toc"></div>
+
+        </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-8">
+
+    <h1><a href="/2018/05/13/markdown-everywhere/">Markdown everywhere!</a></h1>
+
+    <h4>May 13, 2018</h4>
+
+    <p>
+      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/markdown"><kbd class="item-tag">Markdown</kbd></a>  <a href="/tags/markup-language"><kbd class="item-tag">markup language</kbd></a> 
+      <br>
+      
+    </p>
+
+    
+      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+       
+        <a href="/about/">Kevin Cazelles</a> &nbsp;
+      
+     <a href="#"></a></p>
+    
+
+    
+      <p> <i class="fa fa-check-square" aria-hidden="true", title="Reviewer(s)"></i>
+       
+      <a href="/about/">Marie-Hélène Brice</a> &nbsp;
+       
+      <a href="/about/">Willian Vieira</a> &nbsp;
+      
+      <a href="#"></a></p>
+    
+
+    <p>
+    
+    
+    
+      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=15min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+    
+    
+     &nbsp;
+    
+    
+      <a href = "https://creativecommons.org/licenses/by/4.0/">
+      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+      </a>
+     &nbsp;
+    
+     &nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2018%2f05%2f13%2fmarkdown-everywhere%2f&text=Markdown%20everywhere%21" target="_blank">
+      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2018%2f05%2f13%2fmarkdown-everywhere%2f?link=http://left&link=http://right}'>
+    </a>
+  </p>
+
+
+    <br>
+
+    <div class="text-justify">
+
+      <p>According to <a href="https://en.wikipedia.org/wiki/Markdown">Wikipedia</a>:</p>
+<blockquote>
+<p>Markdown is a lightweight markup language with plain text formatting syntax.
+It is designed so that it can be converted to HTML and many other formats using
+a tool by the same name Markdown is often used to format readme files, for
+writing messages in online discussion forums, and to create rich text using a
+plain text editor. As the initial description of Markdown contained ambiguities
+and unanswered questions, many implementations and extensions of Markdown
+appeared over the years to answer these issues.</p>
+</blockquote>
+<p>In this post I&rsquo;d like to expand on this and write down some thoughts I have
+about Markdown. My goal is to shed some light on the exact nature of
+Markdown which would hopefully explain why Markdown is everywhere through
+different flavors. I would conclude this post by asking whether Markdown is
+a suitable option for academic writing.</p>
+<h2 id="origin-and-philosophy">Origin and philosophy</h2>
+<p>Scrolling down the Wikipedia page, you&rsquo;ll learn that Markdown was first
+released in 2004 (the year of Facebook&rsquo;s birth) by John Gruber on the original
+webpage: <em>i.e.</em> <a href="https://daringfireball.net/projects/markdown/">https://daringfireball.net/projects/markdown/</a> where you&rsquo;&rsquo;ll find:</p>
+<ol>
+<li>details about the Markdown&rsquo;s philosophy,</li>
+<li>a description of the original syntax,</li>
+<li>how the conversion is made, <em>i.e.</em> a call to a markdown-to-html converter written in <a href="https://www.Perl.org/">Perl</a>: <code>Markdown.pl</code>,</li>
+<li>a small <a href="https://daringfireball.net/projects/markdown/dingus">web application</a> to try Markdown.</li>
+</ol>
+<p>As <a href="https://daringfireball.net/projects/markdown/syntax">John Gruber wrote</a>:</p>
+<blockquote>
+<p>Markdown is intended to be as easy-to-read and easy-to-write as is feasible.</p>
+</blockquote>
+<p>and it really is! Let me select, copy and slightly modify an example from the
+<a href="https://daringfireball.net/projects/markdown/basics">daringfireball</a> to compare
+the Markdown text and the equivalent written in HTML, <em>i.e.</em> what the Perl converter
+renders:</p>
+<h4 id="markdown-version"><strong>Markdown version</strong></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>A First Level Header
+</span></span><span style="display:flex;"><span>====================
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>A Second Level Header
+</span></span><span style="display:flex;"><span>---------------------
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>Now is the time for all good men to come to
+</span></span><span style="display:flex;"><span>the aid of their country. This is just a
+</span></span><span style="display:flex;"><span>regular paragraph.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>The quick brown fox jumped over the lazy
+</span></span><span style="display:flex;"><span>dog&#39;s back.
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">### Header 3
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">This is a blockquote.
+</span></span></span><span style="display:flex;"><span><span style="font-style:italic"></span><span style="color:#66d9ef">&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef"></span><span style="font-style:italic">&gt; This is the **second paragraph** in the blockquote.
+</span></span></span><span style="display:flex;"><span><span style="font-style:italic"></span><span style="color:#66d9ef">&gt;
+</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef"></span><span style="font-style:italic">&gt; ## This is an H2 in a blockquote
+</span></span></span></code></pre></div><h4 id="html-version"><strong>HTML version</strong></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">h1</span>&gt;A First Level Header&lt;/<span style="color:#f92672">h1</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h2</span>&gt;A Second Level Header&lt;/<span style="color:#f92672">h2</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span>&gt;Now is the time for all good men to come to
+</span></span><span style="display:flex;"><span>the aid of their country. This is just a
+</span></span><span style="display:flex;"><span>regular paragraph.&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span>&gt;The quick brown fox jumped over the lazy
+</span></span><span style="display:flex;"><span>dog&#39;s back.&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h3</span>&gt;Header 3&lt;/<span style="color:#f92672">h3</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">blockquote</span>&gt;
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;This is a blockquote.&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;This is the &lt;<span style="color:#f92672">strong</span>&gt;second paragraph&lt;/<span style="color:#f92672">strong</span>&gt; in the blockquote.&lt;/<span style="color:#f92672">p</span>&gt;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h2</span>&gt;This is an H2 in a blockquote&lt;/<span style="color:#f92672">h2</span>&gt;
+</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">blockquote</span>&gt;
+</span></span></code></pre></div><p>Easy-to-read and easy-to-write indeed! If not before, now you should understand
+the play on words: HTML (HyperText Markup Language) is a
+<a href="https://en.wikipedia.org/wiki/Markup_language">markup language</a> and Markdown
+is a <a href="https://en.wikipedia.org/wiki/Category:Lightweight_markup_languages">Lightweight Markup Language (LML)</a>
+that reduces the length of the most commonly used tags for content editing
+in HTML, so Mark<del>up</del>down <img src = "assets/mdLogo.svg" height = 18px><img>.</p>
+<p>Broadly speaking, the idea of creating a language on the top of
+another for efficiency purposes is very common in computer science. It is
+actually the principle that explains why we use language such as C, Python or
+Rust, called <a href="https://en.wikipedia.org/wiki/High-level_programming_language">high level programming languages</a> instead
+of programming directly using machine language (would be a pain in the #!@?#),
+even though ultimately the machine language is used. A good illustration is
+<a href="http://coffeescript.org/">CoffeeScript</a> that is built on the
+top of JavaScript:</p>
+<blockquote>
+<p>The golden rule of CoffeeScript is: “It’s just JavaScript.” The code compiles
+one-to-one into the equivalent JS, and there is no interpretation at runtime.
+You can use any existing JavaScript library seamlessly from CoffeeScript
+(and vice-versa). The compiled output is readable, pretty-printed, and tends to
+run as fast or faster than the equivalent handwritten JavaScript.</p>
+</blockquote>
+<p><a href="http://lesscss.org/">Less</a> and <a href="https://sass-lang.com/">Sass</a> are two other
+good examples. They both are dynamic preprocessors style sheet language:
+the user codes in Less and Sass and those files are compiled into CSS
+(Cascading Style Sheets). In the case of CSS an obvious benefit from using Less
+or Sass is the possibility of using variables (does not exist in CSS).</p>
+<p>Markdown is a markup language to format plain text not, a programming language but the approach is
+essentially the same. A better example would be <a href="https://www.latex-project.org/">LateX</a> that
+was build on the top of <a href="http://tug.org/">TeX</a> to ease the usage of its macros,
+but again this is a bit more complex than the case of Markdown which
+only converts a very restricted subset of HTLM tags. Note that if you want to
+use other HTML tags, the converter will keep them as is and you HTML page
+should be rendered just as you expect. You probably wonder why not expanding the number of tags
+covered by Markdown, right? Well, this is one of the main reason explaining why there are
+several flavors of Markdown available!</p>
+<h2 id="many-flavors">Many flavors</h2>
+<p>Despite the substantial information about Markdown that John Gruber provided,
+he unfortunately did not provide a complete specification, <em>i.e.</em> an unequivocal
+set of instructions that would allow anyone to write a Markdown converter in any programming
+languages that would have the same behavior (note that reading the code of the
+Perl converter does not seem to remove all ambiguities, according to the authors of <a href="http://spec.commonmark.org/">CommonMark</a> that I&rsquo;ll introduce below). That led
+some authors to affirm that Markdown suffered from <a href="https://blog.codinghorror.com/responsible-open-source-code-parenting/">bad parenting</a>.
+To me, there is no reason to blame John Gruber for not having written a complete
+specification. It is however reasonable to consider that this is another partial
+explanation of the current variability among Markdown flavors. Let me introduce
+some of them:</p>
+<ul>
+<li><a href="fletcherpenney.net/multimarkdown/">MultiMarkdown</a> <a href="https://github.com/fletcher/MultiMarkdown"><i class="fa fa-github" aria-hidden="true"></i></a> by Fletcher Penney:</li>
+</ul>
+<blockquote>
+<p>MultiMarkdown, or MMD, is a tool to help turn minimally marked-up plain text into well formatted documents, including HTML, PDF (by way of LaTeX), OPML, or OpenDocument (specifically, Flat OpenDocument or ‘.fodt’, which can in turn be converted into RTF, Microsoft Word, or virtually any other word-processing format).</p>
+</blockquote>
+<blockquote>
+<p>MMD is a superset of the Markdown syntax, originally created by John Gruber. It adds multiple syntax features (tables, footnotes, and citations, to name a few), in addition to the various output formats listed above (Markdown only creates HTML). Additionally, it builds in “smart” typography for various languages (proper left- and right-sided quotes, for example).</p>
+</blockquote>
+<blockquote>
+<p>MultiMarkdown started as a Perl script, which was modified from the original Markdown.pl.</p>
+</blockquote>
+<ul>
+<li><a href="https://michelf.ca/projects/php-markdown/extra/">PHP Markdown Extra</a> by Michel Fortin:</li>
+</ul>
+<blockquote>
+<p>Markdown Extra is an extension to PHP Markdown implementing some features
+currently not available with the plain Markdown syntax.</p>
+</blockquote>
+<ul>
+<li><a href="https://kramdown.gettalong.org/">kramdown</a> <a href="https://github.com/gettalong/kramdown"><i class="fa fa-github" aria-hidden="true"></i></a> by Thomas Leitner:</li>
+</ul>
+<blockquote>
+<p>kramdown (sic, not Kramdown or KramDown, just kramdown) is a free MIT-licensed
+Ruby library for parsing and converting a superset of Markdown. It is completely
+written in Ruby, supports standard Markdown (with some minor modifications) and
+various extensions that have been made popular by the PHP Markdown Extra
+package and Maruku.</p>
+</blockquote>
+<p>Even though all flavors are very alike, they are superset of the
+original Markdown with flavor-specific variations. Therefore when asking
+&ldquo;<em>how can I change the size of an image using Markdown?</em>&rdquo;, a feature that is
+not in the original syntax, there may be a flavor-specific way to do it and
+potentially one answer per flavor. This explains the confusion when somebody
+asks such a question on <a href="https://stackoverflow.com/questions/14675913/changing-image-size-in-markdown.">StackOverflow</a>.
+So&hellip; when asking a question about Markdown, beware of the flavor!</p>
+<h2 id="a-specification">A specification</h2>
+<p>Markdown would doubtlessly benefit from being clearly defined, <em>i.e.</em> having
+a minimal set of tags (say the one of the original Markdown) and an accurate
+description of what a Markdown-to-HTML converter must do (harder that it sounds,
+think about how to deal with line breaks, nested tags, interference with html
+tags&hellip;). This could be a core Markdown on the top of which extensions (flavors)
+are built, that would be just great (again it is not the current Markdown landscape)!
+Fortunately, a bunch of highly capable people have decided to tackle this
+challenge and have created <a href="http://commonmark.org/">CommonMark</a> that provides:</p>
+<ol>
+<li>
+<p>a specification for Markdown, version 0.28 currently: <a href="http://spec.commonmark.org/">http://spec.commonmark.org/</a></p>
+</li>
+<li>
+<p>useful links to implementations in various programming languages: <a href="https://github.com/commonmark/CommonMark/wiki/List-of-CommonMark-Implementations">https://github.com/commonmark/CommonMark/wiki/List-of-CommonMark-Implementations</a></p>
+</li>
+<li>
+<p>a great tutorial: <a href="http://commonmark.org/help/">&ldquo;LEARN MARKDOWN IN 60 SECONDS&rdquo;</a>.</p>
+</li>
+</ol>
+<p>I really hope this will soon represent a standard. This would be very useful to
+switch from one converter to another without worrying about its behavior. You
+might think this is only for advanced users, well it is not! If you
+use Markdown in different websites, different applications, you are very likely
+switching from one converter to another on a regular basis! And you probably do
+so because&hellip; Markdown is everywhere 🔥!</p>
+<h2 id="everywhere">Everywhere!</h2>
+<p>It would be a tedious work to provide an exhaustive list of the usages of
+Markdown on the Internet. I have therefore decided to discuss below a curated
+set of examples I am familiar with.</p>
+<p>In any situation involving the edition of online content, the usage of Markdown
+brings many advantages (as it was designed for such purpose 😅).
+It is therefore not surprising that Markdown is supported by tons websites and
+web applications where people edit content. For instance, you can use Markdown
+to edit a question or an answer on
+<a href="https://stackoverflow.com/editing-help">StackOverflow</a> or to exchange
+with you colleagues on <a href="https://gitter.im/">Gitter</a>.</p>
+<p>If you create you own website, you could easily find a way to edit content
+with Markdown. Indeed, most famous Content Management Systems (CMS) such as
+<a href="https://en.support.wordpress.com/markdown/">Wordpress support Markdown</a> as well
+as static site generators such as <a href="https://gohugo.io/">Hugo</a> or
+<a href="https://jekyllrb.com/">Jekyll</a>. Furthermore, when markdown support is not a
+primary feature, you should easily find a plugin that brings such support.
+For instance, if you blog with <a href="https://medium.com/">Medium</a> you can use
+<a href="http://markdowntomedium.com/">markdown to Medium</a>.</p>
+<p>Speaking about plugins <a href="https://markdown-here.com/">Markdown Here</a> (by Adam
+Pritchard) allows you to write email in Markdown! I really enjoy it, so I&rsquo;ve
+decided to make a short screencast of me using it, which is what I do pretty
+much everyday! Note that I use the plugin for Thunderbird (Thunderbird 52.7.0).</p>
+<video width="100%" controls>
+ <source src="assets/ex_markdownhere.webm" type="video/webm">
+ Your browser does not support the video tag.
+</video>
+<p>Markdown can also be used to edit the content in HTML presentation frameworks
+such as <a href="https://revealjs.com/#/">reveal.js</a> or <a href="https://remarkjs.com/#1">remark</a>.
+For developers, Markdown has become a natural syntax to write README and Wiki files,
+again easy-to-read and easy-to-write! But also, as a markup language, it is also
+easy-to-format! That&rsquo;s how a README file turns into a very helpful and good-looking
+webpage on Github projects (see the <a href="https://github.com/inSileco/inSileco.github.io">README of this website</a>)!</p>
+<p>Last but not least, Markdown is now extensively used to produce dynamic documents
+including dynamic webpages where text and code are integrated together. For instance,
+you can format your text with Markdown in <a href="http://jupyter.org/">Jupyter Notebooks</a>.
+Similarly, R users now extensively use <a href="https://rmarkdown.rstudio.com/">Rmarkdown</a> to
+edit reports, create package documentations, presentations and websites. In
+particular, we have created this blog with
+<a href="https://bookdown.org/yihui/blogdown/">Blogdown</a> and use Markdown and R Mardown
+for our posts. By the way, do you remember what I said previously about switching
+from one converter to another? Well we do so, as <a href="https://github.com/rstudio/blogdown/issues/171">Blogdown allows us to use two
+different converter</a>.</p>
+<h2 id="markdown-for-other-markup-languages">Markdown for other markup languages?</h2>
+<p>Once again Markdown is a lightweight markup language that emphasize plain-text
+readability and was originally designed to be converted to HTML. HTML is one
+among a long <a href="https://en.wikipedia.org/wiki/List_of_markup_languages">list of markup languages</a>,
+though one of the most widely used. So now let&rsquo;s consider a second
+markup language also designed to format content, say <a href="https://www.latex-project.org/">LateX</a>
+(itself built on the top of TeX 😸!), then why not using Markdown
+for this second markdown language, it <em>only</em> requires a new converter and this
+would allow us to use markdown for two different markup languages 🏆:</p>
+<p>HTML <i class="fa fa-long-arrow-left" aria-hidden="true"></i> Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> LateX</p>
+<p>We can easily imagine Markdown been used with as many markup languages as desired.
+Given that Markdown is rather minimal, Markdown represents a useful subset for
+all those languages (assuming we are talking about markup language that are
+concerned at least partially by plain-text readability). What if we could do
+even more! What if we create an abstract representation of a markup language
+that would act as an universal language and allow to do a conversion
+between many markup languages, <em>i.e.</em>:</p>
+<p>Markup 1 <i class="fa fa-arrows-h" aria-hidden="true"></i> Universal  <i class="fa fa-arrows-h" aria-hidden="true"></i> Markup 2.</p>
+<p>Well, that is pretty much what <a href="https://pandoc.org/">Pandoc</a> has to offers! From
+<a href="https://hackage.haskell.org/package/pandoc">https://hackage.haskell.org/package/pandoc</a> :</p>
+<blockquote>
+<p>In contrast to most existing tools for converting Markdown to HTML, pandoc has
+a modular design: it consists of a set of readers, which parse text in a given
+format and produce a native representation of the document, and a set of writers,
+which convert this native representation into a target format. Thus, adding an
+input or output format requires only adding a reader or writer.</p>
+</blockquote>
+<p>So now we have this fantastic tools thanks to John MacFarlane (I won&rsquo;t give much
+details about Pandoc, which deserves a post it-self, if not more) we can perform
+the conversion between many markup languages, then Markdown becomes very useful
+minimal syntax we can use keeping in mind that it will be converted into
+a richer/heavier markup language. Typically, you can use Markdown to produce
+pdf files as follows: Markdown <i class="fa fa-long-arrow-right" aria-hidden="true"></i> LateX and then Latex is converted into a pdf file! Remember that, irrespective of the flavor, Markdown only accounts for a restricted set of tags. So if you want to further format your document you can actually use other tags of the
+specific markup language you will convert your file into.
+In this case you can use Pandoc afterwards to convert your file into another
+markup language if desired.</p>
+<h2 id="is-markdown-suitable-for-academic-writing">Is Markdown suitable for academic writing?</h2>
+<p>Very good question! Truncated answer &ldquo;No&rdquo; 😞. Less truncated
+answer &ldquo;No, UNLESS you use an adequate flavor of Markdown and an awesome
+tool such as Pandoc!&rdquo; 😅. Indeed the original version
+of Markdown, many essential formatting aspects are not included, among them,
+the most important for academic writing are:</p>
+<ol>
+<li>tables</li>
+<li>support for math editing</li>
+<li>references (crucial)</li>
+</ol>
+<p>Given when I wrote above, a solution would be to use Markdown in combination
+with another markup language such as Latex and most of the document would actually
+be written in Latex, so would it still be academic writing with Markdown? No!</p>
+<p>Fortunately, the needs of academics writing are covered by <a href="https://pandoc.org/MANUAL.html#pandocs-markdown">Pandoc&rsquo;s Markdown</a>! So,</p>
+<ol>
+<li>
+<p>several ways to create <a href="https://pandoc.org/MANUAL.html#tables">tables</a></p>
+</li>
+<li>
+<p><a href="https://pandoc.org/MANUAL.html#math">Latex&rsquo;s syntax for math editing</a></p>
+</li>
+<li>
+<p>there is a specific Pandoc filter <a href="https://github.com/jgm/pandoc-citeproc">pandoc-citeproc</a> that deal very well with citations.</p>
+</li>
+</ol>
+<p>So, thanks to Pandoc, Markdown it is suitable for academic writing.
+There are even more advantages such ad using <a href="https://pandoc.org/MANUAL.html#templates">templates</a>
+and benefit from <a href="https://pandoc.org/MANUAL.html#metadata-blocks">storing metadata of your manuscript directly in your file</a> fir instance through YAML header (another
+potential post topic thanks to Clark Evans). Using Markdown also means for
+the authors to switch from a classical WYSIWYG tool to a Markdown editor. I
+personally use <a href="https://atom.io/">Atom</a> with the following packages: <a href="https://atom.io/packages/markdown-preview">markdown preview enhanced</a>,
+<a href="https://atom.io/packages/autocomplete-bibtex">autocomplete-bibtex</a> (to handle reference) and <a href="https://atom.io/packages/document-outline">document-outline</a> (thanks <a href="https://twitter.com/tpoi">@tpoi</a> for the suggestion about the latter).</p>
+<p>If you looking for more details about this, I highly recommend the tutorial of <a href="http://swcarpentry.github.io/modern-scientific-authoring/">Software Carpentry on the topic</a> and also the
+reading of different points of view such as
+<a href="http://blogs.harvard.edu/pamphlet/files/2014/08/markdownpost-amsart.pdf">&ldquo;Why scholars should write in Markdown&rdquo;</a> by Stuart M. Shieber
+(more articles listed in the resource section).</p>
+<p>A final note about reviews. I personally write my review in Markdown and convert
+them in <code>pdf</code>. I then copy/paste the Markdown file and attache the <code>pdf</code> which
+is Ok, but it would be even better if the zone where I paste the markdown-formatted
+review could be converted into a nicely formatted HTML page. So far, I never came
+across a journal that offers such feature but I am convinced that some journals
+actually support markdown for reviews. I am glad that <a href="https://peercommunityin.org/">Peer Community In</a>
+offers such feature though I have not seen it in action so far!</p>
+<h2 id="resources">Resources</h2>
+<p>While I was writing this post I realize that just as Markdown is, resources
+are everywhere! I though it would be useful to end this posts by providing a
+personal selection of online material.
+Before proceeding, I shall mention the existence of several <a href="https://github.com/sindresorhus/awesome">Awesome lists</a> where you will find even more
+resources. Even better, a <a href="https://github.com/tajmone/markdown-guide#awesomeness">list that lists such lists</a>.
+I recommend you have a look at the list created by <a href="https://github.com/mundimark/awesome-markdown">mundimark</a> and the one by <a href="https://github.com/BubuAnabelas/awesome-markdown">BubuAnabelas</a>.</p>
+<h3 id="syntax-descriptions--specification">Syntax descriptions / Specification</h3>
+<ul>
+<li><a href="https://daringfireball.net/projects/markdown/syntax">Original markdown</a></li>
+<li><a href="fletcherpenney.net/multimarkdown/">MultiMarkdown</a></li>
+<li><a href="https://michelf.ca/projects/php-markdown/extra/">PHP Markdown Extra</a></li>
+<li><a href="https://kramdown.gettalong.org/">kramdown</a></li>
+<li><a href="https://pandoc.org/MANUAL.html#pandocs-markdown">Pandoc&rsquo;s Markdown</a></li>
+<li><a href="https://rmarkdown.rstudio.com/">Rmarkdown</a></li>
+<li><a href="https://en.support.wordpress.com/markdown/">Wordpress</a></li>
+<li><a href="http://commonmark.org">Comon Mark</a></li>
+</ul>
+<h3 id="publications">Publications</h3>
+<ul>
+<li>
+<p><a href="http://blogs.plos.org/mfenner/2012/12/13/a-call-for-scholarly-markdown/">&ldquo;A Call for Scholarly Markdown&rdquo;</a> by Martin Flenner on Plos Blog</p>
+</li>
+<li>
+<p><a href="http://kirkstrobeck.github.io/whatismarkdown.com/">&ldquo;What is Markdown?&rdquo;</a> by Kirk Strobeck</p>
+</li>
+<li>
+<p><a href="http://blogs.harvard.edu/pamphlet/files/2014/08/markdownpost-amsart.pdf">&ldquo;Why scholars should write in Markdown&rdquo;</a> by Stuart M. Shieber on Harvard blog</p>
+</li>
+<li>
+<p><a href="http://blog.kdheepak.com/writing-papers-with-markdown.html">&ldquo;Writing Technical Papers with Markdown&rdquo;</a> by Dheepak Krishnamurthy</p>
+</li>
+<li>
+<p><a href="http://swcarpentry.github.io/modern-scientific-authoring/">&ldquo;Modern Scientific Authoring&rdquo;</a> on Software Carpentry website</p>
+</li>
+<li>
+<p><a href="https://www.kobo.com/ca/en/ebook/markdown-for-writers-1">&ldquo;Markdown for Writers&rdquo;</a> by Gene Wilburn</p>
+</li>
+<li>
+<p><a href="http://www.zverovich.net/2016/06/16/rst-vs-markdown.html">&ldquo;reStructuredText vs Markdown for documentation&rdquo;</a> by Victor Zverovich</p>
+</li>
+</ul>
+<h3 id="editors">Editors</h3>
+<p>There are Markdown-specific editors such as <a href="http://abricotine.brrd.fr/">Abricotine</a>,
+<a href="http://25.io/mou/">Mou</a> or <a href="https://stackedit.io/">Stackedit</a>. Note that most
+of modern code editors include specific libraries for highlight syntaxing and
+preview of documents written in Markdown. For instance, <a href="https://atom.io/">Atom</a> includes a <a href="https://atom.io/packages/markdown-preview">markdown preview</a> as a core
+package and a quick search reveals that there are 30 packages available (query on
+May 12th 2018, Atom 1.26.1 on my Debian device):</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>❯ apm search markdown                                                           <span style="color:#f92672">[</span>16:01:59<span style="color:#f92672">]</span>
+</span></span><span style="display:flex;"><span>Search Results For <span style="color:#e6db74">&#39;markdown&#39;</span> <span style="color:#f92672">(</span>30<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── pp-markdown MarkDown Preview <span style="color:#f92672">(</span><span style="color:#ae81ff">5044</span> downloads, <span style="color:#ae81ff">5</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-fold Fold sections of markdown <span style="color:#f92672">(</span><span style="color:#ae81ff">255</span> downloads, <span style="color:#ae81ff">2</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── tidy-markdown Fix ugly markdown. <span style="color:#f92672">(</span><span style="color:#ae81ff">26173</span> downloads, <span style="color:#ae81ff">76</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-folding Folds and unfolds markdown headings <span style="color:#f92672">(</span><span style="color:#ae81ff">2737</span> downloads, <span style="color:#ae81ff">14</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-helper A collection of utilities <span style="color:#66d9ef">for</span> working with Markdown files <span style="color:#f92672">(</span><span style="color:#ae81ff">489</span> downloads, <span style="color:#ae81ff">2</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-it-preview Markdown Preview that supports MarkdownIt plugins on a per-project basis. <span style="color:#f92672">(</span><span style="color:#ae81ff">274</span> downloads, <span style="color:#ae81ff">0</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── linter-markdown Lint markdown on the fly, using remark-lint <span style="color:#f92672">(</span><span style="color:#ae81ff">73781</span> downloads, <span style="color:#ae81ff">185</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-writer Make Atom a better Markdown editor and an easier static blogging tool. <span style="color:#f92672">(</span><span style="color:#ae81ff">352666</span> downloads, <span style="color:#ae81ff">530</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── tool-bar-markdown-writer A tool-bar plugin that adds Markdown editing actions <span style="color:#f92672">(</span><span style="color:#ae81ff">23599</span> downloads, <span style="color:#ae81ff">73</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-scroll-sync Auto-scroll markdown-preview tab to match markdown source <span style="color:#f92672">(</span><span style="color:#ae81ff">86563</span> downloads, <span style="color:#ae81ff">309</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-table-calc Markdown table calculations <span style="color:#f92672">(</span><span style="color:#ae81ff">21</span> downloads, <span style="color:#ae81ff">0</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-image-paste Just use <span style="color:#e6db74">&#39;ctrl+v&#39;</span> paste image into markdown <span style="color:#f92672">(</span><span style="color:#ae81ff">4510</span> downloads, <span style="color:#ae81ff">7</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-up-img You only need to paste the image to the server automatically, and generate the image link. <span style="color:#f92672">(</span><span style="color:#ae81ff">36</span> downloads, <span style="color:#ae81ff">0</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-img-paste Just use <span style="color:#e6db74">&#39;ctrl+shfit+v&#39;</span> paste image into markdown <span style="color:#f92672">(</span><span style="color:#ae81ff">4873</span> downloads, <span style="color:#ae81ff">7</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── toggle-markdown-task Toggle completion of tasks in GitHub-flavored Markdown files <span style="color:#f92672">(</span><span style="color:#ae81ff">3838</span> downloads, <span style="color:#ae81ff">25</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-pdf Convert markdown to pdf, png or jpeg on the fly. <span style="color:#f92672">(</span><span style="color:#ae81ff">157001</span> downloads, <span style="color:#ae81ff">739</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-toc Generate TOC <span style="color:#f92672">(</span>table of contents<span style="color:#f92672">)</span> of headlines from parsed markdown file <span style="color:#f92672">(</span><span style="color:#ae81ff">40706</span> downloads, <span style="color:#ae81ff">162</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── mr-markdown-pdf Convert markdown to pdf, png or jpeg on the hit of a shortcut. <span style="color:#f92672">(</span><span style="color:#ae81ff">2440</span> downloads, <span style="color:#ae81ff">3</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── atom-csv-markdown A short description of your package <span style="color:#f92672">(</span><span style="color:#ae81ff">3434</span> downloads, <span style="color:#ae81ff">26</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-document Adds tools to make working with long form markdown documents in Atom easier. <span style="color:#f92672">(</span><span style="color:#ae81ff">2925</span> downloads, <span style="color:#ae81ff">19</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-footnote Inserts a Pandoc compatible Markdown footnote. Uses a <span style="color:#e6db74">&#39;random&#39;</span> md5 hash to name footnotes <span style="color:#f92672">(</span><span style="color:#ae81ff">404</span> downloads, <span style="color:#ae81ff">1</span> star<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── language-markdown Adds grammar support <span style="color:#66d9ef">for</span> Markdown <span style="color:#f92672">(</span>including Github flavored, AtomDoc, Markdown Extra, CriticMark, YAML/TOML front-matter, and R Markdown<span style="color:#f92672">)</span>, and smart context-aware behavior to lists, and keyboard shortcuts <span style="color:#66d9ef">for</span> inline emphasis. <span style="color:#f92672">(</span><span style="color:#ae81ff">171358</span> downloads, <span style="color:#ae81ff">231</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-commander Commands <span style="color:#66d9ef">for</span> authoring Markdown, inspired by iA Writer <span style="color:#f92672">(</span><span style="color:#ae81ff">335</span> downloads, <span style="color:#ae81ff">2</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-table-editor Markdown table editor/formatter <span style="color:#f92672">(</span><span style="color:#ae81ff">19863</span> downloads, <span style="color:#ae81ff">52</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-assistant assistant <span style="color:#66d9ef">for</span> markdown writer which can upload image from clipboard <span style="color:#f92672">(</span><span style="color:#ae81ff">5436</span> downloads, <span style="color:#ae81ff">7</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-image-insertion Simple helper <span style="color:#66d9ef">for</span> inserting images into markdown documents. <span style="color:#f92672">(</span><span style="color:#ae81ff">1045</span> downloads, <span style="color:#ae81ff">3</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-tool A markdown helper tool. Such as Insert Time and Insert Pic. <span style="color:#f92672">(</span><span style="color:#ae81ff">206</span> downloads, <span style="color:#ae81ff">1</span> star<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── MDBP-markdown-book-preview Atom Package markdown preview with VivlioStyle <span style="color:#f92672">(</span><span style="color:#ae81ff">135</span> downloads, <span style="color:#ae81ff">0</span> stars<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>├── markdown-to-asciidoc An Atom plugin <span style="color:#66d9ef">for</span> converting a markdown file to asciidoc. Wraps the markdown-to-asciidoc plugin <span style="color:#66d9ef">for</span> the IntelliJ Java IDE. Uses node-java as the node.js bridge to the Java converter class. <span style="color:#f92672">(</span><span style="color:#ae81ff">597</span> downloads, <span style="color:#ae81ff">1</span> star<span style="color:#f92672">)</span>
+</span></span><span style="display:flex;"><span>└── markdown-badges-snippets awesome markdown snippets <span style="color:#66d9ef">for</span> markdown to insert badges elegantly <span style="color:#f92672">(</span><span style="color:#ae81ff">135</span> downloads, <span style="color:#ae81ff">1</span> star<span style="color:#f92672">)</span>
+</span></span></code></pre></div><h3 id="cheat-sheets">Cheat sheets</h3>
+<ul>
+<li><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet</a></li>
+<li><a href="https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf">https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf</a></li>
+</ul>
+<br>
+<div class="endpost">See ya next post! 🎆</div>
+
+
+      <div class="text-justify">
+        
+
+      </div>
+
+
+    
+
+    </center>
+
+    </div>
+
+      <br>
+
+  
+  <script>
+    var $jq = jQuery.noConflict();
+      $jq(function() {
+          var toc = $jq("#toc").tocify({
+            selectors: "h2, h3",
+            scrollTo: 50
+          }).data("toc-tocify");
+    });
+  </script>
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+  
+  
+
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <div id="disqus_thread"></div>
+
+  
+  
+
+  
+
+
+
+
+
+  <script>
+    
+
+
+    var disqus_config = function() {
+      this.page.url = "https://insileco.github.io" + "https://insileco.github.io/2018/05/13/markdown-everywhere/"; 
+      this.page.identifier = "Markdown everywhere!"; 
+    };
+
+    (function() { 
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://insileco.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+
+</div>
+
+
+</div>
+
+        <footer>
+
+          <script src="//yihui.name/js/math-code.js"></script>
+          <script async
+            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+          </script>
+
+            <hr>
+            <p class="copyright text-muted" style="font-size: 1.6rem;">
+              &copy; 2017-2022 inSileco |
+              All rights reserved |
+              Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+                <a href="https://gohugo.io">Hugo</a>
+                and <a href="https://github.com/calintat/minimal">Minimal</a> |
+              Latest build: 19 Jun 2022 21:07 UTC.
+              </p>
+
+        </footer>
+
+    </body>
+
+</html>
+

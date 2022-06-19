@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+
+        <title>inSilecoMisc 0.4.0 (part 1/2)</title>
+
+        <style>
+
+    html body {
+        font-family: Lato, sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+  <link rel="stylesheet" href="/css/academicons.min.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/jquery.tocify.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+  <script src="/js/jquery-1.8.3.min.js"></script>
+
+  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
+
+  <script src="/js/jquery.tocify.min.js"></script>
+
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'UA-109508556-1');
+        </script>
+        
+
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">inSilecoMisc 0.4.0 (part 1/2)</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                                <li><a href="/software/">Software</a></li>
+                            
+                                <li><a href="/wiki/">Wiki</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<img class="full-width" width="100%" src="/img/banner4.png"></img>
+
+
+<div>
+
+  <div class="col-md-3">
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+          <div id="toc"></div>
+
+        </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-8">
+
+    <h1><a href="/2020/04/14/insilecomisc-0.4.0-part-1/2/">inSilecoMisc 0.4.0 (part 1/2)</a></h1>
+
+    <h4>April 14, 2020</h4>
+
+    <p>
+      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> 
+      <br>
+      
+       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/remotes"><kbd class="item-tag2">remotes</kbd></a>  <a href="/rpkgs/insilecomisc"><kbd class="item-tag2">inSilecoMisc</kbd></a> 
+      
+    </p>
+
+    
+      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+       
+        <a href="/about/">Kevin Cazelles</a> &nbsp;
+      
+     <a href="#"></a></p>
+    
+
+    
+      <p> <i class="fa fa-check-square" aria-hidden="true", title="Reviewer(s)"></i>
+       
+      <a href="/about/">Steve Vissault</a> &nbsp;
+      
+      <a href="#"></a></p>
+    
+
+    <p>
+    
+    
+    
+      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=8min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+    
+    
+    
+      <a href="http://www.R-bloggers.com">
+      <img src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
+      <a>
+     &nbsp;
+    
+    
+      <a href = "https://creativecommons.org/licenses/by/4.0/">
+      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+      </a>
+     &nbsp;
+    
+     &nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f14%2finsilecomisc-0.4.0-part-1%2f2%2f&text=inSilecoMisc%200.4.0%20%28part%201%2f2%29" target="_blank">
+      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f14%2finsilecomisc-0.4.0-part-1%2f2%2f?link=http://left&link=http://right}'>
+    </a>
+  </p>
+
+
+    <br>
+
+    <div class="text-justify">
+
+      
+
+
+<div id="insilecomisc" class="section level2">
+<h2>inSilecoMisc</h2>
+<p><a href="https://github.com/inSileco/inSilecoMisc"><code>inSilecoMisc</code></a> is an R 📦 I
+have been maintaining for four years now. It was originally designed as a
+convenient way to share handy functions. Instead of stacking them in my
+<code>.Rprofile</code>, I created a package and made it available on GitHub. <code>inSilecoMisc</code>
+is therefore a set of miscellaneous functions, just as other R packages (e.g.
+<a href="https://CRAN.R-project.org/package=Hmisc"><code>Hmisc</code></a>) but as I frequently change its API,
+it is meant to stay in the experimental stage! I like having <code>inSilecoMisc</code> on
+GitHub because it gives a large degree of freedom to experiment new ideas, new
+functions and the code remains available and easy to install! Despite the “API
+instability”, the overall quality of the package is constantly improving (at
+least, I hope so 😄). I have even included some of the somewhat more
+matured functions in the research compendium of recent manuscripts<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+<p>Over the last month, I made substantial changes throughout the package. I
+re-wrote some functions, improved the documentation of others and added new
+features. I also changed the way the <a href="https://kevcaz.github.io/notes/ci/deploypkgdown2/">pkgdown
+website is deployed</a> by
+<a href="https://travis-ci.org/github/inSileco/inSilecoMisc">Travis</a>. In what follows, I introduced several functions included in
+versions 0.4.0. Note that as <code>inSilecoMisc</code> is on GitHub, an easy way
+to install <code>inSilecoMisc</code> is provided by the package
+<a href="https://cran.r-project.org/web/packages/remotes/index.html"><code>remotes</code></a></p>
+<pre class="r"><code>install.packages(&quot;remotes&quot;) # if not already installed
+remotes::install_github(&quot;inSileco/inSilecoMisc&quot;)</code></pre>
+<p>Once installed, let’s load it!</p>
+<pre class="r"><code>library(&quot;inSilecoMisc&quot;)
+packageVersion(&quot;inSilecoMisc&quot;)
+#R&gt;  [1] &#39;0.7.0&#39;</code></pre>
+</div>
+<div id="adjuststrings" class="section level2">
+<h2>adjustStrings</h2>
+<p>As an ecologist, I frequently work with multiple datasets, and I often need to
+name/rename a bunch of files. One function I often use to do so is <code>sprintf()</code>:</p>
+<pre class="r"><code>sprintf(&quot;file_%02d&quot;, 1:10)
+#R&gt;   [1] &quot;file_01&quot; &quot;file_02&quot; &quot;file_03&quot; &quot;file_04&quot; &quot;file_05&quot; &quot;file_06&quot; &quot;file_07&quot;
+#R&gt;   [8] &quot;file_08&quot; &quot;file_09&quot; &quot;file_10&quot;</code></pre>
+<p>I originally designed
+<a href="https://insileco.github.io/inSilecoMisc/reference/adjustStrings.html"><code>adjustStrings()</code></a>
+to adjust the number of 0 to a string in a similar fashion:</p>
+<pre class="r"><code>adjustStrings(1:10, n = 2)
+#R&gt;   [1] &quot;01&quot; &quot;02&quot; &quot;03&quot; &quot;04&quot; &quot;05&quot; &quot;06&quot; &quot;07&quot; &quot;08&quot; &quot;09&quot; &quot;10&quot;</code></pre>
+<p>But I was rapidly interested in having a more flexible function. So, I added several parameters to do that!
+In the last version of <code>inSilecoMisc</code>, <code>adjustStrings()</code> have 5 arguments:</p>
+<ol style="list-style-type: decimal">
+<li><code>x</code>: the input character vector to be adjusted;</li>
+<li><code>n</code>: the number of characters to be added or used to determine the length of output strings;</li>
+<li><code>extra</code>: the character(s) to be added (<code>0</code> is the default value);</li>
+<li><code>align</code>: the string alignment (“right”, “left” or “center”);</li>
+<li><code>add</code>: whether <code>n</code> should be the constraint or a number of characters to be added (a constraint by default).</li>
+</ol>
+<p>By default, <code>adjustStrings()</code> uses <code>n</code> as a constrain for the length of the output strings. so if use <code>n = 4</code> instead of <code>n = 2</code> in the first example, all
+elements of the output vector will have 4 characters:</p>
+<pre class="r"><code>adjustStrings(1:10, n = 4)
+#R&gt;   [1] &quot;0001&quot; &quot;0002&quot; &quot;0003&quot; &quot;0004&quot; &quot;0005&quot; &quot;0006&quot; &quot;0007&quot; &quot;0008&quot; &quot;0009&quot; &quot;0010&quot;</code></pre>
+<p>Add I change the value of <code>extra</code> to specify the replacement character(s) to be used :</p>
+<pre class="r"><code>adjustStrings(1:10, n = 4, extra = 1)
+#R&gt;   [1] &quot;1111&quot; &quot;1112&quot; &quot;1113&quot; &quot;1114&quot; &quot;1115&quot; &quot;1116&quot; &quot;1117&quot; &quot;1118&quot; &quot;1119&quot; &quot;1110&quot;
+adjustStrings(1:10, n = 4, extra = &quot;a&quot;)
+#R&gt;   [1] &quot;aaa1&quot; &quot;aaa2&quot; &quot;aaa3&quot; &quot;aaa4&quot; &quot;aaa5&quot; &quot;aaa6&quot; &quot;aaa7&quot; &quot;aaa8&quot; &quot;aaa9&quot; &quot;aa10&quot;
+adjustStrings(1:10, n = 4, extra = &quot;-&quot;)
+#R&gt;   [1] &quot;---1&quot; &quot;---2&quot; &quot;---3&quot; &quot;---4&quot; &quot;---5&quot; &quot;---6&quot; &quot;---7&quot; &quot;---8&quot; &quot;---9&quot; &quot;--10&quot;
+adjustStrings(1:10, n = 4, extra = &quot;ab&quot;)
+#R&gt;   [1] &quot;aba1&quot; &quot;aba2&quot; &quot;aba3&quot; &quot;aba4&quot; &quot;aba5&quot; &quot;aba6&quot; &quot;aba7&quot; &quot;aba8&quot; &quot;aba9&quot; &quot;ab10&quot;</code></pre>
+<p>With <code>align</code>, I can choose where extra characters are added:</p>
+<pre class="r"><code>adjustStrings(1:10, n = 4, extra = &quot;-&quot;, align = &quot;right&quot;) # default
+#R&gt;   [1] &quot;---1&quot; &quot;---2&quot; &quot;---3&quot; &quot;---4&quot; &quot;---5&quot; &quot;---6&quot; &quot;---7&quot; &quot;---8&quot; &quot;---9&quot; &quot;--10&quot;
+adjustStrings(1:10, n = 4, extra = &quot;-&quot;, align = &quot;left&quot;)
+#R&gt;   [1] &quot;1---&quot; &quot;2---&quot; &quot;3---&quot; &quot;4---&quot; &quot;5---&quot; &quot;6---&quot; &quot;7---&quot; &quot;8---&quot; &quot;9---&quot; &quot;10--&quot;
+adjustStrings(1:10, n = 4, extra = &quot;-&quot;, align = &quot;center&quot;)
+#R&gt;   [1] &quot;--1-&quot; &quot;--2-&quot; &quot;--3-&quot; &quot;--4-&quot; &quot;--5-&quot; &quot;--6-&quot; &quot;--7-&quot; &quot;--8-&quot; &quot;--9-&quot; &quot;-10-&quot;</code></pre>
+<p>Also, if <code>add = TRUE</code>, then exactly <code>n</code> extra characters are added:</p>
+<pre class="r"><code>adjustStrings(1:10, n = 4, extra = &quot;-&quot;, align = &quot;right&quot;, add = TRUE)
+#R&gt;   [1] &quot;----1&quot;  &quot;----2&quot;  &quot;----3&quot;  &quot;----4&quot;  &quot;----5&quot;  &quot;----6&quot;  &quot;----7&quot;  &quot;----8&quot; 
+#R&gt;   [9] &quot;----9&quot;  &quot;----10&quot;
+adjustStrings(1:10, n = 4, extra = &quot;-&quot;, align = &quot;left&quot;, add = TRUE)
+#R&gt;   [1] &quot;1----&quot;  &quot;2----&quot;  &quot;3----&quot;  &quot;4----&quot;  &quot;5----&quot;  &quot;6----&quot;  &quot;7----&quot;  &quot;8----&quot; 
+#R&gt;   [9] &quot;9----&quot;  &quot;10----&quot;
+adjustStrings(1:10, n = 4, extra = &quot;-&quot;, align = &quot;center&quot;, add = TRUE)
+#R&gt;   [1] &quot;--1--&quot;  &quot;--2--&quot;  &quot;--3--&quot;  &quot;--4--&quot;  &quot;--5--&quot;  &quot;--6--&quot;  &quot;--7--&quot;  &quot;--8--&quot; 
+#R&gt;   [9] &quot;--9--&quot;  &quot;--10--&quot;</code></pre>
+<p>Note that in this last case, lengths of output character strings may differ!
+One last remark about how <code>adjustStrings()</code> works when <code>add = FALSE</code>: for a given string, there are 3 scenarios :</p>
+<ol style="list-style-type: decimal">
+<li>the string to be adjusted has more characters than <code>n</code>; in this case, the string is simply cut off:</li>
+</ol>
+<pre class="r"><code>adjustStrings(&quot;ABCD&quot;, n = 2, extra = &quot;efgh&quot;)
+#R&gt;  [1] &quot;AB&quot;</code></pre>
+<ol start="2" style="list-style-type: decimal">
+<li>the string has more characters but the number of character for the adjustment is smaller than the number of <code>extra</code>’s character; in this case, <code>extra</code> is cut off:</li>
+</ol>
+<pre class="r"><code>adjustStrings(&quot;ABCD&quot;, n = 6, extra = &quot;efgh&quot;)
+#R&gt;  [1] &quot;efABCD&quot;</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>finally, when <code>extra</code> is too short to adjust the string according to <code>n</code>, <code>extra</code> is repeated:</li>
+</ol>
+<pre class="r"><code>adjustStrings(&quot;ABCD&quot;, n = 14, extra = &quot;efgh&quot;)
+#R&gt;  [1] &quot;efghefghefABCD&quot;</code></pre>
+<p>These combinations give flexibility to the user. One application of the
+<code>adjustStrings()</code> function comes when running a long script. In such situation,
+it is convenient to create recognizable code section to ease the navigation
+across long output!</p>
+<pre class="r"><code>report &lt;- function(title, symbol = &quot;#&quot;) {
+  cat(adjustStrings(title, 70, symbol, align = &quot;center&quot;), &quot;\n&quot;)
+}
+report(&quot; part 1 &quot;)
+report(&quot; Solving ODE &quot;, &quot;~&quot;)
+report(&quot; Last but not least! &quot;, &quot;=&quot;)
+#R&gt;  ############################### part 1 ############################### 
+#R&gt;  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Solving ODE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
+#R&gt;  ========================= Last but not least! ========================</code></pre>
+</div>
+<div id="keepwords" class="section level2">
+<h2>keepWords</h2>
+<p><a href="https://insileco.github.io/inSilecoMisc/reference/keepWords.html"><code>keepWords()</code></a> allows the user to select words based on their position in
+character strings. Before using it, I would like to introduce <code>loremIpsum()</code>
+that generates <a href="https://en.wikipedia.org/wiki/Lorem_ipsum">placeholder texts</a>.
+Note that there are several functions to generate placeholder texts available
+elsewhere. For instance, <code>stringi</code> has
+<a href="https://jangorecki.gitlab.io/data.cube/library/stringi/html/stri_rand_lipsum.html"><code>stri_rand_lipsum()</code></a>
+and <a href="https://www.rdocumentation.org/packages/UsingR/versions/2.0-6/topics/lorem"><code>UsingR</code> includes
+<code>lorem()</code></a>.
+By default, this <code>loremIpsum()</code> function returns two paragraphs of text:</p>
+<pre class="r"><code>cat(loremIpsum())
+#R&gt;  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+#R&gt;    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+#R&gt;    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+#R&gt;    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+#R&gt;    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+#R&gt;    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+#R&gt;  
+#R&gt;    Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius,
+#R&gt;    turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis
+#R&gt;    sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus
+#R&gt;    et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut
+#R&gt;    ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt
+#R&gt;    sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum.
+#R&gt;    Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget,
+#R&gt;    consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl
+#R&gt;    adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque
+#R&gt;    nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis,
+#R&gt;    laoreet et, pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu,
+#R&gt;    feugiat in, orci. In hac habitasse platea dictumst.
+#R&gt;  </code></pre>
+<p>but it also allows the user to set the number of words of the character string returned:</p>
+<pre class="r"><code>loremIpsum(18)
+#R&gt;  [1] &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\n tempor incididunt ut labore et dolore magna&quot;</code></pre>
+<p>Note the escape characters (<code>\n</code>)! Now let’s focus on <code>keepWords()</code>. Assuming I
+want to extract the second word in both sentences <code>loremIpsum(18)</code> and <code>be or not to be</code>, all I have to do is:</p>
+<pre class="r"><code>keepWords(c(loremIpsum(18), &quot;be or not to be&quot;), 2)
+#R&gt;  [1] &quot;ipsum&quot; &quot;or&quot;</code></pre>
+<p>and if I am interested in extracting specific word positions, I can pass a numerical vector:</p>
+<pre class="r"><code>keepWords(c(loremIpsum(18), &quot;be or not to be&quot;), c(1:4, 12:16))
+#R&gt;  [1] &quot;Lorem ipsum dolor sit tempor incididunt ut labore et&quot;
+#R&gt;  [2] &quot;be or not to NA NA NA NA NA&quot;</code></pre>
+<p>As you may have noted, <code>NA</code>s are added when the position selected does not
+exist. This behavior could be useful but also annoying! Fortunately, an
+argument allows to remove <code>NA</code>s.</p>
+<pre class="r"><code>keepWords(c(loremIpsum(18), &quot;be or not to be&quot;), c(1:4, 12:16), na.rm = TRUE)
+#R&gt;  [1] &quot;Lorem ipsum dolor sit tempor incididunt ut labore et&quot;
+#R&gt;  [2] &quot;be or not to&quot;</code></pre>
+<p>Also, <code>collapse</code> allows the user to change the character used to separate words:</p>
+<pre class="r"><code>keepWords(loremIpsum(18), c(1:6, 14:18), collapse = &quot;-&quot;)
+#R&gt;  [1] &quot;Lorem-ipsum-dolor-sit-amet-consectetur-ut-labore-et-dolore-magna&quot;</code></pre>
+<p>and if <code>collapse = NULL</code> then list will be returned including a vector of the selected words per input string:</p>
+<pre class="r"><code>keepWords(c(loremIpsum(18), &quot;be or not to be&quot;), c(2:3), collapse = NULL)
+#R&gt;  [[1]]
+#R&gt;  [1] &quot;ipsum&quot; &quot;dolor&quot;
+#R&gt;  
+#R&gt;  [[2]]
+#R&gt;  [1] &quot;or&quot;  &quot;not&quot;</code></pre>
+<p>Note that all punctuation characters will be removed. This can be changed by tweaking argument <code>split_words</code>!</p>
+<p>There are two other functions that work similarly: <code>keepLetters()</code> and <code>keepInitials()</code>. The former selects letters instead of words.</p>
+<pre class="r"><code>keepLetters(loremIpsum(18), c(1:6, 14:18))
+#R&gt;  [1] &quot;Loremiorsit&quot;
+keepLetters(loremIpsum(18), c(1:6, 14:18), collapse = &quot;-&quot;)
+#R&gt;  [1] &quot;L-o-r-e-m-i-o-r-s-i-t&quot;
+keepLetters(loremIpsum(18), c(1:6, 14:18), collapse = NULL)
+#R&gt;  [[1]]
+#R&gt;   [1] &quot;L&quot; &quot;o&quot; &quot;r&quot; &quot;e&quot; &quot;m&quot; &quot;i&quot; &quot;o&quot; &quot;r&quot; &quot;s&quot; &quot;i&quot; &quot;t&quot;</code></pre>
+<p>while the latter extracts initials</p>
+<pre class="r"><code>keepInitials(&quot;National Basketball Association&quot;)
+#R&gt;  [1] &quot;NBA&quot;
+keepInitials(&quot;National Basketball Association&quot;, &quot;-&quot;)
+#R&gt;  [1] &quot;N&quot;</code></pre>
+<p>Note that if the input character vector has a mixture of lower and upper case, so will the output</p>
+<pre class="r"><code>keepInitials(&quot;National basketball association&quot;)
+#R&gt;  [1] &quot;Nba&quot;</code></pre>
+<p>if this annoys you, base functions <code>upper()</code> and <code>lower()</code> come in handy!</p>
+<pre class="r"><code>keepInitials(tolower(&quot;National basketball association&quot;))
+#R&gt;  [1] &quot;nba&quot;
+keepInitials(toupper(&quot;National basketball association&quot;))
+#R&gt;  [1] &quot;NBA&quot;</code></pre>
+<p><br></p>
+</div>
+<div id="concluding-remarks" class="section level2">
+<h2>Concluding remarks</h2>
+<p>In this post, I focused on <code>inSileco</code>’s functions that manipulate character
+strings (all of them call
+<a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/strsplit.html"><code>str_split()</code></a>
+at some point). If you are interested in learning more about strings
+manipulations, you should checkout the ebook <a href="https://www.gastonsanchez.com/r4strings/">“Handling Strings with
+R”</a> by <a href="https://www.gastonsanchez.com/">Gaston
+Sanchez</a>. There are also various blog posts on
+this topic (for instance
+<a href="http://uc-r.github.io/string_manipulation_baseR/">http://uc-r.github.io</a> or on
+<a href="https://data-flair.training/blogs/r-string-manipulation/">data-flair</a>) and, obviously, the documentation of packages that do such manipulations (e.g. <a href="https://CRAN.R-project.org/package=stringi"><code>stringi</code></a>).</p>
+<p>This concludes the first part of this post, additional features of the
+<code>inSilecoMisc</code> package will be introduced the second part of this post 🎉!</p>
+<div style="padding: 2rem 0rem 2rem 0rem;">
+<details>
+<summary>
+<h4>
+<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
+<i class="fa fa-cogs" aria-hidden="true"></i>
+</h4>
+</summary>
+<pre class="r"><code>sessionInfo()
+#R&gt;  R version 4.2.0 (2022-04-22)
+#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)
+#R&gt;  Running under: Ubuntu 20.04.4 LTS
+#R&gt;  
+#R&gt;  Matrix products: default
+#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
+#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
+#R&gt;  
+#R&gt;  locale:
+#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
+#R&gt;   [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
+#R&gt;   [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
+#R&gt;  [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+#R&gt;  
+#R&gt;  attached base packages:
+#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     
+#R&gt;  
+#R&gt;  other attached packages:
+#R&gt;  [1] inSilecoMisc_0.7.0     inSilecoRef_0.0.1.9000
+#R&gt;  
+#R&gt;  loaded via a namespace (and not attached):
+#R&gt;   [1] tidyselect_1.1.2  xfun_0.31         bslib_0.3.1       purrr_0.3.4      
+#R&gt;   [5] vctrs_0.4.1       generics_0.1.2    miniUI_0.1.1.1    htmltools_0.5.2  
+#R&gt;   [9] yaml_2.3.5        utf8_1.2.2        rlang_1.0.2       later_1.3.0      
+#R&gt;  [13] pillar_1.7.0      jquerylib_0.1.4   httpcode_0.3.0    glue_1.6.2       
+#R&gt;  [17] DBI_1.1.2         lifecycle_1.0.1   plyr_1.8.7        stringr_1.4.0    
+#R&gt;  [21] blogdown_1.10     htmlwidgets_1.5.4 evaluate_0.15     knitr_1.39       
+#R&gt;  [25] fastmap_1.1.0     httpuv_1.6.5      curl_4.3.2        fansi_1.0.3      
+#R&gt;  [29] Rcpp_1.0.8.3      xtable_1.8-4      promises_1.2.0.1  DT_0.23          
+#R&gt;  [33] jsonlite_1.8.0    rcrossref_1.1.0   mime_0.12         digest_0.6.29    
+#R&gt;  [37] stringi_1.7.6     bookdown_0.27     dplyr_1.0.9       shiny_1.7.1      
+#R&gt;  [41] cli_3.3.0         tools_4.2.0       magrittr_2.0.3    sass_0.4.1       
+#R&gt;  [45] tibble_3.1.7      RefManageR_1.3.0  crul_1.2.0        crayon_1.5.1     
+#R&gt;  [49] pkgconfig_2.0.3   ellipsis_0.3.2    xml2_1.3.3        lubridate_1.8.0  
+#R&gt;  [53] assertthat_0.2.1  rmarkdown_2.14    httr_1.4.3        R6_2.5.1         
+#R&gt;  [57] compiler_4.2.0</code></pre>
+</details>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol>
+<li id="fn1"><p>see the following <i class="fa fa-github" aria-hidden="true"></i>
+repositories:
+<a href="https://github.com/McCannLab/HomogenFishOntario">HomogenFishOntario</a> and
+<a href="https://github.com/TheoreticalEcosystemEcology/coocc_not_inter">coocc_not_inter</a>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+      <div class="text-justify">
+        
+
+      </div>
+
+
+    
+
+    </center>
+
+    </div>
+
+      <br>
+
+  
+  <script>
+    var $jq = jQuery.noConflict();
+      $jq(function() {
+          var toc = $jq("#toc").tocify({
+            selectors: "h2, h3",
+            scrollTo: 50
+          }).data("toc-tocify");
+    });
+  </script>
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+  
+  
+
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <div id="disqus_thread"></div>
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/">R as a ruler? How to calculate distances between geographical objects</a> <small>April 8, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/gis"><kbd class="item-tag">GIS</kbd></a>  <a href="/tags/utils"><kbd class="item-tag">utils</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+
+
+
+  <script>
+    
+
+
+    var disqus_config = function() {
+      this.page.url = "https://insileco.github.io" + "https://insileco.github.io/2020/04/14/insilecomisc-0.4.0-part-1/2/"; 
+      this.page.identifier = "inSilecoMisc 0.4.0 (part 1/2)"; 
+    };
+
+    (function() { 
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://insileco.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+
+</div>
+
+
+</div>
+
+        <footer>
+
+          <script src="//yihui.name/js/math-code.js"></script>
+          <script async
+            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+          </script>
+
+            <hr>
+            <p class="copyright text-muted" style="font-size: 1.6rem;">
+              &copy; 2017-2022 inSileco |
+              All rights reserved |
+              Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+                <a href="https://gohugo.io">Hugo</a>
+                and <a href="https://github.com/calintat/minimal">Minimal</a> |
+              Latest build: 19 Jun 2022 21:07 UTC.
+              </p>
+
+        </footer>
+
+    </body>
+
+</html>
+

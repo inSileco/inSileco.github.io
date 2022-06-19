@@ -1,0 +1,991 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+    <head>
+
+        <title>Hierarchical edge bundling using base plot</title>
+
+        <style>
+
+    html body {
+        font-family: Lato, sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+  <link rel="stylesheet" href="/css/academicons.min.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/jquery.tocify.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+ 
+
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+
+  <script src="/js/jquery-1.8.3.min.js"></script>
+
+  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
+
+  <script src="/js/jquery.tocify.min.js"></script>
+
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'UA-109508556-1');
+        </script>
+        
+
+
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+
+            <div class="container">
+
+                <div class="navbar-header">
+
+                    <a class="navbar-brand visible-xs" href="#">Hierarchical edge bundling using base plot</a>
+
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                </div>
+
+                <div class="collapse navbar-collapse">
+
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                                <li><a href="/software/">Software</a></li>
+                            
+                                <li><a href="/wiki/">Wiki</a></li>
+                            
+                        </ul>
+                    
+
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+
+                </div>
+
+            </div>
+
+        </nav>
+
+
+<img class="full-width" width="100%" src="/img/banner4.png"></img>
+
+
+<div>
+
+  <div class="col-md-3">
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+          <div id="toc"></div>
+
+        </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-8">
+
+    <h1><a href="/2018/02/21/hierarchical-edge-bundling-using-base-plot/">Hierarchical edge bundling using base plot</a></h1>
+
+    <h4>February 21, 2018</h4>
+
+    <p>
+      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/viz"><kbd class="item-tag">Viz</kbd></a>  <a href="/tags/network"><kbd class="item-tag">network</kbd></a> 
+      <br>
+      
+       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/graphicsutils"><kbd class="item-tag2">graphicsutils</kbd></a>  <a href="/rpkgs/dplyr"><kbd class="item-tag2">dplyr</kbd></a>  <a href="/rpkgs/plotrix"><kbd class="item-tag2">plotrix</kbd></a> 
+      
+    </p>
+
+    
+      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+       
+        <a href="/about/">David Beauchesne</a> &nbsp;
+      
+     <a href="#"></a></p>
+    
+
+    
+      <p> <i class="fa fa-check-square" aria-hidden="true", title="Reviewer(s)"></i>
+       
+      <a href="/about/">Kevin Cazelles</a> &nbsp;
+      
+      <a href="#"></a></p>
+    
+
+    <p>
+    
+    
+    
+      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=15min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+    
+    
+     &nbsp;
+    
+    
+      <a href = "https://creativecommons.org/licenses/by/4.0/">
+      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+      </a>
+     &nbsp;
+    
+     &nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2018%2f02%2f21%2fhierarchical-edge-bundling-using-base-plot%2f&text=Hierarchical%20edge%20bundling%20using%20base%20plot" target="_blank">
+      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2018%2f02%2f21%2fhierarchical-edge-bundling-using-base-plot%2f?link=http://left&link=http://right}'>
+    </a>
+  </p>
+
+
+    <br>
+
+    <div class="text-justify">
+
+      
+
+
+<p>I recently came across a very interesting paper from Laura Dee and collaborators
+focused on the concept of metanetworks and entitled “<em>Operationalizing Network
+Theory for Ecosystem Service Assessments</em>”
+(<a href="http://www.cell.com/trends/ecology-evolution/fulltext/S0169-5347(16)30192-6">Dee <em>et al</em> 2017, TREE 32(2):118-130</a>).
+After reading that article I have begun to revamp the context of my thesis around
+the concept of metanetworks to include environmental impact assessment and
+cumulative impacts assessment within such a framework.</p>
+<p>Work extensively with networks, you quickly realize that coming up with
+meaningful and useful visualization can be a bit of a challenge. Thinking about
+which type of visualization to use for this, the notion of using
+hierarchical edge bundling became very appealing to capture the complexity of
+network structure at a glance. While this type of visualization can be close to
+useless at a fine scale to study individual connections, it can be pretty useful
+to glean insights as to the overall arrangements of links within networks.</p>
+<p>With that in mind, I began going through the material available to make hierarchical
+edge bundling in R. There is quite a bit of material already available on R, but
+what I found was always through <code>ggraph</code> and <code>ggplot</code>, which I personally don’t
+enjoy using all that much (<em>e.g.</em>
+<a href="https://www.r-graph-gallery.com/hierarchical-edge-bundling/">this</a>).
+I rather prefer having full control and understanding of what I am doing with my
+visualizations. So, is here the product of this work to generate the figure I wished to
+create for my thesis!</p>
+<div id="libraries" class="section level2">
+<h2>Libraries</h2>
+<pre class="r"><code>library(graphicsutils)
+pal_insileco &lt;- gpuPalette(&quot;insileco&quot;)</code></pre>
+</div>
+<div id="data" class="section level2">
+<h2>Data</h2>
+<p>Let’s start by simulating data for a metanetwork (<em>i.e.</em> a network composed of
+multiple networks). To make this as simple as possible, I will simply simulate
+a dataset composed of hierarchical nodes and another one identifying the links
+between those nodes.</p>
+<pre class="r"><code># Individual network nodes
+  opt &lt;- options()
+  options(stringsAsFactors = FALSE)
+  drivers &lt;- data.frame(network = &#39;Drivers&#39;, name = paste0(&#39;driver_&#39;,1:15))
+  species &lt;- data.frame(network = &#39;Species&#39;, name = paste0(&#39;species_&#39;,1:30))
+  actions &lt;- data.frame(network = &#39;Actions&#39;, name = paste0(&#39;action_&#39;,1:9))
+  managers &lt;- data.frame(network = &#39;Managers&#39;, name = paste0(&#39;manager_&#39;,1:9))
+  beneficiaries &lt;- data.frame(network = &#39;Beneficiaries&#39;, name = paste0(&#39;beneficiary_&#39;,1:9))
+
+# Nodes dataframe
+  nodes &lt;- rbind(drivers, species, actions, managers, beneficiaries)
+
+# Simulate links
+  links &lt;- data.frame(from = sample(nodes$name, 300, replace = TRUE),
+                      to = sample(nodes$name, 300, replace = TRUE))
+  links &lt;- links[!duplicated(links), ]   # Remove duplicates
+  links &lt;- links[!links$from == links$to, ] # Remove &quot;cannibalism&quot;
+
+# Combine in a single object
+  metanetwork &lt;- vector(&#39;list&#39;, 0)
+  metanetwork$nodes &lt;- nodes
+  metanetwork$links &lt;- links
+
+head(nodes)
+#R&gt;    network     name
+#R&gt;  1 Drivers driver_1
+#R&gt;  2 Drivers driver_2
+#R&gt;  3 Drivers driver_3
+#R&gt;  4 Drivers driver_4
+#R&gt;  5 Drivers driver_5
+#R&gt;  6 Drivers driver_6
+head(links)
+#R&gt;             from            to
+#R&gt;  1     manager_8      action_9
+#R&gt;  2     driver_11     species_5
+#R&gt;  3      driver_7      action_3
+#R&gt;  4     species_6 beneficiary_3
+#R&gt;  5    species_20     species_7
+#R&gt;  6 beneficiary_3    species_25</code></pre>
+</div>
+<div id="circle-functions" class="section level2">
+<h2>Circle functions</h2>
+<p>Now that we have the nodes and links, we need to create the necessary functions
+that will allow us to position our data on a circular graph.</p>
+<p><br/></p>
+<div id="circle-coordinates" class="section level3">
+<h3>Circle coordinates</h3>
+<p>The first function we need will be used to generate the x and y coordinates of a
+circle for a given angle and circle radius, which we can obtain with some circle trigonometry.</p>
+<pre class="r"><code># Let&#39;s begin by creating a function that will give us the x and y coordinates
+# of the outside of a circle given a certain radius
+coordCircle &lt;- function(theta = NULL, radius = 1) {
+  data.frame(x = radius * cos(theta),
+             y = radius * sin(theta))
+  }
+
+coordCircle(theta = pi, radius = 1)
+#R&gt;     x            y
+#R&gt;  1 -1 1.224647e-16</code></pre>
+<p><br/></p>
+</div>
+<div id="group-boundaries" class="section level3">
+<h3>Group boundaries</h3>
+<p>The second function that we need is one that will allow us to distribute groups
+on the circular plot according to the number of elements composing that group.
+In essence, we wish to provide the upper and lower boundaries of each individual
+network composing the metanetwork. We may also want to add a gap between the
+individual networks on the graph. This will make the visual aspect of the graph
+more appealing.</p>
+<pre class="r"><code>bound &lt;- function(metanetwork, gap = .025, addGap = TRUE) {
+  # Metanetwork list composed of &quot;nodes&quot; and &quot;links&quot;
+  # Size of gap between groups on the graph
+  # addGap logical whether to add gap or not
+  nGroup &lt;- as.data.frame(table(metanetwork$nodes$network))
+  nGroup$Prop &lt;- nGroup$Freq / sum(nGroup$Freq)
+  nGroup$spanDeg &lt;- 2 * pi * nGroup$Prop
+  nGroup$upper &lt;- nGroup$lower &lt;- 0
+  for(i in 2:nrow(nGroup)) nGroup$lower[i] &lt;- nGroup$lower[i-1] + nGroup$spanDeg[i-1]
+  nGroup$upper &lt;- nGroup$lower + nGroup$spanDeg
+
+  if (addGap) {
+    nGroup$lower &lt;- nGroup$lower + gap / 2
+    nGroup$upper &lt;- nGroup$upper - gap / 2
+  }
+
+  nGroup
+}
+
+# Add to metanetworks list
+  metanetwork$networkGroup &lt;- bound(metanetwork)
+
+metanetwork$networkGroup
+#R&gt;             Var1 Freq      Prop   spanDeg     lower     upper
+#R&gt;  1       Actions    9 0.1250000 0.7853982 0.0125000 0.7728982
+#R&gt;  2 Beneficiaries    9 0.1250000 0.7853982 0.7978982 1.5582963
+#R&gt;  3       Drivers   15 0.2083333 1.3089969 1.5832963 2.8672933
+#R&gt;  4      Managers    9 0.1250000 0.7853982 2.8922933 3.6526914
+#R&gt;  5       Species   30 0.4166667 2.6179939 3.6776914 6.2706853</code></pre>
+<p><br/></p>
+</div>
+<div id="nodes-coordinates" class="section level3">
+<h3>Nodes coordinates</h3>
+<p>Now we need to get the coordinates of the edges so that we can position them
+on the graph. We also need to get coordinates for each network so that we can
+build an internal, hierarchical structure to the distribution of edges on the
+graph that can be used to plot links between edges. These should be distributed
+as the user wish within the circle using different radius values. As with the
+groups, we can add a gap between the edges at the beginning and end of the group
+for visual differentiation between the group.</p>
+<pre class="r"><code>nodePos &lt;- function(metanetwork, edgeRad = 0.975, groupRad = 0.5, gapEdge = 0.1, addGap = TRUE) {
+  # Add x and y columns to nodes and networkGroup data
+    metanetwork$nodes$y &lt;- metanetwork$nodes$x &lt;- 0
+    metanetwork$networkGroup$y &lt;- metanetwork$networkGroup$x &lt;- 0
+
+  # Get coordinates for all networks
+    for(i in 1:nrow(metanetwork$networkGroup)) {
+      # Distribute points within each network space
+      edgeDeg &lt;- seq((metanetwork$networkGroup$lower[i] + (gapEdge/2)),
+                       (metanetwork$networkGroup$upper[i] - (gapEdge/2)),
+                       length = metanetwork$networkGroup$Freq[i])
+
+      # Get position for each edge
+      nodePos &lt;- coordCircle(theta = edgeDeg, radius = edgeRad)
+
+      # Add to nodes data
+      metanetwork$nodes$x[metanetwork$nodes$network == metanetwork$networkGroup$Var1[i]] &lt;- nodePos$x
+      metanetwork$nodes$y[metanetwork$nodes$network == metanetwork$networkGroup$Var1[i]] &lt;- nodePos$y
+
+      # Distribute network groups in space
+      groupDeg &lt;- mean(c(metanetwork$networkGroup$lower[i],metanetwork$networkGroup$upper[i]))
+
+      # Get position for each group
+      groupPos &lt;- coordCircle(theta = groupDeg, radius = groupRad)
+
+      # Add to group data
+      metanetwork$networkGroup$x[i] &lt;- groupPos$x
+      metanetwork$networkGroup$y[i] &lt;- groupPos$y
+    }
+
+  metanetwork
+}
+
+metanetwork &lt;- nodePos(metanetwork, edgeRad = .875, groupRad = .5)
+
+head(metanetwork$nodes)
+#R&gt;    network     name          x         y
+#R&gt;  1 Drivers driver_1 -0.0546519 0.8732916
+#R&gt;  2 Drivers driver_2 -0.1282239 0.8655539
+#R&gt;  3 Drivers driver_3 -0.2008793 0.8516293
+#R&gt;  4 Drivers driver_4 -0.2720989 0.8316172
+#R&gt;  5 Drivers driver_5 -0.3413735 0.8056607
+#R&gt;  6 Drivers driver_6 -0.4082079 0.7739453
+head(metanetwork$networkGroup)
+#R&gt;             Var1 Freq      Prop   spanDeg     lower     upper          x
+#R&gt;  1       Actions    9 0.1250000 0.7853982 0.0125000 0.7728982  0.4619398
+#R&gt;  2 Beneficiaries    9 0.1250000 0.7853982 0.7978982 1.5582963  0.1913417
+#R&gt;  3       Drivers   15 0.2083333 1.3089969 1.5832963 2.8672933 -0.3043807
+#R&gt;  4      Managers    9 0.1250000 0.7853982 2.8922933 3.6526914 -0.4957224
+#R&gt;  5       Species   30 0.4166667 2.6179939 3.6776914 6.2706853  0.1294095
+#R&gt;             y
+#R&gt;  1  0.1913417
+#R&gt;  2  0.4619398
+#R&gt;  3  0.3966767
+#R&gt;  4 -0.0652631
+#R&gt;  5 -0.4829629
+
+# Visualize the positions of the nodes
+# Plot
+par(mar = c(0,0,0,0))
+plot0()
+points(metanetwork$nodes$x, metanetwork$nodes$y, pch = 20, cex = 2)
+points(metanetwork$networkGroup$x, metanetwork$networkGroup$y, pch = 20, cex = 2)</code></pre>
+<p><img src="/post/2018/metanetwork_files/figure-html/nodePos-1.png" width="480" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="visualization-functions" class="section level2">
+<h2>Visualization functions</h2>
+<p>Now we need a few functions to automate the visualization of a few components of
+the circular plot.</p>
+<div id="plot-groups" class="section level3">
+<h3>Plot groups</h3>
+<p>I actually wish to have a box around the edge of my graph identifying each
+individual network and their name. To do this, we can use the <code>polygon</code>
+and <code>plotrix::arctext</code> function.</p>
+<pre class="r"><code># We can now use both functions to generate a box for each group on the plot
+boxGroup &lt;- function(metanetwork, rad1 = .95, rad2 = 1, colBox = NULL, names = NULL, colNames = NULL, addNames = TRUE, ...) {
+  # metanetwork = data list composed of &#39;nodes&#39;, &#39;links&#39; &amp; &#39;networkGroup&#39;
+  # rad1 = lower boundary for polygons
+  # rad2 = upper boundary for polygons
+  # colBox = color of boxes
+  # names = names of individual networks
+  # colNames = color of names
+  # addNames = logical, add names of networks to graph
+  if (!is.null(colNames) &amp; length(colNames) == 1) {
+    colNames &lt;- rep(colNames, nrow(metanetwork$links))
+  }
+
+  if (!is.null(colBox) &amp; length(colBox) == 1) {
+    colBox &lt;- rep(colBox, nrow(metanetwork$links))
+  }
+
+  for(i in 1:nrow(metanetwork$networkGroup)) {
+    a &lt;- coordCircle(theta = seq(metanetwork$networkGroup$lower[i],
+                             metanetwork$networkGroup$upper[i],
+                             length = 200),
+                     radius = rad1)
+
+    b &lt;- coordCircle(theta = seq(metanetwork$networkGroup$upper[i],
+                             metanetwork$networkGroup$lower[i],
+                             length = 200),
+                     radius = rad2)
+
+    polygon(rbind(a, b, a[1L,]), col = colBox[i], ...)
+
+    if (addNames) {
+      middle &lt;- mean(c(metanetwork$networkGroup$lower[i],
+                       metanetwork$networkGroup$upper[i]))
+      clockwise &lt;- middle &gt; pi
+      plotrix::arctext(x = as.character(metanetwork$networkGroup$Var1[i]),
+                       radius = mean(c(rad1,rad2)),
+                       middle = middle,
+                       col = colNames[i],
+                       clockwise = clockwise,
+                       font = 2)
+    }
+  }
+}
+
+# Now we can plot
+par(mfrow = c(1,2), mar = c(0,0,0,0))
+plot0()
+boxGroup(metanetwork, addNames = FALSE)
+plot0()
+boxGroup(metanetwork, rad1 = .5)</code></pre>
+<p><img src="/post/2018/metanetwork_files/figure-html/plotGroups-1.png" width="960" style="display: block; margin: auto;" /></p>
+</div>
+<div id="plot-connections" class="section level3">
+<h3>Plot connections</h3>
+<p>Now we can plot the links between the nodes in our graph using the underlying
+hierarchical structure identified using the <code>nodePos</code> function created earlier.
+We can do this using the <code>xspline</code> function.</p>
+<pre class="r"><code>plotLinks &lt;- function(metanetwork, cols = NULL, ...) {
+  if (!is.null(cols) &amp; length(cols) == 1) {
+    cols &lt;- rep(cols, nrow(metanetwork$links))
+  }
+
+  for(i in 1:nrow(metanetwork$links)) {
+    link &lt;- metanetwork$links[i,]
+    edgeFromID &lt;- which(metanetwork$nodes$name == link$from)
+    edgeToID &lt;- which(metanetwork$nodes$name == link$to)
+    groupFromID &lt;- which(metanetwork$networkGroup$Var1 == metanetwork$nodes$network[edgeFromID])
+    groupToID &lt;- which(metanetwork$networkGroup$Var1 == metanetwork$nodes$network[edgeToID])
+
+    if (metanetwork$nodes$network[edgeFromID] != metanetwork$nodes$network[edgeToID]) {
+      linkPath &lt;- rbind(metanetwork$nodes[edgeFromID, c(&#39;x&#39;,&#39;y&#39;)],
+                        metanetwork$networkGroup[groupFromID, c(&#39;x&#39;,&#39;y&#39;)],
+                        metanetwork$networkGroup[groupToID, c(&#39;x&#39;,&#39;y&#39;)],
+                        metanetwork$nodes[edgeToID, c(&#39;x&#39;,&#39;y&#39;)])
+    } else {
+      linkPath &lt;- rbind(metanetwork$nodes[edgeFromID, c(&#39;x&#39;,&#39;y&#39;)],
+                        metanetwork$networkGroup[groupFromID, c(&#39;x&#39;,&#39;y&#39;)],
+                        metanetwork$nodes[edgeToID, c(&#39;x&#39;,&#39;y&#39;)])
+    }
+
+    lines(xspline(linkPath$x, linkPath$y, shape = 1, draw = FALSE), col = cols[i], ...)
+  }
+}
+
+par(mar = c(0,0,0,0))
+plot0()
+plotLinks(metanetwork, col = &#39;black&#39;)
+points(metanetwork$nodes$x, metanetwork$nodes$y)</code></pre>
+<p><img src="/post/2018/metanetwork_files/figure-html/plotLinks-1.png" width="672" style="display: block; margin: auto;" /></p>
+<p></br></p>
+</div>
+</div>
+<div id="plot-metanetwork" class="section level2">
+<h2>Plot metanetwork</h2>
+<pre class="r"><code># The plot
+par(mar = c(0,0,0,0))
+plot0()
+boxGroup(metanetwork)
+plotLinks(metanetwork, col = &#39;black&#39;)
+points(metanetwork$nodes$x, metanetwork$nodes$y, pch = 20, cex = 2)</code></pre>
+<p><img src="/post/2018/metanetwork_files/figure-html/metanetwork-1.png" width="576" style="display: block; margin: auto;" /></p>
+<p><br/></p>
+<div id="customize-graph-functions" class="section level3">
+<h3>Customize graph functions</h3>
+<p>Now we can build functions to customize the graph a little bit, <em>e.g.</em> add colors
+to links and nodes and change the size of the nodes.</p>
+<p>First, let’s give a color to individual networks.</p>
+<pre class="r"><code>colGroups &lt;- function(metanetwork, colPal = pal_insileco) {
+  # Group colors
+    metanetwork$networkGroup$cols &lt;- colPal[1:nrow(metanetwork$networkGroup)]
+
+  # Node colors
+    metanetwork$nodes$cols &lt;- NA
+    for(i in 1:nrow(metanetwork$networkGroup)) {
+      metanetwork$nodes$cols[metanetwork$nodes$network == metanetwork$networkGroup$Var1[i]] &lt;- metanetwork$networkGroup$cols[i]
+    }
+
+  metanetwork
+}
+
+metanetwork &lt;- colGroups(metanetwork, colPal = pal_insileco)
+
+head(metanetwork$nodes)
+#R&gt;    network     name          x         y    cols
+#R&gt;  1 Drivers driver_1 -0.0546519 0.8732916 #ffdd55
+#R&gt;  2 Drivers driver_2 -0.1282239 0.8655539 #ffdd55
+#R&gt;  3 Drivers driver_3 -0.2008793 0.8516293 #ffdd55
+#R&gt;  4 Drivers driver_4 -0.2720989 0.8316172 #ffdd55
+#R&gt;  5 Drivers driver_5 -0.3413735 0.8056607 #ffdd55
+#R&gt;  6 Drivers driver_6 -0.4082079 0.7739453 #ffdd55
+head(metanetwork$networkGroup)
+#R&gt;             Var1 Freq      Prop   spanDeg     lower     upper          x
+#R&gt;  1       Actions    9 0.1250000 0.7853982 0.0125000 0.7728982  0.4619398
+#R&gt;  2 Beneficiaries    9 0.1250000 0.7853982 0.7978982 1.5582963  0.1913417
+#R&gt;  3       Drivers   15 0.2083333 1.3089969 1.5832963 2.8672933 -0.3043807
+#R&gt;  4      Managers    9 0.1250000 0.7853982 2.8922933 3.6526914 -0.4957224
+#R&gt;  5       Species   30 0.4166667 2.6179939 3.6776914 6.2706853  0.1294095
+#R&gt;             y    cols
+#R&gt;  1  0.1913417 #212121
+#R&gt;  2  0.4619398 #3fb3b2
+#R&gt;  3  0.3966767 #ffdd55
+#R&gt;  4 -0.0652631 #c7254e
+#R&gt;  5 -0.4829629 #1b95e0</code></pre>
+<p></br></p>
+<p>Second, a function to give a size to nodes based on link frequency.</p>
+<p><br/></p>
+<pre class="r"><code># Add size to nodes based on frequency of links to each node
+nodeSize &lt;- function(metanetwork, freq = T) {
+    if (isTRUE(freq)) {
+      nLink &lt;- as.data.frame(table(c(metanetwork$links$from, metanetwork$links$to)), stringsAsFactors = F)
+      colnames(nLink)[1L] &lt;- &#39;name&#39;
+      metanetwork$nodes &lt;- dplyr::left_join(metanetwork$nodes, nLink, by = &#39;name&#39;)
+      metanetwork$nodes$cex &lt;- (metanetwork$nodes$Freq / max(metanetwork$nodes$Freq))
+    } else {
+      metanetwork$nodes$cex &lt;- .33
+    }
+
+    return(metanetwork)
+}
+
+metanetwork &lt;- nodeSize(metanetwork)
+head(metanetwork$nodes)
+#R&gt;    network     name          x         y    cols Freq       cex
+#R&gt;  1 Drivers driver_1 -0.0546519 0.8732916 #ffdd55    8 0.4705882
+#R&gt;  2 Drivers driver_2 -0.1282239 0.8655539 #ffdd55    4 0.2352941
+#R&gt;  3 Drivers driver_3 -0.2008793 0.8516293 #ffdd55    5 0.2941176
+#R&gt;  4 Drivers driver_4 -0.2720989 0.8316172 #ffdd55   12 0.7058824
+#R&gt;  5 Drivers driver_5 -0.3413735 0.8056607 #ffdd55    5 0.2941176
+#R&gt;  6 Drivers driver_6 -0.4082079 0.7739453 #ffdd55   10 0.5882353</code></pre>
+<p><br/></p>
+<p>Finally, we can give a color to links or focus on certain individual networks in
+the metanetwork, or focus on all the links for a single network.</p>
+<p><br/></p>
+<pre class="r"><code>linkCol &lt;- function(metanetwork, type = &#39;all&#39;, focus = NULL, colLinks = &#39;#876b40&#39;, colShadow = &#39;#f4f4f4&#39;) {
+  # metanetwork = list composed of &#39;nodes&#39;, &#39;links&#39; and &#39;networkGroup&#39;
+  # type        = type of colors:
+  #                 &#39;all&#39; = all links with single color = `colLinks`
+  #                 &#39;focus&#39; = focus on the links of identified network
+  # focus       = character, name of network(s) to focus on;
+  #                 if length(focus) == 1, all links towards a single network
+  #                 if length(focus) &gt; 1, links focused on identified networks
+  # colLinks    = color of links of `type` == &#39;all&#39;
+  # colShadow   = color of links that we are not focused on
+
+  # Function
+  if (type == &#39;all&#39;) {
+    metanetwork$links$cols &lt;- colLinks
+  }
+
+  if (type == &#39;focus&#39; &amp; length(focus) == 1) {
+    # Box colors
+    focusID &lt;- metanetwork$networkGroup$Var1 %in% focus
+    colBox &lt;- metanetwork$networkGroup$cols
+    metanetwork$networkGroup$cols[!focusID] &lt;- colShadow
+    metanetwork$networkGroup$colNames &lt;- colBox
+    metanetwork$networkGroup$colNames[focusID] &lt;- colShadow
+
+    # Link colors
+    # metanetwork$links$cols &lt;- paste0(colShadow, 88)
+    metanetwork$links$cols &lt;- colShadow
+    linkCol &lt;- data.frame(from = metanetwork$nodes$network[match(metanetwork$links$from,
+                                                                 metanetwork$nodes$name)],
+                          to = metanetwork$nodes$network[match(metanetwork$links$to,
+                                                                metanetwork$nodes$name)],
+                          stringsAsFactors = F)
+
+    linkID &lt;- linkCol$from %in% focus &amp; linkCol$to %in% focus
+    metanetwork$links$cols[linkID] &lt;- metanetwork$networkGroup$cols[focusID] # &quot;cannibalism&quot;
+
+    linkID &lt;- (linkCol$from %in% focus | linkCol$to %in% focus) &amp; !linkID
+    cols &lt;- paste0(linkCol$from[linkID], linkCol$to[linkID])
+    cols &lt;- gsub(focus, &#39;&#39;, cols)
+    cols &lt;- match(cols, metanetwork$networkGroup$Var1)
+    cols &lt;- metanetwork$networkGroup$colNames[cols]
+    metanetwork$links$cols[linkID] &lt;- cols
+  }
+
+  if (type == &#39;focus&#39; &amp; length(focus) &gt; 1) {
+    # Box colors
+    focusID &lt;- metanetwork$networkGroup$Var1 %in% focus
+    colBox &lt;- metanetwork$networkGroup$cols
+    metanetwork$networkGroup$cols[!focusID] &lt;- colShadow
+    metanetwork$networkGroup$colNames &lt;- colBox
+    metanetwork$networkGroup$colNames[focusID] &lt;- colShadow
+
+    # Link colors
+    metanetwork$links$cols &lt;- colShadow
+    linkCol &lt;- data.frame(from = metanetwork$nodes$network[match(metanetwork$links$from,
+                                                                 metanetwork$nodes$name)],
+                          to = metanetwork$nodes$network[match(metanetwork$links$to,
+                                                                metanetwork$nodes$name)],
+                          stringsAsFactors = F)
+
+    linkID &lt;- linkCol$from %in% focus &amp; linkCol$to %in% focus
+    metanetwork$links$cols[linkID] &lt;- colLinks
+  }
+
+  # Add transparency
+  metanetwork$links$cols &lt;- paste0(metanetwork$links$cols, &#39;66&#39;)
+
+  metanetwork
+}
+
+metanetwork &lt;- linkCol(metanetwork, type = &#39;focus&#39;, focus = c(&#39;Species&#39;,&#39;Drivers&#39;))
+head(metanetwork$links)
+#R&gt;             from            to      cols
+#R&gt;  1     manager_8      action_9 #f4f4f466
+#R&gt;  2     driver_11     species_5 #876b4066
+#R&gt;  3      driver_7      action_3 #f4f4f466
+#R&gt;  4     species_6 beneficiary_3 #f4f4f466
+#R&gt;  5    species_20     species_7 #876b4066
+#R&gt;  6 beneficiary_3    species_25 #f4f4f466
+head(metanetwork$networkGroup)
+#R&gt;             Var1 Freq      Prop   spanDeg     lower     upper          x
+#R&gt;  1       Actions    9 0.1250000 0.7853982 0.0125000 0.7728982  0.4619398
+#R&gt;  2 Beneficiaries    9 0.1250000 0.7853982 0.7978982 1.5582963  0.1913417
+#R&gt;  3       Drivers   15 0.2083333 1.3089969 1.5832963 2.8672933 -0.3043807
+#R&gt;  4      Managers    9 0.1250000 0.7853982 2.8922933 3.6526914 -0.4957224
+#R&gt;  5       Species   30 0.4166667 2.6179939 3.6776914 6.2706853  0.1294095
+#R&gt;             y    cols colNames
+#R&gt;  1  0.1913417 #f4f4f4  #212121
+#R&gt;  2  0.4619398 #f4f4f4  #3fb3b2
+#R&gt;  3  0.3966767 #ffdd55  #f4f4f4
+#R&gt;  4 -0.0652631 #f4f4f4  #c7254e
+#R&gt;  5 -0.4829629 #1b95e0  #f4f4f4</code></pre>
+<p><br/></p>
+</div>
+</div>
+<div id="metanetwork-function" class="section level2">
+<h2>Metanetwork function</h2>
+<p>Now we could wrap all of this in a single function.</p>
+<pre class="r"><code>plotMetanetwork &lt;- function(metanetwork,
+                            rad1 = .925,
+                            rad2 = 1,
+                            sizeEdge = T,
+                            colPal = pal_insileco,
+                            type = &#39;all&#39;,
+                            focus = NULL,
+                            colLinks = &#39;#876b40&#39;,
+                            colShadow = &#39;#f4f4f4&#39;,
+                            shadowEdge = TRUE
+                          ) {
+
+  # Metanetwork = list composed of &#39;nodes&#39; and &#39;links&#39;
+  # rad1 = lower boundary for individual networks
+  # rad2 = upper boundary for individual networks
+  # colPal = color palette
+  # colLinks = color for links
+
+  # Function
+  # Boundaries of individual networks
+  metanetwork$networkGroup &lt;- bound(metanetwork)
+
+  # Node coordinates
+  metanetwork &lt;- nodePos(metanetwork, edgeRad = .875, groupRad = .5)
+
+  # Colors
+  metanetwork &lt;- colGroups(metanetwork, colPal = colPal)
+
+  # Node size
+  metanetwork &lt;- nodeSize(metanetwork, freq = sizeEdge)
+
+  # Link col
+  metanetwork &lt;- linkCol(metanetwork, type = type, focus = focus, colLinks = colLinks, colShadow = colShadow)
+
+  # Plot
+  par(mar = c(0,0,0,0))
+  plot0()
+  boxGroup(metanetwork,
+           rad1 = rad1,
+           colBox = metanetwork$networkGroup$cols,
+           colNames = metanetwork$networkGroup$colNames,
+           border = &#39;transparent&#39;)
+  plotLinks(metanetwork,
+            col = metanetwork$links$cols)
+  if (shadowEdge) {
+    points(metanetwork$nodes$x,
+           metanetwork$nodes$y,
+           pch = 20,
+           cex = (metanetwork$nodes$cex * 5),
+           col = &#39;#d7d7d7&#39;)
+  }
+
+  points(metanetwork$nodes$x,
+         metanetwork$nodes$y,
+         pch = 20,
+         cex = (metanetwork$nodes$cex * 3),
+         col = metanetwork$nodes$cols)
+}
+
+# The data
+metanetwork &lt;- vector(&#39;list&#39;, 0)
+metanetwork$nodes &lt;- nodes
+metanetwork$links &lt;- links
+
+# The plot
+par(mfrow = c(2,2), bg = &quot;transparent&quot;)
+plotMetanetwork(metanetwork)
+plotMetanetwork(metanetwork, type = &#39;focus&#39;, focus = &#39;Species&#39;)
+plotMetanetwork(metanetwork, type = &#39;focus&#39;, focus = c(&#39;Species&#39;, &#39;Drivers&#39;))
+plotMetanetwork(metanetwork, type = &#39;focus&#39;, focus = c(&#39;Species&#39;, &#39;Drivers&#39;, &#39;Managers&#39;))</code></pre>
+<p><img src="/post/2018/metanetwork_files/figure-html/function-1.png" width="960" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>opt &lt;- options()</code></pre>
+<div style="padding: 2rem 0rem 2rem 0rem;">
+<details>
+<summary>
+<h4>
+<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
+<i class="fa fa-cogs" aria-hidden="true"></i>
+</h4>
+<p></summary></p>
+<pre class="r"><code>sessionInfo()
+#R&gt;  R version 4.2.0 (2022-04-22)
+#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)
+#R&gt;  Running under: Debian GNU/Linux bookworm/sid
+#R&gt;  
+#R&gt;  Matrix products: default
+#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.1
+#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.10.1
+#R&gt;  
+#R&gt;  locale:
+#R&gt;   [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+#R&gt;   [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+#R&gt;   [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+#R&gt;   [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#R&gt;   [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+#R&gt;  [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#R&gt;  
+#R&gt;  attached base packages:
+#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     
+#R&gt;  
+#R&gt;  other attached packages:
+#R&gt;  [1] graphicsutils_1.6.0.9000 inSilecoRef_0.0.1.9000  
+#R&gt;  
+#R&gt;  loaded via a namespace (and not attached):
+#R&gt;   [1] Rcpp_1.0.8.3      lubridate_1.8.0   ps_1.7.0          assertthat_0.2.1 
+#R&gt;   [5] digest_0.6.29     utf8_1.2.2        mime_0.12         R6_2.5.1         
+#R&gt;   [9] plyr_1.8.7        backports_1.4.1   evaluate_0.15     highr_0.9        
+#R&gt;  [13] httr_1.4.3        blogdown_1.10     pillar_1.7.0      rlang_1.0.2      
+#R&gt;  [17] curl_4.3.2        data.table_1.14.2 miniUI_0.1.1.1    callr_3.7.0      
+#R&gt;  [21] jquerylib_0.1.4   DT_0.23           rmarkdown_2.14    RefManageR_1.3.0 
+#R&gt;  [25] rcrossref_1.1.0   stringr_1.4.0     htmlwidgets_1.5.4 igraph_1.2.11    
+#R&gt;  [29] shiny_1.7.1       compiler_4.2.0    httpuv_1.6.5      xfun_0.31        
+#R&gt;  [33] pkgconfig_2.0.3   htmltools_0.5.2   tidyselect_1.1.2  tibble_3.1.7     
+#R&gt;  [37] httpcode_0.3.0    bookdown_0.26     codetools_0.2-18  fansi_1.0.3      
+#R&gt;  [41] crayon_1.5.1      dplyr_1.0.9       withr_2.5.0       later_1.3.0      
+#R&gt;  [45] crul_1.2.0        jsonlite_1.8.0    xtable_1.8-4      lifecycle_1.0.1  
+#R&gt;  [49] DBI_1.1.2         magrittr_2.0.3    cli_3.3.0         stringi_1.7.6    
+#R&gt;  [53] promises_1.2.0.1  xml2_1.3.3        bslib_0.3.1       ellipsis_0.3.2   
+#R&gt;  [57] targets_0.12.0    generics_0.1.2    vctrs_0.4.1       tools_4.2.0      
+#R&gt;  [61] glue_1.6.2        purrr_0.3.4       plotrix_3.8-2     processx_3.5.3   
+#R&gt;  [65] fastmap_1.1.0     yaml_2.3.5        base64url_1.4     knitr_1.39       
+#R&gt;  [69] sass_0.4.1</code></pre>
+</details>
+</div>
+</div>
+
+
+      <div class="text-justify">
+        
+
+      </div>
+
+
+    
+
+    </center>
+
+    </div>
+
+      <br>
+
+  
+  <script>
+    var $jq = jQuery.noConflict();
+      $jq(function() {
+          var toc = $jq("#toc").tocify({
+            selectors: "h2, h3",
+            scrollTo: 50
+          }).data("toc-tocify");
+    });
+  </script>
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
+  
+  
+
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <div id="disqus_thread"></div>
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2020/04/14/insilecomisc-0.4.0-part-1/2/">inSilecoMisc 0.4.0 (part 1/2)</a> <small>April 14, 2020</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+
+
+
+  <script>
+    
+
+
+    var disqus_config = function() {
+      this.page.url = "https://insileco.github.io" + "https://insileco.github.io/2018/02/21/hierarchical-edge-bundling-using-base-plot/"; 
+      this.page.identifier = "Hierarchical edge bundling using base plot"; 
+    };
+
+    (function() { 
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://insileco.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+
+</div>
+
+
+</div>
+
+        <footer>
+
+          <script src="//yihui.name/js/math-code.js"></script>
+          <script async
+            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+          </script>
+
+            <hr>
+            <p class="copyright text-muted" style="font-size: 1.6rem;">
+              &copy; 2017-2022 inSileco |
+              All rights reserved |
+              Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+                <a href="https://gohugo.io">Hugo</a>
+                and <a href="https://github.com/calintat/minimal">Minimal</a> |
+              Latest build: 19 Jun 2022 21:07 UTC.
+              </p>
+
+        </footer>
+
+    </body>
+
+</html>
+

@@ -1,0 +1,173 @@
+/* Custom CSS overwriting part of the minimal css theme  */
+
+pre > code {
+    font-family: "Fira Code";
+}
+
+figure {
+  margin-top: 2rem !important;
+  margin-bottom: 2rem !important;
+}
+
+table {
+  margin-left: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+th {
+    text-align: left;
+}
+
+td {
+    vertical-align: bottom;
+    text-align: left;
+}
+
+th, td {
+    border-bottom: 1px solid #ddd;
+    padding-right: 20px!important;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+tr:hover {
+   background-color: #3fb3b2;
+ }
+
+p {
+  font-size: 18px;
+}
+
+ul, ol {
+  font-size: 18px;
+}
+
+h2 {
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+
+h3 {
+  padding-left: 8px;
+  padding-top: 10px;
+}
+
+h4 {
+  padding-left: 15px;
+  padding-top: 5px;
+}
+
+blockquote {
+  font-style: italic;
+}
+
+p > video {
+  padding: 15px;
+}
+
+
+p > img {
+  text-align: center;
+  padding: 15px;
+}
+
+
+.endpost {
+  font-size: 1.5em;
+  font-weight: 900;
+}
+
+.comment1 {
+  color: #c7254e;
+}
+
+.comment2 {
+  color: #8555b4;
+}
+
+
+
+/* item */
+
+.item-tag2 {
+    background-color: #ffdd5566;
+    color: #3fb3b2;
+    font-weight: 700;
+    /* rgb(132,131,139); */
+}
+
+.item {
+  text-align: left;
+}
+
+.item h1 {
+  font-size: 1.8em;
+  padding: 0px;
+  margin: 0px;
+}
+
+.item-bottom {
+  text-align: center;
+}
+
+.item-bottom h1 {
+  font-size: 1.8em;
+}
+
+hr.style1 {
+	height: 6px;
+	background: url(http://ibrahimjabbari.com/english/images/hr-11.png) repeat-x 0 0;
+    border: 0;
+}
+
+
+
+
+
+/* https://stackoverflow.com/questions/255170/markdown-and-image-alignment */
+
+img[alt$=">"] {
+  float: right;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+img[alt$="<"] {
+  float: left;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+img[alt$="><"] {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: auto;
+  float: none!important;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
+/* see for the one below http://www.ebadf.net/2016/10/19/centering-images-in-hugo/ */
+img[src$='#center']
+{
+    display: block;
+    margin: 0.1rem auto; /* you can replace the vertical '0.7rem' by
+                            whatever floats your boat, but keep the
+                            horizontal 'auto' for this to work */
+    /* whatever else styles you fancy here */
+}
+
+.caption {
+  display: block;
+  max-width: 92%;
+  height: auto;
+  margin: auto;
+  float: none!important;
+  font-size: 1.15em;
+  margin-bottom: 20px;
+  text-align: center;
+}
