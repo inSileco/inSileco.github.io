@@ -65,7 +65,7 @@ coords <- st_as_sf(coords, coords = c("longitude", "latitude"),
           st_transform(crs = 32619)
 ```
 
-```{r plot1, echo=FALSE, warning=FALSE, eval = TRUE}
+```{r plot1, echo=FALSE, warning = FALSE, eval = TRUE}
 par(mar = c(3, 3, 1, 1))
 plot(st_geometry(bay), axes = TRUE, main = "", col = "#E2E2E2", border = "#C1C1C1")
 plot(coords, cex = 2, pch = 16, add = TRUE)
@@ -81,7 +81,7 @@ The initial position of Herbert is on the turquoise dot (init), and we are inter
 
 We can compute the Euclidean distances between each points by using `sf::st_distance()`. Let's try this here, even if we know that we do not consider the coast as a forbidden area.
 
-```{r distances1, warning=FALSE, eval = TRUE}
+```{r distances1, warning = FALSE, eval = TRUE}
 dist1 <- st_distance(x = coords[1,], y = coords[-1,])
 
 dist1_df <- data.frame(dist1, row.names = "Distance from init:")
@@ -121,18 +121,18 @@ To take the geographical barriers into consideration, we will use the package `g
 
 > Note that the calculation is highly dependent on the **raster resolution**. A better resolution will bring better results, but at the cost of computing resources. Also, the cells of this raster are **squares**.
 
-```{r import2, warning=FALSE, eval=TRUE}
+```{r import2, warning = FALSE, eval = TRUE}
 library(gdistance)
 library(raster)
 ```
 
-```{r rastering, warning=FALSE, eval=TRUE}
+```{r rastering, warning = FALSE, eval = TRUE}
 raster_bay <- raster(x = extent(bay), nrow = 250,  ncol = 250)
 raster_bay <- rasterize(x = bay, y = raster_bay, field = 1)
 raster_bay[is.na(raster_bay)] <- 0
 ```
 
-```{r plot3, echo=FALSE, warning=FALSE, eval=TRUE}
+```{r plot3, echo=FALSE, warning = FALSE, eval = TRUE}
 par(mar = c(3, 3, 1, 1))
 plot(raster_bay)
 ```
@@ -150,7 +150,7 @@ Before calculating the distance, `costDistance()` needs a transition matrix. Thi
 
 The `geoCorrection()` function is needed to apply a correction to the transition matrix so that units and map distortion are taken into account (this may be more or less relevant depending on the CRS used).
 
-```{r transition, warning=FALSE, eval=TRUE}
+```{r transition, warning = FALSE, eval = TRUE}
 raster_bay_tr <- transition(raster_bay, transitionFunction = mean, directions = 16)
 raster_bay_tr <- geoCorrection(raster_bay_tr, type = "c")
 ```
@@ -159,7 +159,7 @@ raster_bay_tr <- geoCorrection(raster_bay_tr, type = "c")
 
 And now, let's calculate distances with the least cost path analysis!
 
-```{r distances2, warning=FALSE, eval=TRUE}
+```{r distances2, warning = FALSE, eval = TRUE}
 dist2 <- costDistance(raster_bay_tr,
                       fromCoords = as(as_Spatial(coords[1,]), "SpatialPoints"),
                       toCoords = as(as_Spatial(coords[-1,]), "SpatialPoints"))
@@ -174,7 +174,7 @@ kable(dist2_df)
 
 These results show that P2 is the closest potential site for Herbert now, without any coast between the two points. This result is much more relevant than previously calculated with `st_distance()`! If you want to represent the shortest path between two points (based on the transition matrix), you can plot the result of function `shortestPath()`.
 
-```{r plot4, echo=FALSE, warning=FALSE, eval=TRUE}
+```{r plot4, echo=FALSE, warning = FALSE, eval = TRUE}
 par(mar = c(3, 3, 1, 1))
 plot(st_geometry(bay), axes = TRUE, main = "", col = "#E2E2E2", border = "#C1C1C1")
 plot(coords, cex = 2, pch = 16, add = TRUE)
@@ -195,7 +195,7 @@ plot(shortestPath(raster_bay_tr, as_Spatial(coords)[1,], as_Spatial(coords)[4,],
 
 The `gdistance` package is excellent, but not particularly flexible. You may need a custom workflow if you need to handle very large datasets or you want to use a hexagonal grid (*i.e.* you don't want to worry about chessboard moves). If this is so, you will need package `igraph` (Csardi & Nepusz 2006).
 
-```{r import3, warning=FALSE, eval=TRUE}
+```{r import3, warning = FALSE, eval = TRUE}
 library(igraph)
 ```
 
@@ -205,7 +205,7 @@ Let's create another grid, but this time, let's make it hexagonal. For this exam
 hex_bay <- st_make_grid(bay, cellsize = 250, square = FALSE)
 ```
 
-```{r plot5, echo=FALSE, warning=FALSE, eval=TRUE}
+```{r plot5, echo=FALSE, warning = FALSE, eval = TRUE}
 par(mar = c(3, 3, 1, 1))
 plot(st_geometry(bay), axes = TRUE, main = "", col = "#E2E2E2", border = "#C1C1C1")
 plot(hex_bay, col = "#FFFFFF00", border = "#0300FF", add = TRUE)
@@ -220,14 +220,14 @@ plot(hex_bay, col = "#FFFFFF00", border = "#0300FF", add = TRUE)
 
 Now that we have our basic grid, we need to create an `igraph` network. The network in this case will represent neighbouring cells (*i.e.* right next to one another) which Herbert has the possibility to move through. We must first create an edge list (*i.e.* list to 'from' and 'to' cell id's that represent neighbours), then convert into a network.
 
-```{r edge, warning=FALSE, eval=TRUE}
+```{r edge, warning = FALSE, eval = TRUE}
 edgelist <- as.matrix(as.data.frame(st_intersects(hex_bay)))
   # yes, the as.matrix and as.data.frame is a bit silly, but required to have the right format
 
 gr <- graph_from_edgelist(edgelist)
 ```
 
-```{r plot6, echo=FALSE, warning=FALSE, eval=TRUE}
+```{r plot6, echo=FALSE, warning = FALSE, eval = TRUE}
 plot(gr)
 ```
 
@@ -240,7 +240,7 @@ E(gr)$weight <- 250
 
 Now we have a weighted graph ready for Least Cost Path analysis! We just need to figure out where the stations are relative to the hexagonal grid.
 
-```{r distances3, warning=FALSE, eval=TRUE}
+```{r distances3, warning = FALSE, eval = TRUE}
 whereisHerbert <- as.numeric(st_intersects(coords, hex_bay))
 dist3 <- distances(gr, whereisHerbert[1], whereisHerbert[-1])
 
@@ -272,5 +272,5 @@ Techniques above will be highly useful for many research questions, *e.g.* deter
 
 <br>
 
-```{R sessionInfo, child = "../../sessionInfo.Rmd"}
+```{R sessionInfo, child = path_session_info}
 ```

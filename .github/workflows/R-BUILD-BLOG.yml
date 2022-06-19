@@ -31,6 +31,7 @@ jobs:
       - uses: r-lib/actions/setup-r-dependencies@v2
       - name: Build blogdown
         run: |-
+          Rscript -e "icons::download_fontawesome()"
           Rscript -e "blogdown::check_config()"
           Rscript -e "blogdown::check_content()"
           Rscript -e "blogdown::build_site(build_rmd = 'newfile')"
