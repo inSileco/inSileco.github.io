@@ -306,7 +306,7 @@ and now you know how to deal with it!)
 <br>
 
 <details>
-<summary><h4> <i class="fa fa-chevron-right" aria-hidden="true"></i>Session info <i class="fa fa-cogs" aria-hidden="true"></h4></i></summary>
+<summary>Session info <i class="fa fa-cogs" aria-hidden="true"></i></summary>
 
 ```r
 sessionInfo()
