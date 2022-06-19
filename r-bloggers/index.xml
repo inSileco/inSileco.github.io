@@ -540,10 +540,7 @@ myaxis(2, seq(-0.5, 2.8, .1), seq(-0.5, 2.5, .5), las = 1)</code></pre>
 <div style="padding: 2rem 0rem 2rem 0rem;">
 <details>
 <summary>
-<h4>
-<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
-<i class="fa fa-cogs" aria-hidden="true"></i>
-</h4>
+Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </summary>
 <pre class="r"><code>sessionInfo()
 #R&gt;  R version 4.2.0 (2022-04-22)
@@ -627,21 +624,20 @@ packageVersion(&quot;inSilecoMisc&quot;)
 <p>I wrote <a href="https://insileco.github.io/inSilecoMisc/reference/scaleWithin.html"><code>scaleWithin()</code></a> to handle color scales for a specific yet frequent situation. Let us say that I have 40 percentage values – meaning 0 to 100 – in a vector <code>val</code>…</p>
 <pre class="r"><code>val &lt;- runif(40, 0, 100)
 val
-#R&gt;   [1] 13.5547028 35.5045787 51.9321566 20.0711356 49.9951350 38.2956525
-#R&gt;   [7] 55.4963734 25.4218280 48.3401394 12.1597761 94.1525416 11.6093261
-#R&gt;  [13] 65.7104313 76.8254265 28.9113993 27.5173928 75.0519787 28.8151757
-#R&gt;  [19] 46.6958916 72.2415232 96.3660532 26.7860499 68.3414730  5.4134130
-#R&gt;  [25] 12.5373210 54.4740455 70.7252285  3.2401771 17.2292070 18.9935207
-#R&gt;  [31] 34.6950219  4.1998926 34.5813420 96.1879084  0.9570750 15.6858361
-#R&gt;  [37] 78.2516573 15.5655727 24.4560164  0.4402139</code></pre>
+#R&gt;   [1] 34.875652 38.511515 30.560805 92.392834 24.097075 18.938671  5.781485
+#R&gt;   [8] 96.170072 81.873451 71.751930 52.112273 34.205876  2.448017 75.996988
+#R&gt;  [15] 17.523078 65.951112 20.218500 93.358882 39.845142  8.569140 90.848570
+#R&gt;  [22] 53.808177 57.875599 53.889801  5.928599 41.439002 59.079702 91.928032
+#R&gt;  [29] 59.775643 46.296324 79.180360 27.768791 59.981328 79.607312 43.844089
+#R&gt;  [36] 72.347002 15.266700 88.011357  1.205310 95.099086</code></pre>
 <p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
 <pre class="r"><code>pal &lt;- colorRampPalette(c(&quot;#f9fa98&quot;, &quot;#500127&quot;))(25)
 graphicsutils::showPalette(pal)</code></pre>
 <p><img src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>But</strong> the color scale should be used for the range [30%-70%], meaning that values below 30% should have the lowest values and values above 70%, the highest one. The caption should thus indicate <span class="math inline">\(\geqslant\)</span> 30% and <span class="math inline">\(\leqslant\)</span> 70%. Then the function <code>scaleWithin()</code> is very handy!</p>
 <pre class="r"><code>scaleWithin(val, n = 25, mn = 30, mx = 70)
-#R&gt;   [1]  1  4 14  1 13  6 16  1 12  1 25  1 23 25  1  1 25  1 11 25 25  1 24  1  1
-#R&gt;  [26] 16 25  1  1  1  3  1  3 25  1  1 25  1  1  1
+#R&gt;   [1]  4  6  1 25  1  1  1 25 25 25 14  3  1 25  1 23  1 25  7  1 25 15 18 15  1
+#R&gt;  [26]  8 19 25 19 11 25  1 19 25  9 25  1 25  1 25
 graphicsutils::showPalette(pal[scaleWithin(val, n = 25, mn = 30, mx = 70)], add_codecolor = FALSE)</code></pre>
 <p><img src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Even though this function is pretty useful – at least I think it is! – I had a
@@ -790,10 +786,7 @@ command!</p>
 <div style="padding: 2rem 0rem 2rem 0rem;">
 <details>
 <summary>
-<h4>
-<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
-<i class="fa fa-cogs" aria-hidden="true"></i>
-</h4>
+Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </summary>
 <pre class="r"><code>sessionInfo()
 #R&gt;  R version 4.2.0 (2022-04-22)
@@ -1070,10 +1063,7 @@ this topic (for instance
 <div style="padding: 2rem 0rem 2rem 0rem;">
 <details>
 <summary>
-<h4>
-<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
-<i class="fa fa-cogs" aria-hidden="true"></i>
-</h4>
+Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </summary>
 <pre class="r"><code>sessionInfo()
 #R&gt;  R version 4.2.0 (2022-04-22)
