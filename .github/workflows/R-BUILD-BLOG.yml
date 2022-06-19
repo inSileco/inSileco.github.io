@@ -16,9 +16,9 @@ jobs:
       fail-fast: false
       matrix:
         config:
-          - {os: ubuntu-latest, r: 'release', cache: 'true', cache-version: 1}
-          - {os: macOS-latest, r: 'release', cache: 'true', cache-version: 1}
-          - {os: windows-latest, r: 'release', cache: 'true', cache-version: 1}
+          - {os: ubuntu-latest, r: 'release'}
+          - {os: macOS-latest, r: 'release'}
+          - {os: windows-latest, r: 'release'}
 
     steps:
       - uses: actions/checkout@v3
@@ -28,7 +28,7 @@ jobs:
           r-version: ${{ matrix.config.r }}
           http-user-agent: ${{ matrix.config.http-user-agent }}
           use-public-rspm: true
-      - uses: r-lib/actions/setup-r-dependencies@v1
+      - uses: r-lib/actions/setup-r-dependencies@v2
       - name: Build blogdown
         run: |-
           Rscript -e "blogdown::check_config()"
