@@ -1,11 +1,7 @@
 <details>
-<summary>
-<h4>
-<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
-<i class="fa fa-cogs" aria-hidden="true"></i>
-</h4>
 
-</summary>
+<summary>Session info
+<i class="fa fa-cogs" aria-hidden="true"></i></summary>
 
     sessionInfo()
     #R>  R version 4.2.0 (2022-04-22)
@@ -46,6 +42,6 @@
     #R>  [49] RefManageR_1.3.0  crul_1.2.0        crayon_1.5.1      pkgconfig_2.0.3  
     #R>  [53] ellipsis_0.3.2    data.table_1.14.2 xml2_1.3.3        lubridate_1.8.0  
     #R>  [57] rmarkdown_2.14    assertthat_0.2.1  httr_1.4.3        R6_2.5.1         
-    #R>  [61] compiler_4.2.0    igraph_1.2.11
+    #R>  [61] compiler_4.2.0    igraph_1.3.1
 
 </details>
