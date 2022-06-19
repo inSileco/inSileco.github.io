@@ -22,15 +22,8 @@ jobs:
       - uses: actions/checkout@v3
       - name: Setup blogdown
         uses: inSileco/actions/setup-blogdown-insileco@v1
-      - name: Build inSileco Blog
-        run: |-
-          Rscript -e "list.files(.libPaths())"
-          Rscript -e "sessionInfo()"
-          # Rscript -e "blogdown::check_config()"
-          # Rscript -e "blogdown::check_content()"
-          # Rscript -e "blogdown::build_site(build_rmd = 'newfile')"
-          # Rscript -e "blogdown::build_site(build_rmd = 'timestamp')"
-          # tree ./public
+        with:
+          build_site: true
 
       - name: Deploy inSileco Blog to gh-pages
         uses: peaceiris/actions-gh-pages@v3
@@ -38,14 +31,3 @@ jobs:
           personal_token: ${{ secrets.DEPLOY_TOKEN }}
           publish_branch: gh-pages
           publish_dir: ./public
-
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2.0.0
-        env:
-          SLACK_CHANNEL: blog
-          SLACK_COLOR: '#3fb3b2'
-          SLACK_ICON: https://github.com/inSileco.png?size=48
-          SLACK_USERNAME: Bobot
-          SLACK_TITLE: ':robot_face: Message to humans'
-          SLACK_MESSAGE: ':heavy_check_mark: Blog updated and deployed'
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
