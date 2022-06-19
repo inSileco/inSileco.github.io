@@ -1,6 +1,5 @@
 # inSileco blog
-[![Build](https://github.com/inSileco/inSileco.github.io/actions/workflows/check.yml/badge.svg)](https://github.com/inSileco/inSileco.github.io/actions/workflows/check.yml)
-[![Build and deploy](https://github.com/inSileco/inSileco.github.io/actions/workflows/check_deploy.yml/badge.svg)](https://github.com/inSileco/inSileco.github.io/actions/workflows/check_deploy.yml)
+[![Build and deploy our blog](https://github.com/inSileco/inSileco.github.io/actions/workflows/R-BUILD-BLOG.yml/badge.svg)](https://github.com/inSileco/inSileco.github.io/actions/workflows/R-BUILD-BLOG.yml)
 
 The overarching goal of this blog is quite straightforward: tackle challenges
 and opportunities provided by this new era of open-access and computationally
@@ -16,7 +15,6 @@ Our blog created with [blogdown :package:](https://bookdown.org/yihui/blogdown/)
 ### JS/CSS libraries used
 
 - [jQuerryUI](https://jqueryui.com/)
-- [Disqus](https://disqus.com/)
 - [Tocify](http://gregfranko.com/jquery.tocify.js/)
 - [Academicons](https://jpswalsh.github.io/academicons/)
 - [Font Awesome 4.7](https://fontawesome.com/v4.7.0/)

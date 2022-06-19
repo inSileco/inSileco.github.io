@@ -3,7 +3,6 @@
 <img class="full-width" width="100%" src="/img/banner4.png"></img>
 
 
-
 <div>
 
   <div class="col-md-3">
@@ -14,7 +13,6 @@
         </div>
     </div>
   </div>
-
 
 
   <div class="col-md-8">
@@ -59,7 +57,7 @@
     {{ end }}
     <!-- http://www.R-bloggers.com -->
     {{ if .Params.rbloggers }}
-      <a href = "http://www.R-bloggers.com">
+      <a href="http://www.R-bloggers.com">
       <img src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
       <a>
     {{ end }} &nbsp;
@@ -72,14 +70,18 @@
       <a href = "https://creativecommons.org/licenses/by/4.0/">
       <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
       </a>
-    {{ end }}
+    {{ end }} &nbsp;
+    <!-- archived -->
+    {{ with .Params.archived }}
+      <a href = "https://github.com/inSileco/inSileco.github.io/wiki/Posts#archiving-a-posts">
+      <img src="https://img.shields.io/static/v1?style=flat&label=archived&message={{ . }}&logo=internet-archive&color=6d4f5b">
+      <a>
+    {{ end }} &nbsp;
     &nbsp;&nbsp;&nbsp;&nbsp;
     <a href="http://twitter.com/share?url={{ .Permalink | absURL }}&text={{ .Params.tweet }}" target="_blank">
       <img src='https://img.shields.io/twitter/url?style=social&url={{ .Permalink | absLangURL }}?link=http://left&link=http://right}'>
     </a>
   </p>
-
-
 
 
     <br>
@@ -88,22 +90,21 @@
 
       {{ .Content }}
 
-      
       <div class="text-justify">
-        
         {{ if .Params.edits }}
-          <h3><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h3>
-          <p>
-          {{ range .Params.edits }}
-            <i class="fa fa-pencil" aria-hidden="true"></i> {{ dateFormat "Jan 2, 2006" .date }} -- {{ .comment }} <br>
-          {{ end }}
-          </p>
+          <div class="edits">
+            <h4><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h4>
+            <p style="font-size: 1.5rem">
+              {{ range .Params.edits }}
+              <i class="fa fa-pencil" aria-hidden="true"></i> {{ dateFormat "Jan 2, 2006" .date }} -- {{ .comment }} <br>
+              {{ end }}
+            </p>
+          </div>
         {{ end }}
-        
+
       </div>
 
 
-    
     {{ if .Params.navposts }}
 
     <center>

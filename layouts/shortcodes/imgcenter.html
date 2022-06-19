@@ -1,0 +1,7 @@
+<center>
+  {{ if .Get 2 }}
+    <img class="frame2" src="{{ .Get 0 }}" width="{{ .Get 1 | default 100 }}%">
+  {{ else }}
+    <img src="{{ .Get 0 }}" width="{{ .Get 1 | default 100 }}%">
+  {{ end }}
+</center>

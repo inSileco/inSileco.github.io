@@ -1,0 +1,577 @@
+---
+title: Gantt charts in R
+author: [david]
+reviewer: [kevin]
+date: 2017-09-20
+tags: [R, time management, gantt chart, data visualization]
+rpkgs: [graphics, tidyverse, RColorBrewer, kableExtra]
+draft: false
+estime: 15
+tweet: Gantt charts in R
+output:
+  blogdown::html_page:
+    fig_width: 3
+    dev: svg
+edits:
+  - date: 2022-04-23
+    comment: "Improve code formatting."
+---
+
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
+
+
+<div id="gantt-charts" class="section level2">
+<h2>Gantt charts</h2>
+<p><a href="https://en.wikipedia.org/wiki/Gantt_chart">Gantt charts</a> are a very useful way
+to organize projects into milestones and tasks visually. They are also dead
+useful when comes the time to create a timeline for a project, whether it be for
+a research project, field work or grant applications. I recently wanted to
+create one, but was unsatisfied by what was available out there in terms of
+visuals (although there are neat R examples, see <a href="https://www.r-bloggers.com/gantt-charts-in-r-using-plotly/">here</a>,
+<a href="https://stackoverflow.com/questions/3550341/gantt-charts-with-r">here</a> and
+<a href="https://davetang.org/muse/2017/02/03/gantt-chart-using-r/">here</a>). So I came up with my own!</p>
+<p>For those who might be interested only in generating charts without all the code,
+jump to the end, copy the <code>ganttR</code> function I created and Gantt away!</p>
+</div>
+<div id="initiate-r" class="section level2">
+<h2>Initiate R</h2>
+<pre class="r"><code># Packages required
+library(knitr)
+library(tidyverse)
+library(RColorBrewer)
+library(kableExtra)</code></pre>
+</div>
+<div id="the-code" class="section level2">
+<h2>The code!</h2>
+<p>I wanted to come up with something simple and visually appealing, so I created
+a figure that simply required the following elements: milestone, tasks, start
+date, due data and status.</p>
+<div id="data" class="section level3">
+<h3>Data</h3>
+<pre class="r"><code># Let&#39;s organize a fake manuscript project to generate the chart.
+Manuscript &lt;- c(&#39;Research &amp; readings&#39;, &#39;Data preparation&#39;, &#39;Analyses&#39;, &#39;Plan&#39;, &#39;Introduction&#39;,
+  &#39;Methods&#39;, &#39;Results&#39;, &#39;Discussion&#39;, &#39;Conclusion&#39;, &#39;Preliminary version to co-authors&#39;)
+startDate &lt;- c(&#39;2017-09-01&#39;, &#39;2017-09-14&#39;, &#39;2017-09-28&#39;, &#39;2017-09-21&#39;, &#39;2017-09-28&#39;,
+  &#39;2017-09-14&#39;, &#39;2017-10-28&#39;, &#39;2017-11-14&#39;, &#39;2017-11-28&#39;, &#39;2017-12-11&#39;)
+dueDate &lt;- c(&#39;2017-11-28&#39;, &#39;2017-09-28&#39;, &#39;2017-10-28&#39;, &#39;2017-09-28&#39;, &#39;2017-10-28&#39;,
+  &#39;2017-10-28&#39;, &#39;2017-11-14&#39;, &#39;2017-11-28&#39;, &#39;2017-12-04&#39;, &#39;2017-12-11&#39;)
+status &lt;- c(&#39;I&#39;, &#39;C&#39;, &#39;I&#39;, &#39;C&#39;, &#39;I&#39;, &#39;I&#39;, &#39;I&#39;, &#39;I&#39;, &#39;I&#39;, &#39;I&#39;)
+nTasks &lt;- length(Manuscript)
+
+# Create the data frame.
+# In statuses, &quot;I&quot; and &quot;C&quot; would stand for &quot;Incomplete&quot; and &quot;Complete&quot;, respectively
+df &lt;- data.frame(milestones = rep(&#39;Manuscript&#39;, nTasks),
+                 tasks = Manuscript,
+                 startDate = as.Date(startDate),
+                 dueDate = as.Date(dueDate),
+                 status = status,
+                 stringsAsFactors = FALSE)
+
+kable(df, &quot;html&quot;) %&gt;%
+    kable_styling(full_width = FALSE)</code></pre>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+milestones
+</th>
+<th style="text-align:left;">
+tasks
+</th>
+<th style="text-align:left;">
+startDate
+</th>
+<th style="text-align:left;">
+dueDate
+</th>
+<th style="text-align:left;">
+status
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Manuscript
+</td>
+<td style="text-align:left;">
+Research &amp; readings
+</td>
+<td style="text-align:left;">
+2017-09-01
+</td>
+<td style="text-align:left;">
+2017-11-28
+</td>
+<td style="text-align:left;">
+I
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Manuscript
+</td>
+<td style="text-align:left;">
+Data preparation
+</td>
+<td style="text-align:left;">
+2017-09-14
+</td>
+<td style="text-align:left;">
+2017-09-28
+</td>
+<td style="text-align:left;">
+C
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Manuscript
+</td>
+<td style="text-align:left;">
+Analyses
+</td>
+<td style="text-align:left;">
+2017-09-28
+</td>
+<td style="text-align:left;">
+2017-10-28
+</td>
+<td style="text-align:left;">
+I
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Manuscript
+</td>
+<td style="text-align:left;">
+Plan
+</td>
+<td style="text-align:left;">
+2017-09-21
+</td>
+<td style="text-align:left;">
+2017-09-28
+</td>
+<td style="text-align:left;">
+C
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Manuscript
+</td>
+<td style="text-align:left;">
+Introduction
+</td>
+<td style="text-align:left;">
+2017-09-28
+</td>
+<td style="text-align:left;">
+2017-10-28
+</td>
+<td style="text-align:left;">
+I
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Manuscript
+</td>
+<td style="text-align:left;">
+Methods
+</td>
+<td style="text-align:left;">
+2017-09-14
+</td>
+<td style="text-align:left;">
+2017-10-28
+</td>
+<td style="text-align:left;">
+I
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Manuscript
+</td>
+<td style="text-align:left;">
+Results
+</td>
+<td style="text-align:left;">
+2017-10-28
+</td>
+<td style="text-align:left;">
+2017-11-14
+</td>
+<td style="text-align:left;">
+I
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Manuscript
+</td>
+<td style="text-align:left;">
+Discussion
+</td>
+<td style="text-align:left;">
+2017-11-14
+</td>
+<td style="text-align:left;">
+2017-11-28
+</td>
+<td style="text-align:left;">
+I
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Manuscript
+</td>
+<td style="text-align:left;">
+Conclusion
+</td>
+<td style="text-align:left;">
+2017-11-28
+</td>
+<td style="text-align:left;">
+2017-12-04
+</td>
+<td style="text-align:left;">
+I
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Manuscript
+</td>
+<td style="text-align:left;">
+Preliminary version to co-authors
+</td>
+<td style="text-align:left;">
+2017-12-11
+</td>
+<td style="text-align:left;">
+2017-12-11
+</td>
+<td style="text-align:left;">
+I
+</td>
+</tr>
+</tbody>
+</table>
+<p>We can now create our Gantt chart!</p>
+</div>
+<div id="the-chart" class="section level3">
+<h3>The chart</h3>
+<pre class="r"><code># Let&#39;s first organize our graph in order of tasks startDate
+df &lt;- arrange(df, desc(startDate))
+
+# We need a date range for which we wish to create the graph.
+# Let&#39;s select the duration of the milestone
+dateRange &lt;- c(min(df$startDate), max(df$dueDate))
+
+# We also need the number of elements to add to our graph.
+# It will be the number of tasks plus the number of milestones
+nameMilestones &lt;- unique(df$milestones)
+nMilestones &lt;- length(nameMilestones)
+nLines &lt;- nTasks + nMilestones
+
+# We also need a date sequence that will be used as one of our axes
+# We select the date range divided into 7 days periods
+dateSeq &lt;- seq.Date(dateRange[1], dateRange[2], by = 7)
+
+# Finally, we need a color palette for the project
+# We take three colors, the first will be for the milestones
+# The second will be for incomplete tasks
+# The third color will be for completed tasks
+cols &lt;- c(&#39;#4f739d&#39;, &#39;#4f739dBB&#39;, &#39;#4f739d33&#39;)
+
+# Gantt chart
+par(family = &quot;serif&quot;, mar = c(6,9,2,0))
+plot(x = 1, y = 1, col = &#39;transparent&#39;, xlim = dateRange, ylim = c(1, nLines), bty = &quot;n&quot;,
+  ann = FALSE, xaxt = &quot;n&quot;, yaxt = &quot;n&quot;, type = &quot;n&quot;, bg = &#39;grey&#39;)
+
+# Add axes, tasks and milestones
+mtext(dateSeq, side = 1, at = dateSeq, las = 3, line = 1.5, cex = 0.75)
+axis(1, dateSeq, labels = FALSE, line = 0.5)
+mtext(df$tasks, side = 2, at = 1:nrow(df), las = 1, line = 0, cex = 0.75)
+mtext(nameMilestones, side = 2, at = nrow(df)+1, las = 1, line = 8, font = 2, adj = 0, cex = 0.8)
+
+# Add tasks
+for(i in 1:nTasks) {
+    lines(c(i,i) ~ c(df$startDate[i], df$dueDate[i]), lwd = 6, col = if(df$status[i] == &#39;C&#39;) cols[3] else cols[2])
+}
+
+# Add milestone
+lines(c(nLines,nLines) ~ c(min(df$startDate), max(df$dueDate)), lwd = 8, col = cols[1])
+
+# Add today&#39;s date
+abline(v = as.Date(format(Sys.time(), format = &quot;%Y-%m-%d&quot;)), lwd = 2, lty = 2)</code></pre>
+<p><img src="/post/2017/ganttR_files/figure-html/singleGantt-1.svg" width="960" style="display: block; margin: auto;" /></p>
+<p><br/></p>
+</div>
+<div id="multiple-milestones" class="section level3">
+<h3>Multiple milestones</h3>
+<p>Now Gantt charts are also useful to visualize and organize multiple projects
+together, so let’s make this chart multi-milestony.</p>
+<pre class="r"><code># We will simply duplicate the manuscript and do as though we are working on three consecutive manuscripts
+df2 &lt;- df3 &lt;- df
+df2$milestones &lt;- &#39;Manuscript2&#39;
+df3$milestones &lt;- &#39;Manuscript3&#39;
+df2[,c(&#39;startDate&#39;, &#39;dueDate&#39;)] &lt;- df2[,c(&#39;startDate&#39;, &#39;dueDate&#39;)] + as.numeric(diff(dateRange))
+df3[,c(&#39;startDate&#39;, &#39;dueDate&#39;)] &lt;- df3[,c(&#39;startDate&#39;, &#39;dueDate&#39;)] + as.numeric(diff(dateRange))*2
+df2$status &lt;- df3$status &lt;- rep(&#39;I&#39;, nTasks)
+dfM &lt;- rbind(df, df2, df3)
+
+# ... and go through the process of setting up the elements needed for the chart
+# Let&#39;s start with the colors this time
+# We take three colors, the first will be for the milestones
+# The second will be for incomplete tasks
+# The third color will be for completed tasks
+nameMilestones &lt;- unique(dfM$milestones)
+nMilestones &lt;- length(nameMilestones)
+cols &lt;- data.frame(milestones = nameMilestones,
+                   col = brewer.pal(nMilestones, &quot;Dark2&quot;),
+                   stringsAsFactors = FALSE)
+
+# Let&#39;s organize our dataset to produce the graph
+dfMulti &lt;- dfM %&gt;%
+      group_by(milestones) %&gt;% # group by milestones
+      summarise(startDate = min(startDate),
+                dueDate = max(dueDate)) %&gt;% # Determine the beginning and end date of milestones
+      mutate(tasks = milestones, status = &#39;M&#39;) %&gt;% # Give a name and a status
+      bind_rows(dfM) %&gt;% # Bind milestones with tasks
+      mutate(lwd = ifelse(milestones == tasks, 8, 6)) %&gt;% # Add line width for graph
+      left_join(cols, by = &#39;milestones&#39;) %&gt;% # add colors
+      mutate(col = ifelse(status == &#39;I&#39;, paste0(col, &#39;BB&#39;), col)) %&gt;% # change colors according to status
+      mutate(col = ifelse(status == &#39;C&#39;, paste0(col, &#39;33&#39;), col)) %&gt;% # change colors according to status
+      mutate(cex = ifelse(status == &#39;M&#39;, 0.8, 0.75)) %&gt;%
+      mutate(adj = ifelse(status == &#39;M&#39;, 0, 1)) %&gt;%
+      mutate(line = ifelse(status == &#39;M&#39;, 8, 0.5)) %&gt;%
+      mutate(font = ifelse(status == &#39;M&#39;, 2, 1)) %&gt;%
+      arrange(milestones,desc(startDate),dueDate) # sort table
+
+# We need a date range for which we wish to create the graph.
+# Let&#39;s select the duration of the milestone
+dateRange &lt;- c(min(dfMulti$startDate), max(dfMulti$dueDate))
+
+# We also need a date sequence that will be used as one of our axes
+# We select the date range divided into 7 days periods
+dateSeq &lt;- seq.Date(dateRange[1], dateRange[2], by = 7)
+
+
+# Gantt chart
+nLines &lt;- nrow(dfMulti)
+par(family = &quot;serif&quot;, mar = c(6, 9, 2, 0))
+plot(x = 1, y = 1, col = &#39;transparent&#39;, xlim = dateRange, ylim = c(1, nLines),
+  bty = &quot;n&quot;,ann = FALSE, xaxt = &quot;n&quot;, yaxt = &quot;n&quot;, type = &quot;n&quot;, bg = &#39;grey&#39;)
+mtext(dateSeq, side = 1, at = dateSeq, las = 3, line = 1.5, cex = 0.75)
+axis(1, dateSeq, labels = F, line = 0.5)
+
+for(i in 1:nLines) {
+    lines(c(i,i) ~ c(dfMulti$startDate[i],dfMulti$dueDate[i]),
+          lwd = dfMulti$lwd[i],
+          col = dfMulti$col[i])
+    mtext(dfMulti$tasks[i],
+          side = 2,
+          at = i,
+          las = 1,
+          adj = dfMulti$adj[i],
+          line = dfMulti$line[i],
+          cex = dfMulti$cex[i],
+          font = dfMulti$font[i])
+}
+
+abline(h = which(dfMulti$status == &#39;M&#39;) + 0.5, col = &#39;#634d42&#39;)
+abline(v = as.Date(format(Sys.time(), format = &quot;%Y-%m-%d&quot;)), lwd = 2, lty = 2)</code></pre>
+<p><img src="/post/2017/ganttR_files/figure-html/multiGantt-1.svg" width="960" style="display: block; margin: auto;" /></p>
+</div>
+</div>
+<div id="ganttr" class="section level2">
+<h2>ganttR()</h2>
+<p>Now that we have all the code, let’s simply transform it into a reusable function. Let’s also give it the choice to generate two types of graph: 1) all milestones and tasks or 2) only milestones.</p>
+<pre class="r"><code>ganttR &lt;- function(df, type = &#39;all&#39;) {
+    nameMilestones &lt;- unique(df$milestones)
+    nMilestones &lt;- length(nameMilestones)
+    rbPal &lt;- colorRampPalette(c(&quot;#3fb3b2&quot;, &quot;#ffdd55&quot;, &quot;#c7254e&quot;, &quot;#1b95e0&quot;, &quot;#8555b4&quot;)) # Color palette
+    cols &lt;- data.frame(milestones = nameMilestones,
+                       col = rbPal(nMilestones),
+                       stringsAsFactors = FALSE)
+    cols &lt;- cols[1:nMilestones, ]
+
+    # Let&#39;s organize our dataset to produce the graph
+    df &lt;- df %&gt;%
+          group_by(milestones) %&gt;% # group by milestones
+          summarise(startDate = min(startDate),
+                    dueDate = max(dueDate)) %&gt;% # Determine the beginning and end date of milestones
+          mutate(tasks = milestones, status = &#39;M&#39;) %&gt;% # Give a name and a status
+          bind_rows(df) %&gt;% # Bind milestones with tasks
+          mutate(lwd = ifelse(milestones == tasks, 8, 6)) %&gt;% # Add line width for graph
+          left_join(cols, by = &#39;milestones&#39;) %&gt;% # add colors
+          mutate(col = ifelse(status == &#39;I&#39;, paste0(col, &#39;BB&#39;), col)) %&gt;% # change colors according to status
+          mutate(col = ifelse(status == &#39;C&#39;, paste0(col, &#39;33&#39;), col)) %&gt;% # change colors according to status
+          mutate(cex = ifelse(status == &#39;M&#39;, 0.8, 0.75)) %&gt;%
+          mutate(adj = ifelse(status == &#39;M&#39;, 0, 1)) %&gt;%
+          mutate(line = ifelse(status == &#39;M&#39;, 8, 0.5)) %&gt;%
+          mutate(font = ifelse(status == &#39;M&#39;, 2, 1)) %&gt;%
+          arrange(milestones,desc(startDate),dueDate) # sort table
+
+    # We need a date range for which we wish to crete the graph.
+    # Let&#39;s select the duration of the milestone
+    dateRange &lt;- c(min(df$startDate), max(df$dueDate))
+
+    # We also need a date sequence that will be used as one of our axes
+    # We select the date range divided into 7 days periods
+    # dateSeq &lt;- seq.Date(dateRange[1], dateRange[2], by = 7)
+    forced_start &lt;- as.Date(paste0(format(dateRange[1], &quot;%Y-%m&quot;), &quot;-01&quot;))
+    yEnd &lt;- format(dateRange[2], &quot;%Y&quot;)
+    mEnd &lt;- as.numeric(format(dateRange[2], &quot;%m&quot;)) + 1
+    if (mEnd == 13) {
+        yEnd &lt;- as.numeric(yEnd) + 1
+        mEnd &lt;- 1
+    }
+    forced_end &lt;- as.Date(paste0(yEnd, &quot;-&quot;, mEnd,&quot;-01&quot;))
+    dateSeq &lt;- seq.Date(forced_start, forced_end, by = &quot;month&quot;)
+    lab &lt;- format(dateSeq, &quot;%B&quot;)
+
+    # Gantt chart for &#39;all&#39; type
+    if(type == &#39;all&#39;) {
+        nLines &lt;- nrow(df)
+        par(family = &quot;serif&quot;, mar = c(6,9,2,0))
+        plot(x = 1, y = 1, col = &#39;transparent&#39;, xlim = c(min(dateSeq), max(dateSeq)), ylim = c(1,nLines), bty = &quot;n&quot;,ann = FALSE, xaxt = &quot;n&quot;,yaxt = &quot;n&quot;,type = &quot;n&quot;,bg = &#39;grey&#39;)
+        mtext(lab[-length(lab)], side = 1, at = dateSeq[-length(lab)], las = 0, line = 1.5, cex = 0.75, adj = 0)
+        axis(1, dateSeq, labels = FALSE, line = 0.5)
+        extra &lt;- nLines * 0.03
+        for(i in seq(1,length(dateSeq - 1), by = 2)) {
+            polygon(x = c(dateSeq[i], dateSeq[i + 1], dateSeq[i + 1], dateSeq[i]),
+                    y = c(1 - extra, 1 - extra, nLines + extra, nLines + extra),
+                    border = &#39;transparent&#39;,
+                    col = &#39;#f1f1f155&#39;)
+        }
+
+        for(i in 1:nLines) {
+            lines(c(i,i) ~ c(df$startDate[i], df$dueDate[i]),
+                  lwd = df$lwd[i],
+                  col = df$col[i])
+            mtext(df$tasks[i],
+                  side = 2,
+                  at = i,
+                  las = 1,
+                  adj = df$adj[i],
+                  line = df$line[i],
+                  cex = df$cex[i],
+                  font = df$font[i])
+        }
+
+        abline(h = which(df$status == &#39;M&#39;) + 0.5, col = &#39;#634d42&#39;)
+        abline(v = as.Date(format(Sys.time(), format = &quot;%Y-%m-%d&quot;)), lwd = 2, lty = 2)
+    }
+
+    # Gantt chart for &#39;milestones&#39; only
+    if(type == &#39;milestones&#39;) {
+        nLines &lt;- nMilestones
+        ms &lt;- which(df$status == &#39;M&#39;)
+        par(family = &quot;serif&quot;, mar = c(6,9,2,0))
+        plot(x = 1, y = 1, col = &#39;transparent&#39;, xlim = c(min(dateSeq), max(dateSeq)), ylim = c(1,nLines), bty = &quot;n&quot;,ann = FALSE, xaxt = &quot;n&quot;, yaxt = &quot;n&quot;,type = &quot;n&quot;,bg = &#39;grey&#39;)
+        mtext(lab[-length(lab)], side = 1, at = dateSeq[-length(lab)], las = 0, line = 1.5, cex = 0.75, adj = 0)
+        axis(1, dateSeq, labels = FALSE, line = 0.5)
+        extra &lt;- nLines * 0.03
+        for(i in seq(1,length(dateSeq-1), by = 2)) {
+            polygon(x = c(dateSeq[i], dateSeq[i + 1], dateSeq[i + 1], dateSeq[i]),
+                    y = c(1 - extra, 1 - extra, nLines + extra, nLines + extra),
+                    border = &#39;transparent&#39;,
+                    col = &#39;#f1f1f155&#39;)
+        }
+
+        for(i in 1:nLines) {
+            lines(c(i,i) ~ c(df$startDate[ms[i]], df$dueDate[ms[i]]),
+                  lwd = df$lwd[ms[i]],
+                  col = df$col[ms[i]])
+            mtext(df$tasks[ms[i]],
+                  side = 2,
+                  at = i,
+                  las = 1,
+                  adj = 1,
+                  line = 0.5,
+                  cex = df$cex[ms[i]],
+                  font = df$font[ms[i]])
+        }
+        abline(v = as.Date(format(Sys.time(), format = &quot;%Y-%m-%d&quot;)), lwd = 2, lty = 2)
+    }
+}
+
+# Single milestone
+ganttR(df)</code></pre>
+<p><img src="/post/2017/ganttR_files/figure-html/ganttR-1.svg" width="960" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>
+# Multiple milestones
+ganttR(dfM)</code></pre>
+<p><img src="/post/2017/ganttR_files/figure-html/ganttR-2.svg" width="960" style="display: block; margin: auto;" /></p>
+<pre class="r"><code>
+# Milestones only
+ganttR(dfM, &#39;milestones&#39;)</code></pre>
+<p><img src="/post/2017/ganttR_files/figure-html/ganttR-3.svg" width="960" style="display: block; margin: auto;" /></p>
+<div style="padding: 2rem 0rem 2rem 0rem;">
+<details>
+<summary>
+<h4>
+<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
+<i class="fa fa-cogs" aria-hidden="true"></i>
+</h4>
+<p></summary></p>
+<pre class="r"><code>sessionInfo()
+#R&gt;  R version 4.2.0 (2022-04-22)
+#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)
+#R&gt;  Running under: Debian GNU/Linux bookworm/sid
+#R&gt;  
+#R&gt;  Matrix products: default
+#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.1
+#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.10.1
+#R&gt;  
+#R&gt;  locale:
+#R&gt;   [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+#R&gt;   [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+#R&gt;   [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+#R&gt;   [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#R&gt;   [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+#R&gt;  [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+#R&gt;  
+#R&gt;  attached base packages:
+#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     
+#R&gt;  
+#R&gt;  other attached packages:
+#R&gt;   [1] kableExtra_1.3.4       RColorBrewer_1.1-3     forcats_0.5.1         
+#R&gt;   [4] stringr_1.4.0          dplyr_1.0.9            purrr_0.3.4           
+#R&gt;   [7] readr_2.1.2            tidyr_1.2.0            tibble_3.1.7          
+#R&gt;  [10] ggplot2_3.3.6          tidyverse_1.3.1        knitr_1.39            
+#R&gt;  [13] inSilecoRef_0.0.1.9000
+#R&gt;  
+#R&gt;  loaded via a namespace (and not attached):
+#R&gt;   [1] fs_1.5.2          lubridate_1.8.0   webshot_0.5.3     httr_1.4.3       
+#R&gt;   [5] targets_0.12.0    tools_4.2.0       backports_1.4.1   bslib_0.3.1      
+#R&gt;   [9] utf8_1.2.2        R6_2.5.1          DT_0.23           DBI_1.1.2        
+#R&gt;  [13] colorspace_2.0-3  withr_2.5.0       tidyselect_1.1.2  processx_3.5.3   
+#R&gt;  [17] curl_4.3.2        compiler_4.2.0    cli_3.3.0         rvest_1.0.2      
+#R&gt;  [21] xml2_1.3.3        bookdown_0.26     sass_0.4.1        scales_1.2.0     
+#R&gt;  [25] callr_3.7.0       systemfonts_1.0.4 digest_0.6.29     svglite_2.1.0    
+#R&gt;  [29] rmarkdown_2.14    pkgconfig_2.0.3   htmltools_0.5.2   highr_0.9        
+#R&gt;  [33] dbplyr_2.1.1      fastmap_1.1.0     htmlwidgets_1.5.4 rlang_1.0.2      
+#R&gt;  [37] readxl_1.4.0      rstudioapi_0.13   httpcode_0.3.0    shiny_1.7.1      
+#R&gt;  [41] jquerylib_0.1.4   generics_0.1.2    jsonlite_1.8.0    magrittr_2.0.3   
+#R&gt;  [45] Rcpp_1.0.8.3      munsell_0.5.0     fansi_1.0.3       RefManageR_1.3.0 
+#R&gt;  [49] lifecycle_1.0.1   stringi_1.7.6     yaml_2.3.5        plyr_1.8.7       
+#R&gt;  [53] grid_4.2.0        promises_1.2.0.1  crayon_1.5.1      miniUI_0.1.1.1   
+#R&gt;  [57] haven_2.5.0       hms_1.1.1         ps_1.7.0          pillar_1.7.0     
+#R&gt;  [61] igraph_1.2.11     base64url_1.4     codetools_0.2-18  crul_1.2.0       
+#R&gt;  [65] reprex_2.0.1      glue_1.6.2        rcrossref_1.1.0   evaluate_0.15    
+#R&gt;  [69] blogdown_1.10     data.table_1.14.2 modelr_0.1.8      vctrs_0.4.1      
+#R&gt;  [73] tzdb_0.3.0        httpuv_1.6.5      cellranger_1.1.0  gtable_0.3.0     
+#R&gt;  [77] assertthat_0.2.1  xfun_0.31         mime_0.12         xtable_1.8-4     
+#R&gt;  [81] broom_0.8.0       later_1.3.0       viridisLite_0.4.0 ellipsis_0.3.2</code></pre>
+</details>
+</div>
+</div>
