@@ -624,21 +624,21 @@ packageVersion(&quot;inSilecoMisc&quot;)
 <p>I wrote <a href="https://insileco.github.io/inSilecoMisc/reference/scaleWithin.html"><code>scaleWithin()</code></a> to handle color scales for a specific yet frequent situation. Let us say that I have 40 percentage values – meaning 0 to 100 – in a vector <code>val</code>…</p>
 <pre class="r"><code>val &lt;- runif(40, 0, 100)
 val
-#R&gt;   [1] 54.0425550  2.9374458  5.9074710 83.4999100 48.7579098 35.1124032
-#R&gt;   [7] 20.0117420  9.7688880 54.4730038 55.2695611 94.2122941 27.8571208
-#R&gt;  [13] 76.0647499 86.0711863 58.6461806 44.2204836  3.3687625  0.1118805
-#R&gt;  [19]  4.7191368 50.6729995 96.9944567 93.9848197 75.0159363 73.2478970
-#R&gt;  [25] 64.8405004 79.4274330 13.4548539 48.9387856 15.1020352 34.3843171
-#R&gt;  [31] 82.7464728  4.5331176 16.2374304 31.8080332 89.7034838 95.0841741
-#R&gt;  [37] 47.7490731 12.0757358 32.2291907 77.5096313</code></pre>
+#R&gt;   [1] 58.6789155 93.6642462 34.8861845 23.9344677 77.5069927  6.8971644
+#R&gt;   [7] 44.9199229 74.7108024 24.5725650 97.4681852 86.8361310 85.6521179
+#R&gt;  [13] 61.6839770 78.2783106 67.7165320 92.6490045 60.6209677 83.1566314
+#R&gt;  [19] 94.6943403 67.5420237 37.5106211 36.2025288 33.3768941 70.6669664
+#R&gt;  [25] 59.2508723 35.6677950 15.3944684 19.9473002 66.5387403 75.8100843
+#R&gt;  [31] 28.2615160 54.1731238 96.1894987 78.4755143  3.5581900  0.5702138
+#R&gt;  [37] 76.3728011 51.3728681 72.6817026 18.6525284</code></pre>
 <p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
 <pre class="r"><code>pal &lt;- colorRampPalette(c(&quot;#f9fa98&quot;, &quot;#500127&quot;))(25)
 graphicsutils::showPalette(pal)</code></pre>
 <p><img src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>But</strong> the color scale should be used for the range [30%-70%], meaning that values below 30% should have the lowest values and values above 70%, the highest one. The caption should thus indicate <span class="math inline">\(\geqslant\)</span> 30% and <span class="math inline">\(\leqslant\)</span> 70%. Then the function <code>scaleWithin()</code> is very handy!</p>
 <pre class="r"><code>scaleWithin(val, n = 25, mn = 30, mx = 70)
-#R&gt;   [1] 16  1  1 25 12  4  1  1 16 16 25  1 25 25 18  9  1  1  1 13 25 25 25 25 22
-#R&gt;  [26] 25  1 12  1  3 25  1  1  2 25 25 12  1  2 25
+#R&gt;   [1] 18 25  4  1 25  1 10 25  1 25 25 25 20 25 24 25 20 25 25 24  5  4  3 25 19
+#R&gt;  [26]  4  1  1 23 25  1 16 25 25  1  1 25 14 25  1
 graphicsutils::showPalette(pal[scaleWithin(val, n = 25, mn = 30, mx = 70)], add_codecolor = FALSE)</code></pre>
 <p><img src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Even though this function is pretty useful – at least I think it is! – I had a
@@ -1296,44 +1296,44 @@ df8
 )
 lsdf
 #R&gt;  [[1]]
-#R&gt;    F J G B I
-#R&gt;  1 f j g b i
-#R&gt;  2 f j g b i
-#R&gt;  3 f j g b i
-#R&gt;  4 f j g b i
-#R&gt;  5 f j g b i
+#R&gt;    D A H E G
+#R&gt;  1 d a h e g
+#R&gt;  2 d a h e g
+#R&gt;  3 d a h e g
+#R&gt;  4 d a h e g
+#R&gt;  5 d a h e g
 #R&gt;  
 #R&gt;  [[2]]
-#R&gt;    I D A H J
-#R&gt;  1 i d a h j
-#R&gt;  2 i d a h j
-#R&gt;  3 i d a h j
-#R&gt;  4 i d a h j
-#R&gt;  5 i d a h j
+#R&gt;    E A C I J
+#R&gt;  1 e a c i j
+#R&gt;  2 e a c i j
+#R&gt;  3 e a c i j
+#R&gt;  4 e a c i j
+#R&gt;  5 e a c i j
 #R&gt;  
 #R&gt;  [[3]]
-#R&gt;    J I F A B
-#R&gt;  1 j i f a b
-#R&gt;  2 j i f a b
-#R&gt;  3 j i f a b
-#R&gt;  4 j i f a b
-#R&gt;  5 j i f a b
+#R&gt;    H G A J E
+#R&gt;  1 h g a j e
+#R&gt;  2 h g a j e
+#R&gt;  3 h g a j e
+#R&gt;  4 h g a j e
+#R&gt;  5 h g a j e
 #R&gt;  
 #R&gt;  [[4]]
-#R&gt;    I A H F J
-#R&gt;  1 i a h f j
-#R&gt;  2 i a h f j
-#R&gt;  3 i a h f j
-#R&gt;  4 i a h f j
-#R&gt;  5 i a h f j
+#R&gt;    F B H G A
+#R&gt;  1 f b h g a
+#R&gt;  2 f b h g a
+#R&gt;  3 f b h g a
+#R&gt;  4 f b h g a
+#R&gt;  5 f b h g a
 #R&gt;  
 #R&gt;  [[5]]
-#R&gt;    J A F G H
-#R&gt;  1 j a f g h
-#R&gt;  2 j a f g h
-#R&gt;  3 j a f g h
-#R&gt;  4 j a f g h
-#R&gt;  5 j a f g h</code></pre>
+#R&gt;    J D B F I
+#R&gt;  1 j d b f i
+#R&gt;  2 j d b f i
+#R&gt;  3 j d b f i
+#R&gt;  4 j d b f i
+#R&gt;  5 j d b f i</code></pre>
 <p>So the goal here is to create a data frame that contains only the five first
 columns, i.e. A, B, C, D, E, the remaining columns must be discarded and
 when one selected column is missing, it must be added (filled out with <code>NA</code>).
@@ -1341,72 +1341,72 @@ To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
 <pre class="r"><code>lsdf2 &lt;- lapply(lsdf, dfTemplateMatch, LETTERS[1:5], yonly = TRUE)
 lsdf2
 #R&gt;  [[1]]
-#R&gt;    B  A  C  D  E
-#R&gt;  1 b NA NA NA NA
-#R&gt;  2 b NA NA NA NA
-#R&gt;  3 b NA NA NA NA
-#R&gt;  4 b NA NA NA NA
-#R&gt;  5 b NA NA NA NA
+#R&gt;    D A E  B  C
+#R&gt;  1 d a e NA NA
+#R&gt;  2 d a e NA NA
+#R&gt;  3 d a e NA NA
+#R&gt;  4 d a e NA NA
+#R&gt;  5 d a e NA NA
 #R&gt;  
 #R&gt;  [[2]]
-#R&gt;    D A  B  C  E
-#R&gt;  1 d a NA NA NA
-#R&gt;  2 d a NA NA NA
-#R&gt;  3 d a NA NA NA
-#R&gt;  4 d a NA NA NA
-#R&gt;  5 d a NA NA NA
+#R&gt;    E A C  B  D
+#R&gt;  1 e a c NA NA
+#R&gt;  2 e a c NA NA
+#R&gt;  3 e a c NA NA
+#R&gt;  4 e a c NA NA
+#R&gt;  5 e a c NA NA
 #R&gt;  
 #R&gt;  [[3]]
-#R&gt;    A B  C  D  E
-#R&gt;  1 a b NA NA NA
-#R&gt;  2 a b NA NA NA
-#R&gt;  3 a b NA NA NA
-#R&gt;  4 a b NA NA NA
-#R&gt;  5 a b NA NA NA
+#R&gt;    A E  B  C  D
+#R&gt;  1 a e NA NA NA
+#R&gt;  2 a e NA NA NA
+#R&gt;  3 a e NA NA NA
+#R&gt;  4 a e NA NA NA
+#R&gt;  5 a e NA NA NA
 #R&gt;  
 #R&gt;  [[4]]
-#R&gt;    A  B  C  D  E
-#R&gt;  1 a NA NA NA NA
-#R&gt;  2 a NA NA NA NA
-#R&gt;  3 a NA NA NA NA
-#R&gt;  4 a NA NA NA NA
-#R&gt;  5 a NA NA NA NA
+#R&gt;    B A  C  D  E
+#R&gt;  1 b a NA NA NA
+#R&gt;  2 b a NA NA NA
+#R&gt;  3 b a NA NA NA
+#R&gt;  4 b a NA NA NA
+#R&gt;  5 b a NA NA NA
 #R&gt;  
 #R&gt;  [[5]]
-#R&gt;    A  B  C  D  E
-#R&gt;  1 a NA NA NA NA
-#R&gt;  2 a NA NA NA NA
-#R&gt;  3 a NA NA NA NA
-#R&gt;  4 a NA NA NA NA
-#R&gt;  5 a NA NA NA NA</code></pre>
+#R&gt;    D B  A  C  E
+#R&gt;  1 d b NA NA NA
+#R&gt;  2 d b NA NA NA
+#R&gt;  3 d b NA NA NA
+#R&gt;  4 d b NA NA NA
+#R&gt;  5 d b NA NA NA</code></pre>
 <p>And now I can seamlessly <code>rbind()</code> the list <code>lsdf2</code>!</p>
 <pre class="r"><code>do.call(rbind, lsdf2)
-#R&gt;        B    A  C    D  E
-#R&gt;  1     b &lt;NA&gt; NA &lt;NA&gt; NA
-#R&gt;  2     b &lt;NA&gt; NA &lt;NA&gt; NA
-#R&gt;  3     b &lt;NA&gt; NA &lt;NA&gt; NA
-#R&gt;  4     b &lt;NA&gt; NA &lt;NA&gt; NA
-#R&gt;  5     b &lt;NA&gt; NA &lt;NA&gt; NA
-#R&gt;  6  &lt;NA&gt;    a NA    d NA
-#R&gt;  7  &lt;NA&gt;    a NA    d NA
-#R&gt;  8  &lt;NA&gt;    a NA    d NA
-#R&gt;  9  &lt;NA&gt;    a NA    d NA
-#R&gt;  10 &lt;NA&gt;    a NA    d NA
-#R&gt;  11    b    a NA &lt;NA&gt; NA
-#R&gt;  12    b    a NA &lt;NA&gt; NA
-#R&gt;  13    b    a NA &lt;NA&gt; NA
-#R&gt;  14    b    a NA &lt;NA&gt; NA
-#R&gt;  15    b    a NA &lt;NA&gt; NA
-#R&gt;  16 &lt;NA&gt;    a NA &lt;NA&gt; NA
-#R&gt;  17 &lt;NA&gt;    a NA &lt;NA&gt; NA
-#R&gt;  18 &lt;NA&gt;    a NA &lt;NA&gt; NA
-#R&gt;  19 &lt;NA&gt;    a NA &lt;NA&gt; NA
-#R&gt;  20 &lt;NA&gt;    a NA &lt;NA&gt; NA
-#R&gt;  21 &lt;NA&gt;    a NA &lt;NA&gt; NA
-#R&gt;  22 &lt;NA&gt;    a NA &lt;NA&gt; NA
-#R&gt;  23 &lt;NA&gt;    a NA &lt;NA&gt; NA
-#R&gt;  24 &lt;NA&gt;    a NA &lt;NA&gt; NA
-#R&gt;  25 &lt;NA&gt;    a NA &lt;NA&gt; NA</code></pre>
+#R&gt;        D    A    E    B    C
+#R&gt;  1     d    a    e &lt;NA&gt; &lt;NA&gt;
+#R&gt;  2     d    a    e &lt;NA&gt; &lt;NA&gt;
+#R&gt;  3     d    a    e &lt;NA&gt; &lt;NA&gt;
+#R&gt;  4     d    a    e &lt;NA&gt; &lt;NA&gt;
+#R&gt;  5     d    a    e &lt;NA&gt; &lt;NA&gt;
+#R&gt;  6  &lt;NA&gt;    a    e &lt;NA&gt;    c
+#R&gt;  7  &lt;NA&gt;    a    e &lt;NA&gt;    c
+#R&gt;  8  &lt;NA&gt;    a    e &lt;NA&gt;    c
+#R&gt;  9  &lt;NA&gt;    a    e &lt;NA&gt;    c
+#R&gt;  10 &lt;NA&gt;    a    e &lt;NA&gt;    c
+#R&gt;  11 &lt;NA&gt;    a    e &lt;NA&gt; &lt;NA&gt;
+#R&gt;  12 &lt;NA&gt;    a    e &lt;NA&gt; &lt;NA&gt;
+#R&gt;  13 &lt;NA&gt;    a    e &lt;NA&gt; &lt;NA&gt;
+#R&gt;  14 &lt;NA&gt;    a    e &lt;NA&gt; &lt;NA&gt;
+#R&gt;  15 &lt;NA&gt;    a    e &lt;NA&gt; &lt;NA&gt;
+#R&gt;  16 &lt;NA&gt;    a &lt;NA&gt;    b &lt;NA&gt;
+#R&gt;  17 &lt;NA&gt;    a &lt;NA&gt;    b &lt;NA&gt;
+#R&gt;  18 &lt;NA&gt;    a &lt;NA&gt;    b &lt;NA&gt;
+#R&gt;  19 &lt;NA&gt;    a &lt;NA&gt;    b &lt;NA&gt;
+#R&gt;  20 &lt;NA&gt;    a &lt;NA&gt;    b &lt;NA&gt;
+#R&gt;  21    d &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
+#R&gt;  22    d &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
+#R&gt;  23    d &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
+#R&gt;  24    d &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
+#R&gt;  25    d &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;</code></pre>
 <div id="voilà-this-is-what-i-call-a-flexible-rbind-i-hope-youll-find-this-helpful-boom" class="section level4">
 <h4>Voilà! This is what I call a <em>flexible</em> <code>rbind</code>! I hope you’ll find this helpful! 💥</h4>
 <div style="padding: 2rem 0rem 2rem 0rem;">
