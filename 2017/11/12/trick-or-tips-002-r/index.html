@@ -260,22 +260,22 @@ columns:</p>
   var3 = runif(10)
 )
 head(df)
-#R&gt;          var1      var2      var3
-#R&gt;  1 0.94053355 0.9571721 0.9368347
-#R&gt;  2 0.81307489 0.5170845 0.2297421
-#R&gt;  3 0.02862697 0.8578067 0.4752636
-#R&gt;  4 0.71283724 0.9875701 0.8785450
-#R&gt;  5 0.92395738 0.6049298 0.4977499
-#R&gt;  6 0.02096035 0.6973465 0.9828311</code></pre>
+#R&gt;         var1       var2       var3
+#R&gt;  1 0.2811310 0.01572294 0.78580638
+#R&gt;  2 0.6185195 0.56698426 0.24977889
+#R&gt;  3 0.7635730 0.19731655 0.68825682
+#R&gt;  4 0.6554100 0.40768896 0.25082172
+#R&gt;  5 0.5752876 0.63074162 0.65025027
+#R&gt;  6 0.4244782 0.25783973 0.02452321</code></pre>
 <p>To extract the first column, I use the <code>[]</code> operator and either type the number
 of the column like so:</p>
 <pre class="r"><code>df[, 1]
-#R&gt;   [1] 0.94053355 0.81307489 0.02862697 0.71283724 0.92395738 0.02096035
-#R&gt;   [7] 0.21538715 0.38727007 0.81577538 0.56634783</code></pre>
+#R&gt;   [1] 0.2811310 0.6185195 0.7635730 0.6554100 0.5752876 0.4244782 0.7325043
+#R&gt;   [8] 0.1437098 0.2744397 0.1622726</code></pre>
 <p>or the name of the column to be extracted:</p>
 <pre class="r"><code>df[, &#39;var1&#39;]
-#R&gt;   [1] 0.94053355 0.81307489 0.02862697 0.71283724 0.92395738 0.02096035
-#R&gt;   [7] 0.21538715 0.38727007 0.81577538 0.56634783</code></pre>
+#R&gt;   [1] 0.2811310 0.6185195 0.7635730 0.6554100 0.5752876 0.4244782 0.7325043
+#R&gt;   [8] 0.1437098 0.2744397 0.1622726</code></pre>
 <p>Interestingly enough, this returns a <strong>vector</strong>, not a data.frame</p>
 <pre class="r"><code>class(df)
 #R&gt;  [1] &quot;data.frame&quot;
@@ -293,17 +293,17 @@ we end up with a vector instead of a data.frame. The argument <code>drop</code> 
 a work around. By default it is set to <code>TRUE</code> and a 1-column data frame becomes
 a vector, but using <code>drop = FALSE</code> prevents this from happening. Let’s try this:</p>
 <pre class="r"><code>df[, 1, drop = FALSE]
-#R&gt;           var1
-#R&gt;  1  0.94053355
-#R&gt;  2  0.81307489
-#R&gt;  3  0.02862697
-#R&gt;  4  0.71283724
-#R&gt;  5  0.92395738
-#R&gt;  6  0.02096035
-#R&gt;  7  0.21538715
-#R&gt;  8  0.38727007
-#R&gt;  9  0.81577538
-#R&gt;  10 0.56634783</code></pre>
+#R&gt;          var1
+#R&gt;  1  0.2811310
+#R&gt;  2  0.6185195
+#R&gt;  3  0.7635730
+#R&gt;  4  0.6554100
+#R&gt;  5  0.5752876
+#R&gt;  6  0.4244782
+#R&gt;  7  0.7325043
+#R&gt;  8  0.1437098
+#R&gt;  9  0.2744397
+#R&gt;  10 0.1622726</code></pre>
 <p>Let’s check its class:</p>
 <pre class="r"><code>class(df[, 1, drop = FALSE])
 #R&gt;  [1] &quot;data.frame&quot;</code></pre>
@@ -311,24 +311,24 @@ a vector, but using <code>drop = FALSE</code> prevents this from happening. Let�
 number without comma (a data frame is a list of vector which have the
 same size, so you can basically subset the list!).</p>
 <pre class="r"><code>df[1]
-#R&gt;           var1
-#R&gt;  1  0.94053355
-#R&gt;  2  0.81307489
-#R&gt;  3  0.02862697
-#R&gt;  4  0.71283724
-#R&gt;  5  0.92395738
-#R&gt;  6  0.02096035
-#R&gt;  7  0.21538715
-#R&gt;  8  0.38727007
-#R&gt;  9  0.81577538
-#R&gt;  10 0.56634783</code></pre>
+#R&gt;          var1
+#R&gt;  1  0.2811310
+#R&gt;  2  0.6185195
+#R&gt;  3  0.7635730
+#R&gt;  4  0.6554100
+#R&gt;  5  0.5752876
+#R&gt;  6  0.4244782
+#R&gt;  7  0.7325043
+#R&gt;  8  0.1437098
+#R&gt;  9  0.2744397
+#R&gt;  10 0.1622726</code></pre>
 <p>But if you need a specific selection of rows, you better use <code>drop</code>!</p>
 <pre class="r"><code>df[2:5, 1, drop = FALSE]
-#R&gt;          var1
-#R&gt;  2 0.81307489
-#R&gt;  3 0.02862697
-#R&gt;  4 0.71283724
-#R&gt;  5 0.92395738</code></pre>
+#R&gt;         var1
+#R&gt;  2 0.6185195
+#R&gt;  3 0.7635730
+#R&gt;  4 0.6554100
+#R&gt;  5 0.5752876</code></pre>
 <p>Now you know ;-)</p>
 <p><br></p>
 </div>
@@ -412,16 +412,16 @@ df &lt;- data.frame(
   )
 extract(df, &#39;var1&#39;)
 #R&gt;          var1
-#R&gt;  1  0.1085114
-#R&gt;  2  0.4562562
-#R&gt;  3  0.7315157
-#R&gt;  4  0.6262901
-#R&gt;  5  0.4352477
-#R&gt;  6  0.3400457
-#R&gt;  7  0.4774130
-#R&gt;  8  0.3355758
-#R&gt;  9  0.5663039
-#R&gt;  10 0.0542482</code></pre>
+#R&gt;  1  0.4953547
+#R&gt;  2  0.1882362
+#R&gt;  3  0.4898114
+#R&gt;  4  0.5075213
+#R&gt;  5  0.5605593
+#R&gt;  6  0.6338887
+#R&gt;  7  0.5551678
+#R&gt;  8  0.5393255
+#R&gt;  9  0.6143108
+#R&gt;  10 0.9940472</code></pre>
 <p>Here I use the function <code>extract()</code> from the <code>magrittr</code> package that act as <code>[]</code>
 and I extract the column <code>var1</code> from <code>df</code>. This function is actually designed
 to be use with pipes (if this sounds weird, have a look at the
@@ -444,16 +444,16 @@ different names, so the combination of the two is unique (this holds true if you
 only package from the CRAN). Let’s use it:</p>
 <pre class="r"><code>magrittr::extract(df, &#39;var1&#39;)
 #R&gt;          var1
-#R&gt;  1  0.1085114
-#R&gt;  2  0.4562562
-#R&gt;  3  0.7315157
-#R&gt;  4  0.6262901
-#R&gt;  5  0.4352477
-#R&gt;  6  0.3400457
-#R&gt;  7  0.4774130
-#R&gt;  8  0.3355758
-#R&gt;  9  0.5663039
-#R&gt;  10 0.0542482</code></pre>
+#R&gt;  1  0.4953547
+#R&gt;  2  0.1882362
+#R&gt;  3  0.4898114
+#R&gt;  4  0.5075213
+#R&gt;  5  0.5605593
+#R&gt;  6  0.6338887
+#R&gt;  7  0.5551678
+#R&gt;  8  0.5393255
+#R&gt;  9  0.6143108
+#R&gt;  10 0.9940472</code></pre>
 <p>Using this is also very helpful when you develop a package and functions from
 different packages. Even if you script and use a large number
 of function from various packages, it could be better to remember
@@ -742,7 +742,7 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 20 Jun 2022 01:06 UTC.
+              Latest build: 20 Jun 2022 01:14 UTC.
               </p>
 
         </footer>
