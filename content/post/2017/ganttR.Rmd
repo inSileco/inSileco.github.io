@@ -269,8 +269,12 @@ ganttR <- function(df, type = 'all') {
     if(type == 'all') {
         nLines <- nrow(df)
         par(family = "serif", mar = c(6,9,2,0))
-        plot(x = 1, y = 1, col = 'transparent', xlim = c(min(dateSeq), max(dateSeq)), ylim = c(1,nLines), bty = "n",ann = FALSE, xaxt = "n",yaxt = "n",type = "n",bg = 'grey')
-        mtext(lab[-length(lab)], side = 1, at = dateSeq[-length(lab)], las = 0, line = 1.5, cex = 0.75, adj = 0)
+        plot(x = 1, y = 1, col = 'transparent',
+          xlim = c(min(dateSeq), max(dateSeq)),
+          ylim = c(1, nLines), bty = "n",
+          ann = FALSE, xaxt = "n", yaxt = "n", type = "n", bg = 'grey')
+        mtext(lab[-length(lab)], side = 1, at = dateSeq[-length(lab)], las = 0,
+          line = 1.5, cex = 0.75, adj = 0)
         axis(1, dateSeq, labels = FALSE, line = 0.5)
         extra <- nLines * 0.03
         for(i in seq(1,length(dateSeq - 1), by = 2)) {
