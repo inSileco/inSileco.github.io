@@ -410,22 +410,27 @@ abline(v = c(0,10), h = c(0,10), col = 2)</code></pre>
 <div style="padding: 2rem 0rem 2rem 0rem;">
 <details>
 <summary>
-Session info <i class="fa fa-cogs" aria-hidden="true"></i>
-</summary>
+<h4>
+<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
+<i class="fa fa-cogs" aria-hidden="true"></i>
+</h4>
+<p></summary></p>
 <pre class="r"><code>sessionInfo()
 #R&gt;  R version 4.2.0 (2022-04-22)
 #R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)
-#R&gt;  Running under: Ubuntu 20.04.4 LTS
+#R&gt;  Running under: Debian GNU/Linux bookworm/sid
 #R&gt;  
 #R&gt;  Matrix products: default
-#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
-#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
+#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.1
+#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.10.1
 #R&gt;  
 #R&gt;  locale:
-#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
-#R&gt;   [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
-#R&gt;   [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
-#R&gt;  [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
+#R&gt;   [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+#R&gt;   [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+#R&gt;   [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+#R&gt;   [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+#R&gt;   [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+#R&gt;  [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 #R&gt;  
 #R&gt;  attached base packages:
 #R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     
@@ -434,21 +439,23 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 #R&gt;  [1] inSilecoRef_0.0.1.9000
 #R&gt;  
 #R&gt;  loaded via a namespace (and not attached):
-#R&gt;   [1] tidyselect_1.1.2  xfun_0.31         bslib_0.3.1       purrr_0.3.4      
-#R&gt;   [5] vctrs_0.4.1       generics_0.1.2    miniUI_0.1.1.1    htmltools_0.5.2  
-#R&gt;   [9] yaml_2.3.5        utf8_1.2.2        rlang_1.0.2       later_1.3.0      
-#R&gt;  [13] pillar_1.7.0      jquerylib_0.1.4   httpcode_0.3.0    glue_1.6.2       
-#R&gt;  [17] DBI_1.1.2         lifecycle_1.0.1   plyr_1.8.7        stringr_1.4.0    
-#R&gt;  [21] blogdown_1.10     htmlwidgets_1.5.4 evaluate_0.15     knitr_1.39       
-#R&gt;  [25] fastmap_1.1.0     httpuv_1.6.5      curl_4.3.2        fansi_1.0.3      
-#R&gt;  [29] highr_0.9         Rcpp_1.0.8.3      xtable_1.8-4      promises_1.2.0.1 
-#R&gt;  [33] DT_0.23           jsonlite_1.8.0    rcrossref_1.1.0   mime_0.12        
-#R&gt;  [37] digest_0.6.29     stringi_1.7.6     bookdown_0.27     dplyr_1.0.9      
-#R&gt;  [41] shiny_1.7.1       cli_3.3.0         tools_4.2.0       magrittr_2.0.3   
-#R&gt;  [45] sass_0.4.1        tibble_3.1.7      RefManageR_1.3.0  crul_1.2.0       
-#R&gt;  [49] crayon_1.5.1      pkgconfig_2.0.3   ellipsis_0.3.2    xml2_1.3.3       
-#R&gt;  [53] lubridate_1.8.0   assertthat_0.2.1  rmarkdown_2.14    httr_1.4.3       
-#R&gt;  [57] R6_2.5.1          compiler_4.2.0</code></pre>
+#R&gt;   [1] Rcpp_1.0.8.3      lubridate_1.8.0   ps_1.7.0          assertthat_0.2.1 
+#R&gt;   [5] digest_0.6.29     utf8_1.2.2        mime_0.12         R6_2.5.1         
+#R&gt;   [9] plyr_1.8.7        backports_1.4.1   evaluate_0.15     httr_1.4.3       
+#R&gt;  [13] highr_0.9         blogdown_1.10     pillar_1.7.0      rlang_1.0.2      
+#R&gt;  [17] curl_4.3.2        data.table_1.14.2 miniUI_0.1.1.1    callr_3.7.0      
+#R&gt;  [21] jquerylib_0.1.4   DT_0.23           rmarkdown_2.14    RefManageR_1.3.0 
+#R&gt;  [25] rcrossref_1.1.0   stringr_1.4.0     htmlwidgets_1.5.4 igraph_1.2.11    
+#R&gt;  [29] shiny_1.7.1       compiler_4.2.0    httpuv_1.6.5      xfun_0.31        
+#R&gt;  [33] pkgconfig_2.0.3   htmltools_0.5.2   tidyselect_1.1.2  tibble_3.1.7     
+#R&gt;  [37] httpcode_0.3.0    bookdown_0.26     codetools_0.2-18  fansi_1.0.3      
+#R&gt;  [41] crayon_1.5.1      dplyr_1.0.9       withr_2.5.0       later_1.3.0      
+#R&gt;  [45] crul_1.2.0        jsonlite_1.8.0    xtable_1.8-4      lifecycle_1.0.1  
+#R&gt;  [49] DBI_1.1.2         magrittr_2.0.3    cli_3.3.0         stringi_1.7.6    
+#R&gt;  [53] promises_1.2.0.1  xml2_1.3.3        bslib_0.3.1       ellipsis_0.3.2   
+#R&gt;  [57] targets_0.12.0    generics_0.1.2    vctrs_0.4.1       tools_4.2.0      
+#R&gt;  [61] glue_1.6.2        purrr_0.3.4       processx_3.5.3    fastmap_1.1.0    
+#R&gt;  [65] yaml_2.3.5        base64url_1.4     knitr_1.39        sass_0.4.1</code></pre>
 </details>
 </div>
 </div>
@@ -491,26 +498,15 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
   
   <script src="//yihui.name/js/math-code.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
   
   
+
 
 
   <h3 class="page-header">Comments on this post</h3>
 
-  <script src="https://utteranc.es/client.js"
-        repo="inSileco/inSileco.github.io"
-        issue-term="pathname"
-        label="Comment"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-  </script>
-
-
-  <details>
-  <summary>Comment with Disqus</summary>
   <div id="disqus_thread"></div>
-  </details>
 
   
   
@@ -598,7 +594,6 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
   </noscript>
 
 
-
 </div>
 
 
@@ -618,7 +613,7 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 20 Jun 2022 01:14 UTC.
+              Latest build: 11 Jul 2022 02:11 UTC.
               </p>
 
         </footer>

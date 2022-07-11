@@ -241,21 +241,20 @@ packageVersion(&quot;inSilecoMisc&quot;)
 <p>I wrote <a href="https://insileco.github.io/inSilecoMisc/reference/scaleWithin.html"><code>scaleWithin()</code></a> to handle color scales for a specific yet frequent situation. Let us say that I have 40 percentage values – meaning 0 to 100 – in a vector <code>val</code>…</p>
 <pre class="r"><code>val &lt;- runif(40, 0, 100)
 val
-#R&gt;   [1]  4.2273352  8.9001881 41.7615203 71.2219624 49.9009676 27.4772368
-#R&gt;   [7] 13.4850019 22.3212675 27.2775674 34.0434518 28.7751324 20.0285410
-#R&gt;  [13]  5.2455358 41.6797667 59.0494474  8.9616189  0.1447015 42.5518961
-#R&gt;  [19] 51.1386262 87.0687616 79.0777232  7.4045189 17.0042190 45.6324778
-#R&gt;  [25] 78.7100448 89.5499475 84.1019975  7.1533675 36.3845572 45.0053436
-#R&gt;  [31] 91.1290711 46.3394791 89.1045950 90.1485825 81.5752908 60.0816944
-#R&gt;  [37] 96.4687636 24.4576091 94.6338207  9.8559147</code></pre>
+#R&gt;   [1] 94.771111 43.263333 18.890938  8.776867 51.642234 14.733008 40.231108
+#R&gt;   [8] 98.718780 41.458814 67.621538 50.973754  9.963826 16.110025 39.417386
+#R&gt;  [15]  7.434776 77.639571  8.730228 92.517618 77.407862 85.269380 77.766912
+#R&gt;  [22] 15.305619 28.568794 25.151296 25.659363 24.241794 38.305831 54.911950
+#R&gt;  [29] 17.399600 60.706820 36.089382 31.595478 47.104377 33.906052 53.545511
+#R&gt;  [36] 12.999937 83.513789 45.045774 14.765376 66.022007</code></pre>
 <p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
 <pre class="r"><code>pal &lt;- colorRampPalette(c(&quot;#f9fa98&quot;, &quot;#500127&quot;))(25)
 graphicsutils::showPalette(pal)</code></pre>
 <p><img src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p><strong>But</strong> the color scale should be used for the range [30%-70%], meaning that values below 30% should have the lowest values and values above 70%, the highest one. The caption should thus indicate <span class="math inline">\(\geqslant\)</span> 30% and <span class="math inline">\(\leqslant\)</span> 70%. Then the function <code>scaleWithin()</code> is very handy!</p>
 <pre class="r"><code>scaleWithin(val, n = 25, mn = 30, mx = 70)
-#R&gt;   [1]  1  1  8 25 13  1  1  1  1  3  1  1  1  8 19  1  1  8 14 25 25  1  1 10 25
-#R&gt;  [26] 25 25  1  4 10 25 11 25 25 25 19 25  1 25  1
+#R&gt;   [1] 25  9  1  1 14  1  7 25  8 24 14  1  1  6  1 25  1 25 25 25 25  1  1  1  1
+#R&gt;  [26]  1  6 16  1 20  4  1 11  3 15  1 25 10  1 23
 graphicsutils::showPalette(pal[scaleWithin(val, n = 25, mn = 30, mx = 70)], add_codecolor = FALSE)</code></pre>
 <p><img src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" /></p>
 <p>Even though this function is pretty useful – at least I think it is! – I had a
@@ -404,7 +403,10 @@ command!</p>
 <div style="padding: 2rem 0rem 2rem 0rem;">
 <details>
 <summary>
-Session info <i class="fa fa-cogs" aria-hidden="true"></i>
+<h4>
+<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
+<i class="fa fa-cogs" aria-hidden="true"></i>
+</h4>
 </summary>
 <pre class="r"><code>sessionInfo()
 #R&gt;  R version 4.2.0 (2022-04-22)
@@ -429,11 +431,11 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 #R&gt;  
 #R&gt;  loaded via a namespace (and not attached):
 #R&gt;   [1] tidyselect_1.1.2         xfun_0.31                bslib_0.3.1             
-#R&gt;   [4] purrr_0.3.4              vctrs_0.4.1              generics_0.1.2          
+#R&gt;   [4] purrr_0.3.4              vctrs_0.4.1              generics_0.1.3          
 #R&gt;   [7] miniUI_0.1.1.1           htmltools_0.5.2          yaml_2.3.5              
-#R&gt;  [10] utf8_1.2.2               rlang_1.0.2              later_1.3.0             
+#R&gt;  [10] utf8_1.2.2               rlang_1.0.3              later_1.3.0             
 #R&gt;  [13] pillar_1.7.0             jquerylib_0.1.4          httpcode_0.3.0          
-#R&gt;  [16] glue_1.6.2               DBI_1.1.2                lifecycle_1.0.1         
+#R&gt;  [16] glue_1.6.2               DBI_1.1.3                lifecycle_1.0.1         
 #R&gt;  [19] plyr_1.8.7               stringr_1.4.0            blogdown_1.10           
 #R&gt;  [22] htmlwidgets_1.5.4        evaluate_0.15            knitr_1.39              
 #R&gt;  [25] fastmap_1.1.0            httpuv_1.6.5             curl_4.3.2              
@@ -482,26 +484,15 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
   
   <script src="//yihui.name/js/math-code.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+
   
   
+
 
 
   <h3 class="page-header">Comments on this post</h3>
 
-  <script src="https://utteranc.es/client.js"
-        repo="inSileco/inSileco.github.io"
-        issue-term="pathname"
-        label="Comment"
-        theme="github-light"
-        crossorigin="anonymous"
-        async>
-  </script>
-
-
-  <details>
-  <summary>Comment with Disqus</summary>
   <div id="disqus_thread"></div>
-  </details>
 
   
   
@@ -589,7 +580,6 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
   </noscript>
 
 
-
 </div>
 
 
@@ -609,7 +599,7 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 20 Jun 2022 01:14 UTC.
+              Latest build: 11 Jul 2022 02:11 UTC.
               </p>
 
         </footer>
