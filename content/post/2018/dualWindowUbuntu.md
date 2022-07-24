@@ -9,7 +9,7 @@ tweet: My R setup on Debian
 output:
   blogdown::html_page:
     fig_width: 3
-    dev: svg
+    dev: svglite
 ---
 
 

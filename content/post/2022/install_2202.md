@@ -9,7 +9,7 @@ draft: true
 estime: 5
 output:
   blogdown::html_page:
-    dev: svg
+    dev: svglite
 ---
 
 
@@ -297,3 +297,5 @@ sudo chown -R :rusers /usr/local/lib/R/site-library
 sudo apt install --install-suggests 'r-cran-rcpp*'
 r-cran-bibtex r-cran-rfishbase r-cran-magick r-cran-animation r-cran-kableextra
 r-cran-pagedown r-cran-xaringan r-cran-latex2exp
+
+$ ln -s /usr/share/hunspell/* ~/.config/Code/Dictionaries
