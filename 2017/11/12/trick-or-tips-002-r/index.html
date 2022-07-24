@@ -264,22 +264,22 @@ columns:</p>
   var3 = runif(10)
 )
 head(df)
-#R&gt;          var1       var2      var3
-#R&gt;  1 0.09420889 0.39032592 0.7168181
-#R&gt;  2 0.43250364 0.27879785 0.2275605
-#R&gt;  3 0.10550598 0.75985051 0.6051139
-#R&gt;  4 0.59251720 0.18760214 0.2714306
-#R&gt;  5 0.72167220 0.84613813 0.7382178
-#R&gt;  6 0.51179087 0.07320446 0.5648232</code></pre>
+#R&gt;         var1       var2      var3
+#R&gt;  1 0.3441131 0.30424879 0.4107149
+#R&gt;  2 0.7397272 0.07205508 0.2272050
+#R&gt;  3 0.5427178 0.90240993 0.4111814
+#R&gt;  4 0.6350100 0.36460634 0.9418586
+#R&gt;  5 0.5180731 0.32290544 0.9893397
+#R&gt;  6 0.4865104 0.40159870 0.6013084</code></pre>
 <p>To extract the first column, I use the <code>[]</code> operator and either type the number
 of the column like so:</p>
 <pre class="r"><code>df[, 1]
-#R&gt;   [1] 0.09420889 0.43250364 0.10550598 0.59251720 0.72167220 0.51179087
-#R&gt;   [7] 0.13143812 0.38902794 0.21681930 0.03369466</code></pre>
+#R&gt;   [1] 0.3441131 0.7397272 0.5427178 0.6350100 0.5180731 0.4865104 0.9506625
+#R&gt;   [8] 0.5906646 0.2363198 0.1316659</code></pre>
 <p>or the name of the column to be extracted:</p>
 <pre class="r"><code>df[, &#39;var1&#39;]
-#R&gt;   [1] 0.09420889 0.43250364 0.10550598 0.59251720 0.72167220 0.51179087
-#R&gt;   [7] 0.13143812 0.38902794 0.21681930 0.03369466</code></pre>
+#R&gt;   [1] 0.3441131 0.7397272 0.5427178 0.6350100 0.5180731 0.4865104 0.9506625
+#R&gt;   [8] 0.5906646 0.2363198 0.1316659</code></pre>
 <p>Interestingly enough, this returns a <strong>vector</strong>, not a data.frame</p>
 <pre class="r"><code>class(df)
 #R&gt;  [1] &quot;data.frame&quot;
@@ -297,17 +297,17 @@ we end up with a vector instead of a data.frame. The argument <code>drop</code> 
 a work around. By default it is set to <code>TRUE</code> and a 1-column data frame becomes
 a vector, but using <code>drop = FALSE</code> prevents this from happening. Let’s try this:</p>
 <pre class="r"><code>df[, 1, drop = FALSE]
-#R&gt;           var1
-#R&gt;  1  0.09420889
-#R&gt;  2  0.43250364
-#R&gt;  3  0.10550598
-#R&gt;  4  0.59251720
-#R&gt;  5  0.72167220
-#R&gt;  6  0.51179087
-#R&gt;  7  0.13143812
-#R&gt;  8  0.38902794
-#R&gt;  9  0.21681930
-#R&gt;  10 0.03369466</code></pre>
+#R&gt;          var1
+#R&gt;  1  0.3441131
+#R&gt;  2  0.7397272
+#R&gt;  3  0.5427178
+#R&gt;  4  0.6350100
+#R&gt;  5  0.5180731
+#R&gt;  6  0.4865104
+#R&gt;  7  0.9506625
+#R&gt;  8  0.5906646
+#R&gt;  9  0.2363198
+#R&gt;  10 0.1316659</code></pre>
 <p>Let’s check its class:</p>
 <pre class="r"><code>class(df[, 1, drop = FALSE])
 #R&gt;  [1] &quot;data.frame&quot;</code></pre>
@@ -315,24 +315,24 @@ a vector, but using <code>drop = FALSE</code> prevents this from happening. Let�
 number without comma (a data frame is a list of vector which have the
 same size, so you can basically subset the list!).</p>
 <pre class="r"><code>df[1]
-#R&gt;           var1
-#R&gt;  1  0.09420889
-#R&gt;  2  0.43250364
-#R&gt;  3  0.10550598
-#R&gt;  4  0.59251720
-#R&gt;  5  0.72167220
-#R&gt;  6  0.51179087
-#R&gt;  7  0.13143812
-#R&gt;  8  0.38902794
-#R&gt;  9  0.21681930
-#R&gt;  10 0.03369466</code></pre>
+#R&gt;          var1
+#R&gt;  1  0.3441131
+#R&gt;  2  0.7397272
+#R&gt;  3  0.5427178
+#R&gt;  4  0.6350100
+#R&gt;  5  0.5180731
+#R&gt;  6  0.4865104
+#R&gt;  7  0.9506625
+#R&gt;  8  0.5906646
+#R&gt;  9  0.2363198
+#R&gt;  10 0.1316659</code></pre>
 <p>But if you need a specific selection of rows, you better use <code>drop</code>!</p>
 <pre class="r"><code>df[2:5, 1, drop = FALSE]
 #R&gt;         var1
-#R&gt;  2 0.4325036
-#R&gt;  3 0.1055060
-#R&gt;  4 0.5925172
-#R&gt;  5 0.7216722</code></pre>
+#R&gt;  2 0.7397272
+#R&gt;  3 0.5427178
+#R&gt;  4 0.6350100
+#R&gt;  5 0.5180731</code></pre>
 <p>Now you know ;-)</p>
 <p><br></p>
 </div>
@@ -415,17 +415,17 @@ df &lt;- data.frame(
   var2 = runif(10)
   )
 extract(df, &#39;var1&#39;)
-#R&gt;          var1
-#R&gt;  1  0.9787372
-#R&gt;  2  0.2944865
-#R&gt;  3  0.5207661
-#R&gt;  4  0.3148931
-#R&gt;  5  0.6165787
-#R&gt;  6  0.4535605
-#R&gt;  7  0.3731161
-#R&gt;  8  0.9026449
-#R&gt;  9  0.9908092
-#R&gt;  10 0.8500538</code></pre>
+#R&gt;           var1
+#R&gt;  1  0.07528037
+#R&gt;  2  0.92032504
+#R&gt;  3  0.08391403
+#R&gt;  4  0.78833042
+#R&gt;  5  0.93540067
+#R&gt;  6  0.73364724
+#R&gt;  7  0.82601994
+#R&gt;  8  0.63959467
+#R&gt;  9  0.92976043
+#R&gt;  10 0.35918776</code></pre>
 <p>Here I use the function <code>extract()</code> from the <code>magrittr</code> package that act as <code>[]</code>
 and I extract the column <code>var1</code> from <code>df</code>. This function is actually designed
 to be use with pipes (if this sounds weird, have a look at the
@@ -447,17 +447,17 @@ specific package, functions have different names and on CRAN packages must have
 different names, so the combination of the two is unique (this holds true if you
 only package from the CRAN). Let’s use it:</p>
 <pre class="r"><code>magrittr::extract(df, &#39;var1&#39;)
-#R&gt;          var1
-#R&gt;  1  0.9787372
-#R&gt;  2  0.2944865
-#R&gt;  3  0.5207661
-#R&gt;  4  0.3148931
-#R&gt;  5  0.6165787
-#R&gt;  6  0.4535605
-#R&gt;  7  0.3731161
-#R&gt;  8  0.9026449
-#R&gt;  9  0.9908092
-#R&gt;  10 0.8500538</code></pre>
+#R&gt;           var1
+#R&gt;  1  0.07528037
+#R&gt;  2  0.92032504
+#R&gt;  3  0.08391403
+#R&gt;  4  0.78833042
+#R&gt;  5  0.93540067
+#R&gt;  6  0.73364724
+#R&gt;  7  0.82601994
+#R&gt;  8  0.63959467
+#R&gt;  9  0.92976043
+#R&gt;  10 0.35918776</code></pre>
 <p>Using this is also very helpful when you develop a package and functions from
 different packages. Even if you script and use a large number
 of function from various packages, it could be better to remember
@@ -568,13 +568,13 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 #R&gt;  [25] codetools_0.2-18  evaluate_0.15     knitr_1.39        fastmap_1.1.0    
 #R&gt;  [29] httpuv_1.6.5      curl_4.3.2        fansi_1.0.3       highr_0.9        
 #R&gt;  [33] Rcpp_1.0.9        xtable_1.8-4      promises_1.2.0.1  DT_0.23          
-#R&gt;  [37] cachem_1.0.6      jsonlite_1.8.0    rcrossref_1.1.0   mime_0.12        
-#R&gt;  [41] digest_0.6.29     stringi_1.7.8     bookdown_0.27     dplyr_1.0.9      
-#R&gt;  [45] shiny_1.7.2       grid_4.2.0        cli_3.3.0         tools_4.2.0      
-#R&gt;  [49] sass_0.4.2        tibble_3.1.7      RefManageR_1.3.0  crul_1.2.0       
-#R&gt;  [53] pkgconfig_2.0.3   ellipsis_0.3.2    xml2_1.3.3        lubridate_1.8.0  
-#R&gt;  [57] assertthat_0.2.1  rmarkdown_2.14    httr_1.4.3        R6_2.5.1         
-#R&gt;  [61] compiler_4.2.0</code></pre>
+#R&gt;  [37] cachem_1.0.6      jsonlite_1.8.0    rcrossref_1.1.0   systemfonts_1.0.4
+#R&gt;  [41] mime_0.12         digest_0.6.29     stringi_1.7.8     bookdown_0.27    
+#R&gt;  [45] dplyr_1.0.9       shiny_1.7.2       grid_4.2.0        cli_3.3.0        
+#R&gt;  [49] tools_4.2.0       sass_0.4.2        tibble_3.1.7      RefManageR_1.3.0 
+#R&gt;  [53] crul_1.2.0        pkgconfig_2.0.3   ellipsis_0.3.2    xml2_1.3.3       
+#R&gt;  [57] lubridate_1.8.0   svglite_2.1.0     assertthat_0.2.1  rmarkdown_2.14   
+#R&gt;  [61] httr_1.4.3        R6_2.5.1          compiler_4.2.0</code></pre>
 </details>
 </div>
 </div>
@@ -746,7 +746,7 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 24 Jul 2022 19:53 UTC.
+              Latest build: 24 Jul 2022 21:23 UTC.
               </p>
 
         </footer>
