@@ -367,44 +367,44 @@ df8
 )
 lsdf
 #R&gt;  [[1]]
-#R&gt;    G E I F B
-#R&gt;  1 g e i f b
-#R&gt;  2 g e i f b
-#R&gt;  3 g e i f b
-#R&gt;  4 g e i f b
-#R&gt;  5 g e i f b
+#R&gt;    G C F E A
+#R&gt;  1 g c f e a
+#R&gt;  2 g c f e a
+#R&gt;  3 g c f e a
+#R&gt;  4 g c f e a
+#R&gt;  5 g c f e a
 #R&gt;  
 #R&gt;  [[2]]
-#R&gt;    C D G B E
-#R&gt;  1 c d g b e
-#R&gt;  2 c d g b e
-#R&gt;  3 c d g b e
-#R&gt;  4 c d g b e
-#R&gt;  5 c d g b e
+#R&gt;    G D H C F
+#R&gt;  1 g d h c f
+#R&gt;  2 g d h c f
+#R&gt;  3 g d h c f
+#R&gt;  4 g d h c f
+#R&gt;  5 g d h c f
 #R&gt;  
 #R&gt;  [[3]]
-#R&gt;    A F J C I
-#R&gt;  1 a f j c i
-#R&gt;  2 a f j c i
-#R&gt;  3 a f j c i
-#R&gt;  4 a f j c i
-#R&gt;  5 a f j c i
+#R&gt;    D B J C G
+#R&gt;  1 d b j c g
+#R&gt;  2 d b j c g
+#R&gt;  3 d b j c g
+#R&gt;  4 d b j c g
+#R&gt;  5 d b j c g
 #R&gt;  
 #R&gt;  [[4]]
-#R&gt;    C E B G J
-#R&gt;  1 c e b g j
-#R&gt;  2 c e b g j
-#R&gt;  3 c e b g j
-#R&gt;  4 c e b g j
-#R&gt;  5 c e b g j
+#R&gt;    I F D C J
+#R&gt;  1 i f d c j
+#R&gt;  2 i f d c j
+#R&gt;  3 i f d c j
+#R&gt;  4 i f d c j
+#R&gt;  5 i f d c j
 #R&gt;  
 #R&gt;  [[5]]
-#R&gt;    H I F B E
-#R&gt;  1 h i f b e
-#R&gt;  2 h i f b e
-#R&gt;  3 h i f b e
-#R&gt;  4 h i f b e
-#R&gt;  5 h i f b e</code></pre>
+#R&gt;    G A D F E
+#R&gt;  1 g a d f e
+#R&gt;  2 g a d f e
+#R&gt;  3 g a d f e
+#R&gt;  4 g a d f e
+#R&gt;  5 g a d f e</code></pre>
 <p>So the goal here is to create a data frame that contains only the five first
 columns, i.e. A, B, C, D, E, the remaining columns must be discarded and
 when one selected column is missing, it must be added (filled out with <code>NA</code>).
@@ -412,72 +412,72 @@ To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
 <pre class="r"><code>lsdf2 &lt;- lapply(lsdf, dfTemplateMatch, LETTERS[1:5], yonly = TRUE)
 lsdf2
 #R&gt;  [[1]]
-#R&gt;    E B  A  C  D
-#R&gt;  1 e b NA NA NA
-#R&gt;  2 e b NA NA NA
-#R&gt;  3 e b NA NA NA
-#R&gt;  4 e b NA NA NA
-#R&gt;  5 e b NA NA NA
+#R&gt;    C E A  B  D
+#R&gt;  1 c e a NA NA
+#R&gt;  2 c e a NA NA
+#R&gt;  3 c e a NA NA
+#R&gt;  4 c e a NA NA
+#R&gt;  5 c e a NA NA
 #R&gt;  
 #R&gt;  [[2]]
-#R&gt;    C D B E  A
-#R&gt;  1 c d b e NA
-#R&gt;  2 c d b e NA
-#R&gt;  3 c d b e NA
-#R&gt;  4 c d b e NA
-#R&gt;  5 c d b e NA
+#R&gt;    D C  A  B  E
+#R&gt;  1 d c NA NA NA
+#R&gt;  2 d c NA NA NA
+#R&gt;  3 d c NA NA NA
+#R&gt;  4 d c NA NA NA
+#R&gt;  5 d c NA NA NA
 #R&gt;  
 #R&gt;  [[3]]
-#R&gt;    A C  B  D  E
-#R&gt;  1 a c NA NA NA
-#R&gt;  2 a c NA NA NA
-#R&gt;  3 a c NA NA NA
-#R&gt;  4 a c NA NA NA
-#R&gt;  5 a c NA NA NA
+#R&gt;    D B C  A  E
+#R&gt;  1 d b c NA NA
+#R&gt;  2 d b c NA NA
+#R&gt;  3 d b c NA NA
+#R&gt;  4 d b c NA NA
+#R&gt;  5 d b c NA NA
 #R&gt;  
 #R&gt;  [[4]]
-#R&gt;    C E B  A  D
-#R&gt;  1 c e b NA NA
-#R&gt;  2 c e b NA NA
-#R&gt;  3 c e b NA NA
-#R&gt;  4 c e b NA NA
-#R&gt;  5 c e b NA NA
+#R&gt;    D C  A  B  E
+#R&gt;  1 d c NA NA NA
+#R&gt;  2 d c NA NA NA
+#R&gt;  3 d c NA NA NA
+#R&gt;  4 d c NA NA NA
+#R&gt;  5 d c NA NA NA
 #R&gt;  
 #R&gt;  [[5]]
-#R&gt;    B E  A  C  D
-#R&gt;  1 b e NA NA NA
-#R&gt;  2 b e NA NA NA
-#R&gt;  3 b e NA NA NA
-#R&gt;  4 b e NA NA NA
-#R&gt;  5 b e NA NA NA</code></pre>
+#R&gt;    A D E  B  C
+#R&gt;  1 a d e NA NA
+#R&gt;  2 a d e NA NA
+#R&gt;  3 a d e NA NA
+#R&gt;  4 a d e NA NA
+#R&gt;  5 a d e NA NA</code></pre>
 <p>And now I can seamlessly <code>rbind()</code> the list <code>lsdf2</code>!</p>
 <pre class="r"><code>do.call(rbind, lsdf2)
-#R&gt;        E    B    A    C    D
-#R&gt;  1     e    b &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#R&gt;  2     e    b &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#R&gt;  3     e    b &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#R&gt;  4     e    b &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#R&gt;  5     e    b &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#R&gt;  6     e    b &lt;NA&gt;    c    d
-#R&gt;  7     e    b &lt;NA&gt;    c    d
-#R&gt;  8     e    b &lt;NA&gt;    c    d
-#R&gt;  9     e    b &lt;NA&gt;    c    d
-#R&gt;  10    e    b &lt;NA&gt;    c    d
-#R&gt;  11 &lt;NA&gt; &lt;NA&gt;    a    c &lt;NA&gt;
-#R&gt;  12 &lt;NA&gt; &lt;NA&gt;    a    c &lt;NA&gt;
-#R&gt;  13 &lt;NA&gt; &lt;NA&gt;    a    c &lt;NA&gt;
-#R&gt;  14 &lt;NA&gt; &lt;NA&gt;    a    c &lt;NA&gt;
-#R&gt;  15 &lt;NA&gt; &lt;NA&gt;    a    c &lt;NA&gt;
-#R&gt;  16    e    b &lt;NA&gt;    c &lt;NA&gt;
-#R&gt;  17    e    b &lt;NA&gt;    c &lt;NA&gt;
-#R&gt;  18    e    b &lt;NA&gt;    c &lt;NA&gt;
-#R&gt;  19    e    b &lt;NA&gt;    c &lt;NA&gt;
-#R&gt;  20    e    b &lt;NA&gt;    c &lt;NA&gt;
-#R&gt;  21    e    b &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#R&gt;  22    e    b &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#R&gt;  23    e    b &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#R&gt;  24    e    b &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#R&gt;  25    e    b &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</code></pre>
+#R&gt;        C    E    A    B    D
+#R&gt;  1     c    e    a &lt;NA&gt; &lt;NA&gt;
+#R&gt;  2     c    e    a &lt;NA&gt; &lt;NA&gt;
+#R&gt;  3     c    e    a &lt;NA&gt; &lt;NA&gt;
+#R&gt;  4     c    e    a &lt;NA&gt; &lt;NA&gt;
+#R&gt;  5     c    e    a &lt;NA&gt; &lt;NA&gt;
+#R&gt;  6     c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
+#R&gt;  7     c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
+#R&gt;  8     c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
+#R&gt;  9     c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
+#R&gt;  10    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
+#R&gt;  11    c &lt;NA&gt; &lt;NA&gt;    b    d
+#R&gt;  12    c &lt;NA&gt; &lt;NA&gt;    b    d
+#R&gt;  13    c &lt;NA&gt; &lt;NA&gt;    b    d
+#R&gt;  14    c &lt;NA&gt; &lt;NA&gt;    b    d
+#R&gt;  15    c &lt;NA&gt; &lt;NA&gt;    b    d
+#R&gt;  16    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
+#R&gt;  17    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
+#R&gt;  18    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
+#R&gt;  19    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
+#R&gt;  20    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    d
+#R&gt;  21 &lt;NA&gt;    e    a &lt;NA&gt;    d
+#R&gt;  22 &lt;NA&gt;    e    a &lt;NA&gt;    d
+#R&gt;  23 &lt;NA&gt;    e    a &lt;NA&gt;    d
+#R&gt;  24 &lt;NA&gt;    e    a &lt;NA&gt;    d
+#R&gt;  25 &lt;NA&gt;    e    a &lt;NA&gt;    d</code></pre>
 <div id="voilà-this-is-what-i-call-a-flexible-rbind-i-hope-youll-find-this-helpful-boom" class="section level4">
 <h4>Voilà! This is what I call a <em>flexible</em> <code>rbind</code>! I hope you’ll find this helpful! 💥</h4>
 <div style="padding: 2rem 0rem 2rem 0rem;">
@@ -683,7 +683,7 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 24 Jul 2022 21:23 UTC.
+              Latest build: 24 Jul 2022 21:39 UTC.
               </p>
 
         </footer>

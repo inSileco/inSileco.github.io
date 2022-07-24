@@ -365,11 +365,11 @@ nchar(vec) &amp; 1
 microbenchmark(nchar(vec) &gt; 0, !! nchar(vec), nchar(vec) &amp; 1, nzchar(vec),
   times = 1000L)
 #R&gt;  Unit: nanoseconds
-#R&gt;             expr min   lq   mean median   uq   max neval
-#R&gt;   nchar(vec) &gt; 0 800  900 1015.4    900 1000 17700  1000
-#R&gt;     !!nchar(vec) 900 1000 1099.7   1000 1100 19000  1000
-#R&gt;   nchar(vec) &amp; 1 900 1000 1088.9   1000 1100  4800  1000
-#R&gt;      nzchar(vec)   0    0   43.3      0  100  2700  1000</code></pre>
+#R&gt;             expr  min   lq   mean median   uq   max neval
+#R&gt;   nchar(vec) &gt; 0 1000 1100 1250.4   1200 1300  2300  1000
+#R&gt;     !!nchar(vec) 1000 1200 1358.2   1300 1400  7400  1000
+#R&gt;   nchar(vec) &amp; 1 1100 1300 1420.7   1300 1400 12300  1000
+#R&gt;      nzchar(vec)    0    0   90.6    100  100  3200  1000</code></pre>
 <p>Yep yep!<code>nzchar()</code> is indeed way faster 🚀!</p>
 </div>
 <div id="do-you-need-to-use-return" class="section level2">
@@ -405,8 +405,8 @@ foo2 &lt;- function(x) {
 microbenchmark(foo(4), foo2(4), times = 1e5)
 #R&gt;  Unit: nanoseconds
 #R&gt;      expr min  lq    mean median  uq      max neval
-#R&gt;    foo(4) 300 400 856.989    500 500 18775100 1e+05
-#R&gt;   foo2(4) 200 300 476.785    300 300  4032800 1e+05</code></pre>
+#R&gt;    foo(4) 400 500 857.781    500 600 19484600 1e+05
+#R&gt;   foo2(4) 200 300 515.954    300 400  6929300 1e+05</code></pre>
 </div>
 <div id="invisible" class="section level2">
 <h2><code>invisible()</code></h2>
@@ -669,7 +669,7 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 24 Jul 2022 21:23 UTC.
+              Latest build: 24 Jul 2022 21:39 UTC.
               </p>
 
         </footer>
