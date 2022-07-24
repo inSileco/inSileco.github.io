@@ -9,33 +9,28 @@ figure {
   margin-bottom: 2rem !important;
 }
 
+/* Tables main text */
 table {
   margin-left: 5px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-th {
-    text-align: left;
-}
-
 td {
     vertical-align: bottom;
-    text-align: left;
 }
 
 th, td {
+    text-align: left;
     border-bottom: 1px solid #ddd;
-    padding-right: 20px!important;
+    padding-right: 12px;
 }
 
 tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-tr:hover {
-   background-color: #3fb3b2;
- }
+
 
 p {
   font-size: 18px;
@@ -171,10 +166,7 @@ img[alt$="><"] {
 img[src$='#center']
 {
     display: block;
-    margin: 0.1rem auto; /* you can replace the vertical '0.7rem' by
-                            whatever floats your boat, but keep the
-                            horizontal 'auto' for this to work */
-    /* whatever else styles you fancy here */
+    margin: 0.1rem auto;
 }
 
 .caption {

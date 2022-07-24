@@ -9,13 +9,14 @@ ignoreFiles = ["\\.Rmd$", "_cache$", "\\.Rmarkdown$", "\\.knit\\.md$", "\\.utf8\
 enableEmoji = true
 copyright = "Copyright © 2017-2022 inSileco"
 math = false
+pygmentsUseClasses = false
 
 [markup.goldmark.renderer]
 unsafe = true
 
-# [markup.highlight]
-# style = "dracula"
-# lineNos = true
+[markup.highlight]
+lineNos = true
+noClasses = false
 
 [permalinks]
     post = "/:year/:month/:day/:slug/"
@@ -69,14 +70,23 @@ unsafe = true
     accent = "#3fb3b2"
     showBorder = true
     backgroundColor = "white"
-    font = "Lato" # should match the name on Google Fonts!
     highlight = true
     highlightStyle = "github"
     highlightjsLang = ["r", "yaml"]
-    css = ["/css/academicons.min.css", "/css/font-awesome.min.css", "/css/insileco.css", "/css/jquery.tocify.css",
-    "https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css",
-    "https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"]
-    js = ["/js/jquery-1.8.3.min.js", "/js/jquery-ui-1.9.1.custom.min.js", "/js/jquery.tocify.min.js"]
+    css = [
+        "/css/academicons.min.css",
+        "/css/syntax.css",
+        "/css/insileco.css",
+        "/css/font-awesome.min.css",
+        "/css/jquery.tocify.css",
+        "https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css",
+        "https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css"]
+    js = [
+        "/js/jquery-1.8.3.min.js",
+        "/js/jquery-ui-1.9.1.custom.min.js",
+        "/js/jquery.tocify.min.js",
+        "/js/toclipboard.js"
+        ]
 
 [taxonomies]
     tag = "tags"
