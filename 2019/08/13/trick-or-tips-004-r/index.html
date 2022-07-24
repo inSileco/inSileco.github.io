@@ -49,32 +49,22 @@
 
  
 
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     
-
     <script>hljs.initHighlightingOnLoad();</script>
 
 
 
+ <script src="https://insileco.github.io/js/jquery-1.8.3.min.js"></script>  <script src="https://insileco.github.io/js/jquery-ui-1.9.1.custom.min.js"></script>  <script src="https://insileco.github.io/js/jquery.tocify.min.js"></script>  <script src="https://insileco.github.io/js/toclipboard.js"></script> 
 
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-
-  <script src="/js/jquery-1.8.3.min.js"></script>
-
-  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
-
-  <script src="/js/jquery.tocify.min.js"></script>
-
-  <script src="/js/toclipboard.js"></script>
-
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
 
         <meta charset="utf-8">
 
@@ -366,10 +356,10 @@ microbenchmark(nchar(vec) &gt; 0, !! nchar(vec), nchar(vec) &amp; 1, nzchar(vec)
   times = 1000L)
 #R&gt;  Unit: nanoseconds
 #R&gt;             expr  min   lq   mean median   uq   max neval
-#R&gt;   nchar(vec) &gt; 0 1000 1100 1250.4   1200 1300  2300  1000
-#R&gt;     !!nchar(vec) 1000 1200 1358.2   1300 1400  7400  1000
-#R&gt;   nchar(vec) &amp; 1 1100 1300 1420.7   1300 1400 12300  1000
-#R&gt;      nzchar(vec)    0    0   90.6    100  100  3200  1000</code></pre>
+#R&gt;   nchar(vec) &gt; 0 1000 1200 1395.2   1200 1300 14600  1000
+#R&gt;     !!nchar(vec) 1100 1300 1601.6   1300 1400 73800  1000
+#R&gt;   nchar(vec) &amp; 1 1100 1300 1567.1   1400 1500 14600  1000
+#R&gt;      nzchar(vec)    0  100   97.9    100  100  6900  1000</code></pre>
 <p>Yep yep!<code>nzchar()</code> is indeed way faster 🚀!</p>
 </div>
 <div id="do-you-need-to-use-return" class="section level2">
@@ -405,8 +395,8 @@ foo2 &lt;- function(x) {
 microbenchmark(foo(4), foo2(4), times = 1e5)
 #R&gt;  Unit: nanoseconds
 #R&gt;      expr min  lq    mean median  uq      max neval
-#R&gt;    foo(4) 400 500 857.781    500 600 19484600 1e+05
-#R&gt;   foo2(4) 200 300 515.954    300 400  6929300 1e+05</code></pre>
+#R&gt;    foo(4) 400 600 918.899    600 700  5108500 1e+05
+#R&gt;   foo2(4) 300 400 837.740    400 400 23315400 1e+05</code></pre>
 </div>
 <div id="invisible" class="section level2">
 <h2><code>invisible()</code></h2>
@@ -669,7 +659,7 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 24 Jul 2022 21:39 UTC.
+              Latest build: 24 Jul 2022 23:35 UTC.
               </p>
 
         </footer>

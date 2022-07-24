@@ -49,32 +49,22 @@
 
  
 
-
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
     
-
     <script>hljs.initHighlightingOnLoad();</script>
 
 
 
+ <script src="https://insileco.github.io/js/jquery-1.8.3.min.js"></script>  <script src="https://insileco.github.io/js/jquery-ui-1.9.1.custom.min.js"></script>  <script src="https://insileco.github.io/js/jquery.tocify.min.js"></script>  <script src="https://insileco.github.io/js/toclipboard.js"></script> 
 
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-
-  <script src="/js/jquery-1.8.3.min.js"></script>
-
-  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
-
-  <script src="/js/jquery.tocify.min.js"></script>
-
-  <script src="/js/toclipboard.js"></script>
-
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
 
         <meta charset="utf-8">
 
@@ -271,12 +261,12 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">val</span> <span class="o">&lt;-</span> <span class="nf">runif</span><span class="p">(</span><span class="m">40</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">val</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 62.095975 24.828621 18.633329 50.423606 18.344949 14.105899 21.932972</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [8]  6.037091 82.024141 31.826461 13.478821 50.387085 24.202298 41.772552</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [15] 77.438989 94.443095 80.744123  6.165677 90.629962 32.944959 52.685692</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] 88.383903 19.735890 28.596489  9.886620 33.543274 42.656210 97.790226</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] 26.320491 13.034388 27.127057 36.797785 10.106538 30.613033 71.165248</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] 59.588023 12.219190 83.940041 52.128324 39.789598</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 77.363040 99.598880 26.492652 70.641125 85.490192 40.518081  4.943180</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [8]  4.912460 50.534342 23.202965 72.090382 54.406077 46.711862 94.668048</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [15] 86.975748 97.093557 59.400508  8.152801 60.441646 39.917619 64.666353</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] 79.337077  1.499321 76.271314 52.563802 94.819828 33.047678 76.046172</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] 22.744935 43.208323 55.759843 54.529139 13.578173 63.473004 93.831662</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36]  8.877142 56.328728 23.203235 41.625809 82.061030</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
@@ -301,8 +291,8 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 21  1  1 13  1  1  1  1 25  2  1 13  1  8 25 25 25  1 25  2 15 25  1  1  1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26]  3  8 25  1  1  1  5  1  1 25 19  1 25 14  7</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 25 25  1 25 25  7  1  1 13  1 25 16 11 25 25 25 19  1 20  7 22 25  1 25 15</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] 25  2 25  1  9 17 16  1 21 25  1 17  1  8 25</span>
 </span></span><span class="line"><span class="cl"><span class="n">graphicsutils</span><span class="o">::</span><span class="nf">showPalette</span><span class="p">(</span><span class="n">pal</span><span class="nf">[scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">add_codecolor</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -783,7 +773,7 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 24 Jul 2022 21:39 UTC.
+              Latest build: 24 Jul 2022 23:35 UTC.
               </p>
 
         </footer>
