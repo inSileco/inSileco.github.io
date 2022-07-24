@@ -19,7 +19,7 @@ output:
   rmarkdown::html_page:
     toc: true
     fig_width: 3
-    dev: svg
+    dev: svglite
 ---
 
 

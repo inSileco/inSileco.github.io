@@ -14,7 +14,7 @@ output:
     toc_float:
       collapsed: false
     fig_width: 3
-    dev: svg
+    dev: svglite
 ---
 
 <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
