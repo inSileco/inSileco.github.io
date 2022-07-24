@@ -8,7 +8,7 @@
         <style>
 
     html body {
-        font-family: Lato, sans-serif;
+        font-family: , sans-serif;
         background-color: white;
     }
 
@@ -23,12 +23,23 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="/css/jquery.tocify.css">
 
@@ -36,15 +47,6 @@
 
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-
-
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  
 
 
@@ -70,6 +72,8 @@
   <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
   <script src="/js/jquery.tocify.min.js"></script>
+
+  <script src="/js/toclipboard.js"></script>
 
 
         <meta charset="utf-8">
@@ -239,15 +243,37 @@ different aspects:</p>
 <p>As mentioned in <a href="https://insileco.github.io/2018/05/21/go-debian-testing/">a previous post</a>, I am
 currently working on Debian testing and use <code>apt-get</code> to install my software
 which includes R:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e"># this lines and the following may need to be run in super user mode</span>
-</span></span><span style="display:flex;"><span>$ apt-get install r-base r-recommended r-base-dev
-</span></span></code></pre></div><p>I use the default location to store the core packages, <em>i.e.</em> <code>/usr/lib/R/library/</code>.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl"><span class="c1"># this lines and the following may need to be run in super user mode</span>
+</span></span><span class="line"><span class="cl">$ apt-get install r-base r-recommended r-base-dev
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I use the default location to store the core packages, <em>i.e.</em> <code>/usr/lib/R/library/</code>.
 After the installation of the core packages, I configure Java for R (see <em>Java support</em> on <a href="https://cran.r-project.org/doc/manuals/r-release/R-admin.html">the manual</a> for
 more details):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ R CMD javareconf JAVA_HOME<span style="color:#f92672">=</span>/usr/lib/jvm/java-8-openjdk-amd64/
-</span></span></code></pre></div><p>Then I install all CRAN packages available via <code>apt-get</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ apt-get install <span style="color:#e6db74">&#34;^r-cran-.*&#34;</span>
-</span></span></code></pre></div><p>This actually is very helpful to ensure that dependencies are properly installed!
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ R CMD javareconf <span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/lib/jvm/java-8-openjdk-amd64/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Then I install all CRAN packages available via <code>apt-get</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ apt-get install <span class="s2">&#34;^r-cran-.*&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This actually is very helpful to ensure that dependencies are properly installed!
 The path to those packages is <code>/usr/lib/R/site-library/</code> (again default behavior)
 It is true though that I do not use all these packages, but:</p>
 <ol>
@@ -268,24 +294,54 @@ for GitHub packages. I do not use package from other repositories.
 For those packages, I have created a small <a href="https://gist.github.com/KevCaz/aaa83151e9d12cc07fbe379e2c32a385">gist</a>
 to gather them and I edit it each time I&rsquo;ve found a package relevant for my research.
 In order to install this package I get the gist (an R script) and execute it:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ git clone https://gist.github.com/aaa83151e9d12cc07fbe379e2c32a385.git /tmp/pkgsR
-</span></span><span style="display:flex;"><span>$ sudo Rscript /tmp/pkgsR/myPackages.R
-</span></span></code></pre></div><p>The path to these packages is <code>/home/kevcaz/R/x86_64-pc-linux-gnu-library/3.5</code>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">$ git clone https://gist.github.com/aaa83151e9d12cc07fbe379e2c32a385.git /tmp/pkgsR
+</span></span><span class="line"><span class="cl">$ sudo Rscript /tmp/pkgsR/myPackages.R
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The path to these packages is <code>/home/kevcaz/R/x86_64-pc-linux-gnu-library/3.5</code>
 this is not the default behavior but a path commonly used. So, yes, in total
 I use 3 different paths to my R packages 😃:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>R<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">.libPaths</span>()
-</span></span><span style="display:flex;"><span>[1] <span style="color:#e6db74">&#34;/home/kevcaz/R/x86_64-pc-linux-gnu-library/3.5&#34;</span> <span style="color:#e6db74">&#34;/usr/lib/R/site-library&#34;</span>                        <span style="color:#e6db74">&#34;/usr/lib/R/library&#34;</span>
-</span></span></code></pre></div><p>This is actually quite handful, especially to remember how a given package
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="n">R</span><span class="o">&gt;&gt;</span> <span class="nf">.libPaths</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">[1]</span> <span class="s">&#34;/home/kevcaz/R/x86_64-pc-linux-gnu-library/3.5&#34;</span> <span class="s">&#34;/usr/lib/R/site-library&#34;</span>                        <span class="s">&#34;/usr/lib/R/library&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This is actually quite handful, especially to remember how a given package
 was installed:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>R<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">find.package</span>(<span style="color:#e6db74">&#34;stats&#34;</span>)
-</span></span><span style="display:flex;"><span>[1] <span style="color:#e6db74">&#34;/usr/lib/R/library/stats&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>R<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">find.package</span>(<span style="color:#e6db74">&#34;Rcpp&#34;</span>)
-</span></span><span style="display:flex;"><span>[1] <span style="color:#e6db74">&#34;/usr/lib/R/site-library/Rcpp&#34;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>R<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">find.package</span>(<span style="color:#e6db74">&#34;drat&#34;</span>)
-</span></span><span style="display:flex;"><span>[1] <span style="color:#e6db74">&#34;/home/kevcaz/R/x86_64-pc-linux-gnu-library/3.5/drat&#34;</span>
-</span></span></code></pre></div><p>Well, I very much like it that way 😸! Two notes to conclude this section.
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="n">R</span><span class="o">&gt;&gt;</span> <span class="nf">find.package</span><span class="p">(</span><span class="s">&#34;stats&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">[1]</span> <span class="s">&#34;/usr/lib/R/library/stats&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">R</span><span class="o">&gt;&gt;</span> <span class="nf">find.package</span><span class="p">(</span><span class="s">&#34;Rcpp&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">[1]</span> <span class="s">&#34;/usr/lib/R/site-library/Rcpp&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">R</span><span class="o">&gt;&gt;</span> <span class="nf">find.package</span><span class="p">(</span><span class="s">&#34;drat&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">[1]</span> <span class="s">&#34;/home/kevcaz/R/x86_64-pc-linux-gnu-library/3.5/drat&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Well, I very much like it that way 😸! Two notes to conclude this section.
 First, in the near future I may consider
 the neat <a href="http://dirk.eddelbuettel.com/code/drat.html"><code>drat</code> package</a> to add
 packages available on GitHub. Second, if you are interested in
@@ -307,13 +363,29 @@ launch process I:</p>
 </ol>
 <p>For what I do, you simply must retain how to locate <code>Renviron</code>. First,
 call <code>R.home</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>R<span style="color:#f92672">&gt;&gt;</span> <span style="color:#a6e22e">R.home</span>()
-</span></span><span style="display:flex;"><span>[1] <span style="color:#e6db74">&#34;/usr/lib/R&#34;</span>
-</span></span></code></pre></div><p><code>Renviron</code> is in <a href="https://unix.stackexchange.com/questions/5665/what-does-etc-stand-for"><code>/etc</code></a>,
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="n">R</span><span class="o">&gt;&gt;</span> <span class="nf">R.home</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">[1]</span> <span class="s">&#34;/usr/lib/R&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>Renviron</code> is in <a href="https://unix.stackexchange.com/questions/5665/what-does-etc-stand-for"><code>/etc</code></a>,
 so for me <code>/usr/lib/R/etc</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#f92672">$</span> ls <span style="color:#f92672">/</span>usr<span style="color:#f92672">/</span>lib<span style="color:#f92672">/</span>R<span style="color:#f92672">/</span>etc
-</span></span><span style="display:flex;"><span>javaconf  ldpaths  Makeconf  Renviron  Renviron.orig  Renviron.site  Renviron.ucf  repositories  Rprofile.site
-</span></span></code></pre></div><p>Once you have opened it (it may require the super user mode though),
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="o">$</span> <span class="n">ls</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">R</span><span class="o">/</span><span class="n">etc</span>
+</span></span><span class="line"><span class="cl"><span class="n">javaconf</span>  <span class="n">ldpaths</span>  <span class="n">Makeconf</span>  <span class="n">Renviron</span>  <span class="n">Renviron.orig</span>  <span class="n">Renviron.site</span>  <span class="n">Renviron.ucf</span>  <span class="n">repositories</span>  <span class="n">Rprofile.site</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Once you have opened it (it may require the super user mode though),
 you&rsquo;ll find many options you can change. I suggest you do not change
 anything and rather add a new variable <code>R_ENVIRON</code> to point to a site file
 where you will do the changes without touching the original file (well
@@ -353,54 +425,107 @@ R_LIBS_USER=${R_LIBS_USER-&#39;~/R/x86_64-pc-linux-gnu-library/3.5&#39;}
 while the former points to another file where I do most of the tweaks!
 Here it is (also available on
 <a href="https://github.com/KevCaz/dotfiles/blob/master/dotfiles/.Rprofile"><i class="fa fa-github" aria-hidden="true"></i></a>):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#75715e">#### KevCaz&#39;s .Rprofile</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## To refresh =&gt; remove the .RData file otherwise .First is found in there</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## or use R --no-restore</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">##-- Set the RNG</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">set.seed</span>(<span style="color:#ae81ff">1987</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">##-- options (exlicit enough)</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">options</span>(
-</span></span><span style="display:flex;"><span>  prompt <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;R&gt;&gt; &#34;</span>,
-</span></span><span style="display:flex;"><span>  continue <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;+... &#34;</span>,
-</span></span><span style="display:flex;"><span>  width <span style="color:#f92672">=</span> <span style="color:#ae81ff">160</span>,
-</span></span><span style="display:flex;"><span>  max.print <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>,
-</span></span><span style="display:flex;"><span>  repos <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;https://cran.wu.ac.at/&#34;</span>,
-</span></span><span style="display:flex;"><span>  stringsAsFactors <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>
-</span></span><span style="display:flex;"><span>)
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Default packages list including my own packages with functions I often use!</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">options</span>(defaultPackages<span style="color:#f92672">=</span><span style="color:#a6e22e">c</span>(
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">getOption</span>(<span style="color:#e6db74">&#34;defaultPackages&#34;</span>),
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;inSilecoMisc&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;devtools&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;knitr&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;magrittr&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;graphicsutils&#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;rmarkdown&#34;</span>
-</span></span><span style="display:flex;"><span>    ))
-</span></span><span style="display:flex;"><span><span style="color:#75715e">##-- X11 options</span>
-</span></span><span style="display:flex;"><span>grDevices<span style="color:#f92672">::</span><span style="color:#a6e22e">X11.options</span>(width<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>, height<span style="color:#f92672">=</span><span style="color:#ae81ff">10</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">##-- few useful functions</span>
-</span></span><span style="display:flex;"><span>reset <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>() <span style="color:#a6e22e">system</span>(<span style="color:#e6db74">&#39;reset&#39;</span>)
-</span></span><span style="display:flex;"><span>nautilus <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;.&#39;</span>) <span style="color:#a6e22e">system</span>(<span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#39;nautilus &#39;</span>, x))
-</span></span><span style="display:flex;"><span>deco <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(char <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;-&#34;</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>) <span style="color:#a6e22e">paste</span>(<span style="color:#a6e22e">rep</span>(char, n), collapse<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">##-- function triggered when starting a new session / a Hello function</span>
-</span></span><span style="display:flex;"><span>.First <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(){
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;\n&#34;</span>, <span style="color:#a6e22e">paste0</span>(<span style="color:#a6e22e">deco</span>(<span style="color:#e6db74">&#34;=&#34;</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">28</span>), <span style="color:#e6db74">&#34;&gt;&gt;&#34;</span>), <span style="color:#e6db74">&#34; KevCaz 92 Hijo &#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;&lt;&lt;&#34;</span>, <span style="color:#a6e22e">deco</span>(<span style="color:#e6db74">&#34;=&#34;</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">28</span>)), <span style="color:#e6db74">&#34;\n &gt;&gt;&#34;</span>, <span style="color:#a6e22e">date</span>(), <span style="color:#e6db74">&#34; \n\n&#34;</span>) ;
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">##-- function triggered when exiting a new session / a Good Bye function</span>
-</span></span><span style="display:flex;"><span>.Last <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(){
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">graphics.off</span>()
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;\n&#34;</span>, <span style="color:#a6e22e">paste0</span>(<span style="color:#a6e22e">deco</span>(<span style="color:#e6db74">&#34;~&#34;</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">28</span>), <span style="color:#e6db74">&#34;&lt;&#34;</span>) , <span style="color:#e6db74">&#34; Até mais KevCaz! &#34;</span>,
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;&gt;&#34;</span>, <span style="color:#a6e22e">deco</span>(<span style="color:#e6db74">&#34;~&#34;</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">28</span>)),<span style="color:#e6db74">&#34;\n&#34;</span>) ;
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><br>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="c1">#### KevCaz&#39;s .Rprofile</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## To refresh =&gt; remove the .RData file otherwise .First is found in there</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## or use R --no-restore</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##-- Set the RNG</span>
+</span></span><span class="line"><span class="cl"><span class="nf">set.seed</span><span class="p">(</span><span class="m">1987</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##-- options (exlicit enough)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">options</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">prompt</span> <span class="o">=</span> <span class="s">&#34;R&gt;&gt; &#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">continue</span> <span class="o">=</span> <span class="s">&#34;+... &#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">width</span> <span class="o">=</span> <span class="m">160</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">max.print</span> <span class="o">=</span> <span class="m">2000</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">repos</span> <span class="o">=</span> <span class="s">&#34;https://cran.wu.ac.at/&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">stringsAsFactors</span> <span class="o">=</span> <span class="kc">FALSE</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Default packages list including my own packages with functions I often use!</span>
+</span></span><span class="line"><span class="cl"><span class="nf">options</span><span class="p">(</span><span class="n">defaultPackages</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">getOption</span><span class="p">(</span><span class="s">&#34;defaultPackages&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;inSilecoMisc&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;devtools&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;knitr&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;magrittr&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;graphicsutils&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="s">&#34;rmarkdown&#34;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">##-- X11 options</span>
+</span></span><span class="line"><span class="cl"><span class="n">grDevices</span><span class="o">::</span><span class="nf">X11.options</span><span class="p">(</span><span class="n">width</span><span class="o">=</span><span class="m">10</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="m">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##-- few useful functions</span>
+</span></span><span class="line"><span class="cl"><span class="n">reset</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">()</span> <span class="nf">system</span><span class="p">(</span><span class="s">&#39;reset&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">nautilus</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&#39;.&#39;</span><span class="p">)</span> <span class="nf">system</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&#39;nautilus &#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">deco</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">char</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span> <span class="nf">paste</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">collapse</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##-- function triggered when starting a new session / a Hello function</span>
+</span></span><span class="line"><span class="cl"><span class="n">.First</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">cat</span><span class="p">(</span><span class="s">&#34;\n&#34;</span><span class="p">,</span> <span class="nf">paste0</span><span class="p">(</span><span class="nf">deco</span><span class="p">(</span><span class="s">&#34;=&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">28</span><span class="p">),</span> <span class="s">&#34;&gt;&gt;&#34;</span><span class="p">),</span> <span class="s">&#34; KevCaz 92 Hijo &#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">paste0</span><span class="p">(</span><span class="s">&#34;&lt;&lt;&#34;</span><span class="p">,</span> <span class="nf">deco</span><span class="p">(</span><span class="s">&#34;=&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">28</span><span class="p">)),</span> <span class="s">&#34;\n &gt;&gt;&#34;</span><span class="p">,</span> <span class="nf">date</span><span class="p">(),</span> <span class="s">&#34; \n\n&#34;</span><span class="p">)</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">##-- function triggered when exiting a new session / a Good Bye function</span>
+</span></span><span class="line"><span class="cl"><span class="n">.Last</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">graphics.off</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">cat</span><span class="p">(</span><span class="s">&#34;\n&#34;</span><span class="p">,</span> <span class="nf">paste0</span><span class="p">(</span><span class="nf">deco</span><span class="p">(</span><span class="s">&#34;~&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">28</span><span class="p">),</span> <span class="s">&#34;&lt;&#34;</span><span class="p">)</span> <span class="p">,</span> <span class="s">&#34; Até mais KevCaz! &#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">paste0</span><span class="p">(</span><span class="s">&#34;&gt;&#34;</span><span class="p">,</span> <span class="nf">deco</span><span class="p">(</span><span class="s">&#34;~&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">28</span><span class="p">)),</span><span class="s">&#34;\n&#34;</span><span class="p">)</span> <span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
 <h4 id="thats-it-hope-this-helps-see-you-next-post-nbsp-">That&rsquo;s it! Hope this helps! See you next post!   🚀</h4>
 
 
@@ -432,15 +557,26 @@ Here it is (also available on
   
   <script src="//yihui.name/js/math-code.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-
   
   
-
 
 
   <h3 class="page-header">Comments on this post</h3>
 
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  <details>
+  <summary>Comment with Disqus</summary>
   <div id="disqus_thread"></div>
+  </details>
 
   
   
@@ -528,6 +664,7 @@ Here it is (also available on
   </noscript>
 
 
+
 </div>
 
 
@@ -547,7 +684,7 @@ Here it is (also available on
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Jul 2022 02:11 UTC.
+              Latest build: 24 Jul 2022 19:53 UTC.
               </p>
 
         </footer>

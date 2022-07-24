@@ -8,7 +8,7 @@
         <style>
 
     html body {
-        font-family: Lato, sans-serif;
+        font-family: , sans-serif;
         background-color: white;
     }
 
@@ -23,12 +23,23 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="/css/jquery.tocify.css">
 
@@ -36,15 +47,6 @@
 
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-
-
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  
 
 
@@ -70,6 +72,8 @@
   <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
   <script src="/js/jquery.tocify.min.js"></script>
+
+  <script src="/js/toclipboard.js"></script>
 
 
         <meta charset="utf-8">
@@ -345,15 +349,26 @@ literally <a href="https://www.r-bloggers.com/blogs-list/"><strong>hundreds</str
   
   <script src="//yihui.name/js/math-code.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-
   
   
-
 
 
   <h3 class="page-header">Comments on this post</h3>
 
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  <details>
+  <summary>Comment with Disqus</summary>
   <div id="disqus_thread"></div>
+  </details>
 
   
   
@@ -441,6 +456,7 @@ literally <a href="https://www.r-bloggers.com/blogs-list/"><strong>hundreds</str
   </noscript>
 
 
+
 </div>
 
 
@@ -461,7 +477,7 @@ literally <a href="https://www.r-bloggers.com/blogs-list/"><strong>hundreds</str
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Jul 2022 02:11 UTC.
+              Latest build: 24 Jul 2022 19:53 UTC.
               </p>
 
         </footer>

@@ -8,7 +8,7 @@
         <style>
 
     html body {
-        font-family: Lato, sans-serif;
+        font-family: , sans-serif;
         background-color: white;
     }
 
@@ -23,12 +23,23 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="/css/jquery.tocify.css">
 
@@ -36,15 +47,6 @@
 
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-
-
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  
 
 
@@ -70,6 +72,8 @@
   <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
   <script src="/js/jquery.tocify.min.js"></script>
+
+  <script src="/js/toclipboard.js"></script>
 
 
         <meta charset="utf-8">
@@ -285,8 +289,15 @@ an R-Client to the CITES-API. After we completed the first version, we <a href="
 <a href="http://adv-r.had.co.nz/">Advanced R</a> both by Hadley Wickham or in the exhaustive and technical documentation <a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html">Writing R extensions</a> available on the CRAN.</p>
 <h3 id="local-development">Local development</h3>
 <p>I personally use the set of packages developed by Hadley Wickham and colleagues. His book <a href="http://r-pkgs.had.co.nz/">R packages</a> explains how to write your package with them. Installing these packages and start working on package is a simple as the line of command below:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span><span style="color:#a6e22e">install.packages</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;devtools&#34;</span>, <span style="color:#e6db74">&#34;roxygen2&#34;</span>, <span style="color:#e6db74">&#34;testthat&#34;</span>, <span style="color:#e6db74">&#34;knitr&#34;</span>))
-</span></span></code></pre></div><p>Briefly:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;devtools&#34;</span><span class="p">,</span> <span class="s">&#34;roxygen2&#34;</span><span class="p">,</span> <span class="s">&#34;testthat&#34;</span><span class="p">,</span> <span class="s">&#34;knitr&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Briefly:</p>
 <ul>
 <li><a href="https://cran.r-project.org/web/packages/devtools/index.html">roxygen2</a>: document the functions;</li>
 <li><a href="https://cran.r-project.org/web/packages/devtools/index.html">testthat</a>: test your code;</li>
@@ -303,8 +314,15 @@ creates a package skeleton for you and <a href="http://dirk.eddelbuettel.com/">D
 <p>Web-based <a href="https://git-scm.com/"><i class="fa fa-git" aria-hidden="true"></i></a>-repository managers such (GitHub <i class="fa fa-github" aria-hidden="true"></i>, GitLab <i class="fa fa-gitlab" aria-hidden="true"></i>, Bitbucket <i class="fa fa-bitbucket" aria-hidden="true"></i>, etc.) are very powerful tools to develop your packages
 especially to work with collaborators, get feed back and add web-services to improve your workflow. First, <a href="https://git-scm.com/"><i class="fa fa-git" aria-hidden="true"></i></a>
 it-self is a fantastic tool (beyond the scope of this post, I recommend you the reading of <a href="https://git-scm.com/book/en/v2">Pro Git</a>). Second, by hosting your package on GitHub, your are basically sending an invitation at large to contribute to your project: &ldquo;hey devs, this is the project I am working on, if you are interested, please star, clone, fork, report issues, submit pull requests, etc.&rdquo;! Furthermore, once on GitHub, people can easily install your package directly from R:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>devtools<span style="color:#f92672">::</span><span style="color:#a6e22e">install_github</span>(<span style="color:#e6db74">&#34;rOpenSci/rcites&#34;</span>)
-</span></span></code></pre></div><p>Last, the number of <a href="https://github.com/marketplace">web-services</a> you can add to your repository is tremendous (sign in with GitHub and let the <a href="https://oauth.net/2/">protocol OAuth 2.0</a> do the rest). There are two kind services I always use for all my R packages: <a href="https://en.wikipedia.org/wiki/Continuous_integration">continuous integration (CI)</a> and <a href="https://en.wikipedia.org/wiki/Code_coverage">code coverage</a>. I would like to expand a little bit on this two.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="n">devtools</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#34;rOpenSci/rcites&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Last, the number of <a href="https://github.com/marketplace">web-services</a> you can add to your repository is tremendous (sign in with GitHub and let the <a href="https://oauth.net/2/">protocol OAuth 2.0</a> do the rest). There are two kind services I always use for all my R packages: <a href="https://en.wikipedia.org/wiki/Continuous_integration">continuous integration (CI)</a> and <a href="https://en.wikipedia.org/wiki/Code_coverage">code coverage</a>. I would like to expand a little bit on this two.</p>
 <h4 id="continuous-integration">Continuous integration</h4>
 <p>I personally use <a href="http://docs.travis-ci.com/user/languages/r/">Travis</a> that covers MacOS +  Ubuntu and <a href="https://github.com/krlmlr/r-appveyor">AppVeyor</a> for Windows. As <a href="https://www.slant.co/topics/186/~best-hosted-continuous-integration-services#8">continuous integration services</a> they allow me to check that my package can be seamlessly built on different systems freshly installed, for a specific version of R. I am very grateful to developers that makes the use of this service really easy!</p>
 <h4 id="code-coverage">Code coverage</h4>
@@ -328,32 +346,68 @@ Either way, at this stage you must choose a version number. Easy peasy? Yes, but
 </li>
 </ol>
 <p>Below is the <a href="https://github.com/rOpenSci/rcites/blob/master/cran-comments.md">most recent one for rcites</a>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-md" data-lang="md"><span style="display:flex;"><span><span style="color:#75715e">## This is our second submission
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## Test environments
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> local Debian testing (4.18.0-2-amd64), R 3.5.1
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> MacOSX 10.13.3 (on Travis-ci), R:release
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> Ubuntu 14.04 (on Travis-ci), R 3.4.4, R:release, R:devel
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">*</span> win-builder (R:release and R:devel)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## R CMD check results (win-builder)
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>There were no ERRORs, WARNINGs or NOTEs.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Installation time in seconds: 7
-</span></span><span style="display:flex;"><span>Check time in seconds: 99
-</span></span><span style="display:flex;"><span>Status: OK
-</span></span><span style="display:flex;"><span>R Under development (unstable) (2018-11-12 r75592)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">## Downstream dependencies
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
-</span></span><span style="display:flex;"><span>There are currently no downstream dependencies for this package.
-</span></span></code></pre></div><p>Once done, you are ready to submit, so thanks to <a href="https://cran.r-project.org/web/packages/devtools/">devtools</a>, just one command line:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-R" data-lang="R"><span style="display:flex;"><span>devtools<span style="color:#f92672">::</span><span style="color:#a6e22e">submit_cran</span>()
-</span></span></code></pre></div><p>After this, you&rsquo;ll receive an email (the one you wrote in the maintainer field of <code>DESCRIPTION</code>) to confirm the submission. You may receive emails from people that manage the CRAN because of issues or potential improvements. So far, they have given me one good advice: using <code>\donttest{}</code> instead of commenting out examples that cannot be tested on the CRAN.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-md" data-lang="md"><span class="line"><span class="cl"><span class="gu">## This is our second submission
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="gu">## Test environments
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl"><span class="k">*</span> local Debian testing (4.18.0-2-amd64), R 3.5.1
+</span></span><span class="line"><span class="cl"><span class="k">*</span> MacOSX 10.13.3 (on Travis-ci), R:release
+</span></span><span class="line"><span class="cl"><span class="k">*</span> Ubuntu 14.04 (on Travis-ci), R 3.4.4, R:release, R:devel
+</span></span><span class="line"><span class="cl"><span class="k">*</span> win-builder (R:release and R:devel)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## R CMD check results (win-builder)
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl">There were no ERRORs, WARNINGs or NOTEs.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Installation time in seconds: 7
+</span></span><span class="line"><span class="cl">Check time in seconds: 99
+</span></span><span class="line"><span class="cl">Status: OK
+</span></span><span class="line"><span class="cl">R Under development (unstable) (2018-11-12 r75592)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">## Downstream dependencies
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl">There are currently no downstream dependencies for this package.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Once done, you are ready to submit, so thanks to <a href="https://cran.r-project.org/web/packages/devtools/">devtools</a>, just one command line:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="n">devtools</span><span class="o">::</span><span class="nf">submit_cran</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>After this, you&rsquo;ll receive an email (the one you wrote in the maintainer field of <code>DESCRIPTION</code>) to confirm the submission. You may receive emails from people that manage the CRAN because of issues or potential improvements. So far, they have given me one good advice: using <code>\donttest{}</code> instead of commenting out examples that cannot be tested on the CRAN.</p>
 <h2 id="why-submit-your-package-to-a-peer-review-process">Why submit your package to a peer review process?</h2>
 <p>Let&rsquo;s assume your package is already on GitHub and the built passes on both Travis and Appveyor and that the code coverage is above 90%, is it enough? Does that mean you wrote a good package? What is a good package? To me, a good package does not need to be among most downloaded ones but rather one that is well coded. There are a set of criteria that can actually be objectively evaluated:</p>
 <ul>
@@ -454,15 +508,26 @@ For now on, my personal approach with R packages will be:</p>
   
   <script src="//yihui.name/js/math-code.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-
   
   
-
 
 
   <h3 class="page-header">Comments on this post</h3>
 
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  <details>
+  <summary>Comment with Disqus</summary>
   <div id="disqus_thread"></div>
+  </details>
 
   
   
@@ -550,6 +615,7 @@ For now on, my personal approach with R packages will be:</p>
   </noscript>
 
 
+
 </div>
 
 
@@ -569,7 +635,7 @@ For now on, my personal approach with R packages will be:</p>
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Jul 2022 02:11 UTC.
+              Latest build: 24 Jul 2022 19:53 UTC.
               </p>
 
         </footer>

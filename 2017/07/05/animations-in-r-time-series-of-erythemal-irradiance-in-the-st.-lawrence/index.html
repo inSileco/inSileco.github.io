@@ -8,7 +8,7 @@
         <style>
 
     html body {
-        font-family: Lato, sans-serif;
+        font-family: , sans-serif;
         background-color: white;
     }
 
@@ -23,12 +23,23 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="/css/jquery.tocify.css">
 
@@ -36,15 +47,6 @@
 
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-
-
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  
 
 
@@ -70,6 +72,8 @@
   <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
   <script src="/js/jquery.tocify.min.js"></script>
+
+  <script src="/js/toclipboard.js"></script>
 
 
         <meta charset="utf-8">
@@ -223,84 +227,185 @@
 <p>As part of my PhD thesis, I am currently characterizing the intensity of multiple stressors in the estuary and gulf of St. Lawrence (see ResearchGate <a href="https://www.researchgate.net/project/Evaluating-the-cumulative-impacts-of-human-activities-on-the-structure-and-function-the-trophic-network-of-the-estuary-and-gulf-of-StLawrence">project</a> for more details). I have recently <em>needed</em> (read: <em>thought it would be cool</em>) to create an animation of the temporal variations in ultra-violet intensity in the St. Lawrence. Here is how I did it.</p>
 <h2 id="setting-up-r">Setting up R</h2>
 <h3 id="r-version-used-to-build-the-last-update-of-this-post">R version used to build the last update of this post</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">sessionInfo</span>()[[1]]<span style="color:#f92672">$</span>version.string
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [1] &#34;R version 4.2.0 (2022-04-22)&#34;</span>
-</span></span></code></pre></div><h3 id="installing-imagemagick">Installing imagemagick</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span><span class="n">[[1]]</span><span class="o">$</span><span class="n">version.string</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;R version 4.2.0 (2022-04-22)&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="installing-imagemagick">Installing imagemagick</h3>
 <p>The package <code>animation</code>, which I used to create the animations in R, works with the application <a href="https://www.imagemagick.org/script/index.php"><code>imagemagick</code></a>, which can be installed using <a href="https://brew.sh/"><code>Homebrew</code></a> on MacOS.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>brew install imagemagick
-</span></span></code></pre></div><h3 id="installing-the-package-animation">Installing the package animation</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">`install.packages</span>(<span style="color:#e6db74">&#39;animation&#39;</span>, repos <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;http://yihui.name/xran&#39;</span>)`
-</span></span></code></pre></div><h2 id="data">Data</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">brew install imagemagick
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="installing-the-package-animation">Installing the package animation</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">`install.packages</span><span class="p">(</span><span class="s">&#39;animation&#39;</span><span class="p">,</span> <span class="n">repos</span> <span class="o">=</span> <span class="s">&#39;http://yihui.name/xran&#39;</span><span class="p">)</span><span class="n">`</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="data">Data</h2>
 <p>There is a incredible amount of data available on the <a href="https://disc.gsfc.nasa.gov/uui/datasets?keywords=%22Aura%20OMI%22">NASA website</a>. For this post, we downloaded all available data from NASA’s Ozone Monitoring Instrument (OMI) aboard the Earth Observing System’s (EOS) Aura satellite. More specifically, we used <a href="https://disc.gsfc.nasa.gov/uui/datasets/OMUVBG_V003/summary?keywords=%22Aura%20OMI%22">OMI/Aura Surface UVB Irradiance and Erythemal Dose Daily at a scale of 0.25 x 0.25 degree</a> and selected the daily erythemal irradiance (mW/m<sup>2</sup>), <em>i.e.</em> the potentially harmful range of UV radiations, from October 1<sup>st</sup> 2004 to April 5<sup>th</sup> 2017. We then selected only the years with 12 months worth of data to create the following figures, <em>i.e.</em> from January 1<sup>st</sup> 2005 to December 31<sup>st</sup> 2016.</p>
 <!-- The resulting dataset is available here in the [letiR github page](https://github.com/letiR/letir.github.io/blob/master/assets/AnimationInR/MonthOMI.rds). -->
 <p>The maps generated in this post require the user to load <a href="http://www.naturalearthdata.com/http//www.naturalearthdata.com/download/10m/physical/ne_10m_ocean.zip"><code>ocean</code></a> shapefile from <a href="http://www.naturalearthdata.com/">Natural Earth</a>.</p>
 <br/>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># UV data</span>
-</span></span><span style="display:flex;"><span>UV <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">readRDS</span>(<span style="color:#e6db74">&#39;MonthOMI.rds&#39;</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Projection</span>
-</span></span><span style="display:flex;"><span>spatProj <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#39;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&#39;</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Ocean shapefile</span>
-</span></span><span style="display:flex;"><span>ocean <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">readOGR</span>(dsn <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;shpfile&#34;</span>, layer <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ne_10m_ocean&#34;</span>) <span style="color:#f92672">%&gt;%</span>
-</span></span><span style="display:flex;"><span>             <span style="color:#a6e22e">spTransform</span>(CRSobj <span style="color:#f92672">=</span> <span style="color:#a6e22e">CRS</span>(spatProj))
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  OGR data source with driver: ESRI Shapefile</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  Source: &#34;/home/kc/git/inSilecoBlog/inSileco.github.io/content/post/2017/animationinR/shpfile&#34;, layer: &#34;ne_10m_ocean&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  with 1 features</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  It has 2 fields</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">class</span>(ocean)
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [1] &#34;SpatialPolygonsDataFrame&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  attr(,&#34;package&#34;)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [1] &#34;sp&#34;</span>
-</span></span></code></pre></div><h2 id="set-parameters-and-functions">Set parameters and functions</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># UV data</span>
+</span></span><span class="line"><span class="cl"><span class="n">UV</span> <span class="o">&lt;-</span> <span class="nf">readRDS</span><span class="p">(</span><span class="s">&#39;MonthOMI.rds&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Projection</span>
+</span></span><span class="line"><span class="cl"><span class="n">spatProj</span> <span class="o">&lt;-</span> <span class="s">&#39;+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Ocean shapefile</span>
+</span></span><span class="line"><span class="cl"><span class="n">ocean</span> <span class="o">&lt;-</span> <span class="nf">readOGR</span><span class="p">(</span><span class="n">dsn</span> <span class="o">=</span> <span class="s">&#34;shpfile&#34;</span><span class="p">,</span> <span class="n">layer</span> <span class="o">=</span> <span class="s">&#34;ne_10m_ocean&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">             <span class="nf">spTransform</span><span class="p">(</span><span class="n">CRSobj</span> <span class="o">=</span> <span class="nf">CRS</span><span class="p">(</span><span class="n">spatProj</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  OGR data source with driver: ESRI Shapefile</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Source: &#34;/home/kc/git/inSilecoBlog/inSileco.github.io/content/post/2017/animationinR/shpfile&#34;, layer: &#34;ne_10m_ocean&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  with 1 features</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  It has 2 fields</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">ocean</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;SpatialPolygonsDataFrame&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  attr(,&#34;package&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;sp&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="set-parameters-and-functions">Set parameters and functions</h2>
 <p>We start be setting the different parameters and functions required to build the animation.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># Graphical parameters</span>
-</span></span><span style="display:flex;"><span>min_ <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">min</span>(UV[[1]], na.rm <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>) <span style="color:#f92672">%&gt;%</span> plyr<span style="color:#f92672">::</span><span style="color:#a6e22e">round_any</span>(., <span style="color:#ae81ff">100</span>, floor) <span style="color:#75715e"># Minimum values in UV dataset</span>
-</span></span><span style="display:flex;"><span>max_ <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">max</span>(UV[[1]], na.rm <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>) <span style="color:#f92672">%&gt;%</span> plyr<span style="color:#f92672">::</span><span style="color:#a6e22e">round_any</span>(., <span style="color:#ae81ff">100</span>, ceiling) <span style="color:#75715e"># Minimum values in UV dataset</span>
-</span></span><span style="display:flex;"><span>ext <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">-72</span>, <span style="color:#ae81ff">-54</span>, <span style="color:#ae81ff">44</span>, <span style="color:#ae81ff">53</span>) <span style="color:#75715e"># c(xmin, xmax, ymin, ymax)</span>
-</span></span><span style="display:flex;"><span>rbPal <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">colorRampPalette</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#39;#2f6eb9&#39;</span>,<span style="color:#e6db74">&#39;#2aadba&#39;</span>,<span style="color:#e6db74">&#39;#c4c726&#39;</span>,<span style="color:#e6db74">&#39;#b45f5f&#39;</span>)) <span style="color:#75715e"># color palette</span>
-</span></span><span style="display:flex;"><span>labels <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">4</span>,(<span style="color:#ae81ff">151-4</span>)), ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>, nrow <span style="color:#f92672">=</span> <span style="color:#ae81ff">12</span>,
-</span></span><span style="display:flex;"><span>  dimnames <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(<span style="color:#ae81ff">2005</span><span style="color:#f92672">:</span><span style="color:#ae81ff">2016</span>, month.abb), byrow <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)  <span style="color:#75715e"># Select only full years (start: 2004/10; end: 2017/04)</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Monthly trends</span>
-</span></span><span style="display:flex;"><span>monthMean <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">apply</span>(X <span style="color:#f92672">=</span> UV[[1]], MARGIN <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, FUN <span style="color:#f92672">=</span> mean, na.rm <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>) <span style="color:#75715e"># monthly mean</span>
-</span></span><span style="display:flex;"><span>monthSd <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">apply</span>(X <span style="color:#f92672">=</span> UV[[1]], MARGIN <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, FUN <span style="color:#f92672">=</span> sd, na.rm <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>) <span style="color:#75715e"># monthly sd</span>
-</span></span><span style="display:flex;"><span>years <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2005</span><span style="color:#f92672">:</span><span style="color:#ae81ff">2016</span>
-</span></span><span style="display:flex;"><span>lowCI <span style="color:#f92672">&lt;-</span> monthMean <span style="color:#f92672">-</span> (<span style="color:#ae81ff">1.96</span><span style="color:#f92672">*</span>monthSd) <span style="color:#75715e"># Lower confidence interval</span>
-</span></span><span style="display:flex;"><span>upCI <span style="color:#f92672">&lt;-</span> monthMean <span style="color:#f92672">+</span> (<span style="color:#ae81ff">1.96</span><span style="color:#f92672">*</span>monthSd) <span style="color:#75715e"># Upper confidence interval</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Empty plot function</span>
-</span></span><span style="display:flex;"><span>eplot <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, xmin <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, xmax <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, ymin <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, ymax <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>) {
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">plot</span>(x <span style="color:#f92672">=</span> x, y <span style="color:#f92672">=</span> y, bty <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;n&#34;</span>, ann <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, xaxt <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;n&#34;</span>, yaxt <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;n&#34;</span>,
-</span></span><span style="display:flex;"><span>    type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;n&#34;</span>, bg <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;grey&#39;</span>, ylim <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(ymin, ymax), xlim <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(xmin, xmax))
-</span></span><span style="display:flex;"><span>}
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Legend function</span>
-</span></span><span style="display:flex;"><span>colorBar <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(colRamp, min, max, nticks <span style="color:#f92672">=</span> <span style="color:#ae81ff">11</span>, ticks <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(min, max, len <span style="color:#f92672">=</span> nticks)) {
-</span></span><span style="display:flex;"><span>    scale <span style="color:#f92672">=</span> (<span style="color:#a6e22e">length</span>(colRamp) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> (max <span style="color:#f92672">-</span> min)
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">par</span>(mar <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">0.5</span>,<span style="color:#ae81ff">5</span>,<span style="color:#ae81ff">4</span>))
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">plot</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">10</span>), <span style="color:#a6e22e">c</span>(min_, max_), type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;n&#39;</span>, bty <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;n&#39;</span>, xaxt <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;n&#39;</span>, xlab <span style="color:#f92672">=</span><span style="color:#e6db74">&#39; &#39;</span>, yaxt <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;n&#39;</span>, ylab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;&#39;</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">axis</span>(<span style="color:#ae81ff">4</span>, ticks, las <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.5</span>)
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">for </span>(i in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span>(<span style="color:#a6e22e">length</span>(colRamp) <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)) {
-</span></span><span style="display:flex;"><span>        y <span style="color:#f92672">=</span> (i <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">/</span> scale <span style="color:#f92672">+</span> min
-</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">rect</span>(<span style="color:#ae81ff">0</span>, y, <span style="color:#ae81ff">10</span>, y <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">/</span> scale, col <span style="color:#f92672">=</span> colRamp[i], border <span style="color:#f92672">=</span> <span style="color:#66d9ef">NA</span>)
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}
-</span></span></code></pre></div><h2 id="create-first-animation">Create first animation</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Graphical parameters</span>
+</span></span><span class="line"><span class="cl"><span class="n">min_</span> <span class="o">&lt;-</span> <span class="nf">min</span><span class="p">(</span><span class="n">UV[[1]]</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="n">plyr</span><span class="o">::</span><span class="nf">round_any</span><span class="p">(</span><span class="n">.,</span> <span class="m">100</span><span class="p">,</span> <span class="n">floor</span><span class="p">)</span> <span class="c1"># Minimum values in UV dataset</span>
+</span></span><span class="line"><span class="cl"><span class="n">max_</span> <span class="o">&lt;-</span> <span class="nf">max</span><span class="p">(</span><span class="n">UV[[1]]</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="n">plyr</span><span class="o">::</span><span class="nf">round_any</span><span class="p">(</span><span class="n">.,</span> <span class="m">100</span><span class="p">,</span> <span class="n">ceiling</span><span class="p">)</span> <span class="c1"># Minimum values in UV dataset</span>
+</span></span><span class="line"><span class="cl"><span class="n">ext</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">-72</span><span class="p">,</span> <span class="m">-54</span><span class="p">,</span> <span class="m">44</span><span class="p">,</span> <span class="m">53</span><span class="p">)</span> <span class="c1"># c(xmin, xmax, ymin, ymax)</span>
+</span></span><span class="line"><span class="cl"><span class="n">rbPal</span> <span class="o">&lt;-</span> <span class="nf">colorRampPalette</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#39;#2f6eb9&#39;</span><span class="p">,</span><span class="s">&#39;#2aadba&#39;</span><span class="p">,</span><span class="s">&#39;#c4c726&#39;</span><span class="p">,</span><span class="s">&#39;#b45f5f&#39;</span><span class="p">))</span> <span class="c1"># color palette</span>
+</span></span><span class="line"><span class="cl"><span class="n">labels</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">seq</span><span class="p">(</span><span class="m">4</span><span class="p">,(</span><span class="m">151-4</span><span class="p">)),</span> <span class="n">ncol</span> <span class="o">=</span> <span class="m">12</span><span class="p">,</span> <span class="n">nrow</span> <span class="o">=</span> <span class="m">12</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">dimnames</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="m">2005</span><span class="o">:</span><span class="m">2016</span><span class="p">,</span> <span class="n">month.abb</span><span class="p">),</span> <span class="n">byrow</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>  <span class="c1"># Select only full years (start: 2004/10; end: 2017/04)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Monthly trends</span>
+</span></span><span class="line"><span class="cl"><span class="n">monthMean</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="n">X</span> <span class="o">=</span> <span class="n">UV[[1]]</span><span class="p">,</span> <span class="n">MARGIN</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">FUN</span> <span class="o">=</span> <span class="n">mean</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="c1"># monthly mean</span>
+</span></span><span class="line"><span class="cl"><span class="n">monthSd</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="n">X</span> <span class="o">=</span> <span class="n">UV[[1]]</span><span class="p">,</span> <span class="n">MARGIN</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">FUN</span> <span class="o">=</span> <span class="n">sd</span><span class="p">,</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="c1"># monthly sd</span>
+</span></span><span class="line"><span class="cl"><span class="n">years</span> <span class="o">&lt;-</span> <span class="m">2005</span><span class="o">:</span><span class="m">2016</span>
+</span></span><span class="line"><span class="cl"><span class="n">lowCI</span> <span class="o">&lt;-</span> <span class="n">monthMean</span> <span class="o">-</span> <span class="p">(</span><span class="m">1.96</span><span class="o">*</span><span class="n">monthSd</span><span class="p">)</span> <span class="c1"># Lower confidence interval</span>
+</span></span><span class="line"><span class="cl"><span class="n">upCI</span> <span class="o">&lt;-</span> <span class="n">monthMean</span> <span class="o">+</span> <span class="p">(</span><span class="m">1.96</span><span class="o">*</span><span class="n">monthSd</span><span class="p">)</span> <span class="c1"># Upper confidence interval</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Empty plot function</span>
+</span></span><span class="line"><span class="cl"><span class="n">eplot</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">xmin</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">plot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span> <span class="n">bty</span> <span class="o">=</span> <span class="s">&#34;n&#34;</span><span class="p">,</span> <span class="n">ann</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">xaxt</span> <span class="o">=</span> <span class="s">&#34;n&#34;</span><span class="p">,</span> <span class="n">yaxt</span> <span class="o">=</span> <span class="s">&#34;n&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">    <span class="n">type</span> <span class="o">=</span> <span class="s">&#34;n&#34;</span><span class="p">,</span> <span class="n">bg</span> <span class="o">=</span> <span class="s">&#39;grey&#39;</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span> <span class="n">ymax</span><span class="p">),</span> <span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span> <span class="n">xmax</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Legend function</span>
+</span></span><span class="line"><span class="cl"><span class="n">colorBar</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">colRamp</span><span class="p">,</span> <span class="n">min</span><span class="p">,</span> <span class="n">max</span><span class="p">,</span> <span class="n">nticks</span> <span class="o">=</span> <span class="m">11</span><span class="p">,</span> <span class="n">ticks</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="n">min</span><span class="p">,</span> <span class="n">max</span><span class="p">,</span> <span class="n">len</span> <span class="o">=</span> <span class="n">nticks</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">scale</span> <span class="o">=</span> <span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">colRamp</span><span class="p">)</span> <span class="o">-</span> <span class="m">1</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">max</span> <span class="o">-</span> <span class="n">min</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">par</span><span class="p">(</span><span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">0.5</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">4</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">plot</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">10</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="n">min_</span><span class="p">,</span> <span class="n">max_</span><span class="p">),</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#39;n&#39;</span><span class="p">,</span> <span class="n">bty</span> <span class="o">=</span> <span class="s">&#39;n&#39;</span><span class="p">,</span> <span class="n">xaxt</span> <span class="o">=</span> <span class="s">&#39;n&#39;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span><span class="s">&#39; &#39;</span><span class="p">,</span> <span class="n">yaxt</span> <span class="o">=</span> <span class="s">&#39;n&#39;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">axis</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="n">ticks</span><span class="p">,</span> <span class="n">las</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">1.5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">colRamp</span><span class="p">)</span> <span class="o">-</span> <span class="m">1</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">-</span> <span class="m">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">scale</span> <span class="o">+</span> <span class="n">min</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">rect</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">y</span> <span class="o">+</span> <span class="m">1</span> <span class="o">/</span> <span class="n">scale</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">colRamp[i]</span><span class="p">,</span> <span class="n">border</span> <span class="o">=</span> <span class="kc">NA</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="create-first-animation">Create first animation</h2>
 <p>Let’s start with a simple animation of erythemal irradiance for 2005.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">saveGIF</span>({
-</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">for</span>(i in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">ncol</span>(labels)){
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">par</span>(mar <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>), pch <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>,  xaxs <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;i&#34;</span>, yaxs <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;i&#34;</span>, family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;serif&#34;</span>)
-</span></span><span style="display:flex;"><span>      r <span style="color:#f92672">&lt;-</span> raster<span style="color:#f92672">::</span><span style="color:#a6e22e">raster</span>(UV[[1]][,,labels[1,i]], xmn <span style="color:#f92672">=</span> ext[1], xmx <span style="color:#f92672">=</span> ext[2], ymn <span style="color:#f92672">=</span> ext[3], ymx <span style="color:#f92672">=</span> ext[4], crs <span style="color:#f92672">=</span> spatProj) <span style="color:#f92672">%&gt;%</span>
-</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">mask</span>(ocean)
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">eplot</span>(xmin <span style="color:#f92672">=</span> ext[1], xmax <span style="color:#f92672">=</span> ext[2], ymin <span style="color:#f92672">=</span> ext[3], ymax <span style="color:#f92672">=</span> ext[4])
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">plot</span>(r, col<span style="color:#f92672">=</span> <span style="color:#a6e22e">rbPal</span>(<span style="color:#ae81ff">100</span>), breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(min_,max_,length.out<span style="color:#f92672">=</span><span style="color:#ae81ff">100</span>), legend <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, add <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">plot</span>(ocean, add <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
-</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">text</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">-54.5</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">45</span>, labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">paste</span>(<span style="color:#a6e22e">colnames</span>(labels)[1], <span style="color:#a6e22e">rownames</span>(labels)[i]), adj <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.5</span>)
-</span></span><span style="display:flex;"><span>  }
-</span></span><span style="display:flex;"><span>}, movie.name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;UV2005animate.gif&#34;</span>)
-</span></span></code></pre></div><center>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">saveGIF</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">ncol</span><span class="p">(</span><span class="n">labels</span><span class="p">)){</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">par</span><span class="p">(</span><span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">),</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">21</span><span class="p">,</span>  <span class="n">xaxs</span> <span class="o">=</span> <span class="s">&#34;i&#34;</span><span class="p">,</span> <span class="n">yaxs</span> <span class="o">=</span> <span class="s">&#34;i&#34;</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#34;serif&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="n">r</span> <span class="o">&lt;-</span> <span class="n">raster</span><span class="o">::</span><span class="nf">raster</span><span class="p">(</span><span class="n">UV[[1]][</span><span class="p">,,</span><span class="n">labels[1</span><span class="p">,</span><span class="n">i]]</span><span class="p">,</span> <span class="n">xmn</span> <span class="o">=</span> <span class="n">ext[1]</span><span class="p">,</span> <span class="n">xmx</span> <span class="o">=</span> <span class="n">ext[2]</span><span class="p">,</span> <span class="n">ymn</span> <span class="o">=</span> <span class="n">ext[3]</span><span class="p">,</span> <span class="n">ymx</span> <span class="o">=</span> <span class="n">ext[4]</span><span class="p">,</span> <span class="n">crs</span> <span class="o">=</span> <span class="n">spatProj</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">          <span class="nf">mask</span><span class="p">(</span><span class="n">ocean</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">eplot</span><span class="p">(</span><span class="n">xmin</span> <span class="o">=</span> <span class="n">ext[1]</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="n">ext[2]</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">=</span> <span class="n">ext[3]</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">ext[4]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">plot</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span> <span class="nf">rbPal</span><span class="p">(</span><span class="m">100</span><span class="p">),</span> <span class="n">breaks</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="n">min_</span><span class="p">,</span><span class="n">max_</span><span class="p">,</span><span class="n">length.out</span><span class="o">=</span><span class="m">100</span><span class="p">),</span> <span class="n">legend</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">plot</span><span class="p">(</span><span class="n">ocean</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">text</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="m">-54.5</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="m">45</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="nf">colnames</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="n">[1]</span><span class="p">,</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="n">[i]</span><span class="p">),</span> <span class="n">adj</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">1.5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="n">movie.name</span> <span class="o">=</span> <span class="s">&#34;UV2005animate.gif&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><center>
   
     <img src="lUV2005animate.gif" width="50%">
   
@@ -308,55 +413,109 @@
 
 <h2 id="create-complex-animation">Create complex animation</h2>
 <p>Now let’s make a more informative and complex animation that allows to visualize monthly erythemal irradiance through the years as well as annual trends.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">ani.options</span>(ani.height <span style="color:#f92672">=</span> <span style="color:#ae81ff">720</span>, ani.width <span style="color:#f92672">=</span> <span style="color:#ae81ff">720</span>)
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">saveGIF</span>({
-</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">for</span>(i in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">nrow</span>(labels)) {
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e">#layout</span>
-</span></span><span style="display:flex;"><span>            mat <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">matrix</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">13</span><span style="color:#f92672">:</span><span style="color:#ae81ff">15</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">16</span><span style="color:#f92672">:</span><span style="color:#ae81ff">18</span>, <span style="color:#ae81ff">4</span><span style="color:#f92672">:</span><span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">19</span><span style="color:#f92672">:</span><span style="color:#ae81ff">21</span>, <span style="color:#ae81ff">7</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">22</span><span style="color:#f92672">:</span><span style="color:#ae81ff">24</span>, <span style="color:#ae81ff">10</span><span style="color:#f92672">:</span><span style="color:#ae81ff">12</span>),
-</span></span><span style="display:flex;"><span>              ncol <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, nrow <span style="color:#f92672">=</span> <span style="color:#ae81ff">8</span>, byrow <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>) <span style="color:#f92672">%&gt;%</span>
-</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">cbind</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">25</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>)) <span style="color:#f92672">%&gt;%</span>
-</span></span><span style="display:flex;"><span>                  <span style="color:#a6e22e">rbind</span>(<span style="color:#ae81ff">26</span>, .)
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">layout</span>(mat, widths <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">1.25</span>), heights <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">rep</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>), <span style="color:#ae81ff">4</span>)))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Rasters</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">for</span>(j in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">ncol</span>(labels)) {
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">par</span>(pch <span style="color:#f92672">=</span> <span style="color:#ae81ff">21</span>,  xaxs <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;i&#34;</span>, yaxs <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;i&#34;</span>, family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;serif&#34;</span>, mar <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>))
-</span></span><span style="display:flex;"><span>                r <span style="color:#f92672">&lt;-</span> raster<span style="color:#f92672">::</span><span style="color:#a6e22e">raster</span>(UV[[1]][,,labels[i,j]], xmn <span style="color:#f92672">=</span> ext[1], xmx <span style="color:#f92672">=</span> ext[2],
-</span></span><span style="display:flex;"><span>                    ymn <span style="color:#f92672">=</span> ext[3], ymx <span style="color:#f92672">=</span> ext[4], crs <span style="color:#f92672">=</span> spatProj) <span style="color:#f92672">%&gt;%</span>
-</span></span><span style="display:flex;"><span>                      <span style="color:#a6e22e">mask</span>(ocean)
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">eplot</span>(xmin <span style="color:#f92672">=</span> ext[1], xmax <span style="color:#f92672">=</span> ext[2], ymin <span style="color:#f92672">=</span> ext[3], ymax <span style="color:#f92672">=</span> ext[4])
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">image</span>(r, col<span style="color:#f92672">=</span> <span style="color:#a6e22e">rbPal</span>(<span style="color:#ae81ff">100</span>), breaks <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>,max_,length.out <span style="color:#f92672">=</span> <span style="color:#ae81ff">101</span>), legend <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, add <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">plot</span>(ocean, add <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">text</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">-54.5</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">45</span>, labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">paste</span>(<span style="color:#a6e22e">colnames</span>(labels)[j], <span style="color:#a6e22e">rownames</span>(labels)[i]), adj <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.5</span>)
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Plot trends</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">for</span>(j in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">ncol</span>(labels)) {
-</span></span><span style="display:flex;"><span>                temporal <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">data.frame</span>(years <span style="color:#f92672">=</span> years[1<span style="color:#f92672">:</span>i], monthMean <span style="color:#f92672">=</span> monthMean[labels[1<span style="color:#f92672">:</span>i, j]],
-</span></span><span style="display:flex;"><span>                    lowCI <span style="color:#f92672">=</span> lowCI[labels[1<span style="color:#f92672">:</span>i, j]], upCI <span style="color:#f92672">=</span> upCI[labels[1<span style="color:#f92672">:</span>i, j]]) <span style="color:#f92672">%&gt;%</span>
-</span></span><span style="display:flex;"><span>                            <span style="color:#a6e22e">na.omit</span>()
-</span></span><span style="display:flex;"><span>                polyY <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(temporal<span style="color:#f92672">$</span>upCI, <span style="color:#a6e22e">rev</span>(temporal<span style="color:#f92672">$</span>lowCI)) <span style="color:#75715e"># Y coordinates for confidence interval polygon</span>
-</span></span><span style="display:flex;"><span>                polyX <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(temporal<span style="color:#f92672">$</span>years, <span style="color:#a6e22e">rev</span>(temporal<span style="color:#f92672">$</span>years)) <span style="color:#75715e"># X coordinates for confidence interval polygon</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">par</span>(mar <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">3</span>,<span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>), family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;serif&#34;</span>)
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">eplot</span>(xmin <span style="color:#f92672">=</span> <span style="color:#ae81ff">2005</span>, xmax <span style="color:#f92672">=</span> <span style="color:#ae81ff">2016</span>, ymin <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, ymax <span style="color:#f92672">=</span> <span style="color:#a6e22e">max</span>(upCI))
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">polygon</span>(polyX, polyY, border <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;transparent&#39;</span>, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#d9e5f4&#34;</span>)
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">lines</span>(temporal<span style="color:#f92672">$</span>monthMean <span style="color:#f92672">~</span> temporal<span style="color:#f92672">$</span>years, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;#0057bb&#39;</span>)
-</span></span><span style="display:flex;"><span>                <span style="color:#a6e22e">axis</span>(side <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, at <span style="color:#f92672">=</span> <span style="color:#a6e22e">seq</span>(<span style="color:#ae81ff">0</span>, plyr<span style="color:#f92672">::</span><span style="color:#a6e22e">round_any</span>(<span style="color:#a6e22e">max</span>(upCI), <span style="color:#ae81ff">1000</span>, ceiling), by <span style="color:#f92672">=</span> <span style="color:#ae81ff">2500</span>),
-</span></span><span style="display:flex;"><span>                  las <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, pos <span style="color:#f92672">=</span> <span style="color:#ae81ff">2004.75</span>, cex <span style="color:#f92672">=</span>  <span style="color:#ae81ff">1.5</span>)
-</span></span><span style="display:flex;"><span>            }
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Plot legend</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">colorBar</span>(<span style="color:#a6e22e">rbPal</span>(<span style="color:#ae81ff">101</span>), min <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, max <span style="color:#f92672">=</span> max_)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>        <span style="color:#75715e"># Graph title</span>
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">par</span>(mar <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>))
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">eplot</span>(xmin <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, xmax <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, ymin <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, ymax <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>)
-</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">text</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">5</span>, labels <span style="color:#f92672">=</span> <span style="color:#a6e22e">bquote</span>(<span style="color:#e6db74">&#34;Erythemal UV Irradiance (mW/m&#34;</span> ^2 <span style="color:#f92672">*</span><span style="color:#e6db74">&#34;)&#34;</span>), cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    }
-</span></span><span style="display:flex;"><span>}, movie.name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;UVanimate.gif&#34;</span>)
-</span></span></code></pre></div><center>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">ani.options</span><span class="p">(</span><span class="n">ani.height</span> <span class="o">=</span> <span class="m">720</span><span class="p">,</span> <span class="n">ani.width</span> <span class="o">=</span> <span class="m">720</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">saveGIF</span><span class="p">({</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">for</span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">nrow</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">#layout</span>
+</span></span><span class="line"><span class="cl">            <span class="n">mat</span> <span class="o">&lt;-</span> <span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">13</span><span class="o">:</span><span class="m">15</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">3</span><span class="p">,</span> <span class="m">16</span><span class="o">:</span><span class="m">18</span><span class="p">,</span> <span class="m">4</span><span class="o">:</span><span class="m">6</span><span class="p">,</span> <span class="m">19</span><span class="o">:</span><span class="m">21</span><span class="p">,</span> <span class="m">7</span><span class="o">:</span><span class="m">9</span><span class="p">,</span> <span class="m">22</span><span class="o">:</span><span class="m">24</span><span class="p">,</span> <span class="m">10</span><span class="o">:</span><span class="m">12</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">              <span class="n">ncol</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">nrow</span> <span class="o">=</span> <span class="m">8</span><span class="p">,</span> <span class="n">byrow</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">                  <span class="nf">cbind</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">25</span><span class="p">,</span> <span class="m">25</span><span class="p">,</span> <span class="m">25</span><span class="p">,</span> <span class="m">25</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">                  <span class="nf">rbind</span><span class="p">(</span><span class="m">26</span><span class="p">,</span> <span class="n">.)</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">layout</span><span class="p">(</span><span class="n">mat</span><span class="p">,</span> <span class="n">widths</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">1.25</span><span class="p">),</span> <span class="n">heights</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="nf">rep</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">),</span> <span class="m">4</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Rasters</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">for</span><span class="p">(</span><span class="n">j</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">ncol</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">par</span><span class="p">(</span><span class="n">pch</span> <span class="o">=</span> <span class="m">21</span><span class="p">,</span>  <span class="n">xaxs</span> <span class="o">=</span> <span class="s">&#34;i&#34;</span><span class="p">,</span> <span class="n">yaxs</span> <span class="o">=</span> <span class="s">&#34;i&#34;</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#34;serif&#34;</span><span class="p">,</span> <span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="n">r</span> <span class="o">&lt;-</span> <span class="n">raster</span><span class="o">::</span><span class="nf">raster</span><span class="p">(</span><span class="n">UV[[1]][</span><span class="p">,,</span><span class="n">labels[i</span><span class="p">,</span><span class="n">j]]</span><span class="p">,</span> <span class="n">xmn</span> <span class="o">=</span> <span class="n">ext[1]</span><span class="p">,</span> <span class="n">xmx</span> <span class="o">=</span> <span class="n">ext[2]</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">ymn</span> <span class="o">=</span> <span class="n">ext[3]</span><span class="p">,</span> <span class="n">ymx</span> <span class="o">=</span> <span class="n">ext[4]</span><span class="p">,</span> <span class="n">crs</span> <span class="o">=</span> <span class="n">spatProj</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">                      <span class="nf">mask</span><span class="p">(</span><span class="n">ocean</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">eplot</span><span class="p">(</span><span class="n">xmin</span> <span class="o">=</span> <span class="n">ext[1]</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="n">ext[2]</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">=</span> <span class="n">ext[3]</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="n">ext[4]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">image</span><span class="p">(</span><span class="n">r</span><span class="p">,</span> <span class="n">col</span><span class="o">=</span> <span class="nf">rbPal</span><span class="p">(</span><span class="m">100</span><span class="p">),</span> <span class="n">breaks</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="n">max_</span><span class="p">,</span><span class="n">length.out</span> <span class="o">=</span> <span class="m">101</span><span class="p">),</span> <span class="n">legend</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">plot</span><span class="p">(</span><span class="n">ocean</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">text</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="m">-54.5</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="m">45</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nf">paste</span><span class="p">(</span><span class="nf">colnames</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="n">[j]</span><span class="p">,</span> <span class="nf">rownames</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span><span class="n">[i]</span><span class="p">),</span> <span class="n">adj</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">1.5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Plot trends</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">for</span><span class="p">(</span><span class="n">j</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="nf">ncol</span><span class="p">(</span><span class="n">labels</span><span class="p">))</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">                <span class="n">temporal</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">years</span> <span class="o">=</span> <span class="n">years[1</span><span class="o">:</span><span class="n">i]</span><span class="p">,</span> <span class="n">monthMean</span> <span class="o">=</span> <span class="n">monthMean[labels[1</span><span class="o">:</span><span class="n">i</span><span class="p">,</span> <span class="n">j]]</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                    <span class="n">lowCI</span> <span class="o">=</span> <span class="n">lowCI[labels[1</span><span class="o">:</span><span class="n">i</span><span class="p">,</span> <span class="n">j]]</span><span class="p">,</span> <span class="n">upCI</span> <span class="o">=</span> <span class="n">upCI[labels[1</span><span class="o">:</span><span class="n">i</span><span class="p">,</span> <span class="n">j]]</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">                            <span class="nf">na.omit</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">                <span class="n">polyY</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">temporal</span><span class="o">$</span><span class="n">upCI</span><span class="p">,</span> <span class="nf">rev</span><span class="p">(</span><span class="n">temporal</span><span class="o">$</span><span class="n">lowCI</span><span class="p">))</span> <span class="c1"># Y coordinates for confidence interval polygon</span>
+</span></span><span class="line"><span class="cl">                <span class="n">polyX</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="n">temporal</span><span class="o">$</span><span class="n">years</span><span class="p">,</span> <span class="nf">rev</span><span class="p">(</span><span class="n">temporal</span><span class="o">$</span><span class="n">years</span><span class="p">))</span> <span class="c1"># X coordinates for confidence interval polygon</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">                <span class="nf">par</span><span class="p">(</span><span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#34;serif&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">eplot</span><span class="p">(</span><span class="n">xmin</span> <span class="o">=</span> <span class="m">2005</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="m">2016</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="nf">max</span><span class="p">(</span><span class="n">upCI</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">polygon</span><span class="p">(</span><span class="n">polyX</span><span class="p">,</span> <span class="n">polyY</span><span class="p">,</span> <span class="n">border</span> <span class="o">=</span> <span class="s">&#39;transparent&#39;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#34;#d9e5f4&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">lines</span><span class="p">(</span><span class="n">temporal</span><span class="o">$</span><span class="n">monthMean</span> <span class="o">~</span> <span class="n">temporal</span><span class="o">$</span><span class="n">years</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#39;#0057bb&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">                <span class="nf">axis</span><span class="p">(</span><span class="n">side</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">at</span> <span class="o">=</span> <span class="nf">seq</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">plyr</span><span class="o">::</span><span class="nf">round_any</span><span class="p">(</span><span class="nf">max</span><span class="p">(</span><span class="n">upCI</span><span class="p">),</span> <span class="m">1000</span><span class="p">,</span> <span class="n">ceiling</span><span class="p">),</span> <span class="n">by</span> <span class="o">=</span> <span class="m">2500</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                  <span class="n">las</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">pos</span> <span class="o">=</span> <span class="m">2004.75</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span>  <span class="m">1.5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Plot legend</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">colorBar</span><span class="p">(</span><span class="nf">rbPal</span><span class="p">(</span><span class="m">101</span><span class="p">),</span> <span class="n">min</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">max</span> <span class="o">=</span> <span class="n">max_</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1"># Graph title</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">par</span><span class="p">(</span><span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">eplot</span><span class="p">(</span><span class="n">xmin</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">            <span class="nf">text</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nf">bquote</span><span class="p">(</span><span class="s">&#34;Erythemal UV Irradiance (mW/m&#34;</span> <span class="n">^2</span> <span class="o">*</span><span class="s">&#34;)&#34;</span><span class="p">),</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">},</span> <span class="n">movie.name</span> <span class="o">=</span> <span class="s">&#34;UVanimate.gif&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><center>
   
     <img src="UVanimate.gif" width="80%">
   
@@ -372,50 +531,99 @@
 <i class="fa fa-cogs" aria-hidden="true"></i></p>
 </h4>
 </summary>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">sessionInfo</span>()
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  R version 4.2.0 (2022-04-22)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  Running under: Debian GNU/Linux bookworm/sid</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  Matrix products: default</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.1</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.10.1</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  locale:</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;   [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;   [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;   [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;   [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;   [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  attached base packages:</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  other attached packages:</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [1] rgdal_1.5-32           plyr_1.8.7             raster_3.5-15         </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [4] sp_1.4-7               magrittr_2.0.3         animation_2.7         </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [7] inSilecoRef_0.0.1.9000</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  loaded via a namespace (and not attached):</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;   [1] Rcpp_1.0.8.3      lattice_0.20-45   lubridate_1.8.0   ps_1.7.0         </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;   [5] assertthat_0.2.1  digest_0.6.29     utf8_1.2.2        mime_0.12        </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;   [9] R6_2.5.1          backports_1.4.1   evaluate_0.15     httr_1.4.3       </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [13] blogdown_1.10     pillar_1.7.0      rlang_1.0.2       curl_4.3.2       </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [17] data.table_1.14.2 miniUI_0.1.1.1    callr_3.7.0       jquerylib_0.1.4  </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [21] DT_0.23           rmarkdown_2.14    RefManageR_1.3.0  rcrossref_1.1.0  </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [25] stringr_1.4.0     htmlwidgets_1.5.4 igraph_1.2.11     shiny_1.7.1      </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [29] compiler_4.2.0    httpuv_1.6.5      xfun_0.31         pkgconfig_2.0.3  </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [33] htmltools_0.5.2   tidyselect_1.1.2  tibble_3.1.7      httpcode_0.3.0   </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [37] bookdown_0.26     codetools_0.2-18  fansi_1.0.3       crayon_1.5.1     </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [41] dplyr_1.0.9       withr_2.5.0       later_1.3.0       grid_4.2.0       </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [45] crul_1.2.0        jsonlite_1.8.0    xtable_1.8-4      lifecycle_1.0.1  </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [49] DBI_1.1.2         cli_3.3.0         stringi_1.7.6     promises_1.2.0.1</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [53] xml2_1.3.3        bslib_0.3.1       ellipsis_0.3.2    targets_0.12.0   </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [57] generics_0.1.2    vctrs_0.4.1       tools_4.2.0       glue_1.6.2       </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [61] purrr_0.3.4       processx_3.5.3    fastmap_1.1.0     yaml_2.3.5       </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [65] terra_1.5-21      base64url_1.4     knitr_1.39        sass_0.4.1</span>
-</span></span></code></pre></div></details>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.2.0 (2022-04-22)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Debian GNU/Linux bookworm/sid</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Matrix products: default</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.10.1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  locale:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  attached base packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  other attached packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] rgdal_1.5-32           plyr_1.8.7             raster_3.5-15         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [4] sp_1.4-7               magrittr_2.0.3         animation_2.7         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [7] inSilecoRef_0.0.1.9000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] Rcpp_1.0.8.3      lattice_0.20-45   lubridate_1.8.0   ps_1.7.0         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] assertthat_0.2.1  digest_0.6.29     utf8_1.2.2        mime_0.12        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] R6_2.5.1          backports_1.4.1   evaluate_0.15     httr_1.4.3       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] blogdown_1.10     pillar_1.7.0      rlang_1.0.2       curl_4.3.2       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [17] data.table_1.14.2 miniUI_0.1.1.1    callr_3.7.0       jquerylib_0.1.4  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] DT_0.23           rmarkdown_2.14    RefManageR_1.3.0  rcrossref_1.1.0  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] stringr_1.4.0     htmlwidgets_1.5.4 igraph_1.2.11     shiny_1.7.1      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] compiler_4.2.0    httpuv_1.6.5      xfun_0.31         pkgconfig_2.0.3  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] htmltools_0.5.2   tidyselect_1.1.2  tibble_3.1.7      httpcode_0.3.0   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] bookdown_0.26     codetools_0.2-18  fansi_1.0.3       crayon_1.5.1     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] dplyr_1.0.9       withr_2.5.0       later_1.3.0       grid_4.2.0       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [45] crul_1.2.0        jsonlite_1.8.0    xtable_1.8-4      lifecycle_1.0.1  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] DBI_1.1.2         cli_3.3.0         stringi_1.7.6     promises_1.2.0.1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [53] xml2_1.3.3        bslib_0.3.1       ellipsis_0.3.2    targets_0.12.0   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [57] generics_0.1.2    vctrs_0.4.1       tools_4.2.0       glue_1.6.2       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [61] purrr_0.3.4       processx_3.5.3    fastmap_1.1.0     yaml_2.3.5       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [65] terra_1.5-21      base64url_1.4     knitr_1.39        sass_0.4.1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
 </div>
 
 
@@ -456,15 +664,26 @@
   
   <script src="//yihui.name/js/math-code.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-
   
   
-
 
 
   <h3 class="page-header">Comments on this post</h3>
 
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  <details>
+  <summary>Comment with Disqus</summary>
   <div id="disqus_thread"></div>
+  </details>
 
   
   
@@ -552,6 +771,7 @@
   </noscript>
 
 
+
 </div>
 
 
@@ -571,7 +791,7 @@
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Jul 2022 02:11 UTC.
+              Latest build: 24 Jul 2022 19:53 UTC.
               </p>
 
         </footer>

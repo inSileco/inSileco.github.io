@@ -8,7 +8,7 @@
         <style>
 
     html body {
-        font-family: Lato, sans-serif;
+        font-family: , sans-serif;
         background-color: white;
     }
 
@@ -23,12 +23,23 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="/css/jquery.tocify.css">
 
@@ -36,15 +47,6 @@
 
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-
-
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  
 
 
@@ -70,6 +72,8 @@
   <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
   <script src="/js/jquery.tocify.min.js"></script>
+
+  <script src="/js/toclipboard.js"></script>
 
 
         <meta charset="utf-8">
@@ -235,33 +239,65 @@ of the laptop settings I am currently working with.</p>
 part of their own code to set up their Mac!</p>
 <h3 id="my-laptop">My laptop</h3>
 <p>Here is an overview of the laptop I am working with:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-console" data-lang="console"><span style="display:flex;"><span>/* Laptop info */
-</span></span><span style="display:flex;"><span>sw_vers
-</span></span><span style="display:flex;"><span>  ProductName: Mac OS X
-</span></span><span style="display:flex;"><span>  ProductVersion: 10.13.5
-</span></span><span style="display:flex;"><span>  BuildVersion: 17F77
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>/* Hardware info */
-</span></span><span style="display:flex;"><span>system_profiler SPHardwareDataType
-</span></span><span style="display:flex;"><span>  Hardware:
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>    Hardware Overview:
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>      Model Name: MacBook Pro
-</span></span><span style="display:flex;"><span>      Model Identifier: MacBookPro11,4
-</span></span><span style="display:flex;"><span>      Processor Name: Intel Core i7
-</span></span><span style="display:flex;"><span>      Processor Speed: 2.2 GHz
-</span></span><span style="display:flex;"><span>      Number of Processors: 1
-</span></span><span style="display:flex;"><span>      Total Number of Cores: 4
-</span></span><span style="display:flex;"><span>      L2 Cache (per Core): 256 KB
-</span></span><span style="display:flex;"><span>      L3 Cache: 6 MB
-</span></span><span style="display:flex;"><span>      Memory: 16 GB
-</span></span><span style="display:flex;"><span>      Boot ROM Version: MBP114.0183.B00
-</span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">
-</span></span></span><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010"></span>      SMC Version (system): 2.29f24
-</span></span><span style="display:flex;"><span>      Serial Number (system): XXXXXXXXXXXX
-</span></span><span style="display:flex;"><span>      Hardware UUID: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
-</span></span></code></pre></div><h3 id="backups">Backups</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-console" data-lang="console"><span class="line"><span class="cl"><span class="go">/* Laptop info */
+</span></span></span><span class="line"><span class="cl"><span class="go">sw_vers
+</span></span></span><span class="line"><span class="cl"><span class="go">  ProductName: Mac OS X
+</span></span></span><span class="line"><span class="cl"><span class="go">  ProductVersion: 10.13.5
+</span></span></span><span class="line"><span class="cl"><span class="go">  BuildVersion: 17F77
+</span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="go">/* Hardware info */
+</span></span></span><span class="line"><span class="cl"><span class="go">system_profiler SPHardwareDataType
+</span></span></span><span class="line"><span class="cl"><span class="go">  Hardware:
+</span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="go">    Hardware Overview:
+</span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="go">      Model Name: MacBook Pro
+</span></span></span><span class="line"><span class="cl"><span class="go">      Model Identifier: MacBookPro11,4
+</span></span></span><span class="line"><span class="cl"><span class="go">      Processor Name: Intel Core i7
+</span></span></span><span class="line"><span class="cl"><span class="go">      Processor Speed: 2.2 GHz
+</span></span></span><span class="line"><span class="cl"><span class="go">      Number of Processors: 1
+</span></span></span><span class="line"><span class="cl"><span class="go">      Total Number of Cores: 4
+</span></span></span><span class="line"><span class="cl"><span class="go">      L2 Cache (per Core): 256 KB
+</span></span></span><span class="line"><span class="cl"><span class="go">      L3 Cache: 6 MB
+</span></span></span><span class="line"><span class="cl"><span class="go">      Memory: 16 GB
+</span></span></span><span class="line"><span class="cl"><span class="go">      Boot ROM Version: MBP114.0183.B00
+</span></span></span><span class="line"><span class="cl"><span class="go"></span><span class="err">
+</span></span></span><span class="line"><span class="cl"><span class="err"></span><span class="go">      SMC Version (system): 2.29f24
+</span></span></span><span class="line"><span class="cl"><span class="go">      Serial Number (system): XXXXXXXXXXXX
+</span></span></span><span class="line"><span class="cl"><span class="go">      Hardware UUID: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="backups">Backups</h3>
 <p>The only thing I did was to back up the files for my thesis that I only have
 locally on an external hard drive, which ultimately do not amount to much as
 most of my files are backed on the cloud. I use a combination of
@@ -361,15 +397,26 @@ or a new one just the way I like it, which was the whole point to begin with!</p
   
   <script src="//yihui.name/js/math-code.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-
   
   
-
 
 
   <h3 class="page-header">Comments on this post</h3>
 
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  <details>
+  <summary>Comment with Disqus</summary>
   <div id="disqus_thread"></div>
+  </details>
 
   
   
@@ -457,6 +504,7 @@ or a new one just the way I like it, which was the whole point to begin with!</p
   </noscript>
 
 
+
 </div>
 
 
@@ -476,7 +524,7 @@ or a new one just the way I like it, which was the whole point to begin with!</p
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Jul 2022 02:11 UTC.
+              Latest build: 24 Jul 2022 19:53 UTC.
               </p>
 
         </footer>

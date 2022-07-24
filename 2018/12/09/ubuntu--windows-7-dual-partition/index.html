@@ -8,7 +8,7 @@
         <style>
 
     html body {
-        font-family: Lato, sans-serif;
+        font-family: , sans-serif;
         background-color: white;
     }
 
@@ -23,12 +23,23 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="/css/jquery.tocify.css">
 
@@ -36,15 +47,6 @@
 
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-
-
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  
 
 
@@ -70,6 +72,8 @@
   <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
   <script src="/js/jquery.tocify.min.js"></script>
+
+  <script src="/js/toclipboard.js"></script>
 
 
         <meta charset="utf-8">
@@ -224,32 +228,87 @@
 <a href="/post/archived/setUps/goDebianTesting/">previous post</a>, I am currently working on Debian with GNOME (3.30) and it is very similar to the latest Ubuntu (18.04, <a href="http://releases.ubuntu.com/18.04/">Bionic Beaver</a>).</p>
 <h2 id="cleaning-up-the-windows-7-partition">Cleaning up the Windows 7 partition</h2>
 <p>I took the opportunity to spend some time on Windows 7. What I did first was a <a href="https://support.microsoft.com/en-ca/help/300887/how-to-use-system-information-msinfo32-command-line-tool-switches">checkout of the hardware with the <code>msinfo32</code> command</a>. Then I installed the package manager <a href="https://chocolatey.org/docs/installation">chocolatey</a>. To do so, I used <a href="https://en.wikipedia.org/wiki/PowerShell">PowerShell</a>, version v2.+ was required (see <a href="https://chocolatey.org/docs/installation">https://chocolatey.org/docs/installation</a> and use <code>$PSVersionTable.PSVersion</code> to check out the version available). One line of command completes the installation of <a href="https://chocolatey.org/docs/installation">chocolatey</a>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>Set-ExecutionPolicy Bypass -Scope Process -Force; iex <span style="color:#f92672">((</span>New-Object System.Net.WebClient<span style="color:#f92672">)</span>.DownloadString<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;https://chocolatey.org/install.ps1&#39;</span><span style="color:#f92672">))</span>
-</span></span></code></pre></div><p>Before installing Ubuntu, I installed a couple of software to experiment <a href="https://chocolatey.org/docs/installation">chocolatey</a>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>cinst pandoc R R.Studio imagemagick QGIS
-</span></span></code></pre></div><p>Note that this is equivalent to:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>choco install pandoc R R.Studio imagemagick QGIS
-</span></span></code></pre></div><h2 id="creating-a-bootable-usb-stick-to-install-ubuntu">Creating a bootable USB stick to install Ubuntu</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">Set-ExecutionPolicy Bypass -Scope Process -Force<span class="p">;</span> iex <span class="o">((</span>New-Object System.Net.WebClient<span class="o">)</span>.DownloadString<span class="o">(</span><span class="s1">&#39;https://chocolatey.org/install.ps1&#39;</span><span class="o">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Before installing Ubuntu, I installed a couple of software to experiment <a href="https://chocolatey.org/docs/installation">chocolatey</a>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">cinst pandoc R R.Studio imagemagick QGIS
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note that this is equivalent to:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">choco install pandoc R R.Studio imagemagick QGIS
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="creating-a-bootable-usb-stick-to-install-ubuntu">Creating a bootable USB stick to install Ubuntu</h2>
 <p>There are various tutorials online that adress this topic, for instance <a href="https://tutorials.ubuntu.com/tutorial/tutorial-create-a-usb-stick-on-ubuntu#0">this one on tutorials.ubuntu.com</a>. I created a bootable USB stick on my Debian machine but before I <a href="https://www.tecmint.com/find-usb-device-name-in-linux/">identified the USB device</a>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ df -h
-</span></span><span style="display:flex;"><span>Filesystem      Size  Used Avail Use% Mounted on
-</span></span><span style="display:flex;"><span>udev            7.8G     <span style="color:#ae81ff">0</span>  7.8G   0% /dev
-</span></span><span style="display:flex;"><span>tmpfs           1.6G   34M  1.6G   3% /run
-</span></span><span style="display:flex;"><span>/dev/nvme0n1p2  922G  226G  650G  26% /
-</span></span><span style="display:flex;"><span>tmpfs           7.8G   53M  7.8G   1% /dev/shm
-</span></span><span style="display:flex;"><span>tmpfs           5.0M  4.0K  5.0M   1% /run/lock
-</span></span><span style="display:flex;"><span>tmpfs           7.8G     <span style="color:#ae81ff">0</span>  7.8G   0% /sys/fs/cgroup
-</span></span><span style="display:flex;"><span>/dev/loop1       87M   87M     <span style="color:#ae81ff">0</span> 100% /snap/core/5145
-</span></span><span style="display:flex;"><span>/dev/loop3       88M   88M     <span style="color:#ae81ff">0</span> 100% /snap/core/5548
-</span></span><span style="display:flex;"><span>/dev/loop5       88M   88M     <span style="color:#ae81ff">0</span> 100% /snap/core/5328
-</span></span><span style="display:flex;"><span>/dev/nvme0n1p1  511M  132K  511M   1% /boot/efi
-</span></span><span style="display:flex;"><span>tmpfs           1.6G  9.6M  1.6G   1% /run/user/1000
-</span></span><span style="display:flex;"><span>/dev/sda         15G  809M   14G   6% /media/kevcaz/myusbstick
-</span></span></code></pre></div><p>I unmounted the right device: <code>myusbstick</code> (last line above) like so:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ sudo umount /dev/sda
-</span></span></code></pre></div><p>Then I created the bootable key with the <a href="https://www.ubuntu.com/download/desktop/thank-you?country=CA&amp;version=18.04.1&amp;architecture=amd64">downloaded desktop image</a>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ sudo dd bs<span style="color:#f92672">=</span>4M <span style="color:#66d9ef">if</span><span style="color:#f92672">=</span>ubuntu-18.04.1-desktop-amd64.iso of<span style="color:#f92672">=</span>/dev/sda conv<span style="color:#f92672">=</span>fdatasync
-</span></span></code></pre></div><h2 id="installing-ubuntu">Installing Ubuntu</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ df -h
+</span></span><span class="line"><span class="cl">Filesystem      Size  Used Avail Use% Mounted on
+</span></span><span class="line"><span class="cl">udev            7.8G     <span class="m">0</span>  7.8G   0% /dev
+</span></span><span class="line"><span class="cl">tmpfs           1.6G   34M  1.6G   3% /run
+</span></span><span class="line"><span class="cl">/dev/nvme0n1p2  922G  226G  650G  26% /
+</span></span><span class="line"><span class="cl">tmpfs           7.8G   53M  7.8G   1% /dev/shm
+</span></span><span class="line"><span class="cl">tmpfs           5.0M  4.0K  5.0M   1% /run/lock
+</span></span><span class="line"><span class="cl">tmpfs           7.8G     <span class="m">0</span>  7.8G   0% /sys/fs/cgroup
+</span></span><span class="line"><span class="cl">/dev/loop1       87M   87M     <span class="m">0</span> 100% /snap/core/5145
+</span></span><span class="line"><span class="cl">/dev/loop3       88M   88M     <span class="m">0</span> 100% /snap/core/5548
+</span></span><span class="line"><span class="cl">/dev/loop5       88M   88M     <span class="m">0</span> 100% /snap/core/5328
+</span></span><span class="line"><span class="cl">/dev/nvme0n1p1  511M  132K  511M   1% /boot/efi
+</span></span><span class="line"><span class="cl">tmpfs           1.6G  9.6M  1.6G   1% /run/user/1000
+</span></span><span class="line"><span class="cl">/dev/sda         15G  809M   14G   6% /media/kevcaz/myusbstick
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I unmounted the right device: <code>myusbstick</code> (last line above) like so:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo umount /dev/sda
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Then I created the bootable key with the <a href="https://www.ubuntu.com/download/desktop/thank-you?country=CA&amp;version=18.04.1&amp;architecture=amd64">downloaded desktop image</a>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ sudo dd <span class="nv">bs</span><span class="o">=</span>4M <span class="k">if</span><span class="o">=</span>ubuntu-18.04.1-desktop-amd64.iso <span class="nv">of</span><span class="o">=</span>/dev/sda <span class="nv">conv</span><span class="o">=</span>fdatasync
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="installing-ubuntu">Installing Ubuntu</h2>
 <p>The final step is straightforward: I plugged the bootable USB stick, rebooted the Dell machine and press F12 to access the BIOS on boot, then booted on the USB device,
 and finally followed the instructions. Then on the Ubuntu partition I checkout
 the system:</p>
@@ -258,28 +317,65 @@ Linux mhb 4.15.0-42-generic #45-Ubuntu SMP Thu Nov 15 19:32:57 UTC 2018 x86_64 x
 U/Linux
 </code></pre><p>During the installation process I was offline and I realized afterwards
 that I was not able to get the wifi working. So I plugged the computer on the Ethernet and found out that the Broadcom wireless driver was not properly installed. I solved this issue following this answer on <a href="%5Bwifi%5D(https://askubuntu.com/questions/55868/installing-broadcom-wireless-drivers)">Stack Exchange</a>. Then I installed a couple of freeware:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt install calibre inkscape gimp vlc xournal hugo pandoc pandoc-citeproc imagemagick ffmpeg inxi tree curl openssh-server pass
-</span></span></code></pre></div><p>Below, I used <a href="https://www.tecmint.com/inxi-command-to-find-linux-system-information/">inxi</a> to get details about the hardware:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>$ inxi -SMCNDP
-</span></span><span style="display:flex;"><span>System:    Host: mhb Kernel: 4.15.0-42-generic x86_64 bits: <span style="color:#ae81ff">64</span> Console: tty <span style="color:#ae81ff">1</span>
-</span></span><span style="display:flex;"><span>           Distro: Ubuntu 18.04.1 LTS
-</span></span><span style="display:flex;"><span>Machine:   Device: desktop System: Dell product: Studio XPS <span style="color:#ae81ff">8100</span> serial: N/A
-</span></span><span style="display:flex;"><span>           Mobo: Dell model: 0G3HR7 v: A00 serial: N/A
-</span></span><span style="display:flex;"><span>           BIOS: Dell v: A05 date: 07/08/2010
-</span></span><span style="display:flex;"><span>CPU:       Quad core Intel Core i5 <span style="color:#ae81ff">750</span> <span style="color:#f92672">(</span>-MCP-<span style="color:#f92672">)</span> cache: <span style="color:#ae81ff">8192</span> KB
-</span></span><span style="display:flex;"><span>           clock speeds: max: <span style="color:#ae81ff">2668</span> MHz 1: <span style="color:#ae81ff">1496</span> MHz 2: <span style="color:#ae81ff">1207</span> MHz 3: <span style="color:#ae81ff">1210</span> MHz
-</span></span><span style="display:flex;"><span>           4: <span style="color:#ae81ff">1283</span> MHz
-</span></span><span style="display:flex;"><span>Network:   Card-1: Broadcom and subsidiaries NetLink BCM57780 Gigabit Ethernet PCIe
-</span></span><span style="display:flex;"><span>           driver: tg3
-</span></span><span style="display:flex;"><span>           Card-2: Broadcom and subsidiaries BCM4306 802.11b/g Wireless LAN Controller
-</span></span><span style="display:flex;"><span>           driver: b43-pci-bridge
-</span></span><span style="display:flex;"><span>Drives:    HDD Total Size: 1000.2GB <span style="color:#f92672">(</span>19.1% used<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>           ID-1: /dev/sda model: WDC_WD1001FAES size: 1000.2GB
-</span></span><span style="display:flex;"><span>Partition: ID-1: / size: 550G used: 179G <span style="color:#f92672">(</span>35%<span style="color:#f92672">)</span> fs: ext4 dev: /dev/sda5
-</span></span></code></pre></div><p>and then I installed R packages and some dependencies required for <a href="https://cran.r-project.org/web/packages/sf/index.html">sf</a>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sh" data-lang="sh"><span style="display:flex;"><span>sudo apt-get install xvfb libudunits2-dev libgeos-dev libproj-dev libgdal-dev r-base r-recommended r-base-dev <span style="color:#e6db74">&#34;^r-cran-.*&#34;</span>
-</span></span><span style="display:flex;"><span>sudo Rsript -e <span style="color:#e6db74">&#34;install.packages(&#39;sf&#39;)&#34;</span>
-</span></span></code></pre></div><p>I finally I downloaded
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt install calibre inkscape gimp vlc xournal hugo pandoc pandoc-citeproc imagemagick ffmpeg inxi tree curl openssh-server pass
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Below, I used <a href="https://www.tecmint.com/inxi-command-to-find-linux-system-information/">inxi</a> to get details about the hardware:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ inxi -SMCNDP
+</span></span><span class="line"><span class="cl">System:    Host: mhb Kernel: 4.15.0-42-generic x86_64 bits: <span class="m">64</span> Console: tty <span class="m">1</span>
+</span></span><span class="line"><span class="cl">           Distro: Ubuntu 18.04.1 LTS
+</span></span><span class="line"><span class="cl">Machine:   Device: desktop System: Dell product: Studio XPS <span class="m">8100</span> serial: N/A
+</span></span><span class="line"><span class="cl">           Mobo: Dell model: 0G3HR7 v: A00 serial: N/A
+</span></span><span class="line"><span class="cl">           BIOS: Dell v: A05 date: 07/08/2010
+</span></span><span class="line"><span class="cl">CPU:       Quad core Intel Core i5 <span class="m">750</span> <span class="o">(</span>-MCP-<span class="o">)</span> cache: <span class="m">8192</span> KB
+</span></span><span class="line"><span class="cl">           clock speeds: max: <span class="m">2668</span> MHz 1: <span class="m">1496</span> MHz 2: <span class="m">1207</span> MHz 3: <span class="m">1210</span> MHz
+</span></span><span class="line"><span class="cl">           4: <span class="m">1283</span> MHz
+</span></span><span class="line"><span class="cl">Network:   Card-1: Broadcom and subsidiaries NetLink BCM57780 Gigabit Ethernet PCIe
+</span></span><span class="line"><span class="cl">           driver: tg3
+</span></span><span class="line"><span class="cl">           Card-2: Broadcom and subsidiaries BCM4306 802.11b/g Wireless LAN Controller
+</span></span><span class="line"><span class="cl">           driver: b43-pci-bridge
+</span></span><span class="line"><span class="cl">Drives:    HDD Total Size: 1000.2GB <span class="o">(</span>19.1% used<span class="o">)</span>
+</span></span><span class="line"><span class="cl">           ID-1: /dev/sda model: WDC_WD1001FAES size: 1000.2GB
+</span></span><span class="line"><span class="cl">Partition: ID-1: / size: 550G used: 179G <span class="o">(</span>35%<span class="o">)</span> fs: ext4 dev: /dev/sda5
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>and then I installed R packages and some dependencies required for <a href="https://cran.r-project.org/web/packages/sf/index.html">sf</a>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt-get install xvfb libudunits2-dev libgeos-dev libproj-dev libgdal-dev r-base r-recommended r-base-dev <span class="s2">&#34;^r-cran-.*&#34;</span>
+</span></span><span class="line"><span class="cl">sudo Rsript -e <span class="s2">&#34;install.packages(&#39;sf&#39;)&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I finally I downloaded
 <a href="https://www.rstudio.com/products/rstudio/download/#download">RStudio</a> and then
 I was done.</p>
 <p>I still have to write a post about my <a href="https://www.raspberrypi.org/">Raspberry Pi</a> setup, hopefully I&rsquo;ll do so soon. Also, next time I am given carte blanche, I&rsquo;ll
@@ -314,15 +410,26 @@ install a <a href="https://upload.wikimedia.org/wikipedia/commons/1/1b/Linux_Dis
   
   <script src="//yihui.name/js/math-code.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-
   
   
-
 
 
   <h3 class="page-header">Comments on this post</h3>
 
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  <details>
+  <summary>Comment with Disqus</summary>
   <div id="disqus_thread"></div>
+  </details>
 
   
   
@@ -356,6 +463,7 @@ install a <a href="https://upload.wikimedia.org/wikipedia/commons/1/1b/Linux_Dis
   </noscript>
 
 
+
 </div>
 
 
@@ -375,7 +483,7 @@ install a <a href="https://upload.wikimedia.org/wikipedia/commons/1/1b/Linux_Dis
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Jul 2022 02:11 UTC.
+              Latest build: 24 Jul 2022 19:53 UTC.
               </p>
 
         </footer>

@@ -8,7 +8,7 @@
         <style>
 
     html body {
-        font-family: Lato, sans-serif;
+        font-family: , sans-serif;
         background-color: white;
     }
 
@@ -23,12 +23,23 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="/css/jquery.tocify.css">
 
@@ -36,15 +47,6 @@
 
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-
-
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  
 
 
@@ -70,6 +72,8 @@
   <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
   <script src="/js/jquery.tocify.min.js"></script>
+
+  <script src="/js/toclipboard.js"></script>
 
 
         <meta charset="utf-8">
@@ -223,151 +227,328 @@
 
       <h4 id="below-are-presented-the-6-steps-you-need-to-make-your-plot-a-hylian-one-may-the-triforce-be-with-you">Below are presented the 6 steps you need to make your plot a Hylian one! <strong>May the triforce be with you</strong>!</h4>
 <h3 id="0-r-version">0. R Version</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">sessionInfo</span>()[[1L]]<span style="color:#f92672">$</span>version.string
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [1] &#34;R version 3.5.2 (2018-12-20)&#34;</span>
-</span></span></code></pre></div><h3 id="1-open-r-and-download-the-font">1. Open R and download the font</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span><span class="n">[[1L]]</span><span class="o">$</span><span class="n">version.string</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] &#34;R version 3.5.2 (2018-12-20)&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="1-open-r-and-download-the-font">1. Open R and download the font</h3>
 <p>The <a href="https://zeldauniverse.net/media/fonts/"><em>Triforce</em> font</a> is available on line.
 Below we download it using R. Alternatively, you may simply download and install
 it using a couple of clicks, if you proceed so, skip step 1.</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># Download Triforce font &lt; Triforce.ttf &gt;</span>
-</span></span><span style="display:flex;"><span>url <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;http://zeldauniverse.net/wp-content/uploads/2014/01/Triforce.ttf_.zip&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">download.file</span>(url, destfile <span style="color:#f92672">=</span> <span style="color:#a6e22e">basename</span>(url))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Unzip the file</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">unzip</span>(<span style="color:#a6e22e">basename</span>(url))
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Remove .zip</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">file.remove</span>(<span style="color:#a6e22e">basename</span>(url))
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [1] TRUE</span>
-</span></span></code></pre></div><h3 id="2-install-the-showtext-package">2. Install the <code>showtext</code> package</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">install.packages</span>(<span style="color:#e6db74">&#34;showtext&#34;</span>)
-</span></span></code></pre></div><h3 id="3-look-at-the-list-of-fonts-available-locally">3. Look at the list of fonts available locally</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">library</span>(showtext)
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">showtext_auto</span>()
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">font_files</span>()
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;                              path                                file</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 1 /home/kevcaz/.local/share/fonts                      3270Medium.ttf</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 2 /home/kevcaz/.local/share/fonts                      3270Narrow.ttf</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 3 /home/kevcaz/.local/share/fonts                  3270SemiNarrow.ttf</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 4 /home/kevcaz/.local/share/fonts Anonymice Powerline Bold Italic.ttf</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 5 /home/kevcaz/.local/share/fonts        Anonymice Powerline Bold.ttf</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;                 family        face          version</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 1             IBM 3270      Medium Version 001.000</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 2      IBM 3270 Narrow      Medium Version 001.000</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 3 IBM 3270 Semi-Narrow      Medium Version 001.000</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 4  Anonymice Powerline Bold Italic    Version 1.002</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 5  Anonymice Powerline        Bold    Version 1.002</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;                         ps_name</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 1                    3270Medium</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 2                    3270Narrow</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 3                3270SemiNarrow</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 4 AnonymicePowerline-BoldItalic</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 5       AnonymicePowerline-Bold</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [ reached &#39;max&#39; / getOption(&#34;max.print&#34;) -- omitted 2881 rows ]</span>
-</span></span></code></pre></div><p>If you have installed the font on your computer, it should be in the list,
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Download Triforce font &lt; Triforce.ttf &gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">url</span> <span class="o">&lt;-</span> <span class="s">&#34;http://zeldauniverse.net/wp-content/uploads/2014/01/Triforce.ttf_.zip&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">download.file</span><span class="p">(</span><span class="n">url</span><span class="p">,</span> <span class="n">destfile</span> <span class="o">=</span> <span class="nf">basename</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Unzip the file</span>
+</span></span><span class="line"><span class="cl"><span class="nf">unzip</span><span class="p">(</span><span class="nf">basename</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Remove .zip</span>
+</span></span><span class="line"><span class="cl"><span class="nf">file.remove</span><span class="p">(</span><span class="nf">basename</span><span class="p">(</span><span class="n">url</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] TRUE</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-install-the-showtext-package">2. Install the <code>showtext</code> package</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;showtext&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-look-at-the-list-of-fonts-available-locally">3. Look at the list of fonts available locally</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">showtext</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">showtext_auto</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">font_files</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;                              path                                file</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 1 /home/kevcaz/.local/share/fonts                      3270Medium.ttf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 2 /home/kevcaz/.local/share/fonts                      3270Narrow.ttf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 3 /home/kevcaz/.local/share/fonts                  3270SemiNarrow.ttf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 4 /home/kevcaz/.local/share/fonts Anonymice Powerline Bold Italic.ttf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 5 /home/kevcaz/.local/share/fonts        Anonymice Powerline Bold.ttf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;                 family        face          version</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 1             IBM 3270      Medium Version 001.000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 2      IBM 3270 Narrow      Medium Version 001.000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 3 IBM 3270 Semi-Narrow      Medium Version 001.000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 4  Anonymice Powerline Bold Italic    Version 1.002</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 5  Anonymice Powerline        Bold    Version 1.002</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;                         ps_name</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 1                    3270Medium</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 2                    3270Narrow</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 3                3270SemiNarrow</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 4 AnonymicePowerline-BoldItalic</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 5       AnonymicePowerline-Bold</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [ reached &#39;max&#39; / getOption(&#34;max.print&#34;) -- omitted 2881 rows ]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>If you have installed the font on your computer, it should be in the list,
 then you can skip step 4.</p>
 <h3 id="4-add-a-path-to-your-font">4. Add a path to your font</h3>
 <p>If you have downloaded the font using R, you must notify showtext about to
 folder <code>dr</code> where the font has been stored. To so do, use the <code>font_paths()</code>
 function:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">font_paths</span>(<span style="color:#e6db74">&#34;.&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;   [1] &#34;/home/kevcaz/Github/Websites/inSileco.github.io/content/post/archived/hylianStyle&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;   [2] &#34;/home/kevcaz/.local/share/fonts&#34;                                                  </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;   [3] &#34;/usr/local/share/fonts&#34;                                                           </span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">...</span>                                                     
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [145] &#34;/usr/share/fonts/X11/util&#34;</span>
-</span></span></code></pre></div><h3 id="5-add-the-triforce-font-to-your-session">5. Add the <em>Triforce</em> font to your session:</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">font_paths</span><span class="p">(</span><span class="s">&#34;.&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;/home/kevcaz/Github/Websites/inSileco.github.io/content/post/archived/hylianStyle&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [2] &#34;/home/kevcaz/.local/share/fonts&#34;                                                  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [3] &#34;/usr/local/share/fonts&#34;                                                           </span>
+</span></span><span class="line"><span class="cl"><span class="kc">...</span>                                                     
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [145] &#34;/usr/share/fonts/X11/util&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="5-add-the-triforce-font-to-your-session">5. Add the <em>Triforce</em> font to your session:</h3>
 <p>Either way, the Triforce font should now be available</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e"># Is the TTF present?</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">font_files</span>()<span style="color:#a6e22e">[grep</span>(<span style="color:#e6db74">&#34;Triforce&#34;</span>, <span style="color:#a6e22e">font_files</span>())]
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;                                                 file</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 1                                     3270Medium.ttf</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 2                                     3270Narrow.ttf</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 3                                 3270SemiNarrow.ttf</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 4                Anonymice Powerline Bold Italic.ttf</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 5                       Anonymice Powerline Bold.ttf</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 6                     Anonymice Powerline Italic.ttf</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">...</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 500                                   ae_Granada.ttf</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;                                    family             face</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 1                                IBM 3270           Medium</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 2                         IBM 3270 Narrow           Medium</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 3                    IBM 3270 Semi-Narrow           Medium</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 4                     Anonymice Powerline      Bold Italic</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 5                     Anonymice Powerline             Bold</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 6                     Anonymice Powerline           Italic</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">...</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 500                               Granada          Regular</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;                                      ps_name</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 1                                 3270Medium</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 2                                 3270Narrow</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 3                             3270SemiNarrow</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 4              AnonymicePowerline-BoldItalic</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 5                    AnonymicePowerline-Bold</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 6                  AnonymicePowerline-Italic</span>
-</span></span><span style="display:flex;"><span><span style="color:#66d9ef">...</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; 500                                  Granada</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [ reached &#39;max&#39; / getOption(&#34;max.print&#34;) -- omitted 2387 rows ]</span>
-</span></span></code></pre></div><p>Let&rsquo;s add it to our session:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">font_add</span>(family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Triforce&#39;</span>, regular <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Triforce.ttf&#39;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">font_families</span>()
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [1] &#34;sans&#34;         &#34;serif&#34;        &#34;mono&#34;         &#34;wqy-microhei&#34;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [5] &#34;Triforce&#34;</span>
-</span></span></code></pre></div><h3 id="6-finally-lets-make-our-hylian-plot">6. Finally, let&rsquo;s make our Hylian plot!</h3>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">showtext_begin</span>()
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">par</span>(family <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Triforce&#34;</span>, las <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, cex.lab <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, cex.main <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>, cex.axis<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>, mar <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">0</span>))
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">plot</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>), y <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>), type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;n&#34;</span>, xlab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;X-axis&#34;</span>, ylab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Y-axis&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">title</span>(main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hylian Style - Link must be proud of us!&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#75715e">##-- triforce symbols / rubies / swords</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">points</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">runif</span>(<span style="color:#ae81ff">5</span>), y <span style="color:#f92672">=</span> <span style="color:#a6e22e">runif</span>(<span style="color:#ae81ff">5</span>), pch <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;*&#34;</span>, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>)
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">points</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">runif</span>(<span style="color:#ae81ff">5</span>), y <span style="color:#f92672">=</span> <span style="color:#a6e22e">runif</span>(<span style="color:#ae81ff">5</span>), pch <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;$&#34;</span>, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#1b95e0&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">points</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">runif</span>(<span style="color:#ae81ff">5</span>), y <span style="color:#f92672">=</span> <span style="color:#a6e22e">runif</span>(<span style="color:#ae81ff">5</span>), pch <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;@&#34;</span>, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">4</span>, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#8555b4&#34;</span>)
-</span></span><span style="display:flex;"><span><span style="color:#75715e">##-- big Links</span>
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">points</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span>, pch <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;%&#34;</span>, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#3fb3b2&#34;</span>, lwd<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
-</span></span><span style="display:flex;"><span><span style="color:#a6e22e">points</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.9</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.9</span>, pch <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;^&#34;</span>, cex <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#ffdd55&#34;</span>, lwd<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>)
-</span></span></code></pre></div><img src="hylian_plot.png" width="864" style="display: block; margin: auto;" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Is the TTF present?</span>
+</span></span><span class="line"><span class="cl"><span class="nf">font_files</span><span class="p">()</span><span class="nf">[grep</span><span class="p">(</span><span class="s">&#34;Triforce&#34;</span><span class="p">,</span> <span class="nf">font_files</span><span class="p">())</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;                                                 file</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 1                                     3270Medium.ttf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 2                                     3270Narrow.ttf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 3                                 3270SemiNarrow.ttf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 4                Anonymice Powerline Bold Italic.ttf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 5                       Anonymice Powerline Bold.ttf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 6                     Anonymice Powerline Italic.ttf</span>
+</span></span><span class="line"><span class="cl"><span class="kc">...</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 500                                   ae_Granada.ttf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;                                    family             face</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 1                                IBM 3270           Medium</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 2                         IBM 3270 Narrow           Medium</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 3                    IBM 3270 Semi-Narrow           Medium</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 4                     Anonymice Powerline      Bold Italic</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 5                     Anonymice Powerline             Bold</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 6                     Anonymice Powerline           Italic</span>
+</span></span><span class="line"><span class="cl"><span class="kc">...</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 500                               Granada          Regular</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;                                      ps_name</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 1                                 3270Medium</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 2                                 3270Narrow</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 3                             3270SemiNarrow</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 4              AnonymicePowerline-BoldItalic</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 5                    AnonymicePowerline-Bold</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 6                  AnonymicePowerline-Italic</span>
+</span></span><span class="line"><span class="cl"><span class="kc">...</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; 500                                  Granada</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [ reached &#39;max&#39; / getOption(&#34;max.print&#34;) -- omitted 2387 rows ]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Let&rsquo;s add it to our session:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">font_add</span><span class="p">(</span><span class="n">family</span> <span class="o">=</span> <span class="s">&#39;Triforce&#39;</span><span class="p">,</span> <span class="n">regular</span> <span class="o">=</span> <span class="s">&#39;Triforce.ttf&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">font_families</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] &#34;sans&#34;         &#34;serif&#34;        &#34;mono&#34;         &#34;wqy-microhei&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [5] &#34;Triforce&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="6-finally-lets-make-our-hylian-plot">6. Finally, let&rsquo;s make our Hylian plot!</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">showtext_begin</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">family</span> <span class="o">=</span> <span class="s">&#34;Triforce&#34;</span><span class="p">,</span> <span class="n">las</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">cex.lab</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">cex.main</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">cex.axis</span><span class="o">=</span><span class="m">2</span><span class="p">,</span> <span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="m">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#34;n&#34;</span><span class="p">,</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&#34;X-axis&#34;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&#34;Y-axis&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">title</span><span class="p">(</span><span class="n">main</span> <span class="o">=</span> <span class="s">&#34;Hylian Style - Link must be proud of us!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">##-- triforce symbols / rubies / swords</span>
+</span></span><span class="line"><span class="cl"><span class="nf">points</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="m">5</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="m">5</span><span class="p">),</span> <span class="n">pch</span> <span class="o">=</span> <span class="s">&#34;*&#34;</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">points</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="m">5</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="m">5</span><span class="p">),</span> <span class="n">pch</span> <span class="o">=</span> <span class="s">&#34;$&#34;</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#34;#1b95e0&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">points</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="m">5</span><span class="p">),</span> <span class="n">y</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="m">5</span><span class="p">),</span> <span class="n">pch</span> <span class="o">=</span> <span class="s">&#34;@&#34;</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#34;#8555b4&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">##-- big Links</span>
+</span></span><span class="line"><span class="cl"><span class="nf">points</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="m">0.1</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="s">&#34;%&#34;</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#34;#3fb3b2&#34;</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">points</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="m">0.9</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="m">0.9</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="s">&#34;^&#34;</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">10</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#34;#ffdd55&#34;</span><span class="p">,</span> <span class="n">lwd</span><span class="o">=</span><span class="m">2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="hylian_plot.png" width="864" style="display: block; margin: auto;" />
 <p><br><br></p>
 <h4 id="yeah-">YEAH! 😎</h4>
 <details>
 <summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#a6e22e">sessionInfo</span>()
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; R version 3.5.2 (2018-12-20)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; Running under: Debian GNU/Linux buster/sid</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; Matrix products: default</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.5.so</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; locale:</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; attached base packages:</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; other attached packages:</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [1] showtext_0.6   showtextdb_2.0 sysfonts_0.8   usethis_1.4.0</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [5] devtools_2.0.2</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; loaded via a namespace (and not attached):</span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [1] Rcpp_1.0.0        knitr_1.22        magrittr_1.5     </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [4] pkgload_1.0.2     R6_2.4.0          rlang_0.3.1      </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt;  [7] stringr_1.4.0     tools_3.5.2       pkgbuild_1.0.2   </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [10] xfun_0.5          sessioninfo_1.1.1 cli_1.0.1        </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [13] withr_2.1.2       htmltools_0.3.6   remotes_2.0.2    </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [16] yaml_2.2.0        assertthat_0.2.0  rprojroot_1.3-2  </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [19] digest_0.6.18     bookdown_0.9.2    crayon_1.3.4     </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [22] processx_3.2.1    callr_3.1.1       fs_1.2.6         </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [25] ps_1.3.0          testthat_2.0.1    memoise_1.1.0    </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [28] glue_1.3.0        evaluate_0.13     rmarkdown_1.12   </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [31] blogdown_0.11     stringi_1.4.3     compiler_3.5.2   </span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">#R&gt; [34] desc_1.2.0        backports_1.1.3   prettyunits_1.0.2</span>
-</span></span></code></pre></div></details>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; R version 3.5.2 (2018-12-20)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; Running under: Debian GNU/Linux buster/sid</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; Matrix products: default</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.5.so</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; locale:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; attached base packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] stats     graphics  grDevices datasets  utils     methods   base     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; other attached packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] showtext_0.6   showtextdb_2.0 sysfonts_0.8   usethis_1.4.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [5] devtools_2.0.2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; loaded via a namespace (and not attached):</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] Rcpp_1.0.0        knitr_1.22        magrittr_1.5     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [4] pkgload_1.0.2     R6_2.4.0          rlang_0.3.1      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [7] stringr_1.4.0     tools_3.5.2       pkgbuild_1.0.2   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [10] xfun_0.5          sessioninfo_1.1.1 cli_1.0.1        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [13] withr_2.1.2       htmltools_0.3.6   remotes_2.0.2    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [16] yaml_2.2.0        assertthat_0.2.0  rprojroot_1.3-2  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [19] digest_0.6.18     bookdown_0.9.2    crayon_1.3.4     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [22] processx_3.2.1    callr_3.1.1       fs_1.2.6         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [25] ps_1.3.0          testthat_2.0.1    memoise_1.1.0    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [28] glue_1.3.0        evaluate_0.13     rmarkdown_1.12   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [31] blogdown_0.11     stringi_1.4.3     compiler_3.5.2   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [34] desc_1.2.0        backports_1.1.3   prettyunits_1.0.2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
 
 
       <div class="text-justify">
@@ -411,15 +592,26 @@ function:</p>
   
   <script src="//yihui.name/js/math-code.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-
   
   
-
 
 
   <h3 class="page-header">Comments on this post</h3>
 
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  <details>
+  <summary>Comment with Disqus</summary>
   <div id="disqus_thread"></div>
+  </details>
 
   
   
@@ -507,6 +699,7 @@ function:</p>
   </noscript>
 
 
+
 </div>
 
 
@@ -526,7 +719,7 @@ function:</p>
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Jul 2022 02:11 UTC.
+              Latest build: 24 Jul 2022 19:53 UTC.
               </p>
 
         </footer>

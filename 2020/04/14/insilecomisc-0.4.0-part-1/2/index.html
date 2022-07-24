@@ -8,7 +8,7 @@
         <style>
 
     html body {
-        font-family: Lato, sans-serif;
+        font-family: , sans-serif;
         background-color: white;
     }
 
@@ -23,12 +23,23 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="/css/jquery.tocify.css">
 
@@ -36,15 +47,6 @@
 
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-
-
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  
 
 
@@ -70,6 +72,8 @@
   <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
   <script src="/js/jquery.tocify.min.js"></script>
+
+  <script src="/js/toclipboard.js"></script>
 
 
         <meta charset="utf-8">
@@ -223,11 +227,7 @@
 
     <div class="text-justify">
 
-      
-
-
-<div id="insilecomisc" class="section level2">
-<h2>inSilecoMisc</h2>
+      <h2 id="insilecomisc">inSilecoMisc</h2>
 <p><a href="https://github.com/inSileco/inSilecoMisc"><code>inSilecoMisc</code></a> is an R 📦 I
 have been maintaining for four years now. It was originally designed as a
 convenient way to share handy functions. Instead of stacking them in my
@@ -236,10 +236,10 @@ is therefore a set of miscellaneous functions, just as other R packages (e.g.
 <a href="https://CRAN.R-project.org/package=Hmisc"><code>Hmisc</code></a>) but as I frequently change its API,
 it is meant to stay in the experimental stage! I like having <code>inSilecoMisc</code> on
 GitHub because it gives a large degree of freedom to experiment new ideas, new
-functions and the code remains available and easy to install! Despite the “API
-instability”, the overall quality of the package is constantly improving (at
+functions and the code remains available and easy to install! Despite the &ldquo;API
+instability&rdquo;, the overall quality of the package is constantly improving (at
 least, I hope so 😄). I have even included some of the somewhat more
-matured functions in the research compendium of recent manuscripts<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>.</p>
+matured functions in the research compendium of recent manuscripts<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>.</p>
 <p>Over the last month, I made substantial changes throughout the package. I
 re-wrote some functions, improved the documentation of others and added new
 features. I also changed the way the <a href="https://kevcaz.github.io/notes/ci/deploypkgdown2/">pkgdown
@@ -248,97 +248,215 @@ website is deployed</a> by
 versions 0.4.0. Note that as <code>inSilecoMisc</code> is on GitHub, an easy way
 to install <code>inSilecoMisc</code> is provided by the package
 <a href="https://cran.r-project.org/web/packages/remotes/index.html"><code>remotes</code></a></p>
-<pre class="r"><code>install.packages(&quot;remotes&quot;) # if not already installed
-remotes::install_github(&quot;inSileco/inSilecoMisc&quot;)</code></pre>
-<p>Once installed, let’s load it!</p>
-<pre class="r"><code>library(&quot;inSilecoMisc&quot;)
-packageVersion(&quot;inSilecoMisc&quot;)
-#R&gt;  [1] &#39;0.7.0&#39;</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;remotes&#34;</span><span class="p">)</span> <span class="c1"># if not already installed</span>
+</span></span><span class="line"><span class="cl"><span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#34;inSileco/inSilecoMisc&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
-<div id="adjuststrings" class="section level2">
-<h2>adjustStrings</h2>
+</div><p>Once installed, let&rsquo;s load it!</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="s">&#34;inSilecoMisc&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">packageVersion</span><span class="p">(</span><span class="s">&#34;inSilecoMisc&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#39;0.7.0&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="adjuststrings">adjustStrings</h2>
 <p>As an ecologist, I frequently work with multiple datasets, and I often need to
 name/rename a bunch of files. One function I often use to do so is <code>sprintf()</code>:</p>
-<pre class="r"><code>sprintf(&quot;file_%02d&quot;, 1:10)
-#R&gt;   [1] &quot;file_01&quot; &quot;file_02&quot; &quot;file_03&quot; &quot;file_04&quot; &quot;file_05&quot; &quot;file_06&quot; &quot;file_07&quot;
-#R&gt;   [8] &quot;file_08&quot; &quot;file_09&quot; &quot;file_10&quot;</code></pre>
-<p>I originally designed
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sprintf</span><span class="p">(</span><span class="s">&#34;file_%02d&#34;</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;file_01&#34; &#34;file_02&#34; &#34;file_03&#34; &#34;file_04&#34; &#34;file_05&#34; &#34;file_06&#34; &#34;file_07&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [8] &#34;file_08&#34; &#34;file_09&#34; &#34;file_10&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I originally designed
 <a href="https://insileco.github.io/inSilecoMisc/reference/adjustStrings.html"><code>adjustStrings()</code></a>
 to adjust the number of 0 to a string in a similar fashion:</p>
-<pre class="r"><code>adjustStrings(1:10, n = 2)
-#R&gt;   [1] &quot;01&quot; &quot;02&quot; &quot;03&quot; &quot;04&quot; &quot;05&quot; &quot;06&quot; &quot;07&quot; &quot;08&quot; &quot;09&quot; &quot;10&quot;</code></pre>
-<p>But I was rapidly interested in having a more flexible function. So, I added several parameters to do that!
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;01&#34; &#34;02&#34; &#34;03&#34; &#34;04&#34; &#34;05&#34; &#34;06&#34; &#34;07&#34; &#34;08&#34; &#34;09&#34; &#34;10&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>But I was rapidly interested in having a more flexible function. So, I added several parameters to do that!
 In the last version of <code>inSilecoMisc</code>, <code>adjustStrings()</code> have 5 arguments:</p>
-<ol style="list-style-type: decimal">
+<ol>
 <li><code>x</code>: the input character vector to be adjusted;</li>
 <li><code>n</code>: the number of characters to be added or used to determine the length of output strings;</li>
 <li><code>extra</code>: the character(s) to be added (<code>0</code> is the default value);</li>
-<li><code>align</code>: the string alignment (“right”, “left” or “center”);</li>
+<li><code>align</code>: the string alignment (&ldquo;right&rdquo;, &ldquo;left&rdquo; or &ldquo;center&rdquo;);</li>
 <li><code>add</code>: whether <code>n</code> should be the constraint or a number of characters to be added (a constraint by default).</li>
 </ol>
 <p>By default, <code>adjustStrings()</code> uses <code>n</code> as a constrain for the length of the output strings. so if use <code>n = 4</code> instead of <code>n = 2</code> in the first example, all
 elements of the output vector will have 4 characters:</p>
-<pre class="r"><code>adjustStrings(1:10, n = 4)
-#R&gt;   [1] &quot;0001&quot; &quot;0002&quot; &quot;0003&quot; &quot;0004&quot; &quot;0005&quot; &quot;0006&quot; &quot;0007&quot; &quot;0008&quot; &quot;0009&quot; &quot;0010&quot;</code></pre>
-<p>Add I change the value of <code>extra</code> to specify the replacement character(s) to be used :</p>
-<pre class="r"><code>adjustStrings(1:10, n = 4, extra = 1)
-#R&gt;   [1] &quot;1111&quot; &quot;1112&quot; &quot;1113&quot; &quot;1114&quot; &quot;1115&quot; &quot;1116&quot; &quot;1117&quot; &quot;1118&quot; &quot;1119&quot; &quot;1110&quot;
-adjustStrings(1:10, n = 4, extra = &quot;a&quot;)
-#R&gt;   [1] &quot;aaa1&quot; &quot;aaa2&quot; &quot;aaa3&quot; &quot;aaa4&quot; &quot;aaa5&quot; &quot;aaa6&quot; &quot;aaa7&quot; &quot;aaa8&quot; &quot;aaa9&quot; &quot;aa10&quot;
-adjustStrings(1:10, n = 4, extra = &quot;-&quot;)
-#R&gt;   [1] &quot;---1&quot; &quot;---2&quot; &quot;---3&quot; &quot;---4&quot; &quot;---5&quot; &quot;---6&quot; &quot;---7&quot; &quot;---8&quot; &quot;---9&quot; &quot;--10&quot;
-adjustStrings(1:10, n = 4, extra = &quot;ab&quot;)
-#R&gt;   [1] &quot;aba1&quot; &quot;aba2&quot; &quot;aba3&quot; &quot;aba4&quot; &quot;aba5&quot; &quot;aba6&quot; &quot;aba7&quot; &quot;aba8&quot; &quot;aba9&quot; &quot;ab10&quot;</code></pre>
-<p>With <code>align</code>, I can choose where extra characters are added:</p>
-<pre class="r"><code>adjustStrings(1:10, n = 4, extra = &quot;-&quot;, align = &quot;right&quot;) # default
-#R&gt;   [1] &quot;---1&quot; &quot;---2&quot; &quot;---3&quot; &quot;---4&quot; &quot;---5&quot; &quot;---6&quot; &quot;---7&quot; &quot;---8&quot; &quot;---9&quot; &quot;--10&quot;
-adjustStrings(1:10, n = 4, extra = &quot;-&quot;, align = &quot;left&quot;)
-#R&gt;   [1] &quot;1---&quot; &quot;2---&quot; &quot;3---&quot; &quot;4---&quot; &quot;5---&quot; &quot;6---&quot; &quot;7---&quot; &quot;8---&quot; &quot;9---&quot; &quot;10--&quot;
-adjustStrings(1:10, n = 4, extra = &quot;-&quot;, align = &quot;center&quot;)
-#R&gt;   [1] &quot;--1-&quot; &quot;--2-&quot; &quot;--3-&quot; &quot;--4-&quot; &quot;--5-&quot; &quot;--6-&quot; &quot;--7-&quot; &quot;--8-&quot; &quot;--9-&quot; &quot;-10-&quot;</code></pre>
-<p>Also, if <code>add = TRUE</code>, then exactly <code>n</code> extra characters are added:</p>
-<pre class="r"><code>adjustStrings(1:10, n = 4, extra = &quot;-&quot;, align = &quot;right&quot;, add = TRUE)
-#R&gt;   [1] &quot;----1&quot;  &quot;----2&quot;  &quot;----3&quot;  &quot;----4&quot;  &quot;----5&quot;  &quot;----6&quot;  &quot;----7&quot;  &quot;----8&quot; 
-#R&gt;   [9] &quot;----9&quot;  &quot;----10&quot;
-adjustStrings(1:10, n = 4, extra = &quot;-&quot;, align = &quot;left&quot;, add = TRUE)
-#R&gt;   [1] &quot;1----&quot;  &quot;2----&quot;  &quot;3----&quot;  &quot;4----&quot;  &quot;5----&quot;  &quot;6----&quot;  &quot;7----&quot;  &quot;8----&quot; 
-#R&gt;   [9] &quot;9----&quot;  &quot;10----&quot;
-adjustStrings(1:10, n = 4, extra = &quot;-&quot;, align = &quot;center&quot;, add = TRUE)
-#R&gt;   [1] &quot;--1--&quot;  &quot;--2--&quot;  &quot;--3--&quot;  &quot;--4--&quot;  &quot;--5--&quot;  &quot;--6--&quot;  &quot;--7--&quot;  &quot;--8--&quot; 
-#R&gt;   [9] &quot;--9--&quot;  &quot;--10--&quot;</code></pre>
-<p>Note that in this last case, lengths of output character strings may differ!
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;0001&#34; &#34;0002&#34; &#34;0003&#34; &#34;0004&#34; &#34;0005&#34; &#34;0006&#34; &#34;0007&#34; &#34;0008&#34; &#34;0009&#34; &#34;0010&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Add I change the value of <code>extra</code> to specify the replacement character(s) to be used :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;1111&#34; &#34;1112&#34; &#34;1113&#34; &#34;1114&#34; &#34;1115&#34; &#34;1116&#34; &#34;1117&#34; &#34;1118&#34; &#34;1119&#34; &#34;1110&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;a&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;aaa1&#34; &#34;aaa2&#34; &#34;aaa3&#34; &#34;aaa4&#34; &#34;aaa5&#34; &#34;aaa6&#34; &#34;aaa7&#34; &#34;aaa8&#34; &#34;aaa9&#34; &#34;aa10&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;---1&#34; &#34;---2&#34; &#34;---3&#34; &#34;---4&#34; &#34;---5&#34; &#34;---6&#34; &#34;---7&#34; &#34;---8&#34; &#34;---9&#34; &#34;--10&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;ab&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;aba1&#34; &#34;aba2&#34; &#34;aba3&#34; &#34;aba4&#34; &#34;aba5&#34; &#34;aba6&#34; &#34;aba7&#34; &#34;aba8&#34; &#34;aba9&#34; &#34;ab10&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>With <code>align</code>, I can choose where extra characters are added:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;right&#34;</span><span class="p">)</span> <span class="c1"># default</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;---1&#34; &#34;---2&#34; &#34;---3&#34; &#34;---4&#34; &#34;---5&#34; &#34;---6&#34; &#34;---7&#34; &#34;---8&#34; &#34;---9&#34; &#34;--10&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;left&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;1---&#34; &#34;2---&#34; &#34;3---&#34; &#34;4---&#34; &#34;5---&#34; &#34;6---&#34; &#34;7---&#34; &#34;8---&#34; &#34;9---&#34; &#34;10--&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;center&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;--1-&#34; &#34;--2-&#34; &#34;--3-&#34; &#34;--4-&#34; &#34;--5-&#34; &#34;--6-&#34; &#34;--7-&#34; &#34;--8-&#34; &#34;--9-&#34; &#34;-10-&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Also, if <code>add = TRUE</code>, then exactly <code>n</code> extra characters are added:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;right&#34;</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;----1&#34;  &#34;----2&#34;  &#34;----3&#34;  &#34;----4&#34;  &#34;----5&#34;  &#34;----6&#34;  &#34;----7&#34;  &#34;----8&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] &#34;----9&#34;  &#34;----10&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;left&#34;</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;1----&#34;  &#34;2----&#34;  &#34;3----&#34;  &#34;4----&#34;  &#34;5----&#34;  &#34;6----&#34;  &#34;7----&#34;  &#34;8----&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] &#34;9----&#34;  &#34;10----&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;center&#34;</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;--1--&#34;  &#34;--2--&#34;  &#34;--3--&#34;  &#34;--4--&#34;  &#34;--5--&#34;  &#34;--6--&#34;  &#34;--7--&#34;  &#34;--8--&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] &#34;--9--&#34;  &#34;--10--&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note that in this last case, lengths of output character strings may differ!
 One last remark about how <code>adjustStrings()</code> works when <code>add = FALSE</code>: for a given string, there are 3 scenarios :</p>
-<ol style="list-style-type: decimal">
+<ol>
 <li>the string to be adjusted has more characters than <code>n</code>; in this case, the string is simply cut off:</li>
 </ol>
-<pre class="r"><code>adjustStrings(&quot;ABCD&quot;, n = 2, extra = &quot;efgh&quot;)
-#R&gt;  [1] &quot;AB&quot;</code></pre>
-<ol start="2" style="list-style-type: decimal">
-<li>the string has more characters but the number of character for the adjustment is smaller than the number of <code>extra</code>’s character; in this case, <code>extra</code> is cut off:</li>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="s">&#34;ABCD&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;efgh&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;AB&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>the string has more characters but the number of character for the adjustment is smaller than the number of <code>extra</code>&rsquo;s character; in this case, <code>extra</code> is cut off:</li>
 </ol>
-<pre class="r"><code>adjustStrings(&quot;ABCD&quot;, n = 6, extra = &quot;efgh&quot;)
-#R&gt;  [1] &quot;efABCD&quot;</code></pre>
-<ol start="3" style="list-style-type: decimal">
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="s">&#34;ABCD&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">6</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;efgh&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;efABCD&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
 <li>finally, when <code>extra</code> is too short to adjust the string according to <code>n</code>, <code>extra</code> is repeated:</li>
 </ol>
-<pre class="r"><code>adjustStrings(&quot;ABCD&quot;, n = 14, extra = &quot;efgh&quot;)
-#R&gt;  [1] &quot;efghefghefABCD&quot;</code></pre>
-<p>These combinations give flexibility to the user. One application of the
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="s">&#34;ABCD&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">14</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;efgh&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;efghefghefABCD&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>These combinations give flexibility to the user. One application of the
 <code>adjustStrings()</code> function comes when running a long script. In such situation,
 it is convenient to create recognizable code section to ease the navigation
 across long output!</p>
-<pre class="r"><code>report &lt;- function(title, symbol = &quot;#&quot;) {
-  cat(adjustStrings(title, 70, symbol, align = &quot;center&quot;), &quot;\n&quot;)
-}
-report(&quot; part 1 &quot;)
-report(&quot; Solving ODE &quot;, &quot;~&quot;)
-report(&quot; Last but not least! &quot;, &quot;=&quot;)
-#R&gt;  ############################### part 1 ############################### 
-#R&gt;  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Solving ODE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ 
-#R&gt;  ========================= Last but not least! ========================</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">report</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">symbol</span> <span class="o">=</span> <span class="s">&#34;#&#34;</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">cat</span><span class="p">(</span><span class="nf">adjustStrings</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="m">70</span><span class="p">,</span> <span class="n">symbol</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;center&#34;</span><span class="p">),</span> <span class="s">&#34;\n&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">report</span><span class="p">(</span><span class="s">&#34; part 1 &#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">report</span><span class="p">(</span><span class="s">&#34; Solving ODE &#34;</span><span class="p">,</span> <span class="s">&#34;~&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">report</span><span class="p">(</span><span class="s">&#34; Last but not least! &#34;</span><span class="p">,</span> <span class="s">&#34;=&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  ############################### part 1 ############################### </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ Solving ODE ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  ========================= Last but not least! ========================</span>
+</span></span></code></pre></td></tr></table>
 </div>
-<div id="keepwords" class="section level2">
-<h2>keepWords</h2>
+</div><h2 id="keepwords">keepWords</h2>
 <p><a href="https://insileco.github.io/inSilecoMisc/reference/keepWords.html"><code>keepWords()</code></a> allows the user to select words based on their position in
 character strings. Before using it, I would like to introduce <code>loremIpsum()</code>
 that generates <a href="https://en.wikipedia.org/wiki/Lorem_ipsum">placeholder texts</a>.
@@ -348,147 +466,306 @@ elsewhere. For instance, <code>stringi</code> has
 and <a href="https://www.rdocumentation.org/packages/UsingR/versions/2.0-6/topics/lorem"><code>UsingR</code> includes
 <code>lorem()</code></a>.
 By default, this <code>loremIpsum()</code> function returns two paragraphs of text:</p>
-<pre class="r"><code>cat(loremIpsum())
-#R&gt;  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-#R&gt;    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-#R&gt;    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-#R&gt;    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-#R&gt;    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-#R&gt;    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-#R&gt;  
-#R&gt;    Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius,
-#R&gt;    turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis
-#R&gt;    sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus
-#R&gt;    et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut
-#R&gt;    ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt
-#R&gt;    sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum.
-#R&gt;    Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget,
-#R&gt;    consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl
-#R&gt;    adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque
-#R&gt;    nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis,
-#R&gt;    laoreet et, pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu,
-#R&gt;    feugiat in, orci. In hac habitasse platea dictumst.
-#R&gt;  </code></pre>
-<p>but it also allows the user to set the number of words of the character string returned:</p>
-<pre class="r"><code>loremIpsum(18)
-#R&gt;  [1] &quot;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\n tempor incididunt ut labore et dolore magna&quot;</code></pre>
-<p>Note the escape characters (<code>\n</code>)! Now let’s focus on <code>keepWords()</code>. Assuming I
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">cat</span><span class="p">(</span><span class="nf">loremIpsum</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Curabitur pretium tincidunt lacus. Nulla gravida orci a odio. Nullam varius,</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    turpis et commodo pharetra, est eros bibendum elit, nec luctus magna felis</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    sollicitudin mauris. Integer in mauris eu nibh euismod gravida. Duis ac tellus</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    et risus vulputate vehicula. Donec lobortis risus a elit. Etiam tempor. Ut</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    ullamcorper, ligula eu tempor congue, eros est euismod turpis, id tincidunt</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    sapien risus a quam. Maecenas fermentum consequat mi. Donec fermentum.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Pellentesque malesuada nulla a mi. Duis sapien sem, aliquet nec, commodo eget,</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    consequat quis, neque. Aliquam faucibus, elit ut dictum aliquet, felis nisl</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    adipiscing sapien, sed malesuada diam lacus eget erat. Cras mollis scelerisque</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    nunc. Nullam arcu. Aliquam consequat. Curabitur augue lorem, dapibus quis,</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    laoreet et, pretium ac, nisi. Aenean magna nisl, mollis quis, molestie eu,</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    feugiat in, orci. In hac habitasse platea dictumst.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>but it also allows the user to set the number of words of the character string returned:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">loremIpsum</span><span class="p">(</span><span class="m">18</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod\n tempor incididunt ut labore et dolore magna&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note the escape characters (<code>\n</code>)! Now let&rsquo;s focus on <code>keepWords()</code>. Assuming I
 want to extract the second word in both sentences <code>loremIpsum(18)</code> and <code>be or not to be</code>, all I have to do is:</p>
-<pre class="r"><code>keepWords(c(loremIpsum(18), &quot;be or not to be&quot;), 2)
-#R&gt;  [1] &quot;ipsum&quot; &quot;or&quot;</code></pre>
-<p>and if I am interested in extracting specific word positions, I can pass a numerical vector:</p>
-<pre class="r"><code>keepWords(c(loremIpsum(18), &quot;be or not to be&quot;), c(1:4, 12:16))
-#R&gt;  [1] &quot;Lorem ipsum dolor sit tempor incididunt ut labore et&quot;
-#R&gt;  [2] &quot;be or not to NA NA NA NA NA&quot;</code></pre>
-<p>As you may have noted, <code>NA</code>s are added when the position selected does not
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">keepWords</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">loremIpsum</span><span class="p">(</span><span class="m">18</span><span class="p">),</span> <span class="s">&#34;be or not to be&#34;</span><span class="p">),</span> <span class="m">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;ipsum&#34; &#34;or&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>and if I am interested in extracting specific word positions, I can pass a numerical vector:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">keepWords</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">loremIpsum</span><span class="p">(</span><span class="m">18</span><span class="p">),</span> <span class="s">&#34;be or not to be&#34;</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">,</span> <span class="m">12</span><span class="o">:</span><span class="m">16</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;Lorem ipsum dolor sit tempor incididunt ut labore et&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [2] &#34;be or not to NA NA NA NA NA&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>As you may have noted, <code>NA</code>s are added when the position selected does not
 exist. This behavior could be useful but also annoying! Fortunately, an
 argument allows to remove <code>NA</code>s.</p>
-<pre class="r"><code>keepWords(c(loremIpsum(18), &quot;be or not to be&quot;), c(1:4, 12:16), na.rm = TRUE)
-#R&gt;  [1] &quot;Lorem ipsum dolor sit tempor incididunt ut labore et&quot;
-#R&gt;  [2] &quot;be or not to&quot;</code></pre>
-<p>Also, <code>collapse</code> allows the user to change the character used to separate words:</p>
-<pre class="r"><code>keepWords(loremIpsum(18), c(1:6, 14:18), collapse = &quot;-&quot;)
-#R&gt;  [1] &quot;Lorem-ipsum-dolor-sit-amet-consectetur-ut-labore-et-dolore-magna&quot;</code></pre>
-<p>and if <code>collapse = NULL</code> then list will be returned including a vector of the selected words per input string:</p>
-<pre class="r"><code>keepWords(c(loremIpsum(18), &quot;be or not to be&quot;), c(2:3), collapse = NULL)
-#R&gt;  [[1]]
-#R&gt;  [1] &quot;ipsum&quot; &quot;dolor&quot;
-#R&gt;  
-#R&gt;  [[2]]
-#R&gt;  [1] &quot;or&quot;  &quot;not&quot;</code></pre>
-<p>Note that all punctuation characters will be removed. This can be changed by tweaking argument <code>split_words</code>!</p>
-<p>There are two other functions that work similarly: <code>keepLetters()</code> and <code>keepInitials()</code>. The former selects letters instead of words.</p>
-<pre class="r"><code>keepLetters(loremIpsum(18), c(1:6, 14:18))
-#R&gt;  [1] &quot;Loremiorsit&quot;
-keepLetters(loremIpsum(18), c(1:6, 14:18), collapse = &quot;-&quot;)
-#R&gt;  [1] &quot;L-o-r-e-m-i-o-r-s-i-t&quot;
-keepLetters(loremIpsum(18), c(1:6, 14:18), collapse = NULL)
-#R&gt;  [[1]]
-#R&gt;   [1] &quot;L&quot; &quot;o&quot; &quot;r&quot; &quot;e&quot; &quot;m&quot; &quot;i&quot; &quot;o&quot; &quot;r&quot; &quot;s&quot; &quot;i&quot; &quot;t&quot;</code></pre>
-<p>while the latter extracts initials</p>
-<pre class="r"><code>keepInitials(&quot;National Basketball Association&quot;)
-#R&gt;  [1] &quot;NBA&quot;
-keepInitials(&quot;National Basketball Association&quot;, &quot;-&quot;)
-#R&gt;  [1] &quot;N&quot;</code></pre>
-<p>Note that if the input character vector has a mixture of lower and upper case, so will the output</p>
-<pre class="r"><code>keepInitials(&quot;National basketball association&quot;)
-#R&gt;  [1] &quot;Nba&quot;</code></pre>
-<p>if this annoys you, base functions <code>upper()</code> and <code>lower()</code> come in handy!</p>
-<pre class="r"><code>keepInitials(tolower(&quot;National basketball association&quot;))
-#R&gt;  [1] &quot;nba&quot;
-keepInitials(toupper(&quot;National basketball association&quot;))
-#R&gt;  [1] &quot;NBA&quot;</code></pre>
-<p><br></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">keepWords</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">loremIpsum</span><span class="p">(</span><span class="m">18</span><span class="p">),</span> <span class="s">&#34;be or not to be&#34;</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">,</span> <span class="m">12</span><span class="o">:</span><span class="m">16</span><span class="p">),</span> <span class="n">na.rm</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;Lorem ipsum dolor sit tempor incididunt ut labore et&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [2] &#34;be or not to&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
-<div id="concluding-remarks" class="section level2">
-<h2>Concluding remarks</h2>
-<p>In this post, I focused on <code>inSileco</code>’s functions that manipulate character
+</div><p>Also, <code>collapse</code> allows the user to change the character used to separate words:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">keepWords</span><span class="p">(</span><span class="nf">loremIpsum</span><span class="p">(</span><span class="m">18</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span> <span class="m">14</span><span class="o">:</span><span class="m">18</span><span class="p">),</span> <span class="n">collapse</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;Lorem-ipsum-dolor-sit-amet-consectetur-ut-labore-et-dolore-magna&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>and if <code>collapse = NULL</code> then list will be returned including a vector of the selected words per input string:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">keepWords</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="nf">loremIpsum</span><span class="p">(</span><span class="m">18</span><span class="p">),</span> <span class="s">&#34;be or not to be&#34;</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="o">:</span><span class="m">3</span><span class="p">),</span> <span class="n">collapse</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[1]]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;ipsum&#34; &#34;dolor&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[2]]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;or&#34;  &#34;not&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note that all punctuation characters will be removed. This can be changed by tweaking argument <code>split_words</code>!</p>
+<p>There are two other functions that work similarly: <code>keepLetters()</code> and <code>keepInitials()</code>. The former selects letters instead of words.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">keepLetters</span><span class="p">(</span><span class="nf">loremIpsum</span><span class="p">(</span><span class="m">18</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span> <span class="m">14</span><span class="o">:</span><span class="m">18</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;Loremiorsit&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">keepLetters</span><span class="p">(</span><span class="nf">loremIpsum</span><span class="p">(</span><span class="m">18</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span> <span class="m">14</span><span class="o">:</span><span class="m">18</span><span class="p">),</span> <span class="n">collapse</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;L-o-r-e-m-i-o-r-s-i-t&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">keepLetters</span><span class="p">(</span><span class="nf">loremIpsum</span><span class="p">(</span><span class="m">18</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span> <span class="m">14</span><span class="o">:</span><span class="m">18</span><span class="p">),</span> <span class="n">collapse</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[1]]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;L&#34; &#34;o&#34; &#34;r&#34; &#34;e&#34; &#34;m&#34; &#34;i&#34; &#34;o&#34; &#34;r&#34; &#34;s&#34; &#34;i&#34; &#34;t&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>while the latter extracts initials</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">keepInitials</span><span class="p">(</span><span class="s">&#34;National Basketball Association&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;NBA&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">keepInitials</span><span class="p">(</span><span class="s">&#34;National Basketball Association&#34;</span><span class="p">,</span> <span class="s">&#34;-&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;N&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note that if the input character vector has a mixture of lower and upper case, so will the output</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">keepInitials</span><span class="p">(</span><span class="s">&#34;National basketball association&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;Nba&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>if this annoys you, base functions <code>upper()</code> and <code>lower()</code> come in handy!</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">keepInitials</span><span class="p">(</span><span class="nf">tolower</span><span class="p">(</span><span class="s">&#34;National basketball association&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;nba&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">keepInitials</span><span class="p">(</span><span class="nf">toupper</span><span class="p">(</span><span class="s">&#34;National basketball association&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;NBA&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br>
+<h2 id="concluding-remarks">Concluding remarks</h2>
+<p>In this post, I focused on <code>inSileco</code>&rsquo;s functions that manipulate character
 strings (all of them call
 <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/strsplit.html"><code>str_split()</code></a>
 at some point). If you are interested in learning more about strings
-manipulations, you should checkout the ebook <a href="https://www.gastonsanchez.com/r4strings/">“Handling Strings with
-R”</a> by <a href="https://www.gastonsanchez.com/">Gaston
+manipulations, you should checkout the ebook <a href="https://www.gastonsanchez.com/r4strings/">&ldquo;Handling Strings with
+R&rdquo;</a> by <a href="https://www.gastonsanchez.com/">Gaston
 Sanchez</a>. There are also various blog posts on
 this topic (for instance
 <a href="http://uc-r.github.io/string_manipulation_baseR/">http://uc-r.github.io</a> or on
-<a href="https://data-flair.training/blogs/r-string-manipulation/">data-flair</a>) and, obviously, the documentation of packages that do such manipulations (e.g. <a href="https://CRAN.R-project.org/package=stringi"><code>stringi</code></a>).</p>
+<a href="https://data-flair.training/blogs/r-string-manipulation/">data-flair</a>) and, obviously, the documentation of packages that do such manipulations (e.g. <a href="https://CRAN.R-project.org/package=stringi"><code>stringi</code></a>).</p>
 <p>This concludes the first part of this post, additional features of the
 <code>inSilecoMisc</code> package will be introduced the second part of this post 🎉!</p>
 <div style="padding: 2rem 0rem 2rem 0rem;">
 <details>
-<summary>
-<h4>
-<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
-<i class="fa fa-cogs" aria-hidden="true"></i>
-</h4>
-</summary>
-<pre class="r"><code>sessionInfo()
-#R&gt;  R version 4.2.0 (2022-04-22)
-#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)
-#R&gt;  Running under: Ubuntu 20.04.4 LTS
-#R&gt;  
-#R&gt;  Matrix products: default
-#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
-#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
-#R&gt;  
-#R&gt;  locale:
-#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
-#R&gt;   [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
-#R&gt;   [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
-#R&gt;  [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
-#R&gt;  
-#R&gt;  attached base packages:
-#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     
-#R&gt;  
-#R&gt;  other attached packages:
-#R&gt;  [1] inSilecoMisc_0.7.0     inSilecoRef_0.0.1.9000
-#R&gt;  
-#R&gt;  loaded via a namespace (and not attached):
-#R&gt;   [1] tidyselect_1.1.2  xfun_0.31         bslib_0.3.1       purrr_0.3.4      
-#R&gt;   [5] vctrs_0.4.1       generics_0.1.3    miniUI_0.1.1.1    htmltools_0.5.2  
-#R&gt;   [9] yaml_2.3.5        utf8_1.2.2        rlang_1.0.3       later_1.3.0      
-#R&gt;  [13] pillar_1.7.0      jquerylib_0.1.4   httpcode_0.3.0    glue_1.6.2       
-#R&gt;  [17] DBI_1.1.3         lifecycle_1.0.1   plyr_1.8.7        stringr_1.4.0    
-#R&gt;  [21] blogdown_1.10     htmlwidgets_1.5.4 evaluate_0.15     knitr_1.39       
-#R&gt;  [25] fastmap_1.1.0     httpuv_1.6.5      curl_4.3.2        fansi_1.0.3      
-#R&gt;  [29] Rcpp_1.0.8.3      xtable_1.8-4      promises_1.2.0.1  DT_0.23          
-#R&gt;  [33] jsonlite_1.8.0    rcrossref_1.1.0   mime_0.12         digest_0.6.29    
-#R&gt;  [37] stringi_1.7.6     bookdown_0.27     dplyr_1.0.9       shiny_1.7.1      
-#R&gt;  [41] cli_3.3.0         tools_4.2.0       magrittr_2.0.3    sass_0.4.1       
-#R&gt;  [45] tibble_3.1.7      RefManageR_1.3.0  crul_1.2.0        crayon_1.5.1     
-#R&gt;  [49] pkgconfig_2.0.3   ellipsis_0.3.2    xml2_1.3.3        lubridate_1.8.0  
-#R&gt;  [53] assertthat_0.2.1  rmarkdown_2.14    httr_1.4.3        R6_2.5.1         
-#R&gt;  [57] compiler_4.2.0</code></pre>
-</details>
+<summary>Session info <i class="fa fa-cogs" aria-hidden="true"></i></summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.2.0 (2022-04-22)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 20.04.4 LTS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Matrix products: default</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  locale:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  attached base packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  other attached packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoMisc_0.7.0     inSilecoRef_0.0.1.9000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] tidyselect_1.1.2  xfun_0.31         bslib_0.4.0       purrr_0.3.4      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] vctrs_0.4.1       generics_0.1.3    miniUI_0.1.1.1    htmltools_0.5.3  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] yaml_2.3.5        utf8_1.2.2        rlang_1.0.4       later_1.3.0      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] pillar_1.8.0      jquerylib_0.1.4   httpcode_0.3.0    glue_1.6.2       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [17] DBI_1.1.3         lifecycle_1.0.1   plyr_1.8.7        stringr_1.4.0    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] blogdown_1.10     htmlwidgets_1.5.4 evaluate_0.15     knitr_1.39       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] fastmap_1.1.0     httpuv_1.6.5      curl_4.3.2        fansi_1.0.3      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] Rcpp_1.0.9        xtable_1.8-4      promises_1.2.0.1  DT_0.23          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] cachem_1.0.6      jsonlite_1.8.0    rcrossref_1.1.0   mime_0.12        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] digest_0.6.29     stringi_1.7.8     bookdown_0.27     dplyr_1.0.9      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] shiny_1.7.2       cli_3.3.0         tools_4.2.0       magrittr_2.0.3   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [45] sass_0.4.2        tibble_3.1.7      RefManageR_1.3.0  crul_1.2.0       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] crayon_1.5.1      pkgconfig_2.0.3   ellipsis_0.3.2    xml2_1.3.3       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [53] lubridate_1.8.0   assertthat_0.2.1  rmarkdown_2.14    httr_1.4.3       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [57] R6_2.5.1          compiler_4.2.0</span>
+</span></span></code></pre></td></tr></table>
 </div>
+</div></details>
 </div>
-<div class="footnotes">
-<hr />
+<div class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn1"><p>see the following <i class="fa fa-github" aria-hidden="true"></i>
+<li id="fn:1">
+<p>see the following <i class="fa fa-github" aria-hidden="true"></i>
 repositories:
 <a href="https://github.com/McCannLab/HomogenFishOntario">HomogenFishOntario</a> and
-<a href="https://github.com/TheoreticalEcosystemEcology/coocc_not_inter">coocc_not_inter</a>.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<a href="https://github.com/TheoreticalEcosystemEcology/coocc_not_inter">coocc_not_inter</a>.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
 </div>
 
@@ -521,15 +798,26 @@ repositories:
   
   <script src="//yihui.name/js/math-code.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-
   
   
-
 
 
   <h3 class="page-header">Comments on this post</h3>
 
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  <details>
+  <summary>Comment with Disqus</summary>
   <div id="disqus_thread"></div>
+  </details>
 
   
   
@@ -617,6 +905,7 @@ repositories:
   </noscript>
 
 
+
 </div>
 
 
@@ -636,7 +925,7 @@ repositories:
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Jul 2022 02:11 UTC.
+              Latest build: 24 Jul 2022 19:53 UTC.
               </p>
 
         </footer>

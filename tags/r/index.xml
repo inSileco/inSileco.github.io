@@ -14,8 +14,8 @@
       <pubDate>Sat, 29 Aug 2020 00:00:00 +0000</pubDate>
       
       <guid>https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/</guid>
-      <description>Context If you are using R’s base graphics system for your plots and if you like customizing your plots, you may have already wondered how to custom the tick marks of your plots! I do that quite a lot and I thought it would be worth explaining how I do so. Let’s consider the following plot,
-cx &amp;lt;- seq(0, 2, 0.1) cy &amp;lt;- cx + .5*rnorm(length(cx)) plot(cx, cy) By default, plot.</description>
+      <description>Context If you are using R&amp;rsquo;s base graphics system for your plots and if you like customizing your plots, you may have already wondered how to custom the tick marks of your plots! I do that quite a lot and I thought it would be worth explaining how I do so. Let&amp;rsquo;s consider the following plot,
+1 2 3 cx &amp;lt;- seq(0, 2, 0.1) cy &amp;lt;- cx + .5*rnorm(length(cx)) plot(cx, cy) By default, plot.</description>
     </item>
     
     <item>
@@ -25,8 +25,8 @@ cx &amp;lt;- seq(0, 2, 0.1) cy &amp;lt;- cx + .5*rnorm(length(cx)) plot(cx, cy) 
       
       <guid>https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/</guid>
       <description>In the first part of this post I introduced several functions available in the package inSilecoMisc. In this post, I keep on introducing features of the package you might find useful! If you did not read the first part of this post and are interested in reproducing the examples below, simply install inSilecoMisc:
-# Run if package is not already installed install.packages(&amp;quot;remotes&amp;quot;) remotes::install_github(&amp;quot;inSileco/inSilecoMisc&amp;quot;) Load it:
-library(&amp;quot;inSilecoMisc&amp;quot;) packageVersion(&amp;quot;inSilecoMisc&amp;quot;) #R&amp;gt; [1] &amp;#39;0.</description>
+1 2 3 # Run if package is not already installed install.packages(&amp;#34;remotes&amp;#34;) remotes::install_github(&amp;#34;inSileco/inSilecoMisc&amp;#34;) Load it:
+1 2 3 library(&amp;#34;inSilecoMisc&amp;#34;) packageVersion(&amp;#34;inSilecoMisc&amp;#34;) #R&amp;gt; [1] &amp;#39;0.</description>
     </item>
     
     <item>
@@ -93,7 +93,7 @@ A package bundles together code, data, documentation, and tests, and is easy to 
       
       <guid>https://insileco.github.io/2018/11/18/non-linear-regression-with-nls/</guid>
       <description>Context Last week, I was discussing about how to use nls() for a specific model with one of my colleague and I ended creating a piece of code to show what I was talking about! Even though there are many posts exploring nls() in more depth that I did (for instance this post on datascienceplus by Lionel Herzog), I thought I could share these lines of command here!
-Basically, we were talking about a model where the temperature (\(T\)) follows a saturation curve starting from 10°C at t=0 (so T(0) = 10) and plateauing at \(T_{\inf}\).</description>
+Basically, we were talking about a model where the temperature ($T$) follows a saturation curve starting from 10°C at t=0 (so T(0) = 10) and plateauing at \(T_{\inf}\).</description>
     </item>
     
     <item>
@@ -168,7 +168,7 @@ Work extensively with networks, you quickly realize that coming up with meaningf
       
       <guid>https://insileco.github.io/2017/07/05/animations-in-r-time-series-of-erythemal-irradiance-in-the-st.-lawrence/</guid>
       <description>The “need” for animations As part of my PhD thesis, I am currently characterizing the intensity of multiple stressors in the estuary and gulf of St. Lawrence (see ResearchGate project for more details). I have recently needed (read: thought it would be cool) to create an animation of the temporal variations in ultra-violet intensity in the St. Lawrence. Here is how I did it.
-Setting up R R version used to build the last update of this post sessionInfo()[[1]]$version.</description>
+Setting up R R version used to build the last update of this post 1 2 sessionInfo()[[1]]$version.</description>
     </item>
     
     <item>
@@ -204,7 +204,7 @@ Setting up R R version used to build the last update of this post sessionInfo()[
       <pubDate>Fri, 14 Apr 2017 00:00:00 +0000</pubDate>
       
       <guid>https://insileco.github.io/2017/04/14/make-your-r-plot-hylian/</guid>
-      <description>Below are presented the 6 steps you need to make your plot a Hylian one! May the triforce be with you! 0. R Version sessionInfo()[[1L]]$version.string #R&amp;gt; [1] &amp;#34;R version 3.5.2 (2018-12-20)&amp;#34; 1. Open R and download the font The Triforce font is available on line. Below we download it using R. Alternatively, you may simply download and install it using a couple of clicks, if you proceed so, skip step 1.</description>
+      <description>Below are presented the 6 steps you need to make your plot a Hylian one! May the triforce be with you! 0. R Version 1 2 sessionInfo()[[1L]]$version.string #R&amp;gt; [1] &amp;#34;R version 3.5.2 (2018-12-20)&amp;#34; 1. Open R and download the font The Triforce font is available on line. Below we download it using R. Alternatively, you may simply download and install it using a couple of clicks, if you proceed so, skip step 1.</description>
     </item>
     
     <item>

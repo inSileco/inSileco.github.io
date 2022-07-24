@@ -8,7 +8,7 @@
         <style>
 
     html body {
-        font-family: Lato, sans-serif;
+        font-family: , sans-serif;
         background-color: white;
     }
 
@@ -23,12 +23,23 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="/css/jquery.tocify.css">
 
@@ -36,15 +47,6 @@
 
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-
-
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  
 
 
@@ -70,6 +72,8 @@
   <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
   <script src="/js/jquery.tocify.min.js"></script>
+
+  <script src="/js/toclipboard.js"></script>
 
 
         <meta charset="utf-8">
@@ -357,43 +361,92 @@ the <strong>Github-pages</strong> which requires a <strong>token</strong>. All t
 mentioned in our <code>.travis.yaml</code> file. For Kevin personal website, as pure Hugo
 is used, we need to install Hugo and build the <a href="https://gohugo.io/getting-started/usage/">public website</a>,
 here are the parts that contain such instructions (adapted from <a href="https://www.metachris.com/2017/04/continuous-deployment-hugo---travis-ci--github-pages/">this</a>):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#75715e"># Clean and don&#39;t fail</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">install</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">sudo pip install pygments</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">wget https://github.com/gohugoio/hugo/releases/download/v0.35/hugo_0.35_Linux-64bit.deb -O /tmp/hugo.deb &amp;&amp; sudo dpkg -i /tmp/hugo.deb</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">rm -rf public || exit 0</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e"># Build the website</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">script</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">pygmentize -V</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">git submodule update --init --recursive</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">hugo -v</span>
-</span></span></code></pre></div><p>For our blog, we used <a href="https://bookdown.org/yihui/blogdown/">blogdown</a> and here
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># Clean and don&#39;t fail</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">install</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">sudo pip install pygments</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">wget https://github.com/gohugoio/hugo/releases/download/v0.35/hugo_0.35_Linux-64bit.deb -O /tmp/hugo.deb &amp;&amp; sudo dpkg -i /tmp/hugo.deb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">rm -rf public || exit 0</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="c"># Build the website</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">script</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">pygmentize -V</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">git submodule update --init --recursive</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">hugo -v</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>For our blog, we used <a href="https://bookdown.org/yihui/blogdown/">blogdown</a> and here
 are what we used in <code>.travis.yaml</code>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">before_install</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">sudo apt-get --yes --force-yes update -qq</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">mkdir pandoc</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">wget https://github.com/jgm/pandoc/releases/download/1.19.2.1/pandoc-1.19.2.1-1-amd64.deb</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">sudo dpkg -i pandoc-1.19.2.1-1-amd64.deb</span>
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">export PATH=./pandoc/usr/bin/:$PATH</span>
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">before_script</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">Rscript -e &#39;blogdown::install_hugo()&#39;</span>
-</span></span><span style="display:flex;"><span><span style="color:#f92672">script</span>:
-</span></span><span style="display:flex;"><span>  - <span style="color:#ae81ff">Rscript -e &#39;blogdown::build_site()&#39;</span>
-</span></span></code></pre></div><p>As we used gh-pages from a public repository in both cases, our options regarding the <a href="https://docs.travis-ci.com/user/deployment">deployment</a> are similar and include
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">before_install</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">sudo apt-get --yes --force-yes update -qq</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">mkdir pandoc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">wget https://github.com/jgm/pandoc/releases/download/1.19.2.1/pandoc-1.19.2.1-1-amd64.deb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">sudo dpkg -i pandoc-1.19.2.1-1-amd64.deb</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">export PATH=./pandoc/usr/bin/:$PATH</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">before_script</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">Rscript -e &#39;blogdown::install_hugo()&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">script</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="l">Rscript -e &#39;blogdown::build_site()&#39;</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>As we used gh-pages from a public repository in both cases, our options regarding the <a href="https://docs.travis-ci.com/user/deployment">deployment</a> are similar and include
 all the details about the deployment including the token passed as a environment
 variable:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-yaml" data-lang="yaml"><span style="display:flex;"><span><span style="color:#f92672">deploy</span>:
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">provider</span>: <span style="color:#ae81ff">pages</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">skip_cleanup</span>: <span style="color:#66d9ef">true</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">github_token</span>: <span style="color:#ae81ff">$GH_TOKEN</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">target_branch</span>: <span style="color:#ae81ff">master</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">local_dir</span>: <span style="color:#ae81ff">public</span>
-</span></span><span style="display:flex;"><span>  <span style="color:#f92672">on</span>:
-</span></span><span style="display:flex;"><span>    <span style="color:#f92672">branch</span>: <span style="color:#ae81ff">dev</span>
-</span></span></code></pre></div><p>Note that for both websites, the default branch is <code>dev</code>, where all development
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">deploy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">provider</span><span class="p">:</span><span class="w"> </span><span class="l">pages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">skip_cleanup</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l">$GH_TOKEN</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">target_branch</span><span class="p">:</span><span class="w"> </span><span class="l">master</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">local_dir</span><span class="p">:</span><span class="w"> </span><span class="l">public</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branch</span><span class="p">:</span><span class="w"> </span><span class="l">dev</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note that for both websites, the default branch is <code>dev</code>, where all development
 occurs, and we deploy the websites on the <code>master</code> branch (see image below).
 Also we <a href="https://blog.github.com/2009-12-29-bypassing-jekyll-on-github-pages/">bypass Jekyll processing on gh-pages</a>
 adding a <code>.nojekyll</code> file in our repository.</p>
@@ -453,15 +506,26 @@ my DSN provider.</p>
   
   <script src="//yihui.name/js/math-code.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-
   
   
-
 
 
   <h3 class="page-header">Comments on this post</h3>
 
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  <details>
+  <summary>Comment with Disqus</summary>
   <div id="disqus_thread"></div>
+  </details>
 
   
   
@@ -549,6 +613,7 @@ my DSN provider.</p>
   </noscript>
 
 
+
 </div>
 
 
@@ -568,7 +633,7 @@ my DSN provider.</p>
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Jul 2022 02:11 UTC.
+              Latest build: 24 Jul 2022 19:53 UTC.
               </p>
 
         </footer>

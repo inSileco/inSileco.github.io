@@ -8,7 +8,7 @@
         <style>
 
     html body {
-        font-family: Lato, sans-serif;
+        font-family: , sans-serif;
         background-color: white;
     }
 
@@ -23,12 +23,23 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="/css/jquery.tocify.css">
 
@@ -36,15 +47,6 @@
 
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-
-
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  
 
 
@@ -70,6 +72,8 @@
   <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
   <script src="/js/jquery.tocify.min.js"></script>
+
+  <script src="/js/toclipboard.js"></script>
 
 
         <meta charset="utf-8">
@@ -253,48 +257,100 @@ webpage: <em>i.e.</em> <a href="https://daringfireball.net/projects/markdown/">h
 the Markdown text and the equivalent written in HTML, <em>i.e.</em> what the Perl converter
 renders:</p>
 <h4 id="markdown-version"><strong>Markdown version</strong></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-markdown" data-lang="markdown"><span style="display:flex;"><span>A First Level Header
-</span></span><span style="display:flex;"><span>====================
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>A Second Level Header
-</span></span><span style="display:flex;"><span>---------------------
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>Now is the time for all good men to come to
-</span></span><span style="display:flex;"><span>the aid of their country. This is just a
-</span></span><span style="display:flex;"><span>regular paragraph.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>The quick brown fox jumped over the lazy
-</span></span><span style="display:flex;"><span>dog&#39;s back.
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span><span style="color:#75715e">### Header 3
-</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef">&gt; </span><span style="font-style:italic">This is a blockquote.
-</span></span></span><span style="display:flex;"><span><span style="font-style:italic"></span><span style="color:#66d9ef">&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef"></span><span style="font-style:italic">&gt; This is the **second paragraph** in the blockquote.
-</span></span></span><span style="display:flex;"><span><span style="font-style:italic"></span><span style="color:#66d9ef">&gt;
-</span></span></span><span style="display:flex;"><span><span style="color:#66d9ef"></span><span style="font-style:italic">&gt; ## This is an H2 in a blockquote
-</span></span></span></code></pre></div><h4 id="html-version"><strong>HTML version</strong></h4>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>&lt;<span style="color:#f92672">h1</span>&gt;A First Level Header&lt;/<span style="color:#f92672">h1</span>&gt;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h2</span>&gt;A Second Level Header&lt;/<span style="color:#f92672">h2</span>&gt;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span>&gt;Now is the time for all good men to come to
-</span></span><span style="display:flex;"><span>the aid of their country. This is just a
-</span></span><span style="display:flex;"><span>regular paragraph.&lt;/<span style="color:#f92672">p</span>&gt;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">p</span>&gt;The quick brown fox jumped over the lazy
-</span></span><span style="display:flex;"><span>dog&#39;s back.&lt;/<span style="color:#f92672">p</span>&gt;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">h3</span>&gt;Header 3&lt;/<span style="color:#f92672">h3</span>&gt;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>&lt;<span style="color:#f92672">blockquote</span>&gt;
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;This is a blockquote.&lt;/<span style="color:#f92672">p</span>&gt;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">p</span>&gt;This is the &lt;<span style="color:#f92672">strong</span>&gt;second paragraph&lt;/<span style="color:#f92672">strong</span>&gt; in the blockquote.&lt;/<span style="color:#f92672">p</span>&gt;
-</span></span><span style="display:flex;"><span>
-</span></span><span style="display:flex;"><span>    &lt;<span style="color:#f92672">h2</span>&gt;This is an H2 in a blockquote&lt;/<span style="color:#f92672">h2</span>&gt;
-</span></span><span style="display:flex;"><span>&lt;/<span style="color:#f92672">blockquote</span>&gt;
-</span></span></code></pre></div><p>Easy-to-read and easy-to-write indeed! If not before, now you should understand
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">A First Level Header
+</span></span><span class="line"><span class="cl">====================
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">A Second Level Header
+</span></span><span class="line"><span class="cl">---------------------
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Now is the time for all good men to come to
+</span></span><span class="line"><span class="cl">the aid of their country. This is just a
+</span></span><span class="line"><span class="cl">regular paragraph.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">The quick brown fox jumped over the lazy
+</span></span><span class="line"><span class="cl">dog&#39;s back.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="gu">### Header 3
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="k">
+</span></span></span><span class="line"><span class="cl"><span class="k">&gt; </span><span class="ge">This is a blockquote.
+</span></span></span><span class="line"><span class="cl"><span class="ge"></span><span class="k">&gt;
+</span></span></span><span class="line"><span class="cl"><span class="k"></span><span class="ge">&gt; This is the **second paragraph** in the blockquote.
+</span></span></span><span class="line"><span class="cl"><span class="ge"></span><span class="k">&gt;
+</span></span></span><span class="line"><span class="cl"><span class="k"></span><span class="ge">&gt; ## This is an H2 in a blockquote
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="html-version"><strong>HTML version</strong></h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h1</span><span class="p">&gt;</span>A First Level Header<span class="p">&lt;/</span><span class="nt">h1</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>A Second Level Header<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>Now is the time for all good men to come to
+</span></span><span class="line"><span class="cl">the aid of their country. This is just a
+</span></span><span class="line"><span class="cl">regular paragraph.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>The quick brown fox jumped over the lazy
+</span></span><span class="line"><span class="cl">dog&#39;s back.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">h3</span><span class="p">&gt;</span>Header 3<span class="p">&lt;/</span><span class="nt">h3</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">blockquote</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This is a blockquote.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;</span>This is the <span class="p">&lt;</span><span class="nt">strong</span><span class="p">&gt;</span>second paragraph<span class="p">&lt;/</span><span class="nt">strong</span><span class="p">&gt;</span> in the blockquote.<span class="p">&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    <span class="p">&lt;</span><span class="nt">h2</span><span class="p">&gt;</span>This is an H2 in a blockquote<span class="p">&lt;/</span><span class="nt">h2</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="p">&lt;/</span><span class="nt">blockquote</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Easy-to-read and easy-to-write indeed! If not before, now you should understand
 the play on words: HTML (HyperText Markup Language) is a
 <a href="https://en.wikipedia.org/wiki/Markup_language">markup language</a> and Markdown
 is a <a href="https://en.wikipedia.org/wiki/Category:Lightweight_markup_languages">Lightweight Markup Language (LML)</a>
@@ -574,39 +630,77 @@ of modern code editors include specific libraries for highlight syntaxing and
 preview of documents written in Markdown. For instance, <a href="https://atom.io/">Atom</a> includes a <a href="https://atom.io/packages/markdown-preview">markdown preview</a> as a core
 package and a quick search reveals that there are 30 packages available (query on
 May 12th 2018, Atom 1.26.1 on my Debian device):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>❯ apm search markdown                                                           <span style="color:#f92672">[</span>16:01:59<span style="color:#f92672">]</span>
-</span></span><span style="display:flex;"><span>Search Results For <span style="color:#e6db74">&#39;markdown&#39;</span> <span style="color:#f92672">(</span>30<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── pp-markdown MarkDown Preview <span style="color:#f92672">(</span><span style="color:#ae81ff">5044</span> downloads, <span style="color:#ae81ff">5</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-fold Fold sections of markdown <span style="color:#f92672">(</span><span style="color:#ae81ff">255</span> downloads, <span style="color:#ae81ff">2</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── tidy-markdown Fix ugly markdown. <span style="color:#f92672">(</span><span style="color:#ae81ff">26173</span> downloads, <span style="color:#ae81ff">76</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-folding Folds and unfolds markdown headings <span style="color:#f92672">(</span><span style="color:#ae81ff">2737</span> downloads, <span style="color:#ae81ff">14</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-helper A collection of utilities <span style="color:#66d9ef">for</span> working with Markdown files <span style="color:#f92672">(</span><span style="color:#ae81ff">489</span> downloads, <span style="color:#ae81ff">2</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-it-preview Markdown Preview that supports MarkdownIt plugins on a per-project basis. <span style="color:#f92672">(</span><span style="color:#ae81ff">274</span> downloads, <span style="color:#ae81ff">0</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── linter-markdown Lint markdown on the fly, using remark-lint <span style="color:#f92672">(</span><span style="color:#ae81ff">73781</span> downloads, <span style="color:#ae81ff">185</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-writer Make Atom a better Markdown editor and an easier static blogging tool. <span style="color:#f92672">(</span><span style="color:#ae81ff">352666</span> downloads, <span style="color:#ae81ff">530</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── tool-bar-markdown-writer A tool-bar plugin that adds Markdown editing actions <span style="color:#f92672">(</span><span style="color:#ae81ff">23599</span> downloads, <span style="color:#ae81ff">73</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-scroll-sync Auto-scroll markdown-preview tab to match markdown source <span style="color:#f92672">(</span><span style="color:#ae81ff">86563</span> downloads, <span style="color:#ae81ff">309</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-table-calc Markdown table calculations <span style="color:#f92672">(</span><span style="color:#ae81ff">21</span> downloads, <span style="color:#ae81ff">0</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-image-paste Just use <span style="color:#e6db74">&#39;ctrl+v&#39;</span> paste image into markdown <span style="color:#f92672">(</span><span style="color:#ae81ff">4510</span> downloads, <span style="color:#ae81ff">7</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-up-img You only need to paste the image to the server automatically, and generate the image link. <span style="color:#f92672">(</span><span style="color:#ae81ff">36</span> downloads, <span style="color:#ae81ff">0</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-img-paste Just use <span style="color:#e6db74">&#39;ctrl+shfit+v&#39;</span> paste image into markdown <span style="color:#f92672">(</span><span style="color:#ae81ff">4873</span> downloads, <span style="color:#ae81ff">7</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── toggle-markdown-task Toggle completion of tasks in GitHub-flavored Markdown files <span style="color:#f92672">(</span><span style="color:#ae81ff">3838</span> downloads, <span style="color:#ae81ff">25</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-pdf Convert markdown to pdf, png or jpeg on the fly. <span style="color:#f92672">(</span><span style="color:#ae81ff">157001</span> downloads, <span style="color:#ae81ff">739</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-toc Generate TOC <span style="color:#f92672">(</span>table of contents<span style="color:#f92672">)</span> of headlines from parsed markdown file <span style="color:#f92672">(</span><span style="color:#ae81ff">40706</span> downloads, <span style="color:#ae81ff">162</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── mr-markdown-pdf Convert markdown to pdf, png or jpeg on the hit of a shortcut. <span style="color:#f92672">(</span><span style="color:#ae81ff">2440</span> downloads, <span style="color:#ae81ff">3</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── atom-csv-markdown A short description of your package <span style="color:#f92672">(</span><span style="color:#ae81ff">3434</span> downloads, <span style="color:#ae81ff">26</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-document Adds tools to make working with long form markdown documents in Atom easier. <span style="color:#f92672">(</span><span style="color:#ae81ff">2925</span> downloads, <span style="color:#ae81ff">19</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-footnote Inserts a Pandoc compatible Markdown footnote. Uses a <span style="color:#e6db74">&#39;random&#39;</span> md5 hash to name footnotes <span style="color:#f92672">(</span><span style="color:#ae81ff">404</span> downloads, <span style="color:#ae81ff">1</span> star<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── language-markdown Adds grammar support <span style="color:#66d9ef">for</span> Markdown <span style="color:#f92672">(</span>including Github flavored, AtomDoc, Markdown Extra, CriticMark, YAML/TOML front-matter, and R Markdown<span style="color:#f92672">)</span>, and smart context-aware behavior to lists, and keyboard shortcuts <span style="color:#66d9ef">for</span> inline emphasis. <span style="color:#f92672">(</span><span style="color:#ae81ff">171358</span> downloads, <span style="color:#ae81ff">231</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-commander Commands <span style="color:#66d9ef">for</span> authoring Markdown, inspired by iA Writer <span style="color:#f92672">(</span><span style="color:#ae81ff">335</span> downloads, <span style="color:#ae81ff">2</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-table-editor Markdown table editor/formatter <span style="color:#f92672">(</span><span style="color:#ae81ff">19863</span> downloads, <span style="color:#ae81ff">52</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-assistant assistant <span style="color:#66d9ef">for</span> markdown writer which can upload image from clipboard <span style="color:#f92672">(</span><span style="color:#ae81ff">5436</span> downloads, <span style="color:#ae81ff">7</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-image-insertion Simple helper <span style="color:#66d9ef">for</span> inserting images into markdown documents. <span style="color:#f92672">(</span><span style="color:#ae81ff">1045</span> downloads, <span style="color:#ae81ff">3</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-tool A markdown helper tool. Such as Insert Time and Insert Pic. <span style="color:#f92672">(</span><span style="color:#ae81ff">206</span> downloads, <span style="color:#ae81ff">1</span> star<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── MDBP-markdown-book-preview Atom Package markdown preview with VivlioStyle <span style="color:#f92672">(</span><span style="color:#ae81ff">135</span> downloads, <span style="color:#ae81ff">0</span> stars<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>├── markdown-to-asciidoc An Atom plugin <span style="color:#66d9ef">for</span> converting a markdown file to asciidoc. Wraps the markdown-to-asciidoc plugin <span style="color:#66d9ef">for</span> the IntelliJ Java IDE. Uses node-java as the node.js bridge to the Java converter class. <span style="color:#f92672">(</span><span style="color:#ae81ff">597</span> downloads, <span style="color:#ae81ff">1</span> star<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>└── markdown-badges-snippets awesome markdown snippets <span style="color:#66d9ef">for</span> markdown to insert badges elegantly <span style="color:#f92672">(</span><span style="color:#ae81ff">135</span> downloads, <span style="color:#ae81ff">1</span> star<span style="color:#f92672">)</span>
-</span></span></code></pre></div><h3 id="cheat-sheets">Cheat sheets</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">❯ apm search markdown                                                           <span class="o">[</span>16:01:59<span class="o">]</span>
+</span></span><span class="line"><span class="cl">Search Results For <span class="s1">&#39;markdown&#39;</span> <span class="o">(</span>30<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── pp-markdown MarkDown Preview <span class="o">(</span><span class="m">5044</span> downloads, <span class="m">5</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-fold Fold sections of markdown <span class="o">(</span><span class="m">255</span> downloads, <span class="m">2</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── tidy-markdown Fix ugly markdown. <span class="o">(</span><span class="m">26173</span> downloads, <span class="m">76</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-folding Folds and unfolds markdown headings <span class="o">(</span><span class="m">2737</span> downloads, <span class="m">14</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-helper A collection of utilities <span class="k">for</span> working with Markdown files <span class="o">(</span><span class="m">489</span> downloads, <span class="m">2</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-it-preview Markdown Preview that supports MarkdownIt plugins on a per-project basis. <span class="o">(</span><span class="m">274</span> downloads, <span class="m">0</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── linter-markdown Lint markdown on the fly, using remark-lint <span class="o">(</span><span class="m">73781</span> downloads, <span class="m">185</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-writer Make Atom a better Markdown editor and an easier static blogging tool. <span class="o">(</span><span class="m">352666</span> downloads, <span class="m">530</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── tool-bar-markdown-writer A tool-bar plugin that adds Markdown editing actions <span class="o">(</span><span class="m">23599</span> downloads, <span class="m">73</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-scroll-sync Auto-scroll markdown-preview tab to match markdown <span class="nb">source</span> <span class="o">(</span><span class="m">86563</span> downloads, <span class="m">309</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-table-calc Markdown table calculations <span class="o">(</span><span class="m">21</span> downloads, <span class="m">0</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-image-paste Just use <span class="s1">&#39;ctrl+v&#39;</span> paste image into markdown <span class="o">(</span><span class="m">4510</span> downloads, <span class="m">7</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-up-img You only need to paste the image to the server automatically, and generate the image link. <span class="o">(</span><span class="m">36</span> downloads, <span class="m">0</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-img-paste Just use <span class="s1">&#39;ctrl+shfit+v&#39;</span> paste image into markdown <span class="o">(</span><span class="m">4873</span> downloads, <span class="m">7</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── toggle-markdown-task Toggle completion of tasks in GitHub-flavored Markdown files <span class="o">(</span><span class="m">3838</span> downloads, <span class="m">25</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-pdf Convert markdown to pdf, png or jpeg on the fly. <span class="o">(</span><span class="m">157001</span> downloads, <span class="m">739</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-toc Generate TOC <span class="o">(</span>table of contents<span class="o">)</span> of headlines from parsed markdown file <span class="o">(</span><span class="m">40706</span> downloads, <span class="m">162</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── mr-markdown-pdf Convert markdown to pdf, png or jpeg on the hit of a shortcut. <span class="o">(</span><span class="m">2440</span> downloads, <span class="m">3</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── atom-csv-markdown A short description of your package <span class="o">(</span><span class="m">3434</span> downloads, <span class="m">26</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-document Adds tools to make working with long form markdown documents in Atom easier. <span class="o">(</span><span class="m">2925</span> downloads, <span class="m">19</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-footnote Inserts a Pandoc compatible Markdown footnote. Uses a <span class="s1">&#39;random&#39;</span> md5 <span class="nb">hash</span> to name footnotes <span class="o">(</span><span class="m">404</span> downloads, <span class="m">1</span> star<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── language-markdown Adds grammar support <span class="k">for</span> Markdown <span class="o">(</span>including Github flavored, AtomDoc, Markdown Extra, CriticMark, YAML/TOML front-matter, and R Markdown<span class="o">)</span>, and smart context-aware behavior to lists, and keyboard shortcuts <span class="k">for</span> inline emphasis. <span class="o">(</span><span class="m">171358</span> downloads, <span class="m">231</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-commander Commands <span class="k">for</span> authoring Markdown, inspired by iA Writer <span class="o">(</span><span class="m">335</span> downloads, <span class="m">2</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-table-editor Markdown table editor/formatter <span class="o">(</span><span class="m">19863</span> downloads, <span class="m">52</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-assistant assistant <span class="k">for</span> markdown writer which can upload image from clipboard <span class="o">(</span><span class="m">5436</span> downloads, <span class="m">7</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-image-insertion Simple helper <span class="k">for</span> inserting images into markdown documents. <span class="o">(</span><span class="m">1045</span> downloads, <span class="m">3</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-tool A markdown helper tool. Such as Insert Time and Insert Pic. <span class="o">(</span><span class="m">206</span> downloads, <span class="m">1</span> star<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── MDBP-markdown-book-preview Atom Package markdown preview with VivlioStyle <span class="o">(</span><span class="m">135</span> downloads, <span class="m">0</span> stars<span class="o">)</span>
+</span></span><span class="line"><span class="cl">├── markdown-to-asciidoc An Atom plugin <span class="k">for</span> converting a markdown file to asciidoc. Wraps the markdown-to-asciidoc plugin <span class="k">for</span> the IntelliJ Java IDE. Uses node-java as the node.js bridge to the Java converter class. <span class="o">(</span><span class="m">597</span> downloads, <span class="m">1</span> star<span class="o">)</span>
+</span></span><span class="line"><span class="cl">└── markdown-badges-snippets awesome markdown snippets <span class="k">for</span> markdown to insert badges elegantly <span class="o">(</span><span class="m">135</span> downloads, <span class="m">1</span> star<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="cheat-sheets">Cheat sheets</h3>
 <ul>
 <li><a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet">https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet</a></li>
 <li><a href="https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf">https://guides.github.com/pdfs/markdown-cheatsheet-online.pdf</a></li>
@@ -643,15 +737,26 @@ May 12th 2018, Atom 1.26.1 on my Debian device):</p>
   
   <script src="//yihui.name/js/math-code.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-
   
   
-
 
 
   <h3 class="page-header">Comments on this post</h3>
 
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  <details>
+  <summary>Comment with Disqus</summary>
   <div id="disqus_thread"></div>
+  </details>
 
   
   
@@ -685,6 +790,7 @@ May 12th 2018, Atom 1.26.1 on my Debian device):</p>
   </noscript>
 
 
+
 </div>
 
 
@@ -704,7 +810,7 @@ May 12th 2018, Atom 1.26.1 on my Debian device):</p>
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Jul 2022 02:11 UTC.
+              Latest build: 24 Jul 2022 19:53 UTC.
               </p>
 
         </footer>

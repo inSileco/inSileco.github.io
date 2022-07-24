@@ -8,7 +8,7 @@
         <style>
 
     html body {
-        font-family: Lato, sans-serif;
+        font-family: , sans-serif;
         background-color: white;
     }
 
@@ -23,12 +23,23 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="/css/jquery.tocify.css">
 
@@ -36,15 +47,6 @@
 
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-
-
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  
 
 
@@ -70,6 +72,8 @@
   <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
   <script src="/js/jquery.tocify.min.js"></script>
+
+  <script src="/js/toclipboard.js"></script>
 
 
         <meta charset="utf-8">
@@ -316,15 +320,39 @@ user display manager you have to reconfigure a display manager package, <em>e.g.
 <p>As in my first post, I use <a href="https://smxi.org/docs/inxi.htm">inxi</a> below:</p>
 <pre tabindex="0"><code>❯ inxi -S
 </code></pre><p>Previously, the command returned:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>System:    Host: debian Kernel: 4.9.0-5-amd64 x86_64 <span style="color:#f92672">(</span><span style="color:#ae81ff">64</span> bit<span style="color:#f92672">)</span> Desktop: Gnome 3.22.3
-</span></span><span style="display:flex;"><span>           Distro: Debian GNU/Linux <span style="color:#ae81ff">9</span> <span style="color:#f92672">(</span>stretch<span style="color:#f92672">)</span>
-</span></span></code></pre></div><p>Now I get:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>System:    Host: debian Kernel: 4.15.0-3-amd64 x86_64 bits: <span style="color:#ae81ff">64</span> Desktop: Gnome 3.28.0
-</span></span><span style="display:flex;"><span>           Distro: Debian GNU/Linux buster/sid
-</span></span></code></pre></div><p>Actually, there was a recent kernel update, so currently I am on:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>System:    Host: debian Kernel: 4.16.0-1-amd64 x86_64 bits: <span style="color:#ae81ff">64</span> Desktop: Gnome 3.28.1
-</span></span><span style="display:flex;"><span>           Distro: Debian GNU/Linux buster/sid
-</span></span></code></pre></div><h3 id="new-theme-and-new-cursors-and-top-icon">New theme and new cursors and top icon</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">System:    Host: debian Kernel: 4.9.0-5-amd64 x86_64 <span class="o">(</span><span class="m">64</span> bit<span class="o">)</span> Desktop: Gnome 3.22.3
+</span></span><span class="line"><span class="cl">           Distro: Debian GNU/Linux <span class="m">9</span> <span class="o">(</span>stretch<span class="o">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now I get:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">System:    Host: debian Kernel: 4.15.0-3-amd64 x86_64 bits: <span class="m">64</span> Desktop: Gnome 3.28.0
+</span></span><span class="line"><span class="cl">           Distro: Debian GNU/Linux buster/sid
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Actually, there was a recent kernel update, so currently I am on:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">System:    Host: debian Kernel: 4.16.0-1-amd64 x86_64 bits: <span class="m">64</span> Desktop: Gnome 3.28.1
+</span></span><span class="line"><span class="cl">           Distro: Debian GNU/Linux buster/sid
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="new-theme-and-new-cursors-and-top-icon">New theme and new cursors and top icon</h3>
 <p>I keep using the same theme that I used on <a href="/post/setUps/myDebianStretch.md">my Debian Stretch setup</a> but I
 further customized it:</p>
 <ol>
@@ -408,33 +436,73 @@ list. While I am still using Firefox 52-X and am satisfied with it
 I wanted to install the last version. As
 <a href="https://wiki.debian.org/Firefox">suggested by the Debian wiki</a>, I
 first installed the package manager <a href="https://docs.snapcraft.io/snaps/">snap</a>:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>❯ snap --version
-</span></span><span style="display:flex;"><span>snap    2.32.5
-</span></span><span style="display:flex;"><span>snapd   2.32.5
-</span></span><span style="display:flex;"><span>series  <span style="color:#ae81ff">16</span>
-</span></span><span style="display:flex;"><span>debian
-</span></span><span style="display:flex;"><span>kernel  4.15.0-3-amd64
-</span></span></code></pre></div><p>and then installed Firefox via snap:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>❯ snap install firefox
-</span></span></code></pre></div><h4 id="about-r">About R</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">❯ snap --version
+</span></span><span class="line"><span class="cl">snap    2.32.5
+</span></span><span class="line"><span class="cl">snapd   2.32.5
+</span></span><span class="line"><span class="cl">series  <span class="m">16</span>
+</span></span><span class="line"><span class="cl">debian
+</span></span><span class="line"><span class="cl">kernel  4.15.0-3-amd64
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>and then installed Firefox via snap:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">❯ snap install firefox
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="about-r">About R</h4>
 <p>Being on Debian Testing means the <a href="https://backports.debian.org/">backport</a>
 I previously used was no longer required! So I dropped it! R 3.4.4 is
 the last R version available via aptitude and I am patiently waiting for 3.5.0.
 If you search about this, you&rsquo;ll find <a href="https://www.mail-archive.com/r-sig-debian@r-project.org/msg02777.html">active discussions about this migration</a>.</p>
 <h4 id="about-sage">About Sage</h4>
 <p>I used to have <a href="http://www.sagemath.org/">Sage</a> installed:</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>❯ sage -v
-</span></span><span style="display:flex;"><span>SageMath version 7.4, Release Date: 2016-10-18
-</span></span></code></pre></div><p>Unfortunately, recent versions are not available for Testing (see <a href="https://wiki.debian.org/DebianScience/Sage">Debian wiki</a>). Even though I subscribed
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">❯ sage -v
+</span></span><span class="line"><span class="cl">SageMath version 7.4, Release Date: 2016-10-18
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Unfortunately, recent versions are not available for Testing (see <a href="https://wiki.debian.org/DebianScience/Sage">Debian wiki</a>). Even though I subscribed
 to the stable repositories (sources):</p>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>❯ apt-cache policy sagemath
-</span></span><span style="display:flex;"><span>sagemath:
-</span></span><span style="display:flex;"><span>  Installed: <span style="color:#f92672">(</span>none<span style="color:#f92672">)</span>
-</span></span><span style="display:flex;"><span>  Candidate: 7.4-9
-</span></span><span style="display:flex;"><span>  Version table:
-</span></span><span style="display:flex;"><span>     7.4-9 <span style="color:#ae81ff">500</span>
-</span></span><span style="display:flex;"><span>        <span style="color:#ae81ff">500</span> http://ftp.debian.org/debian stable/main amd64 Packages
-</span></span></code></pre></div><p>I am not able to install Sage:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">❯ apt-cache policy sagemath
+</span></span><span class="line"><span class="cl">sagemath:
+</span></span><span class="line"><span class="cl">  Installed: <span class="o">(</span>none<span class="o">)</span>
+</span></span><span class="line"><span class="cl">  Candidate: 7.4-9
+</span></span><span class="line"><span class="cl">  Version table:
+</span></span><span class="line"><span class="cl">     7.4-9 <span class="m">500</span>
+</span></span><span class="line"><span class="cl">        <span class="m">500</span> http://ftp.debian.org/debian stable/main amd64 Packages
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I am not able to install Sage:</p>
 <pre tabindex="0"><code>❯ sudo apt-get install sagemath      
 Reading package lists... Done
 Building dependency tree
@@ -471,8 +539,15 @@ if I do such move.</p>
 <p>How to change the length of a screencast? I&rsquo;ve found <a href="http://antoine-schellenberger.com/linux/2014/11/03/change-default-screencast-duration-in-gnome-3.html">this answer by Antoine Schellenberger</a>:</p>
 </li>
 </ul>
-<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>❯ settings get org.gnome.settings-daemon.plugins.media-keys max-screencast-length <span style="color:#ae81ff">60</span>
-</span></span></code></pre></div><h4 id="miscellaneous">Miscellaneous</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-bash" data-lang="bash"><span class="line"><span class="cl">❯ settings get org.gnome.settings-daemon.plugins.media-keys max-screencast-length <span class="m">60</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="miscellaneous">Miscellaneous</h4>
 <ul>
 <li>I&rsquo;ve updated <a href="https://gist.github.com/KevCaz/29536740b9150383a9d543ec1be96103">my Gist <code>installDebian.sh</code></a></li>
 <li>I&rsquo;ve come across that nice screenshot tour for Debian Stretch <a href="http://www.linuxandubuntu.com/home/debian-9-complete-screenshot-tour">http://www.linuxandubuntu.com/home/debian-9-complete-screenshot-tour</a></li>
@@ -522,15 +597,26 @@ before any new transition! I&rsquo;ll keep you blogposted!</p>
   
   <script src="//yihui.name/js/math-code.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-
   
   
-
 
 
   <h3 class="page-header">Comments on this post</h3>
 
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  <details>
+  <summary>Comment with Disqus</summary>
   <div id="disqus_thread"></div>
+  </details>
 
   
   
@@ -618,6 +704,7 @@ before any new transition! I&rsquo;ll keep you blogposted!</p>
   </noscript>
 
 
+
 </div>
 
 
@@ -637,7 +724,7 @@ before any new transition! I&rsquo;ll keep you blogposted!</p>
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Jul 2022 02:11 UTC.
+              Latest build: 24 Jul 2022 19:53 UTC.
               </p>
 
         </footer>

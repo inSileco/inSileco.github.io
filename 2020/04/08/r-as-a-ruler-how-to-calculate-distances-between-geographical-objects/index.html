@@ -8,7 +8,7 @@
         <style>
 
     html body {
-        font-family: Lato, sans-serif;
+        font-family: , sans-serif;
         background-color: white;
     }
 
@@ -23,12 +23,23 @@
 <link rel="stylesheet" href="/css/main.css">
 
 
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+
+
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
 
   <link rel="stylesheet" href="/css/jquery.tocify.css">
 
@@ -36,15 +47,6 @@
 
   <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
-
-
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
-
-
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
-
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
  
 
 
@@ -70,6 +72,8 @@
   <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
 
   <script src="/js/jquery.tocify.min.js"></script>
+
+  <script src="/js/toclipboard.js"></script>
 
 
         <meta charset="utf-8">
@@ -431,10 +435,7 @@ kable(dist3_df)</code></pre>
 <div style="padding: 2rem 0rem 2rem 0rem;">
 <details>
 <summary>
-<h4>
-<i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
-<i class="fa fa-cogs" aria-hidden="true"></i>
-</h4>
+Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </summary>
 <pre class="r"><code>sessionInfo()
 #R&gt;  R version 4.2.0 (2022-04-22)
@@ -455,28 +456,28 @@ kable(dist3_df)</code></pre>
 #R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     
 #R&gt;  
 #R&gt;  other attached packages:
-#R&gt;  [1] gdistance_1.3-6        Matrix_1.4-1           igraph_1.3.2          
-#R&gt;  [4] raster_3.5-21          sp_1.5-0               sf_1.0-7              
+#R&gt;  [1] gdistance_1.3-6        Matrix_1.4-1           igraph_1.3.4          
+#R&gt;  [4] raster_3.5-21          sp_1.5-0               sf_1.0-8              
 #R&gt;  [7] knitr_1.39             inSilecoRef_0.0.1.9000
 #R&gt;  
 #R&gt;  loaded via a namespace (and not attached):
-#R&gt;   [1] Rcpp_1.0.8.3       lubridate_1.8.0    lattice_0.20-45    class_7.3-20      
+#R&gt;   [1] Rcpp_1.0.9         lubridate_1.8.0    lattice_0.20-45    class_7.3-20      
 #R&gt;   [5] assertthat_0.2.1   digest_0.6.29      utf8_1.2.2         mime_0.12         
 #R&gt;   [9] R6_2.5.1           plyr_1.8.7         evaluate_0.15      e1071_1.7-11      
-#R&gt;  [13] httr_1.4.3         highr_0.9          blogdown_1.10      pillar_1.7.0      
-#R&gt;  [17] rlang_1.0.3        curl_4.3.2         miniUI_0.1.1.1     jquerylib_0.1.4   
+#R&gt;  [13] highr_0.9          httr_1.4.3         blogdown_1.10      pillar_1.8.0      
+#R&gt;  [17] rlang_1.0.4        curl_4.3.2         miniUI_0.1.1.1     jquerylib_0.1.4   
 #R&gt;  [21] DT_0.23            rmarkdown_2.14     RefManageR_1.3.0   rcrossref_1.1.0   
-#R&gt;  [25] stringr_1.4.0      htmlwidgets_1.5.4  proxy_0.4-27       shiny_1.7.1       
+#R&gt;  [25] stringr_1.4.0      htmlwidgets_1.5.4  proxy_0.4-27       shiny_1.7.2       
 #R&gt;  [29] compiler_4.2.0     httpuv_1.6.5       xfun_0.31          pkgconfig_2.0.3   
-#R&gt;  [33] htmltools_0.5.2    tidyselect_1.1.2   tibble_3.1.7       httpcode_0.3.0    
-#R&gt;  [37] bookdown_0.27      codetools_0.2-18   fansi_1.0.3        crayon_1.5.1      
-#R&gt;  [41] dplyr_1.0.9        later_1.3.0        crul_1.2.0         grid_4.2.0        
-#R&gt;  [45] jsonlite_1.8.0     xtable_1.8-4       lifecycle_1.0.1    DBI_1.1.3         
-#R&gt;  [49] magrittr_2.0.3     units_0.8-0        KernSmooth_2.23-20 cli_3.3.0         
-#R&gt;  [53] stringi_1.7.6      promises_1.2.0.1   xml2_1.3.3         bslib_0.3.1       
+#R&gt;  [33] htmltools_0.5.3    tidyselect_1.1.2   tibble_3.1.7       httpcode_0.3.0    
+#R&gt;  [37] bookdown_0.27      codetools_0.2-18   fansi_1.0.3        dplyr_1.0.9       
+#R&gt;  [41] later_1.3.0        crul_1.2.0         grid_4.2.0         jsonlite_1.8.0    
+#R&gt;  [45] xtable_1.8-4       lifecycle_1.0.1    DBI_1.1.3          magrittr_2.0.3    
+#R&gt;  [49] units_0.8-0        KernSmooth_2.23-20 cli_3.3.0          stringi_1.7.8     
+#R&gt;  [53] cachem_1.0.6       promises_1.2.0.1   xml2_1.3.3         bslib_0.4.0       
 #R&gt;  [57] ellipsis_0.3.2     generics_0.1.3     vctrs_0.4.1        tools_4.2.0       
 #R&gt;  [61] glue_1.6.2         purrr_0.3.4        fastmap_1.1.0      yaml_2.3.5        
-#R&gt;  [65] terra_1.5-34       classInt_0.4-7     sass_0.4.1</code></pre>
+#R&gt;  [65] terra_1.5-34       classInt_0.4-7     sass_0.4.2</code></pre>
 </details>
 </div>
 </div>
@@ -510,15 +511,26 @@ kable(dist3_df)</code></pre>
   
   <script src="//yihui.name/js/math-code.js"></script>
   <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
-
   
   
-
 
 
   <h3 class="page-header">Comments on this post</h3>
 
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  <details>
+  <summary>Comment with Disqus</summary>
   <div id="disqus_thread"></div>
+  </details>
 
   
   
@@ -606,6 +618,7 @@ kable(dist3_df)</code></pre>
   </noscript>
 
 
+
 </div>
 
 
@@ -625,7 +638,7 @@ kable(dist3_df)</code></pre>
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Jul 2022 02:11 UTC.
+              Latest build: 24 Jul 2022 19:53 UTC.
               </p>
 
         </footer>
