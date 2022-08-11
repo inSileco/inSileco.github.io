@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en-us">
-    <head>
-        
 
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+    <head>
+
         <title>Trick or Tips 002 {R}</title>
-        
+
         <style>
 
     html body {
@@ -28,7 +26,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
 
 
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.6.0/styles/github.min.css"> 
+ <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -37,67 +35,85 @@
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
-
   <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
 
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
+  <link rel="stylesheet" href="/css/jquery.tocify.css">
+
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
  
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
     
+
     <script>hljs.initHighlightingOnLoad();</script>
 
 
 
- <script src="https://insileco.github.io/js/sidebar-post.js"></script> 
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.101.0" />
-        
 
-        
-            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
-            <script>
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments)};
-              gtag('js', new Date());
-              gtag('config', 'UA-109508556-1');
-            </script>
-        
+  <script src="/js/jquery-1.8.3.min.js"></script>
 
-        
-            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        
+  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
+
+  <script src="/js/jquery.tocify.min.js"></script>
+
+  <script src="/js/toclipboard.js"></script>
+
+
+        <meta charset="utf-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
         
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', 'UA-109508556-1');
+        </script>
+        
+
 
     </head>
 
     <body>
-        
 
         <nav class="navbar navbar-default navbar-fixed-top">
+
             <div class="container">
+
                 <div class="navbar-header">
+
                     <a class="navbar-brand visible-xs" href="#">Trick or Tips 002 {R}</a>
+
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
+
                 </div>
+
                 <div class="collapse navbar-collapse">
+
                     
                         <ul class="nav navbar-nav">
                             
@@ -115,19 +131,23 @@
                             
                         </ul>
                     
+
                     
                         <ul class="nav navbar-nav navbar-right">
                             
-                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="github"></i></a></li>
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="twitter"></i></a></li>
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="rss"></i></a></li>
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
                             
                         </ul>
                     
+
                 </div>
+
             </div>
+
         </nav>
 
 
@@ -136,71 +156,68 @@
 
 <div>
 
+  <div class="col-md-3">
+      <div class="hidden-sm hidden-xs">
+        <div class="sticky-top">
+          <div id="toc"></div>
+
+        </div>
+    </div>
+  </div>
 
 
+  <div class="col-md-8">
 
-    <div class="col-md-8">
+    <h1><a href="/2017/11/12/trick-or-tips-002-r/">Trick or Tips 002 {R}</a></h1>
 
-        <div class="post-content">
+    <h4>November 12, 2017</h4>
 
-            <h1><a href="/2017/11/12/trick-or-tips-002-r/">Trick or Tips 002 {R}</a></h1>
+    <p>
+      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> 
+      <br>
+      
+       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/base"><kbd class="item-tag2">base</kbd></a>  <a href="/rpkgs/utils"><kbd class="item-tag2">utils</kbd></a>  <a href="/rpkgs/graphics"><kbd class="item-tag2">graphics</kbd></a>  <a href="/rpkgs/magrittr"><kbd class="item-tag2">magrittr</kbd></a>  <a href="/rpkgs/raster"><kbd class="item-tag2">raster</kbd></a>  <a href="/rpkgs/knitr"><kbd class="item-tag2">knitr</kbd></a> 
+      
+    </p>
 
-            <h4>November 12, 2017</h4>
+    
+      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+       
+        <a href="/about/">Kevin Cazelles</a> &nbsp;
+      
+     <a href="#"></a></p>
+    
 
-            <p>
-                <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a
-                    href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a
-                    href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a
-                    href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> 
-                <br>
-                
-                <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/base"><kbd class="item-tag2">base</kbd></a>  <a href="/rpkgs/utils"><kbd class="item-tag2">utils</kbd></a>  <a href="/rpkgs/graphics"><kbd class="item-tag2">graphics</kbd></a>  <a href="/rpkgs/magrittr"><kbd class="item-tag2">magrittr</kbd></a>  <a href="/rpkgs/raster"><kbd class="item-tag2">raster</kbd></a>  <a href="/rpkgs/knitr"><kbd class="item-tag2">knitr</kbd></a> 
-                
-            </p>
+    
 
-            
-            <p style="font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
-                 
-                <a href="/about/">Kevin Cazelles</a> &nbsp;
-                
-                <a href="#"></a>
-            </p>
-            
-
-            
-
-            <p>
-                
-                
-                
-                <img
-                    src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=6min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
-                
-                
-                 &nbsp;
-                        
-                        
-                                <a href="https://creativecommons.org/licenses/by/4.0/">
-                                    <img
-                                        src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
-                                </a>
-                                 &nbsp;
-                                
-                                 &nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2017%2f11%2f12%2ftrick-or-tips-002-r%2f&text=Second%20post%20of%20the%20%27Trick%20or%20Tips%27%20series"
-                                            target="_blank">
-                                            <img
-                                                src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2017%2f11%2f12%2ftrick-or-tips-002-r%2f?link=http://left&link=http://right}'>
-                                        </a>
-            </p>
+    <p>
+    
+    
+    
+      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=6min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+    
+    
+     &nbsp;
+    
+    
+      <a href = "https://creativecommons.org/licenses/by/4.0/">
+      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+      </a>
+     &nbsp;
+    
+     &nbsp;
+    &nbsp;&nbsp;&nbsp;&nbsp;
+    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2017%2f11%2f12%2ftrick-or-tips-002-r%2f&text=Second%20post%20of%20the%20%27Trick%20or%20Tips%27%20series" target="_blank">
+      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2017%2f11%2f12%2ftrick-or-tips-002-r%2f?link=http://left&link=http://right}'>
+    </a>
+  </p>
 
 
-            <br>
+    <br>
 
-            <div class="text-justify">
+    <div class="text-justify">
 
-                
+      
 
 
 <h3>Trick or Tips?</h3>
@@ -247,22 +264,22 @@ columns:</p>
   var3 = runif(10)
 )
 head(df)
-#R&gt;         var1       var2       var3
-#R&gt;  1 0.7874547 0.69902829 0.34633160
-#R&gt;  2 0.7818143 0.36035046 0.02972991
-#R&gt;  3 0.8052535 0.66582874 0.59591666
-#R&gt;  4 0.1512165 0.63661194 0.95037977
-#R&gt;  5 0.3532827 0.20175535 0.87770533
-#R&gt;  6 0.9876721 0.03434494 0.54817927</code></pre>
+#R&gt;          var1        var2      var3
+#R&gt;  1 0.38415038 0.469376795 0.6843080
+#R&gt;  2 0.71274658 0.004282068 0.7537454
+#R&gt;  3 0.35698593 0.490208822 0.4761205
+#R&gt;  4 0.69750576 0.481677177 0.4431851
+#R&gt;  5 0.63669879 0.236383034 0.7709975
+#R&gt;  6 0.04564714 0.467735443 0.4109610</code></pre>
 <p>To extract the first column, I use the <code>[]</code> operator and either type the number
 of the column like so:</p>
 <pre class="r"><code>df[, 1]
-#R&gt;   [1] 0.78745471 0.78181434 0.80525346 0.15121652 0.35328272 0.98767212
-#R&gt;   [7] 0.09417885 0.19547620 0.31453777 0.48506661</code></pre>
+#R&gt;   [1] 0.38415038 0.71274658 0.35698593 0.69750576 0.63669879 0.04564714
+#R&gt;   [7] 0.11909492 0.09593290 0.02030859 0.33933555</code></pre>
 <p>or the name of the column to be extracted:</p>
 <pre class="r"><code>df[, &#39;var1&#39;]
-#R&gt;   [1] 0.78745471 0.78181434 0.80525346 0.15121652 0.35328272 0.98767212
-#R&gt;   [7] 0.09417885 0.19547620 0.31453777 0.48506661</code></pre>
+#R&gt;   [1] 0.38415038 0.71274658 0.35698593 0.69750576 0.63669879 0.04564714
+#R&gt;   [7] 0.11909492 0.09593290 0.02030859 0.33933555</code></pre>
 <p>Interestingly enough, this returns a <strong>vector</strong>, not a data.frame</p>
 <pre class="r"><code>class(df)
 #R&gt;  [1] &quot;data.frame&quot;
@@ -281,16 +298,16 @@ a work around. By default it is set to <code>TRUE</code> and a 1-column data fra
 a vector, but using <code>drop = FALSE</code> prevents this from happening. Let’s try this:</p>
 <pre class="r"><code>df[, 1, drop = FALSE]
 #R&gt;           var1
-#R&gt;  1  0.78745471
-#R&gt;  2  0.78181434
-#R&gt;  3  0.80525346
-#R&gt;  4  0.15121652
-#R&gt;  5  0.35328272
-#R&gt;  6  0.98767212
-#R&gt;  7  0.09417885
-#R&gt;  8  0.19547620
-#R&gt;  9  0.31453777
-#R&gt;  10 0.48506661</code></pre>
+#R&gt;  1  0.38415038
+#R&gt;  2  0.71274658
+#R&gt;  3  0.35698593
+#R&gt;  4  0.69750576
+#R&gt;  5  0.63669879
+#R&gt;  6  0.04564714
+#R&gt;  7  0.11909492
+#R&gt;  8  0.09593290
+#R&gt;  9  0.02030859
+#R&gt;  10 0.33933555</code></pre>
 <p>Let’s check its class:</p>
 <pre class="r"><code>class(df[, 1, drop = FALSE])
 #R&gt;  [1] &quot;data.frame&quot;</code></pre>
@@ -299,23 +316,23 @@ number without comma (a data frame is a list of vector which have the
 same size, so you can basically subset the list!).</p>
 <pre class="r"><code>df[1]
 #R&gt;           var1
-#R&gt;  1  0.78745471
-#R&gt;  2  0.78181434
-#R&gt;  3  0.80525346
-#R&gt;  4  0.15121652
-#R&gt;  5  0.35328272
-#R&gt;  6  0.98767212
-#R&gt;  7  0.09417885
-#R&gt;  8  0.19547620
-#R&gt;  9  0.31453777
-#R&gt;  10 0.48506661</code></pre>
+#R&gt;  1  0.38415038
+#R&gt;  2  0.71274658
+#R&gt;  3  0.35698593
+#R&gt;  4  0.69750576
+#R&gt;  5  0.63669879
+#R&gt;  6  0.04564714
+#R&gt;  7  0.11909492
+#R&gt;  8  0.09593290
+#R&gt;  9  0.02030859
+#R&gt;  10 0.33933555</code></pre>
 <p>But if you need a specific selection of rows, you better use <code>drop</code>!</p>
 <pre class="r"><code>df[2:5, 1, drop = FALSE]
 #R&gt;         var1
-#R&gt;  2 0.7818143
-#R&gt;  3 0.8052535
-#R&gt;  4 0.1512165
-#R&gt;  5 0.3532827</code></pre>
+#R&gt;  2 0.7127466
+#R&gt;  3 0.3569859
+#R&gt;  4 0.6975058
+#R&gt;  5 0.6366988</code></pre>
 <p>Now you know ;-)</p>
 <p><br></p>
 </div>
@@ -398,17 +415,17 @@ df &lt;- data.frame(
   var2 = runif(10)
   )
 extract(df, &#39;var1&#39;)
-#R&gt;            var1
-#R&gt;  1  0.662351630
-#R&gt;  2  0.765791068
-#R&gt;  3  0.380011284
-#R&gt;  4  0.657756845
-#R&gt;  5  0.522833386
-#R&gt;  6  0.434545445
-#R&gt;  7  0.757629673
-#R&gt;  8  0.003383741
-#R&gt;  9  0.144094189
-#R&gt;  10 0.598648025</code></pre>
+#R&gt;           var1
+#R&gt;  1  0.93525961
+#R&gt;  2  0.12734247
+#R&gt;  3  0.61917560
+#R&gt;  4  0.03730752
+#R&gt;  5  0.88298368
+#R&gt;  6  0.54541852
+#R&gt;  7  0.41611751
+#R&gt;  8  0.22321845
+#R&gt;  9  0.36293787
+#R&gt;  10 0.96485479</code></pre>
 <p>Here I use the function <code>extract()</code> from the <code>magrittr</code> package that act as <code>[]</code>
 and I extract the column <code>var1</code> from <code>df</code>. This function is actually designed
 to be use with pipes (if this sounds weird, have a look at the
@@ -430,17 +447,17 @@ specific package, functions have different names and on CRAN packages must have
 different names, so the combination of the two is unique (this holds true if you
 only package from the CRAN). Let’s use it:</p>
 <pre class="r"><code>magrittr::extract(df, &#39;var1&#39;)
-#R&gt;            var1
-#R&gt;  1  0.662351630
-#R&gt;  2  0.765791068
-#R&gt;  3  0.380011284
-#R&gt;  4  0.657756845
-#R&gt;  5  0.522833386
-#R&gt;  6  0.434545445
-#R&gt;  7  0.757629673
-#R&gt;  8  0.003383741
-#R&gt;  9  0.144094189
-#R&gt;  10 0.598648025</code></pre>
+#R&gt;           var1
+#R&gt;  1  0.93525961
+#R&gt;  2  0.12734247
+#R&gt;  3  0.61917560
+#R&gt;  4  0.03730752
+#R&gt;  5  0.88298368
+#R&gt;  6  0.54541852
+#R&gt;  7  0.41611751
+#R&gt;  8  0.22321845
+#R&gt;  9  0.36293787
+#R&gt;  10 0.96485479</code></pre>
 <p>Using this is also very helpful when you develop a package and functions from
 different packages. Even if you script and use a large number
 of function from various packages, it could be better to remember
@@ -520,7 +537,7 @@ plot(vec, main = &#39;las=2&#39;)</code></pre>
 Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </summary>
 <pre class="r"><code>sessionInfo()
-#R&gt;  R version 4.2.0 (2022-04-22)
+#R&gt;  R version 4.2.1 (2022-06-23)
 #R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)
 #R&gt;  Running under: Ubuntu 20.04.4 LTS
 #R&gt;  
@@ -542,7 +559,7 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 #R&gt;  [4] inSilecoRef_0.0.1.9000
 #R&gt;  
 #R&gt;  loaded via a namespace (and not attached):
-#R&gt;   [1] terra_1.5-34      tidyselect_1.1.2  xfun_0.31         bslib_0.4.0      
+#R&gt;   [1] terra_1.6-7       tidyselect_1.1.2  xfun_0.31         bslib_0.4.0      
 #R&gt;   [5] purrr_0.3.4       lattice_0.20-45   vctrs_0.4.1       generics_0.1.3   
 #R&gt;   [9] miniUI_0.1.1.1    htmltools_0.5.3   yaml_2.3.5        utf8_1.2.2       
 #R&gt;  [13] rlang_1.0.4       later_1.3.0       pillar_1.8.0      jquerylib_0.1.4  
@@ -550,45 +567,43 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 #R&gt;  [21] plyr_1.8.7        stringr_1.4.0     blogdown_1.10     htmlwidgets_1.5.4
 #R&gt;  [25] codetools_0.2-18  evaluate_0.15     knitr_1.39        fastmap_1.1.0    
 #R&gt;  [29] httpuv_1.6.5      curl_4.3.2        fansi_1.0.3       highr_0.9        
-#R&gt;  [33] Rcpp_1.0.9        xtable_1.8-4      promises_1.2.0.1  DT_0.23          
+#R&gt;  [33] Rcpp_1.0.9        xtable_1.8-4      promises_1.2.0.1  DT_0.24          
 #R&gt;  [37] cachem_1.0.6      jsonlite_1.8.0    rcrossref_1.1.0   systemfonts_1.0.4
 #R&gt;  [41] mime_0.12         digest_0.6.29     stringi_1.7.8     bookdown_0.27    
-#R&gt;  [45] dplyr_1.0.9       shiny_1.7.2       grid_4.2.0        cli_3.3.0        
-#R&gt;  [49] tools_4.2.0       sass_0.4.2        tibble_3.1.7      RefManageR_1.3.0 
+#R&gt;  [45] dplyr_1.0.9       shiny_1.7.2       grid_4.2.1        cli_3.3.0        
+#R&gt;  [49] tools_4.2.1       sass_0.4.2        tibble_3.1.8      RefManageR_1.3.0 
 #R&gt;  [53] crul_1.2.0        pkgconfig_2.0.3   ellipsis_0.3.2    xml2_1.3.3       
 #R&gt;  [57] lubridate_1.8.0   svglite_2.1.0     assertthat_0.2.1  rmarkdown_2.14   
-#R&gt;  [61] httr_1.4.3        R6_2.5.1          compiler_4.2.0</code></pre>
+#R&gt;  [61] httr_1.4.3        R6_2.5.1          compiler_4.2.1</code></pre>
 </details>
 </div>
 </div>
 
 
-                <div class="text-justify">
-                    
-                    <div class="edits">
-                        <h4><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h4>
-                        <p style="font-size: 1.5rem">
-                            
-                            <i class="fa fa-pencil" aria-hidden="true"></i> Apr 23, 2022 -- Fix typos. <br>
-                            
-                            <i class="fa fa-pencil" aria-hidden="true"></i> May 24, 2022 -- Add session info section. <br>
-                            
-                        </p>
-                    </div>
-                    
+      <div class="text-justify">
+        
+          <div class="edits">
+            <h4><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h4>
+            <p style="font-size: 1.5rem">
+              
+              <i class="fa fa-pencil" aria-hidden="true"></i> Apr 23, 2022 -- Fix typos. <br>
+              
+              <i class="fa fa-pencil" aria-hidden="true"></i> May 24, 2022 -- Add session info section. <br>
+              
+            </p>
+          </div>
+        
 
-                </div>
-
-            </div>
+      </div>
 
 
-            
+    
 
-            </center>
+    </center>
 
-        </div>
+    </div>
 
-          <br>
+      <br>
 
   
   <script>
@@ -715,15 +730,14 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </div>
 
 
-    </div>
+</div>
 
-            <footer>
+        <footer>
 
           <script src="//yihui.name/js/math-code.js"></script>
           <script async
             src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
           </script>
-
 
             <hr>
             <p class="copyright text-muted" style="font-size: 1.6rem;">
@@ -732,7 +746,7 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 24 Jul 2022 23:59 UTC.
+              Latest build: 11 Aug 2022 02:04 UTC.
               </p>
 
         </footer>
@@ -740,3 +754,4 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
     </body>
 
 </html>
+
