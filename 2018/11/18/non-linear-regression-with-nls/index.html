@@ -275,13 +275,13 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl">  <span class="n">sim</span> <span class="o">=</span> <span class="n">Tinf</span> <span class="o">-</span> <span class="p">(</span><span class="n">Tinf</span><span class="o">-</span> <span class="n">T0</span><span class="p">)</span> <span class="o">*</span> <span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span> <span class="o">*</span> <span class="n">seqt</span><span class="p">)</span> <span class="o">+</span> <span class="m">.5</span> <span class="o">*</span> <span class="nf">rnorm</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">seqt</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">%&gt;%</span> <span class="n">as.data.frame</span>
 </span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">simdata</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    seqt      sim</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.00 10.30327</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.25 10.25316</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.50 10.71475</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.75 11.85912</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 1.00 11.48143</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 1.25 13.34843</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    seqt       sim</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.00 10.491749</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.25  9.646344</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.50 11.254264</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.75 11.332634</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 1.00 11.217111</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 1.25 12.404924</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="use-nls">Use <code>nls()</code></h2>
@@ -314,11 +314,11 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    model: sim ~ Tinf - (Tinf - 10) * exp(-k * seqt)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     data: simdata</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     Tinf       k </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  19.9889  0.2019 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   residual sum-of-squares: 53.01</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  19.9788  0.2046 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   residual sum-of-squares: 49.54</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Number of iterations to convergence: 9 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Achieved convergence tolerance: 6.137e-06</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Number of iterations to convergence: 8 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Achieved convergence tolerance: 3.835e-06</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Let&rsquo;s draw a quick plot:</p>
@@ -387,7 +387,7 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.2.1 (2022-06-23)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 20.04.4 LTS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 20.04.5 LTS</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Matrix products: default</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0</span>
@@ -406,20 +406,20 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] magrittr_2.0.3         inSilecoRef_0.0.1.9000</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] tidyselect_1.1.2  xfun_0.31         bslib_0.4.0       purrr_0.3.4      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] tidyselect_1.1.2  xfun_0.32         bslib_0.4.0       purrr_0.3.4      </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] vctrs_0.4.1       generics_0.1.3    miniUI_0.1.1.1    htmltools_0.5.3  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] yaml_2.3.5        utf8_1.2.2        rlang_1.0.4       later_1.3.0      </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] pillar_1.8.0      jquerylib_0.1.4   httpcode_0.3.0    glue_1.6.2       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [17] DBI_1.1.3         lifecycle_1.0.1   plyr_1.8.7        stringr_1.4.0    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] blogdown_1.10     htmlwidgets_1.5.4 evaluate_0.15     knitr_1.39       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] fastmap_1.1.0     httpuv_1.6.5      curl_4.3.2        fansi_1.0.3      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] yaml_2.3.5        utf8_1.2.2        rlang_1.0.5       later_1.3.0      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] pillar_1.8.1      jquerylib_0.1.4   httpcode_0.3.0    glue_1.6.2       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [17] DBI_1.1.3         lifecycle_1.0.1   plyr_1.8.7        stringr_1.4.1    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] blogdown_1.11     htmlwidgets_1.5.4 evaluate_0.16     knitr_1.40       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] fastmap_1.1.0     httpuv_1.6.6      curl_4.3.2        fansi_1.0.3      </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] highr_0.9         Rcpp_1.0.9        xtable_1.8-4      promises_1.2.0.1 </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] DT_0.24           cachem_1.0.6      jsonlite_1.8.0    rcrossref_1.1.0  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] mime_0.12         digest_0.6.29     stringi_1.7.8     bookdown_0.27    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] dplyr_1.0.9       shiny_1.7.2       cli_3.3.0         tools_4.2.1      </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [45] sass_0.4.2        tibble_3.1.8      RefManageR_1.3.0  crul_1.2.0       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] mime_0.12         digest_0.6.29     stringi_1.7.8     bookdown_0.28    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] dplyr_1.0.10      shiny_1.7.2       cli_3.4.0         tools_4.2.1      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [45] sass_0.4.2        tibble_3.1.8      RefManageR_1.3.0  crul_1.3         </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] pkgconfig_2.0.3   ellipsis_0.3.2    xml2_1.3.3        lubridate_1.8.0  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [53] assertthat_0.2.1  rmarkdown_2.14    httr_1.4.3        R6_2.5.1         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [53] assertthat_0.2.1  rmarkdown_2.16    httr_1.4.4        R6_2.5.1         </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [57] compiler_4.2.1</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -582,7 +582,7 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Aug 2022 02:04 UTC.
+              Latest build: 11 Sep 2022 02:37 UTC.
               </p>
 
         </footer>
