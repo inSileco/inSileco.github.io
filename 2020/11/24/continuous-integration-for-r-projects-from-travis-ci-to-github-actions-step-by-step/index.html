@@ -257,7 +257,7 @@ What matters here, is what was Travis CI doing for me. The screenshot below
 shows the different jobs I set (described in
 <a href="https://github.com/inSileco/inSilecoMisc/blob/38724e2e9710fb35d87fe1b69aaae8fe4e8cdeff/.travis.yml">.travis.yml</a>).</p>
 <div class="figure">
-<img src="on_travis.png" alt="&gt;&lt;" style="width:90.0%" />
+<img src="on_travis.png" style="width:90.0%" alt="&gt;&lt;" />
 <p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshot of the inSilecoMisc project page on <a href="https://travis-ci.org/">travis-ci.org</a>.</p>
 </div>
 <p>Travis was set to check <code>inSilecoMisc</code> on macOS and Linux (Ubuntu Bionic and Focal), for different versions of R (oldrel, rel and devel). The last job, checked the package on Ubuntu Focal, uploaded <a href="https://CRAN.R-project.org/package=covr"><code>covr</code></a> results to
@@ -268,7 +268,7 @@ shows the different jobs I set (described in
 <p>The first step was to stop using Travis CI. To do so, I first needed to go on
 <a href="https://travis-ci.org" class="uri">https://travis-ci.org</a> and turn off the jobs described above, so I looked for <code>inSilecoMisc</code> in my list of projects and switched it off (see screenshot below).</p>
 <div class="figure">
-<img src="switch_off.png" alt="&gt;&lt;" style="width:90.0%" />
+<img src="switch_off.png" style="width:90.0%" alt="&gt;&lt;" />
 <p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshots of <code>inSilecoMisc</code>’s status on <a href="https://travis-ci.org" class="uri">https://travis-ci.org</a> (left: on/before, right: off/after).</p>
 </div>
 <p>Then, as I was using a <a href="https://developer.github.com/v3/guides/managing-deploy-keys/">deploy
@@ -279,7 +279,7 @@ fa-git" aria-hidden="true"></i> repository I removed <code>.travis.yaml</code> (
 <a href="https://gist.github.com/KevCaz/622c92cc1f7b00e66f078418882ad407">gist</a>. Once
 this was done, I committed my changes and pushed!</p>
 <div class="figure">
-<img src="ciao.png" alt="&gt;&lt;" style="width:90.0%" />
+<img src="ciao.png" style="width:90.0%" alt="&gt;&lt;" />
 <p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshot of <code>inSileco</code>’s home page (commit <a href="https://github.com/inSileco/inSilecoMisc/commit/500d5ef332a407e48037ce422a9a14e7c4634fe7"><code>500d5ef</code></a>).</p>
 </div>
 </div>
@@ -307,12 +307,12 @@ that I’ve simplified a bit (I use only 4 combinations OS / R versions) and ext
 <h2>Code coverage</h2>
 <p>To use <a href="chttps://codecov.io/">CodeCov</a> with Actions, a token is required. So, I clicked on the <code>Settings</code> tab of the <code>inSilecoMisc</code> page and copied the upload token:</p>
 <div class="figure">
-<img src="codecov.png" alt="&gt;&lt;" style="width:90.0%" />
+<img src="codecov.png" style="width:90.0%" alt="&gt;&lt;" />
 <p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshot of the CodeCov settings page of <code>inSilecoMisc</code>.</p>
 </div>
 <p>Then I created a new secret <code>CODECOV_TOKEN</code> on <code>inSileco</code>’s GitHub repository and I pasted the token.</p>
 <div class="figure">
-<img src="token_codecov.png" alt="&gt;&lt;" style="width:90.0%" />
+<img src="token_codecov.png" style="width:90.0%" alt="&gt;&lt;" />
 <p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshot of the Secret tab of the setting of the GitHub <code>inSilecoMisc</code> repository.</p>
 </div>
 <p>I chose <code>CODECOV_TOKEN</code> because it’s pretty clear, but the name does not matter as long as the same variable name is used in <a href="https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml">R-CMD-check.yaml</a>. Below is the code bloc in the workflow that handles code coverage:</p>
@@ -369,12 +369,12 @@ On my Debian machine, I used the following command line in my terminal:</p>
 <pre class="sh"><code>$ ssh-keygen -t rsa -b 4096 -C &quot;$(git config user.email)&quot; -f gh-pages</code></pre>
 <p>Then I set the public key as a deploy key</p>
 <div class="figure">
-<img src="deploy_key.png" alt="&gt;&lt;" style="width:80.0%" />
+<img src="deploy_key.png" style="width:80.0%" alt="&gt;&lt;" />
 <p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshot of the deploy key setting.</p>
 </div>
 <p>and the private one as a secret.</p>
 <div class="figure">
-<img src="private.png" alt="&gt;&lt;" style="width:80.0%" />
+<img src="private.png" style="width:80.0%" alt="&gt;&lt;" />
 <p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshot of the secret <code>ACTIONS_DEPLOY_KEY</code>.</p>
 </div>
 <p>Again, I chose <code>ACTIONS_DEPLOY_KEY</code> for its clarity, but the name does not
@@ -396,12 +396,12 @@ the default is <code>gh-pages</code> and I already had a branch <code>gh-pages</
 <h3>via a personal access token</h3>
 <p>The second option is to <a href="https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token">create and use a personal access token</a> (this is the solution I opted for in the end).</p>
 <div class="figure">
-<img src="perso_token.png" alt="&gt;&lt;" style="width:90.0%" />
+<img src="perso_token.png" style="width:90.0%" alt="&gt;&lt;" />
 <p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshot of the page to generate the personal token.</p>
 </div>
 <p>And then set this token as a secret for the repository.</p>
 <div class="figure">
-<img src="pat_secret.png" alt="&gt;&lt;" style="width:90.0%" />
+<img src="pat_secret.png" style="width:90.0%" alt="&gt;&lt;" />
 <p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshot of the secret <code>PERSO_TOKEN</code>.</p>
 </div>
 <p>Once the secret is set, the variable name should be passed as <code>github_token</code> (instead of <code>deploy_key</code>), like so:</p>
@@ -524,7 +524,7 @@ jobs:
 <p>Hope this could be of help 😄!</p>
 <p><br/></p>
 </div>
-<div class="footnotes">
+<div class="footnotes footnotes-end-of-document">
 <hr />
 <ol>
 <li id="fn1"><p>see <a href="https://kevcaz.github.io/notes/ci/githubactions/">my first post about GitHub Actions</a> on my personal blog.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
@@ -643,7 +643,7 @@ jobs:
               Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
                 <a href="https://gohugo.io">Hugo</a>
                 and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Oct 2022 02:31 UTC.
+              Latest build: 11 Nov 2022 02:12 UTC.
               </p>
 
         </footer>
