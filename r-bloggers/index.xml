@@ -784,11 +784,11 @@ a function similar to the one below:</p>
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.2.2 (2022-10-31)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 20.04.5 LTS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.1 LTS</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Matrix products: default</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  locale:</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       </span>
@@ -803,18 +803,18 @@ a function similar to the one below:</p>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoRef_0.0.1.9000</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] tidyselect_1.2.0  xfun_0.34         bslib_0.4.1       vctrs_0.5.0      </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] generics_0.1.3    miniUI_0.1.1.1    htmltools_0.5.3   yaml_2.3.6       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] tidyselect_1.2.0  xfun_0.35         bslib_0.4.1       vctrs_0.5.1      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] generics_0.1.3    miniUI_0.1.1.1    htmltools_0.5.4   yaml_2.3.6       </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] utf8_1.2.2        rlang_1.0.6       later_1.3.0       pillar_1.8.1     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] jquerylib_0.1.4   httpcode_0.3.0    glue_1.6.2        DBI_1.1.3        </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [17] lifecycle_1.0.3   plyr_1.8.7        stringr_1.4.1     blogdown_1.15    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] htmlwidgets_1.5.4 evaluate_0.18     knitr_1.40        fastmap_1.1.0    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [17] lifecycle_1.0.3   plyr_1.8.8        stringr_1.5.0     blogdown_1.15    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] htmlwidgets_1.5.4 evaluate_0.18     knitr_1.41        fastmap_1.1.0    </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] httpuv_1.6.6      curl_4.3.3        fansi_1.0.3       highr_0.9        </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] Rcpp_1.0.9        xtable_1.8-4      promises_1.2.0.1  backports_1.4.1  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] DT_0.26           cachem_1.0.6      jsonlite_1.8.3    rcrossref_1.1.0  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] mime_0.12         digest_0.6.30     stringi_1.7.8     bookdown_0.29    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] DT_0.26           cachem_1.0.6      jsonlite_1.8.4    rcrossref_1.2.0  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] mime_0.12         digest_0.6.30     stringi_1.7.8     bookdown_0.30    </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] dplyr_1.0.10      shiny_1.7.3       bibtex_0.5.0      cli_3.4.1        </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [45] tools_4.2.2       magrittr_2.0.3    sass_0.4.2        tibble_3.1.8     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [45] tools_4.2.2       magrittr_2.0.3    sass_0.4.4        tibble_3.1.8     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] RefManageR_1.4.0  crul_1.3          pkgconfig_2.0.3   ellipsis_0.3.2   </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [53] xml2_1.3.3        timechange_0.1.1  lubridate_1.9.0   assertthat_0.2.1 </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [57] rmarkdown_2.18    httr_1.4.4        R6_2.5.1          compiler_4.2.2</span>
@@ -885,18 +885,16 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">val</span> <span class="o">&lt;-</span> <span class="nf">runif</span><span class="p">(</span><span class="m">40</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">val</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1]  0.6572801  0.3368725 88.0699687 70.3776212 73.8595218 40.1987241</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] 71.8725136 98.9294085 88.5421568 25.3313828 80.9981881 10.8221661</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] 25.7551437 62.4548497 80.5312162 66.9596667  5.7084527  6.7909596</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19]  2.2896509 66.2384023 43.1612158 19.7575658 97.8899666 18.0774212</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] 89.1466727 91.4667521  6.9856331 97.0638072  3.8016021 74.6112335</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] 27.1762666 80.0442226 86.5462217  0.4096298 48.9437571 64.2817274</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] 10.2523881 39.1197954 48.7246107 49.9212258</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 86.392180 26.933686 39.130026 44.555717 46.096277 38.784155 23.139646</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [8] 54.421141 22.658730 82.744601 98.238363 54.314766 66.876253 48.648104</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [15] 76.447031 72.286251 41.122192 25.517201 40.532535  1.227411 44.382758</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] 12.442990 67.572657  9.281949 55.801186 27.684030 41.461390 58.911818</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] 81.594840 30.979049 57.597138 73.352640 38.201233 51.114658 71.874858</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36]  7.328215 26.145596 64.981073 28.886274 45.177209</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
@@ -921,8 +919,8 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1]  1  1 25 25 25  7 25 25 25  1 25  1  1 21 25 24  1  1  1 23  9  1 25  1 25</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] 25  1 25  1 25  1 25 25  1 12 22  1  6 12 13</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 25  1  6 10 11  6  1 16  1 25 25 16 24 12 25 25  7  1  7  1  9  1 24  1 17</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26]  1  8 19 25  1 18 25  6 14 25  1  1 22  1 10</span>
 </span></span><span class="line"><span class="cl"><span class="n">graphicsutils</span><span class="o">::</span><span class="nf">showPalette</span><span class="p">(</span><span class="n">pal</span><span class="nf">[scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">add_codecolor</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1204,11 +1202,11 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.2.2 (2022-10-31)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 20.04.5 LTS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.1 LTS</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Matrix products: default</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  locale:</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       </span>
@@ -1223,22 +1221,22 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoMisc_0.7.0.9000 inSilecoRef_0.0.1.9000 </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] tidyselect_1.2.0         xfun_0.34                bslib_0.4.1             </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [4] vctrs_0.5.0              generics_0.1.3           miniUI_0.1.1.1          </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] htmltools_0.5.3          yaml_2.3.6               utf8_1.2.2              </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] tidyselect_1.2.0         xfun_0.35                bslib_0.4.1             </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [4] vctrs_0.5.1              generics_0.1.3           miniUI_0.1.1.1          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] htmltools_0.5.4          yaml_2.3.6               utf8_1.2.2              </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] rlang_1.0.6              later_1.3.0              pillar_1.8.1            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] jquerylib_0.1.4          httpcode_0.3.0           glue_1.6.2              </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] DBI_1.1.3                lifecycle_1.0.3          plyr_1.8.7              </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] stringr_1.4.1            blogdown_1.15            htmlwidgets_1.5.4       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] evaluate_0.18            knitr_1.40               fastmap_1.1.0           </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] DBI_1.1.3                lifecycle_1.0.3          plyr_1.8.8              </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] stringr_1.5.0            blogdown_1.15            htmlwidgets_1.5.4       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] evaluate_0.18            knitr_1.41               fastmap_1.1.0           </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] httpuv_1.6.6             curl_4.3.3               fansi_1.0.3             </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] highr_0.9                Rcpp_1.0.9               xtable_1.8-4            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] promises_1.2.0.1         backports_1.4.1          DT_0.26                 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [34] cachem_1.0.6             jsonlite_1.8.3           rcrossref_1.1.0         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [34] cachem_1.0.6             jsonlite_1.8.4           rcrossref_1.2.0         </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] mime_0.12                digest_0.6.30            stringi_1.7.8           </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [40] bookdown_0.29            dplyr_1.0.10             shiny_1.7.3             </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [40] bookdown_0.30            dplyr_1.0.10             shiny_1.7.3             </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [43] bibtex_0.5.0             cli_3.4.1                tools_4.2.2             </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] graphicsutils_1.6.0.9000 magrittr_2.0.3           sass_0.4.2              </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] graphicsutils_1.6.0.9000 magrittr_2.0.3           sass_0.4.4              </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] tibble_3.1.8             RefManageR_1.4.0         crul_1.3                </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [52] crayon_1.5.2             pkgconfig_2.0.3          ellipsis_0.3.2          </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [55] xml2_1.3.3               timechange_0.1.1         lubridate_1.9.0         </span>
@@ -1755,11 +1753,11 @@ this topic (for instance
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.2.2 (2022-10-31)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 20.04.5 LTS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.1 LTS</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Matrix products: default</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  locale:</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       </span>
@@ -1774,18 +1772,18 @@ this topic (for instance
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoMisc_0.7.0.9000 inSilecoRef_0.0.1.9000 </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] tidyselect_1.2.0  xfun_0.34         bslib_0.4.1       vctrs_0.5.0      </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] generics_0.1.3    miniUI_0.1.1.1    htmltools_0.5.3   yaml_2.3.6       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] tidyselect_1.2.0  xfun_0.35         bslib_0.4.1       vctrs_0.5.1      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] generics_0.1.3    miniUI_0.1.1.1    htmltools_0.5.4   yaml_2.3.6       </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] utf8_1.2.2        rlang_1.0.6       later_1.3.0       pillar_1.8.1     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] jquerylib_0.1.4   httpcode_0.3.0    glue_1.6.2        DBI_1.1.3        </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [17] lifecycle_1.0.3   plyr_1.8.7        stringr_1.4.1     blogdown_1.15    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] htmlwidgets_1.5.4 evaluate_0.18     knitr_1.40        fastmap_1.1.0    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [17] lifecycle_1.0.3   plyr_1.8.8        stringr_1.5.0     blogdown_1.15    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] htmlwidgets_1.5.4 evaluate_0.18     knitr_1.41        fastmap_1.1.0    </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] httpuv_1.6.6      curl_4.3.3        fansi_1.0.3       Rcpp_1.0.9       </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] xtable_1.8-4      promises_1.2.0.1  backports_1.4.1   DT_0.26          </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] cachem_1.0.6      jsonlite_1.8.3    rcrossref_1.1.0   mime_0.12        </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] digest_0.6.30     stringi_1.7.8     bookdown_0.29     dplyr_1.0.10     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] cachem_1.0.6      jsonlite_1.8.4    rcrossref_1.2.0   mime_0.12        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] digest_0.6.30     stringi_1.7.8     bookdown_0.30     dplyr_1.0.10     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] shiny_1.7.3       bibtex_0.5.0      cli_3.4.1         tools_4.2.2      </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [45] magrittr_2.0.3    sass_0.4.2        tibble_3.1.8      RefManageR_1.4.0 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [45] magrittr_2.0.3    sass_0.4.4        tibble_3.1.8      RefManageR_1.4.0 </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] crul_1.3          crayon_1.5.2      pkgconfig_2.0.3   ellipsis_0.3.2   </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [53] xml2_1.3.3        timechange_0.1.1  lubridate_1.9.0   assertthat_0.2.1 </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [57] rmarkdown_2.18    httr_1.4.4        R6_2.5.1          compiler_4.2.2</span>
@@ -1985,44 +1983,44 @@ df8
 )
 lsdf
 #R&gt;  [[1]]
-#R&gt;    E I F C G
-#R&gt;  1 e i f c g
-#R&gt;  2 e i f c g
-#R&gt;  3 e i f c g
-#R&gt;  4 e i f c g
-#R&gt;  5 e i f c g
+#R&gt;    E A G I J
+#R&gt;  1 e a g i j
+#R&gt;  2 e a g i j
+#R&gt;  3 e a g i j
+#R&gt;  4 e a g i j
+#R&gt;  5 e a g i j
 #R&gt;  
 #R&gt;  [[2]]
-#R&gt;    I A H C D
-#R&gt;  1 i a h c d
-#R&gt;  2 i a h c d
-#R&gt;  3 i a h c d
-#R&gt;  4 i a h c d
-#R&gt;  5 i a h c d
+#R&gt;    F J A E C
+#R&gt;  1 f j a e c
+#R&gt;  2 f j a e c
+#R&gt;  3 f j a e c
+#R&gt;  4 f j a e c
+#R&gt;  5 f j a e c
 #R&gt;  
 #R&gt;  [[3]]
-#R&gt;    H G E B J
-#R&gt;  1 h g e b j
-#R&gt;  2 h g e b j
-#R&gt;  3 h g e b j
-#R&gt;  4 h g e b j
-#R&gt;  5 h g e b j
+#R&gt;    H C A G D
+#R&gt;  1 h c a g d
+#R&gt;  2 h c a g d
+#R&gt;  3 h c a g d
+#R&gt;  4 h c a g d
+#R&gt;  5 h c a g d
 #R&gt;  
 #R&gt;  [[4]]
-#R&gt;    J C E B A
-#R&gt;  1 j c e b a
-#R&gt;  2 j c e b a
-#R&gt;  3 j c e b a
-#R&gt;  4 j c e b a
-#R&gt;  5 j c e b a
+#R&gt;    J D G F E
+#R&gt;  1 j d g f e
+#R&gt;  2 j d g f e
+#R&gt;  3 j d g f e
+#R&gt;  4 j d g f e
+#R&gt;  5 j d g f e
 #R&gt;  
 #R&gt;  [[5]]
-#R&gt;    G A C E J
-#R&gt;  1 g a c e j
-#R&gt;  2 g a c e j
-#R&gt;  3 g a c e j
-#R&gt;  4 g a c e j
-#R&gt;  5 g a c e j</code></pre>
+#R&gt;    I C F H J
+#R&gt;  1 i c f h j
+#R&gt;  2 i c f h j
+#R&gt;  3 i c f h j
+#R&gt;  4 i c f h j
+#R&gt;  5 i c f h j</code></pre>
 <p>So the goal here is to create a data frame that contains only the five first
 columns, i.e. A, B, C, D, E, the remaining columns must be discarded and
 when one selected column is missing, it must be added (filled out with <code>NA</code>).
@@ -2030,72 +2028,72 @@ To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
 <pre class="r"><code>lsdf2 &lt;- lapply(lsdf, dfTemplateMatch, LETTERS[1:5], yonly = TRUE)
 lsdf2
 #R&gt;  [[1]]
-#R&gt;    E C  A  B  D
-#R&gt;  1 e c NA NA NA
-#R&gt;  2 e c NA NA NA
-#R&gt;  3 e c NA NA NA
-#R&gt;  4 e c NA NA NA
-#R&gt;  5 e c NA NA NA
+#R&gt;    E A  B  C  D
+#R&gt;  1 e a NA NA NA
+#R&gt;  2 e a NA NA NA
+#R&gt;  3 e a NA NA NA
+#R&gt;  4 e a NA NA NA
+#R&gt;  5 e a NA NA NA
 #R&gt;  
 #R&gt;  [[2]]
-#R&gt;    A C D  B  E
-#R&gt;  1 a c d NA NA
-#R&gt;  2 a c d NA NA
-#R&gt;  3 a c d NA NA
-#R&gt;  4 a c d NA NA
-#R&gt;  5 a c d NA NA
+#R&gt;    A E C  B  D
+#R&gt;  1 a e c NA NA
+#R&gt;  2 a e c NA NA
+#R&gt;  3 a e c NA NA
+#R&gt;  4 a e c NA NA
+#R&gt;  5 a e c NA NA
 #R&gt;  
 #R&gt;  [[3]]
-#R&gt;    E B  A  C  D
-#R&gt;  1 e b NA NA NA
-#R&gt;  2 e b NA NA NA
-#R&gt;  3 e b NA NA NA
-#R&gt;  4 e b NA NA NA
-#R&gt;  5 e b NA NA NA
+#R&gt;    C A D  B  E
+#R&gt;  1 c a d NA NA
+#R&gt;  2 c a d NA NA
+#R&gt;  3 c a d NA NA
+#R&gt;  4 c a d NA NA
+#R&gt;  5 c a d NA NA
 #R&gt;  
 #R&gt;  [[4]]
-#R&gt;    C E B A  D
-#R&gt;  1 c e b a NA
-#R&gt;  2 c e b a NA
-#R&gt;  3 c e b a NA
-#R&gt;  4 c e b a NA
-#R&gt;  5 c e b a NA
+#R&gt;    D E  A  B  C
+#R&gt;  1 d e NA NA NA
+#R&gt;  2 d e NA NA NA
+#R&gt;  3 d e NA NA NA
+#R&gt;  4 d e NA NA NA
+#R&gt;  5 d e NA NA NA
 #R&gt;  
 #R&gt;  [[5]]
-#R&gt;    A C E  B  D
-#R&gt;  1 a c e NA NA
-#R&gt;  2 a c e NA NA
-#R&gt;  3 a c e NA NA
-#R&gt;  4 a c e NA NA
-#R&gt;  5 a c e NA NA</code></pre>
+#R&gt;    C  A  B  D  E
+#R&gt;  1 c NA NA NA NA
+#R&gt;  2 c NA NA NA NA
+#R&gt;  3 c NA NA NA NA
+#R&gt;  4 c NA NA NA NA
+#R&gt;  5 c NA NA NA NA</code></pre>
 <p>And now I can seamlessly <code>rbind()</code> the list <code>lsdf2</code>!</p>
 <pre class="r"><code>do.call(rbind, lsdf2)
-#R&gt;        E    C    A    B    D
-#R&gt;  1     e    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#R&gt;  2     e    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#R&gt;  3     e    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#R&gt;  4     e    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#R&gt;  5     e    c &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;
-#R&gt;  6  &lt;NA&gt;    c    a &lt;NA&gt;    d
-#R&gt;  7  &lt;NA&gt;    c    a &lt;NA&gt;    d
-#R&gt;  8  &lt;NA&gt;    c    a &lt;NA&gt;    d
-#R&gt;  9  &lt;NA&gt;    c    a &lt;NA&gt;    d
-#R&gt;  10 &lt;NA&gt;    c    a &lt;NA&gt;    d
-#R&gt;  11    e &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
-#R&gt;  12    e &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
-#R&gt;  13    e &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
-#R&gt;  14    e &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
-#R&gt;  15    e &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;
-#R&gt;  16    e    c    a    b &lt;NA&gt;
-#R&gt;  17    e    c    a    b &lt;NA&gt;
-#R&gt;  18    e    c    a    b &lt;NA&gt;
-#R&gt;  19    e    c    a    b &lt;NA&gt;
-#R&gt;  20    e    c    a    b &lt;NA&gt;
-#R&gt;  21    e    c    a &lt;NA&gt; &lt;NA&gt;
-#R&gt;  22    e    c    a &lt;NA&gt; &lt;NA&gt;
-#R&gt;  23    e    c    a &lt;NA&gt; &lt;NA&gt;
-#R&gt;  24    e    c    a &lt;NA&gt; &lt;NA&gt;
-#R&gt;  25    e    c    a &lt;NA&gt; &lt;NA&gt;</code></pre>
+#R&gt;        E    A  B    C    D
+#R&gt;  1     e    a NA &lt;NA&gt; &lt;NA&gt;
+#R&gt;  2     e    a NA &lt;NA&gt; &lt;NA&gt;
+#R&gt;  3     e    a NA &lt;NA&gt; &lt;NA&gt;
+#R&gt;  4     e    a NA &lt;NA&gt; &lt;NA&gt;
+#R&gt;  5     e    a NA &lt;NA&gt; &lt;NA&gt;
+#R&gt;  6     e    a NA    c &lt;NA&gt;
+#R&gt;  7     e    a NA    c &lt;NA&gt;
+#R&gt;  8     e    a NA    c &lt;NA&gt;
+#R&gt;  9     e    a NA    c &lt;NA&gt;
+#R&gt;  10    e    a NA    c &lt;NA&gt;
+#R&gt;  11 &lt;NA&gt;    a NA    c    d
+#R&gt;  12 &lt;NA&gt;    a NA    c    d
+#R&gt;  13 &lt;NA&gt;    a NA    c    d
+#R&gt;  14 &lt;NA&gt;    a NA    c    d
+#R&gt;  15 &lt;NA&gt;    a NA    c    d
+#R&gt;  16    e &lt;NA&gt; NA &lt;NA&gt;    d
+#R&gt;  17    e &lt;NA&gt; NA &lt;NA&gt;    d
+#R&gt;  18    e &lt;NA&gt; NA &lt;NA&gt;    d
+#R&gt;  19    e &lt;NA&gt; NA &lt;NA&gt;    d
+#R&gt;  20    e &lt;NA&gt; NA &lt;NA&gt;    d
+#R&gt;  21 &lt;NA&gt; &lt;NA&gt; NA    c &lt;NA&gt;
+#R&gt;  22 &lt;NA&gt; &lt;NA&gt; NA    c &lt;NA&gt;
+#R&gt;  23 &lt;NA&gt; &lt;NA&gt; NA    c &lt;NA&gt;
+#R&gt;  24 &lt;NA&gt; &lt;NA&gt; NA    c &lt;NA&gt;
+#R&gt;  25 &lt;NA&gt; &lt;NA&gt; NA    c &lt;NA&gt;</code></pre>
 <div id="voilà-this-is-what-i-call-a-flexible-rbind-i-hope-youll-find-this-helpful-boom" class="section level4">
 <h4>Voilà! This is what I call a <em>flexible</em> <code>rbind</code>! I hope you’ll find this helpful! 💥</h4>
 <div style="padding: 2rem 0rem 2rem 0rem;">
@@ -2106,11 +2104,11 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 <pre class="r"><code>sessionInfo()
 #R&gt;  R version 4.2.2 (2022-10-31)
 #R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)
-#R&gt;  Running under: Ubuntu 20.04.5 LTS
+#R&gt;  Running under: Ubuntu 22.04.1 LTS
 #R&gt;  
 #R&gt;  Matrix products: default
-#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.9.0
-#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.9.0
+#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
+#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so
 #R&gt;  
 #R&gt;  locale:
 #R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
@@ -2125,18 +2123,18 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 #R&gt;  [1] inSilecoMisc_0.7.0.9000 inSilecoRef_0.0.1.9000 
 #R&gt;  
 #R&gt;  loaded via a namespace (and not attached):
-#R&gt;   [1] tidyselect_1.2.0  xfun_0.34         bslib_0.4.1       vctrs_0.5.0      
-#R&gt;   [5] generics_0.1.3    miniUI_0.1.1.1    htmltools_0.5.3   yaml_2.3.6       
+#R&gt;   [1] tidyselect_1.2.0  xfun_0.35         bslib_0.4.1       vctrs_0.5.1      
+#R&gt;   [5] generics_0.1.3    miniUI_0.1.1.1    htmltools_0.5.4   yaml_2.3.6       
 #R&gt;   [9] utf8_1.2.2        rlang_1.0.6       later_1.3.0       pillar_1.8.1     
 #R&gt;  [13] jquerylib_0.1.4   httpcode_0.3.0    glue_1.6.2        DBI_1.1.3        
-#R&gt;  [17] lifecycle_1.0.3   plyr_1.8.7        stringr_1.4.1     blogdown_1.15    
-#R&gt;  [21] htmlwidgets_1.5.4 evaluate_0.18     knitr_1.40        fastmap_1.1.0    
+#R&gt;  [17] lifecycle_1.0.3   plyr_1.8.8        stringr_1.5.0     blogdown_1.15    
+#R&gt;  [21] htmlwidgets_1.5.4 evaluate_0.18     knitr_1.41        fastmap_1.1.0    
 #R&gt;  [25] httpuv_1.6.6      curl_4.3.3        fansi_1.0.3       Rcpp_1.0.9       
 #R&gt;  [29] xtable_1.8-4      promises_1.2.0.1  backports_1.4.1   DT_0.26          
-#R&gt;  [33] cachem_1.0.6      jsonlite_1.8.3    rcrossref_1.1.0   mime_0.12        
-#R&gt;  [37] digest_0.6.30     stringi_1.7.8     bookdown_0.29     dplyr_1.0.10     
+#R&gt;  [33] cachem_1.0.6      jsonlite_1.8.4    rcrossref_1.2.0   mime_0.12        
+#R&gt;  [37] digest_0.6.30     stringi_1.7.8     bookdown_0.30     dplyr_1.0.10     
 #R&gt;  [41] shiny_1.7.3       bibtex_0.5.0      cli_3.4.1         tools_4.2.2      
-#R&gt;  [45] magrittr_2.0.3    sass_0.4.2        tibble_3.1.8      RefManageR_1.4.0 
+#R&gt;  [45] magrittr_2.0.3    sass_0.4.4        tibble_3.1.8      RefManageR_1.4.0 
 #R&gt;  [49] crul_1.3          crayon_1.5.2      pkgconfig_2.0.3   ellipsis_0.3.2   
 #R&gt;  [53] xml2_1.3.3        timechange_0.1.1  lubridate_1.9.0   assertthat_0.2.1 
 #R&gt;  [57] rmarkdown_2.18    httr_1.4.4        R6_2.5.1          compiler_4.2.2</code></pre>
