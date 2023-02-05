@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
     <head>
+        
 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>inSilecoMisc 0.4.0 (part 2/2)</title>
-
+        
         <style>
 
     html body {
@@ -26,7 +28,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
 
 
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -35,85 +37,63 @@
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="/css/jquery.tocify.css">
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
-
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
  
 
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-    
-
-    <script>hljs.initHighlightingOnLoad();</script>
 
 
 
 
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
-
-  <script src="/js/jquery-1.8.3.min.js"></script>
-
-  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
-
-  <script src="/js/jquery.tocify.min.js"></script>
-
-  <script src="/js/toclipboard.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-        <meta charset="utf-8">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        
-        
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments)};
-          gtag('js', new Date());
-          gtag('config', 'UA-109508556-1');
-        </script>
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.110.0">
         
 
+        
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments)};
+              gtag('js', new Date());
+              gtag('config', 'UA-109508556-1');
+            </script>
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
 
     </head>
 
     <body>
+        
 
         <nav class="navbar navbar-default navbar-fixed-top">
-
             <div class="container">
-
                 <div class="navbar-header">
-
                     <a class="navbar-brand visible-xs" href="#">inSilecoMisc 0.4.0 (part 2/2)</a>
-
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
                 </div>
-
                 <div class="collapse navbar-collapse">
-
                     
                         <ul class="nav navbar-nav">
                             
@@ -131,23 +111,19 @@
                             
                         </ul>
                     
-
                     
                         <ul class="nav navbar-nav navbar-right">
                             
-                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="github"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="twitter"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="rss"></i></a></li>
                             
                         </ul>
                     
-
                 </div>
-
             </div>
-
         </nav>
 
 
@@ -156,76 +132,100 @@
 
 <div>
 
-  <div class="col-md-3">
-      <div class="hidden-sm hidden-xs">
-        <div class="sticky-top">
-          <div id="toc"></div>
-
-        </div>
-    </div>
-  </div>
+    <div class="col-md-3">
+        <h1><a href="#"><i class='fa fa-chevron-up'></i></a></h1>
 
 
-  <div class="col-md-8">
+    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#scalewithin">scaleWithin()</a></li>
+    <li><a href="#messages">Messages</a></li>
+    <li><a href="#tbldown">tblDown()</a></li>
+  </ol>
+</nav>
 
-    <h1><a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a></h1>
 
-    <h4>April 21, 2020</h4>
-
-    <p>
-      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> 
-      <br>
-      
-    </p>
-
-    
-      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
-       
-        <a href="/about/">Kevin Cazelles</a> &nbsp;
-      
-     <a href="#"></a></p>
-    
-
-    
-      <p> <i class="fa fa-check-square" aria-hidden="true", title="Reviewer(s)"></i>
-       
-      <a href="/about/">David Beauchesne</a> &nbsp;
-      
-      <a href="#"></a></p>
-    
-
-    <p>
-    
-    
-    
-      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=7min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
-    
-    
-    
-      <a href="http://www.R-bloggers.com">
-      <img src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
-      <a>
-     &nbsp;
-    
-    
-      <a href = "https://creativecommons.org/licenses/by/4.0/">
-      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
-      </a>
-     &nbsp;
-    
-     &nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f21%2finsilecomisc-0.4.0-part-2%2f2%2f&text=inSilecoMisc%200.4.0%20%28part%202%2f2%29" target="_blank">
-      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f21%2finsilecomisc-0.4.0-part-2%2f2%2f?link=http://left&link=http://right}'>
+<h1>
+    <a href="#bottom">
+        <i class='fa fa-chevron-down'></i>
     </a>
-  </p>
+</h1>
+    </div>
 
 
-    <br>
+    <div class="col-md-8">
 
-    <div class="text-justify">
+        <div class="post-content">
 
-      <p>In the <a href="/2020/04/05/insilecomisc-0.4.0-part-1/2/">first part of this post</a> I
+            <h1><a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a></h1>
+
+            <h4>April 21, 2020</h4>
+
+            <p>
+                <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                    href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a
+                    href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a
+                    href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a
+                    href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> 
+                <br>
+                
+            </p>
+
+            
+            <p style="font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+                 
+                <a href="/about/">Kevin Cazelles</a> &nbsp;
+                
+                <a href="#"></a>
+            </p>
+            
+
+            
+            <p> <i class="fa fa-check-square" aria-hidden="true" , title="Reviewer(s)"></i>
+                 
+                <a href="/about/">David Beauchesne</a> &nbsp;
+                
+                <a href="#"></a>
+            </p>
+            
+
+            <p>
+                
+                
+                
+                <img
+                    src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=7min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                
+                
+                
+                <a href="http://www.R-bloggers.com">
+                    <img
+                        src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
+                    <a>
+                         &nbsp;
+                        
+                        
+                                <a href="https://creativecommons.org/licenses/by/4.0/">
+                                    <img
+                                        src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                                </a>
+                                 &nbsp;
+                                
+                                 &nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f21%2finsilecomisc-0.4.0-part-2%2f2%2f&text=inSilecoMisc%200.4.0%20%28part%202%2f2%29"
+                                            target="_blank">
+                                            <img
+                                                src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f21%2finsilecomisc-0.4.0-part-2%2f2%2f?link=http://left&link=http://right}'>
+                                        </a>
+            </p>
+
+
+            <br>
+
+            <div id="post-content-body" class="text-justify">
+
+                <p>In the <a href="/2020/04/05/insilecomisc-0.4.0-part-1/2/">first part of this post</a> I
 introduced several functions available in the package <a href="https://github.com/inSileco/inSilecoMisc"><code>inSilecoMisc</code></a>. In this post, I keep on introducing features of the package you
 might find useful! If you did not read the first part of this post and are
 interested in reproducing the examples below, simply install <code>inSilecoMisc</code>:</p>
@@ -271,12 +271,12 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">val</span> <span class="o">&lt;-</span> <span class="nf">runif</span><span class="p">(</span><span class="m">40</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">val</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 86.392180 26.933686 39.130026 44.555717 46.096277 38.784155 23.139646</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [8] 54.421141 22.658730 82.744601 98.238363 54.314766 66.876253 48.648104</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [15] 76.447031 72.286251 41.122192 25.517201 40.532535  1.227411 44.382758</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] 12.442990 67.572657  9.281949 55.801186 27.684030 41.461390 58.911818</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] 81.594840 30.979049 57.597138 73.352640 38.201233 51.114658 71.874858</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36]  7.328215 26.145596 64.981073 28.886274 45.177209</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 57.096785 26.119360 18.091430 83.447854 99.007122 36.052533 50.570413</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [8] 81.651232 27.179711 79.865602 23.438940 38.019506 51.206376 85.956913</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [15] 21.152023 65.281722 18.647665 37.328834 71.992278 39.611686 47.328314</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] 68.166457 59.750781 59.327941 84.632656 70.795190 57.745018 38.304133</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] 43.690154 32.932453  3.481631 45.733805 39.056389 22.056301 84.649947</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] 72.520683 96.724711 18.602644 97.362761 88.706978</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
@@ -301,8 +301,8 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 25  1  6 10 11  6  1 16  1 25 25 16 24 12 25 25  7  1  7  1  9  1 24  1 17</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26]  1  8 19 25  1 18 25  6 14 25  1  1 22  1 10</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 17  1  1 25 25  4 13 25  1 25  1  6 14 25  1 23  1  5 25  7 11 24 19 19 25</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] 25 18  6  9  2  1 10  6  1 25 25 25  1 25 25</span>
 </span></span><span class="line"><span class="cl"><span class="n">graphicsutils</span><span class="o">::</span><span class="nf">showPalette</span><span class="p">(</span><span class="n">pal</span><span class="nf">[scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">add_codecolor</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -578,7 +578,6 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </span><span class="lnt">40
 </span><span class="lnt">41
 </span><span class="lnt">42
-</span><span class="lnt">43
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
@@ -603,57 +602,46 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoMisc_0.7.0.9000 inSilecoRef_0.0.1.9000 </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] tidyselect_1.2.0         xfun_0.35                bslib_0.4.1             </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [4] vctrs_0.5.1              generics_0.1.3           miniUI_0.1.1.1          </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] htmltools_0.5.4          yaml_2.3.6               utf8_1.2.2              </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] tidyselect_1.2.0         xfun_0.37                bslib_0.4.2             </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [4] vctrs_0.5.2              generics_0.1.3           miniUI_0.1.1.1          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] htmltools_0.5.4          yaml_2.3.7               utf8_1.2.3              </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] rlang_1.0.6              later_1.3.0              pillar_1.8.1            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] jquerylib_0.1.4          httpcode_0.3.0           glue_1.6.2              </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] DBI_1.1.3                lifecycle_1.0.3          plyr_1.8.8              </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] stringr_1.5.0            blogdown_1.15            htmlwidgets_1.5.4       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] evaluate_0.18            knitr_1.41               fastmap_1.1.0           </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] httpuv_1.6.6             curl_4.3.3               fansi_1.0.3             </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] highr_0.9                Rcpp_1.0.9               xtable_1.8-4            </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] promises_1.2.0.1         backports_1.4.1          DT_0.26                 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [34] cachem_1.0.6             jsonlite_1.8.4           rcrossref_1.2.0         </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] mime_0.12                digest_0.6.30            stringi_1.7.8           </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [40] bookdown_0.30            dplyr_1.0.10             shiny_1.7.3             </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [43] bibtex_0.5.0             cli_3.4.1                tools_4.2.2             </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] graphicsutils_1.6.0.9000 magrittr_2.0.3           sass_0.4.4              </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] tibble_3.1.8             RefManageR_1.4.0         crul_1.3                </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [52] crayon_1.5.2             pkgconfig_2.0.3          ellipsis_0.3.2          </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [55] xml2_1.3.3               timechange_0.1.1         lubridate_1.9.0         </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [58] assertthat_0.2.1         rmarkdown_2.18           httr_1.4.4              </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [61] R6_2.5.1                 compiler_4.2.2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] lifecycle_1.0.3          plyr_1.8.8               stringr_1.5.0           </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] blogdown_1.16            htmlwidgets_1.6.1        evaluate_0.20           </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] knitr_1.42               fastmap_1.1.0            httpuv_1.6.8            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] curl_5.0.0               fansi_1.0.4              highr_0.10              </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] Rcpp_1.0.10              xtable_1.8-4             promises_1.2.0.1        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] backports_1.4.1          DT_0.27                  cachem_1.0.6            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [34] jsonlite_1.8.4           rcrossref_1.2.0          mime_0.12               </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] digest_0.6.31            stringi_1.7.12           bookdown_0.32           </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [40] dplyr_1.1.0              shiny_1.7.4              bibtex_0.5.1            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [43] cli_3.6.0                tools_4.2.2              magrittr_2.0.3          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] sass_0.4.5               graphicsutils_1.6.0.9000 tibble_3.1.8            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] RefManageR_1.4.0         crul_1.3                 crayon_1.5.2            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [52] pkgconfig_2.0.3          ellipsis_0.3.2           xml2_1.3.3              </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [55] timechange_0.2.0         lubridate_1.9.1          rmarkdown_2.20          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [58] httr_1.4.4               R6_2.5.1                 compiler_4.2.2</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
 </div>
 
 
-      <div class="text-justify">
-        
-
-      </div>
+                    
 
 
-    
+            </div>
 
-    </center>
 
-    </div>
+            
 
-      <br>
+            </center>
 
-  
-  <script>
-    var $jq = jQuery.noConflict();
-      $jq(function() {
-          var toc = $jq("#toc").tocify({
-            selectors: "h2, h3",
-            scrollTo: 50
-          }).data("toc-tocify");
-    });
-  </script>
+        </div>
+
+          <br>
+
 
   
   <script src="//yihui.name/js/math-code.js"></script>
@@ -661,6 +649,8 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
   
   
 
+
+  <script src="/js/sidebar-post.js"></script>
 
   <h3 class="page-header">Comments on this post</h3>
 
@@ -769,28 +759,36 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </div>
 
 
-</div>
+    </div>
 
-        <footer>
+    <footer>
 
-          <script src="//yihui.name/js/math-code.js"></script>
-          <script async
-            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-          </script>
+  <div class="col-md-3">
 
-            <hr>
-            <p class="copyright text-muted" style="font-size: 1.6rem;">
-              &copy; 2017-2022 inSileco |
-              All rights reserved |
-              Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
-                <a href="https://gohugo.io">Hugo</a>
-                and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Dec 2022 01:46 UTC.
-              </p>
+    <a href="#" id="bottom"></a>
 
-        </footer>
+  </div>
 
-    </body>
+  <div class="col-md-8">
+
+    <script src="//yihui.name/js/math-code.js"></script>
+    <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <hr>
+    <p class="copyright text-muted" style="font-size: 1.6rem;">
+      &copy; 2017-2023 inSileco |
+      Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+      <a href="https://gohugo.io">Hugo</a>
+      and <a href="https://github.com/calintat/minimal">Minimal</a> |
+      Latest build: 05 February 2023 00:32 UTC.
+    </p>
+
+  </div>
+
+
+</footer>
+
+</body>
 
 </html>
-

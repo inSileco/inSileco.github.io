@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
     <head>
+        
 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Creating empty data frames with dfTemplate() and dfTemplateMatch()</title>
-
+        
         <style>
 
     html body {
@@ -26,7 +28,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
 
 
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -35,85 +37,63 @@
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="/css/jquery.tocify.css">
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
-
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
  
 
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-    
-
-    <script>hljs.initHighlightingOnLoad();</script>
 
 
 
 
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
-
-  <script src="/js/jquery-1.8.3.min.js"></script>
-
-  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
-
-  <script src="/js/jquery.tocify.min.js"></script>
-
-  <script src="/js/toclipboard.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-        <meta charset="utf-8">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        
-        
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments)};
-          gtag('js', new Date());
-          gtag('config', 'UA-109508556-1');
-        </script>
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.110.0">
         
 
+        
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments)};
+              gtag('js', new Date());
+              gtag('config', 'UA-109508556-1');
+            </script>
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
 
     </head>
 
     <body>
+        
 
         <nav class="navbar navbar-default navbar-fixed-top">
-
             <div class="container">
-
                 <div class="navbar-header">
-
                     <a class="navbar-brand visible-xs" href="#">Creating empty data frames with dfTemplate() and dfTemplateMatch()</a>
-
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
                 </div>
-
                 <div class="collapse navbar-collapse">
-
                     
                         <ul class="nav navbar-nav">
                             
@@ -131,23 +111,19 @@
                             
                         </ul>
                     
-
                     
                         <ul class="nav navbar-nav navbar-right">
                             
-                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="github"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="twitter"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="rss"></i></a></li>
                             
                         </ul>
                     
-
                 </div>
-
             </div>
-
         </nav>
 
 
@@ -156,402 +132,765 @@
 
 <div>
 
-  <div class="col-md-3">
-      <div class="hidden-sm hidden-xs">
-        <div class="sticky-top">
-          <div id="toc"></div>
-
-        </div>
-    </div>
-  </div>
+    <div class="col-md-3">
+        <h1><a href="#"><i class='fa fa-chevron-up'></i></a></h1>
 
 
-  <div class="col-md-8">
+    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#insilecomisc">inSilecoMisc</a></li>
+    <li><a href="#generating-empty-data-frames-efficiently">Generating empty data frames efficiently</a></li>
+    <li><a href="#how-to-flexibly-rbind-a-list-of-data-frames">How to <em>flexibly</em> <code>rbind</code> a list of data frames</a></li>
+  </ol>
+</nav>
 
-    <h1><a href="/2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/">Creating empty data frames with dfTemplate() and dfTemplateMatch()</a></h1>
 
-    <h4>February 3, 2019</h4>
-
-    <p>
-      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/data-frame"><kbd class="item-tag">data frame</kbd></a>  <a href="/tags/data-frames-generation"><kbd class="item-tag">data frames generation</kbd></a>  <a href="/tags/row-binding"><kbd class="item-tag">row binding</kbd></a> 
-      <br>
-      
-       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/insilecomisc"><kbd class="item-tag2">inSilecoMisc</kbd></a> 
-      
-    </p>
-
-    
-      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
-       
-        <a href="/about/">Kevin Cazelles</a> &nbsp;
-      
-     <a href="#"></a></p>
-    
-
-    
-      <p> <i class="fa fa-check-square" aria-hidden="true", title="Reviewer(s)"></i>
-       
-      <a href="/about/">Azenor Bideault</a> &nbsp;
-       
-      <a href="/about/">Marie-Hélène Brice</a> &nbsp;
-      
-      <a href="#"></a></p>
-    
-
-    <p>
-    
-    
-    
-      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=8min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
-    
-    
-    
-      <a href="http://www.R-bloggers.com">
-      <img src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
-      <a>
-     &nbsp;
-    
-    
-      <a href = "https://creativecommons.org/licenses/by/4.0/">
-      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
-      </a>
-     &nbsp;
-    
-     &nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2019%2f02%2f03%2fcreating-empty-data-frames-with-dftemplate-and-dftemplatematch%2f&text=Creating%20empty%20data%20frames%20with%20columns%20of%20different%20classes" target="_blank">
-      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2019%2f02%2f03%2fcreating-empty-data-frames-with-dftemplate-and-dftemplatematch%2f?link=http://left&link=http://right}'>
+<h1>
+    <a href="#bottom">
+        <i class='fa fa-chevron-down'></i>
     </a>
-  </p>
+</h1>
+    </div>
 
 
-    <br>
+    <div class="col-md-8">
 
-    <div class="text-justify">
+        <div class="post-content">
 
-      
+            <h1><a href="/2019/02/03/creating-empty-data-frames-with-dftemplate-and-dftemplatematch/">Creating empty data frames with dfTemplate() and dfTemplateMatch()</a></h1>
+
+            <h4>February 3, 2019</h4>
+
+            <p>
+                <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                    href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a
+                    href="/tags/data-frame"><kbd class="item-tag">data frame</kbd></a>  <a
+                    href="/tags/data-frames-generation"><kbd class="item-tag">data frames generation</kbd></a>  <a
+                    href="/tags/row-binding"><kbd class="item-tag">row binding</kbd></a> 
+                <br>
+                
+                <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/insilecomisc"><kbd class="item-tag2">inSilecoMisc</kbd></a> 
+                
+            </p>
+
+            
+            <p style="font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+                 
+                <a href="/about/">Kevin Cazelles</a> &nbsp;
+                
+                <a href="#"></a>
+            </p>
+            
+
+            
+            <p> <i class="fa fa-check-square" aria-hidden="true" , title="Reviewer(s)"></i>
+                 
+                <a href="/about/">Azenor Bideault</a> &nbsp;
+                 
+                <a href="/about/">Marie-Hélène Brice</a> &nbsp;
+                
+                <a href="#"></a>
+            </p>
+            
+
+            <p>
+                
+                
+                
+                <img
+                    src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=8min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                
+                
+                
+                <a href="http://www.R-bloggers.com">
+                    <img
+                        src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
+                    <a>
+                         &nbsp;
+                        
+                        
+                                <a href="https://creativecommons.org/licenses/by/4.0/">
+                                    <img
+                                        src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                                </a>
+                                 &nbsp;
+                                
+                                 &nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2019%2f02%2f03%2fcreating-empty-data-frames-with-dftemplate-and-dftemplatematch%2f&text=Creating%20empty%20data%20frames%20with%20columns%20of%20different%20classes"
+                                            target="_blank">
+                                            <img
+                                                src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2019%2f02%2f03%2fcreating-empty-data-frames-with-dftemplate-and-dftemplatematch%2f?link=http://left&link=http://right}'>
+                                        </a>
+            </p>
 
 
-<p>Creating a data frame is fairly simple but when you need to <a href="https://stackoverflow.com/questions/10689055/create-an-empty-data-frame">create a large empty data frame with columns that have different classes</a> it takes several command lines. A few days ago, I decided to write a function to simplify this operation and I came to realize that such a function would actually be very useful to ease the row binding of data frames whose column names partially match. How so? This post is meant to answer this question!</p>
-<div id="insilecomisc" class="section level2">
-<h2>inSilecoMisc</h2>
-<p>First of all, the functions I am using in this post are available in <a href="http://insileco.github.io/inSilecoMisc/">inSilecoMisc</a> which is an R package where we gathered the miscellaneous functions we wrote and deem worth sharing on GitHub. So the first step to reproduce the examples below is to install <code>inSilecoMisc</code> which is straightforward with the <a href="https://cran.r-project.org/web/packages/devtools/index.html%20package">devtools</a> :</p>
-<pre class="r"><code>library(devtools)
-install_github(&quot;inSileco/inSilecoMisc&quot;)</code></pre>
-<p>Then, load it:</p>
-<pre class="r"><code>library(inSilecoMisc)</code></pre>
-<p>In this post, I’ll exemplify how to use <code>dfTemplate()</code> and <code>dfTemplateMatch()</code> but if you are interested in other functions in the packages, <a href="http://insileco.github.io/inSilecoMisc/articles/overview.html">check out the tour vignette</a>.</p>
+            <br>
+
+            <div id="post-content-body" class="text-justify">
+
+                <p>Creating a data frame is fairly simple but when you need to <a href="https://stackoverflow.com/questions/10689055/create-an-empty-data-frame">create a large empty data frame with columns that have different classes</a> it takes several command lines. A few days ago, I decided to write a function to simplify this operation and I came to realize that such a function would actually be very useful to ease the row binding of data frames whose column names partially match. How so? This post is meant to answer this question!</p>
+<h2 id="insilecomisc">inSilecoMisc</h2>
+<p>First of all, the functions I am using in this post are available in  <a href="http://insileco.github.io/inSilecoMisc/">inSilecoMisc</a> which is an R package where we gathered the miscellaneous functions we wrote and deem worth sharing on GitHub. So the first step to reproduce the examples below is to install <code>inSilecoMisc</code> which is straightforward with the [devtools](<a href="https://cran.r-project.org/web/packages/devtools/index.html">https://cran.r-project.org/web/packages/devtools/index.html</a> package) :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">devtools</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">install_github</span><span class="p">(</span><span class="s">&#34;inSileco/inSilecoMisc&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
-<div id="generating-empty-data-frames-efficiently" class="section level2">
-<h2>Generating empty data frames efficiently</h2>
-<p>Let’s start with <code>dfTemplate()</code> that creates a data frame with a specific number of columns.</p>
-<pre class="r"><code>df1 &lt;- dfTemplate(cols = 2)
-df1
-#R&gt;    Var1 Var2
-#R&gt;  1   NA   NA
-class(df1)
-#R&gt;  [1] &quot;data.frame&quot;</code></pre>
-<p>By default, the data frame created has only 1 row and the columns are filled out with <code>NA</code>. This can readily be changed using arguments <code>nrows</code> and <code>fill</code>.</p>
-<pre class="r"><code>df2 &lt;- dfTemplate(2, nrows = 4, fill = 0)
-df2
-#R&gt;    Var1 Var2
-#R&gt;  1    0    0
-#R&gt;  2    0    0
-#R&gt;  3    0    0
-#R&gt;  4    0    0
-df3 &lt;- dfTemplate(cols = 2, nrows = 3, fill = &quot;&quot;)
-df3
-#R&gt;    Var1 Var2
-#R&gt;  1          
-#R&gt;  2          
-#R&gt;  3</code></pre>
-<p>Columns classes are determined by <code>fill</code>:</p>
-<pre class="r"><code>class(df1[, 1])
-class(df2[, 1])
-class(df3[, 1])
-#R&gt;  [1] &quot;logical&quot;
-#R&gt;  [1] &quot;numeric&quot;
-#R&gt;  [1] &quot;character&quot;</code></pre>
-<p>And <code>col_classes</code> is used to changed these classes:</p>
-<pre class="r"><code>df4 &lt;- dfTemplate(cols = 2, col_classes = &quot;character&quot;)
-class(df4[, 1])
-class(df4[, 2])
-#R&gt;  [1] &quot;character&quot;
-#R&gt;  [1] &quot;character&quot;</code></pre>
-<p>Arguments <code>fill</code> and <code>col_classes</code> can be vectors that specify content and class
+</div><p>Then, load it:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">inSilecoMisc</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>In this post, I&rsquo;ll exemplify how to use <code>dfTemplate()</code> and <code>dfTemplateMatch()</code> but if you are interested in other functions in the packages, <a href="http://insileco.github.io/inSilecoMisc/articles/overview.html">check out the tour vignette</a>.</p>
+<h2 id="generating-empty-data-frames-efficiently">Generating empty data frames efficiently</h2>
+<p>Let&rsquo;s start with <code>dfTemplate()</code> that creates a data frame with a specific number of columns.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df1</span> <span class="o">&lt;-</span> <span class="nf">dfTemplate</span><span class="p">(</span><span class="n">cols</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Var1 Var2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1   NA   NA</span>
+</span></span><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">df1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;data.frame&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>By default, the data frame created has only 1 row and the columns are filled out with <code>NA</code>. This can readily be changed using arguments <code>nrows</code> and <code>fill</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df2</span> <span class="o">&lt;-</span> <span class="nf">dfTemplate</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="n">nrows</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Var1 Var2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="n">df3</span> <span class="o">&lt;-</span> <span class="nf">dfTemplate</span><span class="p">(</span><span class="n">cols</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">nrows</span> <span class="o">=</span> <span class="m">3</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Var1 Var2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Columns classes are determined by <code>fill</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">df1[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">df2[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">df3[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;logical&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;numeric&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;character&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>And <code>col_classes</code> is used to changed these classes:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df4</span> <span class="o">&lt;-</span> <span class="nf">dfTemplate</span><span class="p">(</span><span class="n">cols</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col_classes</span> <span class="o">=</span> <span class="s">&#34;character&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">df4[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">df4[</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;character&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;character&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Arguments <code>fill</code> and <code>col_classes</code> can be vectors that specify content and class
 for every columns:</p>
-<pre class="r"><code>df5 &lt;- dfTemplate(2, 5, col_classes = c(&quot;character&quot;, &quot;numeric&quot;), fill = c(&quot;&quot;, 5))
-df5
-class(df5[, 1])
-class(df5[, 2])
-#R&gt;    Var1 Var2
-#R&gt;  1         5
-#R&gt;  2         5
-#R&gt;  3         5
-#R&gt;  4         5
-#R&gt;  5         5
-#R&gt;  [1] &quot;character&quot;
-#R&gt;  [1] &quot;numeric&quot;</code></pre>
-<p>Another useful feature of <code>dfTemplate()</code> is that column names of the data frame to be created can be passed as first argument (<code>cols</code>) :</p>
-<pre class="r"><code>df5 &lt;- dfTemplate(c(&quot;category&quot;, &quot;value&quot;))</code></pre>
-<p>So, now you are able to create custom data frames with a set of column names!</p>
-<pre class="r"><code>nms &lt;- LETTERS[1:10]
-df6 &lt;- dfTemplate(nms, 10, fill = tolower(nms))
-df6
-#R&gt;     A B C D E F G H I J
-#R&gt;  1  a b c d e f g h i j
-#R&gt;  2  a b c d e f g h i j
-#R&gt;  3  a b c d e f g h i j
-#R&gt;  4  a b c d e f g h i j
-#R&gt;  5  a b c d e f g h i j
-#R&gt;  6  a b c d e f g h i j
-#R&gt;  7  a b c d e f g h i j
-#R&gt;  8  a b c d e f g h i j
-#R&gt;  9  a b c d e f g h i j
-#R&gt;  10 a b c d e f g h i j</code></pre>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df5</span> <span class="o">&lt;-</span> <span class="nf">dfTemplate</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">5</span><span class="p">,</span> <span class="n">col_classes</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;character&#34;</span><span class="p">,</span> <span class="s">&#34;numeric&#34;</span><span class="p">),</span> <span class="n">fill</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">,</span> <span class="m">5</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">df5</span>
+</span></span><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">df5[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">df5[</span><span class="p">,</span> <span class="m">2</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Var1 Var2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1         5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2         5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3         5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4         5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5         5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;character&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;numeric&#34;</span>
+</span></span></code></pre></td></tr></table>
 </div>
-<div id="how-to-flexibly-rbind-a-list-of-data-frames" class="section level2">
-<h2>How to <em>flexibly</em> <code>rbind</code> a list of data frames</h2>
-<p>Sometimes we need to <code>rbind</code> data frames that do not have all the columns the final data frame must contain. In such case, we first need to append the missing columns because otherwise the default <code>rbind</code> function won’t work. Another solution is to use a package that has a function that do so. For instance, <a href="https://www.rdocumentation.org/packages/plyr/versions/1.8.4/topics/rbind.fill"><code>rbind.fill()</code> from the <code>plyr</code> package</a> allows to perform such <em>flexible</em> <code>rbind</code>. Also, the package <a href="https://cran.r-project.org/web/packages/data.table/index.html">data.table</a> includes a <code>rbind()</code> method for <code>data.table</code> objects that handles such situation (see <a href="https://stackoverflow.com/questions/18003717/efficient-way-to-rbind-data-frames-with-different-columns">this answer on <i class="fa fa-stack-overflow" aria-hidden="true"></i></a>). In this last section, I would like to show how to <code>rbind</code> data frames flexibly with <code>dfTemplateMatch()</code> that is written in base R.</p>
+</div><p>Another useful feature of <code>dfTemplate()</code> is that column names of the data frame to be created can be passed as first argument (<code>cols</code>) :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df5</span> <span class="o">&lt;-</span> <span class="nf">dfTemplate</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;category&#34;</span><span class="p">,</span> <span class="s">&#34;value&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>So, now you are able to create custom data frames with a set of column names!</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">nms</span> <span class="o">&lt;-</span> <span class="kc">LETTERS</span><span class="n">[1</span><span class="o">:</span><span class="m">10</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">df6</span> <span class="o">&lt;-</span> <span class="nf">dfTemplate</span><span class="p">(</span><span class="n">nms</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="nf">tolower</span><span class="p">(</span><span class="n">nms</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">df6</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     A B C D E F G H I J</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  a b c d e f g h i j</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  a b c d e f g h i j</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  a b c d e f g h i j</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  a b c d e f g h i j</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  a b c d e f g h i j</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  a b c d e f g h i j</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  a b c d e f g h i j</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  a b c d e f g h i j</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  a b c d e f g h i j</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 a b c d e f g h i j</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="how-to-flexibly-rbind-a-list-of-data-frames">How to <em>flexibly</em> <code>rbind</code> a list of data frames</h2>
+<p>Sometimes we need to <code>rbind</code> data frames that do not have all the columns the final data frame must contain. In such case, we first need to append the missing columns because otherwise the default <code>rbind</code> function won&rsquo;t work. Another solution is to use a package that has a function that do so. For instance, <a href="https://www.rdocumentation.org/packages/plyr/versions/1.8.4/topics/rbind.fill"><code>rbind.fill()</code> from the <code>plyr</code> package</a> allows to perform such <em>flexible</em> <code>rbind</code>. Also, the package <a href="https://cran.r-project.org/web/packages/data.table/index.html">data.table</a> includes a <code>rbind()</code> method for <code>data.table</code> objects that handles such situation (see <a href="https://stackoverflow.com/questions/18003717/efficient-way-to-rbind-data-frames-with-different-columns">this answer on <i class="fa fa-stack-overflow" aria-hidden="true"></i></a>). In this last section, I would like to show how to <code>rbind</code> data frames flexibly with <code>dfTemplateMatch()</code> that is written in base R.</p>
 <p>Let me first introduces <code>dfTemplateMatch()</code>. This function takes a data frame as the first argument (<code>x</code>) and the second argument (<code>y</code>) could be another data frame or a vector of character strings. Based on <code>x</code> and <code>y</code>, <code>dfTemplateMatch()</code> creates a data frame that has the same number of rows as <code>x</code> and add columns for all names found in <code>y</code> that are not found in <code>x</code>. Before calling <code>dfTemplateMatch()</code> I create two data frames :</p>
-<pre class="r"><code>df7 &lt;- df6[1:5, 1:4]
-df7
-#R&gt;    A B C D
-#R&gt;  1 a b c d
-#R&gt;  2 a b c d
-#R&gt;  3 a b c d
-#R&gt;  4 a b c d
-#R&gt;  5 a b c d
-df8 &lt;- df6[4:6]
-df8
-#R&gt;     D E F
-#R&gt;  1  d e f
-#R&gt;  2  d e f
-#R&gt;  3  d e f
-#R&gt;  4  d e f
-#R&gt;  5  d e f
-#R&gt;  6  d e f
-#R&gt;  7  d e f
-#R&gt;  8  d e f
-#R&gt;  9  d e f
-#R&gt;  10 d e f</code></pre>
-<p>Now I use <code>dfTemplateMatch()</code> to create a third data frame based on two other:</p>
-<pre class="r"><code>dfTemplateMatch(df7, df8)
-#R&gt;    A B C D  E  F
-#R&gt;  1 a b c d NA NA
-#R&gt;  2 a b c d NA NA
-#R&gt;  3 a b c d NA NA
-#R&gt;  4 a b c d NA NA
-#R&gt;  5 a b c d NA NA</code></pre>
-<p>As expected, the output has 5 rows as <code>df6</code> and columns that are not in <code>df6</code> but in <code>df7</code> has been appended to <code>df6</code>. It is possible to use arguments <code>fill</code> and <code>col_classes</code> to custom the columns added.</p>
-<pre class="r"><code>dfTemplateMatch(df7, df8, fill = 1, col_classes = &quot;numeric&quot;)
-#R&gt;    A B C D E F
-#R&gt;  1 a b c d 1 1
-#R&gt;  2 a b c d 1 1
-#R&gt;  3 a b c d 1 1
-#R&gt;  4 a b c d 1 1
-#R&gt;  5 a b c d 1 1</code></pre>
-<p>And there is an argument <code>yonly</code> that allows the user to keep only names of <code>y</code> (when <code>yonly = TRUE</code>).</p>
-<pre class="r"><code>dfTemplateMatch(df7, df8, yonly = TRUE, fill = 1, col_classes = &quot;numeric&quot;)
-#R&gt;    D E F
-#R&gt;  1 d 1 1
-#R&gt;  2 d 1 1
-#R&gt;  3 d 1 1
-#R&gt;  4 d 1 1
-#R&gt;  5 d 1 1</code></pre>
-<p>Now let me show you how to <code>rbind()</code> a specific subset of columns of a list of data frame that may or may not have these columns. Let me start by creating a list of data frames.</p>
-<pre class="r"><code>lsdf &lt;- apply(
-  replicate(5, sample(nms, 5)),
-  2,
-  function(x) dfTemplate(x, nrows = 5, fill = tolower(x))
-)
-lsdf
-#R&gt;  [[1]]
-#R&gt;    E A G I J
-#R&gt;  1 e a g i j
-#R&gt;  2 e a g i j
-#R&gt;  3 e a g i j
-#R&gt;  4 e a g i j
-#R&gt;  5 e a g i j
-#R&gt;  
-#R&gt;  [[2]]
-#R&gt;    F J A E C
-#R&gt;  1 f j a e c
-#R&gt;  2 f j a e c
-#R&gt;  3 f j a e c
-#R&gt;  4 f j a e c
-#R&gt;  5 f j a e c
-#R&gt;  
-#R&gt;  [[3]]
-#R&gt;    H C A G D
-#R&gt;  1 h c a g d
-#R&gt;  2 h c a g d
-#R&gt;  3 h c a g d
-#R&gt;  4 h c a g d
-#R&gt;  5 h c a g d
-#R&gt;  
-#R&gt;  [[4]]
-#R&gt;    J D G F E
-#R&gt;  1 j d g f e
-#R&gt;  2 j d g f e
-#R&gt;  3 j d g f e
-#R&gt;  4 j d g f e
-#R&gt;  5 j d g f e
-#R&gt;  
-#R&gt;  [[5]]
-#R&gt;    I C F H J
-#R&gt;  1 i c f h j
-#R&gt;  2 i c f h j
-#R&gt;  3 i c f h j
-#R&gt;  4 i c f h j
-#R&gt;  5 i c f h j</code></pre>
-<p>So the goal here is to create a data frame that contains only the five first
-columns, i.e. A, B, C, D, E, the remaining columns must be discarded and
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df7</span> <span class="o">&lt;-</span> <span class="n">df6[1</span><span class="o">:</span><span class="m">5</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">df7</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    A B C D</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 a b c d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 a b c d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 a b c d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 a b c d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 a b c d</span>
+</span></span><span class="line"><span class="cl"><span class="n">df8</span> <span class="o">&lt;-</span> <span class="n">df6[4</span><span class="o">:</span><span class="m">6</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="n">df8</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     D E F</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  d e f</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  d e f</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  d e f</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  d e f</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  d e f</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  d e f</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  d e f</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  d e f</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  d e f</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 d e f</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now I use <code>dfTemplateMatch()</code> to create a third data frame based on two other:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">dfTemplateMatch</span><span class="p">(</span><span class="n">df7</span><span class="p">,</span> <span class="n">df8</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    A B C D  E  F</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 a b c d NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 a b c d NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 a b c d NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 a b c d NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 a b c d NA NA</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>As expected, the output has 5 rows as <code>df6</code> and columns that are not in <code>df6</code> but in <code>df7</code> has been appended to <code>df6</code>. It is possible to use arguments <code>fill</code> and <code>col_classes</code> to custom the columns added.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">dfTemplateMatch</span><span class="p">(</span><span class="n">df7</span><span class="p">,</span> <span class="n">df8</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">col_classes</span> <span class="o">=</span> <span class="s">&#34;numeric&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    A B C D E F</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 a b c d 1 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 a b c d 1 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 a b c d 1 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 a b c d 1 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 a b c d 1 1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>And there is an argument <code>yonly</code> that allows the user to keep only names of <code>y</code> (when <code>yonly = TRUE</code>).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">dfTemplateMatch</span><span class="p">(</span><span class="n">df7</span><span class="p">,</span> <span class="n">df8</span><span class="p">,</span> <span class="n">yonly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">col_classes</span> <span class="o">=</span> <span class="s">&#34;numeric&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    D E F</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 d 1 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 d 1 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 d 1 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 d 1 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 d 1 1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now let me show you how to <code>rbind()</code> a specific subset of columns of a list of data frame that may or may not have these columns. Let me start by creating a list of data frames.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">lsdf</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">replicate</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="nf">sample</span><span class="p">(</span><span class="n">nms</span><span class="p">,</span> <span class="m">5</span><span class="p">)),</span>
+</span></span><span class="line"><span class="cl">  <span class="m">2</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="nf">dfTemplate</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">nrows</span> <span class="o">=</span> <span class="m">5</span><span class="p">,</span> <span class="n">fill</span> <span class="o">=</span> <span class="nf">tolower</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">lsdf</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[1]]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    D G A E B</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 d g a e b</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 d g a e b</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 d g a e b</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 d g a e b</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 d g a e b</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[2]]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    E I A F C</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 e i a f c</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 e i a f c</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 e i a f c</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 e i a f c</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 e i a f c</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[3]]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    I C E G H</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 i c e g h</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 i c e g h</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 i c e g h</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 i c e g h</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 i c e g h</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[4]]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    H F D J A</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 h f d j a</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 h f d j a</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 h f d j a</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 h f d j a</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 h f d j a</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[5]]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    F B J D H</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 f b j d h</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 f b j d h</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 f b j d h</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 f b j d h</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 f b j d h</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>So the goal here is to create a data frame that contains only the five first
+columns, i.e. A, B, C, D, E, the remaining columns must be discarded and
 when one selected column is missing, it must be added (filled out with <code>NA</code>).
 To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
-<pre class="r"><code>lsdf2 &lt;- lapply(lsdf, dfTemplateMatch, LETTERS[1:5], yonly = TRUE)
-lsdf2
-#R&gt;  [[1]]
-#R&gt;    E A  B  C  D
-#R&gt;  1 e a NA NA NA
-#R&gt;  2 e a NA NA NA
-#R&gt;  3 e a NA NA NA
-#R&gt;  4 e a NA NA NA
-#R&gt;  5 e a NA NA NA
-#R&gt;  
-#R&gt;  [[2]]
-#R&gt;    A E C  B  D
-#R&gt;  1 a e c NA NA
-#R&gt;  2 a e c NA NA
-#R&gt;  3 a e c NA NA
-#R&gt;  4 a e c NA NA
-#R&gt;  5 a e c NA NA
-#R&gt;  
-#R&gt;  [[3]]
-#R&gt;    C A D  B  E
-#R&gt;  1 c a d NA NA
-#R&gt;  2 c a d NA NA
-#R&gt;  3 c a d NA NA
-#R&gt;  4 c a d NA NA
-#R&gt;  5 c a d NA NA
-#R&gt;  
-#R&gt;  [[4]]
-#R&gt;    D E  A  B  C
-#R&gt;  1 d e NA NA NA
-#R&gt;  2 d e NA NA NA
-#R&gt;  3 d e NA NA NA
-#R&gt;  4 d e NA NA NA
-#R&gt;  5 d e NA NA NA
-#R&gt;  
-#R&gt;  [[5]]
-#R&gt;    C  A  B  D  E
-#R&gt;  1 c NA NA NA NA
-#R&gt;  2 c NA NA NA NA
-#R&gt;  3 c NA NA NA NA
-#R&gt;  4 c NA NA NA NA
-#R&gt;  5 c NA NA NA NA</code></pre>
-<p>And now I can seamlessly <code>rbind()</code> the list <code>lsdf2</code>!</p>
-<pre class="r"><code>do.call(rbind, lsdf2)
-#R&gt;        E    A  B    C    D
-#R&gt;  1     e    a NA &lt;NA&gt; &lt;NA&gt;
-#R&gt;  2     e    a NA &lt;NA&gt; &lt;NA&gt;
-#R&gt;  3     e    a NA &lt;NA&gt; &lt;NA&gt;
-#R&gt;  4     e    a NA &lt;NA&gt; &lt;NA&gt;
-#R&gt;  5     e    a NA &lt;NA&gt; &lt;NA&gt;
-#R&gt;  6     e    a NA    c &lt;NA&gt;
-#R&gt;  7     e    a NA    c &lt;NA&gt;
-#R&gt;  8     e    a NA    c &lt;NA&gt;
-#R&gt;  9     e    a NA    c &lt;NA&gt;
-#R&gt;  10    e    a NA    c &lt;NA&gt;
-#R&gt;  11 &lt;NA&gt;    a NA    c    d
-#R&gt;  12 &lt;NA&gt;    a NA    c    d
-#R&gt;  13 &lt;NA&gt;    a NA    c    d
-#R&gt;  14 &lt;NA&gt;    a NA    c    d
-#R&gt;  15 &lt;NA&gt;    a NA    c    d
-#R&gt;  16    e &lt;NA&gt; NA &lt;NA&gt;    d
-#R&gt;  17    e &lt;NA&gt; NA &lt;NA&gt;    d
-#R&gt;  18    e &lt;NA&gt; NA &lt;NA&gt;    d
-#R&gt;  19    e &lt;NA&gt; NA &lt;NA&gt;    d
-#R&gt;  20    e &lt;NA&gt; NA &lt;NA&gt;    d
-#R&gt;  21 &lt;NA&gt; &lt;NA&gt; NA    c &lt;NA&gt;
-#R&gt;  22 &lt;NA&gt; &lt;NA&gt; NA    c &lt;NA&gt;
-#R&gt;  23 &lt;NA&gt; &lt;NA&gt; NA    c &lt;NA&gt;
-#R&gt;  24 &lt;NA&gt; &lt;NA&gt; NA    c &lt;NA&gt;
-#R&gt;  25 &lt;NA&gt; &lt;NA&gt; NA    c &lt;NA&gt;</code></pre>
-<div id="voilà-this-is-what-i-call-a-flexible-rbind-i-hope-youll-find-this-helpful-boom" class="section level4">
-<h4>Voilà! This is what I call a <em>flexible</em> <code>rbind</code>! I hope you’ll find this helpful! 💥</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">lsdf2</span> <span class="o">&lt;-</span> <span class="nf">lapply</span><span class="p">(</span><span class="n">lsdf</span><span class="p">,</span> <span class="n">dfTemplateMatch</span><span class="p">,</span> <span class="kc">LETTERS</span><span class="n">[1</span><span class="o">:</span><span class="m">5</span><span class="n">]</span><span class="p">,</span> <span class="n">yonly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">lsdf2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[1]]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    D A E B  C</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 d a e b NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 d a e b NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 d a e b NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 d a e b NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 d a e b NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[2]]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    E A C  B  D</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 e a c NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 e a c NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 e a c NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 e a c NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 e a c NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[3]]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    C E  A  B  D</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 c e NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 c e NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 c e NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 c e NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 c e NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[4]]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    D A  B  C  E</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 d a NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 d a NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 d a NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 d a NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 d a NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[5]]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    B D  A  C  E</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 b d NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 b d NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 b d NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 b d NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 b d NA NA NA</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>And now I can seamlessly <code>rbind()</code> the list <code>lsdf2</code>!</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">do.call</span><span class="p">(</span><span class="n">rbind</span><span class="p">,</span> <span class="n">lsdf2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;        D    A    E    B    C</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1     d    a    e    b &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2     d    a    e    b &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3     d    a    e    b &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4     d    a    e    b &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5     d    a    e    b &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  &lt;NA&gt;    a    e &lt;NA&gt;    c</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  &lt;NA&gt;    a    e &lt;NA&gt;    c</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  &lt;NA&gt;    a    e &lt;NA&gt;    c</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  &lt;NA&gt;    a    e &lt;NA&gt;    c</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 &lt;NA&gt;    a    e &lt;NA&gt;    c</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  11 &lt;NA&gt; &lt;NA&gt;    e &lt;NA&gt;    c</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  12 &lt;NA&gt; &lt;NA&gt;    e &lt;NA&gt;    c</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  13 &lt;NA&gt; &lt;NA&gt;    e &lt;NA&gt;    c</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  14 &lt;NA&gt; &lt;NA&gt;    e &lt;NA&gt;    c</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  15 &lt;NA&gt; &lt;NA&gt;    e &lt;NA&gt;    c</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  16    d    a &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  17    d    a &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  18    d    a &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  19    d    a &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  20    d    a &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  21    d &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  22    d &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  23    d &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  24    d &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  25    d &lt;NA&gt; &lt;NA&gt;    b &lt;NA&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="voilà-this-is-what-i-call-a-flexible-rbind-i-hope-youll-find-this-helpful-">Voilà! This is what I call a <em>flexible</em> <code>rbind</code>! I hope you&rsquo;ll find this helpful! 💥</h4>
 <div style="padding: 2rem 0rem 2rem 0rem;">
 <details>
-<summary>
-Session info <i class="fa fa-cogs" aria-hidden="true"></i>
-</summary>
-<pre class="r"><code>sessionInfo()
-#R&gt;  R version 4.2.2 (2022-10-31)
-#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)
-#R&gt;  Running under: Ubuntu 22.04.1 LTS
-#R&gt;  
-#R&gt;  Matrix products: default
-#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
-#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so
-#R&gt;  
-#R&gt;  locale:
-#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
-#R&gt;   [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
-#R&gt;   [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
-#R&gt;  [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
-#R&gt;  
-#R&gt;  attached base packages:
-#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     
-#R&gt;  
-#R&gt;  other attached packages:
-#R&gt;  [1] inSilecoMisc_0.7.0.9000 inSilecoRef_0.0.1.9000 
-#R&gt;  
-#R&gt;  loaded via a namespace (and not attached):
-#R&gt;   [1] tidyselect_1.2.0  xfun_0.35         bslib_0.4.1       vctrs_0.5.1      
-#R&gt;   [5] generics_0.1.3    miniUI_0.1.1.1    htmltools_0.5.4   yaml_2.3.6       
-#R&gt;   [9] utf8_1.2.2        rlang_1.0.6       later_1.3.0       pillar_1.8.1     
-#R&gt;  [13] jquerylib_0.1.4   httpcode_0.3.0    glue_1.6.2        DBI_1.1.3        
-#R&gt;  [17] lifecycle_1.0.3   plyr_1.8.8        stringr_1.5.0     blogdown_1.15    
-#R&gt;  [21] htmlwidgets_1.5.4 evaluate_0.18     knitr_1.41        fastmap_1.1.0    
-#R&gt;  [25] httpuv_1.6.6      curl_4.3.3        fansi_1.0.3       Rcpp_1.0.9       
-#R&gt;  [29] xtable_1.8-4      promises_1.2.0.1  backports_1.4.1   DT_0.26          
-#R&gt;  [33] cachem_1.0.6      jsonlite_1.8.4    rcrossref_1.2.0   mime_0.12        
-#R&gt;  [37] digest_0.6.30     stringi_1.7.8     bookdown_0.30     dplyr_1.0.10     
-#R&gt;  [41] shiny_1.7.3       bibtex_0.5.0      cli_3.4.1         tools_4.2.2      
-#R&gt;  [45] magrittr_2.0.3    sass_0.4.4        tibble_3.1.8      RefManageR_1.4.0 
-#R&gt;  [49] crul_1.3          crayon_1.5.2      pkgconfig_2.0.3   ellipsis_0.3.2   
-#R&gt;  [53] xml2_1.3.3        timechange_0.1.1  lubridate_1.9.0   assertthat_0.2.1 
-#R&gt;  [57] rmarkdown_2.18    httr_1.4.4        R6_2.5.1          compiler_4.2.2</code></pre>
-</details>
+<summary>Session info <i class="fa fa-cogs" aria-hidden="true"></i></summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.2.2 Patched (2022-11-10 r83330)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.1 LTS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Matrix products: default</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  locale:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=en_CA.UTF-8       LC_NUMERIC=C              </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [3] LC_TIME=en_CA.UTF-8        LC_COLLATE=en_CA.UTF-8    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] LC_MONETARY=en_CA.UTF-8    LC_MESSAGES=en_CA.UTF-8   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] LC_PAPER=en_CA.UTF-8       LC_NAME=C                 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  attached base packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  other attached packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoMisc_0.7.0.9000 inSilecoRef_0.0.1.9000 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] bslib_0.4.2       tidyselect_1.2.0  xfun_0.36         vctrs_0.5.2      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] generics_0.1.3    miniUI_0.1.1.1    htmltools_0.5.4   yaml_2.3.6       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] utf8_1.2.3        rlang_1.0.6       jquerylib_0.1.4   pillar_1.8.1     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] later_1.3.0       glue_1.6.2        httpcode_0.3.0    withr_2.5.0      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [17] lifecycle_1.0.3   plyr_1.8.8        stringr_1.5.0     targets_0.14.2   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] blogdown_1.16     htmlwidgets_1.6.1 evaluate_0.19     codetools_0.2-19 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] knitr_1.41        callr_3.7.3       fastmap_1.1.0     httpuv_1.6.8     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] ps_1.7.2          curl_5.0.0        fansi_1.0.4       Rcpp_1.0.10      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] xtable_1.8-4      backports_1.4.1   promises_1.2.0.1  DT_0.26          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] cachem_1.0.6      jsonlite_1.8.4    rcrossref_1.2.0   mime_0.12        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] digest_0.6.31     stringi_1.7.8     bookdown_0.32     processx_3.8.0   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [45] dplyr_1.1.0       shiny_1.7.4       cli_3.5.0         tools_4.2.2      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] sass_0.4.5        magrittr_2.0.3    base64url_1.4     tibble_3.1.8     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [53] RefManageR_1.3.0  crul_1.3          crayon_1.5.2      pkgconfig_2.0.3  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [57] ellipsis_0.3.2    data.table_1.14.6 xml2_1.3.3        lubridate_1.8.0  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [61] rmarkdown_2.19    httr_1.4.4        R6_2.5.1          igraph_1.3.5     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [65] compiler_4.2.2</span>
+</span></span></code></pre></td></tr></table>
 </div>
+</div></details>
 </div>
-</div>
 
 
-      <div class="text-justify">
-        
-
-      </div>
+                    
 
 
-    
+            </div>
 
-    </center>
 
-    </div>
+            
 
-      <br>
+            </center>
 
-  
-  <script>
-    var $jq = jQuery.noConflict();
-      $jq(function() {
-          var toc = $jq("#toc").tocify({
-            selectors: "h2, h3",
-            scrollTo: 50
-          }).data("toc-tocify");
-    });
-  </script>
+        </div>
+
+          <br>
+
 
   
   <script src="//yihui.name/js/math-code.js"></script>
@@ -559,6 +898,8 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
   
   
 
+
+  <script src="/js/sidebar-post.js"></script>
 
   <h3 class="page-header">Comments on this post</h3>
 
@@ -667,28 +1008,36 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </div>
 
 
-</div>
+    </div>
 
-        <footer>
+    <footer>
 
-          <script src="//yihui.name/js/math-code.js"></script>
-          <script async
-            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-          </script>
+  <div class="col-md-3">
 
-            <hr>
-            <p class="copyright text-muted" style="font-size: 1.6rem;">
-              &copy; 2017-2022 inSileco |
-              All rights reserved |
-              Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
-                <a href="https://gohugo.io">Hugo</a>
-                and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Dec 2022 01:46 UTC.
-              </p>
+    <a href="#" id="bottom"></a>
 
-        </footer>
+  </div>
 
-    </body>
+  <div class="col-md-8">
+
+    <script src="//yihui.name/js/math-code.js"></script>
+    <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <hr>
+    <p class="copyright text-muted" style="font-size: 1.6rem;">
+      &copy; 2017-2023 inSileco |
+      Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+      <a href="https://gohugo.io">Hugo</a>
+      and <a href="https://github.com/calintat/minimal">Minimal</a> |
+      Latest build: 05 February 2023 00:32 UTC.
+    </p>
+
+  </div>
+
+
+</footer>
+
+</body>
 
 </html>
-

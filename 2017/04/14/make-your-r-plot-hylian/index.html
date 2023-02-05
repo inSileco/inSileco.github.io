@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
     <head>
+        
 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Make your R plot Hylian</title>
-
+        
         <style>
 
     html body {
@@ -26,7 +28,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
 
 
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -35,85 +37,63 @@
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="/css/jquery.tocify.css">
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
-
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
  
 
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-    
-
-    <script>hljs.initHighlightingOnLoad();</script>
 
 
 
 
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
-
-  <script src="/js/jquery-1.8.3.min.js"></script>
-
-  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
-
-  <script src="/js/jquery.tocify.min.js"></script>
-
-  <script src="/js/toclipboard.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-        <meta charset="utf-8">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        
-        
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments)};
-          gtag('js', new Date());
-          gtag('config', 'UA-109508556-1');
-        </script>
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.110.0">
         
 
+        
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments)};
+              gtag('js', new Date());
+              gtag('config', 'UA-109508556-1');
+            </script>
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
 
     </head>
 
     <body>
+        
 
         <nav class="navbar navbar-default navbar-fixed-top">
-
             <div class="container">
-
                 <div class="navbar-header">
-
                     <a class="navbar-brand visible-xs" href="#">Make your R plot Hylian</a>
-
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
                 </div>
-
                 <div class="collapse navbar-collapse">
-
                     
                         <ul class="nav navbar-nav">
                             
@@ -131,23 +111,19 @@
                             
                         </ul>
                     
-
                     
                         <ul class="nav navbar-nav navbar-right">
                             
-                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="github"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="twitter"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="rss"></i></a></li>
                             
                         </ul>
                     
-
                 </div>
-
             </div>
-
         </nav>
 
 
@@ -156,88 +132,104 @@
 
 <div>
 
-  <div class="col-md-3">
-      <div class="hidden-sm hidden-xs">
-        <div class="sticky-top">
-          <div id="toc"></div>
-
-        </div>
-    </div>
-  </div>
+    <div class="col-md-3">
+        <h1><a href="#"><i class='fa fa-chevron-up'></i></a></h1>
 
 
-  <div class="col-md-8">
+    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#open-r-and-download-the-font">Open R and download the font</a></li>
+    <li><a href="#install-the-showtext-package">Install the <code>showtext</code> package</a></li>
+    <li><a href="#look-at-the-list-of-fonts-available-locally">Look at the list of fonts available locally</a></li>
+    <li><a href="#add-a-path-to-your-font">Add a path to your font</a></li>
+    <li><a href="#add-the-triforce-font-to-your-session">Add the <em>Triforce</em> font to your session:</a></li>
+    <li><a href="#finally-lets-make-our-hylian-plot">Finally, let&rsquo;s make our Hylian plot!</a></li>
+  </ol>
+</nav>
 
-    <h1><a href="/2017/04/14/make-your-r-plot-hylian/">Make your R plot Hylian</a></h1>
 
-    <h4>April 14, 2017</h4>
-
-    <p>
-      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/plot"><kbd class="item-tag">plot</kbd></a>  <a href="/tags/fonts"><kbd class="item-tag">fonts</kbd></a>  <a href="/tags/icons"><kbd class="item-tag">icons</kbd></a>  <a href="/tags/zelda"><kbd class="item-tag">zelda</kbd></a> 
-      <br>
-      
-       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/showtext"><kbd class="item-tag2">showtext</kbd></a>  <a href="/rpkgs/utils"><kbd class="item-tag2">utils</kbd></a>  <a href="/rpkgs/graphics"><kbd class="item-tag2">graphics</kbd></a> 
-      
-    </p>
-
-    
-      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
-       
-        <a href="/about/">Kevin Cazelles</a> &nbsp;
-       
-        <a href="/about/">David Beauchesne</a> &nbsp;
-       
-        <a href="/about/">Nicolas Casajus</a> &nbsp;
-      
-     <a href="#"></a></p>
-    
-
-    
-
-    <p>
-    
-    
-    
-      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=8min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
-    
-    
-     &nbsp;
-    
-    
-      <a href = "https://creativecommons.org/licenses/by/4.0/">
-      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
-      </a>
-     &nbsp;
-    
-    
-      <a href = "https://github.com/inSileco/inSileco.github.io/wiki/Posts#archiving-a-posts">
-      <img src="https://img.shields.io/static/v1?style=flat&label=archived&message=2020-03-18&logo=internet-archive&color=6d4f5b">
-      <a>
-     &nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2017%2f04%2f14%2fmake-your-r-plot-hylian%2f&text=Make%20your%20R%20plot%20Hylian" target="_blank">
-      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2017%2f04%2f14%2fmake-your-r-plot-hylian%2f?link=http://left&link=http://right}'>
+<h1>
+    <a href="#bottom">
+        <i class='fa fa-chevron-down'></i>
     </a>
-  </p>
+</h1>
+    </div>
 
 
-    <br>
+    <div class="col-md-8">
 
-    <div class="text-justify">
+        <div class="post-content">
 
-      <h4 id="below-are-presented-the-6-steps-you-need-to-make-your-plot-a-hylian-one-may-the-triforce-be-with-you">Below are presented the 6 steps you need to make your plot a Hylian one! <strong>May the triforce be with you</strong>!</h4>
-<h3 id="0-r-version">0. R Version</h3>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span><span class="n">[[1L]]</span><span class="o">$</span><span class="n">version.string</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] &#34;R version 3.5.2 (2018-12-20)&#34;</span>
-</span></span></code></pre></td></tr></table>
-</div>
-</div><h3 id="1-open-r-and-download-the-font">1. Open R and download the font</h3>
+            <h1><a href="/2017/04/14/make-your-r-plot-hylian/">Make your R plot Hylian</a></h1>
+
+            <h4>April 14, 2017</h4>
+
+            <p>
+                <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                    href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a
+                    href="/tags/plot"><kbd class="item-tag">plot</kbd></a>  <a
+                    href="/tags/fonts"><kbd class="item-tag">fonts</kbd></a>  <a
+                    href="/tags/icons"><kbd class="item-tag">icons</kbd></a>  <a
+                    href="/tags/zelda"><kbd class="item-tag">zelda</kbd></a> 
+                <br>
+                
+                <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/showtext"><kbd class="item-tag2">showtext</kbd></a>  <a href="/rpkgs/utils"><kbd class="item-tag2">utils</kbd></a>  <a href="/rpkgs/graphics"><kbd class="item-tag2">graphics</kbd></a> 
+                
+            </p>
+
+            
+            <p style="font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+                 
+                <a href="/about/">Kevin Cazelles</a> &nbsp;
+                 
+                <a href="/about/">David Beauchesne</a> &nbsp;
+                 
+                <a href="/about/">Nicolas Casajus</a> &nbsp;
+                
+                <a href="#"></a>
+            </p>
+            
+
+            
+
+            <p>
+                
+                
+                
+                <img
+                    src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=8min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                
+                
+                 &nbsp;
+                        
+                        
+                                <a href="https://creativecommons.org/licenses/by/4.0/">
+                                    <img
+                                        src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                                </a>
+                                 &nbsp;
+                                
+                                
+                                <a href="https://github.com/inSileco/inSileco.github.io/wiki/Posts#archiving-a-posts">
+                                    <img
+                                        src="https://img.shields.io/static/v1?style=flat&label=archived&message=2020-03-18&logo=internet-archive&color=6d4f5b">
+                                    <a>
+                                         &nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2017%2f04%2f14%2fmake-your-r-plot-hylian%2f&text=Make%20your%20R%20plot%20Hylian"
+                                            target="_blank">
+                                            <img
+                                                src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2017%2f04%2f14%2fmake-your-r-plot-hylian%2f?link=http://left&link=http://right}'>
+                                        </a>
+            </p>
+
+
+            <br>
+
+            <div id="post-content-body" class="text-justify">
+
+                <p>Below are presented the 5 steps you need to make your plot a Hylian one! <strong>May the triforce be with you</strong>!</p>
+<h2 id="open-r-and-download-the-font">Open R and download the font</h2>
 <p>The <a href="https://zeldauniverse.net/media/fonts/"><em>Triforce</em> font</a> is available on line.
 Below we download it using R. Alternatively, you may simply download and install
 it using a couple of clicks, if you proceed so, skip step 1.</p>
@@ -267,7 +259,7 @@ it using a couple of clicks, if you proceed so, skip step 1.</p>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] TRUE</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="2-install-the-showtext-package">2. Install the <code>showtext</code> package</h3>
+</div><h2 id="install-the-showtext-package">Install the <code>showtext</code> package</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -276,7 +268,7 @@ it using a couple of clicks, if you proceed so, skip step 1.</p>
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;showtext&#34;</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="3-look-at-the-list-of-fonts-available-locally">3. Look at the list of fonts available locally</h3>
+</div><h2 id="look-at-the-list-of-fonts-available-locally">Look at the list of fonts available locally</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -329,7 +321,7 @@ it using a couple of clicks, if you proceed so, skip step 1.</p>
 </div>
 </div><p>If you have installed the font on your computer, it should be in the list,
 then you can skip step 4.</p>
-<h3 id="4-add-a-path-to-your-font">4. Add a path to your font</h3>
+<h2 id="add-a-path-to-your-font">Add a path to your font</h2>
 <p>If you have downloaded the font using R, you must notify showtext about to
 folder <code>dr</code> where the font has been stored. To so do, use the <code>font_paths()</code>
 function:</p>
@@ -351,7 +343,7 @@ function:</p>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [145] &#34;/usr/share/fonts/X11/util&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="5-add-the-triforce-font-to-your-session">5. Add the <em>Triforce</em> font to your session:</h3>
+</div><h2 id="add-the-triforce-font-to-your-session">Add the <em>Triforce</em> font to your session:</h2>
 <p>Either way, the Triforce font should now be available</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -434,7 +426,7 @@ function:</p>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [5] &#34;Triforce&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><h3 id="6-finally-lets-make-our-hylian-plot">6. Finally, let&rsquo;s make our Hylian plot!</h3>
+</div><h2 id="finally-lets-make-our-hylian-plot">Finally, let&rsquo;s make our Hylian plot!</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -465,7 +457,6 @@ function:</p>
 </div>
 </div><img src="hylian_plot.png" width="864" style="display: block; margin: auto;" />
 <p><br><br></p>
-<h4 id="yeah-">YEAH! 😎</h4>
 <details>
 <summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
 <div class="highlight"><div class="chroma">
@@ -551,43 +542,35 @@ function:</p>
 </div></details>
 
 
-      <div class="text-justify">
-        
-          <div class="edits">
-            <h4><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h4>
-            <p style="font-size: 1.5rem">
-              
-              <i class="fa fa-pencil" aria-hidden="true"></i> Nov 11, 2017 -- Paths to font files fave been changed. <br>
-              
-              <i class="fa fa-pencil" aria-hidden="true"></i> Mar 18, 2020 -- Simplify the downloading of the font. <br>
-              
-              <i class="fa fa-pencil" aria-hidden="true"></i> Apr 23, 2022 -- Add &#39;archived&#39; badge. <br>
-              
-            </p>
-          </div>
-        
+                    
+                    <div class="edits" style="margin-top: 2em; margin-bottom: 1em;">
+                        <h4><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h4>
+                        <p style="font-size: 1.5rem">
+                            
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Nov 11, 2017 -- Paths to font files fave been changed. <br>
+                            
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Mar 18, 2020 -- Simplify the downloading of the font. <br>
+                            
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Apr 23, 2022 -- Add &#39;archived&#39; badge. <br>
+                            
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Feb 4, 2023 -- Headers are no longer numbered. <br>
+                            
+                        </p>
+                    </div>
+                    
 
-      </div>
+
+            </div>
 
 
-    
+            
 
-    </center>
+            </center>
 
-    </div>
+        </div>
 
-      <br>
+          <br>
 
-  
-  <script>
-    var $jq = jQuery.noConflict();
-      $jq(function() {
-          var toc = $jq("#toc").tocify({
-            selectors: "h2, h3",
-            scrollTo: 50
-          }).data("toc-tocify");
-    });
-  </script>
 
   
   <script src="//yihui.name/js/math-code.js"></script>
@@ -595,6 +578,8 @@ function:</p>
   
   
 
+
+  <script src="/js/sidebar-post.js"></script>
 
   <h3 class="page-header">Comments on this post</h3>
 
@@ -703,28 +688,36 @@ function:</p>
 </div>
 
 
-</div>
+    </div>
 
-        <footer>
+    <footer>
 
-          <script src="//yihui.name/js/math-code.js"></script>
-          <script async
-            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-          </script>
+  <div class="col-md-3">
 
-            <hr>
-            <p class="copyright text-muted" style="font-size: 1.6rem;">
-              &copy; 2017-2022 inSileco |
-              All rights reserved |
-              Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
-                <a href="https://gohugo.io">Hugo</a>
-                and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Dec 2022 01:46 UTC.
-              </p>
+    <a href="#" id="bottom"></a>
 
-        </footer>
+  </div>
 
-    </body>
+  <div class="col-md-8">
+
+    <script src="//yihui.name/js/math-code.js"></script>
+    <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <hr>
+    <p class="copyright text-muted" style="font-size: 1.6rem;">
+      &copy; 2017-2023 inSileco |
+      Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+      <a href="https://gohugo.io">Hugo</a>
+      and <a href="https://github.com/calintat/minimal">Minimal</a> |
+      Latest build: 05 February 2023 00:32 UTC.
+    </p>
+
+  </div>
+
+
+</footer>
+
+</body>
 
 </html>
-

@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
     <head>
+        
 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Continuous integration for R projects: from Travis CI to GitHub actions step by step</title>
-
+        
         <style>
 
     html body {
@@ -26,7 +28,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
 
 
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -35,85 +37,63 @@
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="/css/jquery.tocify.css">
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
-
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
  
 
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-    
-
-    <script>hljs.initHighlightingOnLoad();</script>
 
 
 
 
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
-
-  <script src="/js/jquery-1.8.3.min.js"></script>
-
-  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
-
-  <script src="/js/jquery.tocify.min.js"></script>
-
-  <script src="/js/toclipboard.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-        <meta charset="utf-8">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        
-        
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments)};
-          gtag('js', new Date());
-          gtag('config', 'UA-109508556-1');
-        </script>
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.110.0">
         
 
+        
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments)};
+              gtag('js', new Date());
+              gtag('config', 'UA-109508556-1');
+            </script>
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
 
     </head>
 
     <body>
+        
 
         <nav class="navbar navbar-default navbar-fixed-top">
-
             <div class="container">
-
                 <div class="navbar-header">
-
                     <a class="navbar-brand visible-xs" href="#">Continuous integration for R projects: from Travis CI to GitHub actions step by step</a>
-
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
                 </div>
-
                 <div class="collapse navbar-collapse">
-
                     
                         <ul class="nav navbar-nav">
                             
@@ -131,23 +111,19 @@
                             
                         </ul>
                     
-
                     
                         <ul class="nav navbar-nav navbar-right">
                             
-                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="github"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="twitter"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="rss"></i></a></li>
                             
                         </ul>
                     
-
                 </div>
-
             </div>
-
         </nav>
 
 
@@ -156,98 +132,121 @@
 
 <div>
 
-  <div class="col-md-3">
-      <div class="hidden-sm hidden-xs">
-        <div class="sticky-top">
-          <div id="toc"></div>
-
-        </div>
-    </div>
-  </div>
+    <div class="col-md-3">
+        <h1><a href="#"><i class='fa fa-chevron-up'></i></a></h1>
 
 
-  <div class="col-md-8">
+    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#insilecomisc-as-an-example">inSilecoMisc as an example</a></li>
+    <li><a href="#ciao-travis">Ciao Travis!</a></li>
+    <li><a href="#add-a-workflow">Add a workflow</a></li>
+    <li><a href="#code-coverage">Code coverage</a></li>
+    <li><a href="#website">Website</a></li>
+    <li><a href="#entire-workflow">Entire workflow</a></li>
+  </ol>
+</nav>
 
-    <h1><a href="/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/">Continuous integration for R projects: from Travis CI to GitHub actions step by step</a></h1>
 
-    <h4>November 24, 2020</h4>
-
-    <p>
-      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/continuous-integration"><kbd class="item-tag">Continuous Integration</kbd></a>  <a href="/tags/travis-ci"><kbd class="item-tag">Travis CI</kbd></a>  <a href="/tags/github-actions"><kbd class="item-tag">GitHub Actions</kbd></a>  <a href="/tags/r-package"><kbd class="item-tag">R package</kbd></a> 
-      <br>
-      
-       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/covr"><kbd class="item-tag2">covr</kbd></a>  <a href="/rpkgs/pkgdown"><kbd class="item-tag2">pkgdown</kbd></a>  <a href="/rpkgs/usethis"><kbd class="item-tag2">usethis</kbd></a> 
-      
-    </p>
-
-    
-      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
-       
-        <a href="/about/">Kevin Cazelles</a> &nbsp;
-      
-     <a href="#"></a></p>
-    
-
-    
-      <p> <i class="fa fa-check-square" aria-hidden="true", title="Reviewer(s)"></i>
-       
-      <a href="/about/">Marie-Hélène Brice</a> &nbsp;
-       
-      <a href="/about/">Willian Vieira</a> &nbsp;
-      
-      <a href="#"></a></p>
-    
-
-    <p>
-    
-    
-    
-      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=5min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
-    
-    
-    
-      <a href="http://www.R-bloggers.com">
-      <img src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
-      <a>
-     &nbsp;
-    
-    
-      <a href = "https://creativecommons.org/licenses/by/4.0/">
-      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
-      </a>
-     &nbsp;
-    
-     &nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2020%2f11%2f24%2fcontinuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step%2f&text=Continuous%20integration%20for%20R%20projects%3a%20from%20Travis%20CI%20to%20GitHub%20actions%20step%20by%20step" target="_blank">
-      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2020%2f11%2f24%2fcontinuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step%2f?link=http://left&link=http://right}'>
+<h1>
+    <a href="#bottom">
+        <i class='fa fa-chevron-down'></i>
     </a>
-  </p>
+</h1>
+    </div>
 
 
-    <br>
+    <div class="col-md-8">
 
-    <div class="text-justify">
+        <div class="post-content">
 
-      
+            <h1><a href="/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/">Continuous integration for R projects: from Travis CI to GitHub actions step by step</a></h1>
+
+            <h4>November 24, 2020</h4>
+
+            <p>
+                <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                    href="/tags/continuous-integration"><kbd class="item-tag">Continuous Integration</kbd></a>  <a
+                    href="/tags/travis-ci"><kbd class="item-tag">Travis CI</kbd></a>  <a
+                    href="/tags/github-actions"><kbd class="item-tag">GitHub Actions</kbd></a>  <a
+                    href="/tags/r-package"><kbd class="item-tag">R package</kbd></a> 
+                <br>
+                
+                <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/covr"><kbd class="item-tag2">covr</kbd></a>  <a href="/rpkgs/pkgdown"><kbd class="item-tag2">pkgdown</kbd></a>  <a href="/rpkgs/usethis"><kbd class="item-tag2">usethis</kbd></a> 
+                
+            </p>
+
+            
+            <p style="font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+                 
+                <a href="/about/">Kevin Cazelles</a> &nbsp;
+                
+                <a href="#"></a>
+            </p>
+            
+
+            
+            <p> <i class="fa fa-check-square" aria-hidden="true" , title="Reviewer(s)"></i>
+                 
+                <a href="/about/">Marie-Hélène Brice</a> &nbsp;
+                 
+                <a href="/about/">Willian Vieira</a> &nbsp;
+                
+                <a href="#"></a>
+            </p>
+            
+
+            <p>
+                
+                
+                
+                <img
+                    src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=5min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                
+                
+                
+                <a href="http://www.R-bloggers.com">
+                    <img
+                        src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
+                    <a>
+                         &nbsp;
+                        
+                        
+                                <a href="https://creativecommons.org/licenses/by/4.0/">
+                                    <img
+                                        src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                                </a>
+                                 &nbsp;
+                                
+                                 &nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2020%2f11%2f24%2fcontinuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step%2f&text=Continuous%20integration%20for%20R%20projects%3a%20from%20Travis%20CI%20to%20GitHub%20actions%20step%20by%20step"
+                                            target="_blank">
+                                            <img
+                                                src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2020%2f11%2f24%2fcontinuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step%2f?link=http://left&link=http://right}'>
+                                        </a>
+            </p>
 
 
-<p>I have been using Travis CI (<a href="https://travis-ci.org/" class="uri">https://travis-ci.org/</a>) since 2015 and GitHub
-Actions (hereafter GH Actions; <a href="https://github.com/features/actions" class="uri">https://github.com/features/actions</a>) for over a
-year now<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a>. While using these two hosted continuous integration services,
+            <br>
+
+            <div id="post-content-body" class="text-justify">
+
+                <p>I have been using Travis CI (<a href="https://travis-ci.org/">https://travis-ci.org/</a>) since 2015 and GitHub
+Actions (hereafter GH Actions; <a href="https://github.com/features/actions">https://github.com/features/actions</a>) for over a
+year now<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>. While using these two hosted continuous integration services,
 I came to realize that I was spending less time troubleshooting with GH Actions
 than I was with Travis. For this reason, I am now setting GH Actions workflows
 for my new projects (mainly R and Julia projects) and slowly migrating older
 projects from Travis to GH Actions. Turns out that was the right move! Indeed,
-as Jeroen Ooms explains in his recent post <a href="https://discuss.ropensci.org/t/ropensci-moving-away-from-travis-ci/2267">“Moving away from Travis
-CI”</a>,
+as Jeroen Ooms explains in his recent post <a href="https://discuss.ropensci.org/t/ropensci-moving-away-from-travis-ci/2267">&ldquo;Moving away from Travis
+CI&rdquo;</a>,
 by next year, <a href="https://blog.travis-ci.com/2020-11-02-travis-ci-new-billing">Travis will no longer be free for open source
 projects</a> (see
 <a href="https://www.theregister.com/2020/11/02/travis_ci_pricng/">also</a>), which gives
 me a good reason to speed up the migration process! As I was working on such
 migration recently, I felt that I should to share some notes about this!</p>
-<div id="insilecomisc-as-an-example" class="section level2">
-<h2>inSilecoMisc as an example</h2>
+<h2 id="insilecomisc-as-an-example">inSilecoMisc as an example</h2>
 <p>The package I worked on was
 <a href="https://github.com/inSileco/inSilecoMisc"><code>inSilecoMisc</code></a>. Note that I have
 already detailed elsewhere various features including in inSilecoMisc (e.g.
@@ -256,316 +255,450 @@ already detailed elsewhere various features including in inSilecoMisc (e.g.
 What matters here, is what was Travis CI doing for me. The screenshot below
 shows the different jobs I set (described in
 <a href="https://github.com/inSileco/inSilecoMisc/blob/38724e2e9710fb35d87fe1b69aaae8fe4e8cdeff/.travis.yml">.travis.yml</a>).</p>
-<div class="figure">
-<img src="on_travis.png" style="width:90.0%" alt="&gt;&lt;" />
-<p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshot of the inSilecoMisc project page on <a href="https://travis-ci.org/">travis-ci.org</a>.</p>
-</div>
+<p><img src="on_travis.png" alt=" Screenshot of the inSilecoMisc project page on travis-ci.org.">{width=90% alt=&quot;&gt;&lt;&quot;}</p>
 <p>Travis was set to check <code>inSilecoMisc</code> on macOS and Linux (Ubuntu Bionic and Focal), for different versions of R (oldrel, rel and devel). The last job, checked the package on Ubuntu Focal, uploaded <a href="https://CRAN.R-project.org/package=covr"><code>covr</code></a> results to
-<a href="https://codecov.io">CodeCov</a>, built <code>inSilecoMisc</code>’s website (via <a href="https://CRAN.R-project.org/package=pkgdown"><code>pkgdown</code></a>) and deploy to a <a href="https://pages.github.com/">GitHub Pages</a>. So my goal was to set up a workflow with GitHub Actions that would do the same jobs.</p>
-</div>
-<div id="ciao-travis" class="section level2">
-<h2>Ciao Travis!</h2>
+<a href="https://codecov.io">CodeCov</a>, built <code>inSilecoMisc</code>&rsquo;s website (via <a href="https://CRAN.R-project.org/package=pkgdown"><code>pkgdown</code></a>) and deploy to a <a href="https://pages.github.com/">GitHub Pages</a>. So my goal was to set up a workflow with GitHub Actions that would do the same jobs.</p>
+<h2 id="ciao-travis">Ciao Travis!</h2>
 <p>The first step was to stop using Travis CI. To do so, I first needed to go on
-<a href="https://travis-ci.org" class="uri">https://travis-ci.org</a> and turn off the jobs described above, so I looked for <code>inSilecoMisc</code> in my list of projects and switched it off (see screenshot below).</p>
-<div class="figure">
-<img src="switch_off.png" style="width:90.0%" alt="&gt;&lt;" />
-<p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshots of <code>inSilecoMisc</code>’s status on <a href="https://travis-ci.org" class="uri">https://travis-ci.org</a> (left: on/before, right: off/after).</p>
-</div>
+<a href="https://travis-ci.org">https://travis-ci.org</a> and turn off the jobs described above, so I looked for <code>inSilecoMisc</code> in my list of projects and switched it off (see screenshot below).</p>
+<p><img src="switch_off.png" alt=" Screenshots of inSilecoMisc&amp;rsquo;s status  on  (left: on/before, right: off/after).">{width=90% alt=&quot;&gt;&lt;&quot;}</p>
 <p>Then, as I was using a <a href="https://developer.github.com/v3/guides/managing-deploy-keys/">deploy
 key</a> for the
 website, I deleted it in the settings on GitHub repository (<i class="fa
 fa-arrow-circle-down" aria-hidden="true"></i>). Last, on my local <i class="fa
-fa-git" aria-hidden="true"></i> repository I removed <code>.travis.yaml</code> (e.g. <code>git rm .travis.yaml</code>). Note that I still have a version of this file as a
+fa-git" aria-hidden="true"></i> repository I removed <code>.travis.yaml</code> (e.g. <code>git rm .travis.yaml</code>). Note that I still have a version of this file as a
 <a href="https://gist.github.com/KevCaz/622c92cc1f7b00e66f078418882ad407">gist</a>. Once
 this was done, I committed my changes and pushed!</p>
-<div class="figure">
-<img src="ciao.png" style="width:90.0%" alt="&gt;&lt;" />
-<p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshot of <code>inSileco</code>’s home page (commit <a href="https://github.com/inSileco/inSilecoMisc/commit/500d5ef332a407e48037ce422a9a14e7c4634fe7"><code>500d5ef</code></a>).</p>
-</div>
-</div>
-<div id="add-a-workflow" class="section level2">
-<h2>Add a workflow</h2>
+<p><img src="ciao.png" alt=" Screenshot of inSileco&amp;rsquo;s home page (commit 500d5ef).">{width=90% alt=&quot;&gt;&lt;&quot;}</p>
+<h2 id="add-a-workflow">Add a workflow</h2>
 <p><a href="https://github.com/features/actions">GH Actions</a> are well-documented and my
 goal here is not to explain how to set an entire workflow. Rather I would like
 to focus on certain part of the workflow. That said, one should keep in mind
-that thanks to <a href="https://www.docker.com/">Docker</a> images and the large diversity
+that thanks to  <a href="https://www.docker.com/">Docker</a> images and the large diversity
 of Actions available, GH Actions are powerful and extremely flexible. For R
 users interested in using GH Actions to check their package, it is worth noting
 that <a href="https://CRAN.R-project.org/package=usethis"><code>usethis</code></a> has several
 functions to add such workflows:</p>
-<pre class="r"><code>library(usethis)
-use_github_action() 
-# there are different level of completeness, see the documentation 
-# and select the one you need! 
-use_github_action_check_release()
-use_github_action_check_standard()
-use_github_action_check_full()</code></pre>
-<p>The workflow I ended up using, <a href="https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml">R-CMD-check.yaml</a> (appended at the end of the post) is based on one of the template file available in <a href="https://CRAN.R-project.org/package=usethis"><code>usethis</code></a>
-that I’ve simplified a bit (I use only 4 combinations OS / R versions) and extended to use the <a href="chttps://codecov.io/">CodeCov</a> and deploy the website.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-R" data-lang="R"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">usethis</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">use_github_action</span><span class="p">()</span> 
+</span></span><span class="line"><span class="cl"><span class="c1"># there are different level of completeness, see the documentation </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># and select the one you need! </span>
+</span></span><span class="line"><span class="cl"><span class="nf">use_github_action_check_release</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">use_github_action_check_standard</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">use_github_action_check_full</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
 </div>
-<div id="code-coverage" class="section level2">
-<h2>Code coverage</h2>
+</div><p>The workflow I ended up using, <a href="https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml">R-CMD-check.yaml</a> (appended at the end of the post) is based on one of the template file available in <a href="https://CRAN.R-project.org/package=usethis"><code>usethis</code></a>
+that I&rsquo;ve simplified a bit (I use only 4 combinations OS / R versions) and extended to use the <a href="chttps://codecov.io/">CodeCov</a> and deploy the website.</p>
+<h2 id="code-coverage">Code coverage</h2>
 <p>To use <a href="chttps://codecov.io/">CodeCov</a> with Actions, a token is required. So, I clicked on the <code>Settings</code> tab of the <code>inSilecoMisc</code> page and copied the upload token:</p>
-<div class="figure">
-<img src="codecov.png" style="width:90.0%" alt="&gt;&lt;" />
-<p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshot of the CodeCov settings page of <code>inSilecoMisc</code>.</p>
+<p><img src="codecov.png" alt=" Screenshot of the CodeCov settings page of inSilecoMisc.">{width=90% alt=&quot;&gt;&lt;&quot;}</p>
+<p>Then I created a new secret <code>CODECOV_TOKEN</code> on <code>inSileco</code>&rsquo;s GitHub repository and I pasted the token.</p>
+<p><img src="token_codecov.png" alt=" Screenshot of the Secret tab of the setting of the GitHub inSilecoMisc repository.">{width=90% alt=&quot;&gt;&lt;&quot;}</p>
+<p>I chose <code>CODECOV_TOKEN</code> because it&rsquo;s pretty clear, but the name does not matter as long as the same variable name is used in <a href="https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml">R-CMD-check.yaml</a>. Below is the code bloc in the workflow that handles code coverage:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Test coverage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">matrix.config.os == &#39;macOS-latest&#39; &amp;&amp; matrix.config.r == &#39;release&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">    remotes::install_cran(&#34;covr&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="sd">    covr::codecov(token = &#34;${{secrets.CODECOV_TOKEN}}&#34;)</span><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l">Rscript {0}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
-<p>Then I created a new secret <code>CODECOV_TOKEN</code> on <code>inSileco</code>’s GitHub repository and I pasted the token.</p>
-<div class="figure">
-<img src="token_codecov.png" style="width:90.0%" alt="&gt;&lt;" />
-<p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshot of the Secret tab of the setting of the GitHub <code>inSilecoMisc</code> repository.</p>
-</div>
-<p>I chose <code>CODECOV_TOKEN</code> because it’s pretty clear, but the name does not matter as long as the same variable name is used in <a href="https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml">R-CMD-check.yaml</a>. Below is the code bloc in the workflow that handles code coverage:</p>
-<pre class="yaml"><code>- name: Test coverage
-  if: matrix.config.os == &#39;macOS-latest&#39; &amp;&amp; matrix.config.r == &#39;release&#39;
-  run: |
-    remotes::install_cran(&quot;covr&quot;)
-    covr::codecov(token = &quot;${{secrets.CODECOV_TOKEN}}&quot;)
-  shell: Rscript {0}</code></pre>
-<p>Note that <code>${{secrets.CODECOV_TOKEN}}</code> returns the token value I set as a secret
+</div><p>Note that <code>${{secrets.CODECOV_TOKEN}}</code> returns the token value I set as a secret
 above. Also, I used an <code>if:</code> filed to upload the results of the code coverage
 only once. I chose to do it on MacOS (for no specific reason) and I kept the
 part <code>matrix.config.r == 'release'</code> in case I would add another configuration
 (currently, this is useless).</p>
-</div>
-<div id="website" class="section level2">
-<h2>Website</h2>
-<div id="build" class="section level3">
-<h3>Build</h3>
+<h2 id="website">Website</h2>
+<h3 id="build">Build</h3>
 <p>In order to build the package I simply install <a href="https://CRAN.R-project.org/package=pkdown"><code>pkgdown</code></a> and use it to generates the HTML pages. Below is the code bloc I wrote for this:</p>
-<pre class="yaml"><code>- name: Build website 
-  if: matrix.config.os == &#39;ubuntu-20.04&#39; &amp;&amp; matrix.config.r == &#39;release&#39;
-  run: |
-    mkdir docs
-    sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
-    git fetch origin gh-pages:gh-pages
-    git --work-tree=docs checkout gh-pages -- .
-    Rscript -e &#39;remotes::install_cran(c(&quot;pkgdown&quot;)); pkgdown::build_site()&#39;</code></pre>
-<p>There are a few lines that require some explanations. First, I decided to build this on Ubuntu (again, this is arbitrary). Second, the following line:</p>
-<pre class="sh"><code>sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev</code></pre>
-<p>was required as dependencies were missing for
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Build website </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">matrix.config.os == &#39;ubuntu-20.04&#39; &amp;&amp; matrix.config.r == &#39;release&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">    mkdir docs
+</span></span></span><span class="line"><span class="cl"><span class="sd">    sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
+</span></span></span><span class="line"><span class="cl"><span class="sd">    git fetch origin gh-pages:gh-pages
+</span></span></span><span class="line"><span class="cl"><span class="sd">    git --work-tree=docs checkout gh-pages -- .
+</span></span></span><span class="line"><span class="cl"><span class="sd">    Rscript -e &#39;remotes::install_cran(c(&#34;pkgdown&#34;)); pkgdown::build_site()&#39;</span><span class="w">    
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>There are a few lines that require some explanations. First, I decided to build this on Ubuntu (again, this is arbitrary). Second, the following line:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>was required as dependencies were missing for
 <a href="https://CRAN.R-project.org/package=curl"><code>curl</code></a> and
 <a href="https://CRAN.R-project.org/package=textshaping"><code>textshaping</code></a>. Third, the two
 last lines are two git operations that I used to retrieve te content of the
-previous commit. I did so to be able to have both the “main” website at
-<a href="https://insileco.github.io/inSilecoMisc/" class="uri">https://insileco.github.io/inSilecoMisc/</a> and “dev” version at
-<a href="https://insileco.github.io/inSilecoMisc/dev" class="uri">https://insileco.github.io/inSilecoMisc/dev</a> (this is detailed in another post
-<a href="https://kevcaz.github.io/notes/ci/deploypkgdown2/">“Deploy a pkgdown website on gh-pages
-manually”</a>).</p>
-</div>
-<div id="deploy" class="section level3">
-<h3>Deploy</h3>
+previous commit. I did so to be able to have both the &ldquo;main&rdquo; website at
+<a href="https://insileco.github.io/inSilecoMisc/">https://insileco.github.io/inSilecoMisc/</a> and &ldquo;dev&rdquo; version at
+<a href="https://insileco.github.io/inSilecoMisc/dev">https://insileco.github.io/inSilecoMisc/dev</a> (this is detailed in another post
+<a href="https://kevcaz.github.io/notes/ci/deploypkgdown2/">&ldquo;Deploy a pkgdown website on gh-pages
+manually&rdquo;</a>).</p>
+<h3 id="deploy">Deploy</h3>
 <p>To deploy the website to <a href="https://pages.github.com/">GitHub Pages</a>, I used
 <a href="https://github.com/peaceiris/actions-gh-pages"><code>peaceiris/actions-gh-pages</code></a>
 (version 3). There are two
 ways to deploy the website that are well explained in the README of
 <a href="https://github.com/peaceiris/actions-gh-pages"><code>peaceiris/actions-gh-pages</code></a>.</p>
-</div>
-<div id="via-a-deploy-key" class="section level3">
-<h3>via a deploy key</h3>
+<h3 id="via-a-deploy-key">via a deploy key</h3>
 <p>For this, one needs to generate a <a href="https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#generating-a-new-ssh-key">pair of ssh
 keys</a>.
 On my Debian machine, I used the following command line in my terminal:</p>
-<pre class="sh"><code>$ ssh-keygen -t rsa -b 4096 -C &quot;$(git config user.email)&quot; -f gh-pages</code></pre>
-<p>Then I set the public key as a deploy key</p>
-<div class="figure">
-<img src="deploy_key.png" style="width:80.0%" alt="&gt;&lt;" />
-<p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshot of the deploy key setting.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ ssh-keygen -t rsa -b <span class="m">4096</span> -C <span class="s2">&#34;</span><span class="k">$(</span>git config user.email<span class="k">)</span><span class="s2">&#34;</span> -f gh-pages
+</span></span></code></pre></td></tr></table>
 </div>
+</div><p>Then I set the public key as a deploy key</p>
+<p><img src="deploy_key.png" alt=" Screenshot of the deploy key setting.">{width=80% alt=&quot;&gt;&lt;&quot;}</p>
 <p>and the private one as a secret.</p>
-<div class="figure">
-<img src="private.png" style="width:80.0%" alt="&gt;&lt;" />
-<p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshot of the secret <code>ACTIONS_DEPLOY_KEY</code>.</p>
-</div>
+<p><img src="private.png" alt=" Screenshot of the secret ACTIONS_DEPLOY_KEY.">{width=80% alt=&quot;&gt;&lt;&quot;}</p>
 <p>Again, I chose <code>ACTIONS_DEPLOY_KEY</code> for its clarity, but the name does not
 matter as long as the correct variable name is used in
 <a href="https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml">R-CMD-check.yaml</a>.</p>
-<pre class="yaml"><code>- name: Deploy website 
-  if: matrix.config.os == &#39;ubuntu-20.04&#39; &amp;&amp; matrix.config.r == &#39;release&#39;
-  uses: peaceiris/actions-gh-pages@v3
-  with:
-    deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
-    publish_dir: ./docs</code></pre>
-<p>I used <code>publish_dir: ./docs</code> as this is where <a href="https://CRAN.R-project.org/package=pkgdown"><code>pkgdown</code> stores</a> stored the web pages in my case
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Deploy website </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">matrix.config.os == &#39;ubuntu-20.04&#39; &amp;&amp; matrix.config.r == &#39;release&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">peaceiris/actions-gh-pages@v3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">deploy_key</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.ACTIONS_DEPLOY_KEY }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l">./docs</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>I used <code>publish_dir: ./docs</code> as this is where <a href="https://CRAN.R-project.org/package=pkgdown"><code>pkgdown</code> stores
+</a> stored the web pages in my case
 (see the file
 <a href="https://github.com/inSileco/inSilecoMisc/blob/master/_pkgdown.yml">_pkgdown.yml</a>).
-Note that I didn’t need to specify the branch to be used for the website as
-the default is <code>gh-pages</code> and I already had a branch <code>gh-pages</code> set up<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a>.</p>
-</div>
-<div id="via-a-personal-access-token" class="section level3">
-<h3>via a personal access token</h3>
+Note that I didn&rsquo;t need to specify the branch to be used for the website as
+the default is <code>gh-pages</code> and I already had a branch <code>gh-pages</code> set up<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
+<h3 id="via-a-personal-access-token">via a personal access token</h3>
 <p>The second option is to <a href="https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token">create and use a personal access token</a> (this is the solution I opted for in the end).</p>
-<div class="figure">
-<img src="perso_token.png" style="width:90.0%" alt="&gt;&lt;" />
-<p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshot of the page to generate the personal token.</p>
-</div>
+<p><img src="perso_token.png" alt=" Screenshot of the page to generate the personal token.">{width=90% alt=&quot;&gt;&lt;&quot;}</p>
 <p>And then set this token as a secret for the repository.</p>
-<div class="figure">
-<img src="pat_secret.png" style="width:90.0%" alt="&gt;&lt;" />
-<p class="caption"><i class="fa fa-info" aria-hidden="true"></i> Screenshot of the secret <code>PERSO_TOKEN</code>.</p>
-</div>
+<p><img src="pat_secret.png" alt=" Screenshot of the secret PERSO_TOKEN.">{width=90% alt=&quot;&gt;&lt;&quot;}</p>
 <p>Once the secret is set, the variable name should be passed as <code>github_token</code> (instead of <code>deploy_key</code>), like so:</p>
-<pre class="yaml"><code>- name: Deploy website 
-  if: matrix.config.os == &#39;ubuntu-20.04&#39; &amp;&amp; matrix.config.r == &#39;release&#39;
-  uses: peaceiris/actions-gh-pages@v3
-  with:
-    github_token: ${{ secrets.PERSO_TOKEN }}
-    publish_dir: ./docs</code></pre>
-<p>Incidentally, <a href="https://github.blog/changelog/2020-05-14-organization-secrets/">organization secrets</a> allow user to have secrets at the organisation level, so that the same token can be used for several repositories!</p>
-<p><br/></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Deploy website </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">matrix.config.os == &#39;ubuntu-20.04&#39; &amp;&amp; matrix.config.r == &#39;release&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">peaceiris/actions-gh-pages@v3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.PERSO_TOKEN }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l">./docs</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Incidentally, <a href="https://github.blog/changelog/2020-05-14-organization-secrets/">organization secrets</a> allow user to have secrets at the organisation level, so that the same token can be used for several repositories!</p>
+<br/>
 <p>Everything is working fine now 🎆, check out <a href="https://github.com/inSileco/inSilecoMisc"><code>inSilecoMisc</code></a>! Below is the entire workflow</p>
-</div>
-</div>
-<div id="entire-workflow" class="section level2">
-<h2>Entire workflow</h2>
+<h2 id="entire-workflow">Entire workflow</h2>
 <p>Below is the whole <a href="https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml">R-CMD-check.yaml</a> file I ended using (note that for recent projects <a href="https://github.blog/changelog/2020-08-26-set-the-default-branch-for-newly-created-repositories/">the default branch name is <code>main</code> instead of <code>master</code></a>).</p>
-<pre class="yaml"><code>on:
-  push:
-    branches:
-      - master
-  pull_request:
-    branches:
-      - master
-
-name: R-CMD-check
-
-jobs:
-  R-CMD-check:
-    runs-on: ${{ matrix.config.os }}
-
-    name: ${{ matrix.config.os }} (${{ matrix.config.r }})
-
-    strategy:
-      fail-fast: false
-      matrix:
-        config:
-          - {os: windows-latest, r: &#39;release&#39;}
-          - {os: macOS-latest, r: &#39;release&#39;}
-          - {os: ubuntu-20.04, r: &#39;release&#39;, rspm: &quot;https://packagemanager.rstudio.com/cran/__linux__/focal/latest&quot;}
-          - {os: ubuntu-20.04, r: &#39;devel&#39;, rspm: &quot;https://packagemanager.rstudio.com/cran/__linux__/focal/latest&quot;}
-
-    env:
-      R_REMOTES_NO_ERRORS_FROM_WARNINGS: true
-      CRAN: ${{ matrix.config.cran }}
-
-    steps:
-      - uses: actions/checkout@v1
-
-      - uses: r-lib/actions/setup-r@master
-        with:
-          r-version: ${{ matrix.config.r }}
-
-      - uses: r-lib/actions/setup-pandoc@master
-
-      - name: Query dependencies
-        run: |
-          install.packages(&#39;remotes&#39;)
-          saveRDS(remotes::dev_package_deps(dependencies = TRUE), &quot;depends.Rds&quot;, version = 2)
-        shell: Rscript {0}
-
-      - name: Cache R packages
-        if: runner.os != &#39;Windows&#39;
-        uses: actions/cache@v1
-        with:
-          path: ${{ env.R_LIBS_USER }}
-          key: ${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles(&#39;depends.Rds&#39;) }}
-          restore-keys: ${{ runner.os }}-r-${{ matrix.config.r }}-
-
-      - name: Install system dependencies
-        if: runner.os == &#39;Linux&#39;
-        env:
-          RHUB_PLATFORM: linux-x86_64-ubuntu-gcc
-        run: |
-          Rscript -e &quot;remotes::install_github(&#39;r-hub/sysreqs&#39;)&quot;
-          sysreqs=$(Rscript -e &quot;cat(sysreqs::sysreq_commands(&#39;DESCRIPTION&#39;))&quot;)
-          sudo -s eval &quot;$sysreqs&quot;
-      - name: Install dependencies
-        run: |
-          library(remotes)
-          deps &lt;- readRDS(&quot;depends.Rds&quot;)
-          deps[[&quot;installed&quot;]] &lt;- vapply(deps[[&quot;package&quot;]], remotes:::local_sha, character(1))
-          update(deps)
-          remotes::install_cran(&quot;rcmdcheck&quot;)
-        shell: Rscript {0}
-
-      - name: Check
-        run: rcmdcheck::rcmdcheck(args = &quot;--no-manual&quot;, error_on = &quot;warning&quot;, check_dir = &quot;check&quot;)
-        shell: Rscript {0}
-
-      - name: Upload check results
-        if: failure()
-        uses: actions/upload-artifact@master
-        with:
-          name: ${{ runner.os }}-r${{ matrix.config.r }}-results
-          path: check
-
-      - name: Test coverage
-        if: matrix.config.os == &#39;macOS-latest&#39; &amp;&amp; matrix.config.r == &#39;release&#39;
-        run: |
-          remotes::install_cran(&quot;covr&quot;)
-          covr::codecov(token = &quot;${{secrets.CODECOV_TOKEN}}&quot;)
-        shell: Rscript {0}
-    
-      - name: Build website 
-        if: matrix.config.os == &#39;ubuntu-20.04&#39; &amp;&amp; matrix.config.r == &#39;release&#39;
-        run: |
-          sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
-          mkdir docs
-          git fetch origin gh-pages:gh-pages
-          git --work-tree=docs checkout gh-pages -- .
-          Rscript -e &#39;remotes::install_cran(c(&quot;pkgdown&quot;)); pkgdown::build_site()&#39;
-            
-      - name: Deploy website 
-        if: matrix.config.os == &#39;ubuntu-20.04&#39; &amp;&amp; matrix.config.r == &#39;release&#39;
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.PERSO_TOKEN }}
-          publish_dir: ./docs</code></pre>
-<p>Hope this could be of help 😄!</p>
-<p><br/></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">master</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">pull_request</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="l">master</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">R-CMD-check</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">jobs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">R-CMD-check</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">${{ matrix.config.os }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">${{ matrix.config.os }} (${{ matrix.config.r }})</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">strategy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">fail-fast</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">matrix</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">config</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- {<span class="nt">os: windows-latest, r</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;release&#39;</span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- {<span class="nt">os: macOS-latest, r</span><span class="p">:</span><span class="w"> </span><span class="s1">&#39;release&#39;</span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- {<span class="nt">os: ubuntu-20.04, r: &#39;release&#39;, rspm</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;https://packagemanager.rstudio.com/cran/__linux__/focal/latest&#34;</span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span>- {<span class="nt">os: ubuntu-20.04, r: &#39;devel&#39;, rspm</span><span class="p">:</span><span class="w"> </span><span class="s2">&#34;https://packagemanager.rstudio.com/cran/__linux__/focal/latest&#34;</span>}<span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">R_REMOTES_NO_ERRORS_FROM_WARNINGS</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">CRAN</span><span class="p">:</span><span class="w"> </span><span class="l">${{ matrix.config.cran }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">r-lib/actions/setup-r@master</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">r-version</span><span class="p">:</span><span class="w"> </span><span class="l">${{ matrix.config.r }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">r-lib/actions/setup-pandoc@master</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Query dependencies</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">          install.packages(&#39;remotes&#39;)
+</span></span></span><span class="line"><span class="cl"><span class="sd">          saveRDS(remotes::dev_package_deps(dependencies = TRUE), &#34;depends.Rds&#34;, version = 2)</span><span class="w">          
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l">Rscript {0}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Cache R packages</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">runner.os != &#39;Windows&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/cache@v1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">${{ env.R_LIBS_USER }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">key</span><span class="p">:</span><span class="w"> </span><span class="l">${{ runner.os }}-r-${{ matrix.config.r }}-${{ hashFiles(&#39;depends.Rds&#39;) }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">restore-keys</span><span class="p">:</span><span class="w"> </span><span class="l">${{ runner.os }}-r-${{ matrix.config.r }}-</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Install system dependencies</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">runner.os == &#39;Linux&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">env</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">RHUB_PLATFORM</span><span class="p">:</span><span class="w"> </span><span class="l">linux-x86_64-ubuntu-gcc</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">          Rscript -e &#34;remotes::install_github(&#39;r-hub/sysreqs&#39;)&#34;
+</span></span></span><span class="line"><span class="cl"><span class="sd">          sysreqs=$(Rscript -e &#34;cat(sysreqs::sysreq_commands(&#39;DESCRIPTION&#39;))&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="sd">          sudo -s eval &#34;$sysreqs&#34;</span><span class="w">          
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Install dependencies</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">          library(remotes)
+</span></span></span><span class="line"><span class="cl"><span class="sd">          deps &lt;- readRDS(&#34;depends.Rds&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="sd">          deps[[&#34;installed&#34;]] &lt;- vapply(deps[[&#34;package&#34;]], remotes:::local_sha, character(1))
+</span></span></span><span class="line"><span class="cl"><span class="sd">          update(deps)
+</span></span></span><span class="line"><span class="cl"><span class="sd">          remotes::install_cran(&#34;rcmdcheck&#34;)</span><span class="w">          
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l">Rscript {0}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Check</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="l">rcmdcheck::rcmdcheck(args = &#34;--no-manual&#34;, error_on = &#34;warning&#34;, check_dir = &#34;check&#34;)</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l">Rscript {0}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Upload check results</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">failure()</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/upload-artifact@master</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">${{ runner.os }}-r${{ matrix.config.r }}-results</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l">check</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Test coverage</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">matrix.config.os == &#39;macOS-latest&#39; &amp;&amp; matrix.config.r == &#39;release&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">          remotes::install_cran(&#34;covr&#34;)
+</span></span></span><span class="line"><span class="cl"><span class="sd">          covr::codecov(token = &#34;${{secrets.CODECOV_TOKEN}}&#34;)</span><span class="w">          
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">shell</span><span class="p">:</span><span class="w"> </span><span class="l">Rscript {0}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Build website </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">matrix.config.os == &#39;ubuntu-20.04&#39; &amp;&amp; matrix.config.r == &#39;release&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">run</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">          sudo apt-get install libcurl4-openssl-dev libharfbuzz-dev libfribidi-dev
+</span></span></span><span class="line"><span class="cl"><span class="sd">          mkdir docs
+</span></span></span><span class="line"><span class="cl"><span class="sd">          git fetch origin gh-pages:gh-pages
+</span></span></span><span class="line"><span class="cl"><span class="sd">          git --work-tree=docs checkout gh-pages -- .
+</span></span></span><span class="line"><span class="cl"><span class="sd">          Rscript -e &#39;remotes::install_cran(c(&#34;pkgdown&#34;)); pkgdown::build_site()&#39;
+</span></span></span><span class="line"><span class="cl"><span class="sd">            </span><span class="w">          
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span>- <span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l">Deploy website </span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">matrix.config.os == &#39;ubuntu-20.04&#39; &amp;&amp; matrix.config.r == &#39;release&#39;</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">peaceiris/actions-gh-pages@v3</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">github_token</span><span class="p">:</span><span class="w"> </span><span class="l">${{ secrets.PERSO_TOKEN }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">          </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l">./docs</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
 </div>
-<div class="footnotes footnotes-end-of-document">
-<hr />
+</div><p>Hope this could be of help 😄!</p>
+<br/>
+<div class="footnotes" role="doc-endnotes">
+<hr>
 <ol>
-<li id="fn1"><p>see <a href="https://kevcaz.github.io/notes/ci/githubactions/">my first post about GitHub Actions</a> on my personal blog.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>Use <code>publish_branch: your-branch</code> to set <code>your-branch</code> as the branch were files will be published.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn:1">
+<p>see <a href="https://kevcaz.github.io/notes/ci/githubactions/">my first post about GitHub Actions</a> on my personal blog.&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2">
+<p>Use <code>publish_branch: your-branch</code> to set <code>your-branch</code> as the branch were files will be published.&#160;<a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
 </ol>
 </div>
 
 
-      <div class="text-justify">
-        
-          <div class="edits">
-            <h4><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h4>
-            <p style="font-size: 1.5rem">
-              
-              <i class="fa fa-pencil" aria-hidden="true"></i> May 21, 2021 -- Edit the tricks to keep both the versions of the website (dev and last releases). <br>
-              
-            </p>
-          </div>
-        
-
-      </div>
+                    
+                    <div class="edits" style="margin-top: 2em; margin-bottom: 1em;">
+                        <h4><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h4>
+                        <p style="font-size: 1.5rem">
+                            
+                            <i class="fa fa-pencil" aria-hidden="true"></i> May 21, 2021 -- Edit the tricks to keep both the versions of the website (dev and last releases). <br>
+                            
+                        </p>
+                    </div>
+                    
 
 
-    
+            </div>
 
-    </center>
 
-    </div>
+            
 
-      <br>
+            </center>
 
-  
-  <script>
-    var $jq = jQuery.noConflict();
-      $jq(function() {
-          var toc = $jq("#toc").tocify({
-            selectors: "h2, h3",
-            scrollTo: 50
-          }).data("toc-tocify");
-    });
-  </script>
+        </div>
+
+          <br>
+
 
   
   <script src="//yihui.name/js/math-code.js"></script>
@@ -573,6 +706,8 @@ jobs:
   
   
 
+
+  <script src="/js/sidebar-post.js"></script>
 
   <h3 class="page-header">Comments on this post</h3>
 
@@ -627,28 +762,36 @@ jobs:
 </div>
 
 
-</div>
+    </div>
 
-        <footer>
+    <footer>
 
-          <script src="//yihui.name/js/math-code.js"></script>
-          <script async
-            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-          </script>
+  <div class="col-md-3">
 
-            <hr>
-            <p class="copyright text-muted" style="font-size: 1.6rem;">
-              &copy; 2017-2022 inSileco |
-              All rights reserved |
-              Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
-                <a href="https://gohugo.io">Hugo</a>
-                and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Dec 2022 01:46 UTC.
-              </p>
+    <a href="#" id="bottom"></a>
 
-        </footer>
+  </div>
 
-    </body>
+  <div class="col-md-8">
+
+    <script src="//yihui.name/js/math-code.js"></script>
+    <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <hr>
+    <p class="copyright text-muted" style="font-size: 1.6rem;">
+      &copy; 2017-2023 inSileco |
+      Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+      <a href="https://gohugo.io">Hugo</a>
+      and <a href="https://github.com/calintat/minimal">Minimal</a> |
+      Latest build: 05 February 2023 00:32 UTC.
+    </p>
+
+  </div>
+
+
+</footer>
+
+</body>
 
 </html>
-

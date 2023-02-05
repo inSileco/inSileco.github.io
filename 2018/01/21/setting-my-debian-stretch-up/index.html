@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
     <head>
+        
 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Setting my Debian Stretch up</title>
-
+        
         <style>
 
     html body {
@@ -26,7 +28,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
 
 
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -35,85 +37,63 @@
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="/css/jquery.tocify.css">
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
-
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
  
 
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-    
-
-    <script>hljs.initHighlightingOnLoad();</script>
 
 
 
 
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
-
-  <script src="/js/jquery-1.8.3.min.js"></script>
-
-  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
-
-  <script src="/js/jquery.tocify.min.js"></script>
-
-  <script src="/js/toclipboard.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-        <meta charset="utf-8">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        
-        
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments)};
-          gtag('js', new Date());
-          gtag('config', 'UA-109508556-1');
-        </script>
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.110.0">
         
 
+        
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments)};
+              gtag('js', new Date());
+              gtag('config', 'UA-109508556-1');
+            </script>
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
 
     </head>
 
     <body>
+        
 
         <nav class="navbar navbar-default navbar-fixed-top">
-
             <div class="container">
-
                 <div class="navbar-header">
-
                     <a class="navbar-brand visible-xs" href="#">Setting my Debian Stretch up</a>
-
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
                 </div>
-
                 <div class="collapse navbar-collapse">
-
                     
                         <ul class="nav navbar-nav">
                             
@@ -131,23 +111,19 @@
                             
                         </ul>
                     
-
                     
                         <ul class="nav navbar-nav navbar-right">
                             
-                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="github"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="twitter"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="rss"></i></a></li>
                             
                         </ul>
                     
-
                 </div>
-
             </div>
-
         </nav>
 
 
@@ -156,72 +132,94 @@
 
 <div>
 
-  <div class="col-md-3">
-      <div class="hidden-sm hidden-xs">
-        <div class="sticky-top">
-          <div id="toc"></div>
-
-        </div>
-    </div>
-  </div>
+    <div class="col-md-3">
+        <h1><a href="#"><i class='fa fa-chevron-up'></i></a></h1>
 
 
-  <div class="col-md-8">
+    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#go-debian">Go Debian</a></li>
+    <li><a href="#installing-debian">Installing Debian</a></li>
+    <li><a href="#using-debian">Using Debian</a></li>
+  </ol>
+</nav>
 
-    <h1><a href="/2018/01/21/setting-my-debian-stretch-up/">Setting my Debian Stretch up</a></h1>
 
-    <h4>January 21, 2018</h4>
-
-    <p>
-      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/linux"><kbd class="item-tag">Linux</kbd></a>  <a href="/tags/debian"><kbd class="item-tag">Debian</kbd></a>  <a href="/tags/setup"><kbd class="item-tag">Setup</kbd></a> 
-      <br>
-      
-    </p>
-
-    
-      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
-       
-        <a href="/about/">Kevin Cazelles</a> &nbsp;
-      
-     <a href="#"></a></p>
-    
-
-    
-      <p> <i class="fa fa-check-square" aria-hidden="true", title="Reviewer(s)"></i>
-       
-      <a href="/about/">David Beauchesne</a> &nbsp;
-      
-      <a href="#"></a></p>
-    
-
-    <p>
-    
-    
-    
-      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=14min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
-    
-    
-     &nbsp;
-    
-    
-      <a href = "https://creativecommons.org/licenses/by/4.0/">
-      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
-      </a>
-     &nbsp;
-    
-     &nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2018%2f01%2f21%2fsetting-my-debian-stretch-up%2f&text=Setting%20my%20Debian%20Stretch%20up" target="_blank">
-      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2018%2f01%2f21%2fsetting-my-debian-stretch-up%2f?link=http://left&link=http://right}'>
+<h1>
+    <a href="#bottom">
+        <i class='fa fa-chevron-down'></i>
     </a>
-  </p>
+</h1>
+    </div>
 
 
-    <br>
+    <div class="col-md-8">
 
-    <div class="text-justify">
+        <div class="post-content">
 
-      <p>This post details my Debian Stretch setup on my Lenovo ThinkPad T470p.
+            <h1><a href="/2018/01/21/setting-my-debian-stretch-up/">Setting my Debian Stretch up</a></h1>
+
+            <h4>January 21, 2018</h4>
+
+            <p>
+                <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                    href="/tags/linux"><kbd class="item-tag">Linux</kbd></a>  <a
+                    href="/tags/debian"><kbd class="item-tag">Debian</kbd></a>  <a
+                    href="/tags/setup"><kbd class="item-tag">Setup</kbd></a> 
+                <br>
+                
+            </p>
+
+            
+            <p style="font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+                 
+                <a href="/about/">Kevin Cazelles</a> &nbsp;
+                
+                <a href="#"></a>
+            </p>
+            
+
+            
+            <p> <i class="fa fa-check-square" aria-hidden="true" , title="Reviewer(s)"></i>
+                 
+                <a href="/about/">David Beauchesne</a> &nbsp;
+                
+                <a href="#"></a>
+            </p>
+            
+
+            <p>
+                
+                
+                
+                <img
+                    src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=14min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                
+                
+                 &nbsp;
+                        
+                        
+                                <a href="https://creativecommons.org/licenses/by/4.0/">
+                                    <img
+                                        src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                                </a>
+                                 &nbsp;
+                                
+                                 &nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2018%2f01%2f21%2fsetting-my-debian-stretch-up%2f&text=Setting%20my%20Debian%20Stretch%20up"
+                                            target="_blank">
+                                            <img
+                                                src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2018%2f01%2f21%2fsetting-my-debian-stretch-up%2f?link=http://left&link=http://right}'>
+                                        </a>
+            </p>
+
+
+            <br>
+
+            <div id="post-content-body" class="text-justify">
+
+                <p>This post details my Debian Stretch setup on my Lenovo ThinkPad T470p.
 I got this machine in early August 2017, so I now have almost 6 months worth of experience on
 Debian and I thought it was a good time to 1- document the rationale behind my move from
 MacOS to Debian 2- explain how I set my computer up and 3- how I rate my appreciation of
@@ -282,7 +280,7 @@ in a new stable Debian release are slightly outdated at the time of the stable
 version release, which does not preclude packages from being further developed or
 render new development inaccessible. One simply has to install the testing version
 of Debian to access up-to-date packages.</p>
-<p>Debian packages I said? Well they basically are pieces ofsoftware for Debian.
+<p>Debian packages I said? Well they basically are pieces of software for Debian.
 Let&rsquo;s say that they are non-random sets of files that Debian can install using
 <code>dpkg -i</code>. Many packages are available online and you can readily install them
 using a single line of command to the package manager <code>apt-get</code>. If you are
@@ -291,7 +289,7 @@ mirrors</a> forming the main Debian package
 repository available online. To illustrate this, in the video below I navigate
 to a mirror and show where <a href="https://pandoc.org">pandoc</a> is stored.</p>
 <video width="100%" controls>
- <source src="/post/archived/setUps/myDebianStretch/assets/mirror.webm" type="video/webm">
+ <source src='/post/2018/myDebianStretch/assets/mirror.webm' type="video/webm">
  Your browser does not support the video tag.
 </video>
 <h4 id="two-additional-comments">Two additional comments</h4>
@@ -347,7 +345,7 @@ user and do not intend to become one, so I got rid of Windows ASAP (I obviously 
 a selfie 😈) and installed Debian Stretch. Let me now
 explain how!</p>
 <br>
-<center><img alt="me on windows" width="35%" src = "/post/archived/setUps/myDebianStretch/assets/meonwindows.png"></img></center>
+<center><img alt="me on windows" width="35%" src="/post/2018/myDebianStretch/assets/meonwindows.png"></img></center>
 <br>
 <h4 id="1--get-a-bootable-usb-stick">1- Get a bootable USB stick</h4>
 <p>I decided to go with the stable release of Debian so, in August, 2017, that meant installing
@@ -398,19 +396,19 @@ below <code>ctrl+alt+shift+R</code>).</p>
 </ol>
 <h3 id="gnome-version">Gnome version</h3>
 <video width="100%" controls>
- <source src="/post/archived/setUps/myDebianStretch/assets/gnomeVersion.webm" }} type="video/webm">
+ <source src="/post/2018/myDebianStretch/assets/gnomeVersion.webm" }} type="video/webm">
  Your browser does not support the video tag.
 </video>
 <br>
 <h3 id="gnome-tweak-tool">Gnome-Tweak-Tool</h3>
 <video width="100%" controls>
- <source src="/post/archived/setUps/myDebianStretch/assets/gnomeTweak.webm" type="video/webm">
+ <source src="/post/2018/myDebianStretch/assets/gnomeTweak.webm" type="video/webm">
  Your browser does not support the video tag.
 </video>
 <br>
 <h3 id="keyboard-bindings">Keyboard bindings</h3>
 <video width="100%" controls>
- <source src="/post/archived/setUps/myDebianStretch/assets/shortcuts.webm" type="video/webm">
+ <source src="/post/2018/myDebianStretch/assets/shortcuts.webm" type="video/webm">
  Your browser does not support the video tag.
 </video>
 <br>
@@ -613,7 +611,7 @@ issues that may be solved when I use a more recent release, and regarding
 <h4 id="various-messages-on-startup">Various messages on startup</h4>
 <p>As you can see below I have a couple of error messages on log (command line
 is <code>sudo dmesg -l err</code>):</p>
-<p><img src="/post/archived/setUps/myDebianStretch/assets/errors.png" width="100%"></img></p>
+<p><img src="/post/2018/myDebianStretch/assets/errors.png" width="100%"></img></p>
 <p>Well from what I understood this is nothing too bad. For instance, <code>kvm: disabled by bios</code>
 is more of a warning message than an error message. My Wi-fi works great despite
 the <code>firmware: failed to load iwlwifi-8265-26.ucode</code> message. The ACIP errors
@@ -649,43 +647,33 @@ very carefully!</p>
 <h3 id="-see-you-next-post-">➡️ <strong>SEE YOU NEXT POST!!</strong> 💥</h3>
 
 
-      <div class="text-justify">
-        
-          <div class="edits">
-            <h4><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h4>
-            <p style="font-size: 1.5rem">
-              
-              <i class="fa fa-pencil" aria-hidden="true"></i> Feb 24, 2018 -- add a selfie <br>
-              
-              <i class="fa fa-pencil" aria-hidden="true"></i> Apr 17, 2018 -- new gist (won&#39;t be updated anymore) <br>
-              
-              <i class="fa fa-pencil" aria-hidden="true"></i> Aug 9, 2019 -- fix links and 2 typos <br>
-              
-            </p>
-          </div>
-        
-
-      </div>
+                    
+                    <div class="edits" style="margin-top: 2em; margin-bottom: 1em;">
+                        <h4><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h4>
+                        <p style="font-size: 1.5rem">
+                            
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Feb 24, 2018 -- add a selfie <br>
+                            
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Apr 17, 2018 -- new gist (won&#39;t be updated anymore) <br>
+                            
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Aug 9, 2019 -- fix links and 2 typos <br>
+                            
+                        </p>
+                    </div>
+                    
 
 
-    
+            </div>
 
-    </center>
 
-    </div>
+            
 
-      <br>
+            </center>
 
-  
-  <script>
-    var $jq = jQuery.noConflict();
-      $jq(function() {
-          var toc = $jq("#toc").tocify({
-            selectors: "h2, h3",
-            scrollTo: 50
-          }).data("toc-tocify");
-    });
-  </script>
+        </div>
+
+          <br>
+
 
   
   <script src="//yihui.name/js/math-code.js"></script>
@@ -693,6 +681,8 @@ very carefully!</p>
   
   
 
+
+  <script src="/js/sidebar-post.js"></script>
 
   <h3 class="page-header">Comments on this post</h3>
 
@@ -801,28 +791,36 @@ very carefully!</p>
 </div>
 
 
-</div>
+    </div>
 
-        <footer>
+    <footer>
 
-          <script src="//yihui.name/js/math-code.js"></script>
-          <script async
-            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-          </script>
+  <div class="col-md-3">
 
-            <hr>
-            <p class="copyright text-muted" style="font-size: 1.6rem;">
-              &copy; 2017-2022 inSileco |
-              All rights reserved |
-              Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
-                <a href="https://gohugo.io">Hugo</a>
-                and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Dec 2022 01:46 UTC.
-              </p>
+    <a href="#" id="bottom"></a>
 
-        </footer>
+  </div>
 
-    </body>
+  <div class="col-md-8">
+
+    <script src="//yihui.name/js/math-code.js"></script>
+    <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <hr>
+    <p class="copyright text-muted" style="font-size: 1.6rem;">
+      &copy; 2017-2023 inSileco |
+      Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+      <a href="https://gohugo.io">Hugo</a>
+      and <a href="https://github.com/calintat/minimal">Minimal</a> |
+      Latest build: 05 February 2023 00:32 UTC.
+    </p>
+
+  </div>
+
+
+</footer>
+
+</body>
 
 </html>
-

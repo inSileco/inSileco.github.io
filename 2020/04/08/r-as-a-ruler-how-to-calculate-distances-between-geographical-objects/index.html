@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
     <head>
+        
 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>R as a ruler? How to calculate distances between geographical objects</title>
-
+        
         <style>
 
     html body {
@@ -26,7 +28,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
 
 
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -35,85 +37,63 @@
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="/css/jquery.tocify.css">
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
-
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
  
 
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-    
-
-    <script>hljs.initHighlightingOnLoad();</script>
 
 
 
 
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
-
-  <script src="/js/jquery-1.8.3.min.js"></script>
-
-  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
-
-  <script src="/js/jquery.tocify.min.js"></script>
-
-  <script src="/js/toclipboard.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-        <meta charset="utf-8">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        
-        
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments)};
-          gtag('js', new Date());
-          gtag('config', 'UA-109508556-1');
-        </script>
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.110.0">
         
 
+        
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments)};
+              gtag('js', new Date());
+              gtag('config', 'UA-109508556-1');
+            </script>
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
 
     </head>
 
     <body>
+        
 
         <nav class="navbar navbar-default navbar-fixed-top">
-
             <div class="container">
-
                 <div class="navbar-header">
-
                     <a class="navbar-brand visible-xs" href="#">R as a ruler? How to calculate distances between geographical objects</a>
-
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
                 </div>
-
                 <div class="collapse navbar-collapse">
-
                     
                         <ul class="nav navbar-nav">
                             
@@ -131,23 +111,19 @@
                             
                         </ul>
                     
-
                     
                         <ul class="nav navbar-nav navbar-right">
                             
-                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="github"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="twitter"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="rss"></i></a></li>
                             
                         </ul>
                     
-
                 </div>
-
             </div>
-
         </nav>
 
 
@@ -156,178 +132,223 @@
 
 <div>
 
-  <div class="col-md-3">
-      <div class="hidden-sm hidden-xs">
-        <div class="sticky-top">
-          <div id="toc"></div>
-
-        </div>
-    </div>
-  </div>
+    <div class="col-md-3">
+        <h1><a href="#"><i class='fa fa-chevron-up'></i></a></h1>
 
 
-  <div class="col-md-8">
+    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#classic-geographical-distances">Classic geographical distances</a></li>
+    <li><a href="#least-cost-distances-with-gdistance">Least Cost Distances with <code>gdistance</code></a></li>
+    <li><a href="#least-cost-distances-with-igraph">Least Cost Distances with <code>igraph</code></a></li>
+  </ol>
+</nav>
 
-    <h1><a href="/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/">R as a ruler? How to calculate distances between geographical objects</a></h1>
 
-    <h4>April 8, 2020</h4>
-
-    <p>
-      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/gis"><kbd class="item-tag">GIS</kbd></a>  <a href="/tags/utils"><kbd class="item-tag">utils</kbd></a> 
-      <br>
-      
-       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/sf"><kbd class="item-tag2">sf</kbd></a>  <a href="/rpkgs/gdistance"><kbd class="item-tag2">gdistance</kbd></a>  <a href="/rpkgs/igraph"><kbd class="item-tag2">igraph</kbd></a>  <a href="/rpkgs/knitr"><kbd class="item-tag2">knitr</kbd></a>  <a href="/rpkgs/sp"><kbd class="item-tag2">sp</kbd></a>  <a href="/rpkgs/raster"><kbd class="item-tag2">raster</kbd></a> 
-      
-    </p>
-
-    
-      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
-       
-        <a href="/about/">Elliot Dreujou</a> &nbsp;
-      
-     <a href="#"></a></p>
-    
-
-    
-      <p> <i class="fa fa-check-square" aria-hidden="true", title="Reviewer(s)"></i>
-       
-      <a href="/about/">Rémi Daigle</a> &nbsp;
-       
-      <a href="/about/">Kevin Cazelles</a> &nbsp;
-      
-      <a href="#"></a></p>
-    
-
-    <p>
-    
-    
-    
-      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=13min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
-    
-    
-     &nbsp;
-    
-    
-      <a href = "https://creativecommons.org/licenses/by/4.0/">
-      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
-      </a>
-     &nbsp;
-    
-     &nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f08%2fr-as-a-ruler-how-to-calculate-distances-between-geographical-objects%2f&text=" target="_blank">
-      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f08%2fr-as-a-ruler-how-to-calculate-distances-between-geographical-objects%2f?link=http://left&link=http://right}'>
+<h1>
+    <a href="#bottom">
+        <i class='fa fa-chevron-down'></i>
     </a>
-  </p>
+</h1>
+    </div>
 
 
-    <br>
+    <div class="col-md-8">
 
-    <div class="text-justify">
+        <div class="post-content">
 
-      
+            <h1><a href="/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/">R as a ruler? How to calculate distances between geographical objects</a></h1>
+
+            <h4>April 8, 2020</h4>
+
+            <p>
+                <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                    href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a
+                    href="/tags/gis"><kbd class="item-tag">GIS</kbd></a>  <a
+                    href="/tags/utils"><kbd class="item-tag">utils</kbd></a> 
+                <br>
+                
+                <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/sf"><kbd class="item-tag2">sf</kbd></a>  <a href="/rpkgs/gdistance"><kbd class="item-tag2">gdistance</kbd></a>  <a href="/rpkgs/igraph"><kbd class="item-tag2">igraph</kbd></a>  <a href="/rpkgs/knitr"><kbd class="item-tag2">knitr</kbd></a>  <a href="/rpkgs/sp"><kbd class="item-tag2">sp</kbd></a>  <a href="/rpkgs/raster"><kbd class="item-tag2">raster</kbd></a> 
+                
+            </p>
+
+            
+            <p style="font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+                 
+                <a href="/about/">Elliot Dreujou</a> &nbsp;
+                
+                <a href="#"></a>
+            </p>
+            
+
+            
+            <p> <i class="fa fa-check-square" aria-hidden="true" , title="Reviewer(s)"></i>
+                 
+                <a href="/about/">Rémi Daigle</a> &nbsp;
+                 
+                <a href="/about/">Kevin Cazelles</a> &nbsp;
+                
+                <a href="#"></a>
+            </p>
+            
+
+            <p>
+                
+                
+                
+                <img
+                    src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=13min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                
+                
+                 &nbsp;
+                        
+                        
+                                <a href="https://creativecommons.org/licenses/by/4.0/">
+                                    <img
+                                        src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                                </a>
+                                 &nbsp;
+                                
+                                 &nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f08%2fr-as-a-ruler-how-to-calculate-distances-between-geographical-objects%2f&text="
+                                            target="_blank">
+                                            <img
+                                                src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f08%2fr-as-a-ruler-how-to-calculate-distances-between-geographical-objects%2f?link=http://left&link=http://right}'>
+                                        </a>
+            </p>
 
 
-<p>When working in Ecology, it is often necessary to produce maps and calculate distances between objects such as sampled stations, species distribution ranges or geographical features. A <a href="/tuto/rinspace/rinspace_homepage/">tutorial on this blog</a> describes many techniques to create maps with different packages in R, such as <code>sf</code> and <code>raster</code>. In this post, I will go further and use these tools to calculate distances in our spatial environment.</p>
-<div id="how-to-define-a-distance" class="section level1">
-<h1>How to define a distance?</h1>
-<p>Before stepping in our topic, let’s define what we are talking about. What is a <em>distance</em>? This concept has various applications in ecology we need to present here, to make sure we are on the same page.</p>
-<p>Distances are frequently used to describe how the characteristics of two (or more) samples are different from each other (abiotic parameters, species composition, functional traits…). This particular definition presents a distance as an index of similarity/dissimilarity. Such indices include functions like Euclidean distance, Sørensen coefficient, Bray-Curtis dissimilarity or Mahalanobis distance, which can be applied to different types of data with different results (see Legendre &amp; Legendre 2012). We will not cover these aspects here, more information can be found in Chapter 7 of <em>Numerical Ecology</em>, which is a must-have for every ecologist!</p>
-<p>Instead of using a distance as a ressemblance measure, we will use it with its first meaning: a measure of how distant in space two points are. The most straightforward geographical measure is the Euclidean distance, based on Pythagoras’ theorem of triangular equality. In an Euclidean plane, we will compute the difference between the X and Y coordinates of two points A and B (other formulae can be found for different coordinate systems):</p>
-<p><span class="math display">\[D_{A,B} = \sqrt{(x_{B} - x_{A})^{2} + (y_{B} - y_{A})^{2}}\]</span></p>
-<center>
-<div class="figure">
-<img src="Figures/Euclidean.png" alt="" />
-<p class="caption">Euclidean Distance</p>
-</div>
-</center>
-</div>
-<div id="geographical-distances-and-the-problem-of-heterogeneity" class="section level1">
-<h1>Geographical distances and the problem of heterogeneity</h1>
-<p>Let’s choose a concrete example: let me introduce Herbert the lobster. Herbert is a wild lobster living in the bay of Sept-Îles (Québec, Canada).</p>
-<center>
-<div class="figure">
-<img src="Figures/Zoidberg1.gif" style="width:40.0%" alt="" />
-<p class="caption">No, not this lobster… (<em>imgur.com</em>)</p>
-</div>
-</center>
+            <br>
+
+            <div id="post-content-body" class="text-justify">
+
+                <p>When working in Ecology, it is often necessary to produce maps and calculate distances between objects such as sampled stations, species distribution ranges or geographical features. A <a href="/tuto/rinspace/rinspace_homepage/">tutorial on this blog</a> describes many techniques to create maps with different packages in R, such as <code>sf</code> and <code>raster</code>. In this post, I will go further and use these tools to calculate distances in our spatial environment.</p>
+<h1 id="how-to-define-a-distance">How to define a distance?</h1>
+<p>Before stepping in our topic, let&rsquo;s define what we are talking about. What is a <em>distance</em>? This concept has various applications in ecology we need to present here, to make sure we are on the same page.</p>
+<p>Distances are frequently used to describe how the characteristics of two (or more) samples are different from each other (abiotic parameters, species composition, functional traits&hellip;). This particular definition presents a distance as an index of similarity/dissimilarity. Such indices include functions like Euclidean distance, Sørensen coefficient, Bray-Curtis dissimilarity or Mahalanobis distance, which can be applied to different types of data with different results (see Legendre &amp; Legendre 2012). We will not cover these aspects here, more information can be found in Chapter 7 of <em>Numerical Ecology</em>, which is a must-have for every ecologist!</p>
+<p>Instead of using a distance as a ressemblance measure, we will use it with its first meaning: a measure of how distant in space two points are. The most straightforward geographical measure is the Euclidean distance, based on Pythagoras&rsquo; theorem of triangular equality. In an Euclidean plane, we will compute the difference between the X and Y coordinates of two points A and B (other formulae can be found for different coordinate systems):</p>
+<p><code>$$D_{A,B} = \sqrt{(x_{B} - x_{A})^{2} + (y_{B} - y_{A})^{2}}$$</code></p>
+<center> ![Euclidean Distance](Figures/Euclidean.png) </center>
+<h1 id="geographical-distances-and-the-problem-of-heterogeneity">Geographical distances and the problem of heterogeneity</h1>
+<p>Let&rsquo;s choose a concrete example: let me introduce Herbert the lobster. Herbert is a wild lobster living in the bay of Sept-Îles (Québec, Canada).</p>
+<center> ![No, not this lobster... (*imgur.com*)](Figures/Zoidberg1.gif){width=40%} </center>
 <p>We, as researchers, are interested in knowing the connectivity of its actual distribution to other potential living places close by. Why so? Because it is a crucial piece of information to predict its future distribution under a scenario of habitat loss due to human perturbation!</p>
-<p>Euclidean distance is a great tool to calculate the distance between initial and potential living places for Herbert, assuming the space between these locations is homogeneous. Typically, marine ecosystems are particularly relevant for this measure. However, depending on the scale and/or location, the presence of islands, bays or anthropogenic structures can be problematic as they constitute barriers between locations that a species cannot cross. Distances ‘as the crow flies’ will then be meaningless!</p>
+<p>Euclidean distance is a great tool to calculate the distance between initial and potential living places for Herbert, assuming the space between these locations is homogeneous. Typically, marine ecosystems are particularly relevant for this measure. However, depending on the scale and/or location, the presence of islands, bays or anthropogenic structures can be problematic as they constitute barriers between locations that a species cannot cross. Distances &lsquo;as the crow flies&rsquo; will then be meaningless!</p>
 <p>So what do we do? Well, we can still use the Euclidean distance, but with the specification of forbidden regions in the space we are considering. Then, the path between the two locations will not be straight anymore (as above), but with intermediate steps only in allowed regions. In this case, many different paths can exist, so we will have to compute all possible paths between the start and end point, then select the best one <em>i.e.</em> the path with the shortest distance.</p>
-<center>
-<div class="figure">
-<img src="Figures/Pathfinding1.gif" alt="" />
-<p class="caption">Example of a pathfinding algorithm (<a href="https://en.wikipedia.org/wiki/Pathfinding"><em>Wikipedia</em></a>)</p>
-</div>
-</center>
-<p>This is a frequent problem used for many applications, in particular for artificial intelligence (robot movements, characters evolution in video games…). Many algorithms exist to answer this problem, with various computational performances, as some problems can be highly difficult to solve! One of the most widely used algorithm in the one proposed by Dijkstra in 1959 that allows to add weights for path points. We won’t go into details here, but remember that Dijkstra’s algorithm is used in the methods presented below.</p>
-</div>
-<div id="applications-in-r" class="section level1">
-<h1>Applications in R</h1>
+<center> ![Example of a pathfinding algorithm ([*Wikipedia*](https://en.wikipedia.org/wiki/Pathfinding))](Figures/Pathfinding1.gif) </center>
+<p>This is a frequent problem used for many applications, in particular for artificial intelligence (robot movements, characters evolution in video games&hellip;). Many algorithms exist to answer this problem, with various computational performances, as some problems can be highly difficult to solve! One of the most widely used algorithm in the one proposed by Dijkstra in 1959 that allows to add weights for path points. We won&rsquo;t go into details here, but remember that Dijkstra&rsquo;s algorithm is used in the methods presented below.</p>
+<h1 id="applications-in-r">Applications in R</h1>
 <p>We will work with the <code>sf</code> package (Pebesma 2018), as described in the previous <a href="/tuto/rinspace/rinspace_homepage/">inSileco GIS series</a>. Also, we present here a case study with <em>point</em> data, but these methods can be adapted to <em>lines</em>, <em>polygons</em> or <em>objects with multiple geometries</em>.</p>
 <p>First, we will have to import the shapefile of the study area. All shapefiles are projected with the WGS84 (EPSG code: 4326) coordinate reference system (CRS), but analyses will be done with the UTM 19N (EPSG code: 32619) CRS. UTM considers units in meters instead of degrees, <em>i.e</em> it is a projected CRS with corrections for longitude and latitude, and we use UTM 19N which includes the area of Sept-Îles.</p>
-<pre class="r"><code>library(knitr)
-library(sf)
-library(sp)
-
-bay &lt;- st_read(&quot;Data/poly_bay.shp&quot;) %&gt;%
-       st_transform(crs = 32619)
-
-coords &lt;- data.frame(station = c(&quot;INIT&quot;, &quot;P1&quot;, &quot;P2&quot;, &quot;P3&quot;),
-                     longitude = c(-66.437, -66.508, -66.363, -66.385),
-                     latitude = c(50.152, 50.162, 50.133, 50.095))
-
-coords &lt;- st_as_sf(coords, coords = c(&quot;longitude&quot;, &quot;latitude&quot;),
-                   crs = 4326, stringsAsFactors = FALSE) %&gt;%
-          st_transform(crs = 32619)</code></pre>
-<p><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot1-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">knitr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">bay</span> <span class="o">&lt;-</span> <span class="nf">st_read</span><span class="p">(</span><span class="s">&#34;Data/poly_bay.shp&#34;</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">       <span class="nf">st_transform</span><span class="p">(</span><span class="n">crs</span> <span class="o">=</span> <span class="m">32619</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">coords</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">station</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;INIT&#34;</span><span class="p">,</span> <span class="s">&#34;P1&#34;</span><span class="p">,</span> <span class="s">&#34;P2&#34;</span><span class="p">,</span> <span class="s">&#34;P3&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">longitude</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">-66.437</span><span class="p">,</span> <span class="m">-66.508</span><span class="p">,</span> <span class="m">-66.363</span><span class="p">,</span> <span class="m">-66.385</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                     <span class="n">latitude</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">50.152</span><span class="p">,</span> <span class="m">50.162</span><span class="p">,</span> <span class="m">50.133</span><span class="p">,</span> <span class="m">50.095</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">coords</span> <span class="o">&lt;-</span> <span class="nf">st_as_sf</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">coords</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;longitude&#34;</span><span class="p">,</span> <span class="s">&#34;latitude&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">crs</span> <span class="o">=</span> <span class="m">4326</span><span class="p">,</span> <span class="n">stringsAsFactors</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">          <span class="nf">st_transform</span><span class="p">(</span><span class="n">crs</span> <span class="o">=</span> <span class="m">32619</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot1-1.png" width="672" style="display: block; margin: auto;" />
 <p>The initial position of Herbert is on the turquoise dot (init), and we are interested in three possible locations (P1, P2 and P3).</p>
-<div id="classic-geographical-distances" class="section level2">
-<h2>Classic geographical distances</h2>
-<p>We can compute the Euclidean distances between each points by using <code>sf::st_distance()</code>. Let’s try this here, even if we know that we do not consider the coast as a forbidden area.</p>
-<pre class="r"><code>dist1 &lt;- st_distance(x = coords[1,], y = coords[-1,])
-
-dist1_df &lt;- data.frame(dist1, row.names = &quot;Distance from init:&quot;)
-colnames(dist1_df) &lt;- c(&quot;P1&quot;, &quot;P2&quot;, &quot;P3&quot;)
-
-kable(dist1_df)</code></pre>
-<table>
+<h2 id="classic-geographical-distances">Classic geographical distances</h2>
+<p>We can compute the Euclidean distances between each points by using <code>sf::st_distance()</code>. Let&rsquo;s try this here, even if we know that we do not consider the coast as a forbidden area.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">dist1</span> <span class="o">&lt;-</span> <span class="nf">st_distance</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">coords[1</span><span class="p">,</span><span class="n">]</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">coords[</span><span class="m">-1</span><span class="p">,</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">dist1_df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">dist1</span><span class="p">,</span> <span class="n">row.names</span> <span class="o">=</span> <span class="s">&#34;Distance from init:&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">colnames</span><span class="p">(</span><span class="n">dist1_df</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;P1&#34;</span><span class="p">,</span> <span class="s">&#34;P2&#34;</span><span class="p">,</span> <span class="s">&#34;P3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">kable</span><span class="p">(</span><span class="n">dist1_df</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table>
 <thead>
-<tr class="header">
-<th align="left"></th>
-<th align="right">P1</th>
-<th align="right">P2</th>
-<th align="right">P3</th>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:right">P1</th>
+<th style="text-align:right">P2</th>
+<th style="text-align:right">P3</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">Distance from init:</td>
-<td align="right">5194.299 [m]</td>
-<td align="right">5696.479 [m]</td>
-<td align="right">7350.401 [m]</td>
+<tr>
+<td style="text-align:left">Distance from init:</td>
+<td style="text-align:right">5194.299 [m]</td>
+<td style="text-align:right">5696.479 [m]</td>
+<td style="text-align:right">7350.401 [m]</td>
 </tr>
 </tbody>
 </table>
 <p>Based on these results, P1 is the closest site to the initial location of Herbert implying that P1 could be the preferential site where he would migrate under the human perturbation scenario (where its initial position would not be available anymore). However, we know that Herbert, even if he is an awesome lobster, cannot go on land which is necessary to attain P1. So, we need to refine our analysis to take this into account.</p>
-<p><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot2-1.png" width="672" style="display: block; margin: auto;" /></p>
-</div>
-<div id="least-cost-distances-with-gdistance" class="section level2">
-<h2>Least Cost Distances with <code>gdistance</code></h2>
+<img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot2-1.png" width="672" style="display: block; margin: auto;" />
+<h2 id="least-cost-distances-with-gdistance">Least Cost Distances with <code>gdistance</code></h2>
 <p>To take the geographical barriers into consideration, we will use the package <code>gdistance</code>, which have a very useful sets of functions to calculate functions (ven Etten 2017). In particular, <code>costDistance()</code> will do the trick. To use it, we will need to convert our polygon for the Bay of Sept-Îles to a raster specifying which cell can be considered by the pathfinding and so:</p>
 <ul>
 <li>forbidden cells will have a value of 0;</li>
-<li>allowed cells will have a value of 1 (each cell has the same “cost”, meaning no weighting have been applied for particular paths).</li>
+<li>allowed cells will have a value of 1 (each cell has the same &ldquo;cost&rdquo;, meaning no weighting have been applied for particular paths).</li>
 </ul>
 <blockquote>
 <p>Note that the calculation is highly dependent on the <strong>raster resolution</strong>. A better resolution will bring better results, but at the cost of computing resources. Also, the cells of this raster are <strong>squares</strong>.</p>
 </blockquote>
-<pre class="r"><code>library(gdistance)
-library(raster)</code></pre>
-<pre class="r"><code>raster_bay &lt;- raster(x = extent(bay), nrow = 250,  ncol = 250)
-raster_bay &lt;- rasterize(x = bay, y = raster_bay, field = 1)
-raster_bay[is.na(raster_bay)] &lt;- 0</code></pre>
-<p><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot3-1.png" width="672" style="display: block; margin: auto;" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">gdistance</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">raster</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">raster_bay</span> <span class="o">&lt;-</span> <span class="nf">raster</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="nf">extent</span><span class="p">(</span><span class="n">bay</span><span class="p">),</span> <span class="n">nrow</span> <span class="o">=</span> <span class="m">250</span><span class="p">,</span>  <span class="n">ncol</span> <span class="o">=</span> <span class="m">250</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">raster_bay</span> <span class="o">&lt;-</span> <span class="nf">rasterize</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">bay</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">raster_bay</span><span class="p">,</span> <span class="n">field</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">raster_bay</span><span class="nf">[is.na</span><span class="p">(</span><span class="n">raster_bay</span><span class="p">)</span><span class="n">]</span> <span class="o">&lt;-</span> <span class="m">0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot3-1.png" width="672" style="display: block; margin: auto;" />
 <blockquote>
 <p>We have to add <code>field = 1</code> in function <code>rasterize()</code> otherwise the id number will be automatically assigned to each cell as a weighting parameter, which will bias the distance calculation by introducing a cost for choosing the cell.</p>
 </blockquote>
@@ -338,42 +359,59 @@ raster_bay[is.na(raster_bay)] &lt;- 0</code></pre>
 <li><code>8</code> is straight and diagonal lines, <em>i.e.</em> queen;</li>
 <li><code>16</code> is straight, diagonal lines and tilted diagonals, <em>i.e.</em> queen and knights.</li>
 </ul>
-<center>
-<div class="figure">
-<img src="Figures/Chess.png" alt="" />
-<p class="caption">Direction selection for the transition matrix (<em>J van Etten</em>)</p>
-</div>
-</center>
+<center> ![Direction selection for the transition matrix (*J van Etten*)](Figures/Chess.png) </center>
 <p>The <code>geoCorrection()</code> function is needed to apply a correction to the transition matrix so that units and map distortion are taken into account (this may be more or less relevant depending on the CRS used).</p>
-<pre class="r"><code>raster_bay_tr &lt;- transition(raster_bay, transitionFunction = mean, directions = 16)
-raster_bay_tr &lt;- geoCorrection(raster_bay_tr, type = &quot;c&quot;)</code></pre>
-<blockquote>
-<p>The <code>type</code> argument defines the correction method for longitude and latitude. For the Least Cost Distances, <code>type = "c"</code> corrects coordinates in an East-West direction. If you want to use other algorithms such as Random Walks, you can use <code>type = "r"</code> to apply a correction in a North-South direction.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">raster_bay_tr</span> <span class="o">&lt;-</span> <span class="nf">transition</span><span class="p">(</span><span class="n">raster_bay</span><span class="p">,</span> <span class="n">transitionFunction</span> <span class="o">=</span> <span class="n">mean</span><span class="p">,</span> <span class="n">directions</span> <span class="o">=</span> <span class="m">16</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">raster_bay_tr</span> <span class="o">&lt;-</span> <span class="nf">geoCorrection</span><span class="p">(</span><span class="n">raster_bay_tr</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#34;c&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><blockquote>
+<p>The <code>type</code> argument defines the correction method for longitude and latitude. For the Least Cost Distances, <code>type = &quot;c&quot;</code> corrects coordinates in an East-West direction. If you want to use other algorithms such as Random Walks, you can use <code>type = &quot;r&quot;</code> to apply a correction in a North-South direction.</p>
 </blockquote>
-<p>And now, let’s calculate distances with the least cost path analysis!</p>
-<pre class="r"><code>dist2 &lt;- costDistance(raster_bay_tr,
-                      fromCoords = as(as_Spatial(coords[1,]), &quot;SpatialPoints&quot;),
-                      toCoords = as(as_Spatial(coords[-1,]), &quot;SpatialPoints&quot;))
-
-dist2_df &lt;- data.frame(dist2, row.names = &quot;Distance from init:&quot;)
-colnames(dist2_df) &lt;- c(&quot;P1&quot;, &quot;P2&quot;, &quot;P3&quot;)
-
-kable(dist2_df)</code></pre>
-<table>
+<p>And now, let&rsquo;s calculate distances with the least cost path analysis!</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">dist2</span> <span class="o">&lt;-</span> <span class="nf">costDistance</span><span class="p">(</span><span class="n">raster_bay_tr</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">fromCoords</span> <span class="o">=</span> <span class="nf">as</span><span class="p">(</span><span class="nf">as_Spatial</span><span class="p">(</span><span class="n">coords[1</span><span class="p">,</span><span class="n">]</span><span class="p">),</span> <span class="s">&#34;SpatialPoints&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">toCoords</span> <span class="o">=</span> <span class="nf">as</span><span class="p">(</span><span class="nf">as_Spatial</span><span class="p">(</span><span class="n">coords[</span><span class="m">-1</span><span class="p">,</span><span class="n">]</span><span class="p">),</span> <span class="s">&#34;SpatialPoints&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">dist2_df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">dist2</span><span class="p">,</span> <span class="n">row.names</span> <span class="o">=</span> <span class="s">&#34;Distance from init:&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">colnames</span><span class="p">(</span><span class="n">dist2_df</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;P1&#34;</span><span class="p">,</span> <span class="s">&#34;P2&#34;</span><span class="p">,</span> <span class="s">&#34;P3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">kable</span><span class="p">(</span><span class="n">dist2_df</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table>
 <thead>
-<tr class="header">
-<th align="left"></th>
-<th align="right">P1</th>
-<th align="right">P2</th>
-<th align="right">P3</th>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:right">P1</th>
+<th style="text-align:right">P2</th>
+<th style="text-align:right">P3</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">Distance from init:</td>
-<td align="right">8543.394</td>
-<td align="right">5823.122</td>
-<td align="right">7798.219</td>
+<tr>
+<td style="text-align:left">Distance from init:</td>
+<td style="text-align:right">8543.394</td>
+<td style="text-align:right">5823.122</td>
+<td style="text-align:right">7798.219</td>
 </tr>
 </tbody>
 </table>
@@ -381,145 +419,224 @@ kable(dist2_df)</code></pre>
 <p><code>costDistance()</code> needs a conversion to <code>SpatialPoints</code> class, as the package has been created with <code>sp</code> objects.</p>
 </blockquote>
 <p>These results show that P2 is the closest potential site for Herbert now, without any coast between the two points. This result is much more relevant than previously calculated with <code>st_distance()</code>! If you want to represent the shortest path between two points (based on the transition matrix), you can plot the result of function <code>shortestPath()</code>.</p>
-<p><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot4-1.png" width="672" style="display: block; margin: auto;" /></p>
+<img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot4-1.png" width="672" style="display: block; margin: auto;" />
+<h2 id="least-cost-distances-with-igraph">Least Cost Distances with <code>igraph</code></h2>
+<p>The <code>gdistance</code> package is excellent, but not particularly flexible. You may need a custom workflow if you need to handle very large datasets or you want to use a hexagonal grid (<em>i.e.</em> you don&rsquo;t want to worry about chessboard moves). If this is so, you will need package <code>igraph</code> (Csardi &amp; Nepusz 2006).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">igraph</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
-<div id="least-cost-distances-with-igraph" class="section level2">
-<h2>Least Cost Distances with <code>igraph</code></h2>
-<p>The <code>gdistance</code> package is excellent, but not particularly flexible. You may need a custom workflow if you need to handle very large datasets or you want to use a hexagonal grid (<em>i.e.</em> you don’t want to worry about chessboard moves). If this is so, you will need package <code>igraph</code> (Csardi &amp; Nepusz 2006).</p>
-<pre class="r"><code>library(igraph)</code></pre>
-<p>Let’s create another grid, but this time, let’s make it hexagonal. For this example, the cell centroids are 250m apart (in any of the 6 directions), but you could increase the resolution if you don’t mind waiting a bit. As you can see from the map below, this resolution may ignore the presence of some smaller islands, which can be a problem.</p>
-<pre class="r"><code>hex_bay &lt;- st_make_grid(bay, cellsize = 250, square = FALSE)</code></pre>
-<p><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot5-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Now that we have our basic grid, we need to create an <code>igraph</code> network. The network in this case will represent neighbouring cells (<em>i.e.</em> right next to one another) which Herbert has the possibility to move through. We must first create an edge list (<em>i.e.</em> list to ‘from’ and ‘to’ cell id’s that represent neighbours), then convert into a network.</p>
-<pre class="r"><code>edgelist &lt;- as.matrix(as.data.frame(st_intersects(hex_bay)))
-  # yes, the as.matrix and as.data.frame is a bit silly, but required to have the right format
-
-gr &lt;- graph_from_edgelist(edgelist)</code></pre>
-<p><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot6-1.png" width="672" style="display: block; margin: auto;" /></p>
-<p>Yes, this plot no longer looks like the bay because we have abstracted out the actual coordinates and are looking only at the distances between cells. In this particular example we know that the distance between each neighbouring cell is 250m since we defined this when we created the grid. At this phase, you could also incorporate ‘fancier’ weights that incorporate habitat resistance (<em>i.e.</em> the influence of habitat type on the facilitation or prevention of movement) to calculate isolation by resistance. But for this example, let’s keep it simple.</p>
-<pre class="r"><code>E(gr)$weight &lt;- 250
-  # setting the weight for ALL edges, alternatively could supply a vector here</code></pre>
-<p>Now we have a weighted graph ready for Least Cost Path analysis! We just need to figure out where the stations are relative to the hexagonal grid.</p>
-<pre class="r"><code>whereisHerbert &lt;- as.numeric(st_intersects(coords, hex_bay))
-dist3 &lt;- distances(gr, whereisHerbert[1], whereisHerbert[-1])
-
-dist3_df &lt;- data.frame(dist3, row.names = &quot;Distance from init:&quot;)
-colnames(dist3_df) &lt;- c(&quot;P1&quot;, &quot;P2&quot;, &quot;P3&quot;)
-
-kable(dist3_df)</code></pre>
-<table>
+</div><p>Let&rsquo;s create another grid, but this time, let&rsquo;s make it hexagonal. For this example, the cell centroids are 250m apart (in any of the 6 directions), but you could increase the resolution if you don&rsquo;t mind waiting a bit. As you can see from the map below, this resolution may ignore the presence of some smaller islands, which can be a problem.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">hex_bay</span> <span class="o">&lt;-</span> <span class="nf">st_make_grid</span><span class="p">(</span><span class="n">bay</span><span class="p">,</span> <span class="n">cellsize</span> <span class="o">=</span> <span class="m">250</span><span class="p">,</span> <span class="n">square</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot5-1.png" width="672" style="display: block; margin: auto;" />
+<p>Now that we have our basic grid, we need to create an <code>igraph</code> network. The network in this case will represent neighbouring cells (<em>i.e.</em> right next to one another) which Herbert has the possibility to move through. We must first create an edge list (<em>i.e.</em> list to &lsquo;from&rsquo; and &rsquo;to&rsquo; cell id&rsquo;s that represent neighbours), then convert into a network.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">edgelist</span> <span class="o">&lt;-</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="nf">as.data.frame</span><span class="p">(</span><span class="nf">st_intersects</span><span class="p">(</span><span class="n">hex_bay</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># yes, the as.matrix and as.data.frame is a bit silly, but required to have the right format</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">gr</span> <span class="o">&lt;-</span> <span class="nf">graph_from_edgelist</span><span class="p">(</span><span class="n">edgelist</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot6-1.png" width="672" style="display: block; margin: auto;" />
+<p>Yes, this plot no longer looks like the bay because we have abstracted out the actual coordinates and are looking only at the distances between cells. In this particular example we know that the distance between each neighbouring cell is 250m since we defined this when we created the grid. At this phase, you could also incorporate &lsquo;fancier&rsquo; weights that incorporate habitat resistance (<em>i.e.</em> the influence of habitat type on the facilitation or prevention of movement) to calculate isolation by resistance. But for this example, let&rsquo;s keep it simple.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">E</span><span class="p">(</span><span class="n">gr</span><span class="p">)</span><span class="o">$</span><span class="n">weight</span> <span class="o">&lt;-</span> <span class="m">250</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># setting the weight for ALL edges, alternatively could supply a vector here</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now we have a weighted graph ready for Least Cost Path analysis! We just need to figure out where the stations are relative to the hexagonal grid.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">whereisHerbert</span> <span class="o">&lt;-</span> <span class="nf">as.numeric</span><span class="p">(</span><span class="nf">st_intersects</span><span class="p">(</span><span class="n">coords</span><span class="p">,</span> <span class="n">hex_bay</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">dist3</span> <span class="o">&lt;-</span> <span class="nf">distances</span><span class="p">(</span><span class="n">gr</span><span class="p">,</span> <span class="n">whereisHerbert[1]</span><span class="p">,</span> <span class="n">whereisHerbert[</span><span class="m">-1</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">dist3_df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">dist3</span><span class="p">,</span> <span class="n">row.names</span> <span class="o">=</span> <span class="s">&#34;Distance from init:&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">colnames</span><span class="p">(</span><span class="n">dist3_df</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;P1&#34;</span><span class="p">,</span> <span class="s">&#34;P2&#34;</span><span class="p">,</span> <span class="s">&#34;P3&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nf">kable</span><span class="p">(</span><span class="n">dist3_df</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table>
 <thead>
-<tr class="header">
-<th align="left"></th>
-<th align="right">P1</th>
-<th align="right">P2</th>
-<th align="right">P3</th>
+<tr>
+<th style="text-align:left"></th>
+<th style="text-align:right">P1</th>
+<th style="text-align:right">P2</th>
+<th style="text-align:right">P3</th>
 </tr>
 </thead>
 <tbody>
-<tr class="odd">
-<td align="left">Distance from init:</td>
-<td align="right">5750</td>
-<td align="right">6500</td>
-<td align="right">7500</td>
+<tr>
+<td style="text-align:left">Distance from init:</td>
+<td style="text-align:right">5750</td>
+<td style="text-align:right">6500</td>
+<td style="text-align:right">7500</td>
 </tr>
 </tbody>
 </table>
 <p>You will notice that we find a comparable result from what we calculated previously with <code>gdistance</code> (P2 being the closest potential site), even if this is a bit further than the <code>gdistance</code> estimates. This is likely mostly because of the difference in resolution (and somewhat because of cell shape).</p>
-<p>If you are just calculating a handful of distances such as in this example, <code>gdistance</code> is probably faster. But if you are doing millions, <code>igraph</code> is typically more effective since much of the work is done ‘upfront’ when you create the graph. It would also be possible to create an <code>igraph</code> network from a <code>gdistance</code> transition raster which would combine the best of both packages.</p>
-<p>Techniques above will be highly useful for many research questions, <em>e.g.</em> determining the influence of a perturbation in an ecosystem, characterizing species movements or community connectivity… The method presented in this post is one of the many that exist to answer these questions. You can find many tutorials for geographic information system such as ArcGIS or QGIS, but I thought a simple presentation for R users would be welcomed. Enjoy!</p>
-<center>
-<img src="Figures/Zoidberg2.gif" />
-</center>
-</div>
-</div>
-<div id="references" class="section level1">
-<h1>References</h1>
+<p>If you are just calculating a handful of distances such as in this example, <code>gdistance</code> is probably faster. But if you are doing millions, <code>igraph</code> is typically more effective since much of the work is done &lsquo;upfront&rsquo; when you create the graph. It would also be possible to create an <code>igraph</code> network from a <code>gdistance</code> transition raster which would combine the best of both packages.</p>
+<p>Techniques above will be highly useful for many research questions, <em>e.g.</em> determining the influence of a perturbation in an ecosystem, characterizing species movements or community connectivity&hellip; The method presented in this post is one of the many that exist to answer these questions. You can find many tutorials for geographic information system such as ArcGIS or QGIS, but I thought a simple presentation for R users would be welcomed. Enjoy!</p>
+<center> ![](Figures/Zoidberg2.gif) </center>
+<h1 id="references">References</h1>
 <ul>
-<li>Csardi G, Nepusz T (2006). The igraph software package for complex network research. <em>InterJournal</em>, Complex Systems 1695. <a href="http://igraph.org" class="uri">http://igraph.org</a></li>
-<li>Dijkstra EW (1959). A note on two problems in connexion with graphs. <em>Numerische Mathematik</em> 1:269–271. <a href="doi:10.1007/BF01386390" class="uri">doi:10.1007/BF01386390</a></li>
+<li>Csardi G, Nepusz T (2006). The igraph software package for complex network research. <em>InterJournal</em>, Complex Systems 1695. <a href="http://igraph.org">http://igraph.org</a></li>
+<li>Dijkstra EW (1959). A note on two problems in connexion with graphs. <em>Numerische Mathematik</em> 1:269–271. doi:10.1007/BF01386390</li>
 <li>Legendre P, Legendre L (2012). Numerical Ecology, 3rd edition.</li>
 <li>Pebesma E (2018). Simple Features for R: Standardized Support for Spatial Vector Data. <em>The R Journal</em>,
-<a href="https://journal.r-project.org/archive/2018/RJ-2018-009/" class="uri">https://journal.r-project.org/archive/2018/RJ-2018-009/</a></li>
-<li>van Etten J (2017). R Package gdistance: Distances and Routes on Geographical Grids. <em>Journal of Statistical Software</em> 76(13). <a href="doi:10.18637/jss.v076.i13" class="uri">doi:10.18637/jss.v076.i13</a>.</li>
+<a href="https://journal.r-project.org/archive/2018/RJ-2018-009/">https://journal.r-project.org/archive/2018/RJ-2018-009/</a></li>
+<li>van Etten J (2017). R Package gdistance: Distances and Routes on Geographical Grids. <em>Journal of Statistical Software</em> 76(13). doi:10.18637/jss.v076.i13.</li>
 </ul>
-<p><br></p>
+<br>
 <div style="padding: 2rem 0rem 2rem 0rem;">
 <details>
-<summary>
-Session info <i class="fa fa-cogs" aria-hidden="true"></i>
-</summary>
-<pre class="r"><code>sessionInfo()
-#R&gt;  R version 4.2.2 (2022-10-31)
-#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)
-#R&gt;  Running under: Ubuntu 22.04.1 LTS
-#R&gt;  
-#R&gt;  Matrix products: default
-#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
-#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so
-#R&gt;  
-#R&gt;  locale:
-#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
-#R&gt;   [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
-#R&gt;   [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
-#R&gt;  [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
-#R&gt;  
-#R&gt;  attached base packages:
-#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     
-#R&gt;  
-#R&gt;  other attached packages:
-#R&gt;  [1] gdistance_1.6          Matrix_1.5-1           igraph_1.3.5          
-#R&gt;  [4] raster_3.6-11          sp_1.5-1               sf_1.0-9              
-#R&gt;  [7] knitr_1.41             inSilecoRef_0.0.1.9000
-#R&gt;  
-#R&gt;  loaded via a namespace (and not attached):
-#R&gt;   [1] Rcpp_1.0.9         lubridate_1.9.0    lattice_0.20-45    class_7.3-20      
-#R&gt;   [5] assertthat_0.2.1   digest_0.6.30      utf8_1.2.2         mime_0.12         
-#R&gt;   [9] R6_2.5.1           plyr_1.8.8         backports_1.4.1    evaluate_0.18     
-#R&gt;  [13] e1071_1.7-12       highr_0.9          httr_1.4.4         blogdown_1.15     
-#R&gt;  [17] pillar_1.8.1       rlang_1.0.6        curl_4.3.3         miniUI_0.1.1.1    
-#R&gt;  [21] jquerylib_0.1.4    DT_0.26            rmarkdown_2.18     RefManageR_1.4.0  
-#R&gt;  [25] rcrossref_1.2.0    stringr_1.5.0      htmlwidgets_1.5.4  proxy_0.4-27      
-#R&gt;  [29] shiny_1.7.3        compiler_4.2.2     httpuv_1.6.6       xfun_0.35         
-#R&gt;  [33] pkgconfig_2.0.3    htmltools_0.5.4    tidyselect_1.2.0   tibble_3.1.8      
-#R&gt;  [37] httpcode_0.3.0     bookdown_0.30      codetools_0.2-18   fansi_1.0.3       
-#R&gt;  [41] dplyr_1.0.10       later_1.3.0        crul_1.3           grid_4.2.2        
-#R&gt;  [45] jsonlite_1.8.4     xtable_1.8-4       lifecycle_1.0.3    DBI_1.1.3         
-#R&gt;  [49] magrittr_2.0.3     units_0.8-0        bibtex_0.5.0       KernSmooth_2.23-20
-#R&gt;  [53] cli_3.4.1          stringi_1.7.8      cachem_1.0.6       promises_1.2.0.1  
-#R&gt;  [57] xml2_1.3.3         bslib_0.4.1        ellipsis_0.3.2     generics_0.1.3    
-#R&gt;  [61] vctrs_0.5.1        tools_4.2.2        glue_1.6.2         fastmap_1.1.0     
-#R&gt;  [65] yaml_2.3.6         terra_1.6-47       timechange_0.1.1   classInt_0.4-8    
-#R&gt;  [69] sass_0.4.4</code></pre>
-</details>
+<summary>Session info <i class="fa fa-cogs" aria-hidden="true"></i></summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.2.2 Patched (2022-11-10 r83330)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.1 LTS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Matrix products: default</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  locale:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=en_CA.UTF-8       LC_NUMERIC=C              </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [3] LC_TIME=en_CA.UTF-8        LC_COLLATE=en_CA.UTF-8    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] LC_MONETARY=en_CA.UTF-8    LC_MESSAGES=en_CA.UTF-8   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] LC_PAPER=en_CA.UTF-8       LC_NAME=C                 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  attached base packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  other attached packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] gdistance_1.3-6        Matrix_1.5-3           igraph_1.3.5          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [4] raster_3.6-14          sp_1.6-0               sf_1.0-9              </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [7] knitr_1.41             inSilecoRef_0.0.1.9000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] Rcpp_1.0.10        lattice_0.20-45    lubridate_1.8.0    class_7.3-21      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] ps_1.7.2           digest_0.6.31      utf8_1.2.3         mime_0.12         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] R6_2.5.1           plyr_1.8.8         backports_1.4.1    evaluate_0.19     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] e1071_1.7-13       highr_0.10         httr_1.4.4         blogdown_1.16     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [17] pillar_1.8.1       rlang_1.0.6        curl_5.0.0         data.table_1.14.6 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] miniUI_0.1.1.1     callr_3.7.3        jquerylib_0.1.4    DT_0.26           </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] rmarkdown_2.19     RefManageR_1.3.0   rcrossref_1.2.0    stringr_1.5.0     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] htmlwidgets_1.6.1  proxy_0.4-27       shiny_1.7.4        compiler_4.2.2    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] httpuv_1.6.8       xfun_0.36          pkgconfig_2.0.3    htmltools_0.5.4   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] tidyselect_1.2.0   tibble_3.1.8       httpcode_0.3.0     bookdown_0.32     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] codetools_0.2-19   fansi_1.0.4        dplyr_1.1.0        withr_2.5.0       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [45] later_1.3.0        grid_4.2.2         crul_1.3           jsonlite_1.8.4    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] xtable_1.8-4       lifecycle_1.0.3    DBI_1.1.3          magrittr_2.0.3    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [53] units_0.8-1        KernSmooth_2.23-20 cli_3.5.0          stringi_1.7.8     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [57] cachem_1.0.6       promises_1.2.0.1   xml2_1.3.3         bslib_0.4.2       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [61] ellipsis_0.3.2     targets_0.14.2     generics_0.1.3     vctrs_0.5.2       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [65] tools_4.2.2        glue_1.6.2         processx_3.8.0     fastmap_1.1.0     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [69] yaml_2.3.6         terra_1.7-3        base64url_1.4      classInt_0.4-8    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [73] sass_0.4.5</span>
+</span></span></code></pre></td></tr></table>
 </div>
+</div></details>
 </div>
 
 
-      <div class="text-justify">
-        
-
-      </div>
+                    
 
 
-    
+            </div>
 
-    </center>
 
-    </div>
+            
 
-      <br>
+            </center>
 
-  
-  <script>
-    var $jq = jQuery.noConflict();
-      $jq(function() {
-          var toc = $jq("#toc").tocify({
-            selectors: "h2, h3",
-            scrollTo: 50
-          }).data("toc-tocify");
-    });
-  </script>
+        </div>
+
+          <br>
+
 
   
   <script src="//yihui.name/js/math-code.js"></script>
@@ -527,6 +644,8 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
   
   
 
+
+  <script src="/js/sidebar-post.js"></script>
 
   <h3 class="page-header">Comments on this post</h3>
 
@@ -635,28 +754,36 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </div>
 
 
-</div>
+    </div>
 
-        <footer>
+    <footer>
 
-          <script src="//yihui.name/js/math-code.js"></script>
-          <script async
-            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-          </script>
+  <div class="col-md-3">
 
-            <hr>
-            <p class="copyright text-muted" style="font-size: 1.6rem;">
-              &copy; 2017-2022 inSileco |
-              All rights reserved |
-              Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
-                <a href="https://gohugo.io">Hugo</a>
-                and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Dec 2022 01:46 UTC.
-              </p>
+    <a href="#" id="bottom"></a>
 
-        </footer>
+  </div>
 
-    </body>
+  <div class="col-md-8">
+
+    <script src="//yihui.name/js/math-code.js"></script>
+    <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <hr>
+    <p class="copyright text-muted" style="font-size: 1.6rem;">
+      &copy; 2017-2023 inSileco |
+      Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+      <a href="https://gohugo.io">Hugo</a>
+      and <a href="https://github.com/calintat/minimal">Minimal</a> |
+      Latest build: 05 February 2023 00:32 UTC.
+    </p>
+
+  </div>
+
+
+</footer>
+
+</body>
 
 </html>
-

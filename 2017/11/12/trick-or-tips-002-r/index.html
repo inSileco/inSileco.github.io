@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
     <head>
+        
 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Trick or Tips 002 {R}</title>
-
+        
         <style>
 
     html body {
@@ -26,7 +28,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
 
 
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -35,85 +37,63 @@
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="/css/jquery.tocify.css">
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
-
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
  
 
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-    
-
-    <script>hljs.initHighlightingOnLoad();</script>
 
 
 
 
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
-
-  <script src="/js/jquery-1.8.3.min.js"></script>
-
-  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
-
-  <script src="/js/jquery.tocify.min.js"></script>
-
-  <script src="/js/toclipboard.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-        <meta charset="utf-8">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        
-        
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments)};
-          gtag('js', new Date());
-          gtag('config', 'UA-109508556-1');
-        </script>
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.110.0">
         
 
+        
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments)};
+              gtag('js', new Date());
+              gtag('config', 'UA-109508556-1');
+            </script>
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
 
     </head>
 
     <body>
+        
 
         <nav class="navbar navbar-default navbar-fixed-top">
-
             <div class="container">
-
                 <div class="navbar-header">
-
                     <a class="navbar-brand visible-xs" href="#">Trick or Tips 002 {R}</a>
-
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
                 </div>
-
                 <div class="collapse navbar-collapse">
-
                     
                         <ul class="nav navbar-nav">
                             
@@ -131,23 +111,19 @@
                             
                         </ul>
                     
-
                     
                         <ul class="nav navbar-nav navbar-right">
                             
-                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="github"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="twitter"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="rss"></i></a></li>
                             
                         </ul>
                     
-
                 </div>
-
             </div>
-
         </nav>
 
 
@@ -156,71 +132,91 @@
 
 <div>
 
-  <div class="col-md-3">
-      <div class="hidden-sm hidden-xs">
-        <div class="sticky-top">
-          <div id="toc"></div>
-
-        </div>
-    </div>
-  </div>
+    <div class="col-md-3">
+        <h1><a href="#"><i class='fa fa-chevron-up'></i></a></h1>
 
 
-  <div class="col-md-8">
+    <nav id="TableOfContents">
+  <ol>
+    <li><a href="#the-drop-argument-of-the--operator">The <code>drop</code> argument of the <code>[]</code> operator</a></li>
+    <li><a href="#get-the-citation-of-a-package">Get the citation of a package</a></li>
+    <li><a href="#using-namespace">Using namespace</a></li>
+    <li><a href="#how-to-use-non-exported-functions">How to use non-exported functions?</a></li>
+    <li><a href="#the-las-argument-of-par">The <code>las</code> argument of <code>par()</code></a></li>
+  </ol>
+</nav>
 
-    <h1><a href="/2017/11/12/trick-or-tips-002-r/">Trick or Tips 002 {R}</a></h1>
 
-    <h4>November 12, 2017</h4>
-
-    <p>
-      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> 
-      <br>
-      
-       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/base"><kbd class="item-tag2">base</kbd></a>  <a href="/rpkgs/utils"><kbd class="item-tag2">utils</kbd></a>  <a href="/rpkgs/graphics"><kbd class="item-tag2">graphics</kbd></a>  <a href="/rpkgs/magrittr"><kbd class="item-tag2">magrittr</kbd></a>  <a href="/rpkgs/raster"><kbd class="item-tag2">raster</kbd></a>  <a href="/rpkgs/knitr"><kbd class="item-tag2">knitr</kbd></a> 
-      
-    </p>
-
-    
-      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
-       
-        <a href="/about/">Kevin Cazelles</a> &nbsp;
-      
-     <a href="#"></a></p>
-    
-
-    
-
-    <p>
-    
-    
-    
-      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=6min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
-    
-    
-     &nbsp;
-    
-    
-      <a href = "https://creativecommons.org/licenses/by/4.0/">
-      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
-      </a>
-     &nbsp;
-    
-     &nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2017%2f11%2f12%2ftrick-or-tips-002-r%2f&text=Second%20post%20of%20the%20%27Trick%20or%20Tips%27%20series" target="_blank">
-      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2017%2f11%2f12%2ftrick-or-tips-002-r%2f?link=http://left&link=http://right}'>
+<h1>
+    <a href="#bottom">
+        <i class='fa fa-chevron-down'></i>
     </a>
-  </p>
+</h1>
+    </div>
 
 
-    <br>
+    <div class="col-md-8">
 
-    <div class="text-justify">
+        <div class="post-content">
 
-      
+            <h1><a href="/2017/11/12/trick-or-tips-002-r/">Trick or Tips 002 {R}</a></h1>
+
+            <h4>November 12, 2017</h4>
+
+            <p>
+                <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                    href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a
+                    href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a
+                    href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> 
+                <br>
+                
+                <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/base"><kbd class="item-tag2">base</kbd></a>  <a href="/rpkgs/utils"><kbd class="item-tag2">utils</kbd></a>  <a href="/rpkgs/graphics"><kbd class="item-tag2">graphics</kbd></a>  <a href="/rpkgs/magrittr"><kbd class="item-tag2">magrittr</kbd></a>  <a href="/rpkgs/raster"><kbd class="item-tag2">raster</kbd></a>  <a href="/rpkgs/knitr"><kbd class="item-tag2">knitr</kbd></a> 
+                
+            </p>
+
+            
+            <p style="font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+                 
+                <a href="/about/">Kevin Cazelles</a> &nbsp;
+                
+                <a href="#"></a>
+            </p>
+            
+
+            
+
+            <p>
+                
+                
+                
+                <img
+                    src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=6min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                
+                
+                 &nbsp;
+                        
+                        
+                                <a href="https://creativecommons.org/licenses/by/4.0/">
+                                    <img
+                                        src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                                </a>
+                                 &nbsp;
+                                
+                                 &nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2017%2f11%2f12%2ftrick-or-tips-002-r%2f&text=Second%20post%20of%20the%20%27Trick%20or%20Tips%27%20series"
+                                            target="_blank">
+                                            <img
+                                                src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2017%2f11%2f12%2ftrick-or-tips-002-r%2f?link=http://left&link=http://right}'>
+                                        </a>
+            </p>
 
 
-<h3>Trick or Tips?</h3>
+            <br>
+
+            <div id="post-content-body" class="text-justify">
+
+                <h3>Trick or Tips?</h3>
 
 Ever tumbled on a code chunk that made you say:
 "<em>I should have known this ¶ø?!@~&* piece of code long ago!?</em>"
@@ -251,44 +247,98 @@ happy to incorporate to <b>Trick or Tips</b>.
 
 Enjoy <i class="fas fa-smile" aria-hidden></i> and get ready to frustratingly appreciate our tips!
 
-<p><br></p>
-<div id="the-drop-argument-of-the-operator" class="section level2">
-<h2>The <code>drop</code> argument of the <code>[]</code> operator</h2>
+<br>
+<h2 id="the-drop-argument-of-the--operator">The <code>drop</code> argument of the <code>[]</code> operator</h2>
 <p>This is something not obvious and poorly known but there is a logical argument
 <code>drop</code> that can be passed to the <code>[]</code> operator and I’ll try to explain why it
 could be useful! Let’s first create a data frame with ten rows and three
 columns:</p>
-<pre class="r"><code>df &lt;- data.frame(
-  var1 = runif(10),
-  var2 = runif(10),
-  var3 = runif(10)
-)
-head(df)
-#R&gt;         var1       var2       var3
-#R&gt;  1 0.1026367 0.86220707 0.02721846
-#R&gt;  2 0.8896657 0.05121336 0.27626669
-#R&gt;  3 0.7367387 0.83324216 0.63290872
-#R&gt;  4 0.2163066 0.02851807 0.67409309
-#R&gt;  5 0.4889202 0.95224952 0.51363535
-#R&gt;  6 0.7477620 0.88949246 0.47534901</code></pre>
-<p>To extract the first column, I use the <code>[]</code> operator and either type the number
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">var1</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="m">10</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">var2</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="m">10</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">var3</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="m">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;          var1       var2       var3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.61694304 0.74175689 0.02898609</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.09668309 0.01312552 0.34378123</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.15729658 0.12914987 0.86385779</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.37476169 0.23834580 0.98038883</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 0.76509838 0.80522554 0.11231265</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 0.20512979 0.59831527 0.61874514</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>To extract the first column, I use the <code>[]</code> operator and either type the number
 of the column like so:</p>
-<pre class="r"><code>df[, 1]
-#R&gt;   [1] 0.1026367 0.8896657 0.7367387 0.2163066 0.4889202 0.7477620 0.6676165
-#R&gt;   [8] 0.1343781 0.8660829 0.7715634</code></pre>
-<p>or the name of the column to be extracted:</p>
-<pre class="r"><code>df[, &#39;var1&#39;]
-#R&gt;   [1] 0.1026367 0.8896657 0.7367387 0.2163066 0.4889202 0.7477620 0.6676165
-#R&gt;   [8] 0.1343781 0.8660829 0.7715634</code></pre>
-<p>Interestingly enough, this returns a <strong>vector</strong>, not a data.frame</p>
-<pre class="r"><code>class(df)
-#R&gt;  [1] &quot;data.frame&quot;
-class(df[, &#39;var1&#39;])
-#R&gt;  [1] &quot;numeric&quot;</code></pre>
-<p>while if I extract two columns, I have a data frame:</p>
-<pre class="r"><code>class(df[, c(&#39;var1&#39;, &#39;var2&#39;)])
-#R&gt;  [1] &quot;data.frame&quot;</code></pre>
-<p>This behavior is actually very useful in many cases as we often are happy to
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 0.61694304 0.09668309 0.15729658 0.37476169 0.76509838 0.20512979</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] 0.01009526 0.14604056 0.21738345 0.77641253</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>or the name of the column to be extracted:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df[</span><span class="p">,</span> <span class="s">&#39;var1&#39;</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 0.61694304 0.09668309 0.15729658 0.37476169 0.76509838 0.20512979</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] 0.01009526 0.14604056 0.21738345 0.77641253</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Interestingly enough, this returns a <strong>vector</strong>, not a data.frame</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;data.frame&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">df[</span><span class="p">,</span> <span class="s">&#39;var1&#39;</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;numeric&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>while if I extract two columns, I have a data frame:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">df[</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;var1&#39;</span><span class="p">,</span> <span class="s">&#39;var2&#39;</span><span class="p">)</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;data.frame&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This behavior is actually very useful in many cases as we often are happy to
 deal with a vector when we extract only one column. However this might become
 an issue when we do extractions without knowing the number of columns
 to be extracted beforehand (typically when extracting according to a request
@@ -296,149 +346,307 @@ that can give any number of columns). In such case if the number is one then
 we end up with a vector instead of a data.frame. The argument <code>drop</code> provides
 a work around. By default it is set to <code>TRUE</code> and a 1-column data frame becomes
 a vector, but using <code>drop = FALSE</code> prevents this from happening. Let’s try this:</p>
-<pre class="r"><code>df[, 1, drop = FALSE]
-#R&gt;          var1
-#R&gt;  1  0.1026367
-#R&gt;  2  0.8896657
-#R&gt;  3  0.7367387
-#R&gt;  4  0.2163066
-#R&gt;  5  0.4889202
-#R&gt;  6  0.7477620
-#R&gt;  7  0.6676165
-#R&gt;  8  0.1343781
-#R&gt;  9  0.8660829
-#R&gt;  10 0.7715634</code></pre>
-<p>Let’s check its class:</p>
-<pre class="r"><code>class(df[, 1, drop = FALSE])
-#R&gt;  [1] &quot;data.frame&quot;</code></pre>
-<p>You can actually obtain the same result using the name of the column or its
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df[</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">drop</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;           var1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  0.61694304</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  0.09668309</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  0.15729658</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  0.37476169</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  0.76509838</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  0.20512979</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  0.01009526</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  0.14604056</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  0.21738345</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 0.77641253</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Let’s check its class:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">df[</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">drop</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="n">]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;data.frame&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>You can actually obtain the same result using the name of the column or its
 number without comma (a data frame is a list of vector which have the
 same size, so you can basically subset the list!).</p>
-<pre class="r"><code>df[1]
-#R&gt;          var1
-#R&gt;  1  0.1026367
-#R&gt;  2  0.8896657
-#R&gt;  3  0.7367387
-#R&gt;  4  0.2163066
-#R&gt;  5  0.4889202
-#R&gt;  6  0.7477620
-#R&gt;  7  0.6676165
-#R&gt;  8  0.1343781
-#R&gt;  9  0.8660829
-#R&gt;  10 0.7715634</code></pre>
-<p>But if you need a specific selection of rows, you better use <code>drop</code>!</p>
-<pre class="r"><code>df[2:5, 1, drop = FALSE]
-#R&gt;         var1
-#R&gt;  2 0.8896657
-#R&gt;  3 0.7367387
-#R&gt;  4 0.2163066
-#R&gt;  5 0.4889202</code></pre>
-<p>Now you know ;-)</p>
-<p><br></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df[1]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;           var1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  0.61694304</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  0.09668309</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  0.15729658</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  0.37476169</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  0.76509838</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  0.20512979</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  0.01009526</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  0.14604056</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  0.21738345</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 0.77641253</span>
+</span></span></code></pre></td></tr></table>
 </div>
-<div id="get-the-citation-of-a-package" class="section level2">
-<h2>Get the citation of a package</h2>
+</div><p>But if you need a specific selection of rows, you better use <code>drop</code>!</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df[2</span><span class="o">:</span><span class="m">5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">drop</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;          var1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.09668309</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.15729658</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.37476169</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 0.76509838</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now you know ;-)</p>
+<br>
+<h2 id="get-the-citation-of-a-package">Get the citation of a package</h2>
 <p>Many researchers (it is especially TRUE in ecology) uses R and write paper and
 carry out analyses using R for their research. One cones the time of citing the
 package I guess they wonder how to cite the package. However authors of
 package actually provides this information in their package! Let’s have a look
 of the reference for the package <code>knitr</code> as of version 1.17 using function
 <code>citation</code></p>
-<pre class="r"><code>citation(&quot;knitr&quot;)
-#R&gt;  
-#R&gt;  To cite the &#39;knitr&#39; package in publications use:
-#R&gt;  
-#R&gt;    Yihui Xie (2022). knitr: A General-Purpose Package for Dynamic Report
-#R&gt;    Generation in R. R package version 1.41.
-#R&gt;  
-#R&gt;    Yihui Xie (2015) Dynamic Documents with R and knitr. 2nd edition.
-#R&gt;    Chapman and Hall/CRC. ISBN 978-1498716963
-#R&gt;  
-#R&gt;    Yihui Xie (2014) knitr: A Comprehensive Tool for Reproducible
-#R&gt;    Research in R. In Victoria Stodden, Friedrich Leisch and Roger D.
-#R&gt;    Peng, editors, Implementing Reproducible Computational Research.
-#R&gt;    Chapman and Hall/CRC. ISBN 978-1466561595
-#R&gt;  
-#R&gt;  To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;,
-#R&gt;  bibtex=TRUE)&#39;, &#39;toBibtex(.)&#39;, or set
-#R&gt;  &#39;options(citation.bibtex.max=999)&#39;.</code></pre>
-<p>As suggested in the message, we can even retrieve a reference list in bibtex
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">citation</span><span class="p">(</span><span class="s">&#34;knitr&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  To cite the &#39;knitr&#39; package in publications use:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Yihui Xie (2022). knitr: A General-Purpose Package for Dynamic Report</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Generation in R. R package version 1.41.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Yihui Xie (2015) Dynamic Documents with R and knitr. 2nd edition.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Chapman and Hall/CRC. ISBN 978-1498716963</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Yihui Xie (2014) knitr: A Comprehensive Tool for Reproducible</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Research in R. In Victoria Stodden, Friedrich Leisch and Roger D.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Peng, editors, Implementing Reproducible Computational Research.</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Chapman and Hall/CRC. ISBN 978-1466561595</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  To see these entries in BibTeX format, use &#39;print(&lt;citation&gt;,</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  bibtex=TRUE)&#39;, &#39;toBibtex(.)&#39;, or set</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  &#39;options(citation.bibtex.max=999)&#39;.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>As suggested in the message, we can even retrieve a reference list in bibtex
 format with the <code>toBibtex</code> function, let’s do this:</p>
-<pre class="r"><code>toBibtex(citation(&quot;knitr&quot;))
-#R&gt;  @Manual{,
-#R&gt;    title = {knitr: A General-Purpose Package for Dynamic Report Generation in R},
-#R&gt;    author = {Yihui Xie},
-#R&gt;    year = {2022},
-#R&gt;    note = {R package version 1.41},
-#R&gt;    url = {https://yihui.org/knitr/},
-#R&gt;  }
-#R&gt;  
-#R&gt;  @Book{,
-#R&gt;    title = {Dynamic Documents with {R} and knitr},
-#R&gt;    author = {Yihui Xie},
-#R&gt;    publisher = {Chapman and Hall/CRC},
-#R&gt;    address = {Boca Raton, Florida},
-#R&gt;    year = {2015},
-#R&gt;    edition = {2nd},
-#R&gt;    note = {ISBN 978-1498716963},
-#R&gt;    url = {https://yihui.org/knitr/},
-#R&gt;  }
-#R&gt;  
-#R&gt;  @InCollection{,
-#R&gt;    booktitle = {Implementing Reproducible Computational Research},
-#R&gt;    editor = {Victoria Stodden and Friedrich Leisch and Roger D. Peng},
-#R&gt;    title = {knitr: A Comprehensive Tool for Reproducible Research in {R}},
-#R&gt;    author = {Yihui Xie},
-#R&gt;    publisher = {Chapman and Hall/CRC},
-#R&gt;    year = {2014},
-#R&gt;    note = {ISBN 978-1466561595},
-#R&gt;    url = {http://www.crcpress.com/product/isbn/9781466561595},
-#R&gt;  }</code></pre>
-<p>Even if you are no a Latex user, this could be very helpful as this file
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">toBibtex</span><span class="p">(</span><span class="nf">citation</span><span class="p">(</span><span class="s">&#34;knitr&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  @Manual{,</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    title = {knitr: A General-Purpose Package for Dynamic Report Generation in R},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    author = {Yihui Xie},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    year = {2022},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    note = {R package version 1.41},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    url = {https://yihui.org/knitr/},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  }</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  @Book{,</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    title = {Dynamic Documents with {R} and knitr},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    author = {Yihui Xie},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    publisher = {Chapman and Hall/CRC},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    address = {Boca Raton, Florida},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    year = {2015},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    edition = {2nd},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    note = {ISBN 978-1498716963},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    url = {https://yihui.org/knitr/},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  }</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  @InCollection{,</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    booktitle = {Implementing Reproducible Computational Research},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    editor = {Victoria Stodden and Friedrich Leisch and Roger D. Peng},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    title = {knitr: A Comprehensive Tool for Reproducible Research in {R}},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    author = {Yihui Xie},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    publisher = {Chapman and Hall/CRC},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    year = {2014},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    note = {ISBN 978-1466561595},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    url = {http://www.crcpress.com/product/isbn/9781466561595},</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  }</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Even if you are no a Latex user, this could be very helpful as this file
 can be read by a references management software such as <a href="https://www.zotero.org/">Zotero</a>.
 So now let’s say I use the following command line:</p>
-<pre class="r"><code>cat(toBibtex(citation(&quot;knitr&quot;)), file=&#39;biblio.bib&#39;, sep=&#39;\n&#39;)</code></pre>
-<p>Then the <code>biblio.bib</code> file just created can be imported in your favorite
-references manager software.</p>
-<p><br></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">cat</span><span class="p">(</span><span class="nf">toBibtex</span><span class="p">(</span><span class="nf">citation</span><span class="p">(</span><span class="s">&#34;knitr&#34;</span><span class="p">)),</span> <span class="n">file</span><span class="o">=</span><span class="s">&#39;biblio.bib&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s">&#39;\n&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
 </div>
-<div id="using-namespace" class="section level2">
-<h2>Using namespace</h2>
+</div><p>Then the <code>biblio.bib</code> file just created can be imported in your favorite
+references manager software.</p>
+<br>
+<h2 id="using-namespace">Using namespace</h2>
 <p>In R, functions are stored in packages and adding a package is like adding
 a collection of functions. As you get more experienced with R you likely
 know and use more and more packages. You might even come to the point
 where you have functions that have the same name but originate from different package.
 If not, let me show you something:</p>
-<pre class="r"><code>library(magrittr)
-df &lt;- data.frame(
-  var1 = runif(10),
-  var2 = runif(10)
-  )
-extract(df, &#39;var1&#39;)
-#R&gt;           var1
-#R&gt;  1  0.24486800
-#R&gt;  2  0.73676870
-#R&gt;  3  0.64553478
-#R&gt;  4  0.12756831
-#R&gt;  5  0.66127409
-#R&gt;  6  0.40786215
-#R&gt;  7  0.09945318
-#R&gt;  8  0.85320052
-#R&gt;  9  0.52481684
-#R&gt;  10 0.59325518</code></pre>
-<p>Here I use the function <code>extract()</code> from the <code>magrittr</code> package that act as <code>[]</code>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">magrittr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">  <span class="n">var1</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="m">10</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">var2</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="m">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">extract</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s">&#39;var1&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;            var1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  0.005430849</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  0.865673797</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  0.848216866</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  0.307827896</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  0.144029316</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  0.015273538</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  0.634376732</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  0.480184179</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  0.205316175</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 0.144835843</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Here I use the function <code>extract()</code> from the <code>magrittr</code> package that act as <code>[]</code>
 and I extract the column <code>var1</code> from <code>df</code>. This function is actually designed
 to be use with pipes (if this sounds weird, have a look at the
 <a href="http://magrittr.tidyverse.org/">magrittr</a> package), for instance when piping
 you can write <code>df %$% extract(var1)</code> or even <code>df %&gt;% '['('var1')</code> and this will
 do the same. So far, so good. Now I load the
 <a href="https://cran.r-project.org/web/packages/raster/index.html">raster</a> package:</p>
-<pre class="r"><code>library(raster)
-#R&gt;  Loading required package: sp</code></pre>
-<p>and try the same extraction.</p>
-<pre class="r"><code>extract(df, &#39;var1&#39;)
-#R&gt;  Error in (function (classes, fdef, mtable) : unable to find an inherited method for function &#39;extract&#39; for signature &#39;&quot;data.frame&quot;, &quot;character&quot;&#39;</code></pre>
-<p>It does not work…Why?? Briefly, <code>extract()</code> from <code>raster</code> is now called (this
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">raster</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Loading required package: sp</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>and try the same extraction.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">extract</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s">&#39;var1&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Error in (function (classes, fdef, mtable) : unable to find an inherited method for function &#39;extract&#39; for signature &#39;&#34;data.frame&#34;, &#34;character&#34;&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>It does not work…Why?? Briefly, <code>extract()</code> from <code>raster</code> is now called (this
 was the warning message on load said) and it does not get well with data.frame
 (this is the meaning of the error message). To overcome this you can use a
 explicit namespace. To do so you put the names of the package followed by <code>::</code>,
@@ -446,27 +654,43 @@ this is basically the unique identifier of the function. Indeed, within a
 specific package, functions have different names and on CRAN packages must have
 different names, so the combination of the two is unique (this holds true if you
 only package from the CRAN). Let’s use it:</p>
-<pre class="r"><code>magrittr::extract(df, &#39;var1&#39;)
-#R&gt;           var1
-#R&gt;  1  0.24486800
-#R&gt;  2  0.73676870
-#R&gt;  3  0.64553478
-#R&gt;  4  0.12756831
-#R&gt;  5  0.66127409
-#R&gt;  6  0.40786215
-#R&gt;  7  0.09945318
-#R&gt;  8  0.85320052
-#R&gt;  9  0.52481684
-#R&gt;  10 0.59325518</code></pre>
-<p>Using this is also very helpful when you develop a package and functions from
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">magrittr</span><span class="o">::</span><span class="nf">extract</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s">&#39;var1&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;            var1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  0.005430849</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  0.865673797</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  0.848216866</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  0.307827896</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  0.144029316</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  0.015273538</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  0.634376732</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  0.480184179</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  0.205316175</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 0.144835843</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Using this is also very helpful when you develop a package and functions from
 different packages. Even if you script and use a large number
 of function from various packages, it could be better to remember
 from which package functions come from. Finally, note that this is not R specific
 at all, actually this something very common in programming languages.</p>
-<p><br></p>
-</div>
-<div id="how-to-use-non-exported-functions" class="section level2">
-<h2>How to use non-exported functions?</h2>
+<br>
+<h2 id="how-to-use-non-exported-functions">How to use non-exported functions?</h2>
 <p>Packages often contain functions that are not exported. There are often functions
 called by the functions exported that helps structuring the code of the package.
 However, it happens that when you try to understand how a package work you may
@@ -474,148 +698,242 @@ want to spend some time understanding how they do work (especially given that
 they are nit documented). There is actually a way to call them! Instead of using
 tow colons (<code>:</code>), use three! Let’s have a look to the code of one of this function
 from the <code>knitr</code> package (again version 1.17):</p>
-<pre><code>knitr:::.color.block</code></pre>
+<pre><code>knitr:::.color.block
+</code></pre>
 <p>Interesting, isn’t it! To give you an idea about how frequent this can be, in
 this packages there are 103 exported functions and 425 not-exported. Below
 are presented few examples of exported functions followed by not-exported ones.</p>
-<pre class="r"><code>##------------------------ Exported functions
-## knitr::pat_rnw             knitr::fig_path            knitr::all_patterns
-## knitr::fig_chunk           knitr::clean_cache         knitr::kable
-## knitr::knit_params_yaml    knitr::raw_output          knitr::render_sweave
-## knitr::stitch_rhtml        knitr::include_graphics    knitr::Sweave2knitr
-## knitr::hook_plot_asciidoc  knitr::hook_optipng        knitr::hook_plot_tex
-## knitr::knit_print          knitr::knit_watch          knitr::knit2html
-## knitr::render_html         knitr::knit2wp             knitr::rocco
-## knitr::opts_template       knitr::normal_print        knitr::include_url
-## knitr::combine_words       knitr::render_listings     knitr::current_input
-##------------------------ (27/103 displayed)
-##------------------------
-##------------------------ Not-exported functions
-## knitr:::.__NAMESPACE__.            knitr:::knit_expand
-## knitr:::.__S3MethodsTable__.       knitr:::knit_filter
-## knitr:::.base.pkgs                 knitr:::knit_global
-## knitr:::.chunk.hook.html           knitr:::knit_handlers
-## knitr:::.chunk.hook.tex            knitr:::knit_hooks
-## knitr:::.color.block               knitr:::knit_log
-## knitr:::.default.hooks             knitr:::knit_meta
-## knitr:::.fmt.pat                   knitr:::knit_meta_add
-## knitr:::.header.framed             knitr:::knit_params
-## knitr:::.header.hi.html            knitr:::knit_params_handlers
-## knitr:::.header.hi.tex             knitr:::knit_params_yaml
-## knitr:::.header.maxwidth           knitr:::knit_patterns
-## knitr:::.header.sweave.cmd         knitr:::knit_print
-## knitr:::.img.attr                  knitr:::knit_print.default
-##------------------------ (28/425 displayed)</code></pre>
-<p>I think that this could be very helpful when you want to understand exactly
-how a package works!</p>
-<p><br></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1">##------------------------ Exported functions</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr::pat_rnw             knitr::fig_path            knitr::all_patterns</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr::fig_chunk           knitr::clean_cache         knitr::kable</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr::knit_params_yaml    knitr::raw_output          knitr::render_sweave</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr::stitch_rhtml        knitr::include_graphics    knitr::Sweave2knitr</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr::hook_plot_asciidoc  knitr::hook_optipng        knitr::hook_plot_tex</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr::knit_print          knitr::knit_watch          knitr::knit2html</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr::render_html         knitr::knit2wp             knitr::rocco</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr::opts_template       knitr::normal_print        knitr::include_url</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr::combine_words       knitr::render_listings     knitr::current_input</span>
+</span></span><span class="line"><span class="cl"><span class="c1">##------------------------ (27/103 displayed)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">##------------------------</span>
+</span></span><span class="line"><span class="cl"><span class="c1">##------------------------ Not-exported functions</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr:::.__NAMESPACE__.            knitr:::knit_expand</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr:::.__S3MethodsTable__.       knitr:::knit_filter</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr:::.base.pkgs                 knitr:::knit_global</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr:::.chunk.hook.html           knitr:::knit_handlers</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr:::.chunk.hook.tex            knitr:::knit_hooks</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr:::.color.block               knitr:::knit_log</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr:::.default.hooks             knitr:::knit_meta</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr:::.fmt.pat                   knitr:::knit_meta_add</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr:::.header.framed             knitr:::knit_params</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr:::.header.hi.html            knitr:::knit_params_handlers</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr:::.header.hi.tex             knitr:::knit_params_yaml</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr:::.header.maxwidth           knitr:::knit_patterns</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr:::.header.sweave.cmd         knitr:::knit_print</span>
+</span></span><span class="line"><span class="cl"><span class="c1">## knitr:::.img.attr                  knitr:::knit_print.default</span>
+</span></span><span class="line"><span class="cl"><span class="c1">##------------------------ (28/425 displayed)</span>
+</span></span></code></pre></td></tr></table>
 </div>
-<div id="the-las-argument-of-par" class="section level2">
-<h2>The <code>las</code> argument of <code>par()</code></h2>
+</div><p>I think that this could be very helpful when you want to understand exactly
+how a package works!</p>
+<br>
+<h2 id="the-las-argument-of-par">The <code>las</code> argument of <code>par()</code></h2>
 <p>I really enjoy using <code>graphics</code> to create plots in R. That being said the default
 values always puzzles me! One I specially dislike is that values on the y-axis
 are perpendicular…</p>
-<pre class="r"><code>vec &lt;- runif(10)
-plot(vec)</code></pre>
-<p><img src="/post/2017/trick_or_tips002_files/figure-html/las0-1.svg" width="384" style="display: block; margin: auto;" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">vec</span> <span class="o">&lt;-</span> <span class="nf">runif</span><span class="p">(</span><span class="m">10</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/post/2017/trick_or_tips002_files/figure-html/las0-1.svg" width="384" style="display: block; margin: auto;" />
 <p>Fortunately this can readily be changed using the the <code>las</code> argument of the
 <code>par()</code> function which can take 3 values: 0 (default), 1 or 2. Let’s plot
 and see the differences:</p>
-<pre class="r"><code>par(mfrow = c(1,3), las = 0)
-plot(vec, main = &#39;las = 0 (default)&#39;)
-par(las = 1)
-plot(vec, main = &#39;las=1&#39;)
-par(las = 2)
-plot(vec, main = &#39;las=2&#39;)</code></pre>
-<p><img src="/post/2017/trick_or_tips002_files/figure-html/las-1.svg" width="960" style="display: block; margin: auto;" /></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">),</span> <span class="n">las</span> <span class="o">=</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&#39;las = 0 (default)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">las</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&#39;las=1&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">las</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">vec</span><span class="p">,</span> <span class="n">main</span> <span class="o">=</span> <span class="s">&#39;las=2&#39;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/post/2017/trick_or_tips002_files/figure-html/las-1.svg" width="960" style="display: block; margin: auto;" />
 <p>So, I personally prefer and use <code>las=1</code>!</p>
-<p><br></p>
+<br>
 <p><strong>That’s all for number 2 of this series, see you for the next tips!</strong></p>
 <div style="padding: 2rem 0rem 2rem 0rem;">
 <details>
-<summary>
-Session info <i class="fa fa-cogs" aria-hidden="true"></i>
-</summary>
-<pre class="r"><code>sessionInfo()
-#R&gt;  R version 4.2.2 (2022-10-31)
-#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)
-#R&gt;  Running under: Ubuntu 22.04.1 LTS
-#R&gt;  
-#R&gt;  Matrix products: default
-#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
-#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so
-#R&gt;  
-#R&gt;  locale:
-#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       
-#R&gt;   [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   
-#R&gt;   [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          
-#R&gt;  [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   
-#R&gt;  
-#R&gt;  attached base packages:
-#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     
-#R&gt;  
-#R&gt;  other attached packages:
-#R&gt;  [1] raster_3.6-11          sp_1.5-1               magrittr_2.0.3        
-#R&gt;  [4] inSilecoRef_0.0.1.9000
-#R&gt;  
-#R&gt;  loaded via a namespace (and not attached):
-#R&gt;   [1] terra_1.6-47      tidyselect_1.2.0  xfun_0.35         bslib_0.4.1      
-#R&gt;   [5] lattice_0.20-45   vctrs_0.5.1       generics_0.1.3    miniUI_0.1.1.1   
-#R&gt;   [9] htmltools_0.5.4   yaml_2.3.6        utf8_1.2.2        rlang_1.0.6      
-#R&gt;  [13] later_1.3.0       pillar_1.8.1      jquerylib_0.1.4   httpcode_0.3.0   
-#R&gt;  [17] glue_1.6.2        DBI_1.1.3         lifecycle_1.0.3   plyr_1.8.8       
-#R&gt;  [21] stringr_1.5.0     blogdown_1.15     htmlwidgets_1.5.4 codetools_0.2-18 
-#R&gt;  [25] evaluate_0.18     knitr_1.41        fastmap_1.1.0     httpuv_1.6.6     
-#R&gt;  [29] curl_4.3.3        fansi_1.0.3       highr_0.9         Rcpp_1.0.9       
-#R&gt;  [33] xtable_1.8-4      promises_1.2.0.1  backports_1.4.1   DT_0.26          
-#R&gt;  [37] cachem_1.0.6      jsonlite_1.8.4    rcrossref_1.2.0   systemfonts_1.0.4
-#R&gt;  [41] mime_0.12         digest_0.6.30     stringi_1.7.8     bookdown_0.30    
-#R&gt;  [45] dplyr_1.0.10      shiny_1.7.3       grid_4.2.2        bibtex_0.5.0     
-#R&gt;  [49] cli_3.4.1         tools_4.2.2       sass_0.4.4        tibble_3.1.8     
-#R&gt;  [53] RefManageR_1.4.0  crul_1.3          pkgconfig_2.0.3   ellipsis_0.3.2   
-#R&gt;  [57] xml2_1.3.3        timechange_0.1.1  lubridate_1.9.0   svglite_2.1.0    
-#R&gt;  [61] assertthat_0.2.1  rmarkdown_2.18    httr_1.4.4        R6_2.5.1         
-#R&gt;  [65] compiler_4.2.2</code></pre>
-</details>
+<summary>Session info <i class="fa fa-cogs" aria-hidden="true"></i></summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.2.2 Patched (2022-11-10 r83330)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.1 LTS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Matrix products: default</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  locale:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=en_CA.UTF-8       LC_NUMERIC=C              </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [3] LC_TIME=en_CA.UTF-8        LC_COLLATE=en_CA.UTF-8    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] LC_MONETARY=en_CA.UTF-8    LC_MESSAGES=en_CA.UTF-8   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] LC_PAPER=en_CA.UTF-8       LC_NAME=C                 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  attached base packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  other attached packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] raster_3.6-14          sp_1.6-0               magrittr_2.0.3        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [4] inSilecoRef_0.0.1.9000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] Rcpp_1.0.10       svglite_2.1.1     lubridate_1.8.0   lattice_0.20-45  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] ps_1.7.2          digest_0.6.31     utf8_1.2.3        mime_0.12        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] R6_2.5.1          plyr_1.8.8        backports_1.4.1   evaluate_0.19    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] highr_0.10        httr_1.4.4        blogdown_1.16     pillar_1.8.1     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [17] rlang_1.0.6       curl_5.0.0        data.table_1.14.6 miniUI_0.1.1.1   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] callr_3.7.3       jquerylib_0.1.4   DT_0.26           rmarkdown_2.19   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] RefManageR_1.3.0  rcrossref_1.2.0   stringr_1.5.0     htmlwidgets_1.6.1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] igraph_1.3.5      shiny_1.7.4       compiler_4.2.2    httpuv_1.6.8     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] xfun_0.36         systemfonts_1.0.4 pkgconfig_2.0.3   htmltools_0.5.4  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] tidyselect_1.2.0  tibble_3.1.8      httpcode_0.3.0    bookdown_0.32    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] codetools_0.2-19  fansi_1.0.4       dplyr_1.1.0       withr_2.5.0      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [45] later_1.3.0       crul_1.3          grid_4.2.2        jsonlite_1.8.4   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] xtable_1.8-4      lifecycle_1.0.3   cli_3.5.0         stringi_1.7.8    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [53] cachem_1.0.6      promises_1.2.0.1  xml2_1.3.3        bslib_0.4.2      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [57] ellipsis_0.3.2    targets_0.14.2    generics_0.1.3    vctrs_0.5.2      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [61] tools_4.2.2       glue_1.6.2        processx_3.8.0    fastmap_1.1.0    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [65] yaml_2.3.6        terra_1.7-3       base64url_1.4     knitr_1.41       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [69] sass_0.4.5</span>
+</span></span></code></pre></td></tr></table>
 </div>
+</div></details>
 </div>
 
 
-      <div class="text-justify">
-        
-          <div class="edits">
-            <h4><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h4>
-            <p style="font-size: 1.5rem">
-              
-              <i class="fa fa-pencil" aria-hidden="true"></i> Apr 23, 2022 -- Fix typos. <br>
-              
-              <i class="fa fa-pencil" aria-hidden="true"></i> May 24, 2022 -- Add session info section. <br>
-              
-            </p>
-          </div>
-        
+                    
+                    <div class="edits" style="margin-top: 2em; margin-bottom: 1em;">
+                        <h4><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h4>
+                        <p style="font-size: 1.5rem">
+                            
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Apr 23, 2022 -- Fix typos. <br>
+                            
+                            <i class="fa fa-pencil" aria-hidden="true"></i> May 24, 2022 -- Add session info section. <br>
+                            
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Feb 4, 2023 -- Edit headers. <br>
+                            
+                        </p>
+                    </div>
+                    
 
-      </div>
+
+            </div>
 
 
-    
+            
 
-    </center>
+            </center>
 
-    </div>
+        </div>
 
-      <br>
+          <br>
 
-  
-  <script>
-    var $jq = jQuery.noConflict();
-      $jq(function() {
-          var toc = $jq("#toc").tocify({
-            selectors: "h2, h3",
-            scrollTo: 50
-          }).data("toc-tocify");
-    });
-  </script>
 
   
   <script src="//yihui.name/js/math-code.js"></script>
@@ -623,6 +941,8 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
   
   
 
+
+  <script src="/js/sidebar-post.js"></script>
 
   <h3 class="page-header">Comments on this post</h3>
 
@@ -731,28 +1051,36 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </div>
 
 
-</div>
+    </div>
 
-        <footer>
+    <footer>
 
-          <script src="//yihui.name/js/math-code.js"></script>
-          <script async
-            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-          </script>
+  <div class="col-md-3">
 
-            <hr>
-            <p class="copyright text-muted" style="font-size: 1.6rem;">
-              &copy; 2017-2022 inSileco |
-              All rights reserved |
-              Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
-                <a href="https://gohugo.io">Hugo</a>
-                and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Dec 2022 01:46 UTC.
-              </p>
+    <a href="#" id="bottom"></a>
 
-        </footer>
+  </div>
 
-    </body>
+  <div class="col-md-8">
+
+    <script src="//yihui.name/js/math-code.js"></script>
+    <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <hr>
+    <p class="copyright text-muted" style="font-size: 1.6rem;">
+      &copy; 2017-2023 inSileco |
+      Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+      <a href="https://gohugo.io">Hugo</a>
+      and <a href="https://github.com/calintat/minimal">Minimal</a> |
+      Latest build: 05 February 2023 00:32 UTC.
+    </p>
+
+  </div>
+
+
+</footer>
+
+</body>
 
 </html>
-

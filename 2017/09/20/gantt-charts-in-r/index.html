@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en-us">
-
     <head>
+        
 
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Gantt charts in R</title>
-
+        
         <style>
 
     html body {
@@ -26,7 +28,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
 
 
- <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css"> 
+
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -35,85 +37,63 @@
 
   <link rel="stylesheet" href="/css/academicons.min.css">
 
+  <link rel="stylesheet" href="/css/font-awesome.min.css">
+
   <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
 
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="/css/jquery.tocify.css">
-
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
-
-  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 
  
 
 
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-
-    
-
-    <script>hljs.initHighlightingOnLoad();</script>
 
 
 
 
-
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 
-
-  <script src="/js/jquery-1.8.3.min.js"></script>
-
-  <script src="/js/jquery-ui-1.9.1.custom.min.js"></script>
-
-  <script src="/js/jquery.tocify.min.js"></script>
-
-  <script src="/js/toclipboard.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 
-        <meta charset="utf-8">
-
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-
-        
-        
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
-        <script>
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments)};
-          gtag('js', new Date());
-          gtag('config', 'UA-109508556-1');
-        </script>
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.110.0">
         
 
+        
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments)};
+              gtag('js', new Date());
+              gtag('config', 'UA-109508556-1');
+            </script>
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
 
     </head>
 
     <body>
+        
 
         <nav class="navbar navbar-default navbar-fixed-top">
-
             <div class="container">
-
                 <div class="navbar-header">
-
                     <a class="navbar-brand visible-xs" href="#">Gantt charts in R</a>
-
                     <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
                 </div>
-
                 <div class="collapse navbar-collapse">
-
                     
                         <ul class="nav navbar-nav">
                             
@@ -131,23 +111,19 @@
                             
                         </ul>
                     
-
                     
                         <ul class="nav navbar-nav navbar-right">
                             
-                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="github"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="twitter"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="rss"></i></a></li>
                             
                         </ul>
                     
-
                 </div>
-
             </div>
-
         </nav>
 
 
@@ -156,74 +132,91 @@
 
 <div>
 
-  <div class="col-md-3">
-      <div class="hidden-sm hidden-xs">
-        <div class="sticky-top">
-          <div id="toc"></div>
-
-        </div>
-    </div>
-  </div>
+    <div class="col-md-3">
+        <h1><a href="#"><i class='fa fa-chevron-up'></i></a></h1>
 
 
-  <div class="col-md-8">
-
-    <h1><a href="/2017/09/20/gantt-charts-in-r/">Gantt charts in R</a></h1>
-
-    <h4>September 20, 2017</h4>
-
-    <p>
-      <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/time-management"><kbd class="item-tag">time management</kbd></a>  <a href="/tags/gantt-chart"><kbd class="item-tag">gantt chart</kbd></a>  <a href="/tags/data-visualization"><kbd class="item-tag">data visualization</kbd></a> 
-      <br>
-      
-       <img src = "/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/graphics"><kbd class="item-tag2">graphics</kbd></a>  <a href="/rpkgs/tidyverse"><kbd class="item-tag2">tidyverse</kbd></a>  <a href="/rpkgs/rcolorbrewer"><kbd class="item-tag2">RColorBrewer</kbd></a>  <a href="/rpkgs/kableextra"><kbd class="item-tag2">kableExtra</kbd></a> 
-      
-    </p>
-
-    
-      <p style = "font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
-       
-        <a href="/about/">David Beauchesne</a> &nbsp;
-      
-     <a href="#"></a></p>
     
 
-    
-      <p> <i class="fa fa-check-square" aria-hidden="true", title="Reviewer(s)"></i>
-       
-      <a href="/about/">Kevin Cazelles</a> &nbsp;
-      
-      <a href="#"></a></p>
-    
 
-    <p>
-    
-    
-    
-      <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=15min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
-    
-    
-     &nbsp;
-    
-    
-      <a href = "https://creativecommons.org/licenses/by/4.0/">
-      <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
-      </a>
-     &nbsp;
-    
-     &nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;
-    <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2017%2f09%2f20%2fgantt-charts-in-r%2f&text=Gantt%20charts%20in%20R" target="_blank">
-      <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2017%2f09%2f20%2fgantt-charts-in-r%2f?link=http://left&link=http://right}'>
+<h1>
+    <a href="#bottom">
+        <i class='fa fa-chevron-down'></i>
     </a>
-  </p>
+</h1>
+    </div>
 
 
-    <br>
+    <div class="col-md-8">
 
-    <div class="text-justify">
+        <div class="post-content">
 
-      
+            <h1><a href="/2017/09/20/gantt-charts-in-r/">Gantt charts in R</a></h1>
+
+            <h4>September 20, 2017</h4>
+
+            <p>
+                <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                    href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a
+                    href="/tags/time-management"><kbd class="item-tag">time management</kbd></a>  <a
+                    href="/tags/gantt-chart"><kbd class="item-tag">gantt chart</kbd></a>  <a
+                    href="/tags/data-visualization"><kbd class="item-tag">data visualization</kbd></a> 
+                <br>
+                
+                <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/graphics"><kbd class="item-tag2">graphics</kbd></a>  <a href="/rpkgs/tidyverse"><kbd class="item-tag2">tidyverse</kbd></a>  <a href="/rpkgs/rcolorbrewer"><kbd class="item-tag2">RColorBrewer</kbd></a>  <a href="/rpkgs/kableextra"><kbd class="item-tag2">kableExtra</kbd></a> 
+                
+            </p>
+
+            
+            <p style="font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+                 
+                <a href="/about/">David Beauchesne</a> &nbsp;
+                
+                <a href="#"></a>
+            </p>
+            
+
+            
+            <p> <i class="fa fa-check-square" aria-hidden="true" , title="Reviewer(s)"></i>
+                 
+                <a href="/about/">Kevin Cazelles</a> &nbsp;
+                
+                <a href="#"></a>
+            </p>
+            
+
+            <p>
+                
+                
+                
+                <img
+                    src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=15min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                
+                
+                 &nbsp;
+                        
+                        
+                                <a href="https://creativecommons.org/licenses/by/4.0/">
+                                    <img
+                                        src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                                </a>
+                                 &nbsp;
+                                
+                                 &nbsp;
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2017%2f09%2f20%2fgantt-charts-in-r%2f&text=Gantt%20charts%20in%20R"
+                                            target="_blank">
+                                            <img
+                                                src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2017%2f09%2f20%2fgantt-charts-in-r%2f?link=http://left&link=http://right}'>
+                                        </a>
+            </p>
+
+
+            <br>
+
+            <div id="post-content-body" class="text-justify">
+
+                
 <script src="https://insileco.github.io/2017/09/20/gantt-charts-in-r/index_files/kePrint/kePrint.js"></script>
 <link href="https://insileco.github.io/2017/09/20/gantt-charts-in-r/index_files/lightable/lightable.css" rel="stylesheet" />
 
@@ -750,79 +743,69 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 #R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     
 #R&gt;  
 #R&gt;  other attached packages:
-#R&gt;   [1] kableExtra_1.3.4       RColorBrewer_1.1-3     forcats_0.5.2         
-#R&gt;   [4] stringr_1.5.0          dplyr_1.0.10           purrr_0.3.5           
-#R&gt;   [7] readr_2.1.3            tidyr_1.2.1            tibble_3.1.8          
-#R&gt;  [10] ggplot2_3.4.0          tidyverse_1.3.2        knitr_1.41            
+#R&gt;   [1] kableExtra_1.3.4       RColorBrewer_1.1-3     forcats_1.0.0         
+#R&gt;   [4] stringr_1.5.0          dplyr_1.1.0            purrr_1.0.1           
+#R&gt;   [7] readr_2.1.3            tidyr_1.3.0            tibble_3.1.8          
+#R&gt;  [10] ggplot2_3.4.0          tidyverse_1.3.2        knitr_1.42            
 #R&gt;  [13] inSilecoRef_0.0.1.9000
 #R&gt;  
 #R&gt;  loaded via a namespace (and not attached):
-#R&gt;   [1] fs_1.5.2            lubridate_1.9.0     webshot_0.5.4      
+#R&gt;   [1] fs_1.6.0            lubridate_1.9.1     webshot_0.5.4      
 #R&gt;   [4] httr_1.4.4          tools_4.2.2         backports_1.4.1    
-#R&gt;   [7] bslib_0.4.1         utf8_1.2.2          R6_2.5.1           
-#R&gt;  [10] DT_0.26             DBI_1.1.3           colorspace_2.0-3   
-#R&gt;  [13] withr_2.5.0         tidyselect_1.2.0    curl_4.3.3         
-#R&gt;  [16] compiler_4.2.2      cli_3.4.1           rvest_1.0.3        
-#R&gt;  [19] xml2_1.3.3          bookdown_0.30       sass_0.4.4         
-#R&gt;  [22] scales_1.2.1        systemfonts_1.0.4   digest_0.6.30      
-#R&gt;  [25] rmarkdown_2.18      svglite_2.1.0       pkgconfig_2.0.3    
-#R&gt;  [28] htmltools_0.5.4     bibtex_0.5.0        highr_0.9          
-#R&gt;  [31] dbplyr_2.2.1        fastmap_1.1.0       htmlwidgets_1.5.4  
+#R&gt;   [7] bslib_0.4.2         utf8_1.2.3          R6_2.5.1           
+#R&gt;  [10] DT_0.27             DBI_1.1.3           colorspace_2.1-0   
+#R&gt;  [13] withr_2.5.0         tidyselect_1.2.0    curl_5.0.0         
+#R&gt;  [16] compiler_4.2.2      cli_3.6.0           rvest_1.0.3        
+#R&gt;  [19] xml2_1.3.3          bookdown_0.32       sass_0.4.5         
+#R&gt;  [22] scales_1.2.1        systemfonts_1.0.4   digest_0.6.31      
+#R&gt;  [25] svglite_2.1.1       rmarkdown_2.20      pkgconfig_2.0.3    
+#R&gt;  [28] htmltools_0.5.4     bibtex_0.5.1        highr_0.10         
+#R&gt;  [31] dbplyr_2.3.0        fastmap_1.1.0       htmlwidgets_1.6.1  
 #R&gt;  [34] rlang_1.0.6         readxl_1.4.1        rstudioapi_0.14    
-#R&gt;  [37] httpcode_0.3.0      shiny_1.7.3         jquerylib_0.1.4    
+#R&gt;  [37] httpcode_0.3.0      shiny_1.7.4         jquerylib_0.1.4    
 #R&gt;  [40] generics_0.1.3      jsonlite_1.8.4      googlesheets4_1.0.1
-#R&gt;  [43] magrittr_2.0.3      Rcpp_1.0.9          munsell_0.5.0      
-#R&gt;  [46] fansi_1.0.3         RefManageR_1.4.0    lifecycle_1.0.3    
-#R&gt;  [49] stringi_1.7.8       yaml_2.3.6          plyr_1.8.8         
+#R&gt;  [43] magrittr_2.0.3      Rcpp_1.0.10         munsell_0.5.0      
+#R&gt;  [46] fansi_1.0.4         RefManageR_1.4.0    lifecycle_1.0.3    
+#R&gt;  [49] stringi_1.7.12      yaml_2.3.7          plyr_1.8.8         
 #R&gt;  [52] grid_4.2.2          promises_1.2.0.1    crayon_1.5.2       
 #R&gt;  [55] miniUI_0.1.1.1      haven_2.5.1         hms_1.1.2          
 #R&gt;  [58] pillar_1.8.1        crul_1.3            reprex_2.0.2       
-#R&gt;  [61] glue_1.6.2          rcrossref_1.2.0     evaluate_0.18      
-#R&gt;  [64] blogdown_1.15       modelr_0.1.10       vctrs_0.5.1        
-#R&gt;  [67] tzdb_0.3.0          httpuv_1.6.6        cellranger_1.1.0   
+#R&gt;  [61] glue_1.6.2          rcrossref_1.2.0     evaluate_0.20      
+#R&gt;  [64] blogdown_1.16       modelr_0.1.10       vctrs_0.5.2        
+#R&gt;  [67] tzdb_0.3.0          httpuv_1.6.8        cellranger_1.1.0   
 #R&gt;  [70] gtable_0.3.1        assertthat_0.2.1    cachem_1.0.6       
-#R&gt;  [73] xfun_0.35           mime_0.12           xtable_1.8-4       
-#R&gt;  [76] broom_1.0.1         later_1.3.0         viridisLite_0.4.1  
-#R&gt;  [79] googledrive_2.0.0   gargle_1.2.1        timechange_0.1.1   
+#R&gt;  [73] xfun_0.37           mime_0.12           xtable_1.8-4       
+#R&gt;  [76] broom_1.0.3         later_1.3.0         viridisLite_0.4.1  
+#R&gt;  [79] googledrive_2.0.0   gargle_1.3.0        timechange_0.2.0   
 #R&gt;  [82] ellipsis_0.3.2</code></pre>
 </details>
 </div>
 </div>
 
 
-      <div class="text-justify">
-        
-          <div class="edits">
-            <h4><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h4>
-            <p style="font-size: 1.5rem">
-              
-              <i class="fa fa-pencil" aria-hidden="true"></i> Apr 23, 2022 -- Improve code formatting. <br>
-              
-            </p>
-          </div>
-        
-
-      </div>
+                    
+                    <div class="edits" style="margin-top: 2em; margin-bottom: 1em;">
+                        <h4><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h4>
+                        <p style="font-size: 1.5rem">
+                            
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Apr 23, 2022 -- Improve code formatting. <br>
+                            
+                        </p>
+                    </div>
+                    
 
 
-    
+            </div>
 
-    </center>
 
-    </div>
+            
 
-      <br>
+            </center>
 
-  
-  <script>
-    var $jq = jQuery.noConflict();
-      $jq(function() {
-          var toc = $jq("#toc").tocify({
-            selectors: "h2, h3",
-            scrollTo: 50
-          }).data("toc-tocify");
-    });
-  </script>
+        </div>
+
+          <br>
+
 
   
   <script src="//yihui.name/js/math-code.js"></script>
@@ -830,6 +813,8 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
   
   
 
+
+  <script src="/js/sidebar-post.js"></script>
 
   <h3 class="page-header">Comments on this post</h3>
 
@@ -938,28 +923,36 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </div>
 
 
-</div>
+    </div>
 
-        <footer>
+    <footer>
 
-          <script src="//yihui.name/js/math-code.js"></script>
-          <script async
-            src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-          </script>
+  <div class="col-md-3">
 
-            <hr>
-            <p class="copyright text-muted" style="font-size: 1.6rem;">
-              &copy; 2017-2022 inSileco |
-              All rights reserved |
-              Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
-                <a href="https://gohugo.io">Hugo</a>
-                and <a href="https://github.com/calintat/minimal">Minimal</a> |
-              Latest build: 11 Dec 2022 01:46 UTC.
-              </p>
+    <a href="#" id="bottom"></a>
 
-        </footer>
+  </div>
 
-    </body>
+  <div class="col-md-8">
+
+    <script src="//yihui.name/js/math-code.js"></script>
+    <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <hr>
+    <p class="copyright text-muted" style="font-size: 1.6rem;">
+      &copy; 2017-2023 inSileco |
+      Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+      <a href="https://gohugo.io">Hugo</a>
+      and <a href="https://github.com/calintat/minimal">Minimal</a> |
+      Latest build: 05 February 2023 00:32 UTC.
+    </p>
+
+  </div>
+
+
+</footer>
+
+</body>
 
 </html>
-
