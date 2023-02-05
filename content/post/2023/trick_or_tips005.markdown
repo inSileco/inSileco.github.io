@@ -20,17 +20,203 @@ This time I will comment a few object that could be very helpful.
 
 ## `.Platform`
 
-You can use it to ubuid properlu
+No mystery once you know is there `?.Platform`
 
-or you can simply use the join `file.path()` too.
+> ‘.Platform’ is a list with some details of the platform under
+> which R was built. This provides means to write OS-portable R
+> code.
+
+``` r
+.Platform
+#R>  $OS.type
+#R>  [1] "unix"
+#R>  
+#R>  $file.sep
+#R>  [1] "/"
+#R>  
+#R>  $dynlib.ext
+#R>  [1] ".so"
+#R>  
+#R>  $GUI
+#R>  [1] "X11"
+#R>  
+#R>  $endian
+#R>  [1] "little"
+#R>  
+#R>  $pkgType
+#R>  [1] "source"
+#R>  
+#R>  $path.sep
+#R>  [1] ":"
+#R>  
+#R>  $r_arch
+#R>  [1] ""
+```
+
+All the terms are explained in the help. I just, may be the $file.sep, super useful. I have seen people doing
+
+``` r
+paste("here", "myfile.txt", sep = "/")
+#R>  [1] "here/myfile.txt"
+```
+
+Of course it will work on many case, , and even better `file.path()` that was built for it. With `.Platform` there is a simple way to make this portable:
+
+``` r
+paste("here", "myfile.txt", sep = .Platform$file.sep)
+#R>  [1] "here/myfile.txt"
+```
+
+Of course, I would advise to use a function that was build for this or you can simply use the join `file.path()` too. And it actually use `.Platform$sfile.sep`
+
+``` r
+file.path
+#R>  function (..., fsep = .Platform$file.sep) 
+#R>  .Internal(file.path(list(...), fsep))
+#R>  <bytecode: 0x55ba082066b8>
+#R>  <environment: namespace:base>
+```
 
 ## `.Machine`
 
+> ‘.Machine’ is a variable holding information on the numerical
+> characteristics of the machine R is running on, such as the
+> largest double or integer and the machine’s precision.
+
+``` r
+.Machine
+#R>  $double.eps
+#R>  [1] 2.220446e-16
+#R>  
+#R>  $double.neg.eps
+#R>  [1] 1.110223e-16
+#R>  
+#R>  $double.xmin
+#R>  [1] 2.225074e-308
+#R>  
+#R>  $double.xmax
+#R>  [1] 1.797693e+308
+#R>  
+#R>  $double.base
+#R>  [1] 2
+#R>  
+#R>  $double.digits
+#R>  [1] 53
+#R>  
+#R>  $double.rounding
+#R>  [1] 5
+#R>  
+#R>  $double.guard
+#R>  [1] 0
+#R>  
+#R>  $double.ulp.digits
+#R>  [1] -52
+#R>  
+#R>  $double.neg.ulp.digits
+#R>  [1] -53
+#R>  
+#R>  $double.exponent
+#R>  [1] 11
+#R>  
+#R>  $double.min.exp
+#R>  [1] -1022
+#R>  
+#R>  $double.max.exp
+#R>  [1] 1024
+#R>  
+#R>  $integer.max
+#R>  [1] 2147483647
+#R>  
+#R>  $sizeof.long
+#R>  [1] 8
+#R>  
+#R>  $sizeof.longlong
+#R>  [1] 8
+#R>  
+#R>  $sizeof.longdouble
+#R>  [1] 16
+#R>  
+#R>  $sizeof.pointer
+#R>  [1] 8
+#R>  
+#R>  $sizeof.time_t
+#R>  [1] 8
+#R>  
+#R>  $longdouble.eps
+#R>  [1] 1.084202e-19
+#R>  
+#R>  $longdouble.neg.eps
+#R>  [1] 5.421011e-20
+#R>  
+#R>  $longdouble.digits
+#R>  [1] 64
+#R>  
+#R>  $longdouble.rounding
+#R>  [1] 5
+#R>  
+#R>  $longdouble.guard
+#R>  [1] 0
+#R>  
+#R>  $longdouble.ulp.digits
+#R>  [1] -63
+#R>  
+#R>  $longdouble.neg.ulp.digits
+#R>  [1] -64
+#R>  
+#R>  $longdouble.exponent
+#R>  [1] 15
+#R>  
+#R>  $longdouble.min.exp
+#R>  [1] -16382
+#R>  
+#R>  $longdouble.max.exp
+#R>  [1] 16384
+```
+
 ## `.leap.seconds`
 
-## `.Options`
+https://en.wikipedia.org/wiki/Leap\_second
 
-## `.Random.seed`
+``` r
+.leap.seconds
+#R>   [1] "1972-07-01 GMT" "1973-01-01 GMT" "1974-01-01 GMT" "1975-01-01 GMT"
+#R>   [5] "1976-01-01 GMT" "1977-01-01 GMT" "1978-01-01 GMT" "1979-01-01 GMT"
+#R>   [9] "1980-01-01 GMT" "1981-07-01 GMT" "1982-07-01 GMT" "1983-07-01 GMT"
+#R>  [13] "1985-07-01 GMT" "1988-01-01 GMT" "1990-01-01 GMT" "1991-01-01 GMT"
+#R>  [17] "1992-07-01 GMT" "1993-07-01 GMT" "1994-07-01 GMT" "1996-01-01 GMT"
+#R>  [21] "1997-07-01 GMT" "1999-01-01 GMT" "2006-01-01 GMT" "2009-01-01 GMT"
+#R>  [25] "2012-07-01 GMT" "2015-07-01 GMT" "2017-01-01 GMT"
+```
+
+## `.Library.site`
+
+``` r
+.Library.site
+#R>  [1] "/usr/local/lib/R/site-library/" "/usr/local/lib/R/site-library/"
+#R>  [3] "/usr/lib/R/site-library"        "/usr/lib/R/library"            
+#R>  [5] "/usr/lib/R/library"
+```
+
+## `Last.value`
+
+``` r
+cool <- 12
+cool
+#R>  [1] 12
+```
+
+I do have to redo the calcul
+
+> The value of the internal evaluation of a top-level R expression
+> is always assigned to ‘.Last.value’ (in ‘package:base’) before
+> further processing (e.g., printing).
+
+``` r
+.Last.value
+#R>  [1] "/home/kc/git/inSilecoBlog/inSileco.github.io/static/Rscript/sessionInfo.Rmd"
+```
+
+`ans` in other programming languages (e.g. [Julia](https://julialang.org/))
 
 ### See you next post post\!
 

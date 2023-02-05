@@ -21,18 +21,86 @@ This time I will comment a few object that could be very helpful.
 
 ## `.Platform`
 
-You can use it to ubuid properlu
+No mystery once you know is there `?.Platform`
 
-or you can simply use the join `file.path()` too.
+>  ‘.Platform’ is a list with some details of the platform under
+     which R was built.  This provides means to write OS-portable R
+     code.
+
+```{R Platform}
+.Platform
+```
+
+All the terms are explained in the help. I just, may be the $file.sep, super useful. I have seen people doing
+
+
+```{R}
+paste("here", "myfile.txt", sep = "/")
+```
+
+Of course it will work on many case, , and even better `file.path()` that was built for it. With `.Platform` there is a simple way to make this portable:
+
+```{R}
+paste("here", "myfile.txt", sep = .Platform$file.sep)
+```
+
+Of course, I would advise to use a function that was build for this or you can simply use the join `file.path()` too. And it actually use `.Platform$sfile.sep`
+
+
+```{R}
+file.path
+```
+
+
 
 ## `.Machine`
 
+> ‘.Machine’ is a variable holding information on the numerical
+     characteristics of the machine R is running on, such as the
+     largest double or integer and the machine's precision.
+
+
+```{R Machine}
+.Machine
+```
+
+
 ##  `.leap.seconds`
 
+https://en.wikipedia.org/wiki/Leap_second
 
-## `.Options`
+```{R leap_seconds}
+.leap.seconds
+```
 
-## `.Random.seed`
+
+## `.Library.site`
+
+```{R Library_site}
+.Library.site
+```
+
+
+## `Last.value`
+
+```{R}
+cool <- 12
+cool
+```
+
+I do have to redo the calcul 
+
+>  The value of the internal evaluation of a top-level R expression
+     is always assigned to ‘.Last.value’ (in ‘package:base’) before
+     further processing (e.g., printing).
+
+```{R Last_value}
+.Last.value
+```
+
+
+
+`ans` in other programming languages (e.g. [Julia](https://julialang.org/))
 
 
 
