@@ -97,8 +97,6 @@
                     
                         <ul class="nav navbar-nav">
                             
-                                <li><a href="/">Home</a></li>
-                            
                                 <li><a href="/about/">About</a></li>
                             
                                 <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
@@ -113,6 +111,8 @@
                     
                     
                         <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="/"><i class="fa fa-home"></i></a></li>
                             
                                 <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
                             
@@ -133,7 +133,7 @@
 <div>
 
     <div class="col-md-3">
-        <h1><a href="#"><i class='fa fa-chevron-up'></i></a></h1>
+        <h2><a href="#"><i class='fa fa-chevron-up'></i></a></h2>
 
 
     <nav id="TableOfContents">
@@ -145,11 +145,11 @@
 </nav>
 
 
-<h1>
+<h2>
     <a href="#bottom">
         <i class='fa fa-chevron-down'></i>
     </a>
-</h1>
+</h2>
     </div>
 
 
@@ -159,7 +159,7 @@
 
             <h1><a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a></h1>
 
-            <h4>April 21, 2020</h4>
+            <h4><i class="fa fa-calendar" aria-hidden="true"></i> April 21, 2020</h4>
 
             <p>
                 <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a
@@ -267,18 +267,16 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">val</span> <span class="o">&lt;-</span> <span class="nf">runif</span><span class="p">(</span><span class="m">40</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">val</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 29.4039347  8.4541791  9.5022398 80.9328448 40.6176687 17.1348016</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] 98.6569313 81.3181046 14.2946792 23.6461052 46.3050564 38.1217669</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] 72.8862276 30.8152169 26.0483752 35.4141470 58.5232072 12.5098959</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] 75.7810306 90.0781251 17.7647574 24.5514264 39.4317336 83.6412678</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] 47.5223986 91.4335732  6.7257633 36.6056213 54.0005822 28.6205924</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] 55.5127353 14.8319911 14.6459196 32.3732584 53.1082632 77.2377300</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] 14.2603551  2.9936325  0.5690198 21.0095263</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 57.072472  1.377235 54.866732 46.998506 24.580894 61.413309 73.118018</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [8] 68.243336 94.131153 29.635926 18.549329 81.328772 16.759108 30.873441</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [15] 35.765323 38.017350  8.939372 13.491291 54.305585 38.824689 52.794656</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] 62.049852 24.724527 84.224434 75.287923 84.751125 84.059750 25.937042</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] 30.572185 43.530866 78.128726 11.219499 33.837586 33.152281 49.135213</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] 86.378084 22.151558 96.026404 25.332550 63.346467</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
@@ -303,8 +301,8 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1]  1  1  1 25  7  1 25 25  1  1 11  6 25  1  1  4 18  1 25 25  1  1  6 25 11</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] 25  1  5 16  1 16  1  1  2 15 25  1  1  1  1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 17  1 16 11  1 20 25 24 25  1  1 25  1  1  4  6  1  1 16  6 15 21  1 25 25</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] 25 25  1  1  9 25  1  3  2 12 25  1 25  1 21</span>
 </span></span><span class="line"><span class="cl"><span class="n">graphicsutils</span><span class="o">::</span><span class="nf">showPalette</span><span class="p">(</span><span class="n">pal</span><span class="nf">[scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">add_codecolor</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -505,7 +503,10 @@ default) using <a href="https://pandoc.org/">pandoc</a>.</p>
 </div><center>
   <figure>
     <img class="mg-bot" src="/2020/04/21/insilecomisc-0.4.0-part-2/2/table_odt.png" alt="table_odt.png (screenshot)" width="90%%" >
-    <figcaption><span class="highlight">table_odt.png (screenshot)</span></figcaption>
+    <figcaption>
+      <i class="fa fa-info" aria-hidden="true"></i>
+      table_odt.png (screenshot)
+    </figcaption>
   </figure>
 </center>
 <p>As I mentioned above <code>tblDown()</code> handles lists of data frames and the user can also provide a set of captions for every table and even separate them with section headers (of level 1).</p>
@@ -783,7 +784,7 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 05 February 2023 01:57 UTC.
+      Latest build: 05 February 2023 03:33 UTC.
     </p>
 
   </div>

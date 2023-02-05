@@ -97,8 +97,6 @@
                     
                         <ul class="nav navbar-nav">
                             
-                                <li><a href="/">Home</a></li>
-                            
                                 <li><a href="/about/">About</a></li>
                             
                                 <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
@@ -113,6 +111,8 @@
                     
                     
                         <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="/"><i class="fa fa-home"></i></a></li>
                             
                                 <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
                             
@@ -133,7 +133,7 @@
 <div>
 
     <div class="col-md-3">
-        <h1><a href="#"><i class='fa fa-chevron-up'></i></a></h1>
+        <h2><a href="#"><i class='fa fa-chevron-up'></i></a></h2>
 
 
     <nav id="TableOfContents">
@@ -148,11 +148,11 @@
 </nav>
 
 
-<h1>
+<h2>
     <a href="#bottom">
         <i class='fa fa-chevron-down'></i>
     </a>
-</h1>
+</h2>
     </div>
 
 
@@ -162,7 +162,7 @@
 
             <h1><a href="/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/">Continuous integration for R projects: from Travis CI to GitHub actions step by step</a></h1>
 
-            <h4>November 24, 2020</h4>
+            <h4><i class="fa fa-calendar" aria-hidden="true"></i> November 24, 2020</h4>
 
             <p>
                 <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a
@@ -172,7 +172,7 @@
                     href="/tags/r-package"><kbd class="item-tag">R package</kbd></a> 
                 <br>
                 
-                <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/covr"><kbd class="item-tag2">covr</kbd></a>  <a href="/rpkgs/pkgdown"><kbd class="item-tag2">pkgdown</kbd></a>  <a href="/rpkgs/usethis"><kbd class="item-tag2">usethis</kbd></a> 
+                <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="80px"></img> &nbsp;  <a href="/rpkgs/covr"><kbd class="item-tag2">covr</kbd></a>  <a href="/rpkgs/pkgdown"><kbd class="item-tag2">pkgdown</kbd></a>  <a href="/rpkgs/usethis"><kbd class="item-tag2">usethis</kbd></a> 
                 
             </p>
 
@@ -255,13 +255,33 @@ already detailed elsewhere various features including in inSilecoMisc (e.g.
 What matters here, is what was Travis CI doing for me. The screenshot below
 shows the different jobs I set (described in
 <a href="https://github.com/inSileco/inSilecoMisc/blob/38724e2e9710fb35d87fe1b69aaae8fe4e8cdeff/.travis.yml">.travis.yml</a>).</p>
-<p><img src="on_travis.png" alt=" Screenshot of the inSilecoMisc project page on travis-ci.org.">{width=90% alt=&quot;&gt;&lt;&quot;}</p>
+
+<center>
+  <figure>
+    <img class="mg-bot" src="/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/on_travis.png" alt="Screenshot of the inSilecoMisc project page on [travis-ci.org](https://travis-ci.org/)." width="90%" >
+    <figcaption>
+      <i class="fa fa-info" aria-hidden="true"></i>
+      Screenshot of the inSilecoMisc project page on <a href="https://travis-ci.org/">travis-ci.org</a>.
+    </figcaption>
+  </figure>
+</center>
+
 <p>Travis was set to check <code>inSilecoMisc</code> on macOS and Linux (Ubuntu Bionic and Focal), for different versions of R (oldrel, rel and devel). The last job, checked the package on Ubuntu Focal, uploaded <a href="https://CRAN.R-project.org/package=covr"><code>covr</code></a> results to
 <a href="https://codecov.io">CodeCov</a>, built <code>inSilecoMisc</code>&rsquo;s website (via <a href="https://CRAN.R-project.org/package=pkgdown"><code>pkgdown</code></a>) and deploy to a <a href="https://pages.github.com/">GitHub Pages</a>. So my goal was to set up a workflow with GitHub Actions that would do the same jobs.</p>
 <h2 id="ciao-travis">Ciao Travis!</h2>
 <p>The first step was to stop using Travis CI. To do so, I first needed to go on
 <a href="https://travis-ci.org">https://travis-ci.org</a> and turn off the jobs described above, so I looked for <code>inSilecoMisc</code> in my list of projects and switched it off (see screenshot below).</p>
-<p><img src="switch_off.png" alt=" Screenshots of inSilecoMisc&amp;rsquo;s status  on  (left: on/before, right: off/after).">{width=90% alt=&quot;&gt;&lt;&quot;}</p>
+
+<center>
+  <figure>
+    <img class="mg-bot" src="/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/switch_off.png" alt="Screenshots of `inSilecoMisc`&#39;s status on &lt;https://travis-ci.org&gt; (left: on/before, right: off/after)." width="90%" >
+    <figcaption>
+      <i class="fa fa-info" aria-hidden="true"></i>
+      Screenshots of <code>inSilecoMisc</code>&rsquo;s status on <a href="https://travis-ci.org">https://travis-ci.org</a> (left: on/before, right: off/after).
+    </figcaption>
+  </figure>
+</center>
+
 <p>Then, as I was using a <a href="https://developer.github.com/v3/guides/managing-deploy-keys/">deploy
 key</a> for the
 website, I deleted it in the settings on GitHub repository (<i class="fa
@@ -269,7 +289,17 @@ fa-arrow-circle-down" aria-hidden="true"></i>). Last, on my local <i class="fa
 fa-git" aria-hidden="true"></i> repository I removed <code>.travis.yaml</code> (e.g. <code>git rm .travis.yaml</code>). Note that I still have a version of this file as a
 <a href="https://gist.github.com/KevCaz/622c92cc1f7b00e66f078418882ad407">gist</a>. Once
 this was done, I committed my changes and pushed!</p>
-<p><img src="ciao.png" alt=" Screenshot of inSileco&amp;rsquo;s home page (commit 500d5ef).">{width=90% alt=&quot;&gt;&lt;&quot;}</p>
+
+<center>
+  <figure>
+    <img class="mg-bot" src="/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/ciao.png" alt="Screenshot of `inSileco`&#39;s home page (commit [`500d5ef`](https://github.com/inSileco/inSilecoMisc/commit/500d5ef332a407e48037ce422a9a14e7c4634fe7))." width="90%" >
+    <figcaption>
+      <i class="fa fa-info" aria-hidden="true"></i>
+      Screenshot of <code>inSileco</code>&rsquo;s home page (commit <a href="https://github.com/inSileco/inSilecoMisc/commit/500d5ef332a407e48037ce422a9a14e7c4634fe7"><code>500d5ef</code></a>).
+    </figcaption>
+  </figure>
+</center>
+
 <h2 id="add-a-workflow">Add a workflow</h2>
 <p><a href="https://github.com/features/actions">GH Actions</a> are well-documented and my
 goal here is not to explain how to set an entire workflow. Rather I would like
@@ -303,9 +333,29 @@ functions to add such workflows:</p>
 that I&rsquo;ve simplified a bit (I use only 4 combinations OS / R versions) and extended to use the <a href="chttps://codecov.io/">CodeCov</a> and deploy the website.</p>
 <h2 id="code-coverage">Code coverage</h2>
 <p>To use <a href="chttps://codecov.io/">CodeCov</a> with Actions, a token is required. So, I clicked on the <code>Settings</code> tab of the <code>inSilecoMisc</code> page and copied the upload token:</p>
-<p><img src="codecov.png" alt=" Screenshot of the CodeCov settings page of inSilecoMisc.">{width=90% alt=&quot;&gt;&lt;&quot;}</p>
+
+<center>
+  <figure>
+    <img class="mg-bot" src="/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/codecov.png" alt="Screenshot of the CodeCov settings page of `inSilecoMisc`." width="90%" >
+    <figcaption>
+      <i class="fa fa-info" aria-hidden="true"></i>
+      Screenshot of the CodeCov settings page of <code>inSilecoMisc</code>.
+    </figcaption>
+  </figure>
+</center>
+
 <p>Then I created a new secret <code>CODECOV_TOKEN</code> on <code>inSileco</code>&rsquo;s GitHub repository and I pasted the token.</p>
-<p><img src="token_codecov.png" alt=" Screenshot of the Secret tab of the setting of the GitHub inSilecoMisc repository.">{width=90% alt=&quot;&gt;&lt;&quot;}</p>
+
+<center>
+  <figure>
+    <img class="mg-bot" src="/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/token_codecov.png" alt="Screenshot of the Secret tab of the setting of the GitHub `inSilecoMisc` repository." width="90%" >
+    <figcaption>
+      <i class="fa fa-info" aria-hidden="true"></i>
+      Screenshot of the Secret tab of the setting of the GitHub <code>inSilecoMisc</code> repository.
+    </figcaption>
+  </figure>
+</center>
+
 <p>I chose <code>CODECOV_TOKEN</code> because it&rsquo;s pretty clear, but the name does not matter as long as the same variable name is used in <a href="https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml">R-CMD-check.yaml</a>. Below is the code bloc in the workflow that handles code coverage:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -392,9 +442,29 @@ On my Debian machine, I used the following command line in my terminal:</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Then I set the public key as a deploy key</p>
-<p><img src="deploy_key.png" alt=" Screenshot of the deploy key setting.">{width=80% alt=&quot;&gt;&lt;&quot;}</p>
+
+<center>
+  <figure>
+    <img class="mg-bot" src="/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/deploy_key.png" alt="Screenshot of the deploy key setting." width="80%" >
+    <figcaption>
+      <i class="fa fa-info" aria-hidden="true"></i>
+      Screenshot of the deploy key setting.
+    </figcaption>
+  </figure>
+</center>
+
 <p>and the private one as a secret.</p>
-<p><img src="private.png" alt=" Screenshot of the secret ACTIONS_DEPLOY_KEY.">{width=80% alt=&quot;&gt;&lt;&quot;}</p>
+
+<center>
+  <figure>
+    <img class="mg-bot" src="/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/private.png" alt="Screenshot of the secret `ACTIONS_DEPLOY_KEY`." width="80%" >
+    <figcaption>
+      <i class="fa fa-info" aria-hidden="true"></i>
+      Screenshot of the secret <code>ACTIONS_DEPLOY_KEY</code>.
+    </figcaption>
+  </figure>
+</center>
+
 <p>Again, I chose <code>ACTIONS_DEPLOY_KEY</code> for its clarity, but the name does not
 matter as long as the correct variable name is used in
 <a href="https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml">R-CMD-check.yaml</a>.</p>
@@ -424,9 +494,29 @@ Note that I didn&rsquo;t need to specify the branch to be used for the website a
 the default is <code>gh-pages</code> and I already had a branch <code>gh-pages</code> set up<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>.</p>
 <h3 id="via-a-personal-access-token">via a personal access token</h3>
 <p>The second option is to <a href="https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token">create and use a personal access token</a> (this is the solution I opted for in the end).</p>
-<p><img src="perso_token.png" alt=" Screenshot of the page to generate the personal token.">{width=90% alt=&quot;&gt;&lt;&quot;}</p>
+
+<center>
+  <figure>
+    <img class="mg-bot" src="/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/perso_token.png" alt="Screenshot of the page to generate the personal token." width="90%" >
+    <figcaption>
+      <i class="fa fa-info" aria-hidden="true"></i>
+      Screenshot of the page to generate the personal token.
+    </figcaption>
+  </figure>
+</center>
+
 <p>And then set this token as a secret for the repository.</p>
-<p><img src="pat_secret.png" alt=" Screenshot of the secret PERSO_TOKEN.">{width=90% alt=&quot;&gt;&lt;&quot;}</p>
+
+<center>
+  <figure>
+    <img class="mg-bot" src="/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/pat_secret.png" alt="Screenshot of the secret `PERSO_TOKEN`." width="90%" >
+    <figcaption>
+      <i class="fa fa-info" aria-hidden="true"></i>
+      Screenshot of the secret <code>PERSO_TOKEN</code>.
+    </figcaption>
+  </figure>
+</center>
+
 <p>Once the secret is set, the variable name should be passed as <code>github_token</code> (instead of <code>deploy_key</code>), like so:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -683,6 +773,8 @@ the default is <code>gh-pages</code> and I already had a branch <code>gh-pages</
                             
                             <i class="fa fa-pencil" aria-hidden="true"></i> May 21, 2021 -- Edit the tricks to keep both the versions of the website (dev and last releases). <br>
                             
+                            <i class="fa fa-pencil" aria-hidden="true"></i> Feb 4, 2023 -- Add captions back. <br>
+                            
                         </p>
                     </div>
                     
@@ -784,7 +876,7 @@ the default is <code>gh-pages</code> and I already had a branch <code>gh-pages</
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 05 February 2023 01:57 UTC.
+      Latest build: 05 February 2023 03:33 UTC.
     </p>
 
   </div>

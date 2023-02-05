@@ -97,8 +97,6 @@
                     
                         <ul class="nav navbar-nav">
                             
-                                <li><a href="/">Home</a></li>
-                            
                                 <li><a href="/about/">About</a></li>
                             
                                 <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
@@ -113,6 +111,8 @@
                     
                     
                         <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="/"><i class="fa fa-home"></i></a></li>
                             
                                 <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
                             
@@ -133,7 +133,7 @@
 <div>
 
     <div class="col-md-3">
-        <h1><a href="#"><i class='fa fa-chevron-up'></i></a></h1>
+        <h2><a href="#"><i class='fa fa-chevron-up'></i></a></h2>
 
 
     <nav id="TableOfContents">
@@ -145,11 +145,11 @@
 </nav>
 
 
-<h1>
+<h2>
     <a href="#bottom">
         <i class='fa fa-chevron-down'></i>
     </a>
-</h1>
+</h2>
     </div>
 
 
@@ -159,7 +159,7 @@
 
             <h1><a href="/2018/11/18/non-linear-regression-with-nls/">Non linear regression with nls()</a></h1>
 
-            <h4>November 18, 2018</h4>
+            <h4><i class="fa fa-calendar" aria-hidden="true"></i> November 18, 2018</h4>
 
             <p>
                 <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a
@@ -168,7 +168,7 @@
                     href="/tags/nls"><kbd class="item-tag">nls</kbd></a> 
                 <br>
                 
-                <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp;  <a href="/rpkgs/stats"><kbd class="item-tag2">stats</kbd></a> 
+                <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="80px"></img> &nbsp;  <a href="/rpkgs/stats"><kbd class="item-tag2">stats</kbd></a> 
                 
             </p>
 
@@ -273,12 +273,12 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">%&gt;%</span> <span class="n">as.data.frame</span>
 </span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">simdata</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    seqt       sim</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.00  8.858048</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.25 10.369485</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.50 11.952239</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.75 11.678941</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 1.00 12.022978</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 1.25 12.970405</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.00  9.706448</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.25 10.157242</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.50 11.169586</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.75 11.104793</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 1.00 12.306723</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 1.25 12.567592</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="use-nls">Use <code>nls()</code></h2>
@@ -311,11 +311,11 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    model: sim ~ Tinf - (Tinf - 10) * exp(-k * seqt)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     data: simdata</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     Tinf       k </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  19.9599  0.2076 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   residual sum-of-squares: 53.04</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  20.0589  0.2036 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   residual sum-of-squares: 46.05</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Number of iterations to convergence: 9 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Achieved convergence tolerance: 2.026e-06</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Achieved convergence tolerance: 3.094e-06</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Let&rsquo;s draw a quick plot:</p>
@@ -577,7 +577,7 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 05 February 2023 01:57 UTC.
+      Latest build: 05 February 2023 03:33 UTC.
     </p>
 
   </div>
