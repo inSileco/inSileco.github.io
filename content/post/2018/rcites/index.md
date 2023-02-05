@@ -24,7 +24,7 @@ output:
 <br>
 
 
-{{< figcenter "rcites_cran.png" >}}
+{{< figcenter "rcites_cran.png" "Screenshot of the rcites' CRAN homepage" 60 >}}
 
 
 <br>
