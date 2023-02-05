@@ -138,9 +138,10 @@
 
     <nav id="TableOfContents">
   <ol>
-    <li><a href="#classic-geographical-distances">Classic geographical distances</a></li>
-    <li><a href="#least-cost-distances-with-gdistance">Least Cost Distances with <code>gdistance</code></a></li>
-    <li><a href="#least-cost-distances-with-igraph">Least Cost Distances with <code>igraph</code></a></li>
+    <li><a href="#how-to-define-a-distance">How to define a distance?</a></li>
+    <li><a href="#geographical-distances-and-the-problem-of-heterogeneity">Geographical distances and the problem of heterogeneity</a></li>
+    <li><a href="#applications-in-r">Applications in R</a></li>
+    <li><a href="#references">References</a></li>
   </ol>
 </nav>
 
@@ -224,21 +225,51 @@
             <div id="post-content-body" class="text-justify">
 
                 <p>When working in Ecology, it is often necessary to produce maps and calculate distances between objects such as sampled stations, species distribution ranges or geographical features. A <a href="/tuto/rinspace/rinspace_homepage/">tutorial on this blog</a> describes many techniques to create maps with different packages in R, such as <code>sf</code> and <code>raster</code>. In this post, I will go further and use these tools to calculate distances in our spatial environment.</p>
-<h1 id="how-to-define-a-distance">How to define a distance?</h1>
+<h2 id="how-to-define-a-distance">How to define a distance?</h2>
 <p>Before stepping in our topic, let&rsquo;s define what we are talking about. What is a <em>distance</em>? This concept has various applications in ecology we need to present here, to make sure we are on the same page.</p>
 <p>Distances are frequently used to describe how the characteristics of two (or more) samples are different from each other (abiotic parameters, species composition, functional traits&hellip;). This particular definition presents a distance as an index of similarity/dissimilarity. Such indices include functions like Euclidean distance, Sørensen coefficient, Bray-Curtis dissimilarity or Mahalanobis distance, which can be applied to different types of data with different results (see Legendre &amp; Legendre 2012). We will not cover these aspects here, more information can be found in Chapter 7 of <em>Numerical Ecology</em>, which is a must-have for every ecologist!</p>
 <p>Instead of using a distance as a ressemblance measure, we will use it with its first meaning: a measure of how distant in space two points are. The most straightforward geographical measure is the Euclidean distance, based on Pythagoras&rsquo; theorem of triangular equality. In an Euclidean plane, we will compute the difference between the X and Y coordinates of two points A and B (other formulae can be found for different coordinate systems):</p>
 <p><code>$$D_{A,B} = \sqrt{(x_{B} - x_{A})^{2} + (y_{B} - y_{A})^{2}}$$</code></p>
-<center> ![Euclidean Distance](Figures/Euclidean.png) </center>
-<h1 id="geographical-distances-and-the-problem-of-heterogeneity">Geographical distances and the problem of heterogeneity</h1>
+
+<center>
+  <figure>
+    <img class="mg-bot" src="/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/Figures/Euclidean.png" alt="Euclidean Distance" width="20%" >
+    <figcaption>
+      <i class="fa fa-info" aria-hidden="true"></i>
+      Euclidean Distance
+    </figcaption>
+  </figure>
+</center>
+
+<h2 id="geographical-distances-and-the-problem-of-heterogeneity">Geographical distances and the problem of heterogeneity</h2>
 <p>Let&rsquo;s choose a concrete example: let me introduce Herbert the lobster. Herbert is a wild lobster living in the bay of Sept-Îles (Québec, Canada).</p>
-<center> ![No, not this lobster... (*imgur.com*)](Figures/Zoidberg1.gif){width=40%} </center>
+
+<center>
+  <figure>
+    <img class="mg-bot" src="/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/Figures/Zoidberg1.gif" alt="No, not this lobster... (*imgur.com*)" width="25%" >
+    <figcaption>
+      <i class="fa fa-info" aria-hidden="true"></i>
+      No, not this lobster&hellip; (<em>imgur.com</em>)
+    </figcaption>
+  </figure>
+</center>
+
 <p>We, as researchers, are interested in knowing the connectivity of its actual distribution to other potential living places close by. Why so? Because it is a crucial piece of information to predict its future distribution under a scenario of habitat loss due to human perturbation!</p>
 <p>Euclidean distance is a great tool to calculate the distance between initial and potential living places for Herbert, assuming the space between these locations is homogeneous. Typically, marine ecosystems are particularly relevant for this measure. However, depending on the scale and/or location, the presence of islands, bays or anthropogenic structures can be problematic as they constitute barriers between locations that a species cannot cross. Distances &lsquo;as the crow flies&rsquo; will then be meaningless!</p>
 <p>So what do we do? Well, we can still use the Euclidean distance, but with the specification of forbidden regions in the space we are considering. Then, the path between the two locations will not be straight anymore (as above), but with intermediate steps only in allowed regions. In this case, many different paths can exist, so we will have to compute all possible paths between the start and end point, then select the best one <em>i.e.</em> the path with the shortest distance.</p>
-<center> ![Example of a pathfinding algorithm ([*Wikipedia*](https://en.wikipedia.org/wiki/Pathfinding))](Figures/Pathfinding1.gif) </center>
+
+<center>
+  <figure>
+    <img class="mg-bot" src="/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/Figures/Pathfinding1.gif" alt="Example of a pathfinding algorithm ([*Wikipedia*](https://en.wikipedia.org/wiki/Pathfinding))" width="25%" >
+    <figcaption>
+      <i class="fa fa-info" aria-hidden="true"></i>
+      Example of a pathfinding algorithm (<a href="https://en.wikipedia.org/wiki/Pathfinding"><em>Wikipedia</em></a>)
+    </figcaption>
+  </figure>
+</center>
+
 <p>This is a frequent problem used for many applications, in particular for artificial intelligence (robot movements, characters evolution in video games&hellip;). Many algorithms exist to answer this problem, with various computational performances, as some problems can be highly difficult to solve! One of the most widely used algorithm in the one proposed by Dijkstra in 1959 that allows to add weights for path points. We won&rsquo;t go into details here, but remember that Dijkstra&rsquo;s algorithm is used in the methods presented below.</p>
-<h1 id="applications-in-r">Applications in R</h1>
+<h2 id="applications-in-r">Applications in R</h2>
 <p>We will work with the <code>sf</code> package (Pebesma 2018), as described in the previous <a href="/tuto/rinspace/rinspace_homepage/">inSileco GIS series</a>. Also, we present here a case study with <em>point</em> data, but these methods can be adapted to <em>lines</em>, <em>polygons</em> or <em>objects with multiple geometries</em>.</p>
 <p>First, we will have to import the shapefile of the study area. All shapefiles are projected with the WGS84 (EPSG code: 4326) coordinate reference system (CRS), but analyses will be done with the UTM 19N (EPSG code: 32619) CRS. UTM considers units in meters instead of degrees, <em>i.e</em> it is a projected CRS with corrections for longitude and latitude, and we use UTM 19N which includes the area of Sept-Îles.</p>
 <div class="highlight"><div class="chroma">
@@ -277,7 +308,7 @@
 </div>
 </div><img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot1-1.png" width="672" style="display: block; margin: auto;" />
 <p>The initial position of Herbert is on the turquoise dot (init), and we are interested in three possible locations (P1, P2 and P3).</p>
-<h2 id="classic-geographical-distances">Classic geographical distances</h2>
+<h3 id="classic-geographical-distances">Classic geographical distances</h3>
 <p>We can compute the Euclidean distances between each points by using <code>sf::st_distance()</code>. Let&rsquo;s try this here, even if we know that we do not consider the coast as a forbidden area.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -317,7 +348,7 @@
 </table>
 <p>Based on these results, P1 is the closest site to the initial location of Herbert implying that P1 could be the preferential site where he would migrate under the human perturbation scenario (where its initial position would not be available anymore). However, we know that Herbert, even if he is an awesome lobster, cannot go on land which is necessary to attain P1. So, we need to refine our analysis to take this into account.</p>
 <img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot2-1.png" width="672" style="display: block; margin: auto;" />
-<h2 id="least-cost-distances-with-gdistance">Least Cost Distances with <code>gdistance</code></h2>
+<h3 id="least-cost-distances-with-gdistance">Least Cost Distances with <code>gdistance</code></h3>
 <p>To take the geographical barriers into consideration, we will use the package <code>gdistance</code>, which have a very useful sets of functions to calculate functions (ven Etten 2017). In particular, <code>costDistance()</code> will do the trick. To use it, we will need to convert our polygon for the Bay of Sept-Îles to a raster specifying which cell can be considered by the pathfinding and so:</p>
 <ul>
 <li>forbidden cells will have a value of 0;</li>
@@ -420,7 +451,7 @@
 </blockquote>
 <p>These results show that P2 is the closest potential site for Herbert now, without any coast between the two points. This result is much more relevant than previously calculated with <code>st_distance()</code>! If you want to represent the shortest path between two points (based on the transition matrix), you can plot the result of function <code>shortestPath()</code>.</p>
 <img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot4-1.png" width="672" style="display: block; margin: auto;" />
-<h2 id="least-cost-distances-with-igraph">Least Cost Distances with <code>igraph</code></h2>
+<h3 id="least-cost-distances-with-igraph">Least Cost Distances with <code>igraph</code></h3>
 <p>The <code>gdistance</code> package is excellent, but not particularly flexible. You may need a custom workflow if you need to handle very large datasets or you want to use a hexagonal grid (<em>i.e.</em> you don&rsquo;t want to worry about chessboard moves). If this is so, you will need package <code>igraph</code> (Csardi &amp; Nepusz 2006).</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -510,7 +541,7 @@
 <p>If you are just calculating a handful of distances such as in this example, <code>gdistance</code> is probably faster. But if you are doing millions, <code>igraph</code> is typically more effective since much of the work is done &lsquo;upfront&rsquo; when you create the graph. It would also be possible to create an <code>igraph</code> network from a <code>gdistance</code> transition raster which would combine the best of both packages.</p>
 <p>Techniques above will be highly useful for many research questions, <em>e.g.</em> determining the influence of a perturbation in an ecosystem, characterizing species movements or community connectivity&hellip; The method presented in this post is one of the many that exist to answer these questions. You can find many tutorials for geographic information system such as ArcGIS or QGIS, but I thought a simple presentation for R users would be welcomed. Enjoy!</p>
 <center> ![](Figures/Zoidberg2.gif) </center>
-<h1 id="references">References</h1>
+<h2 id="references">References</h2>
 <ul>
 <li>Csardi G, Nepusz T (2006). The igraph software package for complex network research. <em>InterJournal</em>, Complex Systems 1695. <a href="http://igraph.org">http://igraph.org</a></li>
 <li>Dijkstra EW (1959). A note on two problems in connexion with graphs. <em>Numerische Mathematik</em> 1:269–271. doi:10.1007/BF01386390</li>
@@ -776,7 +807,7 @@
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 05 February 2023 03:33 UTC.
+      Latest build: 05 February 2023 03:50 UTC.
     </p>
 
   </div>
