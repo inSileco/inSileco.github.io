@@ -15,6 +15,8 @@ edits:
     comment: "Simplify the downloading of the font."
   - date: 2022-04-23
     comment: "Add 'archived' badge."
+  - date: 2023-02-04
+    comment: "Headers are no longer numbered."
 output:
   rmarkdown::html_page:
     toc: true
@@ -23,25 +25,13 @@ output:
 ---
 
 
+Below are presented the 5 steps you need to make your plot a Hylian one! **May the triforce be with you**!
 
-#### Below are presented the 6 steps you need to make your plot a Hylian one! **May the triforce be with you**!
-
-### 0. R Version
-
-
-```r
-sessionInfo()[[1L]]$version.string
-#R> [1] "R version 3.5.2 (2018-12-20)"
-```
-
-
-### 1. Open R and download the font
+## Open R and download the font
 
 The [*Triforce* font](https://zeldauniverse.net/media/fonts/) is available on line.
 Below we download it using R. Alternatively, you may simply download and install
 it using a couple of clicks, if you proceed so, skip step 1.
-
-
 
 
 ```r
@@ -57,14 +47,14 @@ file.remove(basename(url))
 #R> [1] TRUE
 ```
 
-### 2. Install the `showtext` package
+## Install the `showtext` package
 
 
 ```r
 install.packages("showtext")
 ```
 
-### 3. Look at the list of fonts available locally
+## Look at the list of fonts available locally
 
 
 ```r
@@ -96,7 +86,7 @@ If you have installed the font on your computer, it should be in the list,
 then you can skip step 4.
 
 
-### 4. Add a path to your font
+## Add a path to your font
 
 If you have downloaded the font using R, you must notify showtext about to
 folder `dr` where the font has been stored. To so do, use the `font_paths()`
@@ -112,7 +102,7 @@ font_paths(".")
 #R> [145] "/usr/share/fonts/X11/util"
 ```
 
-### 5. Add the *Triforce* font to your session:
+## Add the *Triforce* font to your session:
 
 
 Either way, the Triforce font should now be available
@@ -161,7 +151,7 @@ font_families()
 #R> [5] "Triforce"
 ```
 
-### 6. Finally, let's make our Hylian plot!
+## Finally, let's make our Hylian plot!
 
 
 ```r
@@ -180,10 +170,9 @@ points(x = 0.9, y = 0.9, pch = "^", cex = 10, col = "#ffdd55", lwd=2)
 
 <img src="hylian_plot.png" width="864" style="display: block; margin: auto;" />
 
+
 <br><br>
-
-#### YEAH! :sunglasses:
-
+ 
 <details>
 <summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
 

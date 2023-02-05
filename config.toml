@@ -1,5 +1,4 @@
 baseurl = "https://insileco.github.io/"
-# relativeURLs = true
 languageCode = "en-us"
 title = "inSileco"
 theme = "minimal"
@@ -7,9 +6,10 @@ GoogleAnalytics = "UA-109508556-1"
 disqusShortname = "letir"
 ignoreFiles = ["\\.Rmd$", "_cache$", "\\.Rmarkdown$", "\\.knit\\.md$", "\\.utf8\\.md$", "renv", "renv\\.lock$"]
 enableEmoji = true
-copyright = "Copyright © 2017-2022 inSileco"
+copyright = "2017-2023 inSileco"
 math = false
 pygmentsUseClasses = false
+# relativeURLs = true
 
 [markup.goldmark.renderer]
 unsafe = true
@@ -17,6 +17,12 @@ unsafe = true
 [markup.highlight]
 lineNos = true
 noClasses = false
+
+[markup.tableOfContents]
+    endLevel = 2
+    ordered = true
+    startLevel = 2
+
 
 [permalinks]
     post = "/:year/:month/:day/:slug/"
@@ -37,9 +43,6 @@ noClasses = false
 [[menu.main]]
     name = "Software"
     url = "/software/"
-# [[menu.main]]
-#     name = "Tutorials"
-#     url = "/tuto/"
 [[menu.main]]
     name = "Consulting"
     url = "https://insilecoinc.github.io/"
@@ -47,17 +50,15 @@ noClasses = false
 
 [[menu.icon]]
     url = "https://github.com/inSileco/"
-    name = "github"
+    name = "fa fa-github"
     weight = 1
-
 [[menu.icon]]
     url = "https://twitter.com/inSileco/"
-    name = "twitter"
+    name = "fa fa-twitter"
     weight = 2
-
 [[menu.icon]]
     url = "https://insileco.github.io/index.xml"
-    name = "rss"
+    name = "fa fa-rss"
     weight = 3
 
 
@@ -66,13 +67,10 @@ noClasses = false
     description = "Codes, ideas and methods in ecology"
     githubUsername = "#inSileco"
     twitterUsername = "inSileco"
-    disqusShortname = "letir"
     accent = "#3fb3b2"
     showBorder = true
     backgroundColor = "white"
-    highlight = true
-    highlightStyle = "github"
-    highlightjsLang = ["r", "yaml"]
+    highlight = false
     css = [
         "/css/academicons.min.css",
         "/css/font-awesome.min.css",
@@ -80,7 +78,6 @@ noClasses = false
         "/css/insileco.css",
         "https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css"
     ]
-    js = ["/js/sidebar-post.js"]
 
 [taxonomies]
     tag = "tags"

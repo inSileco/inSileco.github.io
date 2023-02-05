@@ -17,6 +17,8 @@ edits:
     comment: "Fix image links"
   - date: 2022-04-23
     comment: "Add 'archived' badge."
+  - date: 2023-02-04
+    comment: "Edit headers."
 output:
   rmarkdown::html_page:
     toc: true
@@ -64,15 +66,8 @@ make a direct **link** with a [previous blog post](/2017/04/14/make-your-r-plot-
 
 ## Setting up R
 
-#### R version used to build the last update of this post
 
-
-```r
-sessionInfo()[[1L]]$version.string
-#R> [1] "R version 3.5.2 (2018-12-20)"
-```
-
-#### List of packages to be used
+### List of packages to be used
 
 - the `showtext` package and its dependency `sysfont` (see details on line [<i class="fa fa-link" aria-hidden="true"></i>](https://cran.r-project.org/web/packages/showtext/index.html));
 - the `magrittr` package for the pipes (see the [associated websites](http://magrittr.tidyverse.org)).
@@ -95,7 +90,7 @@ packageVersion("showtext")
 ```
 
 
-#### Material to be downloaded
+### Material to be downloaded
 
 We first need to download the 3 fonts we will be using. Links to retrieve them
 are available below and the next code chunk describes how
