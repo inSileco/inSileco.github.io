@@ -1025,16 +1025,18 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 </span><span class="lnt">6
 </span><span class="lnt">7
 </span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">val</span> <span class="o">&lt;-</span> <span class="nf">runif</span><span class="p">(</span><span class="m">40</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">val</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 57.096785 26.119360 18.091430 83.447854 99.007122 36.052533 50.570413</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [8] 81.651232 27.179711 79.865602 23.438940 38.019506 51.206376 85.956913</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [15] 21.152023 65.281722 18.647665 37.328834 71.992278 39.611686 47.328314</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] 68.166457 59.750781 59.327941 84.632656 70.795190 57.745018 38.304133</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] 43.690154 32.932453  3.481631 45.733805 39.056389 22.056301 84.649947</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] 72.520683 96.724711 18.602644 97.362761 88.706978</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 29.4039347  8.4541791  9.5022398 80.9328448 40.6176687 17.1348016</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] 98.6569313 81.3181046 14.2946792 23.6461052 46.3050564 38.1217669</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] 72.8862276 30.8152169 26.0483752 35.4141470 58.5232072 12.5098959</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] 75.7810306 90.0781251 17.7647574 24.5514264 39.4317336 83.6412678</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] 47.5223986 91.4335732  6.7257633 36.6056213 54.0005822 28.6205924</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] 55.5127353 14.8319911 14.6459196 32.3732584 53.1082632 77.2377300</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] 14.2603551  2.9936325  0.5690198 21.0095263</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
@@ -1059,8 +1061,8 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 17  1  1 25 25  4 13 25  1 25  1  6 14 25  1 23  1  5 25  7 11 24 19 19 25</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] 25 18  6  9  2  1 10  6  1 25 25 25  1 25 25</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1]  1  1  1 25  7  1 25 25  1  1 11  6 25  1  1  4 18  1 25 25  1  1  6 25 11</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] 25  1  5 16  1 16  1  1  2 15 25  1  1  1  1</span>
 </span></span><span class="line"><span class="cl"><span class="n">graphicsutils</span><span class="o">::</span><span class="nf">showPalette</span><span class="p">(</span><span class="n">pal</span><span class="nf">[scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">add_codecolor</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
