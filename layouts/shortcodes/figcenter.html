@@ -2,9 +2,9 @@
 <center>
   <figure>
     <img class="mg-bot" src="{{ $img.RelPermalink }}" alt="{{ .Get 1 }}" width="{{ .Get 2 | default 100 }}%" >
-    <figcaption><span class="highlight">{{ .Get 1 | markdownify  }}</span></figcaption>
+    <figcaption>
+      <i class="fa fa-info" aria-hidden="true"></i>
+      {{ .Get 1 | markdownify  }}
+    </figcaption>
   </figure>
 </center>
-
-
-<!-- (.Resources.GetMatch "duck.jpg").RelPermalink -->

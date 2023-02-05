@@ -49,7 +49,7 @@ What matters here, is what was Travis CI doing for me. The screenshot below
 shows the different jobs I set (described in
 [.travis.yml](https://github.com/inSileco/inSilecoMisc/blob/38724e2e9710fb35d87fe1b69aaae8fe4e8cdeff/.travis.yml)).
 
-![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of the inSilecoMisc project page on [travis-ci.org](https://travis-ci.org/).](on_travis.png){width=90% alt="><"}
+{{< figcenter "on_travis.png" "Screenshot of the inSilecoMisc project page on [travis-ci.org](https://travis-ci.org/)." 90>}}
 
 
 Travis was set to check `inSilecoMisc` on macOS and Linux (Ubuntu Bionic and Focal), for different versions of R (oldrel, rel and devel). The last job, checked the package on Ubuntu Focal, uploaded [`covr`](https://CRAN.R-project.org/package=covr) results to 
@@ -61,8 +61,8 @@ Travis was set to check `inSilecoMisc` on macOS and Linux (Ubuntu Bionic and Foc
 The first step was to stop using Travis CI. To do so, I first needed to go on 
 <https://travis-ci.org> and turn off the jobs described above, so I looked for `inSilecoMisc` in my list of projects and switched it off (see screenshot below).
 
+{{< figcenter "switch_off.png" "Screenshots of `inSilecoMisc`'s status on <https://travis-ci.org> (left: on/before, right: off/after)." 90>}}
 
-![<i class="fa fa-info" aria-hidden="true"></i> Screenshots of `inSilecoMisc`'s status  on <https://travis-ci.org> (left: on/before, right: off/after).](switch_off.png){width=90% alt="><"}
 
 Then, as I was using a [deploy
 key](https://developer.github.com/v3/guides/managing-deploy-keys/) for the
@@ -73,7 +73,7 @@ rm .travis.yaml`). Note that I still have a version of this file as a
 [gist](https://gist.github.com/KevCaz/622c92cc1f7b00e66f078418882ad407). Once
 this was done, I committed my changes and pushed! 
 
-![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of `inSileco`'s home page (commit [`500d5ef`](https://github.com/inSileco/inSilecoMisc/commit/500d5ef332a407e48037ce422a9a14e7c4634fe7)).](ciao.png){width=90% alt="><"}
+{{< figcenter "ciao.png" "Screenshot of `inSileco`'s home page (commit [`500d5ef`](https://github.com/inSileco/inSilecoMisc/commit/500d5ef332a407e48037ce422a9a14e7c4634fe7))." 90>}}
 
 
 ## Add a workflow 
@@ -106,11 +106,12 @@ that I've simplified a bit (I use only 4 combinations OS / R versions) and exten
 
 To use [CodeCov](chttps://codecov.io/) with Actions, a token is required. So, I clicked on the `Settings` tab of the `inSilecoMisc` page and copied the upload token:
 
-![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of the CodeCov settings page of `inSilecoMisc`.](codecov.png){width=90% alt="><"}
+{{< figcenter "codecov.png" "Screenshot of the CodeCov settings page of `inSilecoMisc`." 90>}}
+
 
 Then I created a new secret `CODECOV_TOKEN` on `inSileco`'s GitHub repository and I pasted the token.
 
-![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of the Secret tab of the setting of the GitHub `inSilecoMisc` repository.](token_codecov.png){width=90% alt="><"}
+{{< figcenter "token_codecov.png" "Screenshot of the Secret tab of the setting of the GitHub `inSilecoMisc` repository." 90>}}
 
 
 I chose `CODECOV_TOKEN` because it's pretty clear, but the name does not matter as long as the same variable name is used in [R-CMD-check.yaml](https://github.com/inSileco/inSilecoMisc/blob/master/.github/workflows/R-CMD-check.yaml). Below is the code bloc in the workflow that handles code coverage: 
@@ -189,11 +190,14 @@ $ ssh-keygen -t rsa -b 4096 -C "$(git config user.email)" -f gh-pages
 
 Then I set the public key as a deploy key 
 
-![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of the deploy key setting.](deploy_key.png){width=80% alt="><"}
+{{< figcenter "deploy_key.png" "Screenshot of the deploy key setting." 80>}}
+
 
 and the private one as a secret. 
 
-![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of the secret `ACTIONS_DEPLOY_KEY`.](private.png){width=80% alt="><"}
+{{< figcenter "private.png" "Screenshot of the secret `ACTIONS_DEPLOY_KEY`." 80>}}
+
+
 
 Again, I chose `ACTIONS_DEPLOY_KEY` for its clarity, but the name does not
 matter as long as the correct variable name is used in
@@ -224,11 +228,14 @@ the default is `gh-pages` and I already had a branch `gh-pages` set up[^note2].
 
 The second option is to [create and use a personal access token](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token) (this is the solution I opted for in the end). 
 
-![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of the page to generate the personal token.](perso_token.png){width=90% alt="><"}
+{{< figcenter "perso_token.png" "Screenshot of the page to generate the personal token." 90>}}
+
 
 And then set this token as a secret for the repository.
 
-![<i class="fa fa-info" aria-hidden="true"></i> Screenshot of the secret `PERSO_TOKEN`.](pat_secret.png){width=90% alt="><"}
+
+{{< figcenter "pat_secret.png" "Screenshot of the secret `PERSO_TOKEN`." 90>}}
+
 
 Once the secret is set, the variable name should be passed as `github_token` (instead of `deploy_key`), like so: 
 

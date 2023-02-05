@@ -16,14 +16,14 @@
 
             <h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
 
-            <h4>{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</h4>
+            <h4><i class="fa fa-calendar" aria-hidden="true"></i> {{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</h4>
 
             <p>
                 <i class="fa fa-tags" aria-hidden="true"></i> &nbsp; {{ range .Params.tags }} <a
                     href="/tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}
                 <br>
                 {{ if .Params.rpkgs }}
-                <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="7%"></img> &nbsp; {{
+                <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="80px"></img> &nbsp; {{
                 range .Params.rpkgs }} <a href="/rpkgs/{{ . | urlize }}"><kbd class="item-tag2">{{ . }}</kbd></a> {{ end
                 }}
                 {{ end }}

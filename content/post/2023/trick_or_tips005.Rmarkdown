@@ -1,0 +1,42 @@
+---
+title: Trick or Tips 005 {R}
+author: [kevin]
+date: 2023-02-04
+tags: [R, tips, trickortips]
+rpkgs: [base, utils, graphics]
+tweet: "Post #5 of the 'Trick or Tips' series"
+draft: true
+estime: 5
+output:
+  blogdown::html_page:
+    dev: svglite
+---
+
+
+`r htmltools::HTML("{{< trickortips >}}")`
+
+<br>
+
+This time I will comment a few object that could be very helpful.
+
+## `.Platform`
+
+You can use it to ubuid properlu
+
+or you can simply use the join `file.path()` too.
+
+## `.Machine`
+
+##  `.leap.seconds`
+
+
+## `.Options`
+
+## `.Random.seed`
+
+
+
+### See you next post post!
+
+```{R sessionInfo, child = path_session_info}
+```

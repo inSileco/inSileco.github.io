@@ -28,10 +28,6 @@ noClasses = false
     post = "/:year/:month/:day/:slug/"
 
 [[menu.main]]
-    name = "Home"
-    url = "/"
-    weight = 1
-[[menu.main]]
     name = "About"
     url = "/about/"
 [[menu.main]]
@@ -48,18 +44,23 @@ noClasses = false
     url = "https://insilecoinc.github.io/"
 
 
+
+[[menu.icon]]
+    url = "/"
+    name = "fa fa-home"
+    weight = 1
 [[menu.icon]]
     url = "https://github.com/inSileco/"
     name = "fa fa-github"
-    weight = 1
+    weight = 2
 [[menu.icon]]
     url = "https://twitter.com/inSileco/"
     name = "fa fa-twitter"
-    weight = 2
+    weight = 3
 [[menu.icon]]
     url = "https://insileco.github.io/index.xml"
     name = "fa fa-rss"
-    weight = 3
+    weight = 4
 
 
 [params]
