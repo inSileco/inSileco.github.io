@@ -14,7 +14,7 @@ Our blog created with [blogdown :package:](https://bookdown.org/yihui/blogdown/)
 
 ## Installation -- tl;dr 
 
-Inside a [R](https://www.r-project.org/) console:
+Inside an [R](https://www.r-project.org/) console:
 
 ```R
 install.packages("remotes")
