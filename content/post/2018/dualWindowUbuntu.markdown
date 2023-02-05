@@ -17,7 +17,7 @@ Long story short, I recently had access to a [Dell Studio XPS 8100 ](https://www
 
 [Ubuntu](https://www.ubuntu.com/) is based on Debian and arguably more beginner-friendly than the latter. Roughly speaking:
 
-```
+```sh
 Ubuntu = Debian Testing + software to simplify its use
 ```
 
@@ -89,7 +89,7 @@ The final step is straightforward: I plugged the bootable USB stick, rebooted th
 and finally followed the instructions. Then on the Ubuntu partition I checkout
 the system:
 
-```
+```sh
 $ uname -a
 Linux mhb 4.15.0-42-generic #45-Ubuntu SMP Thu Nov 15 19:32:57 UTC 2018 x86_64 x86_64 x86_64 GN
 U/Linux

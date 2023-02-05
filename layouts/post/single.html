@@ -5,15 +5,9 @@
 
 <div>
 
-<!--     <div class="col-md-3">
-        <div class="hidden-sm hidden-xs">
-            <div class="sticky-top">
-                <div class="ctt-sidebar-secondary">
-                    {{ partial "sidebar-post.html" . }}
-                </div>
-            </div>
-        </div>
-    </div> -->
+    <div class="col-md-3">
+        {{ partial "sidebar-toc" . }}
+    </div>
 
 
     <div class="col-md-8">
@@ -103,13 +97,12 @@
 
             <br>
 
-            <div class="text-justify">
+            <div id="post-content-body" class="text-justify">
 
                 {{ .Content }}
 
-                <div class="text-justify">
                     {{ if .Params.edits }}
-                    <div class="edits">
+                    <div class="edits" style="margin-top: 2em; margin-bottom: 1em;">
                         <h4><b><i class="fa fa-edit" aria-hidden="true"></i> Edits</b></h4>
                         <p style="font-size: 1.5rem">
                             {{ range .Params.edits }}
@@ -120,7 +113,6 @@
                     </div>
                     {{ end }}
 
-                </div>
 
             </div>
 

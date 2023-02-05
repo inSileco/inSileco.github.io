@@ -93,7 +93,7 @@ version release, which does not preclude packages from being further developed o
 render new development inaccessible. One simply has to install the testing version
 of Debian to access up-to-date packages.
 
-Debian packages I said? Well they basically are pieces ofsoftware for Debian.
+Debian packages I said? Well they basically are pieces of software for Debian.
 Let's say that they are non-random sets of files that Debian can install using
 `dpkg -i`. Many packages are available online and you can readily install them
 using a single line of command to the package manager `apt-get`. If you are
@@ -103,7 +103,7 @@ repository available online. To illustrate this, in the video below I navigate
 to a mirror and show where [pandoc](https://pandoc.org) is stored.
 
 <video width="100%" controls>
- <source src="/post/archived/setUps/myDebianStretch/assets/mirror.webm" type="video/webm">
+ <source src='/post/2018/myDebianStretch/assets/mirror.webm' type="video/webm">
  Your browser does not support the video tag.
 </video>
 
@@ -170,7 +170,7 @@ a selfie 😈) and installed Debian Stretch. Let me now
 explain how!
 
 <br>
-<center><img alt="me on windows" width="35%" src = "/post/archived/setUps/myDebianStretch/assets/meonwindows.png"></img></center>
+<center><img alt="me on windows" width="35%" src="/post/2018/myDebianStretch/assets/meonwindows.png"></img></center>
 <br>
 
 #### 1- Get a bootable USB stick
@@ -226,7 +226,7 @@ below `ctrl+alt+shift+R`).
 ### Gnome version
 
 <video width="100%" controls>
- <source src="/post/archived/setUps/myDebianStretch/assets/gnomeVersion.webm" }} type="video/webm">
+ <source src="/post/2018/myDebianStretch/assets/gnomeVersion.webm" }} type="video/webm">
  Your browser does not support the video tag.
 </video>
 
@@ -235,7 +235,7 @@ below `ctrl+alt+shift+R`).
 ### Gnome-Tweak-Tool
 
 <video width="100%" controls>
- <source src="/post/archived/setUps/myDebianStretch/assets/gnomeTweak.webm" type="video/webm">
+ <source src="/post/2018/myDebianStretch/assets/gnomeTweak.webm" type="video/webm">
  Your browser does not support the video tag.
 </video>
 
@@ -244,7 +244,7 @@ below `ctrl+alt+shift+R`).
 ### Keyboard bindings
 
 <video width="100%" controls>
- <source src="/post/archived/setUps/myDebianStretch/assets/shortcuts.webm" type="video/webm">
+ <source src="/post/2018/myDebianStretch/assets/shortcuts.webm" type="video/webm">
  Your browser does not support the video tag.
 </video>
 
@@ -363,7 +363,7 @@ issues that may be solved when I use a more recent release, and regarding
 As you can see below I have a couple of error messages on log (command line
 is `sudo dmesg -l err`):
 
-<img src="/post/archived/setUps/myDebianStretch/assets/errors.png" width="100%"></img>
+<img src="/post/2018/myDebianStretch/assets/errors.png" width="100%"></img>
 
 Well from what I understood this is nothing too bad. For instance, `kvm: disabled by bios`
 is more of a warning message than an error message. My Wi-fi works great despite
