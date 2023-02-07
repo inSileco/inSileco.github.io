@@ -27,16 +27,5 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor 
 
 
 
-<!-- at the end -->
-<details>
-<summary>
-  <h4>
-    <i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
-    <i class="fa fa-cogs" aria-hidden="true"></i>
-  </h4>
-</summary>
-
-```{r sessionInfo}
-sessionInfo()
+```{R sessionInfo, child = path_session_info}
 ```
-</details>
