@@ -13,6 +13,24 @@
 		
     
 		
+    
+		
+    
+		
+    
+		
+    
+		
+    
+		
+    
+		
+    
+		
+    
+		
+    
+		
     <item>
       <title>Continuous integration for R projects: from Travis CI to GitHub actions step by step</title>
       <link>https://insileco.github.io/2020/11/24/continuous-integration-for-r-projects-from-travis-ci-to-github-actions-step-by-step/</link>
@@ -574,8 +592,6 @@ the default is <code>gh-pages</code> and I already had a branch <code>gh-pages</
 		
     
 		
-    
-		
     <item>
       <title>Custom tick marks with R&#39;s base graphics system</title>
       <link>https://insileco.github.io/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/</link>
@@ -1065,8 +1081,6 @@ a function similar to the one below:</p>
 		
     
 		
-    
-		
     <item>
       <title>inSilecoMisc 0.4.0 (part 2/2)</title>
       <link>https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/</link>
@@ -1120,13 +1134,13 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">val</span> <span class="o">&lt;-</span> <span class="nf">runif</span><span class="p">(</span><span class="m">40</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">val</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1]  0.2255214  1.1935311 29.8263117 46.9444979  7.8692613 11.0426061</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] 56.9628007 21.4271873 81.3447073  5.0066787 76.4362606 23.6215813</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] 71.6195279 94.3049590 25.1619569 33.9553772 57.0413695 69.7673598</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] 36.7416193 55.7140264 15.0290682 45.8428927  2.9246900 27.9409739</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] 32.8873458 15.7668389 49.4202126 27.9474987 71.3838580 32.1484686</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] 30.6739599 37.1615952 83.9507792 34.8411758 95.9918365 75.2499451</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] 52.2211169 47.1059095 25.2767164 87.5774238</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 84.02197158 78.36992787 58.27547887 57.23661797 87.73814051  5.53057401</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] 16.01891648 19.31254619 79.09738168 69.24490032 63.65326149 54.96443643</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] 49.16466156 82.38218646 87.11769509 76.18624142  0.06381054 25.25792827</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] 47.47580288 26.62285187 33.68168068 77.55526842  0.42852997  0.48000063</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] 36.75245619 57.23641734 73.83694071  4.66547830 89.25976700  3.64378230</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] 60.17409686 20.90554808  9.40015460  2.83109911 14.88276920 34.52789672</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37]  9.41416780 29.34121927 19.62438240 83.95528723</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
@@ -1151,8 +1165,8 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1]  1  1  1 11  1  1 17  1 25  1 25  1 25 25  1  3 17 25  5 17  1 10  1  1  2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26]  1 13  1 25  2  1  5 25  4 25 25 14 11  1 25</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 25 25 18 18 25  1  1  1 25 25 22 16 12 25 25 25  1  1 11  1  3 25  1  1  5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] 18 25  1 25  1 19  1  1  1  1  3  1  1  1 25</span>
 </span></span><span class="line"><span class="cl"><span class="n">graphicsutils</span><span class="o">::</span><span class="nf">showPalette</span><span class="p">(</span><span class="n">pal</span><span class="nf">[scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">add_codecolor</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -3007,12 +3021,6 @@ For now on, my personal approach with R packages will be:</p>
 <h4 id="thats-all-folks">That&rsquo;s all folks!</h4>
 </description>
     </item>
-		
-    
-		
-    
-		
-    
 		
     
 		
