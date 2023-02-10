@@ -1,14 +1,13 @@
 name: "rmangal"
 github: ropensci/rmangal
 category: "R package"
-description: "Retrieve data from MANGAL."
-website: "https://mangal-wg.github.io/rmangal/"
+description: "R Client for the Mangal database ."
+website: "https://docs.ropensci.org/rmangal/"
 badges:
-  travis:
-    repo: ropensci/rmangal
-  appveyor:
-    status: mibs2ni969xiqgrd
-    repo: ropensci/rmangal
   codecov:
     repo: gh/ropensci/rmangal
+    token: lGqUVLM2o3
   repostatus: active
+  gha:
+    repo: ropensci/rmangal
+    workflow: "R-CMD-check.yaml"
