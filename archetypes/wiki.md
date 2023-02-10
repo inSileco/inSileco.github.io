@@ -1,9 +1,9 @@
 ---
 title: "{{ replace .TranslationBaseName "-" "" | title }}"
-author: "Your names"
+author: "Your name(s)"
 date: {{ .Date }}
 tags: [wiki]
 tweet: "Insileco Wiki"
 draft: true
-layout: "wiki"
+layout: "resource"
 ---

@@ -2,7 +2,7 @@
 title: "List of R packages to create and edit plots"
 wikitheme: R
 date: 2015-12-04
-update: 2018-10-25
+update: 2023-02-10
 categories: [about R]
 tags: [plot, R, wiki]
 draft: false
@@ -57,8 +57,9 @@ We will make the content below 'evolving' by collecting and indexing as many sou
     - [Journal of Statistical Software](http://www.jstatsoft.org/index)
 
 - **Books**:
+    - [Fundamentals of Data Visualization](https://clauswilke.com/dataviz/)
+    - [Data Visualizatio](https://socviz.co/)
     - [Rgraphics, Second  Edition](https://www.stat.auckland.ac.nz/~paul/RG2e/index.html)
-    - [ggplot2](http://ms.mcmaster.ca/~bolker/misc/ggplot2-book.pdf)
     - [R Graphics Cookbook](http://www.cookbook-r.com/Graphs/)
 
 - **Blogs**:
@@ -66,10 +67,11 @@ We will make the content below 'evolving' by collecting and indexing as many sou
     - [inside-R](http://www.inside-r.org)
     - [Quick-R](http://www.statmethods.net/about/learningcurve.html)
     - [Revolutions](http://blog.revolutionanalytics.com/about.html)
-    - [R graph gallery](http://rgraphgallery.blogspot.ca)
-    - [A newer graph gallery](http://www.r-graph-gallery.com)
+    - [The R Graph Gallery](https://r-graph-gallery.com/)
 
-
+- **ggplot2**:
+    - [ggplot2 (book)](https://ggplot2-book.org/)
+    - [liste of extensions](https://exts.ggplot2.tidyverse.org/)
 
 
 
@@ -92,6 +94,6 @@ when available, we also provide :
 
 
 ```{r rgrappkgs, echo=FALSE, results="asis", message=FALSE}
-  print(getwd())
-  source("assets/rGraphPkgs.R")
+print(getwd())
+source("assets/rGraphPkgs.R")
 ```

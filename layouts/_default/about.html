@@ -7,7 +7,7 @@
   <div class="text-justify">{{ .Content }}</div>
 
   {{ range .Site.Data.authors }}
-  <div class="col-sm-6 text-left" style="padding:10px;marging:10px;">
+  <div class="col-sm-6 text-left" style="padding:10px;">
     <div class="panel panel-default">
       <div class="panel-body">
         <div class="col-sm-4 text-right">
@@ -16,8 +16,6 @@
         <div class="col-sm-8">
           <h4 style="font-weight:bold;"> {{ .given_name }} {{ .family_name }} </h4>
           <p> {{ .description | markdownify }}</p>
-          <!-- <h5 style="font-weight:bold;">Research project:</h5> -->
-          <!-- <p class="text-justify"> {{ .project }}</p> -->
           <h5 style="font-weight:bold;">
             {{ if .github}} <a href="https://github.com/{{ .github }}"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a> {{ end }}
             {{ if .twitter}} <a href="https://twitter.com/{{ .twitter }}"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a> {{ end }}

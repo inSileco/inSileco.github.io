@@ -12,30 +12,15 @@
 
 
 
-  {{ if (or (eq .Type  "wiki") (eq .Type "tips")) }}
+  {{ if (or (eq .Type  "resource") (eq .Type "tips")) }}
 
-  <h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
-
-  <h1>{{ range .Params.categories }} <a href="/categories/{{ . | urlize }}"><i class="fa fa-tag" aria-hidden="true"></i> {{ . }}</a> {{ end }}</h1>
-
-  <p><i class="fa fa-tags" aria-hidden="true"></i> {{ range .Params.tags }} <a href="/tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}</p>
-
-  {{ end }}
-
-
-  {{ if eq .Type "tuto" }}
-
-  {{ partial "list-tuto"}}
-
-  <h1><a href="{{ .RelPermalink }}">{{ .Title }}</a></h1>
+  <h1><a href="{{ .RelPermalink }}">{{ .Title }}</a><br><span style="font-size: 0.7em;"><i class="fa fa-calendar-plus-o" aria-hidden="true"></i>updated on {{ dateFormat "Jan 2, 2006" .Params.update }}</span></h1>
 
   <h1>{{ range .Params.categories }} <a href="/categories/{{ . | urlize }}"><i class="fa fa-tag" aria-hidden="true"></i> {{ . }}</a> {{ end }}</h1>
 
   <p><i class="fa fa-tags" aria-hidden="true"></i> {{ range .Params.tags }} <a href="/tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}</p>
 
   {{ end }}
-
-
 
 
 </div>

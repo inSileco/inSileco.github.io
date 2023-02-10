@@ -17,8 +17,8 @@ vec_categ <- lapply(pkg, . %>% magrittr::extract('category')) %>% unlist
 vec_categu <- vec_categ %>% unique
 txt <- ""
 
-for (i in 1:length(vec_categu)){
-  txt %<>% paste0("### ", vec_categu[[i]], "\n")
+for (i in seq(vec_categu)){
+  txt %<>% paste0("## ", vec_categu[[i]], "\n")
   id <- which(vec_categ==vec_categu[[i]])
   for (j in 1:length(id)){
     txt %<>% paste0(j,
