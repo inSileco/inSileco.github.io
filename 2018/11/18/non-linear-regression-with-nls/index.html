@@ -270,13 +270,13 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl">  <span class="n">sim</span> <span class="o">=</span> <span class="n">Tinf</span> <span class="o">-</span> <span class="p">(</span><span class="n">Tinf</span><span class="o">-</span> <span class="n">T0</span><span class="p">)</span> <span class="o">*</span> <span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span> <span class="o">*</span> <span class="n">seqt</span><span class="p">)</span> <span class="o">+</span> <span class="m">.5</span> <span class="o">*</span> <span class="nf">rnorm</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">seqt</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">%&gt;%</span> <span class="n">as.data.frame</span>
 </span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">simdata</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    seqt       sim</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.00 10.722027</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.25  9.911582</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.50 11.477352</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.75 11.613461</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 1.00 11.030786</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 1.25 11.824577</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    seqt      sim</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.00  9.59475</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.25 10.09750</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.50 11.10568</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.75 11.45674</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 1.00 11.20442</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 1.25 11.93169</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="use-nls">Use <code>nls()</code></h2>
@@ -308,12 +308,12 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Nonlinear regression model</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    model: sim ~ Tinf - (Tinf - 10) * exp(-k * seqt)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     data: simdata</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Tinf      k </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  20.030  0.201 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   residual sum-of-squares: 48.81</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     Tinf       k </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  19.9600  0.1976 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   residual sum-of-squares: 46.49</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Number of iterations to convergence: 8 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Achieved convergence tolerance: 6.114e-06</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Achieved convergence tolerance: 1.63e-06</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Let&rsquo;s draw a quick plot:</p>
@@ -575,7 +575,7 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 10 February 2023 21:51 UTC.
+      Latest build: 11 February 2023 01:26 UTC.
     </p>
 
   </div>
