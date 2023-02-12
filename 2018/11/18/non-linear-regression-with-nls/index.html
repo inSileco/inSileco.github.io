@@ -3,6 +3,17 @@
     <head>
         
 
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/css/academicons.min.css">
+
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Non linear regression with nls()</title>
@@ -10,7 +21,7 @@
         <style>
 
     html body {
-        font-family: , sans-serif;
+        font-family: '', sans-serif;
         background-color: white;
     }
 
@@ -22,7 +33,10 @@
 </style>
 
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="https://insileco.github.io/css/main.css">
+
+
+ <link rel="stylesheet" href="https://insileco.github.io/css/main.css">  <link rel="stylesheet" href="https://insileco.github.io/css/academicons.min.css">  <link rel="stylesheet" href="https://insileco.github.io/css/syntax.css">  <link rel="stylesheet" href="https://insileco.github.io/css/insileco.css">  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css"> 
 
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
@@ -31,20 +45,10 @@
 
 
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
 
 
-
-  <link rel="stylesheet" href="/css/academicons.min.css">
-
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="/css/syntax.css">
-
-  <link rel="stylesheet" href="/css/insileco.css">
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
  
 
 
@@ -110,13 +114,13 @@
                     
                         <ul class="nav navbar-nav navbar-right">
                             
-                                <li class="navbar-icon"><a href="/"><i class="fa fa-home"></i></a></li>
+                                <li class="navbar-icon"><a href="/"><i class="fas fa-home"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fab fa-github"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fab fa-twitter"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fas fa-rss"></i></a></li>
                             
                         </ul>
                     
@@ -128,10 +132,14 @@
 <img class="full-width" width="100%" src="/img/banner4.png"></img>
 
 
-<div>
+<div class="row">
 
     <div class="col-md-3">
-        <h2><a href="#"><i class='fa fa-chevron-up'></i></a></h2>
+        <h2 style="margin-top: 0.5rem; margin-bottom: 0.25rem;">
+    <a href="#">
+        <i class='fas fa-chevron-up'></i>
+    </a>
+</h2>
 
 
     <nav id="TableOfContents">
@@ -143,9 +151,9 @@
 </nav>
 
 
-<h2>
+<h2 style="margin-top: 0.5rem; margin-bottom: 0.25rem;">
     <a href="#bottom">
-        <i class='fa fa-chevron-down'></i>
+        <i class='fas fa-chevron-down'></i>
     </a>
 </h2>
     </div>
@@ -155,25 +163,38 @@
 
         <div class="post-content">
 
-            <h1><a href="/2018/11/18/non-linear-regression-with-nls/">Non linear regression with nls()</a></h1>
+            <h1>
+                <a href="/2018/11/18/non-linear-regression-with-nls/">Non linear regression with nls()</a>
+            </h1>
 
-            <h4><i class="fa fa-calendar" aria-hidden="true"></i> November 18, 2018</h4>
+            <h4>
+                November 18, 2018
+            </h4>
 
             <p>
-                <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                <i class="fas fa-tags" aria-hidden="true"></i> &nbsp;  <a
                     href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a
                     href="/tags/regression"><kbd class="item-tag">regression</kbd></a>  <a
                     href="/tags/nls"><kbd class="item-tag">nls</kbd></a> 
                 <br>
                 
-                <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="80px"></img> &nbsp;  <a href="/rpkgs/stats"><kbd class="item-tag2">stats</kbd></a> 
+                    <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="80px"></img>
+                    &nbsp; 
+                     
+                        <a href="/rpkgs/stats">
+                            <kbd class="item-tag2">stats</kbd>
+                        </a> 
+                    
                 
             </p>
 
             
-            <p style="font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+            <p style="font-size: 1.6em;"> 
+                <i class="fas fa-pencil-alt"></i>
+                
                  
-                <a href="/about/">Kevin Cazelles</a> &nbsp;
+                    
+                    <a href="/about/">Kevin Cazelles</a>
                 
                 <a href="#"></a>
             </p>
@@ -185,30 +206,25 @@
                 
                 
                 
-                <img
-                    src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=5min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                    <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=5min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
                 
                 
-                 &nbsp;
-                        
-                        
-                                <a href="https://creativecommons.org/licenses/by/4.0/">
-                                    <img
-                                        src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
-                                </a>
-                                 &nbsp;
-                                
-                                 &nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2018%2f11%2f18%2fnon-linear-regression-with-nls%2f&text=Non%20linear%20regression%20with%20nls%28%29%2c%20an%20example."
-                                            target="_blank">
-                                            <img
-                                                src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2018%2f11%2f18%2fnon-linear-regression-with-nls%2f?link=http://left&link=http://right}'>
-                                        </a>
+                
+                
+                
+                    <a href="https://creativecommons.org/licenses/by/4.0/">
+                        <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                    </a>
+                
+                
+                
+                
+                &nbsp;&nbsp;
+                <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2018%2f11%2f18%2fnon-linear-regression-with-nls%2f&text=Non%20linear%20regression%20with%20nls%28%29%2c%20an%20example." target="_blank">
+                    <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2018%2f11%2f18%2fnon-linear-regression-with-nls%2f?link=http://left&link=http://right}'>
+                </a>
             </p>
 
-
-            <br>
 
             <div id="post-content-body" class="text-justify">
 
@@ -271,12 +287,12 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">%&gt;%</span> <span class="n">as.data.frame</span>
 </span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">simdata</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    seqt      sim</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.00 11.05151</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.25 10.44085</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.50 10.38571</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.75 11.66916</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 1.00 12.16822</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 1.25 13.27977</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.00 10.18761</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.25 10.54319</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.50 12.26060</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.75 11.45710</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 1.00 12.30011</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 1.25 11.65540</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="use-nls">Use <code>nls()</code></h2>
@@ -308,12 +324,12 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Nonlinear regression model</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    model: sim ~ Tinf - (Tinf - 10) * exp(-k * seqt)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     data: simdata</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     Tinf       k </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  19.9798  0.2011 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   residual sum-of-squares: 57.76</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Tinf      k </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  20.039  0.198 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   residual sum-of-squares: 50.13</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Number of iterations to convergence: 8 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Achieved convergence tolerance: 2.29e-06</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Number of iterations to convergence: 9 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Achieved convergence tolerance: 1.684e-06</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Let&rsquo;s draw a quick plot:</p>
@@ -337,7 +353,7 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 <h4 id="thats-all-folks">That&rsquo;s all folks!</h4>
 <div style="margin: 1.5rem 0rem 0.5rem 0rem;">
 <details>
-<summary>Session info <i class="fa fa-cogs" aria-hidden="true"></i></summary>
+<summary>Session info <i class="fas fa-cogs" aria-hidden="true"></i></summary>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
@@ -414,15 +430,11 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </div>
 
 
-                    
+                
 
 
             </div>
 
-
-            
-
-            </center>
 
         </div>
 
@@ -468,7 +480,7 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
     <a href="/2023/02/12/trick-or-tips-005-r/">Trick or Tips 005 {R}</a> <small>February 12, 2023</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> </p>
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> </p>
 
   
 
@@ -485,7 +497,7 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
     <a href="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
 
   
 
@@ -502,7 +514,7 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
     <a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
 
   
 
@@ -547,7 +559,11 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 
     </div>
 
-    <footer>
+</div>
+
+<footer>
+
+  <hr>
 
   <div class="col-md-3">
 
@@ -561,13 +577,12 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
     <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
 
-    <hr>
     <p class="copyright text-muted" style="font-size: 1.6rem;">
       &copy; 2017-2023 inSileco |
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 12 February 2023 20:09 UTC.
+      Latest build: 12 February 2023 23:41 UTC.
     </p>
 
   </div>

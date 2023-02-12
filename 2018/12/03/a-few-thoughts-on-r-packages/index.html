@@ -3,6 +3,17 @@
     <head>
         
 
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/css/academicons.min.css">
+
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <link rel="stylesheet" href="/css/insileco.css">
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>A few thoughts on R packages</title>
@@ -10,7 +21,7 @@
         <style>
 
     html body {
-        font-family: , sans-serif;
+        font-family: '', sans-serif;
         background-color: white;
     }
 
@@ -22,7 +33,10 @@
 </style>
 
 
-<link rel="stylesheet" href="/css/main.css">
+<link rel="stylesheet" href="https://insileco.github.io/css/main.css">
+
+
+ <link rel="stylesheet" href="https://insileco.github.io/css/main.css">  <link rel="stylesheet" href="https://insileco.github.io/css/academicons.min.css">  <link rel="stylesheet" href="https://insileco.github.io/css/syntax.css">  <link rel="stylesheet" href="https://insileco.github.io/css/insileco.css">  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css"> 
 
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
@@ -31,20 +45,10 @@
 
 
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
 
 
-
-  <link rel="stylesheet" href="/css/academicons.min.css">
-
-  <link rel="stylesheet" href="/css/font-awesome.min.css">
-
-  <link rel="stylesheet" href="/css/syntax.css">
-
-  <link rel="stylesheet" href="/css/insileco.css">
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
  
 
 
@@ -110,13 +114,13 @@
                     
                         <ul class="nav navbar-nav navbar-right">
                             
-                                <li class="navbar-icon"><a href="/"><i class="fa fa-home"></i></a></li>
+                                <li class="navbar-icon"><a href="/"><i class="fas fa-home"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fa fa-github"></i></a></li>
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fab fa-github"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fa fa-twitter"></i></a></li>
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fab fa-twitter"></i></a></li>
                             
-                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fa fa-rss"></i></a></li>
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fas fa-rss"></i></a></li>
                             
                         </ul>
                     
@@ -128,10 +132,14 @@
 <img class="full-width" width="100%" src="/img/banner4.png"></img>
 
 
-<div>
+<div class="row">
 
     <div class="col-md-3">
-        <h2><a href="#"><i class='fa fa-chevron-up'></i></a></h2>
+        <h2 style="margin-top: 0.5rem; margin-bottom: 0.25rem;">
+    <a href="#">
+        <i class='fas fa-chevron-up'></i>
+    </a>
+</h2>
 
 
     <nav id="TableOfContents">
@@ -146,9 +154,9 @@
 </nav>
 
 
-<h2>
+<h2 style="margin-top: 0.5rem; margin-bottom: 0.25rem;">
     <a href="#bottom">
-        <i class='fa fa-chevron-down'></i>
+        <i class='fas fa-chevron-down'></i>
     </a>
 </h2>
     </div>
@@ -158,12 +166,16 @@
 
         <div class="post-content">
 
-            <h1><a href="/2018/12/03/a-few-thoughts-on-r-packages/">A few thoughts on R packages</a></h1>
+            <h1>
+                <a href="/2018/12/03/a-few-thoughts-on-r-packages/">A few thoughts on R packages</a>
+            </h1>
 
-            <h4><i class="fa fa-calendar" aria-hidden="true"></i> December 3, 2018</h4>
+            <h4>
+                December 3, 2018
+            </h4>
 
             <p>
-                <i class="fa fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                <i class="fas fa-tags" aria-hidden="true"></i> &nbsp;  <a
                     href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a
                     href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a
                     href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a
@@ -172,23 +184,59 @@
                     href="/tags/ropensci"><kbd class="item-tag">rOpenSci</kbd></a> 
                 <br>
                 
-                <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="80px"></img> &nbsp;  <a href="/rpkgs/devtools"><kbd class="item-tag2">devtools</kbd></a>  <a href="/rpkgs/testthtat"><kbd class="item-tag2">testthtat</kbd></a>  <a href="/rpkgs/pkgdown"><kbd class="item-tag2">pkgdown</kbd></a>  <a href="/rpkgs/goodpractice"><kbd class="item-tag2">goodpractice</kbd></a>  <a href="/rpkgs/rcites"><kbd class="item-tag2">rcites</kbd></a>  <a href="/rpkgs/roxygen2"><kbd class="item-tag2">roxygen2</kbd></a>  <a href="/rpkgs/usethis"><kbd class="item-tag2">usethis</kbd></a> 
+                    <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="80px"></img>
+                    &nbsp; 
+                     
+                        <a href="/rpkgs/devtools">
+                            <kbd class="item-tag2">devtools</kbd>
+                        </a> 
+                     
+                        <a href="/rpkgs/testthtat">
+                            <kbd class="item-tag2">testthtat</kbd>
+                        </a> 
+                     
+                        <a href="/rpkgs/pkgdown">
+                            <kbd class="item-tag2">pkgdown</kbd>
+                        </a> 
+                     
+                        <a href="/rpkgs/goodpractice">
+                            <kbd class="item-tag2">goodpractice</kbd>
+                        </a> 
+                     
+                        <a href="/rpkgs/rcites">
+                            <kbd class="item-tag2">rcites</kbd>
+                        </a> 
+                     
+                        <a href="/rpkgs/roxygen2">
+                            <kbd class="item-tag2">roxygen2</kbd>
+                        </a> 
+                     
+                        <a href="/rpkgs/usethis">
+                            <kbd class="item-tag2">usethis</kbd>
+                        </a> 
+                    
                 
             </p>
 
             
-            <p style="font-size: 1.6em;"> <i class="fa fa-pencil" aria-hidden="true" title="Author(s)"></i>
+            <p style="font-size: 1.6em;"> 
+                <i class="fas fa-pencil-alt"></i>
+                
                  
-                <a href="/about/">Kevin Cazelles</a> &nbsp;
+                    
+                    <a href="/about/">Kevin Cazelles</a>
                 
                 <a href="#"></a>
             </p>
             
 
             
-            <p> <i class="fa fa-check-square" aria-hidden="true" , title="Reviewer(s)"></i>
+            <p> 
+                <i class="fas fa-check-square" title="Reviewer(s)"></i>
+                
                  
-                <a href="/about/">Marie-Hélène Brice</a> &nbsp;
+                    
+                    <a href="/about/">Marie-Hélène Brice</a>
                 
                 <a href="#"></a>
             </p>
@@ -198,35 +246,29 @@
                 
                 
                 
-                <img
-                    src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=18min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                    <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=18min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
                 
                 
                 
-                <a href="http://www.R-bloggers.com">
-                    <img
-                        src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
+                    <a href="http://www.R-bloggers.com">
+                        <img src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
                     <a>
-                         &nbsp;
-                        
-                        
-                                <a href="https://creativecommons.org/licenses/by/4.0/">
-                                    <img
-                                        src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
-                                </a>
-                                 &nbsp;
-                                
-                                 &nbsp;
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2018%2f12%2f03%2fa-few-thoughts-on-r-packages%2f&text=A%20few%20thoughts%20on%20R%20packages"
-                                            target="_blank">
-                                            <img
-                                                src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2018%2f12%2f03%2fa-few-thoughts-on-r-packages%2f?link=http://left&link=http://right}'>
-                                        </a>
+                
+                
+                
+                    <a href="https://creativecommons.org/licenses/by/4.0/">
+                        <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                    </a>
+                
+                
+                
+                
+                &nbsp;&nbsp;
+                <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2018%2f12%2f03%2fa-few-thoughts-on-r-packages%2f&text=A%20few%20thoughts%20on%20R%20packages" target="_blank">
+                    <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2018%2f12%2f03%2fa-few-thoughts-on-r-packages%2f?link=http://left&link=http://right}'>
+                </a>
             </p>
 
-
-            <br>
 
             <div id="post-content-body" class="text-justify">
 
@@ -238,7 +280,7 @@
   <figure>
     <img class="mg-bot" src="/2018/12/03/a-few-thoughts-on-r-packages/rcites_cran.png" alt="Screenshot of the rcites&#39; CRAN homepage" width="60%" >
     <figcaption>
-      <i class="fa fa-info" aria-hidden="true"></i>
+      <i class="fas fa-info-circle" aria-hidden="true"></i>
       Screenshot of the rcites&rsquo; CRAN homepage
     </figcaption>
   </figure>
@@ -315,7 +357,7 @@ creates a package skeleton for you and <a href="http://dirk.eddelbuettel.com/">D
 <a href="https://github.com/RcppCore/Rcpp/blob/master/R/Rcpp.package.skeleton.R"><code>Rcpp.package.skeleton()</code></a>.</p>
 <p>I would like to conclude this part by pointing out that using the set of packages Hadley Wickham and colleagues isn&rsquo;t mandatory, but remember, their developers have cleverly automated many steps for writing R packages, so why not use the fruit of their labor?</p>
 <h3 id="version-control-and-continuous-integration">Version control and Continuous Integration</h3>
-<p>Web-based <a href="https://git-scm.com/"><i class="fa fa-git" aria-hidden="true"></i></a>-repository managers such (GitHub <i class="fa fa-github" aria-hidden="true"></i>, GitLab <i class="fa fa-gitlab" aria-hidden="true"></i>, Bitbucket <i class="fa fa-bitbucket" aria-hidden="true"></i>, etc.) are very powerful tools to develop your packages
+<p>Web-based <a href="https://git-scm.com/"><i class="fa fa-git" aria-hidden="true"></i></a>-repository managers such (GitHub <i class="fab fa-github" aria-hidden="true"></i>, GitLab <i class="fab fa-gitlab" aria-hidden="true"></i>, Bitbucket <i class="fa fa-bitbucket" aria-hidden="true"></i>, etc.) are very powerful tools to develop your packages
 especially to work with collaborators, get feed back and add web-services to improve your workflow. First, <a href="https://git-scm.com/"><i class="fa fa-git" aria-hidden="true"></i></a>
 it-self is a fantastic tool (beyond the scope of this post, I recommend you the reading of <a href="https://git-scm.com/book/en/v2">Pro Git</a>). Second, by hosting your package on GitHub, your are basically sending an invitation at large to contribute to your project: &ldquo;hey devs, this is the project I am working on, if you are interested, please star, clone, fork, report issues, submit pull requests, etc.&rdquo;! Furthermore, once on GitHub, people can easily install your package directly from R:</p>
 <div class="highlight"><div class="chroma">
@@ -444,7 +486,7 @@ For now on, my personal approach with R packages will be:</p>
 <li>Review;</li>
 <li>Development until package accepted;</li>
 <li>Submit first version to CRAN;</li>
-<li>Advertise <i class="fa fa-twitter" aria-hidden="true"></i>, blog, etc.</li>
+<li>Advertise <i class="fab fa-twitter" aria-hidden="true"></i>, blog, etc.</li>
 <li>Regular life cycle: new features/ fixing bugs / new release on CRAN when ready / keep advertising.</li>
 </ol>
 <h2 id="curated-list-of-resources-mentioned-in-the-post">Curated list of resources mentioned in the post</h2>
@@ -484,15 +526,11 @@ For now on, my personal approach with R packages will be:</p>
 <h4 id="thats-all-folks">That&rsquo;s all folks!</h4>
 
 
-                    
+                
 
 
             </div>
 
-
-            
-
-            </center>
 
         </div>
 
@@ -538,7 +576,7 @@ For now on, my personal approach with R packages will be:</p>
     <a href="/2023/02/12/trick-or-tips-005-r/">Trick or Tips 005 {R}</a> <small>February 12, 2023</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> </p>
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> </p>
 
   
 
@@ -555,7 +593,7 @@ For now on, my personal approach with R packages will be:</p>
     <a href="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
 
   
 
@@ -572,7 +610,7 @@ For now on, my personal approach with R packages will be:</p>
     <a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
   </h1>
 
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
 
   
 
@@ -617,7 +655,11 @@ For now on, my personal approach with R packages will be:</p>
 
     </div>
 
-    <footer>
+</div>
+
+<footer>
+
+  <hr>
 
   <div class="col-md-3">
 
@@ -631,13 +673,12 @@ For now on, my personal approach with R packages will be:</p>
     <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
     </script>
 
-    <hr>
     <p class="copyright text-muted" style="font-size: 1.6rem;">
       &copy; 2017-2023 inSileco |
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 12 February 2023 20:09 UTC.
+      Latest build: 12 February 2023 23:41 UTC.
     </p>
 
   </div>
