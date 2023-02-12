@@ -9,7 +9,9 @@ enableEmoji = true
 copyright = "2017-2023 inSileco"
 math = false
 pygmentsUseClasses = false
+summaryLength = 25
 # relativeURLs = true
+
 
 [markup.goldmark.renderer]
 unsafe = true
@@ -44,19 +46,19 @@ noClasses = false
 
 [[menu.icon]]
     url = "/"
-    name = "fa fa-home"
+    name = "fas fa-home"
     weight = 1
 [[menu.icon]]
     url = "https://github.com/inSileco/"
-    name = "fa fa-github"
+    name = "fab fa-github"
     weight = 2
 [[menu.icon]]
     url = "https://twitter.com/inSileco/"
-    name = "fa fa-twitter"
+    name = "fab fa-twitter"
     weight = 3
 [[menu.icon]]
     url = "https://insileco.github.io/index.xml"
-    name = "fa fa-rss"
+    name = "fas fa-rss"
     weight = 4
 
 
@@ -70,8 +72,8 @@ noClasses = false
     backgroundColor = "white"
     highlight = false
     css = [
+        "/css/main.css",
         "/css/academicons.min.css",
-        "/css/font-awesome.min.css",
         "/css/syntax.css",
         "/css/insileco.css",
         "https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css"

@@ -1,4 +1,4 @@
-### Welcome
+### Welcome :wave:
 
 ---
 
@@ -10,4 +10,4 @@ In the interest of full disclosure, we also have a hidden agenda for this blog. 
 
 *Wordcloud created with the [wordcloud2](https://cran.r-project.org/web/packages/wordcloud2/)
 R package; silhouette image available on [PhyloPic](http://phylopic.org)
-(Lepidochelys olivacea); full R script available on [<i class = "fa fa-github"></i>](https://github.com/inSileco/wordcloud)*.
+(Lepidochelys olivacea); full R script available on [<i class = "fab fa-github"></i>](https://github.com/inSileco/wordcloud)*.

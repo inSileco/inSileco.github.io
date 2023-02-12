@@ -9,7 +9,7 @@
   {{ range .Site.Data.authors }}
   <div class="col-sm-6 text-left" style="padding:10px;">
     <div class="panel panel-default">
-      <div class="panel-body">
+      <div class="panel-body" style="min-height: 18rem; min-height: 18rem; overflow: scroll">
         <div class="col-sm-4 text-right">
           <img src="https://github.com/{{ .github }}.png" width="100%" class="img-rounded" alt="">
         </div>
@@ -17,11 +17,11 @@
           <h4 style="font-weight:bold;"> {{ .given_name }} {{ .family_name }} </h4>
           <p> {{ .description | markdownify }}</p>
           <h5 style="font-weight:bold;">
-            {{ if .github}} <a href="https://github.com/{{ .github }}"><i class="fa fa-github fa-2x" aria-hidden="true"></i></a> {{ end }}
-            {{ if .twitter}} <a href="https://twitter.com/{{ .twitter }}"><i class="fa fa-twitter fa-2x" aria-hidden="true"></i></a> {{ end }}
+            {{ if .github}} <a href="https://github.com/{{ .github }}"><i class="fab fa-github fa-2x" aria-hidden="true"></i></a> {{ end }}
+            {{ if .twitter}} <a href="https://twitter.com/{{ .twitter }}"><i class="fab fa-twitter fa-2x"></i></a> {{ end }}
             {{ if .website}} <a href="{{ .website }}"><i class="fa fa-globe fa-2x" aria-hidden="true"></i></a> {{ end }}
-            {{ if .orcid}} <a href="http://orcid.org/{{ .orcid }}"><i class="ai ai-orcid ai-2x" aria-hidden="true"></i></a> {{ end }}
-            {{ if .researchgate}} <a href="https://www.researchgate.net/profile/{{ .researchgate }}"><i class="ai ai-researchgate ai-2x"></i></a> {{ end }}
+            {{ if .orcid}} <a href="http://orcid.org/{{ .orcid }}"><i class="fab fa-orcid fa-2x"></i></a> {{ end }}
+            {{ if .researchgate}} <a href="https://www.researchgate.net/profile/{{ .researchgate }}"><i class="fab fa-researchgate fa-2x"></i></a> {{ end }}
             {{ if .gscholar}} <a href="{{ .gscholar }}"><i class="ai ai-google-scholar ai-2x" aria-hidden="true"></i></a> {{ end }}
             {{ if .impactstory}} <a href="https://profiles.impactstory.org/u/{{ .impactstory }}"><i class="ai ai-impactstory ai-2x" aria-hidden="true"></i></a> {{ end }}
             {{ if .publons}} <a href="https://publons.com/author/{{ .publons }}"><i class="ai ai-publons ai-2x" aria-hidden="true"></i></a> {{ end }}

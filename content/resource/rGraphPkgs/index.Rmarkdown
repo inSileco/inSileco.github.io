@@ -14,12 +14,9 @@ output:
     dev: svglite
 ---
 
-
-
 Note that the list of packages below would be updated as soon as we find a new
 package. If you know a package that should be in the list, please feel mention
 it in the disqus section below.
-
 
 <br/>
 
@@ -85,15 +82,14 @@ Many packages for graphics are indexed in a dedicated [task view maintained by N
 
 when available, we also provide :
 
-  - <a href=""><i class="fa fa-github"></i></a>: a link that goes to the [Github](https://github.com) repository,
-  - <a href=""><i class="fa fa-bitbucket"></i></a>: a link that goes to the associated [Bitbucket](https://bitbucket.org) repository,
+  - <a href=""><i class="fab fa-github"></i></a>: a link that goes to the [Github](https://github.com) repository,
+  - <a href=""><i class="fab fa-bitbucket"></i></a>: a link that goes to the associated [Bitbucket](https://bitbucket.org) repository,
   - <a href=""><i class="ai ai-doi"></i></a>: a link that goes to the [DOI](http://www.doi.org) link,
-  - <a href=""><i class="fa fa-link"></i></a>: a link that goes to a dedicated website, a html vignette that describes well the package or a relevant publication,
-  - <a href=""><i class="fa fa-file-pdf-o"></i></a>: a link that goes to an relevant pdf file (an R journal article for instance).
+  - <a href=""><i class="fas fa-link"></i></a>: a link that goes to a dedicated website, a html vignette that describes well the package or a relevant publication,
+  - <a href=""><i class="fas fa-file-pdf"></i></a>: a link that goes to an relevant pdf file (an R journal article for instance).
 
 
 
 ```{r rgrappkgs, echo=FALSE, results="asis", message=FALSE}
-print(getwd())
 source("assets/rGraphPkgs.R")
 ```

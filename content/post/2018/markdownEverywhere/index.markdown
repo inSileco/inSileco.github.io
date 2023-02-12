@@ -157,7 +157,7 @@ specification. It is however reasonable to consider that this is another partial
 explanation of the current variability among Markdown flavors. Let me introduce
 some of them:
 
-- [MultiMarkdown](fletcherpenney.net/multimarkdown/) [<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/fletcher/MultiMarkdown) by Fletcher Penney:
+- [MultiMarkdown](fletcherpenney.net/multimarkdown/) [<i class="fab fa-github" aria-hidden="true"></i>](https://github.com/fletcher/MultiMarkdown) by Fletcher Penney:
 
 > MultiMarkdown, or MMD, is a tool to help turn minimally marked-up plain text into well formatted documents, including HTML, PDF (by way of LaTeX), OPML, or OpenDocument (specifically, Flat OpenDocument or ‘.fodt’, which can in turn be converted into RTF, Microsoft Word, or virtually any other word-processing format).
 
@@ -172,7 +172,7 @@ some of them:
 currently not available with the plain Markdown syntax.
 
 
-- [kramdown](https://kramdown.gettalong.org/) [<i class="fa fa-github" aria-hidden="true"></i>](https://github.com/gettalong/kramdown) by Thomas Leitner:
+- [kramdown](https://kramdown.gettalong.org/) [<i class="fab fa-github" aria-hidden="true"></i>](https://github.com/gettalong/kramdown) by Thomas Leitner:
 
 > kramdown (sic, not Kramdown or KramDown, just kramdown) is a free MIT-licensed
 Ruby library for parsing and converting a superset of Markdown. It is completely

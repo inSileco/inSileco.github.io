@@ -205,7 +205,7 @@ Regarding 1 and 2, find below my setup on GNOME tweak:
 Regarding 3, it took me few extra steps as I was not able to retrieve the cursor
 directly from GNOME-Look:
 
-1. I cloned the [<i class="fa fa-github" aria-hidden="true"></i> repo](https://github.com/keeferrourke/capitaine-cursors)
+1. I cloned the [<i class="fab fa-github" aria-hidden="true"></i> repo](https://github.com/keeferrourke/capitaine-cursors)
 
 2. I double checked on the Internet how to proceed (see
 [<i class="fa fa-external-link" aria-hidden="true"></i>](https://askubuntu.com/questions/592478/how-to-install-mouse-cursor))

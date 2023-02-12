@@ -295,7 +295,7 @@ print(path_root)
 
 <details>
 
-<summary>Session info <i class="fa fa-cogs" aria-hidden="true"></i></summary>
+<summary>Session info <i class="fas fa-cogs" aria-hidden="true"></i></summary>
 
 ``` r
 sessionInfo()

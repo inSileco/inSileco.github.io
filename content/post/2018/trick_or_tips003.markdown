@@ -306,7 +306,7 @@ lines(c(-1, 3), c(1, 1), lwd = 4)
 
 <details>
 
-<summary>Session info <i class="fa fa-cogs" aria-hidden="true"></i></summary>
+<summary>Session info <i class="fas fa-cogs" aria-hidden="true"></i></summary>
 
 ``` r
 sessionInfo()
