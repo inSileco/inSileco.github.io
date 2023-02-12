@@ -1,5 +1,6 @@
 # inSileco blog
 [![Build and deploy our blog](https://github.com/inSileco/inSileco.github.io/actions/workflows/R-BUILD-BLOG.yml/badge.svg)](https://github.com/inSileco/inSileco.github.io/actions/workflows/R-BUILD-BLOG.yml)
+[![pages-build-deployment](https://github.com/inSileco/inSileco.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/inSileco/inSileco.github.io/actions/workflows/pages/pages-build-deployment)
 
 The overarching goal of this blog is quite straightforward: tackle challenges
 and opportunities provided by this new era of open-access and computationally
@@ -13,7 +14,7 @@ Our blog created with [blogdown :package:](https://bookdown.org/yihui/blogdown/)
 
 ## Installation -- tl;dr 
 
-Inside a [R](https://www.r-project.org/) console:
+Inside an [R](https://www.r-project.org/) console:
 
 ```R
 install.packages("remotes")

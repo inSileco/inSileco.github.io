@@ -7,6 +7,9 @@ tags: [R, tips, trickortips]
 rpkgs: [base, utils, graphics, microbenchmark]
 tweet: "Subset an array with a matrix and 4 more R tips"
 estime: 6
+edits:
+  - date: 2023-02-06
+    comment: "Remove redundant headers."
 output:
   rmarkdown::html_page:
     fig_width: 3
@@ -14,18 +17,6 @@ output:
 ---
 
 {{< trickortips >}}
-
-## *Trick or tips* 0004
-
-Today’s menu:
-
-1.  Subset an array with a matrix
-2.  `nzchar()`
-3.  Do you need to call `return()`?
-4.  `invisible()`
-5.  `bquote()` and `substitute()`
-
-<br>
 
 ## Subset an array with a matrix
 
@@ -166,10 +157,10 @@ microbenchmark(nchar(vec) > 0, !! nchar(vec), nchar(vec) & 1, nzchar(vec),
   times = 1000L)
 #R>  Unit: nanoseconds
 #R>             expr min  lq    mean median    uq   max neval cld
-#R>   nchar(vec) > 0 704 729 835.328  752.0 808.0 27101  1000   b
-#R>     !!nchar(vec) 774 802 864.753  818.5 877.0  3949  1000   b
-#R>   nchar(vec) & 1 781 807 868.179  831.0 885.5  2179  1000   b
-#R>      nzchar(vec)  72  87 104.045   90.0  95.0  1391  1000  a
+#R>   nchar(vec) > 0 705 734 884.609  765.0 857.5 18695  1000  b 
+#R>     !!nchar(vec) 773 810 947.630  835.0 937.0  4355  1000  bc
+#R>   nchar(vec) & 1 787 810 999.148  849.5 945.0 31816  1000   c
+#R>      nzchar(vec)  85  94 121.086  111.0 117.0  1106  1000 a
 ```
 
 Yep yep\!`nzchar()` is indeed way faster :rocket:\!
@@ -213,8 +204,8 @@ foo2 <- function(x) {
 microbenchmark(foo(4), foo2(4), times = 1e5)
 #R>  Unit: nanoseconds
 #R>      expr min  lq     mean median  uq      max neval cld
-#R>    foo(4) 392 447 718.2958    460 484 14372972 1e+05   b
-#R>   foo2(4) 267 302 380.0456    309 325  2345751 1e+05  a
+#R>    foo(4) 376 401 607.1724    410 420 12707342 1e+05   b
+#R>   foo2(4) 252 270 320.7638    276 282  2237625 1e+05  a
 ```
 
 ## `invisible()`

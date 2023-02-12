@@ -1,22 +1,17 @@
 .vscode
+.hugo_build.lock
+.DS_Store
 tmp/
+public/
 index_files/
 index.html
-trick_or_tips*.html
-.hugo_build.lock
-
 content/post/**/*.html
-content/post/2022/*.markdown
 content/post/**/downloaded_predictors
 content/post/**/Gadus.morhua
 *.docx
 *.odt
-
-
-# tips/tuto
-content/tuto/**/*.html
-static/rmarkdown-libs
-static/post/current
+content/post/2023/**/*.markdown
+static/Rscript/sessionInfo.md
 
 # large files
 **/rInSpace/rinspace_import/data/
@@ -24,10 +19,6 @@ static/post/current
 **/rInSpace/rinspace_geomanip/data/
 **/rInSpace/rinspace_custommaps/data/
 **/rInSpace/rinspace_custommaps/wc10/
-
-#
-.DS_Store
-public/
 
 
 # History files

@@ -1,11 +1,11 @@
 ---
 title: Trick or Tips 005 {R}
 author: [kevin]
-date: 2023-02-04
+date: 2023-02-12
 tags: [R, tips, trickortips]
 rpkgs: [base, utils, graphics]
 tweet: "Post #5 of the 'Trick or Tips' series"
-draft: true
+review: true
 estime: 5
 output:
   blogdown::html_page:
@@ -15,28 +15,170 @@ output:
 
 `r htmltools::HTML("{{< trickortips >}}")`
 
-<br>
 
-This time I will comment a few object that could be very helpful.
+In this post, I comment on a few objects that are included in all R session and not very well known. I will start with what I think are the ones you will find the must useful and finish with objects that you are less likely to use! 
+
+
+## `Last.value`
+
+Have you already redone a computation because you forgot to assign the result 
+to a variable. If you have, you will be pleased to know that you actually don't need to! As explained in the documentation of `?.Last.value` (`?.Last.value`)
+
+>  The value of the internal evaluation of a top-level R expression
+     is always assigned to ‘.Last.value’ (in ‘package:base’) before
+     further processing (e.g., printing).
+
+
+Say you run the following
+
+```{R var1}
+var1 <- 23
+var1 + 12
+```
+
+and you realize afterwards that you forgot to assign the result, instead of redoing the computation, use `.Last.vaue`
+
+```R
+.Last.value
+#R> [1] 35
+```
+and reassign it to your new varibale like so
+
+```R
+var2 <- .Last.value 
+var2 
+#R> [1] 35
+```
+
+This is the equivalent of `ans` in other programming languages such as [Matllab](https://www.mathworks.com/products/matlab.html) and [Julia](https://julialang.org/). By the way, in R Markdown, this will not work, because the last expression of a code chunk is not a top-level R expression (see https://stackoverflow.com/questions/31475226/using-last-value-in-rmarkdown-knitr), to overcome this in the example above, I simply copypasted the results from my R console :smirk:.
+
+
+
+## `.libPaths()`, `.Library` and `.Library.site`
+
+You may have already asked yourself, where are packages installed in your computer? There are various ways to answer this question, one is to use `.libPaths()`.
+
+```{R library_site1}
+.libPaths()
+```
+
+As explained in the manual page (`?.libPaths`):
+
+> ‘.libPaths’ gets/sets the library trees within which packages are
+     looked for.
+
+Let's look at the first path and list all the files contained therein:
+
+```{R library_site}
+lsf  <- list.files(.libPaths()[1])
+length(lsf)
+lsf[1:10]
+```
+
+Good to know! So now let's build a function to locate a given package. 
+
+```{R where_rmardown}
+whereIs <- function(pkg) {
+     out <- unlist(lapply(.libPaths(), list.files, full.names = TRUE))
+     out[grepl(paste0("/", pkg, "$"), out)]
+}
+whereIs("rmarkdown")
+```
+
+Note that you may have the same package installed in different locations, which 
+probably means that you installed it several times (different ways and/or different settings). In this case you should check whether you are using the right version of the package!
+
+Last point, if you look at the definition of `.libPaths()`, you can see that it uses two built-in vectors: `.Library`, the default library, and `.Library.site` that includes all the site libraries.
+
+```{R def_libPath}
+.libPaths
+.Library
+.Library.site
+```
+
 
 ## `.Platform`
 
-You can use it to ubuid properlu
+From `?.Platform`
 
-or you can simply use the join `file.path()` too.
+>  ‘.Platform’ is a list with some details of the platform under
+     which R was built.  This provides means to write OS-portable R
+     code.
+
+```{R Platform}
+.Platform
+```
+
+This list could be usefuld to help your function portable. The seven fields of the list are explained in the help of the function and here I will simply show you one example involving `$file.sep`. You may have already created a function (or part of a function) to concatenate files, basically doing something like this
+
+```{R}
+my_paste <- function(path, file) {
+     paste(path, file, sep = "/")
+}
+my_paste("here", "myfile.txt")
+```
+
+This will work in most cases, but with `.Platform` there is a simple way to make this portable:
+
+```{R}
+my_paste <- function(path, file) {
+     paste(path, file, sep = .Platform$file.sep)
+}
+my_paste("here", "myfile.txt")
+```
+
+That being said, I encourage you to use a function that was built, `file.path()` which actually uses `.Platform$sfile.sep` as a default.
+
+```{R}
+file.path
+```
+
+
+
+## `.leap.seconds`
+
+Leap years are very well known, [leap seconds](https://en.wikipedia.org/wiki/Leap_second) maybe less so. Just as leap days, leap seconds are additional seconds added (though negative leap seconds are defined, and leap seconds are added at the same time worldwide) to mitigate the difference between [International Atomic Time](https://en.wikipedia.org/wiki/International_Atomic_Time) and [Coordinated Universal Time or](https://en.wikipedia.org/wiki/Coordinated_Universal_Time) due to the slowing of rotation of the Earth. In R, all the leap seconds that have ever been added are stored in `.leap.seconds`. 
+
+```{R leap_seconds}
+.leap.seconds
+# in seconds since Unix epoch (Thursday 1 January 1970 00:00:00 UT)
+format(.leap.seconds, "%s")
+```
+
+What happened when a leap second is added? A Leap second is basically an extra second between 23h59m59s (either June 30th or December 31st) and 00h00m00s the next day (https://www.ietf.org/timezones/data/leap-seconds.list). In practice for most system 23.59.59 is repeated twice (see https://access.redhat.com/articles/15145). I very doubt you will ever need to use `.leap.seconds` but it remains a fun fact to know. 
+
 
 ## `.Machine`
 
-##  `.leap.seconds`
+Lastly let's have a look at `.Machine`. According to its documentation
+
+> ‘.Machine’ is a variable holding information on the numerical
+     characteristics of the machine R is running on, such as the
+     largest double or integer and the machine's precision.
+
+```{R Machine}
+# have a look at the sessionInfo() at the end of the post to know what 
+# system was use
+.Machine
+```
+
+This vector gives you various details about the precision of your computer. Here I will use `$integer.max` to trigger an [integer overflow](https://en.wikipedia.org/wiki/Integer_overflow).
+
+```{R Machine2, warning = TRUE}
+as.integer(.Machine$integer.max) + 1L
+```
+
+I have used `1L` to force 1 to be an integer, otherwise this will be converted to a double and I won't get the error.
 
 
-## `.Options`
+```{R Machine3}
+typeof(1)
+typeof(1L)
+typeof(as.integer(.Machine$integer.max) + 1)
+```
 
-## `.Random.seed`
+The integer overflow here is harmless but believe me, it can be very nasty, for instance when this happens for the primary key of an important database, or even worse when in happens in a plane of a space rocket, as delineated in the BBC' article [*The number glitch that can lead to catastrophe*](https://www.bbc.com/future/article/20150505-the-numbers-that-lead-to-disaster))!
 
-
-
-### See you next post post!
 
 ```{R sessionInfo, child = path_session_info}
 ```
