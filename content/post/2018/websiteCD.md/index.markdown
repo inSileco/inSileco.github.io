@@ -75,8 +75,8 @@ As you could read on Wikipedia:
 
 > GitHub is a web-based hosting service for version control using git.
 
-[Github](https://github.com/) <i class="fa fa-github" aria-hidden="true"></i>
-(and similar services like Gitlab <i class="fa fa-gitlab" aria-hidden="true"></i>
+[Github](https://github.com/) <i class="fab fa-github" aria-hidden="true"></i>
+(and similar services like Gitlab <i class="fab fa-gitlab" aria-hidden="true"></i>
 and Bitbucket <i class="fa fa-bitbucket" aria-hidden="true"></i>) are wonderful/essential
 tools to host, version control, and *share* your code. For instance, our blog is available
 at https://github.com/inSileco/inSileco.github.io, but if you want to get the whole

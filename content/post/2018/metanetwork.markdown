@@ -657,7 +657,7 @@ opt <- options()
 
 <div style="padding: 2rem 0rem 2rem 0rem;">
 <details>
-<summary>Session info <i class="fa fa-cogs" aria-hidden="true"></i></summary>
+<summary>Session info <i class="fas fa-cogs" aria-hidden="true"></i></summary>
 
 ```r
 sessionInfo()

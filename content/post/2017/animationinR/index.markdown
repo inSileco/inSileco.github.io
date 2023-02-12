@@ -204,7 +204,7 @@ As you can see, it is quite straightforward to create powerful and informative a
 <h4>
 
 <i class="fa fa-chevron-right" aria-hidden="true"></i>Session info
-<i class="fa fa-cogs" aria-hidden="true"></i>
+<i class="fas fa-cogs" aria-hidden="true"></i>
 
 </h4>
 

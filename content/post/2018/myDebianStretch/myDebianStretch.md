@@ -114,7 +114,7 @@ to a mirror and show where [pandoc](https://pandoc.org) is stored.
 For instance, I use a repository to use [icons from the papirus team](https://launchpad.net/~papirus/+archive/ubuntu/papirus).
 
 2. There is an upcoming collaborative development server named [Salsa](https://wiki.debian.org/Salsa)
-based on [<i class="fa fa-gitlab" aria-hidden="true"></i>](https://about.gitlab.com/).
+based on [<i class="fab fa-gitlab" aria-hidden="true"></i>](https://about.gitlab.com/).
 
 
 <br>

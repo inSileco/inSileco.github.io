@@ -392,7 +392,7 @@ So, I personally prefer and use `las=1`\!
 
 <details>
 
-<summary>Session info <i class="fa fa-cogs" aria-hidden="true"></i></summary>
+<summary>Session info <i class="fas fa-cogs" aria-hidden="true"></i></summary>
 
 ``` r
 sessionInfo()

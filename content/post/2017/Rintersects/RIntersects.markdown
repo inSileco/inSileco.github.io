@@ -643,7 +643,7 @@ start considering changing your ways!
 <br/>
 
 <details>
-<summary> Session info <i class="fa fa-cogs" aria-hidden="true"></i> </summary>
+<summary> Session info <i class="fas fa-cogs" aria-hidden="true"></i> </summary>
 
 ```r
 sessionInfo()

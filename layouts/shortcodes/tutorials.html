@@ -8,11 +8,11 @@
       {{ with .year }} ({{ . }}) {{ end }} 
       {{ with .github }}  
         <a href="https://github.com/{{ . }}" style="display:inline;">
-          <i class="fa fa-github" aria-hidden="true"></i>
+          <i class="fab fa-github" aria-hidden="true"></i>
         </a>{{ end }} 
       {{ with .html }}
         <a href="{{ . }}" style="display:inline;">
-          <i class="fa fa-globe" aria-hidden="true"></i>
+          <i class="fas fa-globe" aria-hidden="true"></i>
         </a>
       {{ end }}
     </li>
@@ -32,11 +32,11 @@
         {{ with .year }} ({{ . }}) {{ end }} 
         {{ with .github }}  
           <a href="https://github.com/{{ . }}" style="display:inline;">
-            <i class="fa fa-github" aria-hidden="true"></i>
+            <i class="fab fa-github" aria-hidden="true"></i>
           </a>{{ end }} 
         {{ with .html }}
           <a href="{{ . }}" style="display:inline;">
-            <i class="fa fa-globe" aria-hidden="true"></i>
+            <i class="fas fa-globe" aria-hidden="true"></i>
           </a>
         {{ end }}
       </li>
@@ -44,44 +44,3 @@
     {{ end }}
   {{ end }}
   </ul>
-
-
-{{/*  <div class="container">
-  <div class="col-sm-2 text-left">
-  </div>
-  <div class="col-sm-8 text-left">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        <div class="col-sm-12">
-          <h3 style="font-weight:bold;display:inline;">
-            {{ .name }}
-          </h3>
-          <h4 style="font-weight:bold;display:inline;">
-            &nbsp; {{ .category }}
-          </h4>
-          <hr>
-          <p> {{ .description }} </p>
-          {{ with .github }}
-          <a href="https://github.com/{{ .github }}" style="display:inline;"><i class="fa fa-2x fa-github"
-              aria-hidden="true"></i>&nbsp;&nbsp;</a>
-          {{ end }}
-          {{ if .pres_html }}
-          <a href="{{ .pres_html }}" style="display:inline;"><i class="fa fa-2x fa-globe"
-              aria-hidden="true"></i>&nbsp;&nbsp;</a>
-          {{ end }}
-          <h4 style="font-weight:bold;display:inline;">
-            {{ with .lang }} {{ printf "%s%s%s" ":" . ":" | emojify }} {{ end }}
-          </h4>
-          <p style="margin-top:10px;">
-            {{ with .travis }} <a href="https://travis-ci.org/{{ .repo }}">
-              <img alt="Build Status" src="https://travis-ci.org/{{ .repo }}.svg?branch={{ .branch }}"></img></a> {{ end
-            }}
-            {{ with .appveyor }} {{ . | markdownify }} {{ end }}
-            {{ with .codecov }} {{ . | markdownify }} {{ end }}
-            {{ with .zenodo }} {{ . | markdownify }} {{ end }}
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>  */}}

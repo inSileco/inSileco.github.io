@@ -14,9 +14,16 @@
             </h4>
           </div>
           <div class="title-right" style="width: 20%; display: inline;">
-            {{ with .github }} <a href="https://github.com/{{.}}" style="display:inline;"><i class="fa fa-2x fa-github"
-                aria-hidden="true"></i>&nbsp;&nbsp;</a>{{ end }}
-            {{ with .website }}<a href="{{ . }}"><i class="fa fa-2x fa-globe" aria-hidden="true"></i></a>{{ end }}
+            {{ with .github }} 
+              <a href="https://github.com/{{.}}" style="display:inline;">
+                  <i class="fab fa-2x fa-github"></i>
+              </a>&nbsp;
+            {{ end }}
+            {{ with .website }}
+              <a href="{{ . }}">
+                <i class="fa fa-2x fa-globe" aria-hidden="true"></i>
+              </a>
+            {{ end }}
             <hr>
           </div>
           {{ with .badges }}

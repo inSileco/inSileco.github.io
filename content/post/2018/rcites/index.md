@@ -142,7 +142,7 @@ I would like to conclude this part by pointing out that using the set of package
 
 ### Version control and Continuous Integration
 
-Web-based [<i class="fa fa-git" aria-hidden="true"></i>](https://git-scm.com/)-repository managers such (GitHub <i class="fa fa-github" aria-hidden="true"></i>, GitLab <i class="fa fa-gitlab" aria-hidden="true"></i>, Bitbucket <i class="fa fa-bitbucket" aria-hidden="true"></i>, etc.) are very powerful tools to develop your packages
+Web-based [<i class="fa fa-git" aria-hidden="true"></i>](https://git-scm.com/)-repository managers such (GitHub <i class="fab fa-github" aria-hidden="true"></i>, GitLab <i class="fab fa-gitlab" aria-hidden="true"></i>, Bitbucket <i class="fa fa-bitbucket" aria-hidden="true"></i>, etc.) are very powerful tools to develop your packages
 especially to work with collaborators, get feed back and add web-services to improve your workflow. First, [<i class="fa fa-git" aria-hidden="true"></i>](https://git-scm.com/)
 it-self is a fantastic tool (beyond the scope of this post, I recommend you the reading of [Pro Git](https://git-scm.com/book/en/v2)). Second, by hosting your package on GitHub, your are basically sending an invitation at large to contribute to your project: "hey devs, this is the project I am working on, if you are interested, please star, clone, fork, report issues, submit pull requests, etc."! Furthermore, once on GitHub, people can easily install your package directly from R:
 
@@ -249,7 +249,7 @@ For now on, my personal approach with R packages will be:
 2. Review;
 3. Development until package accepted;
 4. Submit first version to CRAN;
-5. Advertise <i class="fa fa-twitter" aria-hidden="true"></i>, blog, etc.
+5. Advertise <i class="fab fa-twitter" aria-hidden="true"></i>, blog, etc.
 6. Regular life cycle: new features/ fixing bugs / new release on CRAN when ready / keep advertising.
 
 

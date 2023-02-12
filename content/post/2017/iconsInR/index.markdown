@@ -39,8 +39,8 @@ text we are typing (<i class="fa fa-align-left" aria-hidden="true"></i>
 <i class="fa fa-align-center" aria-hidden="true"></i>
 <i class="fa fa-align-right" aria-hidden="true"></i>). Moreover, some web
 applications are so widespread than their logo appears in thousands of websites
-(i.e Twitter <i class="fa fa-twitter" aria-hidden="true"></i> or
-GitHub <i class="fa fa-github" aria-hidden="true"></i>). Here, we explain how
+(i.e Twitter <i class="fab fa-twitter" aria-hidden="true"></i> or
+GitHub <i class="fab fa-github" aria-hidden="true"></i>). Here, we explain how
 to use these icons in your R plots. Why use icons on an R plot? It simply
 increases the possibilities for the number of markers you could use and thus
 efficiently and usefully refine your plots.
@@ -301,7 +301,7 @@ and now you know how to deal with it!)
 <br>
 
 <details>
-<summary>Session info <i class="fa fa-cogs" aria-hidden="true"></i></summary>
+<summary>Session info <i class="fas fa-cogs" aria-hidden="true"></i></summary>
 
 ```r
 sessionInfo()
