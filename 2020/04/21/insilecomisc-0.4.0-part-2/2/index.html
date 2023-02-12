@@ -264,17 +264,15 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 </span><span class="lnt">5
 </span><span class="lnt">6
 </span><span class="lnt">7
-</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">val</span> <span class="o">&lt;-</span> <span class="nf">runif</span><span class="p">(</span><span class="m">40</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">val</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 62.008747 68.097732  2.083639  3.588958 12.397304 88.794390 26.263963</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [8]  4.093707 81.804548 55.022647 60.747357 40.857899  4.092922 95.943074</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [15] 24.915162 18.231389 71.202660  8.947793 24.143388 58.095859 33.371044</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] 13.606146 77.861557 78.548506 34.109249 16.251741 10.272286 98.298018</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] 86.948221 89.775454 29.411736 24.553428 28.868310 24.604668 11.610907</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] 34.138054 78.884568 38.788929 43.836077  3.119432</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 58.878005 12.960293 56.635832 16.416096  1.627918 20.867757 53.216861 41.236485 97.459800</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] 49.907986 83.502462 29.112589 51.043304 67.458237 76.884686 30.151110 26.064862 36.586610</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19]  1.721494 36.202688 26.583271 24.821983 58.533104 15.551748 13.936954 82.418693 52.144783</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] 91.751552 57.589409 34.279851 52.545521 36.241305 40.843269 79.017671 38.453593 22.650556</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] 57.471231 33.992996 97.905801 60.108273</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
@@ -299,8 +297,8 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 21 24  1  1  1 25  1  1 25 16 20  7  1 25  1  1 25  1  1 18  3  1 25 25  3</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26]  1  1 25 25 25  1  1  1  1  1  3 25  6  9  1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 19  1 17  1  1  1 15  8 25 13 25  1 14 24 25  1  1  5  1  4  1  1 18  1  1 25 14 25 18  3 15  4</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33]  7 25  6  1 18  3 25 19</span>
 </span></span><span class="line"><span class="cl"><span class="n">graphicsutils</span><span class="o">::</span><span class="nf">showPalette</span><span class="p">(</span><span class="n">pal</span><span class="nf">[scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">add_codecolor</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -530,7 +528,7 @@ Markdown</a>, you may not need this. Yet keep in mind that
 <code>tblDown()</code> quickly exports tables in various formats with only one line of
 command!</p>
 <h4 id="thats-all-folks-">That’s all folks 🎉!</h4>
-<div style="padding: 2rem 0rem 2rem 0rem;">
+<div style="margin: 1.5rem 0rem 0.5rem 0rem;">
 <details>
 <summary>
 Session info <i class="fa fa-cogs" aria-hidden="true"></i>
@@ -578,7 +576,6 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </span><span class="lnt">39
 </span><span class="lnt">40
 </span><span class="lnt">41
-</span><span class="lnt">42
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
@@ -591,10 +588,9 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  locale:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8        LC_COLLATE=C.UTF-8    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8    LC_PAPER=C.UTF-8       LC_NAME=C             </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] LC_ADDRESS=C           LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  attached base packages:</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
@@ -680,6 +676,23 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
   
 
   <h1>
+    <a href="/2023/02/12/trick-or-tips-005-r/">Trick or Tips 005 {R}</a> <small>February 12, 2023</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
     <a href="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
   </h1>
 
@@ -701,23 +714,6 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
   </h1>
 
   <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
-
-  
-
-
-
-  
-
-</div>
-  <div class="item-bottom">
-
-  
-
-  <h1>
-    <a href="/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/">R as a ruler? How to calculate distances between geographical objects</a> <small>April 8, 2020</small>
-  </h1>
-
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/gis"><kbd class="item-tag">GIS</kbd></a>  <a href="/tags/utils"><kbd class="item-tag">utils</kbd></a> </p>
 
   
 
@@ -782,7 +778,7 @@ Session info <i class="fa fa-cogs" aria-hidden="true"></i>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 11 February 2023 01:26 UTC.
+      Latest build: 12 February 2023 20:09 UTC.
     </p>
 
   </div>

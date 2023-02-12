@@ -281,8 +281,8 @@ name/rename a bunch of files. One function I often use to do so is <code>sprintf
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sprintf</span><span class="p">(</span><span class="s">&#34;file_%02d&#34;</span><span class="p">,</span> <span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;file_01&#34; &#34;file_02&#34; &#34;file_03&#34; &#34;file_04&#34; &#34;file_05&#34; &#34;file_06&#34; &#34;file_07&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [8] &#34;file_08&#34; &#34;file_09&#34; &#34;file_10&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;file_01&#34; &#34;file_02&#34; &#34;file_03&#34; &#34;file_04&#34; &#34;file_05&#34; &#34;file_06&#34; &#34;file_07&#34; &#34;file_08&#34; &#34;file_09&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] &#34;file_10&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>I originally designed
@@ -370,20 +370,14 @@ elements of the output vector will have 4 characters:</p>
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;right&#34;</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;----1&#34;  &#34;----2&#34;  &#34;----3&#34;  &#34;----4&#34;  &#34;----5&#34;  &#34;----6&#34;  &#34;----7&#34;  &#34;----8&#34; </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] &#34;----9&#34;  &#34;----10&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;----1&#34;  &#34;----2&#34;  &#34;----3&#34;  &#34;----4&#34;  &#34;----5&#34;  &#34;----6&#34;  &#34;----7&#34;  &#34;----8&#34;  &#34;----9&#34;  &#34;----10&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;left&#34;</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;1----&#34;  &#34;2----&#34;  &#34;3----&#34;  &#34;4----&#34;  &#34;5----&#34;  &#34;6----&#34;  &#34;7----&#34;  &#34;8----&#34; </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] &#34;9----&#34;  &#34;10----&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;1----&#34;  &#34;2----&#34;  &#34;3----&#34;  &#34;4----&#34;  &#34;5----&#34;  &#34;6----&#34;  &#34;7----&#34;  &#34;8----&#34;  &#34;9----&#34;  &#34;10----&#34;</span>
 </span></span><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;center&#34;</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;--1--&#34;  &#34;--2--&#34;  &#34;--3--&#34;  &#34;--4--&#34;  &#34;--5--&#34;  &#34;--6--&#34;  &#34;--7--&#34;  &#34;--8--&#34; </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] &#34;--9--&#34;  &#34;--10--&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;--1--&#34;  &#34;--2--&#34;  &#34;--3--&#34;  &#34;--4--&#34;  &#34;--5--&#34;  &#34;--6--&#34;  &#34;--7--&#34;  &#34;--8--&#34;  &#34;--9--&#34;  &#34;--10--&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Note that in this last case, lengths of output character strings may differ!
@@ -671,7 +665,7 @@ this topic (for instance
 <a href="https://data-flair.training/blogs/r-string-manipulation/">data-flair</a>) and, obviously, the documentation of packages that do such manipulations (e.g. <a href="https://CRAN.R-project.org/package=stringi"><code>stringi</code></a>).</p>
 <p>This concludes the first part of this post, additional features of the
 <code>inSilecoMisc</code> package will be introduced the second part of this post 🎉!</p>
-<div style="padding: 2rem 0rem 2rem 0rem;">
+<div style="margin: 1.5rem 0rem 0.5rem 0rem;">
 <details>
 <summary>Session info <i class="fa fa-cogs" aria-hidden="true"></i></summary>
 <div class="highlight"><div class="chroma">
@@ -709,10 +703,6 @@ this topic (for instance
 </span><span class="lnt">31
 </span><span class="lnt">32
 </span><span class="lnt">33
-</span><span class="lnt">34
-</span><span class="lnt">35
-</span><span class="lnt">36
-</span><span class="lnt">37
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
@@ -725,10 +715,9 @@ this topic (for instance
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  locale:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [4] LC_COLLATE=C.UTF-8     LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8   </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] LC_PAPER=C.UTF-8       LC_NAME=C              LC_ADDRESS=C          </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8        LC_COLLATE=C.UTF-8    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8    LC_PAPER=C.UTF-8       LC_NAME=C             </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] LC_ADDRESS=C           LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  attached base packages:</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
@@ -737,21 +726,18 @@ this topic (for instance
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoMisc_0.7.0.9000 inSilecoRef_0.0.1.9000 </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] Rcpp_1.0.10       jquerylib_0.1.4   bslib_0.4.2       compiler_4.2.2   </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] pillar_1.8.1      later_1.3.0       plyr_1.8.8        tools_4.2.2      </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] digest_0.6.31     evaluate_0.20     tibble_3.1.8      lubridate_1.9.1  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] jsonlite_1.8.4    lifecycle_1.0.3   timechange_0.2.0  rcrossref_1.2.0  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [17] pkgconfig_2.0.3   rlang_1.0.6       bibtex_0.5.1      shiny_1.7.4      </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.0         yaml_2.3.7        crul_1.3          curl_5.0.0       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] blogdown_1.16     xfun_0.37         fastmap_1.1.0     RefManageR_1.4.0 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] httr_1.4.4        stringr_1.5.0     dplyr_1.1.0       xml2_1.3.3       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] knitr_1.42        sass_0.4.5        generics_0.1.3    htmlwidgets_1.6.1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] vctrs_0.5.2       tidyselect_1.2.0  DT_0.27           glue_1.6.2       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] httpcode_0.3.0    R6_2.5.1          fansi_1.0.4       bookdown_0.32    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [45] rmarkdown_2.20    magrittr_2.0.3    backports_1.4.1   promises_1.2.0.1 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] htmltools_0.5.4   ellipsis_0.3.2    mime_0.12         xtable_1.8-4     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [53] httpuv_1.6.8      utf8_1.2.3        stringi_1.7.12    miniUI_0.1.1.1   </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [57] cachem_1.0.6      crayon_1.5.2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] Rcpp_1.0.10       jquerylib_0.1.4   bslib_0.4.2       compiler_4.2.2    pillar_1.8.1     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] later_1.3.0       plyr_1.8.8        tools_4.2.2       digest_0.6.31     evaluate_0.20    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] tibble_3.1.8      lubridate_1.9.1   jsonlite_1.8.4    lifecycle_1.0.3   timechange_0.2.0 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] rcrossref_1.2.0   pkgconfig_2.0.3   rlang_1.0.6       bibtex_0.5.1      shiny_1.7.4      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.0         yaml_2.3.7        crul_1.3          curl_5.0.0        blogdown_1.16    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] xfun_0.37         fastmap_1.1.0     RefManageR_1.4.0  httr_1.4.4        stringr_1.5.0    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] dplyr_1.1.0       xml2_1.3.3        knitr_1.42        sass_0.4.5        generics_0.1.3   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] htmlwidgets_1.6.1 vctrs_0.5.2       tidyselect_1.2.0  DT_0.27           glue_1.6.2       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] httpcode_0.3.0    R6_2.5.1          fansi_1.0.4       bookdown_0.32     rmarkdown_2.20   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] magrittr_2.0.3    backports_1.4.1   promises_1.2.0.1  htmltools_0.5.4   ellipsis_0.3.2   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] mime_0.12         xtable_1.8-4      httpuv_1.6.8      utf8_1.2.3        stringi_1.7.12   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [56] miniUI_0.1.1.1    cachem_1.0.6      crayon_1.5.2</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -820,6 +806,23 @@ repositories:
   
 
   <h1>
+    <a href="/2023/02/12/trick-or-tips-005-r/">Trick or Tips 005 {R}</a> <small>February 12, 2023</small>
+  </h1>
+
+  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
     <a href="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
   </h1>
 
@@ -841,23 +844,6 @@ repositories:
   </h1>
 
   <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
-
-  
-
-
-
-  
-
-</div>
-  <div class="item-bottom">
-
-  
-
-  <h1>
-    <a href="/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/">R as a ruler? How to calculate distances between geographical objects</a> <small>April 8, 2020</small>
-  </h1>
-
-  <p> <i class="fa fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/gis"><kbd class="item-tag">GIS</kbd></a>  <a href="/tags/utils"><kbd class="item-tag">utils</kbd></a> </p>
 
   
 
@@ -922,7 +908,7 @@ repositories:
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 11 February 2023 01:26 UTC.
+      Latest build: 12 February 2023 20:09 UTC.
     </p>
 
   </div>
