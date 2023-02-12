@@ -1,7 +1,7 @@
 ---
 title: Trick or Tips 005 {R}
 author: [kevin]
-date: 2023-02-06
+date: 2023-02-12
 tags: [R, tips, trickortips]
 rpkgs: [base, utils, graphics]
 tweet: "Post #5 of the 'Trick or Tips' series"
@@ -16,9 +16,7 @@ output:
 `r htmltools::HTML("{{< trickortips >}}")`
 
 
-In this post, I comment on a few objects that are included and not very well 
-known. I will start with what I think will be the ones you will find the must 
-useful and finish with object that you less likely to use! 
+In this post, I comment on a few objects that are included in all R session and not very well known. I will start with what I think are the ones you will find the must useful and finish with objects that you are less likely to use! 
 
 
 ## `Last.value`
@@ -44,7 +42,7 @@ and you realize afterwards that you forgot to assign the result, instead of redo
 .Last.value
 #R> [1] 35
 ```
-and reassign it to your new varibale
+and reassign it to your new varibale like so
 
 ```R
 var2 <- .Last.value 
@@ -52,7 +50,7 @@ var2
 #R> [1] 35
 ```
 
-This is actually the equivalent of `ans` in other programming languages such as [Matllab](https://www.mathworks.com/products/matlab.html) and [Julia](https://julialang.org/). By the way, in R Markdown, this will not work, because the last expression of a code chunk is not a top-level R expression (see https://stackoverflow.com/questions/31475226/using-last-value-in-rmarkdown-knitr), to overcome this in the example above, I simply copypasted the results from my R console :smirk:.
+This is the equivalent of `ans` in other programming languages such as [Matllab](https://www.mathworks.com/products/matlab.html) and [Julia](https://julialang.org/). By the way, in R Markdown, this will not work, because the last expression of a code chunk is not a top-level R expression (see https://stackoverflow.com/questions/31475226/using-last-value-in-rmarkdown-knitr), to overcome this in the example above, I simply copypasted the results from my R console :smirk:.
 
 
 
@@ -88,7 +86,7 @@ whereIs("rmarkdown")
 ```
 
 Note that you may have the same package installed in different locations, which 
-will probably means you installed it several times (different ways and/or different settings). In this case you should check whether you are using the right version of the package!
+probably means that you installed it several times (different ways and/or different settings). In this case you should check whether you are using the right version of the package!
 
 Last point, if you look at the definition of `.libPaths()`, you can see that it uses two built-in vectors: `.Library`, the default library, and `.Library.site` that includes all the site libraries.
 
@@ -120,7 +118,7 @@ my_paste <- function(path, file) {
 my_paste("here", "myfile.txt")
 ```
 
-Of course it will work in many cases, but with `.Platform` there is a simple way to make this portable:
+This will work in most cases, but with `.Platform` there is a simple way to make this portable:
 
 ```{R}
 my_paste <- function(path, file) {
@@ -152,7 +150,7 @@ What happened when a leap second is added? A Leap second is basically an extra s
 
 ## `.Machine`
 
-Lastly let's have a look at `.Machine`. According to the documentation
+Lastly let's have a look at `.Machine`. According to its documentation
 
 > ‘.Machine’ is a variable holding information on the numerical
      characteristics of the machine R is running on, such as the
@@ -164,7 +162,7 @@ Lastly let's have a look at `.Machine`. According to the documentation
 .Machine
 ```
 
-This vector gives you various details about the precision of your computer. Here I will use `$integer.max` to trigger a [integer overflow](https://en.wikipedia.org/wiki/Integer_overflow).
+This vector gives you various details about the precision of your computer. Here I will use `$integer.max` to trigger an [integer overflow](https://en.wikipedia.org/wiki/Integer_overflow).
 
 ```{R Machine2, warning = TRUE}
 as.integer(.Machine$integer.max) + 1L
@@ -179,7 +177,7 @@ typeof(1L)
 typeof(as.integer(.Machine$integer.max) + 1)
 ```
 
-The integer overflow here is harmless but beleive me it can be very nasty, for instance when this happens for the primary key of an important database, or even worse when in happens in a plane of a space rocket, as delineated in the BBC' article [*The number glitch that can lead to catastrophe*](https://www.bbc.com/future/article/20150505-the-numbers-that-lead-to-disaster))!
+The integer overflow here is harmless but believe me, it can be very nasty, for instance when this happens for the primary key of an important database, or even worse when in happens in a plane of a space rocket, as delineated in the BBC' article [*The number glitch that can lead to catastrophe*](https://www.bbc.com/future/article/20150505-the-numbers-that-lead-to-disaster))!
 
 
 ```{R sessionInfo, child = path_session_info}
