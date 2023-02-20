@@ -2,18 +2,6 @@
 <html lang="en-us">
     <head>
         
-
-  <link rel="stylesheet" href="/css/main.css">
-
-  <link rel="stylesheet" href="/css/academicons.min.css">
-
-  <link rel="stylesheet" href="/css/syntax.css">
-
-  <link rel="stylesheet" href="/css/insileco.css">
-
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
-
-
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>inSilecoMisc 0.4.0 (part 2/2)</title>
@@ -36,7 +24,7 @@
 <link rel="stylesheet" href="https://insileco.github.io/css/main.css">
 
 
- <link rel="stylesheet" href="https://insileco.github.io/css/main.css">  <link rel="stylesheet" href="https://insileco.github.io/css/academicons.min.css">  <link rel="stylesheet" href="https://insileco.github.io/css/syntax.css">  <link rel="stylesheet" href="https://insileco.github.io/css/insileco.css">  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css"> 
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">  <link rel="stylesheet" href="https://insileco.github.io/css/academicons.min.css">  <link rel="stylesheet" href="https://insileco.github.io/css/main.css">  <link rel="stylesheet" href="https://insileco.github.io/css/syntax.css">  <link rel="stylesheet" href="https://insileco.github.io/css/insileco.css"> 
 
 
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
@@ -81,6 +69,18 @@
         
 
         
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="/css/academicons.min.css">
+
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <link rel="stylesheet" href="/css/insileco.css">
+
 
     </head>
 
@@ -280,11 +280,11 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">val</span> <span class="o">&lt;-</span> <span class="nf">runif</span><span class="p">(</span><span class="m">40</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">val</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 33.5368178 36.2914237 65.4770826 42.3634310 96.3658860 64.4897143 70.0119622 98.1498740</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] 48.2796907 62.3846930 71.2672116  1.0276626 94.3521089 88.5712171 91.7673888 89.5344236</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [17]  0.6953249 72.6615234 76.6063555 25.6758923 38.1588708  4.0379014  8.8618823 15.3802745</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] 14.6963264 79.5625405 23.5499527 78.7362150 43.9319091 46.0132537  5.7943212 12.1272082</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] 39.4813314 31.5690095 66.4152768 85.0725107 76.9015016 28.2908842  2.1970935 19.2249557</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 95.511151 93.314823 72.994554 72.472011 74.028271  3.085580 74.056234 17.781822 24.188406</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] 34.206079 67.537806 87.235830 21.921855 79.801168 94.141490 64.703910 77.912635 50.494123</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] 26.523999 74.361805 38.553834 24.799628 10.880790 97.703505 79.857396 34.433619 56.757595</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28]  2.370819 84.509001 66.899893 21.661771 16.939560 74.007406 38.411349 49.789901 47.304357</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] 14.036502 31.031669 67.563857 91.052941</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
@@ -309,8 +309,8 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1]  3  4 23  8 25 22 25 25 12 21 25  1 25 25 25 25  1 25 25  1  6  1  1  1  1 25  1 25  9 11  1  1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33]  6  1 23 25 25  1  1  1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 25 25 25 25 25  1 25  1  1  3 24 25  1 25 25 22 25 13  1 25  6  1  1 25 25  3 17  1 25 24  1  1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] 25  6 13 11  1  1 24 25</span>
 </span></span><span class="line"><span class="cl"><span class="n">graphicsutils</span><span class="o">::</span><span class="nf">showPalette</span><span class="p">(</span><span class="n">pal</span><span class="nf">[scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">add_codecolor</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -618,7 +618,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] jquerylib_0.1.4          httpcode_0.3.0           glue_1.6.2              </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] lifecycle_1.0.3          plyr_1.8.8               stringr_1.5.0           </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] blogdown_1.16            htmlwidgets_1.6.1        evaluate_0.20           </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] knitr_1.42               fastmap_1.1.0            httpuv_1.6.8            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] knitr_1.42               fastmap_1.1.0            httpuv_1.6.9            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] curl_5.0.0               fansi_1.0.4              highr_0.10              </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] Rcpp_1.0.10              xtable_1.8-4             promises_1.2.0.1        </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] backports_1.4.1          DT_0.27                  cachem_1.0.6            </span>
@@ -629,7 +629,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] sass_0.4.5               graphicsutils_1.6.0.9000 tibble_3.1.8            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] RefManageR_1.4.0         crul_1.3                 crayon_1.5.2            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [52] pkgconfig_2.0.3          ellipsis_0.3.2           xml2_1.3.3              </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [55] timechange_0.2.0         lubridate_1.9.1          rmarkdown_2.20          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [55] timechange_0.2.0         lubridate_1.9.2          rmarkdown_2.20          </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [58] httr_1.4.4               R6_2.5.1                 compiler_4.2.2</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -789,7 +789,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 12 February 2023 23:41 UTC.
+      Latest build: 20 February 2023 01:43 UTC.
     </p>
 
   </div>
