@@ -1,5 +1,6 @@
 # inSileco blog
-[![Build and deploy our blog](https://github.com/inSileco/inSileco.github.io/actions/workflows/R-BUILD-BLOG.yml/badge.svg)](https://github.com/inSileco/inSileco.github.io/actions/workflows/R-BUILD-BLOG.yml)
+[![build-and-check](https://github.com/inSileco/inSileco.github.io/actions/workflows/R-BUILD-CHECK.yml/badge.svg)](https://github.com/inSileco/inSileco.github.io/actions/workflows/R-BUILD-CHECK.yml)
+[![build-and-deploy](https://github.com/inSileco/inSileco.github.io/actions/workflows/R-BUILD-DEPLOY.yml/badge.svg)](https://github.com/inSileco/inSileco.github.io/actions/workflows/R-BUILD-DEPLOY.yml)
 [![pages-build-deployment](https://github.com/inSileco/inSileco.github.io/actions/workflows/pages/pages-build-deployment/badge.svg)](https://github.com/inSileco/inSileco.github.io/actions/workflows/pages/pages-build-deployment)
 
 The overarching goal of this blog is quite straightforward: tackle challenges
