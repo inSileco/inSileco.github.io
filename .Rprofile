@@ -16,7 +16,7 @@ options(
   # to disable knitting Rmd files on save, set this option to FALSE
   blogdown.knit.on_save = TRUE,
   # build .Rmd to .html (via Pandoc); to build to Markdown, set this option to 'markdown'
-  blogdown.method = 'html',
+  blogdown.method = "html",
   width = 100
   # fix Hugo version
   # blogdown.hugo.version = "0.96.0"
@@ -30,9 +30,9 @@ if ("knitr" %in% unlist(lapply(.libPaths(), list.files))) {
     collapse = TRUE,
     warning = FALSE,
     message = FALSE,
-    #fig.width = 7.5,
-    #fig.height = 6,
-    fig.align = 'center',
+    # fig.width = 7.5,
+    # fig.height = 6,
+    fig.align = "center",
     width = 100
   )
 
@@ -43,5 +43,7 @@ if ("knitr" %in% unlist(lapply(.libPaths(), list.files))) {
   wk <- function() rfa("wikipedia-w")
 
   path_root <- getwd()
-  path_session_info <- file.path(path_root, 'static/Rscript/sessionInfo.Rmd')
+  path_session_info <- file.path(path_root, "static/Rscript/sessionInfo.Rmd")
+  path_ref_bib <- file.path(path_root, "static/ref/inSileco.bib")
+  path_ref_csl <- file.path(path_root, "static/ref/peerj.csl")
 }

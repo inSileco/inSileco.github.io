@@ -12,18 +12,18 @@ pygmentsUseClasses = false
 summaryLength = 25
 # relativeURLs = true
 
-
-[markup.goldmark.renderer]
-unsafe = true
-
-[markup.highlight]
-lineNos = true
-noClasses = false
-
-[markup.tableOfContents]
-    endLevel = 2
-    ordered = true
-    startLevel = 2
+[markup]
+    [markup.goldmark]
+        [markup.goldmark.renderer]
+            unsafe = true
+        [markup.goldmark.extensions]
+            footnote = true
+    [markup.highlight]
+        lineNos = true
+        noClasses = false
+    [markup.tableOfContents]
+        endLevel = 2
+        startLevel = 2
 
 
 [permalinks]
@@ -41,8 +41,6 @@ noClasses = false
 [[menu.main]]
     name = "Consulting"
     url = "https://insilecoinc.github.io/"
-
-
 
 [[menu.icon]]
     url = "/"

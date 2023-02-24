@@ -7,6 +7,9 @@ tags: [R, GIS, utils]
 rpkgs: [sf, gdistance, igraph, knitr, sp, raster]
 draft: false
 estime: 13
+edits:
+  - date: 2022-04-24
+    comment: "Add figures back."
 ---
 
 When working in Ecology, it is often necessary to produce maps and calculate distances between objects such as sampled stations, species distribution ranges or geographical features. A [tutorial on this blog](/tuto/rinspace/rinspace_homepage/) describes many techniques to create maps with different packages in R, such as `sf` and `raster`. In this post, I will go further and use these tools to calculate distances in our spatial environment.
@@ -23,7 +26,7 @@ Instead of using a distance as a ressemblance measure, we will use it with its f
 `$$D_{A,B} = \sqrt{(x_{B} - x_{A})^{2} + (y_{B} - y_{A})^{2}}$$`
 
 
-{{< figcenter "Figures/Euclidean.png" "Euclidean Distance" 20 >}}
+{{< figcenter "Figures/Euclidean.png" "Euclidean Distance" 25 >}}
 
 
 ## Geographical distances and the problem of heterogeneity
@@ -80,7 +83,7 @@ We can compute the Euclidean distances between each points by using `sf::st_dist
 
 
 ```r
-dist1 <- st_distance(x = coords[1,], y = coords[-1,])
+dist1 <- st_distance(x = coords[1, ], y = coords[-1, ])
 
 dist1_df <- data.frame(dist1, row.names = "Distance from init:")
 colnames(dist1_df) <- c("P1", "P2", "P3")
@@ -132,7 +135,9 @@ Before calculating the distance, `costDistance()` needs a transition matrix. Thi
 - `8` is straight and diagonal lines, *i.e.* queen;
 - `16` is straight, diagonal lines and tilted diagonals, *i.e.* queen and knights.
 
-<center> ![Direction selection for the transition matrix (*J van Etten*)](Figures/Chess.png) </center>
+{{< figcenter "Figures/Chess.png" "Direction selection for the transition matrix (*J van Etten*)" 60 >}}
+
+
 
 The `geoCorrection()` function is needed to apply a correction to the transition matrix so that units and map distortion are taken into account (this may be more or less relevant depending on the CRS used).
 
@@ -149,8 +154,8 @@ And now, let's calculate distances with the least cost path analysis!
 
 ```r
 dist2 <- costDistance(raster_bay_tr,
-                      fromCoords = as(as_Spatial(coords[1,]), "SpatialPoints"),
-                      toCoords = as(as_Spatial(coords[-1,]), "SpatialPoints"))
+                      fromCoords = as(as_Spatial(coords[1, ]), "SpatialPoints"),
+                      toCoords = as(as_Spatial(coords[-1, ]), "SpatialPoints"))
 
 dist2_df <- data.frame(dist2, row.names = "Distance from init:")
 colnames(dist2_df) <- c("P1", "P2", "P3")
@@ -235,8 +240,7 @@ If you are just calculating a handful of distances such as in this example, `gdi
 Techniques above will be highly useful for many research questions, *e.g.* determining the influence of a perturbation in an ecosystem, characterizing species movements or community connectivity... The method presented in this post is one of the many that exist to answer these questions. You can find many tutorials for geographic information system such as ArcGIS or QGIS, but I thought a simple presentation for R users would be welcomed. Enjoy!
 
 
-<center> ![](Figures/Zoidberg2.gif) </center>
-
+{{< imgcenter "Figures/Zoidberg2.gif" 25 >}}
 
 
 ## References
@@ -256,7 +260,7 @@ Techniques above will be highly useful for many research questions, *e.g.* deter
 
 
 
-<div style="padding: 2rem 0rem 2rem 0rem;">
+<div style="margin: 1.5rem 0rem 0.5rem 0rem;">
 <details>
 <summary>Session info <i class="fas fa-cogs" aria-hidden="true"></i></summary>
 
@@ -264,48 +268,41 @@ Techniques above will be highly useful for many research questions, *e.g.* deter
 sessionInfo()
 #R>  R version 4.2.2 Patched (2022-11-10 r83330)
 #R>  Platform: x86_64-pc-linux-gnu (64-bit)
-#R>  Running under: Ubuntu 22.04.1 LTS
+#R>  Running under: Ubuntu 22.04.2 LTS
 #R>  
 #R>  Matrix products: default
 #R>  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
 #R>  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so
 #R>  
 #R>  locale:
-#R>   [1] LC_CTYPE=en_CA.UTF-8       LC_NUMERIC=C              
-#R>   [3] LC_TIME=en_CA.UTF-8        LC_COLLATE=en_CA.UTF-8    
-#R>   [5] LC_MONETARY=en_CA.UTF-8    LC_MESSAGES=en_CA.UTF-8   
-#R>   [7] LC_PAPER=en_CA.UTF-8       LC_NAME=C                 
-#R>   [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-#R>  [11] LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       
+#R>   [1] LC_CTYPE=en_CA.UTF-8       LC_NUMERIC=C               LC_TIME=en_CA.UTF-8       
+#R>   [4] LC_COLLATE=en_CA.UTF-8     LC_MONETARY=en_CA.UTF-8    LC_MESSAGES=en_CA.UTF-8   
+#R>   [7] LC_PAPER=en_CA.UTF-8       LC_NAME=C                  LC_ADDRESS=C              
+#R>  [10] LC_TELEPHONE=C             LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       
 #R>  
 #R>  attached base packages:
 #R>  [1] stats     graphics  grDevices utils     datasets  methods   base     
 #R>  
 #R>  other attached packages:
-#R>  [1] gdistance_1.3-6        Matrix_1.5-3           igraph_1.3.5          
-#R>  [4] raster_3.6-14          sp_1.6-0               sf_1.0-9              
-#R>  [7] knitr_1.41             inSilecoRef_0.0.1.9000
+#R>  [1] gdistance_1.3-6   Matrix_1.5-3      igraph_1.4.0      raster_3.6-14     sp_1.6-0         
+#R>  [6] sf_1.0-9          knitr_1.41        inSilecoRef_0.1.0
 #R>  
 #R>  loaded via a namespace (and not attached):
-#R>   [1] Rcpp_1.0.10        lattice_0.20-45    lubridate_1.8.0    class_7.3-21      
-#R>   [5] ps_1.7.2           digest_0.6.31      utf8_1.2.3         mime_0.12         
-#R>   [9] R6_2.5.1           plyr_1.8.8         backports_1.4.1    evaluate_0.19     
-#R>  [13] e1071_1.7-13       highr_0.10         httr_1.4.4         blogdown_1.16     
-#R>  [17] pillar_1.8.1       rlang_1.0.6        curl_5.0.0         data.table_1.14.6 
-#R>  [21] miniUI_0.1.1.1     callr_3.7.3        jquerylib_0.1.4    DT_0.26           
-#R>  [25] rmarkdown_2.19     RefManageR_1.3.0   rcrossref_1.2.0    stringr_1.5.0     
-#R>  [29] htmlwidgets_1.6.1  proxy_0.4-27       shiny_1.7.4        compiler_4.2.2    
-#R>  [33] httpuv_1.6.8       xfun_0.36          pkgconfig_2.0.3    htmltools_0.5.4   
-#R>  [37] tidyselect_1.2.0   tibble_3.1.8       httpcode_0.3.0     bookdown_0.32     
-#R>  [41] codetools_0.2-19   fansi_1.0.4        dplyr_1.1.0        withr_2.5.0       
-#R>  [45] later_1.3.0        grid_4.2.2         crul_1.3           jsonlite_1.8.4    
-#R>  [49] xtable_1.8-4       lifecycle_1.0.3    DBI_1.1.3          magrittr_2.0.3    
-#R>  [53] units_0.8-1        KernSmooth_2.23-20 cli_3.5.0          stringi_1.7.8     
-#R>  [57] cachem_1.0.6       promises_1.2.0.1   xml2_1.3.3         bslib_0.4.2       
-#R>  [61] ellipsis_0.3.2     targets_0.14.2     generics_0.1.3     vctrs_0.5.2       
-#R>  [65] tools_4.2.2        glue_1.6.2         processx_3.8.0     fastmap_1.1.0     
-#R>  [69] yaml_2.3.6         terra_1.7-3        base64url_1.4      classInt_0.4-8    
-#R>  [73] sass_0.4.5
+#R>   [1] Rcpp_1.0.10        lattice_0.20-45    class_7.3-21       ps_1.7.2           digest_0.6.31     
+#R>   [6] utf8_1.2.3         mime_0.12          R6_2.5.1           plyr_1.8.8         backports_1.4.1   
+#R>  [11] evaluate_0.19      e1071_1.7-13       highr_0.10         blogdown_1.16      pillar_1.8.1      
+#R>  [16] rlang_1.0.6        curl_5.0.0         data.table_1.14.8  miniUI_0.1.1.1     callr_3.7.3       
+#R>  [21] jquerylib_0.1.4    DT_0.26            rmarkdown_2.19     rcrossref_1.2.0    stringr_1.5.0     
+#R>  [26] htmlwidgets_1.6.1  proxy_0.4-27       shiny_1.7.4        compiler_4.2.2     httpuv_1.6.9      
+#R>  [31] xfun_0.36          pkgconfig_2.0.3    htmltools_0.5.4    tidyselect_1.2.0   tibble_3.1.8      
+#R>  [36] httpcode_0.3.0     bookdown_0.32      codetools_0.2-19   fansi_1.0.4        dplyr_1.1.0       
+#R>  [41] withr_2.5.0        later_1.3.0        grid_4.2.2         crul_1.3           jsonlite_1.8.4    
+#R>  [46] xtable_1.8-4       lifecycle_1.0.3    DBI_1.1.3          magrittr_2.0.3     units_0.8-1       
+#R>  [51] KernSmooth_2.23-20 bibtex_0.5.1       cli_3.5.0          stringi_1.7.8      cachem_1.0.6      
+#R>  [56] fs_1.6.1           promises_1.2.0.1   xml2_1.3.3         bslib_0.4.2        ellipsis_0.3.2    
+#R>  [61] targets_0.14.2     generics_0.1.3     vctrs_0.5.2        tools_4.2.2        glue_1.6.2        
+#R>  [66] processx_3.8.0     fastmap_1.1.0      yaml_2.3.6         terra_1.7-3        base64url_1.4     
+#R>  [71] classInt_0.4-8     sass_0.4.5
 ```
 </details>
 </div>
