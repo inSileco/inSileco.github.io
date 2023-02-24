@@ -7,6 +7,9 @@ tags: [R, GIS, utils]
 rpkgs: [sf, gdistance, igraph, knitr, sp, raster]
 draft: false
 estime: 13
+edits:
+  - date: 2022-04-24
+    comment: "Add figures back."
 ---
 
 When working in Ecology, it is often necessary to produce maps and calculate distances between objects such as sampled stations, species distribution ranges or geographical features. A [tutorial on this blog](/tuto/rinspace/rinspace_homepage/) describes many techniques to create maps with different packages in R, such as `sf` and `raster`. In this post, I will go further and use these tools to calculate distances in our spatial environment.
@@ -23,7 +26,7 @@ Instead of using a distance as a ressemblance measure, we will use it with its f
 $$D_{A,B} = \sqrt{(x_{B} - x_{A})^{2} + (y_{B} - y_{A})^{2}}$$
 
 
-{{< figcenter "Figures/Euclidean.png" "Euclidean Distance" 20 >}}
+{{< figcenter "Figures/Euclidean.png" "Euclidean Distance" 25 >}}
 
 
 ## Geographical distances and the problem of heterogeneity
@@ -85,7 +88,7 @@ The initial position of Herbert is on the turquoise dot (init), and we are inter
 We can compute the Euclidean distances between each points by using `sf::st_distance()`. Let's try this here, even if we know that we do not consider the coast as a forbidden area.
 
 ```{r distances1, warning = FALSE, eval = TRUE}
-dist1 <- st_distance(x = coords[1,], y = coords[-1,])
+dist1 <- st_distance(x = coords[1, ], y = coords[-1, ])
 
 dist1_df <- data.frame(dist1, row.names = "Distance from init:")
 colnames(dist1_df) <- c("P1", "P2", "P3")
@@ -99,19 +102,26 @@ Based on these results, P1 is the closest site to the initial location of Herber
 par(mar = c(3, 3, 1, 1))
 plot(st_geometry(bay), axes = TRUE, main = "", col = "#E2E2E2", border = "#C1C1C1")
 plot(coords, cex = 2, pch = 16, add = TRUE)
-text(x = st_coordinates(coords)[,"X"],
-     y = st_coordinates(coords)[,"Y"],
-     labels = coords$station, pos = 3, font = 2)
-
-lines(x = st_coordinates(coords)[c(1,2),"X"],
-      y = st_coordinates(coords)[c(1,2),"Y"],
-      col = "#FF0000", lwd = 4)
-lines(x = st_coordinates(coords)[c(1,3),"X"],
-      y = st_coordinates(coords)[c(1,3),"Y"],
-      col = "#A1A1A1", lwd = 2)
-lines(x = st_coordinates(coords)[c(1,4),"X"],
-      y = st_coordinates(coords)[c(1,4),"Y"],
-      col = "#A1A1A1", lwd = 2)
+text(
+  x = st_coordinates(coords)[, "X"],
+  y = st_coordinates(coords)[, "Y"],
+  labels = coords$station, pos = 3, font = 2
+)
+lines(
+  x = st_coordinates(coords)[c(1, 2), "X"],
+  y = st_coordinates(coords)[c(1, 2), "Y"],
+  col = "#FF0000", lwd = 4
+)
+lines(
+  x = st_coordinates(coords)[c(1, 3), "X"],
+  y = st_coordinates(coords)[c(1, 3), "Y"],
+  col = "#A1A1A1", lwd = 2
+)
+lines(
+  x = st_coordinates(coords)[c(1, 4), "X"],
+  y = st_coordinates(coords)[c(1, 4), "Y"],
+  col = "#A1A1A1", lwd = 2
+)
 ```
 
 
@@ -149,7 +159,9 @@ Before calculating the distance, `costDistance()` needs a transition matrix. Thi
 - `8` is straight and diagonal lines, *i.e.* queen;
 - `16` is straight, diagonal lines and tilted diagonals, *i.e.* queen and knights.
 
-<center> ![Direction selection for the transition matrix (*J van Etten*)](Figures/Chess.png) </center>
+{{< figcenter "Figures/Chess.png" "Direction selection for the transition matrix (*J van Etten*)" 60 >}}
+
+
 
 The `geoCorrection()` function is needed to apply a correction to the transition matrix so that units and map distortion are taken into account (this may be more or less relevant depending on the CRS used).
 
@@ -164,8 +176,8 @@ And now, let's calculate distances with the least cost path analysis!
 
 ```{r distances2, warning = FALSE, eval = TRUE}
 dist2 <- costDistance(raster_bay_tr,
-                      fromCoords = as(as_Spatial(coords[1,]), "SpatialPoints"),
-                      toCoords = as(as_Spatial(coords[-1,]), "SpatialPoints"))
+                      fromCoords = as(as_Spatial(coords[1, ]), "SpatialPoints"),
+                      toCoords = as(as_Spatial(coords[-1, ]), "SpatialPoints"))
 
 dist2_df <- data.frame(dist2, row.names = "Distance from init:")
 colnames(dist2_df) <- c("P1", "P2", "P3")
@@ -260,8 +272,7 @@ If you are just calculating a handful of distances such as in this example, `gdi
 Techniques above will be highly useful for many research questions, *e.g.* determining the influence of a perturbation in an ecosystem, characterizing species movements or community connectivity... The method presented in this post is one of the many that exist to answer these questions. You can find many tutorials for geographic information system such as ArcGIS or QGIS, but I thought a simple presentation for R users would be welcomed. Enjoy!
 
 
-<center> ![](Figures/Zoidberg2.gif) </center>
-
+{{< imgcenter "Figures/Zoidberg2.gif" 25 >}}
 
 
 ## References

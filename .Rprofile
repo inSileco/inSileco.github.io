@@ -44,6 +44,6 @@ if ("knitr" %in% unlist(lapply(.libPaths(), list.files))) {
 
   path_root <- getwd()
   path_session_info <- file.path(path_root, "static/Rscript/sessionInfo.Rmd")
-  path_ref_bib <- file.path(path_root, "static/ref/inSilecoRef.bib")
+  path_ref_bib <- file.path(path_root, "static/ref/inSileco.bib")
   path_ref_csl <- file.path(path_root, "static/ref/peerj.csl")
 }
