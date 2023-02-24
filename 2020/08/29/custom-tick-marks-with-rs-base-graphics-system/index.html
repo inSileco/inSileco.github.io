@@ -135,30 +135,34 @@
 <div class="row">
 
     <div class="col-md-3">
-        <h2 style="margin-top: 0.5rem; margin-bottom: 0.25rem;">
-    <a href="#">
-        <i class='fas fa-chevron-up'></i>
-    </a>
-</h2>
+        <div class = "toc">
 
+    <h2 style="margin-top: 0.5rem; padding-top: 0.5rem; padding-bottom: 0.25rem;">
+        <a href="#">
+            <i class='fas fa-chevron-up'></i>
+        </a>
+    </h2>
 
+    
     <nav id="TableOfContents">
-  <ol>
+  <ul>
     <li><a href="#context">Context</a></li>
     <li><a href="#remove-axes-and-add-them-back">Remove axes and add them back</a></li>
     <li><a href="#second-set-of-tick-marks">Second set of tick marks</a></li>
     <li><a href="#remove-the-extra-line">Remove the extra line</a></li>
     <li><a href="#custom-the-ticks">Custom the ticks</a></li>
     <li><a href="#wrap-all-that-up-in-a-function">Wrap all that up in a function</a></li>
-  </ol>
+  </ul>
 </nav>
+    
 
+    <h2 style="margin-top: 0.25rem; padding-top: 0.5rem;">
+        <a href="#bottom">
+            <i class='fas fa-chevron-down'></i>
+        </a>
+    </h2>
 
-<h2 style="margin-top: 0.5rem; margin-bottom: 0.25rem;">
-    <a href="#bottom">
-        <i class='fas fa-chevron-down'></i>
-    </a>
-</h2>
+</div>
     </div>
 
 
@@ -667,13 +671,12 @@ a function similar to the one below:</p>
 </span><span class="lnt">30
 </span><span class="lnt">31
 </span><span class="lnt">32
-</span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.2.2 (2022-10-31)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.1 LTS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.2 LTS</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Matrix products: default</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3</span>
@@ -688,21 +691,20 @@ a function similar to the one below:</p>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  other attached packages:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoRef_0.0.1.9000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoRef_0.1.0</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] Rcpp_1.0.10       highr_0.10        jquerylib_0.1.4   bslib_0.4.2       compiler_4.2.2   </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] pillar_1.8.1      later_1.3.0       plyr_1.8.8        tools_4.2.2       digest_0.6.31    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] evaluate_0.20     tibble_3.1.8      lubridate_1.9.2   jsonlite_1.8.4    lifecycle_1.0.3  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] timechange_0.2.0  rcrossref_1.2.0   pkgconfig_2.0.3   rlang_1.0.6       bibtex_0.5.1     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] shiny_1.7.4       cli_3.6.0         yaml_2.3.7        crul_1.3          curl_5.0.0       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] blogdown_1.16     xfun_0.37         fastmap_1.1.0     RefManageR_1.4.0  httr_1.4.4       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] stringr_1.5.0     dplyr_1.1.0       xml2_1.3.3        knitr_1.42        sass_0.4.5       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] generics_0.1.3    htmlwidgets_1.6.1 vctrs_0.5.2       tidyselect_1.2.0  DT_0.27          </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] glue_1.6.2        httpcode_0.3.0    R6_2.5.1          fansi_1.0.4       bookdown_0.32    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] rmarkdown_2.20    magrittr_2.0.3    backports_1.4.1   promises_1.2.0.1  htmltools_0.5.4  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] ellipsis_0.3.2    mime_0.12         xtable_1.8-4      httpuv_1.6.9      utf8_1.2.3       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [56] stringi_1.7.12    miniUI_0.1.1.1    cachem_1.0.6</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] evaluate_0.20     jsonlite_1.8.4    lifecycle_1.0.3   tibble_3.1.8      rcrossref_1.2.0  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] pkgconfig_2.0.3   rlang_1.0.6       bibtex_0.5.1      shiny_1.7.4       cli_3.6.0        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] yaml_2.3.7        crul_1.3          curl_5.0.0        blogdown_1.16     xfun_0.37        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] fastmap_1.1.0     xml2_1.3.3        stringr_1.5.0     dplyr_1.1.0       knitr_1.42       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] sass_0.4.5        generics_0.1.3    fs_1.6.1          htmlwidgets_1.6.1 vctrs_0.5.2      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] DT_0.27           tidyselect_1.2.0  glue_1.6.2        httpcode_0.3.0    R6_2.5.1         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] fansi_1.0.4       bookdown_0.32     rmarkdown_2.20    magrittr_2.0.3    backports_1.4.1  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] promises_1.2.0.1  ellipsis_0.3.2    htmltools_0.5.4   mime_0.12         xtable_1.8-4     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] httpuv_1.6.9      utf8_1.2.3        stringi_1.7.12    miniUI_0.1.1.1    cachem_1.0.6</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -861,7 +863,7 @@ a function similar to the one below:</p>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 20 February 2023 01:43 UTC.
+      Latest build: 24 February 2023 23:00 UTC.
     </p>
 
   </div>

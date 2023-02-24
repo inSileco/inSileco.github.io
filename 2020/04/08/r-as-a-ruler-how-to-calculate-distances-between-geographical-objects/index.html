@@ -135,28 +135,32 @@
 <div class="row">
 
     <div class="col-md-3">
-        <h2 style="margin-top: 0.5rem; margin-bottom: 0.25rem;">
-    <a href="#">
-        <i class='fas fa-chevron-up'></i>
-    </a>
-</h2>
+        <div class = "toc">
 
+    <h2 style="margin-top: 0.5rem; padding-top: 0.5rem; padding-bottom: 0.25rem;">
+        <a href="#">
+            <i class='fas fa-chevron-up'></i>
+        </a>
+    </h2>
 
+    
     <nav id="TableOfContents">
-  <ol>
+  <ul>
     <li><a href="#how-to-define-a-distance">How to define a distance?</a></li>
     <li><a href="#geographical-distances-and-the-problem-of-heterogeneity">Geographical distances and the problem of heterogeneity</a></li>
     <li><a href="#applications-in-r">Applications in R</a></li>
     <li><a href="#references">References</a></li>
-  </ol>
+  </ul>
 </nav>
+    
 
+    <h2 style="margin-top: 0.25rem; padding-top: 0.5rem;">
+        <a href="#bottom">
+            <i class='fas fa-chevron-down'></i>
+        </a>
+    </h2>
 
-<h2 style="margin-top: 0.5rem; margin-bottom: 0.25rem;">
-    <a href="#bottom">
-        <i class='fas fa-chevron-down'></i>
-    </a>
-</h2>
+</div>
     </div>
 
 
@@ -271,7 +275,7 @@
 
 <center>
   <figure>
-    <img class="mg-bot" src="/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/Figures/Euclidean.png" alt="Euclidean Distance" width="20%" >
+    <img class="mg-bot" src="/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/Figures/Euclidean.png" alt="Euclidean Distance" width="25%" >
     <figcaption>
       <i class="fas fa-info-circle" aria-hidden="true"></i>
       Euclidean Distance
@@ -358,7 +362,7 @@
 </span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">dist1</span> <span class="o">&lt;-</span> <span class="nf">st_distance</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">coords[1</span><span class="p">,</span><span class="n">]</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">coords[</span><span class="m">-1</span><span class="p">,</span><span class="n">]</span><span class="p">)</span>
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">dist1</span> <span class="o">&lt;-</span> <span class="nf">st_distance</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">coords[1</span><span class="p">,</span> <span class="n">]</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">coords[</span><span class="m">-1</span><span class="p">,</span> <span class="n">]</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">dist1_df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">dist1</span><span class="p">,</span> <span class="n">row.names</span> <span class="o">=</span> <span class="s">&#34;Distance from init:&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">colnames</span><span class="p">(</span><span class="n">dist1_df</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;P1&#34;</span><span class="p">,</span> <span class="s">&#34;P2&#34;</span><span class="p">,</span> <span class="s">&#34;P3&#34;</span><span class="p">)</span>
@@ -428,7 +432,17 @@
 <li><code>8</code> is straight and diagonal lines, <em>i.e.</em> queen;</li>
 <li><code>16</code> is straight, diagonal lines and tilted diagonals, <em>i.e.</em> queen and knights.</li>
 </ul>
-<center> ![Direction selection for the transition matrix (*J van Etten*)](Figures/Chess.png) </center>
+
+<center>
+  <figure>
+    <img class="mg-bot" src="/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/Figures/Chess.png" alt="Direction selection for the transition matrix (*J van Etten*)" width="60%" >
+    <figcaption>
+      <i class="fas fa-info-circle" aria-hidden="true"></i>
+      Direction selection for the transition matrix (<em>J van Etten</em>)
+    </figcaption>
+  </figure>
+</center>
+
 <p>The <code>geoCorrection()</code> function is needed to apply a correction to the transition matrix so that units and map distortion are taken into account (this may be more or less relevant depending on the CRS used).</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -457,8 +471,8 @@
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">dist2</span> <span class="o">&lt;-</span> <span class="nf">costDistance</span><span class="p">(</span><span class="n">raster_bay_tr</span><span class="p">,</span>
-</span></span><span class="line"><span class="cl">                      <span class="n">fromCoords</span> <span class="o">=</span> <span class="nf">as</span><span class="p">(</span><span class="nf">as_Spatial</span><span class="p">(</span><span class="n">coords[1</span><span class="p">,</span><span class="n">]</span><span class="p">),</span> <span class="s">&#34;SpatialPoints&#34;</span><span class="p">),</span>
-</span></span><span class="line"><span class="cl">                      <span class="n">toCoords</span> <span class="o">=</span> <span class="nf">as</span><span class="p">(</span><span class="nf">as_Spatial</span><span class="p">(</span><span class="n">coords[</span><span class="m">-1</span><span class="p">,</span><span class="n">]</span><span class="p">),</span> <span class="s">&#34;SpatialPoints&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">fromCoords</span> <span class="o">=</span> <span class="nf">as</span><span class="p">(</span><span class="nf">as_Spatial</span><span class="p">(</span><span class="n">coords[1</span><span class="p">,</span> <span class="n">]</span><span class="p">),</span> <span class="s">&#34;SpatialPoints&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                      <span class="n">toCoords</span> <span class="o">=</span> <span class="nf">as</span><span class="p">(</span><span class="nf">as_Spatial</span><span class="p">(</span><span class="n">coords[</span><span class="m">-1</span><span class="p">,</span> <span class="n">]</span><span class="p">),</span> <span class="s">&#34;SpatialPoints&#34;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">dist2_df</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">dist2</span><span class="p">,</span> <span class="n">row.names</span> <span class="o">=</span> <span class="s">&#34;Distance from init:&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">colnames</span><span class="p">(</span><span class="n">dist2_df</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;P1&#34;</span><span class="p">,</span> <span class="s">&#34;P2&#34;</span><span class="p">,</span> <span class="s">&#34;P3&#34;</span><span class="p">)</span>
@@ -578,7 +592,12 @@
 <p>You will notice that we find a comparable result from what we calculated previously with <code>gdistance</code> (P2 being the closest potential site), even if this is a bit further than the <code>gdistance</code> estimates. This is likely mostly because of the difference in resolution (and somewhat because of cell shape).</p>
 <p>If you are just calculating a handful of distances such as in this example, <code>gdistance</code> is probably faster. But if you are doing millions, <code>igraph</code> is typically more effective since much of the work is done &lsquo;upfront&rsquo; when you create the graph. It would also be possible to create an <code>igraph</code> network from a <code>gdistance</code> transition raster which would combine the best of both packages.</p>
 <p>Techniques above will be highly useful for many research questions, <em>e.g.</em> determining the influence of a perturbation in an ecosystem, characterizing species movements or community connectivity&hellip; The method presented in this post is one of the many that exist to answer these questions. You can find many tutorials for geographic information system such as ArcGIS or QGIS, but I thought a simple presentation for R users would be welcomed. Enjoy!</p>
-<center> ![](Figures/Zoidberg2.gif) </center>
+<center>
+  
+    <img src="Figures/Zoidberg2.gif" width="25%">
+  
+</center>
+
 <h2 id="references">References</h2>
 <ul>
 <li>Csardi G, Nepusz T (2006). The igraph software package for complex network research. <em>InterJournal</em>, Complex Systems 1695. <a href="http://igraph.org">http://igraph.org</a></li>
@@ -589,7 +608,7 @@
 <li>van Etten J (2017). R Package gdistance: Distances and Routes on Geographical Grids. <em>Journal of Statistical Software</em> 76(13). doi:10.18637/jss.v076.i13.</li>
 </ul>
 <br>
-<div style="padding: 2rem 0rem 2rem 0rem;">
+<div style="margin: 1.5rem 0rem 0.5rem 0rem;">
 <details>
 <summary>Session info <i class="fas fa-cogs" aria-hidden="true"></i></summary>
 <div class="highlight"><div class="chroma">
@@ -632,66 +651,61 @@
 </span><span class="lnt">36
 </span><span class="lnt">37
 </span><span class="lnt">38
-</span><span class="lnt">39
-</span><span class="lnt">40
-</span><span class="lnt">41
-</span><span class="lnt">42
-</span><span class="lnt">43
-</span><span class="lnt">44
-</span><span class="lnt">45
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.2.2 Patched (2022-11-10 r83330)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.1 LTS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.2 LTS</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Matrix products: default</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  locale:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=en_CA.UTF-8       LC_NUMERIC=C              </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [3] LC_TIME=en_CA.UTF-8        LC_COLLATE=en_CA.UTF-8    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] LC_MONETARY=en_CA.UTF-8    LC_MESSAGES=en_CA.UTF-8   </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] LC_PAPER=en_CA.UTF-8       LC_NAME=C                 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=en_CA.UTF-8       LC_NUMERIC=C               LC_TIME=en_CA.UTF-8       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [4] LC_COLLATE=en_CA.UTF-8     LC_MONETARY=en_CA.UTF-8    LC_MESSAGES=en_CA.UTF-8   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] LC_PAPER=en_CA.UTF-8       LC_NAME=C                  LC_ADDRESS=C              </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] LC_TELEPHONE=C             LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  attached base packages:</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  other attached packages:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] gdistance_1.3-6        Matrix_1.5-3           igraph_1.3.5          </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [4] raster_3.6-14          sp_1.6-0               sf_1.0-9              </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [7] knitr_1.41             inSilecoRef_0.0.1.9000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] gdistance_1.3-6   Matrix_1.5-3      igraph_1.4.0      raster_3.6-14     sp_1.6-0         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [6] sf_1.0-9          knitr_1.41        inSilecoRef_0.1.0</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] Rcpp_1.0.10        lattice_0.20-45    lubridate_1.8.0    class_7.3-21      </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] ps_1.7.2           digest_0.6.31      utf8_1.2.3         mime_0.12         </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] R6_2.5.1           plyr_1.8.8         backports_1.4.1    evaluate_0.19     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] e1071_1.7-13       highr_0.10         httr_1.4.4         blogdown_1.16     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [17] pillar_1.8.1       rlang_1.0.6        curl_5.0.0         data.table_1.14.6 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] miniUI_0.1.1.1     callr_3.7.3        jquerylib_0.1.4    DT_0.26           </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] rmarkdown_2.19     RefManageR_1.3.0   rcrossref_1.2.0    stringr_1.5.0     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [29] htmlwidgets_1.6.1  proxy_0.4-27       shiny_1.7.4        compiler_4.2.2    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] httpuv_1.6.8       xfun_0.36          pkgconfig_2.0.3    htmltools_0.5.4   </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] tidyselect_1.2.0   tibble_3.1.8       httpcode_0.3.0     bookdown_0.32     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] codetools_0.2-19   fansi_1.0.4        dplyr_1.1.0        withr_2.5.0       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [45] later_1.3.0        grid_4.2.2         crul_1.3           jsonlite_1.8.4    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] xtable_1.8-4       lifecycle_1.0.3    DBI_1.1.3          magrittr_2.0.3    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [53] units_0.8-1        KernSmooth_2.23-20 cli_3.5.0          stringi_1.7.8     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [57] cachem_1.0.6       promises_1.2.0.1   xml2_1.3.3         bslib_0.4.2       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [61] ellipsis_0.3.2     targets_0.14.2     generics_0.1.3     vctrs_0.5.2       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [65] tools_4.2.2        glue_1.6.2         processx_3.8.0     fastmap_1.1.0     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [69] yaml_2.3.6         terra_1.7-3        base64url_1.4      classInt_0.4-8    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [73] sass_0.4.5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] Rcpp_1.0.10        lattice_0.20-45    class_7.3-21       ps_1.7.2           digest_0.6.31     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] utf8_1.2.3         mime_0.12          R6_2.5.1           plyr_1.8.8         backports_1.4.1   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] evaluate_0.19      e1071_1.7-13       highr_0.10         blogdown_1.16      pillar_1.8.1      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] rlang_1.0.6        curl_5.0.0         data.table_1.14.8  miniUI_0.1.1.1     callr_3.7.3       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] jquerylib_0.1.4    DT_0.26            rmarkdown_2.19     rcrossref_1.2.0    stringr_1.5.0     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] htmlwidgets_1.6.1  proxy_0.4-27       shiny_1.7.4        compiler_4.2.2     httpuv_1.6.9      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] xfun_0.36          pkgconfig_2.0.3    htmltools_0.5.4    tidyselect_1.2.0   tibble_3.1.8      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] httpcode_0.3.0     bookdown_0.32      codetools_0.2-19   fansi_1.0.4        dplyr_1.1.0       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] withr_2.5.0        later_1.3.0        grid_4.2.2         crul_1.3           jsonlite_1.8.4    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] xtable_1.8-4       lifecycle_1.0.3    DBI_1.1.3          magrittr_2.0.3     units_0.8-1       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] KernSmooth_2.23-20 bibtex_0.5.1       cli_3.5.0          stringi_1.7.8      cachem_1.0.6      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [56] fs_1.6.1           promises_1.2.0.1   xml2_1.3.3         bslib_0.4.2        ellipsis_0.3.2    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [61] targets_0.14.2     generics_0.1.3     vctrs_0.5.2        tools_4.2.2        glue_1.6.2        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [66] processx_3.8.0     fastmap_1.1.0      yaml_2.3.6         terra_1.7-3        base64url_1.4     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [71] classInt_0.4-8     sass_0.4.5</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
 </div>
 
 
+                
+                    <div class="edits" style="margin-top: 2em; margin-bottom: 1em;">
+                        <h4><b><i class="fas fa-edit" aria-hidden="true"></i> Edits</b></h4>
+                        <p style="font-size: 1.5rem">
+                            
+                            <i class="fas fa-pencil-alt" aria-hidden="true"></i> Apr 24, 2022 -- Add figures back. <br>
+                            
+                        </p>
+                    </div>
                 
 
 
@@ -844,7 +858,7 @@
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 20 February 2023 01:43 UTC.
+      Latest build: 24 February 2023 23:00 UTC.
     </p>
 
   </div>

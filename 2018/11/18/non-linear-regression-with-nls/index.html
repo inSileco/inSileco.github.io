@@ -135,27 +135,31 @@
 <div class="row">
 
     <div class="col-md-3">
-        <h2 style="margin-top: 0.5rem; margin-bottom: 0.25rem;">
-    <a href="#">
-        <i class='fas fa-chevron-up'></i>
-    </a>
-</h2>
+        <div class = "toc">
 
+    <h2 style="margin-top: 0.5rem; padding-top: 0.5rem; padding-bottom: 0.25rem;">
+        <a href="#">
+            <i class='fas fa-chevron-up'></i>
+        </a>
+    </h2>
 
+    
     <nav id="TableOfContents">
-  <ol>
+  <ul>
     <li><a href="#context">Context</a></li>
     <li><a href="#goal-and-data">Goal and data</a></li>
     <li><a href="#use-nls">Use <code>nls()</code></a></li>
-  </ol>
+  </ul>
 </nav>
+    
 
+    <h2 style="margin-top: 0.25rem; padding-top: 0.5rem;">
+        <a href="#bottom">
+            <i class='fas fa-chevron-down'></i>
+        </a>
+    </h2>
 
-<h2 style="margin-top: 0.5rem; margin-bottom: 0.25rem;">
-    <a href="#bottom">
-        <i class='fas fa-chevron-down'></i>
-    </a>
-</h2>
+</div>
     </div>
 
 
@@ -286,13 +290,13 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl">  <span class="n">sim</span> <span class="o">=</span> <span class="n">Tinf</span> <span class="o">-</span> <span class="p">(</span><span class="n">Tinf</span><span class="o">-</span> <span class="n">T0</span><span class="p">)</span> <span class="o">*</span> <span class="nf">exp</span><span class="p">(</span><span class="o">-</span><span class="n">k</span> <span class="o">*</span> <span class="n">seqt</span><span class="p">)</span> <span class="o">+</span> <span class="m">.5</span> <span class="o">*</span> <span class="nf">rnorm</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">seqt</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">%&gt;%</span> <span class="n">as.data.frame</span>
 </span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">simdata</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    seqt       sim</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.00  9.873758</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.25 11.062139</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.50 11.301027</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.75 11.439111</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 1.00 11.954068</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 1.25 12.994992</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    seqt      sim</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.00 10.57189</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.25 10.77023</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.50 10.90010</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.75 11.31658</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 1.00 11.75251</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 1.25 12.48457</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="use-nls">Use <code>nls()</code></h2>
@@ -325,11 +329,11 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    model: sim ~ Tinf - (Tinf - 10) * exp(-k * seqt)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     data: simdata</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     Tinf       k </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  19.9410  0.2068 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   residual sum-of-squares: 45.04</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  20.0387  0.1899 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   residual sum-of-squares: 45.53</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Number of iterations to convergence: 9 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Achieved convergence tolerance: 8.788e-07</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Number of iterations to convergence: 8 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Achieved convergence tolerance: 1.867e-06</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Let&rsquo;s draw a quick plot:</p>
@@ -388,13 +392,12 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span><span class="lnt">30
 </span><span class="lnt">31
 </span><span class="lnt">32
-</span><span class="lnt">33
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.2.2 (2022-10-31)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.1 LTS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.2 LTS</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Matrix products: default</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3</span>
@@ -409,21 +412,20 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  other attached packages:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] magrittr_2.0.3         inSilecoRef_0.0.1.9000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] magrittr_2.0.3    inSilecoRef_0.1.0</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] Rcpp_1.0.10       highr_0.10        jquerylib_0.1.4   bslib_0.4.2       compiler_4.2.2   </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] pillar_1.8.1      later_1.3.0       plyr_1.8.8        tools_4.2.2       digest_0.6.31    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] evaluate_0.20     tibble_3.1.8      lubridate_1.9.2   jsonlite_1.8.4    lifecycle_1.0.3  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] timechange_0.2.0  rcrossref_1.2.0   pkgconfig_2.0.3   rlang_1.0.6       bibtex_0.5.1     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] shiny_1.7.4       cli_3.6.0         yaml_2.3.7        crul_1.3          curl_5.0.0       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] blogdown_1.16     xfun_0.37         fastmap_1.1.0     RefManageR_1.4.0  httr_1.4.4       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] stringr_1.5.0     dplyr_1.1.0       xml2_1.3.3        knitr_1.42        sass_0.4.5       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] generics_0.1.3    htmlwidgets_1.6.1 vctrs_0.5.2       tidyselect_1.2.0  DT_0.27          </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] glue_1.6.2        httpcode_0.3.0    R6_2.5.1          fansi_1.0.4       bookdown_0.32    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] rmarkdown_2.20    backports_1.4.1   promises_1.2.0.1  htmltools_0.5.4   ellipsis_0.3.2   </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] mime_0.12         xtable_1.8-4      httpuv_1.6.9      utf8_1.2.3        stringi_1.7.12   </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [56] miniUI_0.1.1.1    cachem_1.0.6</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] evaluate_0.20     jsonlite_1.8.4    lifecycle_1.0.3   tibble_3.1.8      rcrossref_1.2.0  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] pkgconfig_2.0.3   rlang_1.0.6       bibtex_0.5.1      shiny_1.7.4       cli_3.6.0        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] yaml_2.3.7        crul_1.3          curl_5.0.0        blogdown_1.16     xfun_0.37        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] fastmap_1.1.0     xml2_1.3.3        stringr_1.5.0     dplyr_1.1.0       knitr_1.42       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] sass_0.4.5        generics_0.1.3    fs_1.6.1          htmlwidgets_1.6.1 vctrs_0.5.2      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] DT_0.27           tidyselect_1.2.0  glue_1.6.2        httpcode_0.3.0    R6_2.5.1         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] fansi_1.0.4       bookdown_0.32     rmarkdown_2.20    backports_1.4.1   promises_1.2.0.1 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] ellipsis_0.3.2    htmltools_0.5.4   mime_0.12         xtable_1.8-4      httpuv_1.6.9     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] utf8_1.2.3        stringi_1.7.12    miniUI_0.1.1.1    cachem_1.0.6</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -582,7 +584,7 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 20 February 2023 01:43 UTC.
+      Latest build: 24 February 2023 23:00 UTC.
     </p>
 
   </div>
