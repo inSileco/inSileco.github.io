@@ -1,12 +1,10 @@
 # REMEMBER to restart R after you modify and save this file!
 
 # First, execute the global .Rprofile if it exists. You may configure blogdown
-# options there, too, so they apply to any blogdown projects. Feel free to
-# ignore this part if it sounds too complicated to you.
+# options there, too, so they apply to any blogdown projects.
 if (file.exists("~/.Rprofile")) {
   base::sys.source("~/.Rprofile", envir = environment())
 }
-
 # Now set options to customize the behavior of blogdown for this project. Below
 # are a few sample options; for more options, see
 # https://bookdown.org/yihui/blogdown/global-options.html
@@ -22,7 +20,6 @@ options(
   # blogdown.hugo.version = "0.96.0"
 )
 
-
 # If is used to avoid problems with GHA worklow when knitr is missing
 if ("knitr" %in% unlist(lapply(.libPaths(), list.files))) {
   knitr::opts_chunk$set(
@@ -35,13 +32,27 @@ if ("knitr" %in% unlist(lapply(.libPaths(), list.files))) {
     fig.align = "center",
     width = 100
   )
-
   library(inSilecoRef)
-  rfa <- function(...) icons::icon_style(icons::fontawesome(...), fill = "currentColor")
+  rfa <- function(...) {
+    icons::icon_style(icons::fontawesome(...), fill = "currentColor")
+  }
+  ar <- function() rfa("arrow-right")
   gh <- function() rfa("github")
   rp <- function() rfa("r-project")
   wk <- function() rfa("wikipedia-w")
+  lk <- function() rfa("link")
 
+  # hyperlinks
+  href <- function(href, desc = href) {
+    paste0("[", desc, "]", "(", href, ")")
+  }
+  # using shortcode
+  ref <- function(ref, desc = lk(), alt = "") {
+    htmltools::HTML(
+      paste0('[', desc, ']({{< ref "', ref, '" >}} "', alt, '")')
+    )
+  }
+  
   path_root <- getwd()
   path_session_info <- file.path(path_root, "static/Rscript/sessionInfo.Rmd")
   path_ref_bib <- file.path(path_root, "static/ref/inSileco.bib")

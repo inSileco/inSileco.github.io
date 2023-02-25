@@ -1,0 +1,13 @@
+{{ $vid := $.Page.Resources.GetMatch (.Get 0) }}
+<center>
+  <figure>
+    <video width="{{ .Get 2 | default 100 }}%" controls>
+      <source src="{{ $vid.RelPermalink }}" type="video/webm">
+      Your browser does not support the video tag.
+     </video>
+    <figcaption>
+      <i class="fas fa-info-circle" aria-hidden="true"></i>
+      {{ .Get 1 | markdownify  }}
+    </figcaption>
+  </figure>
+</center>

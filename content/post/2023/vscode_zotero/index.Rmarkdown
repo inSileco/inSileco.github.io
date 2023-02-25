@@ -1,11 +1,11 @@
 ---
-title: "Go Zotero! Zotero is dope!"
+title: "Academic writing with Markdown, Visual Studio Code and Zotero"
 author: [kevin]
-date: 2023-02-22
-tags: [R, data visualization]
-tweet: "Empty your R plots!"
+date: 2023-04-01
+tags: [scientific writing, Zotero, VSCode]
+tweet: "Academic writing with Markdown, Visual Studio Code and Zotero"
 draft: true
-estime: 10
+estime: 8
 bibliography: "`r path_ref_bib`"
 csl: "`r path_ref_csl`"
 link-citations: yes
@@ -18,145 +18,152 @@ output:
 
 
 
-Essai [@igraph_2006; @terra_2023]
-
-## Context
-
-I've been using a reference manager for 9 years now. During my master and my PhD I used  
-[Mendeley](https://www.mendeley.com/?interaction_required=true) but
-when I [to Debian](/2018/01/21/setting-my-debian-stretch-up/) more than 2 years ago
-when I siwtched to [Zotero](https://www.zotero.org/), mainly because
-[Elsevier bought Mendeley](https://techcrunch.com/2013/04/08/confirmed-elsevier-has-bought-mendeley-for-69m-100m-to-expand-open-social-education-data-efforts/
-) while [Zotero is open-source](https://github.com/zotero/zotero)
-and a great initiative of the [Corporation for Digital Scholarship]().
-
-[RELX](https://en.wikipedia.org/wiki/RELX)
-
-"'Timeline showing the launch dates (magenta) and discontinuation dates (gray) of ASNS' from Kate Jordan (2019), *Front. Digit. Humanit.* doi: [10.3389/fdigh.2019.00005](https://doi.org/10.3389/fdigh.2019.00005)."
-
-https://www.frontiersin.org/files/Articles/433144/fdigh-06-00005-HTML/image_m/fdigh-06-00005-g001.jpg
-
-In 2017 the Guardian noted
-
-> Despite the narrow audience, scientific publishing is a remarkably big business. With total global revenues of more than £19bn, it weighs in somewhere between the recording and the film industries in size, but it is far more profitable.
-
-
-[Papers](https://www.papersapp.com/)
-
-
->  In 2013, Elsevier bought Mendeley, primarily a bibliographic tool but also an ASNS (Shaw, 2013) as part of their strategy to acquire a wide range of scholarly online tools and establish themselves as a platform (Robertson, 2018). However, the business model of ASNS and their intentions to monetise the networks remains opaque.[^note:1]
-
-[^note:1]: from Kate Jordan (2019), *Front. Digit. Humanit.* doi: [10.3389/fdigh.2019.00005](https://doi.org/10.3389/fdigh.2019.00005).
-
-Academic Social Network Sites (ASNS)
-
-
-# Several valid options
-
-
-and keep Mendeley until recently. I switched to Debian and though it makes
-to swocth to Zotero as mendely bough by Elsevier (ref).
+Academics write papers to report their findings and this actually represents a fair amount of their time. As this is an important part of their job, they need to use a **document preparation system** (a word processor) they are comfortable to work with. Another important aspect of the kind of writing they do is to explain how their work is fitting in the current body of knowledge. To do so, they cite other papers and to manage all the references they are using, they use a **reference manager system**. In this post I will detail my current setup for academic writing that currently revolves around two pieces of software (with adhoc extensions): [Zotero](https://www.zotero.org/) and [Visual Studio Code](https://code.visualstudio.com/) (VS Code).
 
 
 
+## Zotero 
 
-https://www.theguardian.com/science/2017/jun/27/profitable-business-scientific-publishing-bad-for-science
+I've been using a reference manager for 12 years now. I first used [Mendeley](https://www.mendeley.com) but I later decided to switch to [Zotero](https://www.zotero.org/). That was about 5 years ago, but it was a change that I long postponed as I wanted to switch as soon as [Elsevier bought Mendeley](https://techcrunch.com/2013/04/08/confirmed-elsevier-has-bought-mendeley-for-69m-100m-to-expand-open-social-education-data-efforts/) back in 2013 [@Jordan_2019].
 
-https://fr.wikipedia.org/wiki/Zotero
+>  In 2013, Elsevier bought Mendeley, primarily a bibliographic tool but also an ASNS [Academic Social Network Sites — ed.] (Shaw, 2013) as part of their strategy to acquire a wide range of scholarly online tools and establish themselves as a platform (Robertson, 2018). However, the business model of ASNS and their intentions to monetise the networks remains opaque.
 
-https://en.wikipedia.org/wiki/Mendeley
+With hindsight, I am glad I opted for Zotero and here are the reasons why: 
 
-https://www.nature.com/articles/455708a.pdf
-
-Depuis 2006 https://www.zotero.org/getinvolved Zotero is a project of the
-https://digitalscholar.org/
-
-
-
-## Consider your options
-
-May be chnage
-
-https://www.jabref.org/
-
-https://forums.zotero.org/discussion/65393/choosing-reference-management-software-endnote-zotero-mendeley
-
-https://github.com/emptymalei/awesome-research
-
+- Zotero is free;
+- Zotero is open source https://github.com/zotero;
+- Zotero is led by a non-profit organization (the [Corporation for Digital Scholarship](https://digitalscholar.org/));
+- Zotero is developed by a [global community](https://www.zotero.org/support/credits_and_acknowledgments);
+- Zotero is thoroughly documented for users (e.g. the [quick start guide](https://www.zotero.org/support/quick_start_guide)) and for developers (see the [documentation](https://www.zotero.org/support/dev/start));
+- Zotero is easy to use and has all the features that make a great reference manager system:
+  - it stores your PDF in a dedicated folder (`/storage`) and stores all metadata (author, title, publisher, etc.) in a sqlite database (see ['Zotero data directory'](https://www.zotero.org/support/zotero_data)) that are both easy to backup,  
+  - it can retrieve documents metadata from identifiers (DOI ISBN, DOI, PubMed ID, or arXiv ID, see ['Adding Items to Zotero'](https://www.zotero.org/support/adding_items_to_zotero)) and directly from PDF metadata,
+  - it makes the organization of references easy with [collections and tags](https://www.zotero.org/support/collections_and_tags),
+  - it has great interfaces to [search items](https://www.zotero.org/support/searching) and to [handle duplicates](https://www.zotero.org/support/duplicate_detection),
+  - it makes it easy to cite specific papers (basically `CTRL+SHIFT+C`) or to create/export bibliographies (e.g. using the context menu),
+  - it supports a large array of citation format (available as [CSL files](https://www.zotero.org/support/dev/citation_styles)).
+  - it offers neat plugins to seamlessly add reference directly from word processors (e.g [the Zotero LibreOffice Plugin](https://www.zotero.org/support/libreoffice_writer_plugin_usage)),
+  - it has great [Add-ons](https://www.zotero.org/support/plugins) (such as [Better Bibtex](https://retorque.re/zotero-better-bibtex/) that I introduce below). 
 
 
-I was on Mendeley then on Zotero
-took me sone time but I am really happy now,
+The only Mendeley's feature I have missed so far is the search in body text of the entire collection of PDF (very useful for non-native english speakers). That said, as all PDF files are actually stored in one place, I simply created an alias using the [`grep`](https://help.ubuntu.com/community/grep) command line: 
 
-I am now on version 5
-
-
-Recently develop that I've switched to Debian. started with Zotero 4.0.29.16,
-Not sirptrinsing developement on version 5 that I was to install
-the version 5, and so I did
-
-
-```bash
-$ /home/kevcaz/.local/lib/zotero/zotero --version                                                    
-Zotero Zotero 5.0.81, Copyright (c) 2006-2018 Contributors
+```sh
+$ alias szot='grep -rnw ~/Zotero/storage/ -e'
 ```
 
-https://forums.zotero.org/discussion/68453/install-zotero-5-0-on-ubuntu
+which fulfills my need! This command should work on most of Unix-like
+operating system and I am pretty sure there are simple ways to do this on Windows. 
+
+To conclude this first section, a word about the version of Zotero I am referring to here. As I am writing this post, I am using Zotero v6.0.20 (installed on my Ubuntu 22.04 via [flatpak](https://flatpak.org/)), but the latest version available is v6.0.23 (see the [changelog](https://www.zotero.org/support/changelog) for more information). 
 
 
 
-From Mendeley to Zotero
+## Better Bibtex
 
-I just think it makes to me to swicth to freeware when possible and I acknowledge not always easy but I am use as many software as I can and I am always astoimished to realize how good they are (sometinme it takes some time to master them but they were sure well thpought and well done)
+I briefly mentioned [Better BibTeX](https://retorque.re/zotero-better-bibtex/) earlier, it is most definitely a must-have add-on for Zotero! As explained on the extension's website:
 
-I've used Mendeley. I move and I really think it was time to jump to a free software Zotero.
+> Better BibTeX (BBT) is an extension for Zotero and Juris-M [a variant of Zotero — ed.] that makes it easier to manage bibliographic data, especially for people authoring documents using text-based toolchains (e.g. based on LaTeX / Markdown).
 
-First version. It took me sometime to change but
+I belong to this category of people who author documents with Markdown which I guess explain why I find it so useful! Among the great features Better BibTeX includes, the one that is essential to my workflow is the [automatic export](https://retorque.re/zotero-better-bibtex/exporting/auto/) that I have configured so that every time I add a new item to my reference list, a [.bib file](https://en.wikipedia.org/wiki/BibTeX) (say `myref.bib`) is updated and I also opted for the following citation key formula: `auth.lower + "_"+ year + "_" + shorttitle(2,2)` which means that the citation key is made of the author name in lower case followed by the publication year and the first two words of the title that will be capitalized ([seeCitation Keys](https://retorque.re/zotero-better-bibtex/citing/)), the three elements being separated by two underscores. As an example, take the citation to @Jordan_2019 I used earlier, with this configuration its key will be `jordan_2019_FromSocial`.
 
-What I regret is the search in data base so I coded something...
-was relatively easy
+```{R fig1, echo = FALSE}
+blogdown::shortcode_html(
+    .name = "figcenter", 
+    "img/bbt.png", 
+    "On the left panel is a screenshot showing my current citation key formula (menu \\'Edit\\' then \\'Preferences\\'). On the right panel is a screenshot showing how to export a bibliography that will be kept updated (menu \\'File\\' then \\'Export Library ...\\')", 
+    80
+  )
+```
 
-https://stackoverflow.com/questions/16956810/how-do-i-find-all-files-containing-specific-text-on-linux
+If you want to learn more about Better BibText, simply visit the documentation website (https://retorque.re/zotero-better-bibtex/) and if you want to dig deeper, the source code is available on [`r gh()`](https://github.com/retorquere/zotero-better-bibtex.), where you can also access the latest release there. I personally used [`wget`](https://www.gnu.org/software/wget/) to do that:
 
-grep -rnw Zotero/storage/ -e 'homoge'   
+```sh
+$ wget https://github.com/retorquere/zotero-better-bibtex/releases/download/v6.7.54/zotero-better-bibtex-6.7.54.xpi
+```
+
+then see [Plugins for Zotero](https://www.zotero.org/support/plugins) to install it.
+
+
+
+## Visual Studio Code 
+
+To write articles there are various valid options on the table that can be split into two broad categories:
+
+1. [WYSIWYG](https://en.wikipedia.org/wiki/WYSIWYG) editors, represented by the popular word processors such as LibreOffice, Google Document, and Microsoft Word (and there are Zotero plugins for these three options)
+2. [WYSIWYM](https://en.wikipedia.org/wiki/WYSIWYM) editors, which include general purpose code editors -- such as [Emacs](https://www.gnu.org/software/emacs/) or [Sublime Text](https://www.sublimetext.com/) -- and specialized ones, e.g. [Overleaf](https://www.overleaf.com/) and [Remarkable](https://remarkableapp.github.io/linux.html). 
+
+Using a code editor to write paper may sound weird at first, but it allows for the [separation of content and presentation](https://en.wikipedia.org/wiki/Separation_of_content_and_presentation) which I love, mainly because it helps me focus on the content and avoid spending time tweaking the format while I am developing an idea.
+
+The first time I used a code editor to write a report was when I switched to [LaTeX](https://www.latex-project.org/), mainly because writing good-looking equations was more efficient with LateX than with LibreOffice. About 10 years ago, I switched to Markdown which I use for all kind of documents: reports, README files, emails, blog posts, etc. (see my post `r ref("post/2018/markdownEverywhere/index.markdown", "Markdown everywhere!")`). For several years, Atom was my code editor and so I wrote papers in Markdown wit it, but [Atom has been recently sunset](https://github.blog/2022-06-08-sunsetting-atom/). For two years now, I have been working with [Visual Code Studio (VS Code)](https://code.visualstudio.com/) which owes Atom big time since the [Electron](https://www.electronjs.org/) framework that VS Code uses was [built to develop Atom](https://www.electronjs.org/blog/electron). 
+
+VS Code includes a good default [Markdown editing](https://code.visualstudio.com/docs/languages/markdown) feature and there are additional extensions available to make it even better (e.g. see the following posts ['How to Turn VSCode Into the Ultimate Markdown Editor'](https://www.makeuseof.com/vscode-ultimate-markdown-editor/) and ['Top 5 VSCode Extensions for Markdown'](https://coderscat.com/awesome-vscode-extensions-for-markdown/)). By the way, when I write long-form document with VS Code, I often use the [Zen mode](https://code.visualstudio.com/docs/getstarted/userinterface#_zen-mode) to be more focused. That being said, the only thing missing to write articles is a connection to Zotero and for this, there are two extensions I recommend:
+
+1. [VS Code Citation Picker for Zotero](https://github.com/mblode/vscode-zotero),
+
+2. [Pandoc Citer Extension for Visual Studio Code](https://github.com/notZaki/PandocCiter).
+
+The first requires Better BibTeX up and running (so Zotero should remain open) and it directly connects to the Zotero database. Once installed, `SHIFT + ALT + Z` triggers a small pop-up window from which you one can select references. Note that all the references should also be included in a bibliography file (`.bib`, `.yaml` or `.json`) that will be used to generate the document in a different format (see below).
+The second option -- the one I use -- does not directly requires Better BibTeX running, but it requires `.bib` file from which the citation can be picked. By default the path to this file will be taken from the field `bibliography` in the YAML front-matter, but a default file can be configured. In my case, I have configured the extension so it points to the file Better BibTeX keeps updated, which is why I need Better BibteX, and if I want to add a reference while I am working on my document, Zotero must be up and running. With this option, I simply hit `@` and a menu with all my reference will be prompted, from which I select the one I want (see the video below).
+Note that irrespective of the extension chosen, the path to the bibliography file needs to be specified so that references can actually be added to the document and this will be done with Pandoc.
+
+```yaml
+---
+title: My new paper
+bibliography: [~/Documents/nextcloud/kevcaz.bib]
+---
+```
+
+
+## Pandoc 
+
+In the process of writing your article you may want to convert your article in a different format, either because you want to see what your article look like in the final format or because you want to share it with collaborators that do not use Markdown or because you need to use a different format for submission. In this case you will use a conversion tool that will most likely be or be based on [Pandoc](https://pandoc.org/). Pandoc is an amazing tool to "convert files from one markup format into another", it is an essential part to many authoring frameworks designed to generate dynamic documents that mix code and text, such as [Rmarkdown](https://rmarkdown.rstudio.com/) and [Quarto](https://posit.co/blog/announcing-quarto-a-new-scientific-and-technical-publishing-system/) in the R ecosystem.
+
+In the section that follows, I will use the latest Pandoc release, currently [3.1.2](https://github.com/jgm/pandoc/releases/tag/3.1.2), to show how to convert a Markdown document in PDF and HTML. With a recent release of Pandoc one simply use the flag `--citeproc` to indicate that references must be parsed and `-o` to specify the output format -- Pandoc will guess what it needs to do based on the file extension.
 
 
 ```sh
-$ alias seazot='grep -rnw ~/Zotero/storage/ -e'
+# conversion to html
+$ pandoc --citeproc paper.md -o paper.html  
+# conversion to PDF
+$ pandoc --citeproc paper.md -o paper.pdf
 ```
 
-### Search in a corpus
+This is raw way of doing the conversion, using the default (and super light) Pandoc's HTML and PDF templates. There are various tools that make the rendering easier with better-looking (and heavier) templates. For instance, in the R ecosystem, R users could use R Markdown and something like this to produce both documents at once: 
 
+```R
+R> library(rmarkdown)
+R> render("paper.md", c("html_document", "pdf_document"))
+```
 
-I took me sometime to be as performennce as I was, essentieally it has the same fumctionality but it's hard de se défaire de of its old habits.
-Zotero 4 then Zotero 5
+Plus, there are dedicated packages to use specific templates, one good example is [rticles](https://github.com/rstudio/rticles) that offers more than 40 LaTeX templates to ease submission to various journals (see [this post](https://cares-blog.gse.harvard.edu/post/2022-09-01-r-markdown/) for further details). Note that for many journals, you can always do a submission with a Word document that can be generated by Pandoc:
 
+```sh
+$ pandoc --citeproc paper.md -o paper.docx
+```
 
+or a tool that leverages Pandoc, e.g. R Markdown:
 
-
-### Better Bibtex
-
-https://github.com/retorquere/zotero-better-bibtex
-
-
-### Pdf reader
-
-I use [Okular](https://okular.kde.org/)
-
-
-
-# What I really like
-
-- duplicate
-- better bibtex
-- easy to use
-- rename from parent file
-
-1. data base
-2. external files
-
-- relatively easy
+```R
+R> library(rmarkdown)
+R> render("paper.md", "word_document")
+```
 
 
 
-# References
+## Workflow (tl;dr)
+
+To sum up, I write my articles in **Markdown** with **VS Code** as my editor and **Zotero** as my reference manager system. I have configured a BibTeX file with all my references updated by **Better BibTeX** and used by **Pandoc Citer** to generate a context menu to pick from every time I hit `@`. When I need a conversion to another format, I use **Pandoc** and I share my Markdown files with collaborators via GitHub.
+
+```{R vid1, echo = FALSE}
+blogdown::shortcode_html(
+    .name = "videocenter", 
+    "img/workflow_compress.webm", 
+    "Screencast demonstrating the workflow described in this post.", 
+    70
+  )
+```
+
+
+
+## References

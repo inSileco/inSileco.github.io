@@ -26,3 +26,18 @@ blogdown::check_config()
 blogdown::check_content()
 blogdown::build_site()
 ```
+
+## Workflow 
+
+Once installed, you can simply stick to the following line of code to launch the blog:
+
+```R
+blogdown::serve_site()
+```
+
+and to stop serving the blog locally,  use 
+
+```R
+blogdown::stop_server()
+```
+
