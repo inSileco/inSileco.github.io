@@ -156,11 +156,11 @@ library(microbenchmark)
 microbenchmark(nchar(vec) > 0, !! nchar(vec), nchar(vec) & 1, nzchar(vec),
   times = 1000L)
 #R>  Unit: nanoseconds
-#R>             expr min  lq    mean median    uq   max neval cld
-#R>   nchar(vec) > 0 705 734 884.609  765.0 857.5 18695  1000  b 
-#R>     !!nchar(vec) 773 810 947.630  835.0 937.0  4355  1000  bc
-#R>   nchar(vec) & 1 787 810 999.148  849.5 945.0 31816  1000   c
-#R>      nzchar(vec)  85  94 121.086  111.0 117.0  1106  1000 a
+#R>             expr min     lq     mean median     uq    max neval cld
+#R>   nchar(vec) > 0 706  986.5 2298.169   1695 2587.5  27104  1000  a 
+#R>     !!nchar(vec) 772 1123.5 2342.956   1842 2704.5  33350  1000  a 
+#R>   nchar(vec) & 1 789 1064.5 2795.344   1896 2750.0 350356  1000  a 
+#R>      nzchar(vec)  73  118.0  317.584    178  266.0  22411  1000   b
 ```
 
 Yep yep\!`nzchar()` is indeed way faster :rocket:\!
@@ -204,8 +204,8 @@ foo2 <- function(x) {
 microbenchmark(foo(4), foo2(4), times = 1e5)
 #R>  Unit: nanoseconds
 #R>      expr min  lq     mean median  uq      max neval cld
-#R>    foo(4) 376 401 607.1724    410 420 12707342 1e+05   b
-#R>   foo2(4) 252 270 320.7638    276 282  2237625 1e+05  a
+#R>    foo(4) 381 412 959.7657    538 847 20661710 1e+05   a
+#R>   foo2(4) 258 275 782.2595    359 615 17068988 1e+05   a
 ```
 
 ## `invisible()`
@@ -257,8 +257,8 @@ ty <- plot_logy(0:10, 0:10)
 
 ``` r
 ty
-#R>   [1] 0.0000000 0.3010300 0.4771213 0.6020600 0.6989700 0.7781513 0.8450980
-#R>   [8] 0.9030900 0.9542425 1.0000000 1.0413927
+#R>   [1] 0.0000000 0.3010300 0.4771213 0.6020600 0.6989700 0.7781513 0.8450980 0.9030900 0.9542425
+#R>  [10] 1.0000000 1.0413927
 ```
 
 ## `bquote()` and `substitute()`
@@ -291,7 +291,7 @@ print(path_root)
 
 #### **That’s all folks\!**
 
-<div style="padding: 2rem 0rem 2rem 0rem;">
+<div style="margin: 1.5rem 0rem 0.5rem 0rem;">
 
 <details>
 
@@ -301,46 +301,40 @@ print(path_root)
 sessionInfo()
 #R>  R version 4.2.2 Patched (2022-11-10 r83330)
 #R>  Platform: x86_64-pc-linux-gnu (64-bit)
-#R>  Running under: Ubuntu 22.04.1 LTS
+#R>  Running under: Ubuntu 22.04.2 LTS
 #R>  
 #R>  Matrix products: default
 #R>  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3
 #R>  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so
 #R>  
 #R>  locale:
-#R>   [1] LC_CTYPE=en_CA.UTF-8       LC_NUMERIC=C              
-#R>   [3] LC_TIME=en_CA.UTF-8        LC_COLLATE=en_CA.UTF-8    
-#R>   [5] LC_MONETARY=en_CA.UTF-8    LC_MESSAGES=en_CA.UTF-8   
-#R>   [7] LC_PAPER=en_CA.UTF-8       LC_NAME=C                 
-#R>   [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-#R>  [11] LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       
+#R>   [1] LC_CTYPE=en_CA.UTF-8       LC_NUMERIC=C               LC_TIME=en_CA.UTF-8       
+#R>   [4] LC_COLLATE=en_CA.UTF-8     LC_MONETARY=en_CA.UTF-8    LC_MESSAGES=en_CA.UTF-8   
+#R>   [7] LC_PAPER=en_CA.UTF-8       LC_NAME=C                  LC_ADDRESS=C              
+#R>  [10] LC_TELEPHONE=C             LC_MEASUREMENT=en_CA.UTF-8 LC_IDENTIFICATION=C       
 #R>  
 #R>  attached base packages:
 #R>  [1] stats     graphics  grDevices utils     datasets  methods   base     
 #R>  
 #R>  other attached packages:
-#R>  [1] microbenchmark_1.4.9   inSilecoRef_0.0.1.9000
+#R>  [1] microbenchmark_1.4.9 inSilecoRef_0.1.0   
 #R>  
 #R>  loaded via a namespace (and not attached):
-#R>   [1] Rcpp_1.0.10       mvtnorm_1.1-3     lubridate_1.8.0   lattice_0.20-45  
-#R>   [5] ps_1.7.2          zoo_1.8-11        digest_0.6.31     utf8_1.2.3       
-#R>   [9] mime_0.12         R6_2.5.1          plyr_1.8.8        backports_1.4.1  
-#R>  [13] evaluate_0.19     highr_0.10        httr_1.4.4        blogdown_1.16    
-#R>  [17] pillar_1.8.1      rlang_1.0.6       curl_5.0.0        multcomp_1.4-20  
-#R>  [21] data.table_1.14.6 miniUI_0.1.1.1    callr_3.7.3       jquerylib_0.1.4  
-#R>  [25] Matrix_1.5-3      DT_0.26           rmarkdown_2.19    splines_4.2.2    
-#R>  [29] RefManageR_1.3.0  rcrossref_1.2.0   stringr_1.5.0     htmlwidgets_1.6.1
-#R>  [33] igraph_1.3.5      shiny_1.7.4       compiler_4.2.2    httpuv_1.6.8     
-#R>  [37] xfun_0.36         pkgconfig_2.0.3   htmltools_0.5.4   tidyselect_1.2.0 
-#R>  [41] tibble_3.1.8      httpcode_0.3.0    bookdown_0.32     codetools_0.2-19 
-#R>  [45] fansi_1.0.4       dplyr_1.1.0       withr_2.5.0       later_1.3.0      
-#R>  [49] MASS_7.3-58.2     grid_4.2.2        crul_1.3          jsonlite_1.8.4   
-#R>  [53] xtable_1.8-4      lifecycle_1.0.3   magrittr_2.0.3    cli_3.5.0        
-#R>  [57] stringi_1.7.8     cachem_1.0.6      promises_1.2.0.1  xml2_1.3.3       
-#R>  [61] bslib_0.4.2       ellipsis_0.3.2    targets_0.14.2    generics_0.1.3   
-#R>  [65] vctrs_0.5.2       sandwich_3.0-2    TH.data_1.1-1     tools_4.2.2      
-#R>  [69] glue_1.6.2        survival_3.5-0    processx_3.8.0    fastmap_1.1.0    
-#R>  [73] yaml_2.3.6        base64url_1.4     knitr_1.41        sass_0.4.5
+#R>   [1] Rcpp_1.0.10       mvtnorm_1.1-3     lattice_0.20-45   ps_1.7.2          zoo_1.8-11       
+#R>   [6] digest_0.6.31     utf8_1.2.3        mime_0.12         R6_2.5.1          plyr_1.8.8       
+#R>  [11] backports_1.4.1   evaluate_0.19     highr_0.10        blogdown_1.16     pillar_1.8.1     
+#R>  [16] rlang_1.0.6       curl_5.0.0        multcomp_1.4-22   data.table_1.14.8 miniUI_0.1.1.1   
+#R>  [21] callr_3.7.3       jquerylib_0.1.4   Matrix_1.5-3      DT_0.26           rmarkdown_2.19   
+#R>  [26] splines_4.2.2     rcrossref_1.2.0   stringr_1.5.0     htmlwidgets_1.6.1 igraph_1.4.0     
+#R>  [31] shiny_1.7.4       compiler_4.2.2    httpuv_1.6.9      xfun_0.36         pkgconfig_2.0.3  
+#R>  [36] htmltools_0.5.4   tidyselect_1.2.0  tibble_3.1.8      httpcode_0.3.0    bookdown_0.32    
+#R>  [41] codetools_0.2-19  fansi_1.0.4       dplyr_1.1.0       withr_2.5.0       later_1.3.0      
+#R>  [46] MASS_7.3-58.2     grid_4.2.2        crul_1.3          jsonlite_1.8.4    xtable_1.8-4     
+#R>  [51] lifecycle_1.0.3   magrittr_2.0.3    bibtex_0.5.1      cli_3.5.0         stringi_1.7.8    
+#R>  [56] cachem_1.0.6      fs_1.6.1          promises_1.2.0.1  xml2_1.3.3        bslib_0.4.2      
+#R>  [61] ellipsis_0.3.2    targets_0.14.2    generics_0.1.3    vctrs_0.5.2       sandwich_3.0-2   
+#R>  [66] TH.data_1.1-1     tools_4.2.2       glue_1.6.2        survival_3.5-3    processx_3.8.0   
+#R>  [71] fastmap_1.1.0     yaml_2.3.6        base64url_1.4     knitr_1.41        sass_0.4.5
 ```
 
 </details>

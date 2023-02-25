@@ -1,24 +1,25 @@
 <h2>Short R tutorials</h2>
 
 <ul>
-{{ range $.Site.Data.tutorials }}
+  {{ range $.Site.Data.tutorials }}
   {{ if eq .category "short R tuto" }}
-    <li>
-      {{ .name }} 
-      {{ with .year }} ({{ . }}) {{ end }} 
-      {{ with .github }}  
-        <a href="https://github.com/{{ . }}" style="display:inline;">
-          <i class="fab fa-github" aria-hidden="true"></i>
-        </a>{{ end }} 
-      {{ with .html }}
-        <a href="{{ . }}" style="display:inline;">
-          <i class="fas fa-globe" aria-hidden="true"></i>
-        </a>
-      {{ end }}
-    </li>
-    {{ with .description }}<p>{{ . }}</p>{{ end }}
+  <li>
+    {{ .name }}
+    {{ with .year }} ({{ . }}) {{ end }}
+    {{ printf ":%s:" .lang | emojify }}
+    {{ with .github }}
+    <a href="https://github.com/{{ . }}" style="display:inline;">
+      <i class="fab fa-github" aria-hidden="true"></i>
+    </a>{{ end }}
+    {{ with .html }}
+    <a href="{{ . }}" style="display:inline;">
+      <i class="fas fa-globe" aria-hidden="true"></i>
+    </a>
+    {{ end }}
+  </li>
+  {{ with .description }}<p>{{ . }}</p>{{ end }}
   {{ end }}
-{{ end }}
+  {{ end }}
 </ul>
 
 
@@ -26,21 +27,22 @@
 
 <ul>
   {{ range $.Site.Data.tutorials }}
-    {{ if eq .category "long R tuto" }}
-      <li>
-        {{ .name }} 
-        {{ with .year }} ({{ . }}) {{ end }} 
-        {{ with .github }}  
-          <a href="https://github.com/{{ . }}" style="display:inline;">
-            <i class="fab fa-github" aria-hidden="true"></i>
-          </a>{{ end }} 
-        {{ with .html }}
-          <a href="{{ . }}" style="display:inline;">
-            <i class="fas fa-globe" aria-hidden="true"></i>
-          </a>
-        {{ end }}
-      </li>
-      {{ with .description }}<p>{{ . }}</p>{{ end }}
+  {{ if eq .category "long R tuto" }}
+  <li>
+    {{ .name }}
+    {{ with .year }} ({{ . }}) {{ end }}
+    {{ printf ":%s:" .lang | emojify }}
+    {{ with .github }}
+    <a href="https://github.com/{{ . }}" style="display:inline;">
+      <i class="fab fa-github" aria-hidden="true"></i>
+    </a>{{ end }}
+    {{ with .html }}
+    <a href="{{ . }}" style="display:inline;">
+      <i class="fas fa-globe" aria-hidden="true"></i>
+    </a>
     {{ end }}
+  </li>
+  {{ with .description }}<p>{{ . }}</p>{{ end }}
   {{ end }}
-  </ul>
+  {{ end }}
+</ul>

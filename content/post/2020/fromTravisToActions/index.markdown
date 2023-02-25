@@ -12,8 +12,6 @@ estime: 5
 edits:
   - date: 2021-05-21
     comment: "Edit the tricks to keep both the versions of the website (dev and last releases)."
-  - date: 2023-02-04
-    comment: "Add captions back."
 output:
   rmarkdown::html_page:
     toc: true
