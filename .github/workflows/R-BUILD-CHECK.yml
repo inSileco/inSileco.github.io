@@ -33,5 +33,4 @@ jobs:
           Rscript -e "blogdown::install_hugo()"
           Rscript -e "blogdown::check_config()"
           Rscript -e "blogdown::check_content()"
-          Rscript -e "blogdown::build_site(build_rmd = 'newfile')"
-          Rscript -e "blogdown::build_site(build_rmd = 'timestamp')"
+          Rscript -e "blogdown::build_site(build_rmd = TRUE)
