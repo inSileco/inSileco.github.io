@@ -18,13 +18,13 @@ output:
 
 
 
-Academics write papers to report their findings and this actually represents a fair amount of their time. As this is an important part of their job, they need to use a **document preparation system** (a word processor) they are comfortable to work with. Another important aspect of the kind of writing they do is to explain how their work is fitting in the current body of knowledge. To do so, they cite other papers and to manage all the references they are using, they use a **reference manager system**. In this post I will detail my current setup for academic writing that currently revolves around two pieces of software (with adhoc extensions): [Zotero](https://www.zotero.org/) and [Visual Studio Code](https://code.visualstudio.com/) (VS Code).
+Academics write papers to report their findings and this actually represents a fair amount of their time. As this is an important part of their job, they need to use a **document preparation system** (a word processor) they are comfortable to work with. Another important aspect of the kind of writing they do is to explain how their work fits in the current body of knowledge. To do so, they cite other papers and to manage all the references they are using, they use a **reference manager system**. In this post I will detail my current setup for academic writing that currently revolves around two pieces of software (with adhoc extensions): [Zotero](https://www.zotero.org/) and [Visual Studio Code](https://code.visualstudio.com/) (VS Code).
 
 
 
 ## Zotero 
 
-I've been using a reference manager for 12 years now. I first used [Mendeley](https://www.mendeley.com) but I later decided to switch to [Zotero](https://www.zotero.org/). That was about 5 years ago, but it was a change that I long postponed as I wanted to switch as soon as [Elsevier bought Mendeley](https://techcrunch.com/2013/04/08/confirmed-elsevier-has-bought-mendeley-for-69m-100m-to-expand-open-social-education-data-efforts/) back in 2013 [@Jordan_2019].
+I've been using a reference manager for 12 years now. I first used [Mendeley](https://www.mendeley.com), but I later decided to switch to [Zotero](https://www.zotero.org/). That was about 5 years ago, but it was a change that I long postponed as I wanted to switch as soon as [Elsevier bought Mendeley](https://techcrunch.com/2013/04/08/confirmed-elsevier-has-bought-mendeley-for-69m-100m-to-expand-open-social-education-data-efforts/) back in 2013 [@Jordan_2019].
 
 >  In 2013, Elsevier bought Mendeley, primarily a bibliographic tool but also an ASNS [Academic Social Network Sites — ed.] (Shaw, 2013) as part of their strategy to acquire a wide range of scholarly online tools and establish themselves as a platform (Robertson, 2018). However, the business model of ASNS and their intentions to monetise the networks remains opaque.
 
@@ -32,7 +32,7 @@ With hindsight, I am glad I opted for Zotero and here are the reasons why:
 
 - Zotero is free;
 - Zotero is open source https://github.com/zotero;
-- Zotero is led by a non-profit organization (the [Corporation for Digital Scholarship](https://digitalscholar.org/));
+- Zotero is led by a non-profit organization: (the [Corporation for Digital Scholarship](https://digitalscholar.org/));
 - Zotero is developed by a [global community](https://www.zotero.org/support/credits_and_acknowledgments);
 - Zotero is thoroughly documented for users (e.g. the [quick start guide](https://www.zotero.org/support/quick_start_guide)) and for developers (see the [documentation](https://www.zotero.org/support/dev/start));
 - Zotero is easy to use and has all the features that make a great reference manager system:
@@ -65,7 +65,7 @@ I briefly mentioned [Better BibTeX](https://retorque.re/zotero-better-bibtex/) e
 
 > Better BibTeX (BBT) is an extension for Zotero and Juris-M [a variant of Zotero — ed.] that makes it easier to manage bibliographic data, especially for people authoring documents using text-based toolchains (e.g. based on LaTeX / Markdown).
 
-I belong to this category of people who author documents with Markdown which I guess explain why I find it so useful! Among the great features Better BibTeX includes, the one that is essential to my workflow is the [automatic export](https://retorque.re/zotero-better-bibtex/exporting/auto/) that I have configured so that every time I add a new item to my reference list, a [.bib file](https://en.wikipedia.org/wiki/BibTeX) (say `myref.bib`) is updated and I also opted for the following citation key formula: `auth.lower + "_"+ year + "_" + shorttitle(2,2)` which means that the citation key is made of the author name in lower case followed by the publication year and the first two words of the title that will be capitalized ([seeCitation Keys](https://retorque.re/zotero-better-bibtex/citing/)), the three elements being separated by two underscores. As an example, take the citation to @Jordan_2019 I used earlier, with this configuration its key will be `jordan_2019_FromSocial`.
+I belong to this category of people who author documents with Markdown, which I guess explains why I find it so useful! Among the great features Better BibTeX includes, the one that is essential to my workflow is the [automatic export](https://retorque.re/zotero-better-bibtex/exporting/auto/) that I have configured so that every time I add a new item to my reference list, a [.bib file](https://en.wikipedia.org/wiki/BibTeX) (say `myref.bib`) is updated and I also opted for the following citation key formula: `auth.lower + "_"+ year + "_" + shorttitle(2,2)` which means that the citation key is made of the author name in lower case followed by the publication year and the first two words of the title that will be capitalized ([seeCitation Keys](https://retorque.re/zotero-better-bibtex/citing/)), the three elements being separated by two underscores. As an example, take the citation to @Jordan_2019 I used earlier, with this configuration its key will be `jordan_2019_FromSocial`.
 
 ```{R fig1, echo = FALSE}
 blogdown::shortcode_html(
@@ -76,7 +76,7 @@ blogdown::shortcode_html(
   )
 ```
 
-If you want to learn more about Better BibText, simply visit the documentation website (https://retorque.re/zotero-better-bibtex/) and if you want to dig deeper, the source code is available on [`r gh()`](https://github.com/retorquere/zotero-better-bibtex.), where you can also access the latest release there. I personally used [`wget`](https://www.gnu.org/software/wget/) to do that:
+If you want to learn more about Better BibTeX, simply visit the documentation website (https://retorque.re/zotero-better-bibtex/) and if you want to dig deeper, the source code is available on [`r gh()`](https://github.com/retorquere/zotero-better-bibtex.), where you can also access the latest release there. I personally used [`wget`](https://www.gnu.org/software/wget/) to do that:
 
 ```sh
 $ wget https://github.com/retorquere/zotero-better-bibtex/releases/download/v6.7.54/zotero-better-bibtex-6.7.54.xpi
@@ -97,7 +97,7 @@ Using a code editor to write paper may sound weird at first, but it allows for t
 
 The first time I used a code editor to write a report was when I switched to [LaTeX](https://www.latex-project.org/), mainly because writing good-looking equations was more efficient with LateX than with LibreOffice. About 10 years ago, I switched to Markdown which I use for all kind of documents: reports, README files, emails, blog posts, etc. (see my post `r ref("post/2018/markdownEverywhere/index.markdown", "Markdown everywhere!")`). For several years, Atom was my code editor and so I wrote papers in Markdown wit it, but [Atom has been recently sunset](https://github.blog/2022-06-08-sunsetting-atom/). For two years now, I have been working with [Visual Code Studio (VS Code)](https://code.visualstudio.com/) which owes Atom big time since the [Electron](https://www.electronjs.org/) framework that VS Code uses was [built to develop Atom](https://www.electronjs.org/blog/electron). 
 
-VS Code includes a good default [Markdown editing](https://code.visualstudio.com/docs/languages/markdown) feature and there are additional extensions available to make it even better (e.g. see the following posts ['How to Turn VSCode Into the Ultimate Markdown Editor'](https://www.makeuseof.com/vscode-ultimate-markdown-editor/) and ['Top 5 VSCode Extensions for Markdown'](https://coderscat.com/awesome-vscode-extensions-for-markdown/)). By the way, when I write long-form document with VS Code, I often use the [Zen mode](https://code.visualstudio.com/docs/getstarted/userinterface#_zen-mode) to be more focused. That being said, the only thing missing to write articles is a connection to Zotero and for this, there are two extensions I recommend:
+VS Code includes a good default [Markdown editing](https://code.visualstudio.com/docs/languages/markdown) feature and there are additional extensions available to make it even better (e.g. see the following posts: ['How to Turn VSCode Into the Ultimate Markdown Editor'](https://www.makeuseof.com/vscode-ultimate-markdown-editor/) and ['Top 5 VSCode Extensions for Markdown'](https://coderscat.com/awesome-vscode-extensions-for-markdown/)). By the way, when I write long-form document with VS Code, I often use the [Zen mode](https://code.visualstudio.com/docs/getstarted/userinterface#_zen-mode) to be more focused. That being said, the only thing missing to write articles is a connection to Zotero and for this, there are two extensions I recommend:
 
 1. [VS Code Citation Picker for Zotero](https://github.com/mblode/vscode-zotero),
 
@@ -117,7 +117,7 @@ bibliography: [~/Documents/nextcloud/kevcaz.bib]
 
 ## Pandoc 
 
-In the process of writing your article you may want to convert your article in a different format, either because you want to see what your article look like in the final format or because you want to share it with collaborators that do not use Markdown or because you need to use a different format for submission. In this case you will use a conversion tool that will most likely be or be based on [Pandoc](https://pandoc.org/). Pandoc is an amazing tool to "convert files from one markup format into another", it is an essential part to many authoring frameworks designed to generate dynamic documents that mix code and text, such as [Rmarkdown](https://rmarkdown.rstudio.com/) and [Quarto](https://posit.co/blog/announcing-quarto-a-new-scientific-and-technical-publishing-system/) in the R ecosystem.
+In the process of writing your article you may want to convert your article in a different format, either because you want to see what your article look like in the final format or because you want to share it with collaborators that do not use Markdown or because you need to use a different format for submission. In this case you will use a conversion tool that will most likely be or be based on [Pandoc](https://pandoc.org/). Pandoc is an amazing tool to "convert files from one markup format into another"; it is an essential part of many authoring frameworks designed to generate dynamic documents that mix code and text, such as [Rmarkdown](https://rmarkdown.rstudio.com/) and [Quarto](https://posit.co/blog/announcing-quarto-a-new-scientific-and-technical-publishing-system/) in the R ecosystem.
 
 In the section that follows, I will use the latest Pandoc release, currently [3.1.2](https://github.com/jgm/pandoc/releases/tag/3.1.2), to show how to convert a Markdown document in PDF and HTML. With a recent release of Pandoc one simply use the flag `--citeproc` to indicate that references must be parsed and `-o` to specify the output format -- Pandoc will guess what it needs to do based on the file extension.
 
@@ -129,14 +129,14 @@ $ pandoc --citeproc paper.md -o paper.html
 $ pandoc --citeproc paper.md -o paper.pdf
 ```
 
-This is raw way of doing the conversion, using the default (and super light) Pandoc's HTML and PDF templates. There are various tools that make the rendering easier with better-looking (and heavier) templates. For instance, in the R ecosystem, R users could use R Markdown and something like this to produce both documents at once: 
+This is the raw way of doing the conversion, using the default (and super light) Pandoc's HTML and PDF templates. There are various tools that make the rendering easier with better-looking (and heavier) templates. For instance, in the R ecosystem, R users could use R Markdown and something like this to produce both documents at once: 
 
 ```R
 R> library(rmarkdown)
 R> render("paper.md", c("html_document", "pdf_document"))
 ```
 
-Plus, there are dedicated packages to use specific templates, one good example is [rticles](https://github.com/rstudio/rticles) that offers more than 40 LaTeX templates to ease submission to various journals (see [this post](https://cares-blog.gse.harvard.edu/post/2022-09-01-r-markdown/) for further details). Note that for many journals, you can always do a submission with a Word document that can be generated by Pandoc:
+Plus, there are dedicated packages to use specific templates; one good example is [rticles](https://github.com/rstudio/rticles), which offers more than 40 LaTeX templates to facilitate submission to various scientific journals (see [this post](https://cares-blog.gse.harvard.edu/post/2022-09-01-r-markdown/) for further details). Note that for many journals, you can always do a submission with a Word document that can be generated by Pandoc:
 
 ```sh
 $ pandoc --citeproc paper.md -o paper.docx
