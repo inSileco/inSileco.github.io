@@ -119,7 +119,7 @@ bibliography: [~/Documents/nextcloud/kevcaz.bib]
 
 In the process of writing your article, you may need to convert it in a different format, either because you want to preview what your article will look like in the final format, to share it with collaborators who do not use Markdown, or to use a different format for submission. In this case, you will use a conversion tool that will most likely be or be based on [Pandoc](https://pandoc.org/). Pandoc is an amazing tool to "convert files from one markup format into another"; it is an essential part of many authoring frameworks designed to generate dynamic documents that combine code and text, such as [Rmarkdown](https://rmarkdown.rstudio.com/) and [Quarto](https://posit.co/blog/announcing-quarto-a-new-scientific-and-technical-publishing-system/) in the R ecosystem.
 
-In the section that follows, I will use the latest Pandoc release, currently [3.1.2](https://github.com/jgm/pandoc/releases/tag/3.1.2), to show how to convert a Markdown document in PDF and HTML. With a recent release of Pandoc one simply use the flag `--citeproc` to indicate that references must be parsed and `-o` to specify the output format -- Pandoc will guess what it needs to do based on the file extension.
+In the section that follows, I will use the latest Pandoc release, currently [3.1.2](https://github.com/jgm/pandoc/releases/tag/3.1.2), to show how to convert a Markdown document to PDF and HTML. With the recent release of Pandoc, one simply uses the `--citeproc` flag to specify that references need to be parsed and the `-o` flag to specify the output format. Based on the file extension, Pandoc will automatically determine what it needs to do.
 
 
 ```sh
