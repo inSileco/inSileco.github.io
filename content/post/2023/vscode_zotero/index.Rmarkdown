@@ -153,7 +153,16 @@ R> render("paper.md", "word_document")
 
 ## Workflow (tl;dr)
 
-To sum up, I write my articles in **Markdown** with **VS Code** as my editor and **Zotero** as my reference manager system. I have configured a BibTeX file with all my references updated by **Better BibTeX** and used by **Pandoc Citer** to generate a context menu to pick from every time I hit `@`. When I need a conversion to another format, I use **Pandoc** and I share my Markdown files with collaborators via GitHub.
+To sum up, I use the following tools for scientific writing: 
+
+- I write my articles in **Markdown** 
+- I use **VS Code** as my editor 
+- I manage my references with **Zotero**  
+- I have configured a BibTeX file with all my references updated by **Better BibTeX**. 
+- I use **Pandoc Citer** to generate a context menu of my references that I can easily access when I press `@`
+- When I need to convert my file to another format, I use **Pandoc** 
+- I share my Markdown files with collaborators via **GitHub**
+
 
 ```{R vid1, echo = FALSE}
 blogdown::shortcode_html(
