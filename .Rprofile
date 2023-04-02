@@ -32,7 +32,9 @@ if ("knitr" %in% unlist(lapply(.libPaths(), list.files))) {
     fig.align = "center",
     width = 100
   )
-  library(inSilecoRef)
+  if (requireNamespace("inSilecoRef", quietly = TRUE)) {
+    library(inSilecoRef)
+  }
   rfa <- function(...) {
     icons::icon_style(icons::fontawesome(...), fill = "currentColor")
   }
@@ -52,7 +54,6 @@ if ("knitr" %in% unlist(lapply(.libPaths(), list.files))) {
       paste0('[', desc, ']({{< ref "', ref, '" >}} "', alt, '")')
     )
   }
-  
   path_root <- getwd()
   path_session_info <- file.path(path_root, "static/Rscript/sessionInfo.Rmd")
   path_ref_bib <- file.path(path_root, "static/ref/inSileco.bib")

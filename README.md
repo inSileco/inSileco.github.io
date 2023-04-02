@@ -15,7 +15,13 @@ Our blog created with [blogdown :package:](https://bookdown.org/yihui/blogdown/)
 
 ## Installation -- tl;dr 
 
-Inside an [R](https://www.r-project.org/) console:
+Clone the repository with submodules: 
+
+```sh 
+$ git clone --recurse-submodules git@github.com:inSileco/inSileco.github.io.git
+```
+
+In an [R](https://www.r-project.org/) console:
 
 ```R
 install.packages("remotes")

@@ -1,10 +1,10 @@
 ---
 title: "Academic writing with Markdown, Visual Studio Code and Zotero"
 author: [kevin]
-date: 2023-04-01
+reviewer: [david, marieh]
+date: 2023-04-02
 tags: [scientific writing, Zotero, VSCode]
 tweet: "Academic writing with Markdown, Visual Studio Code and Zotero"
-review: true
 estime: 8
 bibliography: "`r path_ref_bib`"
 csl: "`r path_ref_csl`"
@@ -17,8 +17,7 @@ output:
 ---
 
 
-
-Academic researchers devote a significant amount of time to writing papers to report their findings. As this is an important aspect of their job, they need to use a **document preparation system** (a word processor) that they are comfortable working with. Another important aspect of scientific writing is to contextualize their work within the current body of knowledge. This involve citing other relevant scientific papers. To manage and organize all these references effectively, they use a **reference manager system**. In this post, I will detail my current setup for academic writing that revolves around two pieces of software (with adhoc extensions): [Zotero](https://www.zotero.org/) and [Visual Studio Code](https://code.visualstudio.com/) (VS Code).
+Academic researchers devote a significant amount of time to writing papers to report their findings. As this is an important aspect of their job, they need to use a **document preparation system** (a word processor) that they are comfortable working with. Another important aspect of scientific writing is to contextualize their work within the current body of knowledge. This involves citing other relevant scientific papers. To manage and organize all these references effectively, they use a **reference manager system**. In this post, I will detail my current setup for academic writing that revolves around two pieces of software (with *ad hoc* extensions): [Zotero](https://www.zotero.org/) and [Visual Studio Code](https://code.visualstudio.com/) (VS Code).
 
 
 
@@ -43,8 +42,7 @@ With hindsight, I am glad I opted for Zotero and here are the reasons why:
   - it makes it easy to cite specific papers (basically `CTRL+SHIFT+C`) or to create/export bibliographies (e.g. using the context menu),
   - it supports a large array of citation format (available as [CSL files](https://www.zotero.org/support/dev/citation_styles)).
   - it offers neat plugins to seamlessly add reference directly from word processors (e.g [the Zotero LibreOffice Plugin](https://www.zotero.org/support/libreoffice_writer_plugin_usage)),
-  - it has great [Add-ons](https://www.zotero.org/support/plugins) (such as [Better Bibtex](https://retorque.re/zotero-better-bibtex/) that I introduce below). 
-
+  - it has great [add-ons](https://www.zotero.org/support/plugins) (such as [Better Bibtex](https://retorque.re/zotero-better-bibtex/) that I introduce below). 
 
 The only Mendeley's feature I have missed so far is the search in body text of the entire collection of PDF (very useful for non-native english speakers). That said, as all PDF files are actually stored in one place, I simply created an alias using the [`grep`](https://help.ubuntu.com/community/grep) command line: 
 
@@ -119,7 +117,7 @@ bibliography: [~/Documents/nextcloud/kevcaz.bib]
 
 In the process of writing your article, you may need to convert it in a different format, either because you want to preview what your article will look like in the final format, to share it with collaborators who do not use Markdown, or to use a different format for submission. In this case, you will use a conversion tool that will most likely be or be based on [Pandoc](https://pandoc.org/). Pandoc is an amazing tool to "convert files from one markup format into another"; it is an essential part of many authoring frameworks designed to generate dynamic documents that combine code and text, such as [Rmarkdown](https://rmarkdown.rstudio.com/) and [Quarto](https://posit.co/blog/announcing-quarto-a-new-scientific-and-technical-publishing-system/) in the R ecosystem.
 
-In the section that follows, I will use the latest Pandoc release, currently [3.1.2](https://github.com/jgm/pandoc/releases/tag/3.1.2), to show how to convert a Markdown document to PDF and HTML. With the recent release of Pandoc, one simply uses the `--citeproc` flag to specify that references need to be parsed and the `-o` flag to specify the output format. Based on the file extension, Pandoc will automatically determine what it needs to do.
+In the section that follows, I will use the latest Pandoc release, currently [3.1.2](https://github.com/jgm/pandoc/releases/tag/3.1.2), to show how to convert a Markdown document to PDF and HTML. With the recent release of Pandoc, one simply uses the `--citeproc` flag to specify that references need to be parsed and `-o` to specify the output format. Based on the file extension, Pandoc will automatically determine what it needs to do.
 
 
 ```sh
@@ -129,7 +127,7 @@ $ pandoc --citeproc paper.md -o paper.html
 $ pandoc --citeproc paper.md -o paper.pdf
 ```
 
-This is the raw way of doing the conversion, using the default (and super light) Pandoc's HTML and PDF templates. There are various tools that make the rendering easier with better-looking (and heavier) templates. For instance, in the R ecosystem, R users could use R Markdown and something like this to produce both documents at once: 
+This is the raw way of doing the conversion, using the default (and super light) Pandoc's HTML and PDF templates. Note that Pandoc has tens of options (flags) and [filters](https://pandoc.org/filters.html) to further customize documents. For instance there are filters cross-reference sections, figures, tables and equations (see [pandoc-xnos](https://github.com/tomduck/pandoc-xnos)). Furthermore there are higher level tools leveraging Pandoc that make the rendering easier with better-looking (and heavier) templates. For instance, in the R ecosystem, R users could use R Markdown and something like this to produce both documents at once: 
 
 ```R
 R> library(rmarkdown)
@@ -153,13 +151,13 @@ R> render("paper.md", "word_document")
 
 ## Workflow (tl;dr)
 
-To sum up, I use the following tools for scientific writing: 
+To sum up, I use the following tools for academic writing: 
 
 - I write my articles in **Markdown** 
 - I use **VS Code** as my editor 
 - I manage my references with **Zotero**  
 - I have configured a BibTeX file with all my references updated by **Better BibTeX**. 
-- I use **Pandoc Citer** to generate a context menu of my references that I can easily access when I press `@`
+- I use **Pandoc Citer** to generate a context menu of my references that I can easily access when I hit `@`
 - When I need to convert my file to another format, I use **Pandoc** 
 - I share my Markdown files with collaborators via **GitHub**
 
