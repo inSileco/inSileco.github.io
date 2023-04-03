@@ -24,7 +24,7 @@ about my transition in this post.
 Last Easter, after a couple of months on Debian Stretch, I felt like the time
 had come for me to go Debian Testing. I was actually enjoying Debian Stretch and
 I was able to manage to get up-to-date versions of certain software when desired
-(detailed in my [previous post](/post/setUps/myDebianStretch.md)) but
+(detailed in my [previous post]({{< ref "/post/2018/myDebianStretch/index.md" >}})) but
 after a couple of online readings I was convinced that being on Testing
 was a fairly reasonable step forward that would just make my live easier.
 
@@ -87,11 +87,11 @@ If I recall correctly, I proceeded as follows:
 3. if yes go back to 1
 
 I don't think this is the best approach, as I could have either copy-pasted
-the full package list to install them all at once or use the  [`dist-upgrade`](https://askubuntu.com/questions/81585/what-is-dist-upgrade-and-why-does-it-upgrade-more-than-upgrade) command instead. But it worked:
+the full package list to install them all at once or use the [`dist-upgrade`](https://askubuntu.com/questions/81585/what-is-dist-upgrade-and-why-does-it-upgrade-more-than-upgrade) command instead. But it worked:
 
 <img src = "assets/updeb5.png#center" style="width:80%"></img>
 
-"Yeah!! all right, all done, all good!:fire:" I naïvely thought at that
+"Yeah!! All right, all done, all good!:fire:" I naively thought at that
 stage.
 
 

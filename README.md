@@ -15,7 +15,13 @@ Our blog created with [blogdown :package:](https://bookdown.org/yihui/blogdown/)
 
 ## Installation -- tl;dr 
 
-Inside an [R](https://www.r-project.org/) console:
+Clone the repository with submodules: 
+
+```sh 
+$ git clone --recurse-submodules git@github.com:inSileco/inSileco.github.io.git
+```
+
+In an [R](https://www.r-project.org/) console:
 
 ```R
 install.packages("remotes")
@@ -26,3 +32,18 @@ blogdown::check_config()
 blogdown::check_content()
 blogdown::build_site()
 ```
+
+## Workflow 
+
+Once installed, you can simply stick to the following line of code to launch the blog:
+
+```R
+blogdown::serve_site()
+```
+
+and to stop serving the blog locally,  use 
+
+```R
+blogdown::stop_server()
+```
+

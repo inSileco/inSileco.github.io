@@ -41,6 +41,7 @@ main {
 
 /*apply accent colour to links*/
 
+
 a:link, a:visited {
     color: var(--accent);
 }
@@ -52,6 +53,27 @@ a.icon:hover {
 a:hover {
     color: var(--accent) !important;
 }
+
+#post-content-body a:link, #post-content-body a:visited {
+    text-decoration: underline;
+    text-decoration-color: var(--accent);
+    text-decoration-thickness: 0.2rem;
+    text-underline-offset: 0.2rem;
+    color: #212121;
+}
+
+.toc a:link, .toc a:visited {
+    text-decoration: none;
+    color: var(--accent);
+}
+
+.toc a:hover {
+    text-decoration: underline;
+    color: var(--accent);
+    text-decoration-thickness: 0.3rem;
+}
+
+
 
 /*paginator at bottom of list view*/
 
