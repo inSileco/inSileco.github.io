@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Academic writing with Markdown, Visual Studio Code and Zotero</title>
+        
+        <style>
+
+    html body {
+        font-family: '', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://insileco.github.io/css/main.css">
+
+
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">  <link rel="stylesheet" href="https://insileco.github.io/css/academicons.min.css">  <link rel="stylesheet" href="https://insileco.github.io/css/main.css">  <link rel="stylesheet" href="https://insileco.github.io/css/syntax.css">  <link rel="stylesheet" href="https://insileco.github.io/css/insileco.css"> 
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.111.3">
+        
+
+        
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments)};
+              gtag('js', new Date());
+              gtag('config', 'UA-109508556-1');
+            </script>
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="/css/academicons.min.css">
+
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <link rel="stylesheet" href="/css/insileco.css">
+
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">Academic writing with Markdown, Visual Studio Code and Zotero</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                                <li><a href="/resource/">Resources</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="/"><i class="fas fa-home"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fab fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fas fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<img class="full-width" width="100%" src="/img/banner4.png"></img>
+
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class = "toc">
+
+    <h2 style="margin-top: 0.5rem; padding-top: 0.5rem; padding-bottom: 0.25rem;">
+        <a href="#">
+            <i class='fas fa-chevron-up'></i>
+        </a>
+    </h2>
+
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#zotero">Zotero</a></li>
+    <li><a href="#better-bibtex">Better Bibtex</a></li>
+    <li><a href="#visual-studio-code">Visual Studio Code</a></li>
+    <li><a href="#pandoc">Pandoc</a></li>
+    <li><a href="#workflow-tldr">Workflow (tl;dr)</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+    
+
+    <h2 style="margin-top: 0.25rem; padding-top: 0.5rem;">
+        <a href="#bottom">
+            <i class='fas fa-chevron-down'></i>
+        </a>
+    </h2>
+
+</div>
+    </div>
+
+
+    <div class="col-md-7">
+
+        <div class="post-content">
+
+            <div id="post-content-header">
+            <h1>
+                <a href="/2023/04/02/academic-writing-with-markdown-visual-studio-code-and-zotero/">Academic writing with Markdown, Visual Studio Code and Zotero</a>
+            </h1>
+
+            <h4>
+                April 2, 2023
+            </h4>
+
+            <p>
+                <i class="fas fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                    href="/tags/scientific-writing"><kbd class="item-tag">scientific writing</kbd></a>  <a
+                    href="/tags/zotero"><kbd class="item-tag">Zotero</kbd></a>  <a
+                    href="/tags/vscode"><kbd class="item-tag">VSCode</kbd></a> 
+                <br>
+                
+            </p>
+
+            
+            <p style="font-size: 1.6em;"> 
+                <i class="fas fa-pencil-alt"></i>
+                
+                 
+                    
+                    <a href="/about/">Kevin Cazelles</a>
+                
+                <a href="#"></a>
+            </p>
+            
+
+            
+            <p> 
+                <i class="fas fa-check-square" title="Reviewer(s)"></i>
+                
+                 
+                    
+                    <a href="/about/">David Beauchesne</a>,
+                 
+                    
+                    <a href="/about/">Marie-Hélène Brice</a>
+                
+                <a href="#"></a>
+            </p>
+            
+
+            <p>
+                
+                
+                
+                    <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=8min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                
+                
+                
+                
+                
+                    <a href="https://creativecommons.org/licenses/by/4.0/">
+                        <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                    </a>
+                
+                
+                
+                
+                &nbsp;&nbsp;
+                <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2023%2f04%2f02%2facademic-writing-with-markdown-visual-studio-code-and-zotero%2f&text=Academic%20writing%20with%20Markdown%2c%20Visual%20Studio%20Code%20and%20Zotero" target="_blank">
+                    <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2023%2f04%2f02%2facademic-writing-with-markdown-visual-studio-code-and-zotero%2f?link=http://left&link=http://right}'>
+                </a>
+            </p>
+            </div>
+
+
+
+            <div id="post-content-body" class="text-justify">
+
+                <p>Academic researchers devote a significant amount of time to writing papers to report their findings. As this is an important aspect of their job, they need to use a <strong>document preparation system</strong> (a word processor) that they are comfortable working with. Another important aspect of scientific writing is to contextualize their work within the current body of knowledge. This involves citing other relevant scientific papers. To manage and organize all these references effectively, they use a <strong>reference manager system</strong>. In this post, I will detail my current setup for academic writing that revolves around two pieces of software (with <em>ad hoc</em> extensions): <a href="https://www.zotero.org/">Zotero</a> and <a href="https://code.visualstudio.com/">Visual Studio Code</a> (VS Code).</p>
+<h2 id="zotero">Zotero</h2>
+<p>I’ve been using a reference manager for 12 years now, starting with <a href="https://www.mendeley.com">Mendeley</a>. I later decided to switch to <a href="https://www.zotero.org/">Zotero</a>. That was about 5 years ago. The decision to switch was long overdue, as I wanted to switch since 2013 when <a href="https://techcrunch.com/2013/04/08/confirmed-elsevier-has-bought-mendeley-for-69m-100m-to-expand-open-social-education-data-efforts/">Elsevier bought Mendeley</a> (<a href="#ref-Jordan_2019">Jordan, 2019</a>).</p>
+<blockquote>
+<p>In 2013, Elsevier bought Mendeley, primarily a bibliographic tool but also an ASNS [Academic Social Network Sites — ed.] (Shaw, 2013) as part of their strategy to acquire a wide range of scholarly online tools and establish themselves as a platform (Robertson, 2018). However, the business model of ASNS and their intentions to monetise the networks remains opaque.</p>
+</blockquote>
+<p>With hindsight, I am glad I opted for Zotero and here are the reasons why:</p>
+<ul>
+<li>Zotero is free;</li>
+<li>Zotero is open source <a href="https://github.com/zotero;">https://github.com/zotero;</a></li>
+<li>Zotero is led by a non-profit organization: (the <a href="https://digitalscholar.org/">Corporation for Digital Scholarship</a>);</li>
+<li>Zotero is developed by a <a href="https://www.zotero.org/support/credits_and_acknowledgments">global community</a>;</li>
+<li>Zotero is thoroughly documented for users (e.g. the <a href="https://www.zotero.org/support/quick_start_guide">quick start guide</a>) and for developers (see the <a href="https://www.zotero.org/support/dev/start">documentation</a>);</li>
+<li>Zotero is easy to use and has all the features that make a great reference manager system:
+<ul>
+<li>it stores your PDF in a dedicated folder (<code>/storage</code>) and stores all metadata (author, title, publisher, etc.) in a sqlite database (see <a href="https://www.zotero.org/support/zotero_data">‘Zotero data directory’</a>) that are both easy to backup,</li>
+<li>it can retrieve documents metadata from identifiers (DOI ISBN, DOI, PubMed ID, or arXiv ID, see <a href="https://www.zotero.org/support/adding_items_to_zotero">‘Adding Items to Zotero’</a>) and directly from PDF metadata,</li>
+<li>it makes the organization of references easy with <a href="https://www.zotero.org/support/collections_and_tags">collections and tags</a>,</li>
+<li>it has great interfaces to <a href="https://www.zotero.org/support/searching">search items</a> and to <a href="https://www.zotero.org/support/duplicate_detection">handle duplicates</a>,</li>
+<li>it makes it easy to cite specific papers (basically <code>CTRL+SHIFT+C</code>) or to create/export bibliographies (e.g. using the context menu),</li>
+<li>it supports a large array of citation format (available as <a href="https://www.zotero.org/support/dev/citation_styles">CSL files</a>).</li>
+<li>it offers neat plugins to seamlessly add reference directly from word processors (e.g <a href="https://www.zotero.org/support/libreoffice_writer_plugin_usage">the Zotero LibreOffice Plugin</a>),</li>
+<li>it has great <a href="https://www.zotero.org/support/plugins">add-ons</a> (such as <a href="https://retorque.re/zotero-better-bibtex/">Better Bibtex</a> that I introduce below).</li>
+</ul>
+</li>
+</ul>
+<p>The only Mendeley’s feature I have missed so far is the search in body text of the entire collection of PDF (very useful for non-native english speakers). That said, as all PDF files are actually stored in one place, I simply created an alias using the <a href="https://help.ubuntu.com/community/grep"><code>grep</code></a> command line:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ <span class="nb">alias</span> <span class="nv">szot</span><span class="o">=</span><span class="s1">&#39;grep -rnw ~/Zotero/storage/ -e&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>which fulfills my need! This command should work on most of Unix-like
+operating system and I am pretty sure there are simple ways to do this on Windows.</p>
+<p>To conclude this first section, I’d like to clarify which version of Zotero I am referring to here. As I am writing this post, I am using Zotero v6.0.20 (installed on my Ubuntu 22.04 via <a href="https://flatpak.org/">flatpak</a>), but the latest version available is v6.0.23 (see the <a href="https://www.zotero.org/support/changelog">changelog</a> for more information).</p>
+<h2 id="better-bibtex">Better Bibtex</h2>
+<p>I briefly mentioned <a href="https://retorque.re/zotero-better-bibtex/">Better BibTeX</a> earlier, it is most definitely a must-have add-on for Zotero! As explained on the extension’s website:</p>
+<blockquote>
+<p>Better BibTeX (BBT) is an extension for Zotero and Juris-M [a variant of Zotero — ed.] that makes it easier to manage bibliographic data, especially for people authoring documents using text-based toolchains (e.g. based on LaTeX / Markdown).</p>
+</blockquote>
+<p>As someone who frequently writes documents in Markdown, I find Better BibTeX particularly useful! Among the great features of Better BibTeX, the <a href="https://retorque.re/zotero-better-bibtex/exporting/auto/">automatic export</a> function is essential to my workflow. I have configured it in order to update a <a href="https://en.wikipedia.org/wiki/BibTeX">.bib file</a> (for example, <code>myref.bib</code>) every time I add a new item to my reference list. I have set my citation key formula to: <code>auth.lower + &quot;_&quot;+ year + &quot;_&quot; + shorttitle(2,2)</code> which uses the author’s last name in lower case, followed by the publication year and the first two words of the title that will be capitalized (<a href="https://retorque.re/zotero-better-bibtex/citing/">seeCitation Keys</a>), the three elements being separated by two underscores. As an example, let’s take the citation Jordan (<a href="#ref-Jordan_2019">2019</a>) I mentioned earlier; with my citation key configuration, the key is <code>jordan_2019_FromSocial</code>.</p>
+
+<center>
+  <figure>
+    <img class="mg-bot" src="/2023/04/02/academic-writing-with-markdown-visual-studio-code-and-zotero/img/bbt.png" alt="On the left panel is a screenshot showing my current citation key formula (menu \&#39;Edit\&#39; then \&#39;Preferences\&#39;). On the right panel is a screenshot showing how to export a bibliography that will be kept updated (menu \&#39;File\&#39; then \&#39;Export Library ...\&#39;)" width="80%" >
+    <figcaption>
+      <i class="fas fa-info-circle" aria-hidden="true"></i>
+      On the left panel is a screenshot showing my current citation key formula (menu 'Edit' then 'Preferences'). On the right panel is a screenshot showing how to export a bibliography that will be kept updated (menu 'File' then 'Export Library &hellip;')
+    </figcaption>
+  </figure>
+</center>
+
+<p>If you want to learn more about Better BibTeX, simply visit the <a href="https://retorque.re/zotero-better-bibtex/">documentation website</a> and if you want to dig deeper, the source code is available on <a href="https://github.com/retorquere/zotero-better-bibtex."><svg viewBox="0 0 496 512" style="height:1em;position:relative;display:inline-block;top:.1em;fill:currentColor;" xmlns="http://www.w3.org/2000/svg"> <path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"></path></svg></a>, where you can also access the latest release. I personally used <a href="https://www.gnu.org/software/wget/"><code>wget</code></a> to do that:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ wget https://github.com/retorquere/zotero-better-bibtex/releases/download/v6.7.54/zotero-better-bibtex-6.7.54.xpi
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>then see <a href="https://www.zotero.org/support/plugins">Plugins for Zotero</a> to install it.</p>
+<h2 id="visual-studio-code">Visual Studio Code</h2>
+<p>To write articles there are various valid options on the table that can be split into two broad categories:</p>
+<ol>
+<li><a href="https://en.wikipedia.org/wiki/WYSIWYG">WYSIWYG</a> (“What You See Is What You Get”) editors, represented by the popular word processors such as LibreOffice, Google Document, and Microsoft Word (and there are Zotero plugins for these three options)</li>
+<li><a href="https://en.wikipedia.org/wiki/WYSIWYM">WYSIWYM</a> (“What You See Is What You Mean”) editors, which include general purpose code editors – such as <a href="https://www.gnu.org/software/emacs/">Emacs</a> or <a href="https://www.sublimetext.com/">Sublime Text</a> – and specialized ones, e.g. <a href="https://www.overleaf.com/">Overleaf</a> and <a href="https://remarkableapp.github.io/linux.html">Remarkable</a>.</li>
+</ol>
+<p>At first glance, it may seem weird to use a code editor to write paper. However, it allows for the <a href="https://en.wikipedia.org/wiki/Separation_of_content_and_presentation">separation of content and presentation</a> which I love. This approach helps me focus on the content and avoid wasting time tweaking the format while I am developing my ideas.</p>
+<p>The first time I wrote a report using a code editor was when I switched to <a href="https://www.latex-project.org/">LaTeX</a>, which allowed me to efficiently write good-looking equations compared to LibreOffice. About 10 years ago, I switched to Markdown which I now use for all kind of documents, including reports, README files, emails, blog posts, etc. (see my post <a href="https://insileco.github.io/2018/05/13/markdown-everywhere/" title="">Markdown everywhere!</a>). For several years, I used Atom as my code editor to write papers in Markdown, but <a href="https://github.blog/2022-06-08-sunsetting-atom/">Atom has been recently sunset</a>. For the past two years, I have been working with <a href="https://code.visualstudio.com/">Visual Code Studio (VS Code)</a> which owes Atom big time since the <a href="https://www.electronjs.org/">Electron</a> framework that VS Code uses was originally <a href="https://www.electronjs.org/blog/electron">built to develop Atom</a>.</p>
+<p>VS Code includes a good default <a href="https://code.visualstudio.com/docs/languages/markdown">Markdown editing</a> feature and there are additional extensions available to make it even better (e.g. see the following posts: <a href="https://www.makeuseof.com/vscode-ultimate-markdown-editor/">‘How to Turn VSCode Into the Ultimate Markdown Editor’</a> and <a href="https://coderscat.com/awesome-vscode-extensions-for-markdown/">‘Top 5 VSCode Extensions for Markdown’</a>). By the way, when I write long-form document with VS Code, I often use the <a href="https://code.visualstudio.com/docs/getstarted/userinterface#_zen-mode">Zen mode</a> to be more focused. That being said, the only thing missing to write articles is a connection to Zotero and for this, there are two extensions I recommend:</p>
+<ol>
+<li>
+<p><a href="https://github.com/mblode/vscode-zotero">VS Code Citation Picker for Zotero</a>,</p>
+</li>
+<li>
+<p><a href="https://github.com/notZaki/PandocCiter">Pandoc Citer Extension for Visual Studio Code</a>.</p>
+</li>
+</ol>
+<p>The first option requires Better BibTeX up and running (so Zotero should remain open) and directly connects to the Zotero database. Once installed, <code>SHIFT + ALT + Z</code> triggers a small pop-up window from which you can select the references you want to cite. Note that all the references should also be included in a bibliography file (<code>.bib</code>, <code>.yaml</code> or <code>.json</code>) that will be used to generate the document in a different format (see below).
+The second option – the one I use – does not directly require Better BibTeX to be running, but it does require a <code>.bib</code> file from which the citation can be picked. By default, the path to this file will be taken from the field <code>bibliography</code> in the YAML front-matter, but a default file can be configured. In my case, I have configured the extension so it points to the file Better BibTeX keeps updated, which is why I need Better BibteX. Therefore, if I want to add a reference while I am working on my document, Zotero must be up and running. With this option, I simply press <code>@</code> and a menu with all my references is prompted, from which I select the one I want (see the video below).
+Note that irrespective of the extension chosen, the path to the bibliography file needs to be specified so that references can actually be added to the document and this will be done with Pandoc.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nn">---</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">title</span><span class="p">:</span><span class="w"> </span><span class="l">My new paper</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">bibliography</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="l">~/Documents/nextcloud/kevcaz.bib]</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nn">---</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="pandoc">Pandoc</h2>
+<p>In the process of writing your article, you may need to convert it in a different format, either because you want to preview what your article will look like in the final format, to share it with collaborators who do not use Markdown, or to use a different format for submission. In this case, you will use a conversion tool that will most likely be or be based on <a href="https://pandoc.org/">Pandoc</a>. Pandoc is an amazing tool to “convert files from one markup format into another”; it is an essential part of many authoring frameworks designed to generate dynamic documents that combine code and text, such as <a href="https://rmarkdown.rstudio.com/">Rmarkdown</a> and <a href="https://posit.co/blog/announcing-quarto-a-new-scientific-and-technical-publishing-system/">Quarto</a> in the R ecosystem.</p>
+<p>In the section that follows, I will use the latest Pandoc release, currently <a href="https://github.com/jgm/pandoc/releases/tag/3.1.2">3.1.2</a>, to show how to convert a Markdown document to PDF and HTML. With the recent release of Pandoc, one simply uses the <code>--citeproc</code> flag to specify that references need to be parsed and <code>-o</code> to specify the output format. Based on the file extension, Pandoc will automatically determine what it needs to do.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="c1"># conversion to html</span>
+</span></span><span class="line"><span class="cl">$ pandoc --citeproc paper.md -o paper.html  
+</span></span><span class="line"><span class="cl"><span class="c1"># conversion to PDF</span>
+</span></span><span class="line"><span class="cl">$ pandoc --citeproc paper.md -o paper.pdf
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This is the raw way of doing the conversion, using the default (and super light) Pandoc’s HTML and PDF templates. Note that Pandoc has tens of options (flags) and <a href="https://pandoc.org/filters.html">filters</a> to further customize documents. For instance there are filters cross-reference sections, figures, tables and equations (see <a href="https://github.com/tomduck/pandoc-xnos">pandoc-xnos</a>). Furthermore there are higher level tools leveraging Pandoc that make the rendering easier with better-looking (and heavier) templates. For instance, in the R ecosystem, R users could use R Markdown and something like this to produce both documents at once:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">R</span><span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="n">rmarkdown</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">R</span><span class="o">&gt;</span> <span class="nf">render</span><span class="p">(</span><span class="s">&#34;paper.md&#34;</span><span class="p">,</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;html_document&#34;</span><span class="p">,</span> <span class="s">&#34;pdf_document&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Plus, there are dedicated packages to use specific templates; one good example is <a href="https://github.com/rstudio/rticles">rticles</a>, which offers more than 40 LaTeX templates to facilitate submission to various scientific journals (see <a href="https://cares-blog.gse.harvard.edu/post/2022-09-01-r-markdown/">this post</a> for further details). Note that for many journals, you can always do a submission with a Word document that can be generated by Pandoc:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">$ pandoc --citeproc paper.md -o paper.docx
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>or a tool that leverages Pandoc, e.g. R Markdown:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">R</span><span class="o">&gt;</span> <span class="nf">library</span><span class="p">(</span><span class="n">rmarkdown</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">R</span><span class="o">&gt;</span> <span class="nf">render</span><span class="p">(</span><span class="s">&#34;paper.md&#34;</span><span class="p">,</span> <span class="s">&#34;word_document&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="workflow-tldr">Workflow (tl;dr)</h2>
+<p>To sum up, I use the following tools for academic writing:</p>
+<ul>
+<li>I write my articles in <strong>Markdown</strong></li>
+<li>I use <strong>VS Code</strong> as my editor</li>
+<li>I manage my references with <strong>Zotero</strong></li>
+<li>I have configured a BibTeX file with all my references updated by <strong>Better BibTeX</strong>.</li>
+<li>I use <strong>Pandoc Citer</strong> to generate a context menu of my references that I can easily access when I hit <code>@</code></li>
+<li>When I need to convert my file to another format, I use <strong>Pandoc</strong></li>
+<li>I share my Markdown files with collaborators via <strong>GitHub</strong></li>
+</ul>
+
+<center>
+  <figure>
+    <video width="70%" controls>
+      <source src="/2023/04/02/academic-writing-with-markdown-visual-studio-code-and-zotero/img/workflow_compress.webm" type="video/webm">
+      Your browser does not support the video tag.
+     </video>
+    <figcaption>
+      <i class="fas fa-info-circle" aria-hidden="true"></i>
+      Screencast demonstrating the workflow described in this post.
+    </figcaption>
+  </figure>
+</center>
+<h2 id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-Jordan_2019" class="csl-entry">
+<p>Jordan K. 2019. From social networks to publishing platforms: A review of the history and scholarship of academic social network sites. <em>Frontiers in Digital Humanities</em> 6. DOI: <a href="https://doi.org/10.3389/fdigh.2019.00005">10.3389/fdigh.2019.00005</a>.</p>
+</div>
+</div>
+
+
+                
+
+
+            </div>
+
+
+        </div>
+
+          <br>
+
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+  
+  
+
+
+  <script src="/js/sidebar-post.js"></script>
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  <details>
+  <summary>Comment with Disqus</summary>
+  <div id="disqus_thread"></div>
+  </details>
+
+  
+  
+
+  
+
+
+
+
+
+  <script>
+    
+
+
+    var disqus_config = function() {
+      this.page.url = "https://insileco.github.io" + "https://insileco.github.io/2023/04/02/academic-writing-with-markdown-visual-studio-code-and-zotero/"; 
+      this.page.identifier = "Academic writing with Markdown, Visual Studio Code and Zotero"; 
+    };
+
+    (function() { 
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://insileco.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+
+
+</div>
+
+
+    </div>
+
+    <div class="col-md-2">
+    </div>
+
+</div>
+
+<footer>
+
+  <hr>
+
+  <div class="col-md-3">
+
+    <a href="#" id="bottom"></a>
+
+  </div>
+
+  <div class="col-md-8">
+
+    <script src="//yihui.name/js/math-code.js"></script>
+    <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <p class="copyright text-muted" style="font-size: 1.6rem;">
+      &copy; 2017-2023 inSileco |
+      Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+      <a href="https://gohugo.io">Hugo</a>
+      and <a href="https://github.com/calintat/minimal">Minimal</a> |
+      Latest build: 03 April 2023 00:21 UTC.
+    </p>
+
+  </div>
+
+
+</footer>
+
+</body>
+
+</html>

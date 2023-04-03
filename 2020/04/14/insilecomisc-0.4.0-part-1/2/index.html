@@ -51,7 +51,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.111.2">
+ <meta name="generator" content="Hugo 0.111.3">
         
 
         
@@ -164,10 +164,11 @@
     </div>
 
 
-    <div class="col-md-8">
+    <div class="col-md-7">
 
         <div class="post-content">
 
+            <div id="post-content-header">
             <h1>
                 <a href="/2020/04/14/insilecomisc-0.4.0-part-1/2/">inSilecoMisc 0.4.0 (part 1/2)</a>
             </h1>
@@ -248,6 +249,8 @@
                     <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f14%2finsilecomisc-0.4.0-part-1%2f2%2f?link=http://left&link=http://right}'>
                 </a>
             </p>
+            </div>
+
 
 
             <div id="post-content-body" class="text-justify">
@@ -731,7 +734,7 @@ this topic (for instance
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.2.2 (2022-10-31)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.2.3 (2023-03-15)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.2 LTS</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
@@ -751,16 +754,16 @@ this topic (for instance
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoMisc_0.7.0.9000 inSilecoRef_0.1.0      </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] Rcpp_1.0.10       jquerylib_0.1.4   bslib_0.4.2       compiler_4.2.2    pillar_1.8.1     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] later_1.3.0       plyr_1.8.8        tools_4.2.2       digest_0.6.31     evaluate_0.20    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] jsonlite_1.8.4    lifecycle_1.0.3   tibble_3.2.0      rcrossref_1.2.0   pkgconfig_2.0.3  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] rlang_1.0.6       bibtex_0.5.1      shiny_1.7.4       cli_3.6.0         yaml_2.3.7       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] crul_1.3          curl_5.0.0        blogdown_1.16     xfun_0.37         fastmap_1.1.1    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] xml2_1.3.3        stringr_1.5.0     dplyr_1.1.0       knitr_1.42        sass_0.4.5       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] generics_0.1.3    fs_1.6.1          htmlwidgets_1.6.1 vctrs_0.5.2       DT_0.27          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] Rcpp_1.0.10       jquerylib_0.1.4   bslib_0.4.2       compiler_4.2.3    pillar_1.9.0     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] later_1.3.0       plyr_1.8.8        tools_4.2.3       digest_0.6.31     evaluate_0.20    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] jsonlite_1.8.4    lifecycle_1.0.3   tibble_3.2.1      rcrossref_1.2.0   pkgconfig_2.0.3  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] rlang_1.1.0       bibtex_0.5.1      shiny_1.7.4       cli_3.6.1         yaml_2.3.7       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] crul_1.3          curl_5.0.0        blogdown_1.16     xfun_0.38         fastmap_1.1.1    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] xml2_1.3.3        stringr_1.5.0     dplyr_1.1.1       knitr_1.42        sass_0.4.5       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] generics_0.1.3    fs_1.6.1          htmlwidgets_1.6.2 vctrs_0.6.1       DT_0.27          </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] tidyselect_1.2.0  glue_1.6.2        httpcode_0.3.0    R6_2.5.1          fansi_1.0.4      </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] bookdown_0.33     rmarkdown_2.20    magrittr_2.0.3    backports_1.4.1   promises_1.2.0.1 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] ellipsis_0.3.2    htmltools_0.5.4   mime_0.12         xtable_1.8-4      httpuv_1.6.9     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] bookdown_0.33     rmarkdown_2.21    magrittr_2.0.3    backports_1.4.1   promises_1.2.0.1 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] ellipsis_0.3.2    htmltools_0.5.5   mime_0.12         xtable_1.8-4      httpuv_1.6.9     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] utf8_1.2.3        stringi_1.7.12    miniUI_0.1.1.1    cachem_1.0.7      crayon_1.5.2</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -908,6 +911,9 @@ repositories:
 
     </div>
 
+    <div class="col-md-2">
+    </div>
+
 </div>
 
 <footer>
@@ -931,7 +937,7 @@ repositories:
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 11 March 2023 00:45 UTC.
+      Latest build: 03 April 2023 00:21 UTC.
     </p>
 
   </div>
