@@ -309,12 +309,12 @@ columns:</p>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;         var1       var2      var3</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.5289190 0.91603824 0.4772174</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.9935248 0.87468104 0.6920791</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.3955967 0.15158750 0.1885033</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.3853446 0.02516641 0.8931398</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 0.2528597 0.80058414 0.7832909</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 0.1731074 0.30521935 0.8828209</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.3521887 0.05620717 0.2144589</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.5968249 0.02194757 0.2951954</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.8140053 0.98991229 0.3093175</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.1063281 0.63684668 0.1810979</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 0.3558890 0.13106426 0.9369176</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 0.7461093 0.45771158 0.7643634</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>To extract the first column, I use the <code>[]</code> operator and either type the number
@@ -327,8 +327,8 @@ of the column like so:</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df[</span><span class="p">,</span> <span class="m">1</span><span class="n">]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 0.5289190 0.9935248 0.3955967 0.3853446 0.2528597 0.1731074 0.8082603 0.3607959 0.9631374</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] 0.9591598</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 0.3521887 0.5968249 0.8140053 0.1063281 0.3558890 0.7461093 0.9100084 0.6867512 0.9518726</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] 0.3775869</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>or the name of the column to be extracted:</p>
@@ -340,8 +340,8 @@ of the column like so:</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df[</span><span class="p">,</span> <span class="s">&#39;var1&#39;</span><span class="n">]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 0.5289190 0.9935248 0.3955967 0.3853446 0.2528597 0.1731074 0.8082603 0.3607959 0.9631374</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] 0.9591598</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 0.3521887 0.5968249 0.8140053 0.1063281 0.3558890 0.7461093 0.9100084 0.6867512 0.9518726</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] 0.3775869</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Interestingly enough, this returns a <strong>vector</strong>, not a data.frame</p>
@@ -396,16 +396,16 @@ a vector, but using <code>drop = FALSE</code> prevents this from happening. Let�
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df[</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">drop</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="n">]</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;          var1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  0.5289190</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  0.9935248</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  0.3955967</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  0.3853446</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  0.2528597</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  0.1731074</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  0.8082603</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  0.3607959</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  0.9631374</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 0.9591598</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  0.3521887</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  0.5968249</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  0.8140053</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  0.1063281</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  0.3558890</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  0.7461093</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  0.9100084</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  0.6867512</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  0.9518726</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 0.3775869</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Let’s check its class:</p>
@@ -440,16 +440,16 @@ same size, so you can basically subset the list!).</p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df[1]</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;          var1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  0.5289190</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  0.9935248</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  0.3955967</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  0.3853446</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  0.2528597</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  0.1731074</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  0.8082603</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  0.3607959</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  0.9631374</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 0.9591598</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  0.3521887</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  0.5968249</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  0.8140053</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  0.1063281</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  0.3558890</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  0.7461093</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  0.9100084</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  0.6867512</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  0.9518726</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 0.3775869</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>But if you need a specific selection of rows, you better use <code>drop</code>!</p>
@@ -465,10 +465,10 @@ same size, so you can basically subset the list!).</p>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">df[2</span><span class="o">:</span><span class="m">5</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">drop</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="n">]</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;         var1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.9935248</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.3955967</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.3853446</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 0.2528597</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.5968249</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.8140053</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.1063281</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 0.3558890</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Now you know ;-)</p>
@@ -631,17 +631,17 @@ If not, let me show you something:</p>
 </span></span><span class="line"><span class="cl">  <span class="n">var2</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="m">10</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">  <span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">extract</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s">&#39;var1&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;          var1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  0.7473814</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  0.8821383</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  0.9088537</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  0.8230054</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  0.9980682</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  0.1656520</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  0.2495403</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  0.2842454</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  0.3306343</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 0.5071488</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;           var1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  0.36287125</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  0.72769141</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  0.55488533</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  0.09558498</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  0.02320005</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  0.99943131</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  0.24918973</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  0.04312442</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  0.27877875</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 0.18618925</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Here I use the function <code>extract()</code> from the <code>magrittr</code> package that act as <code>[]</code>
@@ -697,17 +697,17 @@ only package from the CRAN). Let’s use it:</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">magrittr</span><span class="o">::</span><span class="nf">extract</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="s">&#39;var1&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;          var1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  0.7473814</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  0.8821383</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  0.9088537</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  0.8230054</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  0.9980682</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  0.1656520</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  0.2495403</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  0.2842454</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  0.3306343</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 0.5071488</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;           var1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  0.36287125</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  0.72769141</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  0.55488533</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  0.09558498</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  0.02320005</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  0.99943131</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  0.24918973</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  0.04312442</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  0.27877875</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 0.18618925</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Using this is also very helpful when you develop a package and functions from
@@ -1083,7 +1083,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 03 April 2023 00:21 UTC.
+      Latest build: 11 April 2023 00:46 UTC.
     </p>
 
   </div>

@@ -522,11 +522,11 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 </span></span><span class="line"><span class="cl"><span class="nf">microbenchmark</span><span class="p">(</span><span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">,</span> <span class="o">!!</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">),</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span> <span class="o">&amp;</span> <span class="m">1</span><span class="p">,</span> <span class="nf">nzchar</span><span class="p">(</span><span class="n">vec</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">  <span class="n">times</span> <span class="o">=</span> <span class="m">1000L</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Unit: nanoseconds</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;             expr min   lq   mean median   uq   max neval</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &gt; 0 800  900 1294.4   1000 1000 50200  1000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     !!nchar(vec) 900 1000 1421.7   1100 1200 26300  1000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &amp; 1 900 1000 1338.7   1100 1200 52500  1000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      nzchar(vec)   0    0  110.0    100  100 22400  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;             expr  min   lq   mean median   uq  max neval</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &gt; 0 1100 1100 1212.7   1200 1200 8100  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     !!nchar(vec) 1200 1200 1312.1   1300 1300 2300  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &amp; 1 1200 1300 1329.7   1300 1400 2700  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      nzchar(vec)    0    0   74.8    100  100  500  1000</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Yep yep!<code>nzchar()</code> is indeed way faster 🚀!</p>
@@ -596,9 +596,9 @@ value of the last evaluated expression is returned.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nf">microbenchmark</span><span class="p">(</span><span class="nf">foo</span><span class="p">(</span><span class="m">4</span><span class="p">),</span> <span class="nf">foo2</span><span class="p">(</span><span class="m">4</span><span class="p">),</span> <span class="n">times</span> <span class="o">=</span> <span class="m">1e5</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Unit: nanoseconds</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      expr min  lq     mean median  uq      max neval</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    foo(4) 400 600 1028.061    600 700  5155400 1e+05</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   foo2(4) 200 300  869.913    400 500 25326700 1e+05</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      expr min  lq    mean median  uq      max neval</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    foo(4) 400 500 788.576    500 500 17574300 1e+05</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   foo2(4) 300 300 414.047    300 400  3136600 1e+05</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="invisible"><code>invisible()</code></h2>
@@ -966,7 +966,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 03 April 2023 00:21 UTC.
+      Latest build: 11 April 2023 00:46 UTC.
     </p>
 
   </div>

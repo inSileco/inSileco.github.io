@@ -352,7 +352,7 @@ There is a very useful function that allows us to achieve this quite efficiently
 </span></span><span class="line"><span class="cl"><span class="nf">table</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">data</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 2 3 4 5 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 3 6 3 5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 7 6 4 2</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>You can also get the frequency for a data.frame with multiple columns. For example,
@@ -381,11 +381,11 @@ the frequency of observations per species per year:</p>
 </span></span><span class="line"><span class="cl"><span class="nf">table</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;              year</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  observations 2015 2016 2017 2018</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species1    4    2    2    1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species2    2    2    3    3</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species3    1    0    5    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species4    5    2    5    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species5    2    3    0    4</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species1    3    4    0    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species2    3    5    4    3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species3    5    3    0    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species4    1    4    1    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species5    2    0    2    4</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>You can actually do so for more than two columns.</p>
@@ -422,21 +422,21 @@ the frequency of observations per species per year:</p>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;              year</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  observations 2015 2016 2017 2018</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species1    4    2    0    0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species2    2    2    1    0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species3    1    0    0    0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species4    5    2    1    0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species5    2    3    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species1    3    3    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species2    3    5    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species3    5    1    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species4    1    2    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species5    2    0    0    0</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  , , atr1 = val2</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;              year</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  observations 2015 2016 2017 2018</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species1    0    0    2    1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species2    0    0    2    3</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species3    0    0    5    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species4    0    0    4    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species5    0    0    0    4</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species1    0    1    0    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species2    0    0    4    3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species3    0    2    0    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species4    0    2    1    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species5    0    0    2    4</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>As you can see, in such case, you will have to deal with arrays:</p>
@@ -455,11 +455,11 @@ the frequency of observations per species per year:</p>
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tb[</span><span class="p">,</span> <span class="p">,</span> <span class="m">1</span><span class="n">]</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;              year</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  observations 2015 2016 2017 2018</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species1    4    2    0    0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species2    2    2    1    0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species3    1    0    0    0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species4    5    2    1    0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species5    2    3    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species1    3    3    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species2    3    5    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species3    5    1    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species4    1    2    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species5    2    0    0    0</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>With further development and by combining <code>table()</code> with <code>paste0()</code> (see
@@ -486,29 +486,27 @@ for an explanation of this useful function!), you can create your desired data.f
 </span><span class="lnt">17
 </span><span class="lnt">18
 </span><span class="lnt">19
-</span><span class="lnt">20
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">as.data.frame</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">year</span><span class="p">,</span> <span class="s">&#39;_&#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">$</span><span class="n">observations</span><span class="p">)))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;              Var1 Freq</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  2015_species1    4</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  2015_species2    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  2015_species3    1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  2015_species4    5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  2015_species1    3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  2015_species2    3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  2015_species3    5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  2015_species4    1</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  2015_species5    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  2016_species1    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  2016_species2    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  2016_species4    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  2016_species5    3</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 2017_species1    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  11 2017_species2    3</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  12 2017_species3    5</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  13 2017_species4    5</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  14 2018_species1    1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  15 2018_species2    3</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  16 2018_species3    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  17 2018_species4    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  18 2018_species5    4</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  2016_species1    4</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  2016_species2    5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  2016_species3    3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  2016_species4    4</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 2017_species2    4</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  11 2017_species4    1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  12 2017_species5    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  13 2018_species1    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  14 2018_species2    3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  15 2018_species3    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  16 2018_species4    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  17 2018_species5    4</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><br>
@@ -974,7 +972,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 03 April 2023 00:21 UTC.
+      Latest build: 11 April 2023 00:46 UTC.
     </p>
 
   </div>
