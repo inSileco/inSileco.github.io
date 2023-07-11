@@ -99,6 +99,15 @@
                 <a href="http://twitter.com/share?url={{ .Permalink | absURL }}&text={{ .Params.tweet }}" target="_blank">
                     <img src='https://img.shields.io/twitter/url?style=social&url={{ .Permalink | absLangURL }}?link=http://left&link=http://right}'>
                 </a>
+
+                <div class = "tldr">
+                    {{ with .Params.tldr }}
+                        <i class="fas fa-forward"> Tl;DR</i> <i class="fas fa-forward"></i>
+                        <br>
+                        {{ . | markdownify }}
+                    {{ end }}
+                </div>
+
             </p>
             </div>
 
