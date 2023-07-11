@@ -1046,7 +1046,7 @@ a function similar to the one below:</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.3.0 (2023-04-21)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.3.1 (2023-06-16)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.2 LTS</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
@@ -1069,17 +1069,17 @@ a function similar to the one below:</p>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoRef_0.1.0</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.6        utf8_1.2.3        generics_0.1.3    xml2_1.3.4        blogdown_1.17    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.7.12    httpcode_0.3.0    digest_0.6.31     magrittr_2.0.3    evaluate_0.21    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] bookdown_0.34     fastmap_1.1.1     plyr_1.8.8        jsonlite_1.8.5    backports_1.4.1  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.6        utf8_1.2.3        generics_0.1.3    xml2_1.3.4        blogdown_1.18    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.7.12    httpcode_0.3.0    digest_0.6.32     magrittr_2.0.3    evaluate_0.21    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] bookdown_0.34     fastmap_1.1.1     plyr_1.8.8        jsonlite_1.8.7    backports_1.4.1  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] crul_1.4.0        promises_1.2.0.1  fansi_1.0.4       jquerylib_0.1.4   bibtex_0.5.1     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.1         shiny_1.7.4       rlang_1.1.1       ellipsis_0.3.2    cachem_1.0.8     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] yaml_2.3.7        tools_4.3.0       dplyr_1.1.2       httpuv_1.6.11     DT_0.28          </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] rcrossref_1.2.0   curl_5.0.1        vctrs_0.6.2       R6_2.5.1          mime_0.12        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] yaml_2.3.7        tools_4.3.1       dplyr_1.1.2       httpuv_1.6.11     DT_0.28          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] rcrossref_1.2.0   curl_5.0.1        vctrs_0.6.3       R6_2.5.1          mime_0.12        </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] lifecycle_1.0.3   stringr_1.5.0     fs_1.6.2          htmlwidgets_1.6.2 miniUI_0.1.1.1   </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] pkgconfig_2.0.3   bslib_0.5.0       pillar_1.9.0      later_1.3.1       glue_1.6.2       </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] Rcpp_1.0.10       highr_0.10        xfun_0.39         tibble_3.2.1      tidyselect_1.2.0 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] knitr_1.43        xtable_1.8-4      htmltools_0.5.5   rmarkdown_2.22    compiler_4.3.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] knitr_1.43        xtable_1.8-4      htmltools_0.5.5   rmarkdown_2.23    compiler_4.3.1</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -1146,11 +1146,11 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">val</span> <span class="o">&lt;-</span> <span class="nf">runif</span><span class="p">(</span><span class="m">40</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">val</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 12.008036 15.446464 89.136940 35.679788 59.112206 96.779685 35.587619 40.315505 31.828062</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] 29.425944 64.128489  8.582047 66.743304 71.585591 61.434578 25.500755 12.308163 17.572981</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] 10.030947 55.584533 91.696641 72.729048 95.122152 60.355969 64.703561 24.454181 24.874190</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] 39.097519 91.217165 51.134311 45.635744 99.850609 70.635048 33.797449 81.310998 52.511750</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] 27.465974  1.179688 72.230973 96.712789</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 16.445263 97.343030 41.195626 58.306967 39.842506 51.003122 97.556564 19.330957 17.233731</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] 18.915424 25.702140 48.956345  1.922678 66.862866 89.364088 12.768326 39.666431 47.563184</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] 58.467991 22.729051 86.763212 73.541500 70.407940 19.635540 12.960518 23.690676 26.604231</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] 44.300201 56.436834 81.345879 34.754534 67.032375 98.454341 41.104936 71.539413 97.478787</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37]  1.201368 65.247008 34.862967 53.417949</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
@@ -1175,8 +1175,8 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1]  1  1 25  4 19 25  4  7  2  1 22  1 23 25 20  1  1  1  1 16 25 25 25 19 22  1  1  6 25 14 10 25</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] 25  3 25 15  1  1 25 25</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1]  1 25  7 18  7 14 25  1  1  1  1 12  1 24 25  1  7 11 18  1 25 25 25  1  1  1  1  9 17 25  3 24</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] 25  7 25 25  1 23  4 15</span>
 </span></span><span class="line"><span class="cl"><span class="n">graphicsutils</span><span class="o">::</span><span class="nf">showPalette</span><span class="p">(</span><span class="n">pal</span><span class="nf">[scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">add_codecolor</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -1459,7 +1459,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.3.0 (2023-04-21)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.3.1 (2023-06-16)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.2 LTS</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
@@ -1483,24 +1483,24 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.6               utf8_1.2.3               generics_0.1.3          </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [4] xml2_1.3.4               blogdown_1.17            stringi_1.7.12          </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] httpcode_0.3.0           graphicsutils_1.6.0.9000 digest_0.6.31           </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [4] xml2_1.3.4               blogdown_1.18            stringi_1.7.12          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] httpcode_0.3.0           graphicsutils_1.6.0.9000 digest_0.6.32           </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] magrittr_2.0.3           evaluate_0.21            bookdown_0.34           </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] fastmap_1.1.1            plyr_1.8.8               jsonlite_1.8.5          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] fastmap_1.1.1            plyr_1.8.8               jsonlite_1.8.7          </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] backports_1.4.1          crul_1.4.0               promises_1.2.0.1        </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] fansi_1.0.4              jquerylib_0.1.4          bibtex_0.5.1            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] cli_3.6.1                shiny_1.7.4              crayon_1.5.2            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] rlang_1.1.1              ellipsis_0.3.2           cachem_1.0.8            </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] yaml_2.3.7               tools_4.3.0              dplyr_1.1.2             </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] yaml_2.3.7               tools_4.3.1              dplyr_1.1.2             </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] httpuv_1.6.11            DT_0.28                  rcrossref_1.2.0         </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [34] curl_5.0.1               vctrs_0.6.2              R6_2.5.1                </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [34] curl_5.0.1               vctrs_0.6.3              R6_2.5.1                </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] mime_0.12                lifecycle_1.0.3          stringr_1.5.0           </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [40] fs_1.6.2                 htmlwidgets_1.6.2        miniUI_0.1.1.1          </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [43] pkgconfig_2.0.3          bslib_0.5.0              pillar_1.9.0            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] later_1.3.1              glue_1.6.2               Rcpp_1.0.10             </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] highr_0.10               xfun_0.39                tibble_3.2.1            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [52] tidyselect_1.2.0         knitr_1.43               xtable_1.8-4            </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [55] htmltools_0.5.5          rmarkdown_2.22           compiler_4.3.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [55] htmltools_0.5.5          rmarkdown_2.23           compiler_4.3.1</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -2002,7 +2002,7 @@ this topic (for instance
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.3.0 (2023-04-21)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.3.1 (2023-06-16)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.2 LTS</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
@@ -2025,17 +2025,17 @@ this topic (for instance
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoMisc_0.7.0.9000 inSilecoRef_0.1.0      </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.6        utf8_1.2.3        generics_0.1.3    xml2_1.3.4        blogdown_1.17    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.7.12    httpcode_0.3.0    digest_0.6.31     magrittr_2.0.3    evaluate_0.21    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] bookdown_0.34     fastmap_1.1.1     plyr_1.8.8        jsonlite_1.8.5    backports_1.4.1  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.6        utf8_1.2.3        generics_0.1.3    xml2_1.3.4        blogdown_1.18    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.7.12    httpcode_0.3.0    digest_0.6.32     magrittr_2.0.3    evaluate_0.21    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] bookdown_0.34     fastmap_1.1.1     plyr_1.8.8        jsonlite_1.8.7    backports_1.4.1  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] crul_1.4.0        promises_1.2.0.1  fansi_1.0.4       jquerylib_0.1.4   bibtex_0.5.1     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.1         shiny_1.7.4       crayon_1.5.2      rlang_1.1.1       ellipsis_0.3.2   </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] cachem_1.0.8      yaml_2.3.7        tools_4.3.0       dplyr_1.1.2       httpuv_1.6.11    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] DT_0.28           rcrossref_1.2.0   curl_5.0.1        vctrs_0.6.2       R6_2.5.1         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] cachem_1.0.8      yaml_2.3.7        tools_4.3.1       dplyr_1.1.2       httpuv_1.6.11    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] DT_0.28           rcrossref_1.2.0   curl_5.0.1        vctrs_0.6.3       R6_2.5.1         </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] mime_0.12         lifecycle_1.0.3   stringr_1.5.0     fs_1.6.2          htmlwidgets_1.6.2</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] miniUI_0.1.1.1    pkgconfig_2.0.3   bslib_0.5.0       pillar_1.9.0      later_1.3.1      </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] glue_1.6.2        Rcpp_1.0.10       xfun_0.39         tibble_3.2.1      tidyselect_1.2.0 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] knitr_1.43        xtable_1.8-4      htmltools_0.5.5   rmarkdown_2.22    compiler_4.3.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] knitr_1.43        xtable_1.8-4      htmltools_0.5.5   rmarkdown_2.23    compiler_4.3.1</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -2445,44 +2445,44 @@ for every columns:</p>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">lsdf</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[1]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    C E I H D</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 c e i h d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 c e i h d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 c e i h d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 c e i h d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 c e i h d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    I J A G E</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 i j a g e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 i j a g e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 i j a g e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 i j a g e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 i j a g e</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[2]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    J H G D A</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 j h g d a</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 j h g d a</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 j h g d a</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 j h g d a</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 j h g d a</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    B G E H D</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 b g e h d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 b g e h d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 b g e h d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 b g e h d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 b g e h d</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[3]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    H A D G J</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 h a d g j</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 h a d g j</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 h a d g j</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 h a d g j</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 h a d g j</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    A H D F E</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 a h d f e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 a h d f e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 a h d f e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 a h d f e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 a h d f e</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[4]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    D B H J I</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 d b h j i</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 d b h j i</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 d b h j i</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 d b h j i</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 d b h j i</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    F H I E A</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 f h i e a</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 f h i e a</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 f h i e a</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 f h i e a</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 f h i e a</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[5]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    J B A C D</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 j b a c d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 j b a c d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 j b a c d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 j b a c d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 j b a c d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    A G E B F</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 a g e b f</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 a g e b f</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 a g e b f</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 a g e b f</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 a g e b f</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>So the goal here is to create a data frame that contains only the five first
@@ -2537,44 +2537,44 @@ To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">lsdf2</span> <span class="o">&lt;-</span> <span class="nf">lapply</span><span class="p">(</span><span class="n">lsdf</span><span class="p">,</span> <span class="n">dfTemplateMatch</span><span class="p">,</span> <span class="kc">LETTERS</span><span class="n">[1</span><span class="o">:</span><span class="m">5</span><span class="n">]</span><span class="p">,</span> <span class="n">yonly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">lsdf2</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[1]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    C E D  A  B</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 c e d NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 c e d NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 c e d NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 c e d NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 c e d NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    A E  B  C  D</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 a e NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 a e NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 a e NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 a e NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 a e NA NA NA</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[2]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    D A  B  C  E</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 d a NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 d a NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 d a NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 d a NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 d a NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    B E D  A  C</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 b e d NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 b e d NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 b e d NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 b e d NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 b e d NA NA</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[3]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    A D  B  C  E</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 a d NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 a d NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 a d NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 a d NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 a d NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    A D E  B  C</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 a d e NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 a d e NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 a d e NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 a d e NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 a d e NA NA</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[4]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    D B  A  C  E</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 d b NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 d b NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 d b NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 d b NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 d b NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    E A  B  C  D</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 e a NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 e a NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 e a NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 e a NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 e a NA NA NA</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[5]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    B A C D  E</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 b a c d NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 b a c d NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 b a c d NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 b a c d NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 b a c d NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    A E B  C  D</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 a e b NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 a e b NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 a e b NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 a e b NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 a e b NA NA</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>And now I can seamlessly <code>rbind()</code> the list <code>lsdf2</code>!</p>
@@ -2610,32 +2610,32 @@ To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">do.call</span><span class="p">(</span><span class="n">rbind</span><span class="p">,</span> <span class="n">lsdf2</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;        C    E D    A    B</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1     c    e d &lt;NA&gt; &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2     c    e d &lt;NA&gt; &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3     c    e d &lt;NA&gt; &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4     c    e d &lt;NA&gt; &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5     c    e d &lt;NA&gt; &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  &lt;NA&gt; &lt;NA&gt; d    a &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  &lt;NA&gt; &lt;NA&gt; d    a &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  &lt;NA&gt; &lt;NA&gt; d    a &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  &lt;NA&gt; &lt;NA&gt; d    a &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 &lt;NA&gt; &lt;NA&gt; d    a &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  11 &lt;NA&gt; &lt;NA&gt; d    a &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  12 &lt;NA&gt; &lt;NA&gt; d    a &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  13 &lt;NA&gt; &lt;NA&gt; d    a &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  14 &lt;NA&gt; &lt;NA&gt; d    a &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  15 &lt;NA&gt; &lt;NA&gt; d    a &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  16 &lt;NA&gt; &lt;NA&gt; d &lt;NA&gt;    b</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  17 &lt;NA&gt; &lt;NA&gt; d &lt;NA&gt;    b</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  18 &lt;NA&gt; &lt;NA&gt; d &lt;NA&gt;    b</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  19 &lt;NA&gt; &lt;NA&gt; d &lt;NA&gt;    b</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  20 &lt;NA&gt; &lt;NA&gt; d &lt;NA&gt;    b</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  21    c &lt;NA&gt; d    a    b</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  22    c &lt;NA&gt; d    a    b</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  23    c &lt;NA&gt; d    a    b</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  24    c &lt;NA&gt; d    a    b</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  25    c &lt;NA&gt; d    a    b</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;        A E    B  C    D</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1     a e &lt;NA&gt; NA &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2     a e &lt;NA&gt; NA &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3     a e &lt;NA&gt; NA &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4     a e &lt;NA&gt; NA &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5     a e &lt;NA&gt; NA &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  &lt;NA&gt; e    b NA    d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  &lt;NA&gt; e    b NA    d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  &lt;NA&gt; e    b NA    d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  &lt;NA&gt; e    b NA    d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 &lt;NA&gt; e    b NA    d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  11    a e &lt;NA&gt; NA    d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  12    a e &lt;NA&gt; NA    d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  13    a e &lt;NA&gt; NA    d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  14    a e &lt;NA&gt; NA    d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  15    a e &lt;NA&gt; NA    d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  16    a e &lt;NA&gt; NA &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  17    a e &lt;NA&gt; NA &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  18    a e &lt;NA&gt; NA &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  19    a e &lt;NA&gt; NA &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  20    a e &lt;NA&gt; NA &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  21    a e    b NA &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  22    a e    b NA &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  23    a e    b NA &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  24    a e    b NA &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  25    a e    b NA &lt;NA&gt;</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="voilà-this-is-what-i-call-a-flexible-rbind-i-hope-youll-find-this-helpful-">Voilà! This is what I call a <em>flexible</em> <code>rbind</code>! I hope you&rsquo;ll find this helpful! 💥</h4>
@@ -2682,7 +2682,7 @@ To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.3.0 (2023-04-21)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.3.1 (2023-06-16)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.2 LTS</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
@@ -2705,17 +2705,17 @@ To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoMisc_0.7.0.9000 inSilecoRef_0.1.0      </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.6        utf8_1.2.3        generics_0.1.3    xml2_1.3.4        blogdown_1.17    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.7.12    httpcode_0.3.0    digest_0.6.31     magrittr_2.0.3    evaluate_0.21    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] bookdown_0.34     fastmap_1.1.1     plyr_1.8.8        jsonlite_1.8.5    backports_1.4.1  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.6        utf8_1.2.3        generics_0.1.3    xml2_1.3.4        blogdown_1.18    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.7.12    httpcode_0.3.0    digest_0.6.32     magrittr_2.0.3    evaluate_0.21    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] bookdown_0.34     fastmap_1.1.1     plyr_1.8.8        jsonlite_1.8.7    backports_1.4.1  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] crul_1.4.0        promises_1.2.0.1  fansi_1.0.4       jquerylib_0.1.4   bibtex_0.5.1     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.1         shiny_1.7.4       crayon_1.5.2      rlang_1.1.1       ellipsis_0.3.2   </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] cachem_1.0.8      yaml_2.3.7        tools_4.3.0       dplyr_1.1.2       httpuv_1.6.11    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] DT_0.28           rcrossref_1.2.0   curl_5.0.1        vctrs_0.6.2       R6_2.5.1         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] cachem_1.0.8      yaml_2.3.7        tools_4.3.1       dplyr_1.1.2       httpuv_1.6.11    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] DT_0.28           rcrossref_1.2.0   curl_5.0.1        vctrs_0.6.3       R6_2.5.1         </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] mime_0.12         lifecycle_1.0.3   stringr_1.5.0     fs_1.6.2          htmlwidgets_1.6.2</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] miniUI_0.1.1.1    pkgconfig_2.0.3   bslib_0.5.0       pillar_1.9.0      later_1.3.1      </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] glue_1.6.2        Rcpp_1.0.10       xfun_0.39         tibble_3.2.1      tidyselect_1.2.0 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] knitr_1.43        xtable_1.8-4      htmltools_0.5.5   rmarkdown_2.22    compiler_4.3.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] knitr_1.43        xtable_1.8-4      htmltools_0.5.5   rmarkdown_2.23    compiler_4.3.1</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
