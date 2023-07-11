@@ -1,0 +1,387 @@
+---
+title: A few thoughts about piping in R
+author: [kevin]
+date: 2023-07-20
+tags: [R, tips, piping]
+rpkgs: [base, magrittr, dplyr]
+tweet: "A few thoughts about piping in R"
+review: false
+draft: true
+estime: 5
+bibliography: "`r path_ref_bib`"
+csl: "`r path_ref_csl`"
+tldr: |
+    I have been piping for years, I started with the pipes from the `magrittr` package, now I use the **native pipe** in my scripts, packages and in the console. 
+output:
+  blogdown::html_page:
+    dev: svglite
+---
+
+
+
+## Piping in R 
+
+Back in 2014, I discovered the forward pipe for R introduced in [`magrittr`](https://magrittr.tidyverse.org/) and since that time, I have never stopped piping, though my piping habits evolved over time, especially with the [introduction of the native pipe](https://www.jumpingrivers.com/blog/new-features-r410-pipe-anonymous-functions/) in R 4.1. 
+
+When I started using pipes in R, I had some experience with the [bash pipe]((https://effective-shell.com/part-2-core-skills/thinking-in-pipelines/)), `|`, which basically passes the output of a function to the input of a second one. But using pipes in R was a major breakthrough: with a simple infix operator, lines of code involving a collection of nested function calls was suddenly turned into one readable data recipe. Let's take a concrete example and create a data pipeline where we apply a statistical model, `model_1()`, to the data set `data_1` and let's assume that two steps of data preprocessing, `transform_1()` and `transform_2()`, are required. Here is the code without pipes:
+
+```R
+res <- model_1(
+    transform_2(
+        transform_3(
+            data_1
+        )
+    )
+)
+```
+
+for now, let's refer to the forward pipe as `%pipe%` and let's rewrite the code with it:
+
+```R
+var <- data_1 %pipe%
+    transform_1() %pipe%
+    transform_2() %pipe%
+    model_1()
+```
+
+Looking at the two blocks of code, there are two main facts, one can quickly grasp: 
+
+1. with pipes, you stop reading backwards: `data_1` is at the beginning of the block, and `model_1` is now at the last line, not a the first line;
+2. with pipes, it is easier to deal with parentheses, the code is more readable.  
+
+A little more subtle is that is it easier to comment out parts of the recipe. Say we need to comment out `transform_2()`, without pipes, we would to something like this 
+
+```R
+var <- model_1(
+    #transform_2(
+        transform_1(
+            inti_var
+        )
+    #)
+)
+```
+
+whereas with pipes, the code would look something like that: 
+
+```R
+var <- ini_var %pipe%
+    transform_1() %pipe%
+    #transform_2() %pipe%
+    model_1()
+```
+
+This is not a major concern here, but it does help in more complex cases. Having R code easy to read and easy to manipulate is particularly relevant for the R community because we are a group of data recipe writers and our recipes may include tens of steps. It is thus no surprise that the community [quickly adopted the magrittr's pipe](https://www.r-statistics.com/tag/stefan-milton/) and [tidyverse](https://www.tidyverse.org/) tremendously helped in popularizing the use of pipes in the community (e.g. see commit [`89aaa9a8b`](https://github.com/tidyverse/dplyr/commit/89aaa9a8b386d7e3705ffb682d89dc5bebe823c0) of `dplyr` on April 14<sup>th</sup>, 2014 that shows the adoption of the pipe in the package).
+
+
+
+## magrittr pipes
+
+I am assuming that most of R users are familiar with the forward pipe `%>%` and the corresponding placeholder `.` -- the symbols representing the object being forwarded. I am also assuming that most of R users have used it through the meta package [`tidyverse`](https://CRAN.R-project.org/package=tidyverse), or one of the packages it includes, most likely [`dpyr`](https://CRAN.R-project.org/package=dpyr). So here, instead of focusing on this pipe, I would like to mention a few technical details as well as the other pipes `magrittr` includes.
+
+[`magrittr`](https://CRAN.R-project.org/package=magrittr) is a package that brings the forward pipe `%>%` and [several other pipes](https://magrittr.tidyverse.org/reference/index.html#pipes): `%<>%`, `%$%`, `%!>%`, `%T>%` as well as a [bunch of functions](https://magrittr.tidyverse.org/reference/index.html#pipes) that can be used with the pipe. 
+
+If you look at the source code, pipes are defined in [pipe.R](https://github.com/tidyverse/magrittr/blob/21093d06e43649a72b865811188e77fc8ad87780/R/pipe.R) and for instance the following lines defined the forward pipe (see [pipe.R L130-L137](https://github.com/tidyverse/magrittr/blob/21093d06e43649a72b865811188e77fc8ad87780/R/pipe.R#L130C1-L137)):
+
+```R
+`%>%` <- function(lhs, rhs) {
+  lhs <- substitute(lhs)
+  rhs <- substitute(rhs)
+  kind <- 1L
+  env <- parent.frame()
+  lazy <- TRUE
+  .External2(magrittr_pipe)
+}
+```
+
+the last line is a call to the [primitive](https://cran.r-project.org/doc/manuals/r-release/R-ints.html#g_t_002eInternal-vs-_002ePrimitive) `.External2()` that will call an external C function, `magrittr_pipe()`, that is an R internal structure (a [SEXP](https://cran.r-project.org/doc/manuals/r-release/R-ints.html#SEXPs), see [Rinternals.h](https://github.com/wch/r-source/blob/23642aaf1e302ab6cb81b4f9ad8edbdcd6c44d4c/src/include/Rinternals.h#L4)). If you go to the folder source you will find the lines in 
+[pipe.c](https://github.com/tidyverse/magrittr/blob/21093d06e43649a72b865811188e77fc8ad87780/src/pipe.c#L68) where the function is defined:
+
+```c
+SEXP magrittr_pipe(SEXP call, SEXP op, SEXP args, SEXP rho) {
+  args = CDR(args);
+  [...]
+}
+```
+
+Hence, when you load `magrittr`, you are using new internal functions including the forward pipe along with four others pipes: 
+
+- `%<>%`: the [assignment pipe](https://magrittr.tidyverse.org/reference/compound.html) 
+- `%$%` : the [exposition pipe](https://magrittr.tidyverse.org/reference/exposition.html)
+- `%!>%`: the [eager pipe](https://magrittr.tidyverse.org/reference/pipe-eager.html)
+- `%T>%`: the [Tee pipe](https://magrittr.tidyverse.org/reference/tee.html)
+
+
+Let's load magrittr and let me give an example for the assignment pipe and the the Tee pipe. The assignment pipe allows you to assign the value pipe to a  . Here is a example where you would be in two steps.
+
+
+```{R assignement}
+library(magrittr)
+library(dplyr)
+CO2b <- CO2 %>%
+    filter(conc > 200)
+dim(CO2b)
+CO2b <- CO2b %>%
+    mutate(conc2 = 2 * conc)
+head(CO2b)
+```
+
+With the assignment pipe you can use `CO2b %<>%` instead of `CO2b <- CO2b`
+
+```{R assignment}
+CO2c <- CO2 %>%
+    filter(conc > 200)
+dim(CO2c)
+CO2c %<>% mutate(conc2 = 2 * conc)
+identical(CO2b, CO2c)
+```
+
+
+With the Tee pipe, you can call a function but the output could very useful for functions to print and plot. 
+
+```{R tee}
+CO2d <- CO2 %>%
+    filter(conc > 200) %>%
+    mutate(conc2 = 2 * conc) %T>%
+    print(max = 50)
+identical(CO2d, CO2c)
+```
+
+The exposition pipe expose the you can call the in the right-hand side of the pipe.
+
+```{R dollar, error = TRUE}
+CO2 %>% print(conc)
+CO2 %$% print(conc)
+CO2 %$%
+    conc * 2 %>%
+    log10()
+```
+
+
+eager pipe is about overcoming the [lazy evaluation](https://colinfay.me/lazyeval/)
+
+
+```{R eager, message = TRUE}
+trans1 <- function(x) {
+    cat("trans1\n")
+    x$nrow <- nrow(x)
+    x
+}
+trans2 <- function(x) {
+    cat("trans2\n")
+    head(x, 4)
+}
+CO2e <- CO2 %>%
+    trans1() %>%
+    trans2()
+CO2f <- CO2 %!>%
+    trans1() %!>%
+    trans2() 
+CO2f
+identical(CO2e, CO2f)
+```
+
+Not if actually in a different sense would not work we would have 
+
+
+
+
+## The native pipe 
+
+R 4.1 introduced the native pipe `|>`. In the [NEWS file](https://cran.r-project.org/doc/manuals/r-devel/NEWS.html), section *CHANGES IN R 4.1.0*, the pipe was announced with the following message :
+
+> R now provides a simple native forward pipe syntax |>. The simple form of the forward pipe inserts the left-hand side as the first argument in the right-hand side call. The pipe implementation as a syntax transformation was motivated by suggestions from Jim Hester and Lionel Henry. 
+
+Several blog posts have explained how to use it (e.g. a [blog post on Towards data science](https://towardsdatascience.com/understanding-the-native-r-pipe-98dea6d8b61b) and [one by Jumping Rivers](https://www.jumpingrivers.com/blog/new-features-r410-pipe-anonymous-functions/))
+I was curious about what were the changes that come with such new feature, so I did a quick search in the source code (using the mirror available on GitHub at https://github.com/wch/r-source):
+
+```sh
+git log --oneline -S 'native pipe'
+
+263d6bcf0b Use => syntax to pass pipe lhs to non-first-argument on rhs.
+a1425adea5 Added native pipe and function shorthand syntax.
+```
+
+Commit `a1425adea5` is what I was looking for and I checked the files modified with the following git command.
+
+```sh
+git show --name-only a1425adea5 
+commit a1425adea54bcc98eef86081522b5dbb3e149cdc
+Author: luke <luke@00db46b3-68df-0310-9c12-caf00c1e9a41>
+Date:   Thu Dec 3 22:59:31 2020 +0000
+ 
+    Added native pipe and function shorthand syntax.
+    
+    git-svn-id: https://svn.r-project.org/R/trunk@79553 00db46b3-68df-0310-9c12-caf00c1e9a41
+ 
+doc/NEWS.Rd
+src/include/Rinternals.h
+src/library/base/man/function.Rd
+src/library/base/man/pipeOp.Rd
+src/main/gram.c
+src/main/gram.y
+src/main/names.c
+```
+
+Commit [`a1425adea54bcc98eef86081522b5dbb3e149cdc`](https://github.com/wch/r-source/commit/a1425adea54bcc98eef86081522b5dbb3e149cdc) introduced the pipe  and 7 files were modified to do so. Note that `git show` one can quickly check all the changes: 
+
+```sh 
+git show a1425adea54bcc98eef86081522b5dbb3e149cdc
+```
+
+and with `-- path` one may focus on a specific file:
+
+```sh
+git show a1425adea54bcc98eef86081522b5dbb3e149cdc -- src/include/Rinternals.h
+
+commit a1425adea54bcc98eef86081522b5dbb3e149cdc
+Author: luke <luke@00db46b3-68df-0310-9c12-caf00c1e9a41>
+Date:   Thu Dec 3 22:59:31 2020 +0000
+ 
+    Added native pipe and function shorthand syntax.
+    
+    
+    git-svn-id: https://svn.r-project.org/R/trunk@79553 00db46b3-68df-0310-9c12-caf00c1e9a41
+ 
+diff --git a/src/include/Rinternals.h b/src/include/Rinternals.h
+index 143cf24ab7..0a5e446b0e 100644
+--- a/src/include/Rinternals.h
++++ b/src/include/Rinternals.h
+@@ -1034,6 +1034,7 @@ LibExtern SEXP    R_DotsSymbol;       /* "..." */
+ LibExtern SEXP R_DoubleColonSymbol;// "::"
+ LibExtern SEXP R_DropSymbol;       /* "drop" */
+ LibExtern SEXP R_EvalSymbol;       /* "eval" */
++LibExtern SEXP R_FunctionSymbol;   /* "function" */
+ LibExtern SEXP R_LastvalueSymbol;  /* ".Last.value" */
+ LibExtern SEXP R_LevelsSymbol;     /* "levels" */
+ LibExtern SEXP R_ModeSymbol;       /* "mode" */
+```
+
+Investigating further, I found that the symbol `|>` is declared in `names.c` and that `xxpipe()` is basically the definition of the pipe (see `gram.y`).
+
+
+```c
+static SEXP    xxpipe(SEXP, SEXP);
+/* [...] */
+
+static SEXP xxpipe(SEXP lhs, SEXP rhs) {
+    SEXP ans;
+    if (GenerateCode) {
+       /* allow for rhs lambda expressions */
+       if (TYPEOF(rhs) == LANGSXP && CAR(rhs) == R_FunctionSymbol)
+           return lang2(rhs, lhs);
+                   
+       if (TYPEOF(rhs) != LANGSXP)
+           error(_("The pipe operator requires a function call "
+                   "or an anonymous function expression as RHS"));
+
+        SEXP fun = CAR(rhs);
+        SEXP args = CDR(rhs);
+
+
+       /* rule out syntactically special functions */
+       /* the IS_SPECIAL_SYMBOL bit is set in names.c */
+       if (TYPEOF(fun) == SYMSXP && IS_SPECIAL_SYMBOL(fun))
+           error("function '%s' not supported in RHS call of a pipe",
+                 CHAR(PRINTNAME(fun)));
+       
+       PRESERVE_SV(ans = lcons(fun, lcons(lhs, args)));
+    }
+    else {
+       PRESERVE_SV(ans = R_NilValue);
+    }
+    RELEASE_SV(lhs);
+    RELEASE_SV(rhs);
+    return ans;
+}
+```
+
+And this part behid when we use manipulation of left-hand side and right handside to get it .  Final results similar to what we expect 
+
+```{R native}
+CO2g <- CO2 |>
+    filter(conc > 200) |>
+    mutate(conc2 = 2 * conc)
+identical(CO2g, CO2b)
+```
+
+and though I don't see any advantages of doing so, it is possible to mix 
+
+```{R mix}
+CO2h <- CO2 |>
+    filter(conc > 200) %>%
+    mutate(conc2 = 2 * conc)
+identical(CO2h, CO2b)
+```
+
+
+Even if the code of `xxpipe()` has changed we can still demonstrate the two errors it captures above (though the error messages are slightly different):
+
+```{R pipe_error1, error = TRUE}
+CO2 |> head
+```
+
+```{R pipe_error2, error = TRUE}
+CO2 |> `+`()
+```
+
+
+One of the main reason for changes in the code is the recent introduction of the placeholder, in R 4.2.0 (see [*CHANGES IN R 4.2.0* in the NEWS file](https://cran.r-project.org/doc/manuals/r-devel/NEWS.html)):
+
+> In a forward pipe |> expression it is now possible to use a named argument with the placeholder _ in the rhs call to specify where the lhs is to be inserted. The placeholder can only appear once on the rhs.
+
+
+That comes with recent updates in R 4.3.0 (see [*CHANGES IN R 4.3.0* NEWS file](https://cran.r-project.org/doc/manuals/r-devel/NEWS.html)):
+
+
+> As an experimental feature the placeholder _ can now also be used in the rhs of a forward pipe |> expression as the first argument in an extraction call, such as _$coef. More generally, it can be used as the head of a chain of extractions, such as _$coef[[2]].
+
+
+So here what can be done in R>4.3.0.
+
+```{R placeholder, error = TRUE}
+CO2 |>
+    _$conc |>
+    sum()
+```
+
+On top of making my code cleaner and easier to comment out, there is something more. I am using more frequently in interactive code, the third assignement operator: 
+`->` that really comes in handy
+. You may have heard that there are 3, and this should is historical as mentioned by [@chambers_2016_Extending] page 73 in a footnote: 
+
+> The specific choice of `<-` dates back to the first version of S. We chose it in order to emphasize that the left and right operands are entirely different: a target on the left and a computed value on the right. Later versions of S and R accept the `=` operator, but for exposition the original choice remains clearer.
+
+
+[`assignOps`](https://stat.ethz.ch/R-manual/R-devel/library/base/html/assignOps.html)
+
+
+```{R thirdassign, error = TRUE}
+CO2 |>
+    _$conc |>
+    sum() -> tot_conc
+tot_conc
+```
+
+and yes, this feels weirdly natural, and I am not the only one to this so  have come across to code on GitHub that does that, even in package! 
+
+
+
+## Final remarks
+
+Here I just provide some details about the two pipes, I did not really compare the two I jsut. The main differences between the two pipes are summarized in one of [Hadley Wickham recent blog post](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/). Of course there is only one mative pipe and 5 magritr pipes. But the main difference highlighted regards the placeholders, `.` and the native placeholder, `_`. That said given the latest experimental feature  in R 4.3.0 these differences seem to be thiner and thiner. 
+
+So I used to use magrittr, various features of it, then I use the simplest form 
+basic pipe and so I switched to the native pipe to not rely on an external package and as I do not have the only policy is to make package for olderel which is 4.2 to be able to check code for devel / rel and support oldrel, 
+
+The tidyverse community still uses and recommends the use of magrittr pipe, and give the styling for https://style.tidyverse.org/pipes.html which is the one I follow with the native pipe. So now I am using the native pipe everywhere, the . My understanding is that in 
+some cases in might add in some cases and less problem. But I never experience any problem so I guess it just come to the fact that I do not use the placeholder much and if it does, only 2 character, cleaner way. Just this is what I use that;s it. 
+
+I use it anywhere an, I have shortcuts for it ` |> names()` or ` |> class()` that I grequently used
+
+
+
+## References
+
+<div id="refs"></div>
+
+```{R sessionInfo, child = path_session_info}
+```
