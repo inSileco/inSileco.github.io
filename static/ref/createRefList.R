@@ -3,9 +3,10 @@ dois <- read.csv("dois.csv")
 inSilecoRef::add_doi_reference(dois$DOI, "inSileco_doi.bib")
 
 # Package references
-pkgs <- c("igraph", "sf", "terra")
+pkgs <- c("terra", "igraph")
 citationk <- function(x) {
-    out <- citation(x)
+    # gt a weird behavior when there are 2+ citation for one package
+    out <- citation(x)[[1]]
     out$key <- paste0(x, "_", out$year)
     return(out)
 }
