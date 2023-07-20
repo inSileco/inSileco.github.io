@@ -3,7 +3,7 @@
 <img class="full-width" width="100%" src="/img/banner4.png"></img>
 
 
-<div class="row">
+<div class="row" style = "display: flex;">
 
     <div class="col-md-3">
         {{ partial "sidebar-toc" . }}
@@ -100,13 +100,13 @@
                     <img src='https://img.shields.io/twitter/url?style=social&url={{ .Permalink | absLangURL }}?link=http://left&link=http://right}'>
                 </a>
 
-                <div class = "tldr">
-                    {{ with .Params.tldr }}
+                {{ with .Params.tldr }}
+                    <div class = "tldr">
                         <i class="fas fa-forward"> Tl;DR</i> <i class="fas fa-forward"></i>
                         <br>
                         {{ . | markdownify }}
-                    {{ end }}
-                </div>
+                    </div>
+                {{ end }}
 
             </p>
             </div>
