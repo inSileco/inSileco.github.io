@@ -51,7 +51,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.115.2">
+ <meta name="generator" content="Hugo 0.115.4">
         
 
         
@@ -132,12 +132,12 @@
 <img class="full-width" width="100%" src="/img/banner4.png"></img>
 
 
-<div class="row">
+<div class="row" style = "display: flex;">
 
     <div class="col-md-3">
-        <div class = "toc">
+        <div class="toc">
 
-    <h2 style="margin-top: 0.5rem; padding-top: 0.5rem; padding-bottom: 0.25rem;">
+    <h2 style="padding-top: 0.5rem; padding-bottom: 0.25rem;">
         <a href="#">
             <i class='fas fa-chevron-up'></i>
         </a>
@@ -241,6 +241,9 @@
                 <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2018%2f02%2f11%2ftrick-or-tips-003-r%2f&text=Third%20post%20of%20the%20%27Trick%20or%20Tips%27%20series" target="_blank">
                     <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2018%2f02%2f11%2ftrick-or-tips-003-r%2f?link=http://left&link=http://right}'>
                 </a>
+
+                
+
             </p>
             </div>
 
@@ -352,7 +355,7 @@ There is a very useful function that allows us to achieve this quite efficiently
 </span></span><span class="line"><span class="cl"><span class="nf">table</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">data</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 2 3 4 5 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7 2 4 2 5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 6 4 5 3</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>You can also get the frequency for a data.frame with multiple columns. For example,
@@ -381,11 +384,11 @@ the frequency of observations per species per year:</p>
 </span></span><span class="line"><span class="cl"><span class="nf">table</span><span class="p">(</span><span class="n">df</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;              year</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  observations 2015 2016 2017 2018</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species1    2    3    1    3</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species2    2    1    4    5</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species3    7    1    0    5</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species4    2    2    1    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species5    1    5    0    3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species1    3    2    3    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species2    4    4    1    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species3    5    3    0    1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species4    4    0    2    1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species5    5    2    3    3</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>You can actually do so for more than two columns.</p>
@@ -422,21 +425,21 @@ the frequency of observations per species per year:</p>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;              year</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  observations 2015 2016 2017 2018</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species1    2    3    0    0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species2    2    1    0    0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species3    7    1    0    0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species4    2    2    0    0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species5    1    4    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species1    3    2    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species2    4    2    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species3    5    0    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species4    4    0    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species5    5    0    0    0</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  , , atr1 = val2</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;              year</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  observations 2015 2016 2017 2018</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species1    0    0    1    3</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species2    0    0    4    5</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species3    0    0    0    5</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species4    0    0    1    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species5    0    1    0    3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species1    0    0    3    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species2    0    2    1    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species3    0    3    0    1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species4    0    0    2    1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species5    0    2    3    3</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>As you can see, in such case, you will have to deal with arrays:</p>
@@ -455,11 +458,11 @@ the frequency of observations per species per year:</p>
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">tb[</span><span class="p">,</span> <span class="p">,</span> <span class="m">1</span><span class="n">]</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;              year</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  observations 2015 2016 2017 2018</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species1    2    3    0    0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species2    2    1    0    0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species3    7    1    0    0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species4    2    2    0    0</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species5    1    4    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species1    3    2    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species2    4    2    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species3    5    0    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species4    4    0    0    0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      species5    5    0    0    0</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>With further development and by combining <code>table()</code> with <code>paste0()</code> (see
@@ -491,23 +494,23 @@ for an explanation of this useful function!), you can create your desired data.f
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">as.data.frame</span><span class="p">(</span><span class="nf">table</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="n">df</span><span class="o">$</span><span class="n">year</span><span class="p">,</span> <span class="s">&#39;_&#39;</span><span class="p">,</span> <span class="n">df</span><span class="o">$</span><span class="n">observations</span><span class="p">)))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;              Var1 Freq</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  2015_species1    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  2015_species2    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  2015_species3    7</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  2015_species4    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  2015_species5    1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  2016_species1    3</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  2016_species2    1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  2016_species3    1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  2016_species4    2</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 2016_species5    5</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  11 2017_species1    1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  12 2017_species2    4</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  13 2017_species4    1</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  14 2018_species1    3</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  15 2018_species2    5</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  16 2018_species3    5</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  17 2018_species4    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  2015_species1    3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  2015_species2    4</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  2015_species3    5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4  2015_species4    4</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  2015_species5    5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  2016_species1    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  2016_species2    4</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  2016_species3    3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  2016_species5    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 2017_species1    3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  11 2017_species2    1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  12 2017_species4    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  13 2017_species5    3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  14 2018_species1    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  15 2018_species2    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  16 2018_species3    1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  17 2018_species4    1</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  18 2018_species5    3</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -795,19 +798,19 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  other attached packages:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoRef_0.1.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoRef_0.1.1</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.6        utf8_1.2.3        generics_0.1.3    xml2_1.3.4        blogdown_1.18    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.7.12    httpcode_0.3.0    digest_0.6.32     magrittr_2.0.3    evaluate_0.21    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.7        utf8_1.2.3        generics_0.1.3    xml2_1.3.5        blogdown_1.18    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.7.12    httpcode_0.3.0    digest_0.6.33     magrittr_2.0.3    evaluate_0.21    </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] bookdown_0.34     fastmap_1.1.1     plyr_1.8.8        jsonlite_1.8.7    backports_1.4.1  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] crul_1.4.0        promises_1.2.0.1  fansi_1.0.4       jquerylib_0.1.4   bibtex_0.5.1     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.1         shiny_1.7.4       rlang_1.1.1       ellipsis_0.3.2    cachem_1.0.8     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.1         shiny_1.7.4.1     rlang_1.1.1       ellipsis_0.3.2    cachem_1.0.8     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] yaml_2.3.7        tools_4.3.1       dplyr_1.1.2       httpuv_1.6.11     DT_0.28          </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] rcrossref_1.2.0   curl_5.0.1        vctrs_0.6.3       R6_2.5.1          mime_0.12        </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] lifecycle_1.0.3   stringr_1.5.0     fs_1.6.2          htmlwidgets_1.6.2 miniUI_0.1.1.1   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] lifecycle_1.0.3   stringr_1.5.0     fs_1.6.3          htmlwidgets_1.6.2 miniUI_0.1.1.1   </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] pkgconfig_2.0.3   bslib_0.5.0       pillar_1.9.0      later_1.3.1       glue_1.6.2       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] Rcpp_1.0.10       systemfonts_1.0.4 highr_0.10        xfun_0.39         tibble_3.2.1     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] Rcpp_1.0.11       systemfonts_1.0.4 highr_0.10        xfun_0.39         tibble_3.2.1     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] tidyselect_1.2.0  knitr_1.43        xtable_1.8-4      htmltools_0.5.5   svglite_2.1.1    </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [56] rmarkdown_2.23    compiler_4.3.1</span>
 </span></span></code></pre></td></tr></table>
@@ -872,6 +875,23 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
   
 
   <h1>
+    <a href="/2023/07/25/a-few-thoughts-about-pipes-in-r/">A few thoughts about pipes in R</a> <small>July 25, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/pipe"><kbd class="item-tag">pipe</kbd></a>  <a href="/tags/internals"><kbd class="item-tag">internals</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
     <a href="/2023/02/12/trick-or-tips-005-r/">Trick or Tips 005 {R}</a> <small>February 12, 2023</small>
   </h1>
 
@@ -893,23 +913,6 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
   </h1>
 
   <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
-
-  
-
-
-
-  
-
-</div>
-  <div class="item-bottom">
-
-  
-
-  <h1>
-    <a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
-  </h1>
-
-  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
 
   
 
@@ -980,7 +983,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 11 July 2023 00:50 UTC.
+      Latest build: 25 July 2023 12:35 UTC.
     </p>
 
   </div>

@@ -51,7 +51,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.115.2">
+ <meta name="generator" content="Hugo 0.115.4">
         
 
         
@@ -132,12 +132,12 @@
 <img class="full-width" width="100%" src="/img/banner4.png"></img>
 
 
-<div class="row">
+<div class="row" style = "display: flex;">
 
     <div class="col-md-3">
-        <div class = "toc">
+        <div class="toc">
 
-    <h2 style="margin-top: 0.5rem; padding-top: 0.5rem; padding-bottom: 0.25rem;">
+    <h2 style="padding-top: 0.5rem; padding-bottom: 0.25rem;">
         <a href="#">
             <i class='fas fa-chevron-up'></i>
         </a>
@@ -235,6 +235,9 @@
                 <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f21%2finsilecomisc-0.4.0-part-2%2f2%2f&text=inSilecoMisc%200.4.0%20%28part%202%2f2%29" target="_blank">
                     <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f21%2finsilecomisc-0.4.0-part-2%2f2%2f?link=http://left&link=http://right}'>
                 </a>
+
+                
+
             </p>
             </div>
 
@@ -287,11 +290,11 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">val</span> <span class="o">&lt;-</span> <span class="nf">runif</span><span class="p">(</span><span class="m">40</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">val</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 16.445263 97.343030 41.195626 58.306967 39.842506 51.003122 97.556564 19.330957 17.233731</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] 18.915424 25.702140 48.956345  1.922678 66.862866 89.364088 12.768326 39.666431 47.563184</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] 58.467991 22.729051 86.763212 73.541500 70.407940 19.635540 12.960518 23.690676 26.604231</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] 44.300201 56.436834 81.345879 34.754534 67.032375 98.454341 41.104936 71.539413 97.478787</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37]  1.201368 65.247008 34.862967 53.417949</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 14.348927 91.409185 55.732661 47.252470 85.592044  0.273592 17.074469 63.473096 23.224247</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] 40.997788 32.877815 81.271002  9.477320 98.184759 87.335202 99.666910 15.722470 10.375864</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] 57.834715 77.948871 90.160670 62.472182  3.375399 25.532406 59.318386 38.214246 85.015908</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] 54.351681 61.667365 86.309773 40.103214 65.450670 44.710073 77.037486 92.993323 22.614582</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] 73.938389 70.769736 90.511683 95.531929</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
@@ -316,8 +319,8 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1]  1 25  7 18  7 14 25  1  1  1  1 12  1 24 25  1  7 11 18  1 25 25 25  1  1  1  1  9 17 25  3 24</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] 25  7 25 25  1 23  4 15</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1]  1 25 17 11 25  1  1 21  1  7  2 25  1 25 25 25  1  1 18 25 25 21  1  1 19  6 25 16 20 25  7 23</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] 10 25 25  1 25 25 25 25</span>
 </span></span><span class="line"><span class="cl"><span class="n">graphicsutils</span><span class="o">::</span><span class="nf">showPalette</span><span class="p">(</span><span class="n">pal</span><span class="nf">[scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">add_codecolor</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -620,25 +623,25 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  other attached packages:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoMisc_0.7.0.9000 inSilecoRef_0.1.0      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoMisc_0.7.0.9000 inSilecoRef_0.1.1      </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.6               utf8_1.2.3               generics_0.1.3          </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [4] xml2_1.3.4               blogdown_1.18            stringi_1.7.12          </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] httpcode_0.3.0           graphicsutils_1.6.0.9000 digest_0.6.32           </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.7               utf8_1.2.3               generics_0.1.3          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [4] xml2_1.3.5               blogdown_1.18            stringi_1.7.12          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] httpcode_0.3.0           graphicsutils_1.6.0.9000 digest_0.6.33           </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] magrittr_2.0.3           evaluate_0.21            bookdown_0.34           </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] fastmap_1.1.1            plyr_1.8.8               jsonlite_1.8.7          </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] backports_1.4.1          crul_1.4.0               promises_1.2.0.1        </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] fansi_1.0.4              jquerylib_0.1.4          bibtex_0.5.1            </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] cli_3.6.1                shiny_1.7.4              crayon_1.5.2            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] cli_3.6.1                shiny_1.7.4.1            crayon_1.5.2            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] rlang_1.1.1              ellipsis_0.3.2           cachem_1.0.8            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] yaml_2.3.7               tools_4.3.1              dplyr_1.1.2             </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] httpuv_1.6.11            DT_0.28                  rcrossref_1.2.0         </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [34] curl_5.0.1               vctrs_0.6.3              R6_2.5.1                </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] mime_0.12                lifecycle_1.0.3          stringr_1.5.0           </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [40] fs_1.6.2                 htmlwidgets_1.6.2        miniUI_0.1.1.1          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [40] fs_1.6.3                 htmlwidgets_1.6.2        miniUI_0.1.1.1          </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [43] pkgconfig_2.0.3          bslib_0.5.0              pillar_1.9.0            </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] later_1.3.1              glue_1.6.2               Rcpp_1.0.10             </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] later_1.3.1              glue_1.6.2               Rcpp_1.0.11             </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] highr_0.10               xfun_0.39                tibble_3.2.1            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [52] tidyselect_1.2.0         knitr_1.43               xtable_1.8-4            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [55] htmltools_0.5.5          rmarkdown_2.23           compiler_4.3.1</span>
@@ -695,6 +698,23 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
   
 
   <h1>
+    <a href="/2023/07/25/a-few-thoughts-about-pipes-in-r/">A few thoughts about pipes in R</a> <small>July 25, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/pipe"><kbd class="item-tag">pipe</kbd></a>  <a href="/tags/internals"><kbd class="item-tag">internals</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
     <a href="/2023/02/12/trick-or-tips-005-r/">Trick or Tips 005 {R}</a> <small>February 12, 2023</small>
   </h1>
 
@@ -716,23 +736,6 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
   </h1>
 
   <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
-
-  
-
-
-
-  
-
-</div>
-  <div class="item-bottom">
-
-  
-
-  <h1>
-    <a href="/2020/04/14/insilecomisc-0.4.0-part-1/2/">inSilecoMisc 0.4.0 (part 1/2)</a> <small>April 14, 2020</small>
-  </h1>
-
-  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
 
   
 
@@ -803,7 +806,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 11 July 2023 00:50 UTC.
+      Latest build: 25 July 2023 12:35 UTC.
     </p>
 
   </div>

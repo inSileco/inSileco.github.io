@@ -1,0 +1,1164 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>A few thoughts about pipes in R</title>
+        
+        <style>
+
+    html body {
+        font-family: '', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://insileco.github.io/css/main.css">
+
+
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">  <link rel="stylesheet" href="https://insileco.github.io/css/academicons.min.css">  <link rel="stylesheet" href="https://insileco.github.io/css/main.css">  <link rel="stylesheet" href="https://insileco.github.io/css/syntax.css">  <link rel="stylesheet" href="https://insileco.github.io/css/insileco.css"> 
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+ 
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.115.4">
+        
+
+        
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments)};
+              gtag('js', new Date());
+              gtag('config', 'UA-109508556-1');
+            </script>
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="/css/academicons.min.css">
+
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/css/syntax.css">
+
+  <link rel="stylesheet" href="/css/insileco.css">
+
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">A few thoughts about pipes in R</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                                <li><a href="/resource/">Resources</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="/"><i class="fas fa-home"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fab fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fas fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<img class="full-width" width="100%" src="/img/banner4.png"></img>
+
+
+<div class="row" style = "display: flex;">
+
+    <div class="col-md-3">
+        <div class="toc">
+
+    <h2 style="padding-top: 0.5rem; padding-bottom: 0.25rem;">
+        <a href="#">
+            <i class='fas fa-chevron-up'></i>
+        </a>
+    </h2>
+
+    
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#piping-in-r">Piping in R</a></li>
+    <li><a href="#magrittr-pipes">magrittr pipes</a></li>
+    <li><a href="#the-native-pipe">The native pipe</a></li>
+    <li><a href="#final-remarks">Final remarks</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+    
+
+    <h2 style="margin-top: 0.25rem; padding-top: 0.5rem;">
+        <a href="#bottom">
+            <i class='fas fa-chevron-down'></i>
+        </a>
+    </h2>
+
+</div>
+    </div>
+
+
+    <div class="col-md-7">
+
+        <div class="post-content">
+
+            <div id="post-content-header">
+            <h1>
+                <a href="/2023/07/25/a-few-thoughts-about-pipes-in-r/">A few thoughts about pipes in R</a>
+            </h1>
+
+            <h4>
+                July 25, 2023
+            </h4>
+
+            <p>
+                <i class="fas fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                    href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a
+                    href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a
+                    href="/tags/pipe"><kbd class="item-tag">pipe</kbd></a>  <a
+                    href="/tags/internals"><kbd class="item-tag">internals</kbd></a> 
+                <br>
+                
+                    <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="80px"></img>
+                    &nbsp; 
+                     
+                        <a href="/rpkgs/base">
+                            <kbd class="item-tag2">base</kbd>
+                        </a> 
+                     
+                        <a href="/rpkgs/magrittr">
+                            <kbd class="item-tag2">magrittr</kbd>
+                        </a> 
+                     
+                        <a href="/rpkgs/dplyr">
+                            <kbd class="item-tag2">dplyr</kbd>
+                        </a> 
+                    
+                
+            </p>
+
+            
+            <p style="font-size: 1.6em;"> 
+                <i class="fas fa-pencil-alt"></i>
+                
+                 
+                    
+                    <a href="/about/">Kevin Cazelles</a>
+                
+                <a href="#"></a>
+            </p>
+            
+
+            
+            <p> 
+                <i class="fas fa-check-square" title="Reviewer(s)"></i>
+                
+                 
+                    
+                    <a href="/about/">David Beauchesne</a>
+                
+                <a href="#"></a>
+            </p>
+            
+
+            <p>
+                
+                
+                
+                    <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=5min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                
+                
+                
+                    <a href="http://www.R-bloggers.com">
+                        <img src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
+                    <a>
+                
+                
+                
+                    <a href="https://creativecommons.org/licenses/by/4.0/">
+                        <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                    </a>
+                
+                
+                
+                
+                &nbsp;&nbsp;
+                <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2023%2f07%2f25%2fa-few-thoughts-about-pipes-in-r%2f&text=A%20few%20thoughts%20about%20piping%20in%20R" target="_blank">
+                    <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2023%2f07%2f25%2fa-few-thoughts-about-pipes-in-r%2f?link=http://left&link=http://right}'>
+                </a>
+
+                
+                    <div class = "tldr">
+                        <i class="fas fa-forward"> Tl;DR</i> <i class="fas fa-forward"></i>
+                        <br>
+                        Using pipes in R makes code cleaner. There are two good options for pipes: <code>magrittr</code> which brings the forward pipe <code>%&gt;%</code> alongside four other pipes and the native pipe <code>|&gt;</code> introduce in R 4.1.0. I have been piping for years, I started with the pipes from the <code>magrittr</code> package, now I use the native pipe.'
+                    </div>
+                
+
+            </p>
+            </div>
+
+
+
+            <div id="post-content-body" class="text-justify">
+
+                <h2 id="piping-in-r">Piping in R</h2>
+<p>Back in 2014, I discovered the forward pipe for R introduced in <a href="https://magrittr.tidyverse.org/"><code>magrittr</code></a> and since that time, I never stopped piping, although my piping habits evolved over time, especially with the <a href="https://www.jumpingrivers.com/blog/new-features-r410-pipe-anonymous-functions/">introduction of the native pipe</a> in R 4.1.</p>
+<p>When I started using pipes in R, I had some experience with the <a href="https://effective-shell.com/part-2-core-skills/thinking-in-pipelines/">bash pipe</a>, <code>|</code>, which basically passes the output of a function to the input of a second one, and so allow to do chaining operations. But using pipes in R was a major breakthrough: with a simple infix operator, lines of code involving a collection of nested function calls were suddenly turned into one readable data recipe. Let’s take an example and create a data pipeline where we apply a statistical model, <code>model_1()</code>, to the data set <code>data_1</code> after two steps of data preprocessing, <code>transform_1()</code> and <code>transform_2()</code>. Here is the code without pipes:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">res</span> <span class="o">&lt;-</span> <span class="nf">model_1</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">transform_1</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">transform_2</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">data_1</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>For now, let’s refer to the forward pipe as <code>%pipe%</code>. With pipe, one would write</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">transform_2</span><span class="p">(</span><span class="n">data_1</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>as</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">data_1</span> <span class="o">%pipe%</span> <span class="nf">transform_2</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>data_1</code> is the left hand side of the pipe (often abbreviated <strong>lhs</strong>) and <code>transform_2()</code> is its right hand side (<strong>lhs</strong>). Let’s rewrite the code using it:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">var</span> <span class="o">&lt;-</span> <span class="n">data_1</span> <span class="o">%pipe%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">transform_1</span><span class="p">()</span> <span class="o">%pipe%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">transform_2</span><span class="p">()</span> <span class="o">%pipe%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">model_1</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>There are two main facts, one quickly grasps when looking at the two blocks of code:</p>
+<ol>
+<li>with pipes, you stop reading backwards: <code>data_1</code> is at the beginning of the block, and <code>model_1</code> is now at the last line, not at the first line;</li>
+<li>with pipes, it is easier to deal with parentheses, the code is more readable.</li>
+</ol>
+<p>A little more subtle is that is it easier to comment out parts of the recipe. Say we need to comment out <code>transform_2()</code>, without pipes, we would do something like this:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">var</span> <span class="o">&lt;-</span> <span class="nf">model_1</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#transform_2(</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">transform_1</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">            <span class="n">inti_var</span>
+</span></span><span class="line"><span class="cl">        <span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#)</span>
+</span></span><span class="line"><span class="cl"><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>whereas with pipes, the code would look something like that:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">var</span> <span class="o">&lt;-</span> <span class="n">ini_var</span> <span class="o">%pipe%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">transform_1</span><span class="p">()</span> <span class="o">%pipe%</span>
+</span></span><span class="line"><span class="cl">    <span class="c1">#transform_2() %pipe%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">model_1</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This is not a major concern here, but it does help in more complex cases. Having code easy to read and easy to manipulate is particularly relevant for the R community because we are a group of data recipe writers and our recipes may include tens of steps. It is thus no surprise that the community <a href="https://www.r-statistics.com/tag/stefan-milton/">quickly adopted the magrittr’s pipe</a> and <a href="https://www.tidyverse.org/">tidyverse</a> tremendously helped in popularizing the use of pipes in the community (e.g. see commit <a href="https://github.com/tidyverse/dplyr/commit/89aaa9a8b386d7e3705ffb682d89dc5bebe823c0"><code>89aaa9a8b</code></a> of <code>dplyr</code> on April 14<sup>th</sup>, 2014 where the magrittr pipe was adopted).</p>
+<h2 id="magrittr-pipes">magrittr pipes</h2>
+<h3 id="a-package-of-internals">A package of internals</h3>
+<p>I am assuming that most of R users are familiar with the forward pipe <code>%&gt;%</code> and its placeholder <code>.</code> – the symbols representing the object being forwarded. I am also assuming that most of R users have used it through the meta package <a href="https://CRAN.R-project.org/package=tidyverse"><code>tidyverse</code></a>, or one of the packages included, most likely <a href="https://CRAN.R-project.org/package=dplyr"><code>dplyr</code></a>. So here, instead of focusing on how to use the forward pipe, I would like to mention a few technical details as well as the other pipes <code>magrittr</code> includes.</p>
+<p><a href="https://CRAN.R-project.org/package=magrittr"><code>magrittr</code></a> is a package that brings the forward pipe <code>%&gt;%</code> aklong with <a href="https://magrittr.tidyverse.org/reference/index.html#pipes">four other pipes</a>: <code>%&lt;&gt;%</code>, <code>%$%</code>, <code>%!&gt;%</code>, <code>%T&gt;%</code> as well as a <a href="https://magrittr.tidyverse.org/reference/index.html#pipes">several functions</a> that can be used with the pipe.</p>
+<p>If you look at the source code, pipes are defined in <a href="https://github.com/tidyverse/magrittr/blob/21093d06e43649a72b865811188e77fc8ad87780/R/pipe.R">pipe.R</a> and for instance the following lines defined the forward pipe (see <a href="https://github.com/tidyverse/magrittr/blob/21093d06e43649a72b865811188e77fc8ad87780/R/pipe.R#L130C1-L137">pipe.R L130-L137</a>):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">`%&gt;%`</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">rhs</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">lhs</span> <span class="o">&lt;-</span> <span class="nf">substitute</span><span class="p">(</span><span class="n">lhs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">rhs</span> <span class="o">&lt;-</span> <span class="nf">substitute</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">kind</span> <span class="o">&lt;-</span> <span class="m">1L</span>
+</span></span><span class="line"><span class="cl">  <span class="n">env</span> <span class="o">&lt;-</span> <span class="nf">parent.frame</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl">  <span class="n">lazy</span> <span class="o">&lt;-</span> <span class="kc">TRUE</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">.External2</span><span class="p">(</span><span class="n">magrittr_pipe</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>the last line is a call to the <a href="https://cran.r-project.org/doc/manuals/r-release/R-ints.html#g_t_002eInternal-vs-_002ePrimitive">primitive</a> <code>.External2()</code> that will call an external C function, <code>magrittr_pipe()</code>, that is an R internal structure (a <a href="https://cran.r-project.org/doc/manuals/r-release/R-ints.html#SEXPs">SEXP</a>, see <a href="https://github.com/wch/r-source/blob/23642aaf1e302ab6cb81b4f9ad8edbdcd6c44d4c/src/include/Rinternals.h#L4">Rinternals.h</a>). If you go to the folder source you will find the lines in
+<a href="https://github.com/tidyverse/magrittr/blob/21093d06e43649a72b865811188e77fc8ad87780/src/pipe.c#L68">pipe.c</a> that define <code>magrittr_pipe()</code> :</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="n">SEXP</span> <span class="nf">magrittr_pipe</span><span class="p">(</span><span class="n">SEXP</span> <span class="n">call</span><span class="p">,</span> <span class="n">SEXP</span> <span class="n">op</span><span class="p">,</span> <span class="n">SEXP</span> <span class="n">args</span><span class="p">,</span> <span class="n">SEXP</span> <span class="n">rho</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">args</span> <span class="o">=</span> <span class="nf">CDR</span><span class="p">(</span><span class="n">args</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">  <span class="p">[...]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Hence, when you load <code>magrittr</code>, you are using new internal functions including the forward pipe along with four others pipes:</p>
+<ul>
+<li><code>%&lt;&gt;%</code>: the <a href="https://magrittr.tidyverse.org/reference/compound.html">assignment pipe</a></li>
+<li><code>%$%</code> : the <a href="https://magrittr.tidyverse.org/reference/exposition.html">exposition pipe</a></li>
+<li><code>%!&gt;%</code>: the <a href="https://magrittr.tidyverse.org/reference/pipe-eager.html">eager pipe</a></li>
+<li><code>%T&gt;%</code>: the <a href="https://magrittr.tidyverse.org/reference/tee.html">Tee pipe</a></li>
+</ul>
+<h3 id="the-four-additional-pipes">The four additional pipes</h3>
+<p>Let’s load <code>magrittr</code> and let me give an example for these pipes. The <strong>assignment pipe</strong> allows you to assign the value while piping. Here is a example where you would use two steps in your data pipeline to modify the dataset <a href="https://stat.ethz.ch/R-manual/R-devel/library/datasets/html/zCO2.html">CO2</a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">magrittr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">dplyr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">datasets</span><span class="p">)</span> <span class="c1"># CO2 is included in this package</span>
+</span></span><span class="line"><span class="cl"><span class="n">CO2b</span> <span class="o">&lt;-</span> <span class="n">CO2</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">filter</span><span class="p">(</span><span class="n">conc</span> <span class="o">&gt;</span> <span class="m">200</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">dim</span><span class="p">(</span><span class="n">CO2b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 60  5</span>
+</span></span><span class="line"><span class="cl"><span class="n">CO2b</span> <span class="o">&lt;-</span> <span class="n">CO2b</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">mutate</span><span class="p">(</span><span class="n">conc2</span> <span class="o">=</span> <span class="m">2</span> <span class="o">*</span> <span class="n">conc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">CO2b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Plant   Type  Treatment conc uptake conc2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1   Qn1 Quebec nonchilled  250   34.8   500</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2   Qn1 Quebec nonchilled  350   37.2   700</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3   Qn1 Quebec nonchilled  500   35.3  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4   Qn1 Quebec nonchilled  675   39.2  1350</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5   Qn1 Quebec nonchilled 1000   39.7  2000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6   Qn2 Quebec nonchilled  250   37.1   500</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>With the assignment pipe you can use <code>CO2b %&lt;&gt;%</code> instead of <code>CO2b &lt;- CO2b</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">CO2c</span> <span class="o">&lt;-</span> <span class="n">CO2</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">filter</span><span class="p">(</span><span class="n">conc</span> <span class="o">&gt;</span> <span class="m">200</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">dim</span><span class="p">(</span><span class="n">CO2c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 60  5</span>
+</span></span><span class="line"><span class="cl"><span class="n">CO2c</span> <span class="o">%&lt;&gt;%</span> <span class="nf">mutate</span><span class="p">(</span><span class="n">conc2</span> <span class="o">=</span> <span class="m">2</span> <span class="o">*</span> <span class="n">conc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">identical</span><span class="p">(</span><span class="n">CO2b</span><span class="p">,</span> <span class="n">CO2c</span><span class="p">)</span> <span class="c1"># check whether we are creating the same object</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] TRUE</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>With the <strong>Tee pipe</strong>, you can call a function without including the output in the pipeline while retaining the side effect of the function. This van be very handy for print and plot functions.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">CO2d</span> <span class="o">&lt;-</span> <span class="n">CO2</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">filter</span><span class="p">(</span><span class="n">conc</span> <span class="o">&gt;</span> <span class="m">200</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">mutate</span><span class="p">(</span><span class="n">conc2</span> <span class="o">=</span> <span class="m">2</span> <span class="o">*</span> <span class="n">conc</span><span class="p">)</span> <span class="o">%T&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">print</span><span class="p">(</span><span class="n">max</span> <span class="o">=</span> <span class="m">50</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Plant   Type  Treatment conc uptake conc2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1   Qn1 Quebec nonchilled  250   34.8   500</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2   Qn1 Quebec nonchilled  350   37.2   700</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3   Qn1 Quebec nonchilled  500   35.3  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4   Qn1 Quebec nonchilled  675   39.2  1350</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5   Qn1 Quebec nonchilled 1000   39.7  2000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6   Qn2 Quebec nonchilled  250   37.1   500</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7   Qn2 Quebec nonchilled  350   41.8   700</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8   Qn2 Quebec nonchilled  500   40.6  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [ reached &#39;max&#39; / getOption(&#34;max.print&#34;) -- omitted 52 rows ]</span>
+</span></span><span class="line"><span class="cl"><span class="nf">identical</span><span class="p">(</span><span class="n">CO2d</span><span class="p">,</span> <span class="n">CO2c</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] TRUE</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The <strong>exposition pipe</strong> exposes the names of the lhs of the pipe so they can be called from the rhs of the pipe.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">CO2</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">head</span><span class="p">()</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">print</span><span class="p">(</span><span class="n">conc</span><span class="p">)</span> <span class="c1"># does not work</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Error: object &#39;conc&#39; not found</span>
+</span></span><span class="line"><span class="cl"><span class="n">CO2</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">head</span><span class="p">()</span> <span class="o">%$%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">print</span><span class="p">(</span><span class="n">conc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1]  95 175 250 350 500 675</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Finally, the <strong>eager pipe</strong> overcomes the lazy evaluation behaviour in R which is beyond the scope of this post, but if you are curious, have a look at this <a href="https://colinfay.me/lazyeval/">great blog post by Collin Fay</a>. So here is an example where two functions that prompt a message on evaluation (pay attention to the order of the messages):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">trans1</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">cat</span><span class="p">(</span><span class="s">&#34;------- 1. trans1\n&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span><span class="o">$</span><span class="n">nrow</span> <span class="o">&lt;-</span> <span class="nf">nrow</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="n">x</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">trans2</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">cat</span><span class="p">(</span><span class="s">&#34;------- 2. trans2\n&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">head</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="m">4</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># with the forward pipe (functions are evaluated lazyly)</span>
+</span></span><span class="line"><span class="cl"><span class="n">CO2e</span> <span class="o">&lt;-</span> <span class="n">CO2</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">trans1</span><span class="p">()</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">trans2</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  ------- 2. trans2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  ------- 1. trans1</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># with the eager pipe (functions are evaluated eagerly)</span>
+</span></span><span class="line"><span class="cl"><span class="n">CO2f</span> <span class="o">&lt;-</span> <span class="n">CO2</span> <span class="o">%!&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">trans1</span><span class="p">()</span> <span class="o">%!&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">trans2</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  ------- 1. trans1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  ------- 2. trans2</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># final outputs are the same</span>
+</span></span><span class="line"><span class="cl"><span class="n">CO2f</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    Plant   Type  Treatment conc uptake nrow</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1   Qn1 Quebec nonchilled   95   16.0   84</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2   Qn1 Quebec nonchilled  175   30.4   84</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3   Qn1 Quebec nonchilled  250   34.8   84</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4   Qn1 Quebec nonchilled  350   37.2   84</span>
+</span></span><span class="line"><span class="cl"><span class="nf">identical</span><span class="p">(</span><span class="n">CO2e</span><span class="p">,</span> <span class="n">CO2f</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] TRUE</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="the-native-pipe">The native pipe</h2>
+<p>R 4.1 introduced the native pipe <code>|&gt;</code>. In the <a href="https://cran.r-project.org/doc/manuals/r-devel/NEWS.html">NEWS file</a>, section <em>CHANGES IN R 4.1.0</em>, the pipe was announced with the following message :</p>
+<blockquote>
+<p>R now provides a simple native forward pipe syntax |&gt;. The simple form of the forward pipe inserts the left-hand side as the first argument in the right-hand side call. The pipe implementation as a syntax transformation was motivated by suggestions from Jim Hester and Lionel Henry.</p>
+</blockquote>
+<p>Several blog posts have explained how to use it (e.g. this <a href="https://towardsdatascience.com/understanding-the-native-r-pipe-98dea6d8b61b">blog post on Towards data science</a>). I was curious about the changes that come with such new feature, so I did a quick search in the source code (using the mirror available on GitHub at <a href="https://github.com/wch/r-source)">https://github.com/wch/r-source)</a>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git log --oneline -S <span class="s1">&#39;native pipe&#39;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">263d6bcf0b <span class="nv">Use</span> <span class="o">=</span>&gt; syntax to pass pipe lhs to non-first-argument on rhs.
+</span></span><span class="line"><span class="cl">a1425adea5 Added native pipe and <span class="k">function</span> shorthand syntax.
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I then checked the files modified in commit <code>a1425adea5</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git show --name-only a1425adea5 
+</span></span><span class="line"><span class="cl">commit a1425adea54bcc98eef86081522b5dbb3e149cdc
+</span></span><span class="line"><span class="cl">Author: luke &lt;luke@00db46b3-68df-0310-9c12-caf00c1e9a41&gt;
+</span></span><span class="line"><span class="cl">Date:   Thu Dec <span class="m">3</span> 22:59:31 <span class="m">2020</span> +0000
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    Added native pipe and <span class="k">function</span> shorthand syntax.
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    git-svn-id: https://svn.r-project.org/R/trunk@79553 00db46b3-68df-0310-9c12-caf00c1e9a41
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">doc/NEWS.Rd
+</span></span><span class="line"><span class="cl">src/include/Rinternals.h
+</span></span><span class="line"><span class="cl">src/library/base/man/function.Rd
+</span></span><span class="line"><span class="cl">src/library/base/man/pipeOp.Rd
+</span></span><span class="line"><span class="cl">src/main/gram.c
+</span></span><span class="line"><span class="cl">src/main/gram.y
+</span></span><span class="line"><span class="cl">src/main/names.c
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Commit <a href="https://github.com/wch/r-source/commit/a1425adea54bcc98eef86081522b5dbb3e149cdc"><code>a1425adea54bcc98eef86081522b5dbb3e149cdc</code></a> introduced the pipe and 7 files were modified to do so. Note that <code>git show</code> one can quickly check all the changes:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git show a1425adea54bcc98eef86081522b5dbb3e149cdc
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>and with <code>-- path</code> one may focus on a specific file:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">git show a1425adea54bcc98eef86081522b5dbb3e149cdc -- src/include/Rinternals.h
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">commit a1425adea54bcc98eef86081522b5dbb3e149cdc
+</span></span><span class="line"><span class="cl">Author: luke &lt;luke@00db46b3-68df-0310-9c12-caf00c1e9a41&gt;
+</span></span><span class="line"><span class="cl">Date:   Thu Dec <span class="m">3</span> 22:59:31 <span class="m">2020</span> +0000
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">    Added native pipe and <span class="k">function</span> shorthand syntax.
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    
+</span></span><span class="line"><span class="cl">    git-svn-id: https://svn.r-project.org/R/trunk@79553 00db46b3-68df-0310-9c12-caf00c1e9a41
+</span></span><span class="line"><span class="cl"> 
+</span></span><span class="line"><span class="cl">diff --git a/src/include/Rinternals.h b/src/include/Rinternals.h
+</span></span><span class="line"><span class="cl">index 143cf24ab7..0a5e446b0e <span class="m">100644</span>
+</span></span><span class="line"><span class="cl">--- a/src/include/Rinternals.h
+</span></span><span class="line"><span class="cl">+++ b/src/include/Rinternals.h
+</span></span><span class="line"><span class="cl">@@ -1034,6 +1034,7 @@ LibExtern SEXP    R_DotsSymbol<span class="p">;</span>       /* <span class="s2">&#34;...&#34;</span> */
+</span></span><span class="line"><span class="cl"> LibExtern SEXP R_DoubleColonSymbol<span class="p">;</span>// <span class="s2">&#34;::&#34;</span>
+</span></span><span class="line"><span class="cl"> LibExtern SEXP R_DropSymbol<span class="p">;</span>       /* <span class="s2">&#34;drop&#34;</span> */
+</span></span><span class="line"><span class="cl"> LibExtern SEXP R_EvalSymbol<span class="p">;</span>       /* <span class="s2">&#34;eval&#34;</span> */
+</span></span><span class="line"><span class="cl">+LibExtern SEXP R_FunctionSymbol<span class="p">;</span>   /* <span class="s2">&#34;function&#34;</span> */
+</span></span><span class="line"><span class="cl"> LibExtern SEXP R_LastvalueSymbol<span class="p">;</span>  /* <span class="s2">&#34;.Last.value&#34;</span> */
+</span></span><span class="line"><span class="cl"> LibExtern SEXP R_LevelsSymbol<span class="p">;</span>     /* <span class="s2">&#34;levels&#34;</span> */
+</span></span><span class="line"><span class="cl"> LibExtern SEXP R_ModeSymbol<span class="p">;</span>       /* <span class="s2">&#34;mode&#34;</span> */
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Investigating further, I found that the symbol <code>|&gt;</code> is declared in <code>names.c</code> and that <code>xxpipe()</code> is basically the definition of the pipe (see <code>gram.y</code>).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="k">static</span> <span class="n">SEXP</span>    <span class="nf">xxpipe</span><span class="p">(</span><span class="n">SEXP</span><span class="p">,</span> <span class="n">SEXP</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl"><span class="cm">/* [...] */</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="k">static</span> <span class="n">SEXP</span> <span class="nf">xxpipe</span><span class="p">(</span><span class="n">SEXP</span> <span class="n">lhs</span><span class="p">,</span> <span class="n">SEXP</span> <span class="n">rhs</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">SEXP</span> <span class="n">ans</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">GenerateCode</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="cm">/* allow for rhs lambda expressions */</span>
+</span></span><span class="line"><span class="cl">       <span class="k">if</span> <span class="p">(</span><span class="nf">TYPEOF</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span> <span class="o">==</span> <span class="n">LANGSXP</span> <span class="o">&amp;&amp;</span> <span class="nf">CAR</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span> <span class="o">==</span> <span class="n">R_FunctionSymbol</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">           <span class="k">return</span> <span class="nf">lang2</span><span class="p">(</span><span class="n">rhs</span><span class="p">,</span> <span class="n">lhs</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">                   
+</span></span><span class="line"><span class="cl">       <span class="k">if</span> <span class="p">(</span><span class="nf">TYPEOF</span><span class="p">(</span><span class="n">rhs</span><span class="p">)</span> <span class="o">!=</span> <span class="n">LANGSXP</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">           <span class="nf">error</span><span class="p">(</span><span class="nf">_</span><span class="p">(</span><span class="s">&#34;The pipe operator requires a function call &#34;</span>
+</span></span><span class="line"><span class="cl">                   <span class="s">&#34;or an anonymous function expression as RHS&#34;</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">SEXP</span> <span class="n">fun</span> <span class="o">=</span> <span class="nf">CAR</span><span class="p">(</span><span class="n">rhs</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="n">SEXP</span> <span class="n">args</span> <span class="o">=</span> <span class="nf">CDR</span><span class="p">(</span><span class="n">rhs</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">       <span class="cm">/* rule out syntactically special functions */</span>
+</span></span><span class="line"><span class="cl">       <span class="cm">/* the IS_SPECIAL_SYMBOL bit is set in names.c */</span>
+</span></span><span class="line"><span class="cl">       <span class="k">if</span> <span class="p">(</span><span class="nf">TYPEOF</span><span class="p">(</span><span class="n">fun</span><span class="p">)</span> <span class="o">==</span> <span class="n">SYMSXP</span> <span class="o">&amp;&amp;</span> <span class="nf">IS_SPECIAL_SYMBOL</span><span class="p">(</span><span class="n">fun</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">           <span class="nf">error</span><span class="p">(</span><span class="s">&#34;function &#39;%s&#39; not supported in RHS call of a pipe&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                 <span class="nf">CHAR</span><span class="p">(</span><span class="nf">PRINTNAME</span><span class="p">(</span><span class="n">fun</span><span class="p">)));</span>
+</span></span><span class="line"><span class="cl">       
+</span></span><span class="line"><span class="cl">       <span class="nf">PRESERVE_SV</span><span class="p">(</span><span class="n">ans</span> <span class="o">=</span> <span class="nf">lcons</span><span class="p">(</span><span class="n">fun</span><span class="p">,</span> <span class="nf">lcons</span><span class="p">(</span><span class="n">lhs</span><span class="p">,</span> <span class="n">args</span><span class="p">)));</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="k">else</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">       <span class="nf">PRESERVE_SV</span><span class="p">(</span><span class="n">ans</span> <span class="o">=</span> <span class="n">R_NilValue</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">RELEASE_SV</span><span class="p">(</span><span class="n">lhs</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">RELEASE_SV</span><span class="p">(</span><span class="n">rhs</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">    <span class="k">return</span> <span class="n">ans</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>And this is the code that makes the pipe working.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">CO2g</span> <span class="o">&lt;-</span> <span class="n">CO2</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">filter</span><span class="p">(</span><span class="n">conc</span> <span class="o">&gt;</span> <span class="m">200</span><span class="p">)</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">mutate</span><span class="p">(</span><span class="n">conc2</span> <span class="o">=</span> <span class="m">2</span> <span class="o">*</span> <span class="n">conc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">identical</span><span class="p">(</span><span class="n">CO2g</span><span class="p">,</span> <span class="n">CO2b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] TRUE</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Though I don’t see any advantages of doing so, it is possible to combine the two pipes.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">CO2h</span> <span class="o">&lt;-</span> <span class="n">CO2</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">filter</span><span class="p">(</span><span class="n">conc</span> <span class="o">&gt;</span> <span class="m">200</span><span class="p">)</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">mutate</span><span class="p">(</span><span class="n">conc2</span> <span class="o">=</span> <span class="m">2</span> <span class="o">*</span> <span class="n">conc</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">identical</span><span class="p">(</span><span class="n">CO2h</span><span class="p">,</span> <span class="n">CO2b</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] TRUE</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Even if the code of <code>xxpipe()</code> has changed in R 4.3.2 and 4.3.3, we can still demonstrate how to hit the two errors captured in the code (though the error messages are slightly different):</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">CO2</span> <span class="o">|&gt;</span> <span class="n">head</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Error: The pipe operator requires a function call as RHS (&lt;text&gt;:1:8)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">CO2</span> <span class="o">|&gt;</span> <span class="nf">`+`</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Error: function &#39;+&#39; not supported in RHS call of a pipe (&lt;text&gt;:1:8)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>One of the main reason for the changes in the <code>xxpipe()</code> code is the recent introduction of the placeholder, <code>_</code>, in R 4.2.0 (see <a href="https://cran.r-project.org/doc/manuals/r-devel/NEWS.html"><em>CHANGES IN R 4.2.0</em> in the NEWS file</a>):</p>
+<blockquote>
+<p>In a forward pipe |&gt; expression it is now possible to use a named argument with the placeholder _ in the rhs call to specify where the lhs is to be inserted. The placeholder can only appear once on the rhs.</p>
+</blockquote>
+<p>Placeholder that was recently updated (see <a href="https://cran.r-project.org/doc/manuals/r-devel/NEWS.html"><em>CHANGES IN R 4.3.0</em> NEWS file</a>):</p>
+<blockquote>
+<p>As an experimental feature the placeholder _ can now also be used in the rhs of a forward pipe |&gt; expression as the first argument in an extraction call, such as _$coef. More generally, it can be used as the head of a chain of extractions, such as _$coef[[2]].</p>
+</blockquote>
+<p>So here is an example of what can be done in R&gt;4.3.0.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">CO2</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_</span><span class="o">$</span><span class="n">conc</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">sum</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 36540</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>When coding in the console I have been using more and more frequently the operator <code>-&gt;</code>, that really comes in handy. You may be aware that R has multiple <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/assignOps.html">assignment operators</a>, for historical reasons as mentioned by (Chambers, 2016) (page 73 in a footnote):</p>
+<blockquote>
+<p>The specific choice of <code>&lt;-</code> dates back to the first version of S. We chose it in order to emphasize that the left and right operands are entirely different: a target on the left and a computed value on the right. Later versions of S and R accept the <code>=</code> operator, but for exposition the original choice remains clearer.</p>
+</blockquote>
+<p>R users mainly use <code>&lt;-</code> and sometimes <code>=</code> (frequently used by users that have experience with other programming languages), but <code>-&gt;</code> feels especially appropriate when piping as it concludes well the data recipe.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">CO2</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="n">_</span><span class="o">$</span><span class="n">conc</span> <span class="o">|&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">sum</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="n">tot_conc</span>
+</span></span><span class="line"><span class="cl"><span class="n">tot_conc</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 36540</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="final-remarks">Final remarks</h2>
+<p>In this post I wrote down a few thoughts about the native pipe and the magrittr pipes. I did not attempt to compare the two. The main differences between the two pipes <code>%&gt;%</code> and <code>|&gt;</code> are summarized in one of <a href="https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/">Hadley Wickham recent blog post</a>. Of course there is only one native pipe and 5 magrittr pipes. But the most significative difference regards the placeholders, <code>.</code> coming with more features than <code>_</code>. That said, given the latest experimental feature of <code>_</code> in R 4.3.0, this may soon no longer hold true.</p>
+<p>The tidyverse community still recommends the use of the magrittr forward pipe, and even provides a styling guide for it: <a href="https://style.tidyverse.org/pipes.html">https://style.tidyverse.org/pipes.html</a>. I now code almost exclusively with the native pipe (following the same guidelines). I apply it everywhere and I have a bunch of shortcuts for function I use the most frequently in the console, e.g. to do <code>|&gt; names()</code> or <code>|&gt; class()</code>. I prefer <code>|&gt;</code> mostly because it is native, meaning that I don’t need to load any package to use it. There are two additional minor pros: it is only two characters and <a href="https://docs.julialang.org/en/v1/manual/functions/">Julia</a> – which I use frequently – uses the same symbol. I even use it in packages and as long I not using the placeholder, the package only requires a version &gt;= R 4.3.1 which is not bad (the oldrel is currently R 4.2.3).</p>
+<h2 id="references">References</h2>
+<div id="refs" class="references csl-bib-body hanging-indent" line-spacing="2">
+<div id="ref-chambers_2016_Extending" class="csl-entry">
+<p>Chambers JM. 2016. <em>Extending R</em>. Boca Raton London New York: CRC Press.</p>
+</div>
+</div>
+<div style="margin: 1.5rem 0rem 0.5rem 0rem;">
+<details>
+<summary>
+Session info <i class="fas fa-cogs" aria-hidden="true"></i>
+</summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.3.1 (2023-06-16)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu (64-bit)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.2 LTS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Matrix products: default</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  locale:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8        LC_COLLATE=C.UTF-8    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8    LC_PAPER=C.UTF-8       LC_NAME=C             </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] LC_ADDRESS=C           LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  time zone: UTC</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  tzcode source: system (glibc)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  attached base packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  other attached packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] dplyr_1.1.2       magrittr_2.0.3    inSilecoRef_0.1.1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.7        utf8_1.2.3        generics_0.1.3    xml2_1.3.5        blogdown_1.18    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.7.12    httpcode_0.3.0    digest_0.6.33     evaluate_0.21     bookdown_0.34    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] fastmap_1.1.1     plyr_1.8.8        jsonlite_1.8.7    backports_1.4.1   crul_1.4.0       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] promises_1.2.0.1  fansi_1.0.4       jquerylib_0.1.4   bibtex_0.5.1      cli_3.6.1        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] shiny_1.7.4.1     rlang_1.1.1       ellipsis_0.3.2    cachem_1.0.8      yaml_2.3.7       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] tools_4.3.1       httpuv_1.6.11     DT_0.28           rcrossref_1.2.0   curl_5.0.1       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] vctrs_0.6.3       R6_2.5.1          mime_0.12         lifecycle_1.0.3   stringr_1.5.0    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] fs_1.6.3          htmlwidgets_1.6.2 miniUI_0.1.1.1    pkgconfig_2.0.3   bslib_0.5.0      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] pillar_1.9.0      later_1.3.1       glue_1.6.2        Rcpp_1.0.11       xfun_0.39        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] tibble_3.2.1      tidyselect_1.2.0  knitr_1.43        xtable_1.8-4      htmltools_0.5.5  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] rmarkdown_2.23    compiler_4.3.1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+</div>
+
+
+                
+
+
+            </div>
+
+
+        </div>
+
+          <br>
+
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+  
+  
+
+
+  <script src="/js/sidebar-post.js"></script>
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  <details>
+  <summary>Comment with Disqus</summary>
+  <div id="disqus_thread"></div>
+  </details>
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2023/02/12/trick-or-tips-005-r/">Trick or Tips 005 {R}</a> <small>February 12, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+
+
+
+  <script>
+    
+
+
+    var disqus_config = function() {
+      this.page.url = "https://insileco.github.io" + "https://insileco.github.io/2023/07/25/a-few-thoughts-about-pipes-in-r/"; 
+      this.page.identifier = "A few thoughts about pipes in R"; 
+    };
+
+    (function() { 
+      var d = document,
+        s = d.createElement('script');
+      s.src = 'https://insileco.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+  <noscript>
+    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+  </noscript>
+
+
+
+</div>
+
+
+    </div>
+
+    <div class="col-md-2">
+    </div>
+
+</div>
+
+<footer>
+
+  <hr>
+
+  <div class="col-md-3">
+
+    <a href="#" id="bottom"></a>
+
+  </div>
+
+  <div class="col-md-8">
+
+    <script src="//yihui.name/js/math-code.js"></script>
+    <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <p class="copyright text-muted" style="font-size: 1.6rem;">
+      &copy; 2017-2023 inSileco |
+      Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+      <a href="https://gohugo.io">Hugo</a>
+      and <a href="https://github.com/calintat/minimal">Minimal</a> |
+      Latest build: 25 July 2023 12:35 UTC.
+    </p>
+
+  </div>
+
+
+</footer>
+
+</body>
+
+</html>

@@ -51,7 +51,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.115.2">
+ <meta name="generator" content="Hugo 0.115.4">
         
 
         
@@ -132,12 +132,12 @@
 <img class="full-width" width="100%" src="/img/banner4.png"></img>
 
 
-<div class="row">
+<div class="row" style = "display: flex;">
 
     <div class="col-md-3">
-        <div class = "toc">
+        <div class="toc">
 
-    <h2 style="margin-top: 0.5rem; padding-top: 0.5rem; padding-bottom: 0.25rem;">
+    <h2 style="padding-top: 0.5rem; padding-bottom: 0.25rem;">
         <a href="#">
             <i class='fas fa-chevron-up'></i>
         </a>
@@ -246,6 +246,9 @@
                 <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2019%2f02%2f03%2fcreating-empty-data-frames-with-dftemplate-and-dftemplatematch%2f&text=Creating%20empty%20data%20frames%20with%20columns%20of%20different%20classes" target="_blank">
                     <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2019%2f02%2f03%2fcreating-empty-data-frames-with-dftemplate-and-dftemplatematch%2f?link=http://left&link=http://right}'>
                 </a>
+
+                
+
             </p>
             </div>
 
@@ -612,44 +615,44 @@ for every columns:</p>
 </span></span><span class="line"><span class="cl"><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">lsdf</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[1]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    I J A G E</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 i j a g e</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 i j a g e</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 i j a g e</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 i j a g e</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 i j a g e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    F A B D H</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 f a b d h</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 f a b d h</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 f a b d h</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 f a b d h</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 f a b d h</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[2]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    B G E H D</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 b g e h d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 b g e h d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 b g e h d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 b g e h d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 b g e h d</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    C H I F J</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 c h i f j</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 c h i f j</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 c h i f j</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 c h i f j</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 c h i f j</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[3]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    A H D F E</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 a h d f e</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 a h d f e</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 a h d f e</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 a h d f e</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 a h d f e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    F C J A E</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 f c j a e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 f c j a e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 f c j a e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 f c j a e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 f c j a e</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[4]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    F H I E A</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 f h i e a</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 f h i e a</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 f h i e a</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 f h i e a</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 f h i e a</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    D A H G B</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 d a h g b</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 d a h g b</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 d a h g b</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 d a h g b</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 d a h g b</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[5]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    A G E B F</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 a g e b f</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 a g e b f</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 a g e b f</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 a g e b f</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 a g e b f</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    F G D A E</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 f g d a e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 f g d a e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 f g d a e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 f g d a e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 f g d a e</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>So the goal here is to create a data frame that contains only the five first
@@ -704,44 +707,44 @@ To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">lsdf2</span> <span class="o">&lt;-</span> <span class="nf">lapply</span><span class="p">(</span><span class="n">lsdf</span><span class="p">,</span> <span class="n">dfTemplateMatch</span><span class="p">,</span> <span class="kc">LETTERS</span><span class="n">[1</span><span class="o">:</span><span class="m">5</span><span class="n">]</span><span class="p">,</span> <span class="n">yonly</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">lsdf2</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[1]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    A E  B  C  D</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 a e NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 a e NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 a e NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 a e NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 a e NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    A B D  C  E</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 a b d NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 a b d NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 a b d NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 a b d NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 a b d NA NA</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[2]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    B E D  A  C</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 b e d NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 b e d NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 b e d NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 b e d NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 b e d NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    C  A  B  D  E</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 c NA NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 c NA NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 c NA NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 c NA NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 c NA NA NA NA</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[3]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    A D E  B  C</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 a d e NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 a d e NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 a d e NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 a d e NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 a d e NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    C A E  B  D</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 c a e NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 c a e NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 c a e NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 c a e NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 c a e NA NA</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[4]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    E A  B  C  D</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 e a NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 e a NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 e a NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 e a NA NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 e a NA NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    D A B  C  E</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 d a b NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 d a b NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 d a b NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 d a b NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 d a b NA NA</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[5]]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    A E B  C  D</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 a e b NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 a e b NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 a e b NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 a e b NA NA</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 a e b NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    D A E  B  C</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 d a e NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 d a e NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 d a e NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 d a e NA NA</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 d a e NA NA</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>And now I can seamlessly <code>rbind()</code> the list <code>lsdf2</code>!</p>
@@ -777,32 +780,32 @@ To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">do.call</span><span class="p">(</span><span class="n">rbind</span><span class="p">,</span> <span class="n">lsdf2</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;        A E    B  C    D</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1     a e &lt;NA&gt; NA &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2     a e &lt;NA&gt; NA &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3     a e &lt;NA&gt; NA &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4     a e &lt;NA&gt; NA &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5     a e &lt;NA&gt; NA &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  &lt;NA&gt; e    b NA    d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  &lt;NA&gt; e    b NA    d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  &lt;NA&gt; e    b NA    d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  &lt;NA&gt; e    b NA    d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 &lt;NA&gt; e    b NA    d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  11    a e &lt;NA&gt; NA    d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  12    a e &lt;NA&gt; NA    d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  13    a e &lt;NA&gt; NA    d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  14    a e &lt;NA&gt; NA    d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  15    a e &lt;NA&gt; NA    d</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  16    a e &lt;NA&gt; NA &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  17    a e &lt;NA&gt; NA &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  18    a e &lt;NA&gt; NA &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  19    a e &lt;NA&gt; NA &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  20    a e &lt;NA&gt; NA &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  21    a e    b NA &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  22    a e    b NA &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  23    a e    b NA &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  24    a e    b NA &lt;NA&gt;</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  25    a e    b NA &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;        A    B    D    C    E</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1     a    b    d &lt;NA&gt; &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2     a    b    d &lt;NA&gt; &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3     a    b    d &lt;NA&gt; &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4     a    b    d &lt;NA&gt; &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5     a    b    d &lt;NA&gt; &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    c &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    c &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  8  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    c &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  9  &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    c &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  10 &lt;NA&gt; &lt;NA&gt; &lt;NA&gt;    c &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  11    a &lt;NA&gt; &lt;NA&gt;    c    e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  12    a &lt;NA&gt; &lt;NA&gt;    c    e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  13    a &lt;NA&gt; &lt;NA&gt;    c    e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  14    a &lt;NA&gt; &lt;NA&gt;    c    e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  15    a &lt;NA&gt; &lt;NA&gt;    c    e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  16    a    b    d &lt;NA&gt; &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  17    a    b    d &lt;NA&gt; &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  18    a    b    d &lt;NA&gt; &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  19    a    b    d &lt;NA&gt; &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  20    a    b    d &lt;NA&gt; &lt;NA&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  21    a &lt;NA&gt;    d &lt;NA&gt;    e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  22    a &lt;NA&gt;    d &lt;NA&gt;    e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  23    a &lt;NA&gt;    d &lt;NA&gt;    e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  24    a &lt;NA&gt;    d &lt;NA&gt;    e</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  25    a &lt;NA&gt;    d &lt;NA&gt;    e</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h4 id="voilà-this-is-what-i-call-a-flexible-rbind-i-hope-youll-find-this-helpful-">Voilà! This is what I call a <em>flexible</em> <code>rbind</code>! I hope you&rsquo;ll find this helpful! 💥</h4>
@@ -869,19 +872,19 @@ To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  other attached packages:</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoMisc_0.7.0.9000 inSilecoRef_0.1.0      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoMisc_0.7.0.9000 inSilecoRef_0.1.1      </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.6        utf8_1.2.3        generics_0.1.3    xml2_1.3.4        blogdown_1.18    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.7.12    httpcode_0.3.0    digest_0.6.32     magrittr_2.0.3    evaluate_0.21    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.7        utf8_1.2.3        generics_0.1.3    xml2_1.3.5        blogdown_1.18    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.7.12    httpcode_0.3.0    digest_0.6.33     magrittr_2.0.3    evaluate_0.21    </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] bookdown_0.34     fastmap_1.1.1     plyr_1.8.8        jsonlite_1.8.7    backports_1.4.1  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] crul_1.4.0        promises_1.2.0.1  fansi_1.0.4       jquerylib_0.1.4   bibtex_0.5.1     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.1         shiny_1.7.4       crayon_1.5.2      rlang_1.1.1       ellipsis_0.3.2   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.1         shiny_1.7.4.1     crayon_1.5.2      rlang_1.1.1       ellipsis_0.3.2   </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] cachem_1.0.8      yaml_2.3.7        tools_4.3.1       dplyr_1.1.2       httpuv_1.6.11    </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] DT_0.28           rcrossref_1.2.0   curl_5.0.1        vctrs_0.6.3       R6_2.5.1         </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] mime_0.12         lifecycle_1.0.3   stringr_1.5.0     fs_1.6.2          htmlwidgets_1.6.2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] mime_0.12         lifecycle_1.0.3   stringr_1.5.0     fs_1.6.3          htmlwidgets_1.6.2</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] miniUI_0.1.1.1    pkgconfig_2.0.3   bslib_0.5.0       pillar_1.9.0      later_1.3.1      </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] glue_1.6.2        Rcpp_1.0.10       xfun_0.39         tibble_3.2.1      tidyselect_1.2.0 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] glue_1.6.2        Rcpp_1.0.11       xfun_0.39         tibble_3.2.1      tidyselect_1.2.0 </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] knitr_1.43        xtable_1.8-4      htmltools_0.5.5   rmarkdown_2.23    compiler_4.3.1</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -936,6 +939,23 @@ To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
   
 
   <h1>
+    <a href="/2023/07/25/a-few-thoughts-about-pipes-in-r/">A few thoughts about pipes in R</a> <small>July 25, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/pipe"><kbd class="item-tag">pipe</kbd></a>  <a href="/tags/internals"><kbd class="item-tag">internals</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
     <a href="/2023/02/12/trick-or-tips-005-r/">Trick or Tips 005 {R}</a> <small>February 12, 2023</small>
   </h1>
 
@@ -957,23 +977,6 @@ To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
   </h1>
 
   <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
-
-  
-
-
-
-  
-
-</div>
-  <div class="item-bottom">
-
-  
-
-  <h1>
-    <a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a> <small>April 21, 2020</small>
-  </h1>
-
-  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> </p>
 
   
 
@@ -1044,7 +1047,7 @@ To do so, I simply need to call <code>dfTemplateMatch()</code>:</p>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 11 July 2023 00:50 UTC.
+      Latest build: 25 July 2023 12:35 UTC.
     </p>
 
   </div>
