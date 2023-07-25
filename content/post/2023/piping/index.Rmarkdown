@@ -1,16 +1,18 @@
 ---
 title: A few thoughts about pipes in R
 author: [kevin]
-date: 2023-07-21
+date: 2023-07-25
 tags: [R, tips, pipe, internals]
 rpkgs: [base, magrittr, dplyr]
 tweet: "A few thoughts about piping in R"
-review: true
+review: false
+reviewer: [david]
+rbloggers: true
 estime: 5
 bibliography: "`r path_ref_bib`"
 csl: "`r path_ref_csl`"
 tldr: |
-    Using pipes in R makes your code cleaner. There are two good options for pipes: `magrittr` which brings the forward pipe `%>%` alongside four other pipes and the native pipe `|>` introduce in R 4.1.0. I have been piping for years, I started with the pipes from the `magrittr` package, now I use the native pipe.'
+    Using pipes in R makes code cleaner. There are two good options for pipes: `magrittr` which brings the forward pipe `%>%` alongside four other pipes and the native pipe `|>` introduce in R 4.1.0. I have been piping for years, I started with the pipes from the `magrittr` package, now I use the native pipe.'
 output:
   blogdown::html_page:
     dev: svglite
@@ -20,14 +22,15 @@ output:
 
 ## Piping in R 
 
-Back in 2014, I discovered the forward pipe for R introduced in [`magrittr`](https://magrittr.tidyverse.org/) and since that time, I have never stopped piping, though my piping habits evolved over time, especially with the [introduction of the native pipe](https://www.jumpingrivers.com/blog/new-features-r410-pipe-anonymous-functions/) in R 4.1. 
+Back in 2014, I discovered the forward pipe for R introduced in [`magrittr`](https://magrittr.tidyverse.org/) and since that time, I never stopped piping, although my piping habits evolved over time, especially with the [introduction of the native pipe](https://www.jumpingrivers.com/blog/new-features-r410-pipe-anonymous-functions/) in R 4.1. 
 
-When I started using pipes in R, I had some experience with the [bash pipe](https://effective-shell.com/part-2-core-skills/thinking-in-pipelines/), `|`, which basically passes the output of a function to the input of a second one, and so allow to do chaining operations. But using pipes in R was a major breakthrough: with a simple infix operator, lines of code involving a collection of nested function calls was suddenly turned into one readable data recipe. Let's take an example and create a data pipeline where we apply a statistical model, `model_1()`, to the data set `data_1` after two steps of data preprocessing, `transform_1()` and `transform_2()`. Here is the code without pipes:
+When I started using pipes in R, I had some experience with the [bash pipe](https://effective-shell.com/part-2-core-skills/thinking-in-pipelines/), `|`, which basically passes the output of a function to the input of a second one, and so allow to do chaining operations. But using pipes in R was a major breakthrough: with a simple infix operator, lines of code involving a collection of nested function calls were suddenly turned into one readable data recipe. Let's take an example and create a data pipeline where we apply a statistical model, `model_1()`, to the data set `data_1` after two steps of data preprocessing, `transform_1()` and `transform_2()`. Here is the code without pipes:
+
 
 ```R
 res <- model_1(
-    transform_2(
-        transform_3(
+    transform_1(
+        transform_2(
             data_1
         )
     )
@@ -37,16 +40,16 @@ res <- model_1(
 For now, let's refer to the forward pipe as `%pipe%`. With pipe, one would write
 
 ```R 
-transform_3(data_1)
+transform_2(data_1)
 ```
 
 as
 
 ```R 
-data_1 %pipe% transform_3()
+data_1 %pipe% transform_2()
 ```
 
-`data_1` `transform` is the left hand side of the pipe (often abbreviated **lhs**) and `transform` is its right hand side (**lhs**). Let's rewrite the code using it:
+`data_1` is the left hand side of the pipe (often abbreviated **lhs**) and `transform_2()` is its right hand side (**lhs**). Let's rewrite the code using it:
 
 ```R
 var <- data_1 %pipe%
@@ -55,12 +58,12 @@ var <- data_1 %pipe%
     model_1()
 ```
 
-Looking at the two blocks of code, there are two main facts, one quickly grasps: 
+There are two main facts, one quickly grasps when looking at the two blocks of code:
 
 1. with pipes, you stop reading backwards: `data_1` is at the beginning of the block, and `model_1` is now at the last line, not at the first line;
 2. with pipes, it is easier to deal with parentheses, the code is more readable.  
 
-A little more subtle is that is it easier to comment out parts of the recipe. Say we need to comment out `transform_2()`, without pipes, we would to something like this 
+A little more subtle is that is it easier to comment out parts of the recipe. Say we need to comment out `transform_2()`, without pipes, we would do something like this:
 
 ```R
 var <- model_1(
@@ -89,7 +92,7 @@ This is not a major concern here, but it does help in more complex cases. Having
 
 ### A package of internals 
 
-I am assuming that most of R users are familiar with the forward pipe `%>%` and its placeholder `.` -- the symbols representing the object being forwarded. I am also assuming that most of R users have used it through the meta package [`tidyverse`](https://CRAN.R-project.org/package=tidyverse), or one of the packages included, most likely [`dpyr`](https://CRAN.R-project.org/package=dpyr). So here, instead of focusing on how to use the forward pipe, I would like to mention a few technical details as well as the other pipes `magrittr` includes.
+I am assuming that most of R users are familiar with the forward pipe `%>%` and its placeholder `.` -- the symbols representing the object being forwarded. I am also assuming that most of R users have used it through the meta package [`tidyverse`](https://CRAN.R-project.org/package=tidyverse), or one of the packages included, most likely [`dplyr`](https://CRAN.R-project.org/package=dplyr). So here, instead of focusing on how to use the forward pipe, I would like to mention a few technical details as well as the other pipes `magrittr` includes.
 
 [`magrittr`](https://CRAN.R-project.org/package=magrittr) is a package that brings the forward pipe `%>%` aklong with [four other pipes](https://magrittr.tidyverse.org/reference/index.html#pipes): `%<>%`, `%$%`, `%!>%`, `%T>%` as well as a [several functions](https://magrittr.tidyverse.org/reference/index.html#pipes) that can be used with the pipe. 
 
@@ -153,7 +156,7 @@ identical(CO2b, CO2c) # check whether we are creating the same object
 ```
 
 
-With the **Tee pipe**, you can call a function but the output could is not included in the pipeline, but you can still benefit from the side effect of the function, which is very useful for print and plot functions. 
+With the **Tee pipe**, you can call a function without including the output in the pipeline while retaining the side effect of the function. This van be very handy for print and plot functions.
 
 ```{R tee}
 CO2d <- CO2 %>%
@@ -163,7 +166,7 @@ CO2d <- CO2 %>%
 identical(CO2d, CO2c)
 ```
 
-The **exposition pipe** exposes the names of the object being pipes (lhs) and so they can be called from the rhs of the pipe.
+The **exposition pipe** exposes the names of the lhs of the pipe so they can be called from the rhs of the pipe.
 
 ```{R dollar, error = TRUE}
 CO2 %>%
@@ -175,7 +178,7 @@ CO2 %>%
 ```
 
 
-Finally, the **eager pipe** overcomes the lazy evaluation behaviour in R. It is beyond the scope of this post to explain what is it, but if you are curious, have a look at this [great blog post by Collin Fay](https://colinfay.me/lazyeval/). So here is an example where two functions that prompt a message on evaluation (check the order of the messages):
+Finally, the **eager pipe** overcomes the lazy evaluation behaviour in R which is beyond the scope of this post, but if you are curious, have a look at this [great blog post by Collin Fay](https://colinfay.me/lazyeval/). So here is an example where two functions that prompt a message on evaluation (pay attention to the order of the messages):
 
 
 ```{R eager, message = TRUE}
@@ -210,7 +213,7 @@ R 4.1 introduced the native pipe `|>`. In the [NEWS file](https://cran.r-project
 
 > R now provides a simple native forward pipe syntax |>. The simple form of the forward pipe inserts the left-hand side as the first argument in the right-hand side call. The pipe implementation as a syntax transformation was motivated by suggestions from Jim Hester and Lionel Henry. 
 
-Several blog posts have explained how to use it (e.g. this [blog post on Towards data science](https://towardsdatascience.com/understanding-the-native-r-pipe-98dea6d8b61b)). I was curious about what were the changes that come with such new feature, so I did a quick search in the source code (using the mirror available on GitHub at https://github.com/wch/r-source):
+Several blog posts have explained how to use it (e.g. this [blog post on Towards data science](https://towardsdatascience.com/understanding-the-native-r-pipe-98dea6d8b61b)). I was curious about the changes that come with such new feature, so I did a quick search in the source code (using the mirror available on GitHub at https://github.com/wch/r-source):
 
 ```sh
 git log --oneline -S 'native pipe'
@@ -321,7 +324,7 @@ CO2g <- CO2 |>
 identical(CO2g, CO2b)
 ```
 
-and though I don't see any advantages of doing so, it is possible to combine the two pipes.
+Though I don't see any advantages of doing so, it is possible to combine the two pipes.
 
 ```{R mix}
 CO2h <- CO2 |>
@@ -358,7 +361,7 @@ CO2 |>
     sum()
 ```
 
-On top of making my code cleaner and easier to comment out, when I am coding in the console I have been using more and more frequently the operator `->`, that really comes in handy. You may be aware that R has multiple [assignment operators](https://stat.ethz.ch/R-manual/R-devel/library/base/html/assignOps.html), for historical reasons as mentioned by [@chambers_2016_Extending] (page 73 in a footnote): 
+When coding in the console I have been using more and more frequently the operator `->`, that really comes in handy. You may be aware that R has multiple [assignment operators](https://stat.ethz.ch/R-manual/R-devel/library/base/html/assignOps.html), for historical reasons as mentioned by [@chambers_2016_Extending] (page 73 in a footnote): 
 
 > The specific choice of `<-` dates back to the first version of S. We chose it in order to emphasize that the left and right operands are entirely different: a target on the left and a computed value on the right. Later versions of S and R accept the `=` operator, but for exposition the original choice remains clearer.
 
@@ -375,9 +378,10 @@ tot_conc
 
 ## Final remarks
 
-I this post I wrote down a few thoughts about the native pipe and the magrittr pipes. I did not attempt to compare the two. The main differences between the two pipes `%>%` and `|>` are summarized in one of [Hadley Wickham recent blog post](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/). Of course there is only one native pipe and 5 magrittr pipes. But the most significative difference regards the placeholders, `.` coming with more features than `_`. That said, given the latest experimental feature of `_` in R 4.3.0, this may soon no longer hold true.
+In this post I wrote down a few thoughts about the native pipe and the magrittr pipes. I did not attempt to compare the two. The main differences between the two pipes `%>%` and `|>` are summarized in one of [Hadley Wickham recent blog post](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/). Of course there is only one native pipe and 5 magrittr pipes. But the most significative difference regards the placeholders, `.` coming with more features than `_`. That said, given the latest experimental feature of `_` in R 4.3.0, this may soon no longer hold true.
 
-The tidyverse community still uses and recommends the use of the magrittr forward pipe, and even provide a styling guide for it: https://style.tidyverse.org/pipes.html. I now code almost exclusively with the native pipe (following the same guidelines). I apply it everywhere and I have a bunch of shortcuts for function I use the most frequently in the console, e.g. to do `|> names()` or `|> class()`. I prefer `|>` mostly because it is native, meaning that I don't need to load any package to use it. There are two additional minor pros: it is only two characters and [Julia](https://docs.julialang.org/en/v1/manual/functions/) -- which I use frequently -- uses the same symbol. I even use it in packages and as long I not using the placeholder, the package only requires a version >= R 4.3.1 which is not bad (the oldrel is currently R 4.2.3).
+
+The tidyverse community still recommends the use of the magrittr forward pipe, and even provides a styling guide for it: https://style.tidyverse.org/pipes.html. I now code almost exclusively with the native pipe (following the same guidelines). I apply it everywhere and I have a bunch of shortcuts for function I use the most frequently in the console, e.g. to do `|> names()` or `|> class()`. I prefer `|>` mostly because it is native, meaning that I don't need to load any package to use it. There are two additional minor pros: it is only two characters and [Julia](https://docs.julialang.org/en/v1/manual/functions/) -- which I use frequently -- uses the same symbol. I even use it in packages and as long I not using the placeholder, the package only requires a version >= R 4.3.1 which is not bad (the oldrel is currently R 4.2.3).
 
 
 
