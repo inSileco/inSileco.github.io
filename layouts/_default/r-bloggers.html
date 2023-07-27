@@ -9,6 +9,22 @@
     
     <div class="text-justify">{{ .Content }}</div>
 
+    <h3>List of posts that we shared on R-bloggers</h3>
+    
+    {{ range .Site.Pages }}
+    {{ if .Params.rbloggers }}
+    <div class="item">
+        <h1>
+            <a href="{{ .RelPermalink }}">{{ .Title }}</a> <small>{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</small>
+        </h1>
+    
+        <p> <i class="fa fa-tags" aria-hidden="true"></i> {{ range .Params.tags }} <a href="/tags/{{ . | urlize }}"><kbd
+                    class="item-tag">{{ . }}</kbd></a> {{ end }}</p>
+    
+    </div>
+    {{ end }}
+    {{ end }}
+
 </main>
 
 <div class="container">
