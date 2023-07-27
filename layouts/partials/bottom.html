@@ -8,8 +8,6 @@
   <!-- MathJax see https://docs.mathjax.org/en/latest/start.html -->
 
 
-  <script src="/js/sidebar-post.js"></script>
-
   <h3 class="page-header">Comments on this post</h3>
 
   <script src="https://utteranc.es/client.js"
@@ -34,6 +32,12 @@
     <h3 class="page-header">Related posts</h3>
     {{ range $related }} {{ partial "list-item-bottom" . }} {{ end }}
   {{ end }}
+
+
+  <!-- custom js -->
+{{ range .Site.Params.js }}
+<script type="text/javascript" src="{{ . | absURL }}"></script>
+{{ end }}
 
 
 

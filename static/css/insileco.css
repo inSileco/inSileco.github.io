@@ -222,3 +222,40 @@ figcaption {
 }
 
 
+/* adapated from https://aaronluna.dev/blog/add-copy-button-to-code-blocks-hugo-chroma/ */
+
+.copy-code-button {
+  position: relative;
+  display: block;
+  float: right;
+  z-index: 2;
+  right: 0;
+  top: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  width: 3.6rem;
+  color: #3fb3b2;
+  background-color: #dedede;
+  border: 0px;
+  white-space: nowrap;
+  padding: 0.25rem;
+  margin: 0 0 0 1px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.copy-code-button:hover,
+.copy-code-button:focus,
+.copy-code-button:active,
+.copy-code-button:active:hover {
+  color: #333;
+  background-color: #3fb3b2;
+  opacity: 0.3;
+}
+
+.copyable-text-area {
+  position: absolute;
+  height: 0;
+  z-index: -1;
+  opacity: .01;
+}
