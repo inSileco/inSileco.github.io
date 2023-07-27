@@ -9,7 +9,7 @@
         <style>
 
     html body {
-        font-family: '', sans-serif;
+        font-family: 'Lato', sans-serif;
         background-color: white;
     }
 
@@ -27,7 +27,7 @@
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">  <link rel="stylesheet" href="https://insileco.github.io/css/academicons.min.css">  <link rel="stylesheet" href="https://insileco.github.io/css/main.css">  <link rel="stylesheet" href="https://insileco.github.io/css/syntax.css">  <link rel="stylesheet" href="https://insileco.github.io/css/insileco.css"> 
 
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 
 
 
@@ -41,7 +41,7 @@
 
 
 
-
+ <script src="https://insileco.github.io/js/codecopypaste.js"></script> 
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -80,6 +80,7 @@
   <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
+
 
 
     </head>
@@ -290,11 +291,11 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">val</span> <span class="o">&lt;-</span> <span class="nf">runif</span><span class="p">(</span><span class="m">40</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">val</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 71.960014 45.628372 34.875425 80.491326 38.181596 41.315551 78.150746 48.534967 67.212570</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10]  8.783098 30.159843 49.910062  1.926243 27.181810 69.972397 27.463266 73.438401 22.045064</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] 66.730175 65.067880 43.359217 22.828376 40.695933  6.117185 92.977467 24.276521 95.297729</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] 29.599753 30.054253 35.007458 33.034080 65.405682 42.770460 37.927141 98.282974 90.897616</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37]  2.959048 41.879135  5.239921  9.640122</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 76.687319 88.668933 75.836790 37.915023 93.568945  5.405752 79.302640  4.412450 79.301226</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] 62.340573 28.280665 57.774979 92.487116 89.194544 82.171810  8.007887 43.140734 67.441306</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] 38.263806 42.252868 26.457422 52.335912 60.276206 77.546335 70.115521 22.277588 47.794260</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] 73.428849 99.505559 98.462625 99.405333 32.283772 47.276480 30.866691 70.279769 95.925328</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] 54.254327 98.453266 89.492371 12.814640</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
@@ -319,8 +320,8 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 25 10  4 25  6  8 25 12 24  1  1 13  1  1 25  1 25  1 23 22  9  1  7  1 25  1 25  1  1  4  2 23</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33]  8  5 25 25  1  8  1  1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 25 25 25  5 25  1 25  1 25 21  1 18 25 25 25  1  9 24  6  8  1 14 19 25 25  1 12 25 25 25 25  2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] 11  1 25 25 16 25 25  1</span>
 </span></span><span class="line"><span class="cl"><span class="n">graphicsutils</span><span class="o">::</span><span class="nf">showPalette</span><span class="p">(</span><span class="n">pal</span><span class="nf">[scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">add_codecolor</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -669,8 +670,6 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
   
 
 
-  <script src="/js/sidebar-post.js"></script>
-
   <h3 class="page-header">Comments on this post</h3>
 
   <script src="https://utteranc.es/client.js"
@@ -748,6 +747,12 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
   
 
 
+  
+
+<script type="text/javascript" src="https://insileco.github.io/js/codecopypaste.js"></script>
+
+
+
 
 
 
@@ -806,7 +811,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 27 July 2023 12:35 UTC.
+      Latest build: 27 July 2023 19:06 UTC.
     </p>
 
   </div>

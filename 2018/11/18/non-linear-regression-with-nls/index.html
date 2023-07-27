@@ -9,7 +9,7 @@
         <style>
 
     html body {
-        font-family: '', sans-serif;
+        font-family: 'Lato', sans-serif;
         background-color: white;
     }
 
@@ -27,7 +27,7 @@
  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">  <link rel="stylesheet" href="https://insileco.github.io/css/academicons.min.css">  <link rel="stylesheet" href="https://insileco.github.io/css/main.css">  <link rel="stylesheet" href="https://insileco.github.io/css/syntax.css">  <link rel="stylesheet" href="https://insileco.github.io/css/insileco.css"> 
 
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
 
 
 
@@ -41,7 +41,7 @@
 
 
 
-
+ <script src="https://insileco.github.io/js/codecopypaste.js"></script> 
 
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -80,6 +80,7 @@
   <link rel="stylesheet" href="/css/syntax.css">
 
   <link rel="stylesheet" href="/css/insileco.css">
+
 
 
     </head>
@@ -297,12 +298,12 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">%&gt;%</span> <span class="n">as.data.frame</span>
 </span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">simdata</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    seqt      sim</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.00 10.68069</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.25 10.44939</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.50 10.79583</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.75 11.21588</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 1.00 10.97023</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 1.25 11.41081</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.00 10.20664</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.25 10.85044</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.50 11.25955</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.75 10.93658</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 1.00 12.87359</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 1.25 11.97839</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="use-nls">Use <code>nls()</code></h2>
@@ -334,12 +335,12 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Nonlinear regression model</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    model: sim ~ Tinf - (Tinf - 10) * exp(-k * seqt)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     data: simdata</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     Tinf       k </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  20.0360  0.1981 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   residual sum-of-squares: 47.28</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   Tinf     k </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  19.99  0.20 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   residual sum-of-squares: 55.53</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Number of iterations to convergence: 9 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Achieved convergence tolerance: 2.337e-06</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Achieved convergence tolerance: 2.134e-07</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Let&rsquo;s draw a quick plot:</p>
@@ -462,8 +463,6 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
   
 
 
-  <script src="/js/sidebar-post.js"></script>
-
   <h3 class="page-header">Comments on this post</h3>
 
   <script src="https://utteranc.es/client.js"
@@ -541,6 +540,12 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
   
 
 
+  
+
+<script type="text/javascript" src="https://insileco.github.io/js/codecopypaste.js"></script>
+
+
+
 
 
 
@@ -599,7 +604,7 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 27 July 2023 12:35 UTC.
+      Latest build: 27 July 2023 19:06 UTC.
     </p>
 
   </div>
