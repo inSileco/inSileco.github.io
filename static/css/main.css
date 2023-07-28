@@ -1,7 +1,8 @@
-html, body {
+/* ----------base---------- */
+html,
+body {
     height: 100%;
 }
-
 
 body {
     padding-top: 55px;
@@ -17,32 +18,78 @@ main {
     max-width: 750px;
 }
 
-/*footer*/
-
-.copyright {
-    margin: 15px 0;
+p,
+ul,
+ol,
+li {
+    font-size: 18px;
 }
 
-/*home page*/
-
-.intro {
-    margin: 25vh 0;
+h2 {
+    padding-top: 20px;
+    padding-bottom: 10px;
 }
 
-.intro > h1 {
-    color: #212121;
-    font-size: 12vh;
+h3 {
+    padding-top: 10px;
 }
 
-.intro > h2 {
-    color: #757575;
-    font-size: 3vmin;
+h4 {
+    padding-top: 5px;
 }
 
-/*apply accent colour to links*/
+blockquote {
+    font-style: italic;
+}
+
+p>video {
+    padding: 15px;
+}
+
+p>img {
+    text-align: center;
+    padding: 15px;
+}
+
+figure {
+    margin-top: 2rem !important;
+    margin-bottom: 2rem !important;
+}
+
+/* Tables main text */
+table {
+    margin-left: 5px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+td {
+    vertical-align: bottom;
+}
+
+th,
+td {
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    padding-right: 12px;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
 
 
-a:link, a:visited {
+figcaption {
+    font-size: 1.2em;
+    margin-top: 0.5em;
+    margin-bottom: 1.5em;
+}
+
+
+/* ----------links---------- */
+
+a:link,
+a:visited {
     color: var(--accent);
 }
 
@@ -54,7 +101,8 @@ a:hover {
     color: var(--accent) !important;
 }
 
-#post-content-body a:link, #post-content-body a:visited {
+#post-content-body a:link,
+#post-content-body a:visited {
     text-decoration: underline;
     text-decoration-color: var(--accent);
     text-decoration-thickness: 0.2rem;
@@ -62,41 +110,8 @@ a:hover {
     color: #212121;
 }
 
-.toc a:link, .toc a:visited {
-    text-decoration: none;
-    color: var(--accent);
-}
 
-.toc a:hover {
-    text-decoration: underline;
-    color: var(--accent);
-    text-decoration-thickness: 0.3rem;
-}
-
-
-
-/*paginator at bottom of list view*/
-
-.pages {
-    padding: 15px 0;
-}
-
-.pages-icon {
-    padding: 0 15px;
-}
-
-/*list item for posts and projects*/
-
-.item {
-    padding: 10px 0;
-}
-
-.item-tag {
-    /* background-color: var(--accent); */
-    background-color: #3fb3b288;
-}
-
-/*navigation bar icons*/
+/* ----------navigation bar icons---------- */
 
 .navbar-icon {
     font-size: 125%;
@@ -109,6 +124,257 @@ a:hover {
     border-top: var(--border-width) solid var(--accent);
 }
 
+
+/* ----------footer---------- */
+
 footer {
     border-bottom: var(--border-width) solid var(--accent);
+}
+
+
+.copyright {
+    margin: 15px 0;
+}
+
+
+/* ----------home page---------- */
+
+.intro {
+    margin: 25vh 0;
+}
+
+.intro>h1 {
+    color: #212121;
+    font-size: 12vh;
+}
+
+.intro>h2 {
+    color: #757575;
+    font-size: 3vmin;
+}
+
+
+
+/* ----------paginator and item list--------- */
+
+.pages {
+    padding: 15px 0;
+}
+
+.pages-icon {
+    padding: 0 15px;
+}
+
+
+.item {
+    padding: 10px 0;
+}
+
+.item-tag {
+    /* background-color: var(--accent); */
+    background-color: #3fb3b288;
+}
+
+.item-tag2 {
+    background-color: #ffdd5566;
+    color: #3fb3b2;
+    font-weight: 700;
+}
+
+.item {
+    text-align: left;
+}
+
+.item h1 {
+    font-size: 1.8em;
+    padding: 0rem 0rem 0.25rem 0rem;
+    margin: 0px;
+}
+
+.item-bottom {
+    text-align: center;
+}
+
+.item-bottom h1 {
+    font-size: 1.8em;
+}
+
+
+/* ----------Code---------- */
+
+pre>code {
+    font-family: "Fira Code";
+    font-size: 1.2em;
+    line-height: 1.25em;
+}
+
+code {
+    color: #3fb3b2;
+    background-color: #f7f7f7;
+    font-family: "Fira Code";
+}
+
+
+/* ----------post sections---------- */
+
+.tricksortips {
+    border-radius: 20px;
+    border: 2px solid #3fb3b2;
+    padding: 1em;
+    margin-bottom: 3rem;
+}
+
+
+.tldr {
+    text-align: left;
+    background-color: #eff8f8;
+    font-size: 1.2em;
+    padding: 1rem;
+    border-radius: 1.4rem;
+}
+
+.references {
+    margin-bottom: 4rem;
+}
+
+
+#post-content-body {
+    margin-top: 4rem;
+}
+
+
+/* ----------details---------- */
+
+details summary {
+    font-size: 1.2em;
+    padding-right: 0.8rem;
+}
+
+details summary::before {
+    font-family: "FontAwesome";
+    content: "\f0a4";
+    padding-left: 15px;
+    padding-right: 0.8rem;
+    font-size: 1.2em;
+}
+
+details[open] summary::before {
+    font-family: "FontAwesome";
+    content: "\f0a7";
+    padding-right: 0.8rem;
+}
+
+/* https://stackoverflow.com/questions/255170/markdown-and-image-alignment */
+
+img[alt$=">"] {
+    float: right;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+img[alt$="<"] {
+    float: left;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+img[alt$="><"] {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: auto;
+    float: none !important;
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+/* see for the one below http://www.ebadf.net/2016/10/19/centering-images-in-hugo/ */
+img[src$='#center'] {
+    display: block;
+    margin: 0.1rem auto;
+}
+
+.caption {
+    display: block;
+    max-width: 92%;
+    height: auto;
+    margin: auto;
+    float: none !important;
+    font-size: 1.15em;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+
+/* ----------toc---------- */
+
+#TableOfContents ul,
+#TableOfContents li {
+    font-size: 2.5rem;
+    padding: 0px;
+}
+
+#TableOfContents ul {
+    list-style-type: none;
+}
+
+.toc {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 10rem;
+    padding-left: 2rem;
+    padding-right: 1rem;
+}
+
+
+.toc a:link,
+.toc a:visited {
+    text-decoration: none;
+    color: var(--accent);
+}
+
+.toc a:hover {
+    text-decoration: underline;
+    color: var(--accent);
+    text-decoration-thickness: 0.3rem;
+}
+
+
+/* ----------copy paste button---------- */
+/* adapated from https://aaronluna.dev/blog/add-copy-button-to-code-blocks-hugo-chroma/ */
+
+.copy-code-button {
+    position: relative;
+    display: block;
+    float: right;
+    z-index: 2;
+    right: 0;
+    top: 0;
+    font-size: 1.8rem;
+    font-weight: 700;
+    width: 3.6rem;
+    color: #3fb3b2;
+    background-color: #dedede;
+    border: 0px;
+    white-space: nowrap;
+    padding: 0.25rem;
+    margin: 0 0 0 1px;
+    cursor: pointer;
+    opacity: 0.6;
+}
+
+.copy-code-button:hover,
+.copy-code-button:focus,
+.copy-code-button:active,
+.copy-code-button:active:hover {
+    color: #333;
+    background-color: #3fb3b2;
+    opacity: 0.3;
+}
+
+.copyable-text-area {
+    position: absolute;
+    height: 0;
+    z-index: -1;
+    opacity: .01;
 }
