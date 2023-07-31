@@ -1,4 +1,0 @@
----
-title: "software"
-layout: "soft"
----

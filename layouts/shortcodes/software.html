@@ -1,6 +1,7 @@
-<div class="container">
+<div class="row">
 
   <div class="col-sm-12">
+
     {{ range $.Site.Data.softwares }}
     <div class="col-sm-6 text-left">
       <div class="panel panel-default">
@@ -14,50 +15,51 @@
             </h4>
           </div>
           <div class="title-right" style="width: 20%; display: inline;">
-            {{ with .github }} 
-              <a href="https://github.com/{{.}}" style="display:inline;">
-                  <i class="fab fa-2x fa-github"></i>
-              </a>&nbsp;
+            {{ with .github }}
+            <a href="https://github.com/{{.}}" style="display:inline;">
+              <i class="fab fa-2x fa-github"></i>
+            </a>&nbsp;
             {{ end }}
             {{ with .website }}
-              <a href="{{ . }}">
-                <i class="fa fa-2x fa-globe" aria-hidden="true"></i>
-              </a>
+            <a href="{{ . }}">
+              <i class="fa fa-2x fa-globe" aria-hidden="true"></i>
+            </a>
             {{ end }}
             <hr>
           </div>
           {{ with .badges }}
-            {{ with .travis }}
+          {{ with .travis }}
           <a href="https://travis-ci.org/{{ .repo }}">
             <img alt="Build Status" src="https://travis-ci.org/{{ .repo }}.svg?branch={{ .branch | default " master"
               }}"></img></a>
-            {{ end }}
-            {{ with .appveyor }}
+          {{ end }}
+          {{ with .appveyor }}
           <a href="https://ci.appveyor.com/project/{{ .repo }}/branch/{{ .branch | default " master" }}"><img
               alt="Build Status"
               src="https://ci.appveyor.com/api/projects/status/{{ .status }}/branch/{{ .branch | default " master"
               }}?svg=true"></img></a>
-            {{ end }}
-            {{ with .codecov }}
+          {{ end }}
+          {{ with .codecov }}
           <a href="https://codecov.io/{{ .repo }}"><img alt="codecov"
-              src="https://codecov.io/{{ .repo }}/branch/{{ .branch | default "main" }}/graph/badge.svg?token={{ .token }}"></img></a>
-            {{ end }}
-            {{ with .repostatus }}
+              src="https://codecov.io/{{ .repo }}/branch/{{ .branch | default " main" }}/graph/badge.svg?token={{ .token
+              }}"></img></a>
+          {{ end }}
+          {{ with .repostatus }}
           <a href="https://www.repostatus.org/#{{.}}"><img alt="Repostatus"
               src="https://www.repostatus.org/badges/latest/{{.}}.svg"></img></a>
-            {{ end }}
-            {{ with .gha }}
-          <a href="https://github.com/{{ .repo }}/actions"><img alt="Build Status" src="https://github.com/{{ .repo }}/actions/workflows/{{ .workflow }}/badge.svg"></a>
-            {{ end }}
-            {{ with .zenodo }} {{ . | markdownify }} {{ end }}
-            {{ end }}
+          {{ end }}
+          {{ with .gha }}
+          <a href="https://github.com/{{ .repo }}/actions"><img alt="Build Status"
+              src="https://github.com/{{ .repo }}/actions/workflows/{{ .workflow }}/badge.svg"></a>
+          {{ end }}
+          {{ with .zenodo }} {{ . | markdownify }} {{ end }}
+          {{ end }}
           <p style="margin-top: 1rem"> {{ .description }} </p>
         </div>
       </div>
     </div>
-  {{ end }}
+    {{ end }}
 
+  </div>
 
-
-</div>
 </div>
