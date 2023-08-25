@@ -28,7 +28,7 @@
                     href="/tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}
                 <br>
                 {{ if .Params.rpkgs }}
-                    <img src="/img/Rlogo.svg" title="List of R packages required for this post." width="80px"></img>
+                    <img src="/img/Rlogo.svg" title="R logo" width="60px" style="margin: 1rem;"></img>
                     &nbsp; 
                     {{ range .Params.rpkgs }} 
                         <a href="/rpkgs/{{ . | urlize }}">
@@ -62,21 +62,24 @@
             </p>
             {{ end }}
 
-            <p>
+            <p id="badges">
                 {{ if .Params.draft }}
-                    <img src='{{ (print "https://img.shields.io/static/v1?style=flat&label=inSileco&message=inDevelopment&color=c7254e&logo="  $.Site.Data.logos.inSileco.code64) | safeURL }}'>
+                    <img src='{{ (print "https://img.shields.io/static/v1?style=flat&label=inSileco&message=inDevelopment&color=c7254e&logo=" $.Site.Data.logos.inSileco.code64) | safeURL }}'>
+                    &nbsp;
                 {{ end }}
                 {{ if .Params.review }}
-                    <img src='{{ (print "https://img.shields.io/static/v1?style=flat&label=inSileco&message=underReview&color=8555b4&logo="  $.Site.Data.logos.inSileco.code64) | safeURL }}'>
+                    <img src='{{ (print "https://img.shields.io/static/v1?style=flat&label=inSileco&message=underReview&color=8555b4&logo=" $.Site.Data.logos.inSileco.code64) | safeURL }}'>
+                    &nbsp;
                 {{ end }}
                 {{ with .Params.estime }}
-                    <img src='{{ (print "https://img.shields.io/static/v1?style=flat&label=reading time&message=" . "min&color=3fb3b2&logo="  $.Site.Data.logos.clock.code64) | safeURL }}'>
+                    <img src='{{ (print "https://img.shields.io/static/v1?style=flat&label=reading time&message=" . "min&color=3fb3b2&logo=" $.Site.Data.logos.clock.code64) | safeURL }}'>
+                    &nbsp;
                 {{ end }}
                 <!-- http://www.R-bloggers.com -->
                 {{ if .Params.rbloggers }}
                     <a href="/r-bloggers">
                         <img src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
-                    <a>
+                    <a>&nbsp;
                 {{ end }}
                 <!-- license -->
                 {{ with .Params.licence }}
@@ -86,19 +89,20 @@
                 {{ else }}
                     <a href="https://creativecommons.org/licenses/by/4.0/">
                         <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
-                    </a>
+                    </a>&nbsp;
                 {{ end }}
                 <!-- archived -->
                 {{ with .Params.archived }}
                     <a href="https://github.com/inSileco/inSileco.github.io/wiki/Posts#archiving-a-posts">
                         <img src="https://img.shields.io/static/v1?style=flat&label=archived&message={{ . }}&logo=internet-archive&color=6d4f5b">
-                    </a>
+                    </a>&nbsp;
                 {{ end }}
                 {{/*  twitter  */}}
-                &nbsp;&nbsp;
+                {{ if .Params.tweet }}
                 <a href="http://twitter.com/share?url={{ .Permalink | absURL }}&text={{ .Params.tweet }}" target="_blank">
                     <img src='https://img.shields.io/twitter/url?style=social&url={{ .Permalink | absLangURL }}?link=http://left&link=http://right}'>
                 </a>
+                {{ end }}
 
                 {{ with .Params.tldr }}
                     <div class = "tldr">
@@ -110,7 +114,6 @@
 
             </p>
             </div>
-
 
 
             <div id="post-content-body" class="text-justify">
