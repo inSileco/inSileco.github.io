@@ -19,7 +19,6 @@ output:
     dev: svglite
 ---
 
-
 I have been using Travis CI (https://travis-ci.org/) since 2015 and GitHub
 Actions (hereafter GH Actions; https://github.com/features/actions) for over a
 year now[^note1]. While using these two hosted continuous integration services,
@@ -27,8 +26,8 @@ I came to realize that I was spending less time troubleshooting with GH Actions
 than I was with Travis. For this reason, I am now setting GH Actions workflows
 for my new projects (mainly R and Julia projects) and slowly migrating older
 projects from Travis to GH Actions. Turns out that was the right move! Indeed,
-as Jeroen Ooms explains in his recent post ["Moving away from Travis
-CI"](https://discuss.ropensci.org/t/ropensci-moving-away-from-travis-ci/2267),
+as Jeroen Ooms explains in his recent post [Moving away from Travis
+CI](https://discuss.ropensci.org/t/ropensci-moving-away-from-travis-ci/2267),
 by next year, [Travis will no longer be free for open source
 projects](https://blog.travis-ci.com/2020-11-02-travis-ci-new-billing) (see
 [also](https://www.theregister.com/2020/11/02/travis_ci_pricng/)), which gives
@@ -36,6 +35,7 @@ me a good reason to speed up the migration process! As I was working on such
 migration recently, I felt that I should to share some notes about this! 
 
 [^note1]: see [my first post about GitHub Actions](https://kevcaz.github.io/notes/ci/githubactions/) on my personal blog. 
+
 
 
 ## inSilecoMisc as an example 

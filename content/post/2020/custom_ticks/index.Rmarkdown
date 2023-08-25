@@ -20,6 +20,7 @@ output:
 set.seed(77)
 ```
 
+
 ## Context
 
 If you are using R's base graphics system for your plots and if you like
@@ -29,7 +30,7 @@ explaining how I do so. Let's consider the following plot,
 
 ```{R prob}
 cx <- seq(0, 2, 0.1)
-cy <- cx + .5*rnorm(length(cx))
+cy <- cx + .5 * rnorm(length(cx))
 plot(cx, cy)
 ```
 
@@ -187,8 +188,10 @@ belongs to `par()`
 ```{R tckinpar}
 par(tck = -0.07)
 plot(cx, cy, xaxt = "n")
-axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0,
-  lwd.ticks = 1)
+axis(1,
+  at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0,
+  lwd.ticks = 1
+)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = 1)
 box()
 ```
@@ -199,8 +202,10 @@ to change it only for one set of ticks
 
 ```{R tckinaxis}
 plot(cx, cy, xaxt = "n")
-axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, tck = -0.07,
-  lwd.ticks = 1)
+axis(1,
+  at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, tck = -0.07,
+  lwd.ticks = 1
+)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = 1)
 box()
 ```
@@ -210,8 +215,10 @@ Moreover, using positive value you can make the tick go up!
 
 ```{R}
 plot(cx, cy, xaxt = "n")
-axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, tck = 0.07,
-  lwd.ticks = 1)
+axis(1,
+  at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, tck = 0.07,
+  lwd.ticks = 1
+)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = 1)
 box()
 ```
@@ -238,8 +245,10 @@ controlling the following features:
 ```{R mgp}
 par(mgp = c(2.5, 1.6, 0))
 plot(cx, cy, xaxt = "n")
-axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, lwd.ticks = 1.5,
-  tck = -.1, col = 2, lty = 2)
+axis(1,
+  at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, lwd.ticks = 1.5,
+  tck = -.1, col = 2, lty = 2
+)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = .5, tck = -.03, col = 3)
 box()
 ```
@@ -250,8 +259,10 @@ won't affected the axis labels because they were added by `plot()`.
 
 ```{R mgpinaxis}
 plot(cx, cy, xaxt = "n")
-axis(1, at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, lwd.ticks = 1.5,
-  tck = -.1, col = 2, lty = 2)
+axis(1,
+  at = seq(0, 2, .5), labels = seq(0, 2, .5), lwd = 0, lwd.ticks = 1.5,
+  tck = -.1, col = 2, lty = 2
+)
 axis(1, at = setdiff(cx, seq(0, 2, .5)), labels = NA, lwd.ticks = .5, tck = -.03, col = 3, mgp = c(2.5, 1.6, 0))
 box()
 ```
@@ -271,8 +282,10 @@ a function similar to the one below:
 ```{R fun}
 myaxis <- function(side, all, main, lab = main, col1 = 1, col2 = 1, ...) {
   axis(side, at = main, labels = lab, lwd = 0, lwd.ticks = 1, col = col1, ...)
-  axis(side, at = setdiff(all, main), labels = NA, lwd.ticks = .75, tck = -.025,
-    col = col2, ...)
+  axis(side,
+    at = setdiff(all, main), labels = NA, lwd.ticks = .75, tck = -.025,
+    col = col2, ...
+  )
 }
 ```
 
