@@ -209,12 +209,21 @@ pre>code {
     font-family: "Fira Code";
     font-size: 1.2em;
     line-height: 1.25em;
+    white-space: pre !important;
+    overflow-x: auto
 }
 
 code {
     color: #3fb3b2;
     background-color: #f7f7f7;
     font-family: "Fira Code";
+}
+
+.highlight-wrapper {
+    border: 1px solid #3fb3b2;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    overflow-x: auto;
 }
 
 
@@ -233,7 +242,8 @@ code {
     background-color: #eff8f8;
     font-size: 1.2em;
     padding: 1rem;
-    border-radius: 1.4rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
 }
 
 .references {
@@ -357,11 +367,11 @@ img[src$='#center'] {
     font-weight: 700;
     width: 3.6rem;
     color: #3fb3b2;
-    background-color: #dedede;
+    background-color: rgba(0, 0, 0, 0);
     border: 0px;
     white-space: nowrap;
     padding: 0.25rem;
-    margin: 0 0 0 1px;
+    margin: 0rem;
     cursor: pointer;
     opacity: 0.6;
 }
@@ -370,9 +380,10 @@ img[src$='#center'] {
 .copy-code-button:focus,
 .copy-code-button:active,
 .copy-code-button:active:hover {
-    color: #333;
+    color: #ccc;
     background-color: #3fb3b2;
-    opacity: 0.3;
+    border: 2px solid #3fb3b2;
+    border-top-right-radius: 2px;
 }
 
 .copyable-text-area {
