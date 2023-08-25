@@ -43,19 +43,20 @@ blockquote {
     font-style: italic;
 }
 
-p>video {
+#post-content-body video {
     padding: 15px;
 }
 
-p>img {
+#post-content-body img {
     text-align: center;
     padding: 15px;
 }
 
-figure {
+#post-content-body figure {
     margin-top: 2rem !important;
     margin-bottom: 2rem !important;
 }
+
 
 /* Tables main text */
 table {
@@ -111,6 +112,16 @@ a:hover {
     text-decoration-thickness: 0.2rem;
     text-underline-offset: 0.2rem;
     color: #212121;
+}
+
+#badges a:link,
+#badges a:visited,
+#badges a:hover {
+    text-decoration: none;
+}
+
+#badges {
+    margin-bottom: 2rem;
 }
 
 
