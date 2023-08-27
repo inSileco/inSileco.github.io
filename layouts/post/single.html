@@ -1,16 +1,15 @@
 {{ partial "header" . }}
 
-<img class="full-width" width="100%" src="/img/banner4.png"></img>
+{{ partial "banner" . }}
 
-
+<div class="container-fluid">
 <div class="row">
 
-    <div class="col-md-3">
+    <div class="col-md-3 col-sm-3 hidden-xs">
         {{ partial "sidebar-toc" . }}
     </div>
 
-
-    <div class="col-md-7">
+    <div class="col-md-6 col-sm-9">
 
         <div class="post-content">
 
@@ -112,6 +111,10 @@
                     </div>
                 {{ end }}
 
+                <div class="visible-xs">
+                    {{ partial "sidebar-toc-xs" . }}
+                </div>
+
             </p>
             </div>
 
@@ -132,7 +135,6 @@
                     </div>
                 {{ end }}
 
-
             </div>
 
 
@@ -142,9 +144,8 @@
 
     </div>
 
-    <div class="col-md-2">
-    </div>
 
+</div>
 </div>
 
 {{ partial "footer.html" . }}
