@@ -1,10 +1,11 @@
 {{ partial "header" . }}
 
-<img class="full-width" width="100%" src="img/banner2.png"></img>
-  <div class="container">
+{{ partial "banner" . }}
+
+<div class="container">
   <div class="row">
 
-  <div class="col-sm-4">
+  <div class="col-md-6">
     <h3>Latest posts</h3>
     <h5><a href="/post/">View all</a></h5>
     <hr> 
@@ -18,13 +19,11 @@
     {{ end }}
   </div>
 
-  <div class="col-sm-4">
+  <div class="col-md-6">
     <div class="text-justify">{{ .Content }}</div>
   </div>
-  <div class="col-sm-4">
-    <a class="twitter-timeline" href="https://twitter.com/{{ .Site.Params.twitterUsername }}" data-height="900" data-chrome="nofooter noborders hoheader"></a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+
   </div>
-  </div>
-  </div>
+</div>
 
 {{ partial "footer_center" . }}

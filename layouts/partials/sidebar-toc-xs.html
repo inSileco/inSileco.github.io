@@ -1,0 +1,6 @@
+<div class="toc">
+    {{ if (gt (countwords .TableOfContents) 0) }}
+        <h2>Table of Contents</h2>
+        {{ .TableOfContents }}
+    {{ end }}
+</div>
