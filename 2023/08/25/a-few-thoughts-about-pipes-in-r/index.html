@@ -128,12 +128,12 @@
         </nav>
 
 
-<img class="full-width" width="100%" src="/img/banner4.png"></img>
+<img class="full-width banner" width="100%" src="/img/banner2.png"></img>
 
-
+<div class="container-fluid">
 <div class="row">
 
-    <div class="col-md-3">
+    <div class="col-md-3 col-sm-3 hidden-xs">
         <div class="toc">
 
     <h2 style="padding-top: 0.5rem; padding-bottom: 0.25rem;">
@@ -142,7 +142,6 @@
         </a>
     </h2>
 
-    
     <nav id="TableOfContents">
   <ul>
     <li><a href="#piping-in-r">Piping in R</a></li>
@@ -152,7 +151,6 @@
     <li><a href="#references">References</a></li>
   </ul>
 </nav>
-    
 
     <h2 style="margin-top: 0.25rem; padding-top: 0.5rem;">
         <a href="#bottom">
@@ -163,8 +161,7 @@
 </div>
     </div>
 
-
-    <div class="col-md-7">
+    <div class="col-md-6 col-sm-9">
 
         <div class="post-content">
 
@@ -262,6 +259,23 @@
                         Using pipes in R makes code cleaner. There are two good options for pipes: <code>magrittr</code> which brings the forward pipe <code>%&gt;%</code> alongside four other pipes and the native pipe <code>|&gt;</code> introduce in R 4.1.0. I have been piping for years, I started with the pipes from the <code>magrittr</code> package, now I use the native pipe.'
                     </div>
                 
+
+                <div class="visible-xs">
+                    <div class="toc">
+    
+        <h2>Table of Contents</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#piping-in-r">Piping in R</a></li>
+    <li><a href="#magrittr-pipes">magrittr pipes</a></li>
+    <li><a href="#the-native-pipe">The native pipe</a></li>
+    <li><a href="#final-remarks">Final remarks</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+    
+</div>
+                </div>
 
             </p>
             </div>
@@ -668,7 +682,7 @@
 </span></span><span class="line"><span class="cl">src/main/names.c
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>Commit <a href="https://github.com/wch/r-source/commit/a1425adea54bcc98eef86081522b5dbb3e149cdc"><code>a1425adea54bcc98eef86081522b5dbb3e149cdc</code></a> introduced the pipe and 7 files were modified to do so. Note that <code>git show</code> one can quickly check all the changes:</p>
+</div><p>Commit <a href="https://github.com/wch/r-source/commit/a1425adea54bcc98eef86081522b5dbb3e149cdc"><code>a1425adea5</code></a> introduced the pipe and 7 files were modified to do so. Note that <code>git show</code> one can quickly check all the changes:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -998,7 +1012,6 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
 
                 
 
-
             </div>
 
 
@@ -1026,10 +1039,6 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
   </script>
 
 
-  <details>
-  <summary>Comment with Disqus</summary>
-  <div id="disqus_thread"></div>
-  </details>
 
   
   
@@ -1100,38 +1109,14 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
 
 
 
-  <script>
-    
-
-
-    var disqus_config = function() {
-      this.page.url = "https://insileco.github.io" + "https://insileco.github.io/2023/08/25/a-few-thoughts-about-pipes-in-r/"; 
-      this.page.identifier = "A few thoughts about pipes in R"; 
-    };
-
-    (function() { 
-      var d = document,
-        s = d.createElement('script');
-      s.src = 'https://insileco.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-
-  <noscript>
-    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-
-
 
 </div>
 
 
     </div>
 
-    <div class="col-md-2">
-    </div>
 
+</div>
 </div>
 
 <footer>
@@ -1144,7 +1129,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
 
   </div>
 
-  <div class="col-md-8">
+  <div class="col-md-6">
 
     <script src="//yihui.name/js/math-code.js"></script>
     <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -1155,7 +1140,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 25 August 2023 20:32 UTC.
+      Latest build: 28 August 2023 00:36 UTC.
     </p>
 
   </div>

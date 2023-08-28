@@ -128,12 +128,12 @@
         </nav>
 
 
-<img class="full-width" width="100%" src="/img/banner4.png"></img>
+<img class="full-width banner" width="100%" src="/img/banner2.png"></img>
 
-
+<div class="container-fluid">
 <div class="row">
 
-    <div class="col-md-3">
+    <div class="col-md-3 col-sm-3 hidden-xs">
         <div class="toc">
 
     <h2 style="padding-top: 0.5rem; padding-bottom: 0.25rem;">
@@ -142,7 +142,6 @@
         </a>
     </h2>
 
-    
     <nav id="TableOfContents">
   <ul>
     <li><a href="#subset-an-array-with-a-matrix">Subset an array with a matrix</a></li>
@@ -152,7 +151,6 @@
     <li><a href="#bquote-and-substitute"><code>bquote()</code> and <code>substitute()</code></a></li>
   </ul>
 </nav>
-    
 
     <h2 style="margin-top: 0.25rem; padding-top: 0.5rem;">
         <a href="#bottom">
@@ -163,8 +161,7 @@
 </div>
     </div>
 
-
-    <div class="col-md-7">
+    <div class="col-md-6 col-sm-9">
 
         <div class="post-content">
 
@@ -255,6 +252,23 @@
                 
 
                 
+
+                <div class="visible-xs">
+                    <div class="toc">
+    
+        <h2>Table of Contents</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#subset-an-array-with-a-matrix">Subset an array with a matrix</a></li>
+    <li><a href="#nzchar"><code>nzchar()</code></a></li>
+    <li><a href="#do-you-need-to-use-return">Do you need to use <code>return()</code>?</a></li>
+    <li><a href="#invisible"><code>invisible()</code></a></li>
+    <li><a href="#bquote-and-substitute"><code>bquote()</code> and <code>substitute()</code></a></li>
+  </ul>
+</nav>
+    
+</div>
+                </div>
 
             </p>
             </div>
@@ -526,10 +540,10 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 </span></span><span class="line"><span class="cl">  <span class="n">times</span> <span class="o">=</span> <span class="m">1000L</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Unit: nanoseconds</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;             expr  min   lq   mean median   uq   max neval</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &gt; 0  900 1000 1269.7   1100 1300 41400  1000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     !!nchar(vec)  900 1100 1442.1   1300 1400 85300  1000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &amp; 1 1000 1100 1471.8   1300 1400 46600  1000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      nzchar(vec)    0    0   95.1    100  100 17000  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &gt; 0 1200 1300 1389.1   1300 1400 13800  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     !!nchar(vec) 1300 1400 1505.3   1400 1500  5900  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &amp; 1 1400 1400 1538.1   1500 1600 11000  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      nzchar(vec)    0  100  114.9    100  100 11000  1000</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Yep yep!<code>nzchar()</code> is indeed way faster 🚀!</p>
@@ -600,8 +614,8 @@ value of the last evaluated expression is returned.</p>
 </span></span><span class="line"><span class="cl"><span class="nf">microbenchmark</span><span class="p">(</span><span class="nf">foo</span><span class="p">(</span><span class="m">4</span><span class="p">),</span> <span class="nf">foo2</span><span class="p">(</span><span class="m">4</span><span class="p">),</span> <span class="n">times</span> <span class="o">=</span> <span class="m">1e5</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Unit: nanoseconds</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      expr min  lq    mean median  uq      max neval</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    foo(4) 400 500 608.208    500 600  3108100 1e+05</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   foo2(4) 200 300 579.152    300 400 17329600 1e+05</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    foo(4) 600 700 869.828    700 800  4192000 1e+05</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   foo2(4) 300 400 767.696    400 500 22816200 1e+05</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="invisible"><code>invisible()</code></h2>
@@ -822,7 +836,6 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
                     </div>
                 
 
-
             </div>
 
 
@@ -850,10 +863,6 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
   </script>
 
 
-  <details>
-  <summary>Comment with Disqus</summary>
-  <div id="disqus_thread"></div>
-  </details>
 
   
   
@@ -924,38 +933,14 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
 
 
 
-  <script>
-    
-
-
-    var disqus_config = function() {
-      this.page.url = "https://insileco.github.io" + "https://insileco.github.io/2019/08/13/trick-or-tips-004-r/"; 
-      this.page.identifier = "Trick or tips 004 {R}"; 
-    };
-
-    (function() { 
-      var d = document,
-        s = d.createElement('script');
-      s.src = 'https://insileco.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-
-  <noscript>
-    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-
-
 
 </div>
 
 
     </div>
 
-    <div class="col-md-2">
-    </div>
 
+</div>
 </div>
 
 <footer>
@@ -968,7 +953,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
 
   </div>
 
-  <div class="col-md-8">
+  <div class="col-md-6">
 
     <script src="//yihui.name/js/math-code.js"></script>
     <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -979,7 +964,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 25 August 2023 20:32 UTC.
+      Latest build: 28 August 2023 00:36 UTC.
     </p>
 
   </div>

@@ -23,7 +23,7 @@ p,
 ul,
 ol,
 li {
-    font-size: 18px;
+    font-size: 16px;
 }
 
 h2 {
@@ -42,6 +42,7 @@ h4 {
 blockquote {
     font-style: italic;
 }
+
 
 #post-content-body video {
     padding: 15px;
@@ -88,6 +89,7 @@ figcaption {
 
 .row {
     display: flex !important;
+    flex-flow: row wrap;
 }
 
 /* ----------links---------- */
@@ -128,7 +130,7 @@ a:hover {
 /* ----------navigation bar icons---------- */
 
 .navbar-icon {
-    font-size: 125%;
+    font-size: 120%;
     display: inline-block !important;
 }
 
@@ -216,25 +218,28 @@ footer {
 
 /* ----------Code---------- */
 
-pre>code {
-    font-family: "Fira Code";
-    font-size: 1.2em;
-    line-height: 1.25em;
-    white-space: pre !important;
-    overflow-x: auto
+pre {
+    max-width: 92vw;
 }
 
 code {
     color: #3fb3b2;
     background-color: #f7f7f7;
     font-family: "Fira Code";
+    font-size: 15px;
+}
+
+pre > code {
+    max-width: inherit;
+    white-space: inherit;
+    overflow-x: auto;
 }
 
 .highlight-wrapper {
     border: 1px solid #3fb3b2;
     margin-bottom: 1rem;
     border-radius: 4px;
-    overflow-x: auto;
+    max-width: 92vw;
 }
 
 

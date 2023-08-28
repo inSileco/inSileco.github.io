@@ -128,12 +128,12 @@
         </nav>
 
 
-<img class="full-width" width="100%" src="/img/banner4.png"></img>
+<img class="full-width banner" width="100%" src="/img/banner2.png"></img>
 
-
+<div class="container-fluid">
 <div class="row">
 
-    <div class="col-md-3">
+    <div class="col-md-3 col-sm-3 hidden-xs">
         <div class="toc">
 
     <h2 style="padding-top: 0.5rem; padding-bottom: 0.25rem;">
@@ -142,7 +142,6 @@
         </a>
     </h2>
 
-    
     <nav id="TableOfContents">
   <ul>
     <li><a href="#how-to-define-a-distance">How to define a distance?</a></li>
@@ -151,7 +150,6 @@
     <li><a href="#references">References</a></li>
   </ul>
 </nav>
-    
 
     <h2 style="margin-top: 0.25rem; padding-top: 0.5rem;">
         <a href="#bottom">
@@ -162,8 +160,7 @@
 </div>
     </div>
 
-
-    <div class="col-md-7">
+    <div class="col-md-6 col-sm-9">
 
         <div class="post-content">
 
@@ -261,6 +258,22 @@
                 
 
                 
+
+                <div class="visible-xs">
+                    <div class="toc">
+    
+        <h2>Table of Contents</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#how-to-define-a-distance">How to define a distance?</a></li>
+    <li><a href="#geographical-distances-and-the-problem-of-heterogeneity">Geographical distances and the problem of heterogeneity</a></li>
+    <li><a href="#applications-in-r">Applications in R</a></li>
+    <li><a href="#references">References</a></li>
+  </ul>
+</nav>
+    
+</div>
+                </div>
 
             </p>
             </div>
@@ -710,7 +723,6 @@
                     </div>
                 
 
-
             </div>
 
 
@@ -738,10 +750,6 @@
   </script>
 
 
-  <details>
-  <summary>Comment with Disqus</summary>
-  <div id="disqus_thread"></div>
-  </details>
 
   
   
@@ -812,38 +820,14 @@
 
 
 
-  <script>
-    
-
-
-    var disqus_config = function() {
-      this.page.url = "https://insileco.github.io" + "https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/"; 
-      this.page.identifier = "R as a ruler? How to calculate distances between geographical objects"; 
-    };
-
-    (function() { 
-      var d = document,
-        s = d.createElement('script');
-      s.src = 'https://insileco.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
-  </script>
-
-  <noscript>
-    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
-
-
 
 </div>
 
 
     </div>
 
-    <div class="col-md-2">
-    </div>
 
+</div>
 </div>
 
 <footer>
@@ -856,7 +840,7 @@
 
   </div>
 
-  <div class="col-md-8">
+  <div class="col-md-6">
 
     <script src="//yihui.name/js/math-code.js"></script>
     <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
@@ -867,7 +851,7 @@
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 25 August 2023 20:32 UTC.
+      Latest build: 28 August 2023 00:36 UTC.
     </p>
 
   </div>
