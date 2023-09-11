@@ -51,7 +51,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.117.0">
+ <meta name="generator" content="Hugo 0.118.2">
         
 
         
@@ -388,12 +388,12 @@ between those nodes.</p>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 Drivers driver_6</span>
 </span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;             from            to</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1    species_10 beneficiary_4</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 beneficiary_4    species_24</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3     species_4    species_15</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5    species_26      driver_8</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6      action_2    species_10</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7     species_9     manager_5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 beneficiary_8      driver_1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2     driver_15     species_8</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3     manager_7      action_8</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4      driver_3      driver_9</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5    species_15 beneficiary_8</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 beneficiary_1    species_12</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="circle-functions">Circle functions</h2>
@@ -957,12 +957,12 @@ to links and nodes and change the size of the nodes.</p>
 </span></span><span class="line"><span class="cl"><span class="n">metanetwork</span> <span class="o">&lt;-</span> <span class="nf">nodeSize</span><span class="p">(</span><span class="n">metanetwork</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">metanetwork</span><span class="o">$</span><span class="n">nodes</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    network     name          x         y    cols Freq    cex</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 Drivers driver_1 -0.0546519 0.8732916 #ffdd55    9 0.5625</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 Drivers driver_2 -0.1282239 0.8655539 #ffdd55   12 0.7500</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 Drivers driver_3 -0.2008793 0.8516293 #ffdd55   11 0.6875</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 Drivers driver_1 -0.0546519 0.8732916 #ffdd55    8 0.5000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 Drivers driver_2 -0.1282239 0.8655539 #ffdd55    3 0.1875</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 Drivers driver_3 -0.2008793 0.8516293 #ffdd55   16 1.0000</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 Drivers driver_4 -0.2720989 0.8316172 #ffdd55   12 0.7500</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 Drivers driver_5 -0.3413735 0.8056607 #ffdd55    9 0.5625</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 Drivers driver_6 -0.4082079 0.7739453 #ffdd55    4 0.2500</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 Drivers driver_5 -0.3413735 0.8056607 #ffdd55    8 0.5000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 Drivers driver_6 -0.4082079 0.7739453 #ffdd55    6 0.3750</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><br/>
@@ -1132,12 +1132,12 @@ the metanetwork, or focus on all the links for a single network.</p>
 </span></span><span class="line"><span class="cl"><span class="n">metanetwork</span> <span class="o">&lt;-</span> <span class="nf">linkCol</span><span class="p">(</span><span class="n">metanetwork</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#39;focus&#39;</span><span class="p">,</span> <span class="n">focus</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;Species&#39;</span><span class="p">,</span><span class="s">&#39;Drivers&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">metanetwork</span><span class="o">$</span><span class="n">links</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;             from            to      cols</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1    species_10 beneficiary_4 #f4f4f466</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 beneficiary_4    species_24 #f4f4f466</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3     species_4    species_15 #876b4066</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5    species_26      driver_8 #876b4066</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6      action_2    species_10 #f4f4f466</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  7     species_9     manager_5 #f4f4f466</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 beneficiary_8      driver_1 #f4f4f466</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2     driver_15     species_8 #876b4066</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3     manager_7      action_8 #f4f4f466</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4      driver_3      driver_9 #876b4066</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5    species_15 beneficiary_8 #f4f4f466</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 beneficiary_1    species_12 #f4f4f466</span>
 </span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">metanetwork</span><span class="o">$</span><span class="n">networkGroup</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;             Var1 Freq      Prop   spanDeg     lower     upper          x          y    cols colNames</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1       Actions    9 0.1250000 0.7853982 0.0125000 0.7728982  0.4619398  0.1913417 #f4f4f4  #212121</span>
@@ -1377,8 +1377,8 @@ the metanetwork, or focus on all the links for a single network.</p>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] bookdown_0.35     fastmap_1.1.1     plyr_1.8.8        jsonlite_1.8.7    backports_1.4.1  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] crul_1.4.0        promises_1.2.1    fansi_1.0.4       jquerylib_0.1.4   bibtex_0.5.1     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.1         shiny_1.7.5       rlang_1.1.1       ellipsis_0.3.2    plotrix_3.8-2    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] cachem_1.0.8      yaml_2.3.7        tools_4.3.1       dplyr_1.1.2       httpuv_1.6.11    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] DT_0.28           rcrossref_1.2.0   curl_5.0.2        vctrs_0.6.3       R6_2.5.1         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] cachem_1.0.8      yaml_2.3.7        tools_4.3.1       dplyr_1.1.3       httpuv_1.6.11    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] DT_0.29           rcrossref_1.2.0   curl_5.0.2        vctrs_0.6.3       R6_2.5.1         </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] mime_0.12         lifecycle_1.0.3   stringr_1.5.0     fs_1.6.3          htmlwidgets_1.6.2</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] miniUI_0.1.1.1    pkgconfig_2.0.3   bslib_0.5.1       pillar_1.9.0      later_1.3.1      </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] glue_1.6.2        Rcpp_1.0.11       highr_0.10        xfun_0.40         tibble_3.2.1     </span>
@@ -1520,7 +1520,7 @@ the metanetwork, or focus on all the links for a single network.</p>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 28 August 2023 00:36 UTC.
+      Latest build: 11 September 2023 00:39 UTC.
     </p>
 
   </div>
