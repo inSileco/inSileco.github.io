@@ -51,7 +51,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.118.2">
+ <meta name="generator" content="Hugo 0.119.0">
         
 
         
@@ -539,11 +539,11 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 </span></span><span class="line"><span class="cl"><span class="nf">microbenchmark</span><span class="p">(</span><span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">,</span> <span class="o">!!</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">),</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span> <span class="o">&amp;</span> <span class="m">1</span><span class="p">,</span> <span class="nf">nzchar</span><span class="p">(</span><span class="n">vec</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">  <span class="n">times</span> <span class="o">=</span> <span class="m">1000L</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Unit: nanoseconds</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;             expr  min   lq   mean median   uq   max neval</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &gt; 0  900 1000 1094.8   1000 1100 14300  1000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     !!nchar(vec) 1000 1100 1171.9   1100 1200  2700  1000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &amp; 1 1100 1100 1211.3   1200 1200  5600  1000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      nzchar(vec)    0    0   68.2    100  100   600  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;             expr min   lq   mean median   uq   max neval</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &gt; 0 800 1000 1181.7   1100 1200 34000  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     !!nchar(vec) 900 1100 1287.0   1100 1300 31900  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &amp; 1 900 1100 1417.7   1200 1300 59800  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      nzchar(vec)   0    0  101.3    100  100 15200  1000</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Yep yep!<code>nzchar()</code> is indeed way faster 🚀!</p>
@@ -613,9 +613,9 @@ value of the last evaluated expression is returned.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nf">microbenchmark</span><span class="p">(</span><span class="nf">foo</span><span class="p">(</span><span class="m">4</span><span class="p">),</span> <span class="nf">foo2</span><span class="p">(</span><span class="m">4</span><span class="p">),</span> <span class="n">times</span> <span class="o">=</span> <span class="m">1e5</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Unit: nanoseconds</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      expr min  lq    mean median  uq      max neval</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    foo(4) 500 500 856.038    600 600 19331500 1e+05</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   foo2(4) 300 300 466.175    400 400  5415700 1e+05</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      expr min  lq     mean median  uq      max neval</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    foo(4) 400 500 1058.734    500 700 25291600 1e+05</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   foo2(4) 200 300  539.229    400 400  4738400 1e+05</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="invisible"><code>invisible()</code></h2>
@@ -809,16 +809,16 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.7        utf8_1.2.3        generics_0.1.3    xml2_1.3.5        blogdown_1.18    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.7.12    httpcode_0.3.0    digest_0.6.33     magrittr_2.0.3    evaluate_0.21    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] bookdown_0.35     fastmap_1.1.1     plyr_1.8.8        jsonlite_1.8.7    backports_1.4.1  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] crul_1.4.0        promises_1.2.1    fansi_1.0.4       jquerylib_0.1.4   bibtex_0.5.1     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.7.12    httpcode_0.3.0    digest_0.6.33     magrittr_2.0.3    evaluate_0.22    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] bookdown_0.35     fastmap_1.1.1     plyr_1.8.9        jsonlite_1.8.7    backports_1.4.1  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] crul_1.4.0        promises_1.2.1    fansi_1.0.5       jquerylib_0.1.4   bibtex_0.5.1     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.1         shiny_1.7.5       rlang_1.1.1       ellipsis_0.3.2    cachem_1.0.8     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] yaml_2.3.7        tools_4.3.1       dplyr_1.1.3       httpuv_1.6.11     DT_0.29          </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] rcrossref_1.2.0   curl_5.0.2        vctrs_0.6.3       R6_2.5.1          mime_0.12        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] yaml_2.3.7        tools_4.3.1       dplyr_1.1.3       httpuv_1.6.11     DT_0.30          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] rcrossref_1.2.0   curl_5.1.0        vctrs_0.6.3       R6_2.5.1          mime_0.12        </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] lifecycle_1.0.3   stringr_1.5.0     fs_1.6.3          htmlwidgets_1.6.2 miniUI_0.1.1.1   </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] pkgconfig_2.0.3   bslib_0.5.1       pillar_1.9.0      later_1.3.1       glue_1.6.2       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] Rcpp_1.0.11       highr_0.10        xfun_0.40         tibble_3.2.1      tidyselect_1.2.0 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] knitr_1.43        xtable_1.8-4      htmltools_0.5.6   rmarkdown_2.24    compiler_4.3.1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] Rcpp_1.0.11       xfun_0.40         tibble_3.2.1      tidyselect_1.2.0  knitr_1.44       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] xtable_1.8-4      htmltools_0.5.6.1 rmarkdown_2.25    compiler_4.3.1</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -964,7 +964,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 11 September 2023 00:39 UTC.
+      Latest build: 11 October 2023 00:41 UTC.
     </p>
 
   </div>

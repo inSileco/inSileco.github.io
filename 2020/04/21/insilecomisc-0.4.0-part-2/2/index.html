@@ -51,7 +51,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.118.2">
+ <meta name="generator" content="Hugo 0.119.0">
         
 
         
@@ -302,11 +302,11 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">val</span> <span class="o">&lt;-</span> <span class="nf">runif</span><span class="p">(</span><span class="m">40</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">val</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 81.944285  5.764063 56.204868 15.936839 93.022646 73.512408  2.815598 71.473260 82.956868</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] 75.264547 22.931041  3.405897 49.162288 99.904163 26.990264 65.921470 42.964032 88.345909</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] 18.731185 46.714763 54.960719 51.664920 77.156717  0.826983 26.026508 81.578345 83.303279</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] 37.236444 32.394466 39.948506 81.065375 76.886325 43.483136 48.985669 17.343814 90.783478</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] 91.781560 94.221271 74.372528 91.798052</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 84.153009 19.510866 51.069358 54.607779 32.330551 73.220630 84.289253 50.390327 80.504092</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10]  1.536484  1.688405 92.114330 71.273434 22.254868 83.468060 55.962647 52.461876  8.845497</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19]  3.783856 87.760103 41.701037 19.635570 99.393808 16.610055 52.929525 61.933643 41.097714</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] 73.864255  6.951562  9.571941 17.916129 71.611045 90.417995 21.519889 77.027850 24.935864</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] 55.467344 11.423861 41.233665 85.432494</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
@@ -331,8 +331,8 @@ interested in reproducing the examples below, simply install <code>inSilecoMisc<
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 25  1 17  1 25 25  1 25 25 25  1  1 12 25  1 23  9 25  1 11 16 14 25  1  1 25 25  5  2  7 25 25</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33]  9 12  1 25 25 25 25 25</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 25  1 14 16  2 25 25 13 25  1  1 25 25  1 25 17 15  1  1 25  8  1 25  1 15 20  7 25  1  1  1 25</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33] 25  1 25  1 16  1  8 25</span>
 </span></span><span class="line"><span class="cl"><span class="n">graphicsutils</span><span class="o">::</span><span class="nf">showPalette</span><span class="p">(</span><span class="n">pal</span><span class="nf">[scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">add_codecolor</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -641,22 +641,22 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.7               utf8_1.2.3               generics_0.1.3          </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [4] xml2_1.3.5               blogdown_1.18            stringi_1.7.12          </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] httpcode_0.3.0           graphicsutils_1.6.0.9000 digest_0.6.33           </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] magrittr_2.0.3           evaluate_0.21            bookdown_0.35           </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] fastmap_1.1.1            plyr_1.8.8               jsonlite_1.8.7          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] magrittr_2.0.3           evaluate_0.22            bookdown_0.35           </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] fastmap_1.1.1            plyr_1.8.9               jsonlite_1.8.7          </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] backports_1.4.1          crul_1.4.0               promises_1.2.1          </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] fansi_1.0.4              jquerylib_0.1.4          bibtex_0.5.1            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] fansi_1.0.5              jquerylib_0.1.4          bibtex_0.5.1            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] cli_3.6.1                shiny_1.7.5              crayon_1.5.2            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] rlang_1.1.1              ellipsis_0.3.2           cachem_1.0.8            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] yaml_2.3.7               tools_4.3.1              dplyr_1.1.3             </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] httpuv_1.6.11            DT_0.29                  rcrossref_1.2.0         </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [34] curl_5.0.2               vctrs_0.6.3              R6_2.5.1                </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] httpuv_1.6.11            DT_0.30                  rcrossref_1.2.0         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [34] curl_5.1.0               vctrs_0.6.3              R6_2.5.1                </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] mime_0.12                lifecycle_1.0.3          stringr_1.5.0           </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [40] fs_1.6.3                 htmlwidgets_1.6.2        miniUI_0.1.1.1          </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [43] pkgconfig_2.0.3          bslib_0.5.1              pillar_1.9.0            </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] later_1.3.1              glue_1.6.2               Rcpp_1.0.11             </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] highr_0.10               xfun_0.40                tibble_3.2.1            </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [52] tidyselect_1.2.0         knitr_1.43               xtable_1.8-4            </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [55] htmltools_0.5.6          rmarkdown_2.24           compiler_4.3.1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] xfun_0.40                tibble_3.2.1             tidyselect_1.2.0        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [52] knitr_1.44               xtable_1.8-4             htmltools_0.5.6.1       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [55] rmarkdown_2.25           compiler_4.3.1</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -793,7 +793,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 11 September 2023 00:39 UTC.
+      Latest build: 11 October 2023 00:41 UTC.
     </p>
 
   </div>
