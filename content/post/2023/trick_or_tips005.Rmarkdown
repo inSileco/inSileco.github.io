@@ -41,7 +41,7 @@ and you realize afterwards that you forgot to assign the result, instead of redo
 .Last.value
 #R> [1] 35
 ```
-and reassign it to your new varibale like so
+and reassign it to your new variable like so
 
 ```R
 var2 <- .Last.value 
@@ -108,7 +108,7 @@ From `?.Platform`
 .Platform
 ```
 
-This list could be usefuld to help your function portable. The seven fields of the list are explained in the help of the function and here I will simply show you one example involving `$file.sep`. You may have already created a function (or part of a function) to concatenate files, basically doing something like this
+This list could be useful to help your function portable. The seven fields of the list are explained in the help of the function and here I will simply show you one example involving `$file.sep`. You may have already created a function (or part of a function) to concatenate files, basically doing something like this
 
 ```{R}
 my_paste <- function(path, file) {
