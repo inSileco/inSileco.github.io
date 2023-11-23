@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Creating a monorepo of R packages with GitHub</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Lato', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://insileco.github.io/css/main.css">
+
+
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">  <link rel="stylesheet" href="https://insileco.github.io/css/academicons.min.css">  <link rel="stylesheet" href="https://insileco.github.io/css/main.css">  <link rel="stylesheet" href="https://insileco.github.io/css/syntax.css"> 
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+ 
+
+
+
+ <script src="https://insileco.github.io/js/codecopypaste.js"></script> 
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.120.4">
+        
+
+        
+            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
+            <script>
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments)};
+              gtag('js', new Date());
+              gtag('config', 'UA-109508556-1');
+            </script>
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="/css/academicons.min.css">
+
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/css/syntax.css">
+
+
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">Creating a monorepo of R packages with GitHub</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                                <li><a href="/resource/">Resources</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="/"><i class="fas fa-home"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fab fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fas fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<img class="full-width banner" width="100%" src="/img/banner2.png"></img>
+
+<div class="container-fluid">
+<div class="row">
+
+    <div class="col-md-3 col-sm-3 hidden-xs">
+        <div class="toc">
+
+    <h2 style="padding-top: 0.5rem; padding-bottom: 0.25rem;">
+        <a href="#">
+            <i class='fas fa-chevron-up'></i>
+        </a>
+    </h2>
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#context">Context</a></li>
+    <li><a href="#setting-up-the-repository-with-two-r-packages">Setting up the repository with two R packages</a></li>
+    <li><a href="#checking-the-packages-with-github-actions">Checking the packages with GitHub Actions</a></li>
+    <li><a href="#adding-the-two-packages-in-a-docker-container">Adding the two packages in a Docker container</a></li>
+  </ul>
+</nav>
+
+    <h2 style="margin-top: 0.25rem; padding-top: 0.5rem;">
+        <a href="#bottom">
+            <i class='fas fa-chevron-down'></i>
+        </a>
+    </h2>
+
+</div>
+    </div>
+
+    <div class="col-md-6 col-sm-9">
+
+        <div class="post-content">
+
+            <div id="post-content-header">
+            <h1>
+                <a href="/2023/11/23/creating-a-monorepo-of-r-packages-with-github/">Creating a monorepo of R packages with GitHub</a>
+            </h1>
+
+            <h4>
+                November 23, 2023
+            </h4>
+
+            <p>
+                <i class="fas fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                    href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a
+                    href="/tags/github"><kbd class="item-tag">github</kbd></a>  <a
+                    href="/tags/github-actions"><kbd class="item-tag">github actions</kbd></a>  <a
+                    href="/tags/monorepo"><kbd class="item-tag">monorepo</kbd></a>  <a
+                    href="/tags/docker"><kbd class="item-tag">docker</kbd></a> 
+                <br>
+                
+                    <img src="/img/Rlogo.svg" title="R logo" width="60px" style="margin: 1rem;"></img>
+                    &nbsp; 
+                     
+                        <a href="/rpkgs/usethis">
+                            <kbd class="item-tag2">usethis</kbd>
+                        </a> 
+                    
+                
+            </p>
+
+            
+            <p style="font-size: 1.6em;"> 
+                <i class="fas fa-pencil-alt"></i>
+                
+                 
+                    
+                    <a href="/about/">Kevin Cazelles</a>
+                
+                <a href="#"></a>
+            </p>
+            
+
+            
+            <p> 
+                <i class="fas fa-check-square" title="Reviewer(s)"></i>
+                
+                 
+                    
+                    <a href="/about/">David Beauchesne</a>
+                
+                <a href="#"></a>
+            </p>
+            
+
+            <p id="badges">
+                
+                
+                
+                    <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=8min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                    &nbsp;
+                
+                
+                
+                    <a href="/r-bloggers">
+                        <img src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
+                    <a>&nbsp;
+                
+                
+                
+                    <a href="https://creativecommons.org/licenses/by/4.0/">
+                        <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                    </a>&nbsp;
+                
+                
+                
+                
+                
+                <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2023%2f11%2f23%2fcreating-a-monorepo-of-r-packages-with-github%2f&text=Creating%20a%20monorepo%20of%20R%20packages%20with%20GitHub." target="_blank">
+                    <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2023%2f11%2f23%2fcreating-a-monorepo-of-r-packages-with-github%2f?link=http://left&link=http://right}'>
+                </a>
+                
+
+                
+                    <div class = "tldr">
+                        <i class="fas fa-forward"> Tl;DR</i> <i class="fas fa-forward"></i>
+                        <br>
+                        In some situations, using a monorepo for R packages is desirable. The key to make it work is to create a reliable workflow to check all your packages when needed. <a href="https://github.com/inSileco/monoRepoR">monoRepoR</a> exemplifies the monorepo strategy.
+                    </div>
+                
+
+                <div class="visible-xs">
+                    <div class="toc">
+    
+        <h2>Table of Contents</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#context">Context</a></li>
+    <li><a href="#setting-up-the-repository-with-two-r-packages">Setting up the repository with two R packages</a></li>
+    <li><a href="#checking-the-packages-with-github-actions">Checking the packages with GitHub Actions</a></li>
+    <li><a href="#adding-the-two-packages-in-a-docker-container">Adding the two packages in a Docker container</a></li>
+  </ul>
+</nav>
+    
+</div>
+                </div>
+
+            </p>
+            </div>
+
+
+            <div id="post-content-body" class="text-justify">
+
+                <h2 id="context">Context</h2>
+<p>As an R developer who often works on open source project, I normally use one GitHub repository for new R packages. Team of R developers that work on several packages use <a href="https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts">organization accounts</a> to gather packages that have a common scope. Popular accounts of this kind include:</p>
+<ul>
+<li><a href="https://github.com//r-lib"><code>r-lib</code></a></li>
+<li><a href="https://github.com//tidyverse"><code>tidyverse</code></a></li>
+<li><a href="https://github.com//ropensci"><code>ropensci</code></a></li>
+</ul>
+<p>That said, there are situations where using a <a href="https://circleci.com/blog/monorepo-dev-practices/">monorepo</a> for a bunch of R packages is useful. Two situations come to my mind. First, there are strong interdependencies among your packages, such as a couple of packages developed for a Shiny app. Second, you only have one repository because that’s how much your CTO trusts you!</p>
+<p>As far as I am aware, monorepo is not a common practice for R packages. The fantastic <a href="https://ropensci.org/r-universe/">r-universe</a> initiative uses this approach and relies on submodules to create a monorepo for your organization that includes all your R packages, it then applies a common pipeline to those packages (e.g. see <a href="https://github.com/r-universe/insileco)">https://github.com/r-universe/insileco)</a>. This is very powerful and very well designed.</p>
+<p>In this post I am presenting how to set up a monorepo that includes two packages with one that relies on the other. As a bonus &#x1f389;, at the end of the post, I explain how to include the two packages in a docker file.</p>
+<h2 id="setting-up-the-repository-with-two-r-packages">Setting up the repository with two R packages</h2>
+<p>The first step is to create two packages within the repository. To do so, I leverage the R package <a href="https://CRAN.R-project.org/package=usethis"><code>usethis</code></a> as follows:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># create testpkg02</span>
+</span></span><span class="line"><span class="cl"><span class="n">usethis</span><span class="o">::</span><span class="nf">create_package</span><span class="p">(</span><span class="s">&#34;testpkg01&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">usethis</span><span class="o">::</span><span class="nf">use_mit_license</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">devtools</span><span class="o">::</span><span class="nf">load_all</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">devtools</span><span class="o">::</span><span class="nf">document</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">devtools</span><span class="o">::</span><span class="nf">check</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># back to root</span>
+</span></span><span class="line"><span class="cl"><span class="nf">setwd</span><span class="p">(</span><span class="s">&#34;..&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># create testpkg02</span>
+</span></span><span class="line"><span class="cl"><span class="n">usethis</span><span class="o">::</span><span class="nf">create_package</span><span class="p">(</span><span class="s">&#34;testpkg02&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">usethis</span><span class="o">::</span><span class="nf">use_mit_license</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">devtools</span><span class="o">::</span><span class="nf">load_all</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">devtools</span><span class="o">::</span><span class="nf">document</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="n">devtools</span><span class="o">::</span><span class="nf">check</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I have now created <code>testpkg01</code> and <code>testpkg02</code> that are basically folders at the root of the repository. For the sake of this example, I add one function in both packages. In <code>testpkg01</code> I add <code>hello_co2()</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">hello_co2</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">utils</span><span class="o">::</span><span class="nf">head</span><span class="p">(</span><span class="n">datasets</span><span class="o">::</span><span class="n">CO2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>that I call in <code>testpkg02</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">call_hello_co2</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">testpkg01</span><span class="o">::</span><span class="nf">hello_co2</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>testpkg01</code> is therefore added to the list of dependencies in the <code>DESCRIPTION</code> file of <code>testpkg02</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">Imports</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">testpkg01</span>
+</span></span><span class="line"><span class="cl"><span class="n">Remotes</span><span class="o">:</span>
+</span></span><span class="line"><span class="cl">  <span class="n">inSileco</span><span class="o">/</span><span class="n">monoRepoR</span><span class="o">/</span><span class="n">testpkg01</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="checking-the-packages-with-github-actions">Checking the packages with GitHub Actions</h2>
+<p>Now for what I believe is the trickiest part of the post: to work with R packages efficiently, packages must be checked on a regular basis. A CI/CD service such as <a href="https://docs.github.com/en/actions">GitHub Actions</a> does that.
+As I am using a monorepo, I need to find a way to check all R packages using a common workflow. GitHub Actions has one feature called <a href="https://docs.github.com/en/actions/using-workflows/reusing-workflows#creating-a-reusable-workflow">reusable workflow</a> that covers our needs. A reusable workflow is very similar to a regular one but it has inputs to be declared. I created <a href="https://github.com/inSileco/monoRepoR/blob/main/.github/workflows/R-CMD-check.yaml">R-CMD-check</a> that takes a string input <code>pkg-path</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">on</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">workflow_call</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">inputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">pkg-path</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">        </span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="l">string</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>The rest of the workflow are steps borrowed from <a href="https://github.com/r-lib/actions">r-lib/actions</a> and I use <code>working-directory: ${{ inputs.pkg-path }}</code> to apply them to the right package. There is however a subtlety to consider, as I need <code>testpkg01</code> for <code>testpkg02</code>. This means that <code>testpkg01</code> must be installed. As the package is included in the monorepo, I simply list it as an extra local packages to be installed:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl">- <span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">r-lib/actions/setup-r-dependencies@v2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">extra-packages</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">      rcmdcheck
+</span></span></span><span class="line"><span class="cl"><span class="sd">      any::covr
+</span></span></span><span class="line"><span class="cl"><span class="sd">      any::goodpractice
+</span></span></span><span class="line"><span class="cl"><span class="sd">      any::lintr
+</span></span></span><span class="line"><span class="cl"><span class="sd">      local::../testpkg01 </span><span class="w">      
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note, however, that this only works if all packages are at the same level.</p>
+<p>I now create the main workflow that will call the re-usable package. For this workflow, only the packages with changes should be checked. For instance, if a pull request contains only changes in <code>test01pkg</code>, <code>test02pkg</code> does not need to be checked. That is possible with path filtering and in my workflow I use <a href="https://github.com/dorny/paths-filter"><code>dorny/paths-filter</code></a>. The main workflow <a href="https://github.com/inSileco/monoRepoR/blob/main/.github/workflows/R-CMD-check-all.yaml">R_CMD-check-all</a> includes two jobs: <code>changes</code> and <code>checkPackages</code>. <code>changes</code> leverages <code>dorny/paths-filter</code> to return a list of package names based on what has changed.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="c"># determine what needs to be checked</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w"></span><span class="nt">changes</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l">ubuntu-latest</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">permissions</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">pull-requests</span><span class="p">:</span><span class="w"> </span><span class="l">read</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">outputs</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="c"># Expose matched filters as job &#39;packages&#39; output variable</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">packages</span><span class="p">:</span><span class="w"> </span><span class="l">${{ steps.filter.outputs.changes }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">steps</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="c"># For pull requests it&#39;s not necessary to checkout the code</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">actions/checkout@v4</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span>- <span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">dorny/paths-filter@v2</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">id</span><span class="p">:</span><span class="w"> </span><span class="l">filter</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">with</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">filters</span><span class="p">:</span><span class="w"> </span><span class="p">|</span><span class="sd">
+</span></span></span><span class="line"><span class="cl"><span class="sd">        testpkg01: &#39;testpkg01/**&#39;
+</span></span></span><span class="line"><span class="cl"><span class="sd">        testpkg02: 
+</span></span></span><span class="line"><span class="cl"><span class="sd">          - &#39;testpkg01/R&#39;
+</span></span></span><span class="line"><span class="cl"><span class="sd">          - &#39;testpkg02/**&#39;</span><span class="w">        
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>If any files in the folder <code>testpkg01</code> (<code>&quot;testpkg01/**&quot;</code>) change, then <code>testpkg01</code> will be in the output list. Similarly, if any file in <code>testpkg02</code> change <strong>or</strong> if any file in <code>testpkg01/R</code> change then <code>testpkg02</code> will make the output list. The latter rule is super useful because it allows us to check that <code>testpkg02</code> was not affected by the changes in <code>testpkg01</code>. The list of outputs <code>needs.changes.outputs.packages</code> is then passed to the next job <code>checkPackages</code> that won’t be triggered if <code>changes</code> is not completed.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-yaml" data-lang="yaml"><span class="line"><span class="cl"><span class="nt">checkPackages</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">needs</span><span class="p">:</span><span class="w"> </span><span class="l">changes</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">if</span><span class="p">:</span><span class="w"> </span><span class="l">${{ needs.changes.outputs.packages != &#39;[]&#39; &amp;&amp; needs.changes.outputs.packages != &#39;&#39; }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">strategy</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">max-parallel</span><span class="p">:</span><span class="w"> </span><span class="m">1</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">matrix</span><span class="p">:</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">      </span><span class="nt">package</span><span class="p">:</span><span class="w"> </span><span class="l">${{ fromJSON(needs.changes.outputs.packages) }}</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l">./.github/workflows/R-CMD-check.yaml</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">secrets</span><span class="p">:</span><span class="w"> </span><span class="l">inherit</span><span class="w">
+</span></span></span><span class="line"><span class="cl"><span class="w">  </span><span class="nt">with</span><span class="p">:</span><span class="w"> 
+</span></span></span><span class="line"><span class="cl"><span class="w">    </span><span class="nt">pkg-path</span><span class="p">:</span><span class="w"> </span><span class="l">${{ matrix.package }}</span><span class="w">
+</span></span></span></code></pre></td></tr></table>
+</div>
+</div><p>I further add a check to prevent any jobs to run if the list is empty and I run 1 job in parallel (in this case there is no specific reason to do so). <code>checkPackages</code> will then convert <code>needs.changes.outputs.packages</code> in a matrix and call <code>R-CMD-check.yaml</code> for each package in the list. The workflow is now ready &#x1f389;!</p>
+<center>
+  <figure>
+    <img class="mg-bot" src="/2023/11/23/creating-a-monorepo-of-r-packages-with-github/gha_jobs.png" alt="Screenshot of a successsfull run including the check of the two packages." width="90%%" >
+    <figcaption>
+      <i class="fas fa-info-circle" aria-hidden="true"></i>
+      Screenshot of a successsfull run including the check of the two packages.
+    </figcaption>
+  </figure>
+</center>
+<h2 id="adding-the-two-packages-in-a-docker-container">Adding the two packages in a Docker container</h2>
+<p>This is the bonus part of the post where I add the two packages in a <a href="https://en.wikipedia.org/wiki/Docker_(software)">Docker</a> image that I push to <a href="https://hub.docker.com/">DockerHub</a> using GitHub Actions. This is not a post about Docker. Still, in a nutshell, docker is an incredible technology to create a virtual container for your application that can be run on any OS. This makes your application easy to share, easy to deploy and easy to scale (with the help of other technologies).</p>
+<p>To create my docker image with the two packages, I create a very simple dockerfile.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">FROM</span> <span class="n">rocker</span><span class="o">/</span><span class="n">r</span><span class="o">-</span><span class="n">ubuntu</span><span class="o">:</span><span class="m">22.04</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">RUN</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">update</span> <span class="n">\</span>
+</span></span><span class="line"><span class="cl">    <span class="o">&amp;&amp;</span> <span class="n">apt</span><span class="o">-</span><span class="n">get</span> <span class="n">dist</span><span class="o">-</span><span class="n">upgrade</span> <span class="o">-</span><span class="n">y</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">COPY</span> <span class="o">*</span><span class="n">.tar.gz</span> <span class="n">install_pkg.R</span> <span class="n">./</span>
+</span></span><span class="line"><span class="cl"><span class="n">RUN</span> <span class="n">Rscript</span> <span class="n">install_pkg.R</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="n">CMD</span> <span class="n">[</span><span class="s">&#34;R&#34;</span><span class="n">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I first pull the base image from the fantastic <a href="https://github.com/rocker-org/rocker">rocker</a> repository. Then I ensure that <a href="https://en.wikipedia.org/wiki/APT_(software)">apt</a> packages are up to date. Next, I copy the <code>*.tar.gz</code> files (created for both packages using with <code>R CMD build</code>) as well as a minimal script. To complete the image build, I run the script to install the two packages.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">pkg</span> <span class="o">&lt;-</span> <span class="nf">list.files</span><span class="p">(</span><span class="n">path</span> <span class="o">=</span> <span class="s">&#34;.&#34;</span><span class="p">,</span> <span class="n">pattern</span> <span class="o">=</span> <span class="s">&#34;^test.+\\.tar\\.gz$&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">stopifnot</span><span class="p">(</span><span class="nf">length</span><span class="p">(</span><span class="n">pkg</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">lapply</span><span class="p">(</span><span class="n">pkg</span><span class="p">,</span> <span class="n">install.packages</span><span class="p">,</span> <span class="n">repos</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#34;source&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I design a last workflow <a href="https://github.com/inSileco/monoRepoR/blob/main/.github/workflows/build-docker-container.yaml">build-and-release</a> based on the one available in the documentation page <a href="https://docs.github.com/en/actions/publishing-packages/publishing-docker-images">‘Publishing Docker images’</a>. It generates the <code>*.tar.gz</code> files, creates the docker image and pushes it to my <a href="https://hub.docker.com/repository/docker/kevcaz/monorepor/general">DockerHub repo</a>. Also, this workflow is only triggered when a tag starting with “v” is added. For me, this means every commit that is a new version, pretty neat!</p>
+<center>
+  <figure>
+    <img class="mg-bot" src="/2023/11/23/creating-a-monorepo-of-r-packages-with-github/gha_docker.png" alt="Screenshot of a successsfull build of the docker image." width="60%%" >
+    <figcaption>
+      <i class="fas fa-info-circle" aria-hidden="true"></i>
+      Screenshot of a successsfull build of the docker image.
+    </figcaption>
+  </figure>
+</center>
+
+
+                
+
+            </div>
+
+
+        </div>
+
+          <br>
+
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+  
+  
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2023/08/25/a-few-thoughts-about-pipes-in-r/">A few thoughts about pipes in R</a> <small>August 25, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/pipe"><kbd class="item-tag">pipe</kbd></a>  <a href="/tags/internals"><kbd class="item-tag">internals</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2023/02/12/trick-or-tips-005-r/">Trick or Tips 005 {R}</a> <small>February 12, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+  
+
+<script type="text/javascript" src="https://insileco.github.io/js/codecopypaste.js"></script>
+
+
+
+
+
+
+
+</div>
+
+
+    </div>
+
+
+</div>
+</div>
+
+<footer>
+
+  <hr>
+
+  <div class="col-md-3">
+
+    <a href="#" id="bottom"></a>
+
+  </div>
+
+  <div class="col-md-6">
+
+    <script src="//yihui.name/js/math-code.js"></script>
+    <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <p class="copyright text-muted" style="font-size: 1.6rem;">
+      &copy; 2017-2023 inSileco |
+      Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+      <a href="https://gohugo.io">Hugo</a>
+      and <a href="https://github.com/calintat/minimal">Minimal</a> |
+      Latest build: 23 November 2023 16:43 UTC.
+    </p>
+
+  </div>
+
+
+</footer>
+
+</body>
+
+</html>

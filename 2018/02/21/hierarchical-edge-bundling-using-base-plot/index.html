@@ -387,13 +387,13 @@ between those nodes.</p>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 Drivers driver_5</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 Drivers driver_6</span>
 </span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">links</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;             from            to</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1     manager_1    species_20</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 beneficiary_7 beneficiary_8</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3    species_26      action_7</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 beneficiary_5 beneficiary_6</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5    species_19      action_4</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6      driver_9     manager_2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;          from         to</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1   driver_7  species_3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  manager_4  manager_3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  species_1 species_26</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4   action_6  species_5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  manager_3   action_9</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 species_22 species_13</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="circle-functions">Circle functions</h2>
@@ -957,12 +957,12 @@ to links and nodes and change the size of the nodes.</p>
 </span></span><span class="line"><span class="cl"><span class="n">metanetwork</span> <span class="o">&lt;-</span> <span class="nf">nodeSize</span><span class="p">(</span><span class="n">metanetwork</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">metanetwork</span><span class="o">$</span><span class="n">nodes</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    network     name          x         y    cols Freq       cex</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 Drivers driver_1 -0.0546519 0.8732916 #ffdd55    8 0.5333333</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 Drivers driver_2 -0.1282239 0.8655539 #ffdd55    8 0.5333333</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 Drivers driver_3 -0.2008793 0.8516293 #ffdd55   13 0.8666667</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 Drivers driver_4 -0.2720989 0.8316172 #ffdd55   15 1.0000000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 Drivers driver_5 -0.3413735 0.8056607 #ffdd55    6 0.4000000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 Drivers driver_6 -0.4082079 0.7739453 #ffdd55    9 0.6000000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 Drivers driver_1 -0.0546519 0.8732916 #ffdd55   14 1.0000000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 Drivers driver_2 -0.1282239 0.8655539 #ffdd55    6 0.4285714</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 Drivers driver_3 -0.2008793 0.8516293 #ffdd55   11 0.7857143</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 Drivers driver_4 -0.2720989 0.8316172 #ffdd55    5 0.3571429</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 Drivers driver_5 -0.3413735 0.8056607 #ffdd55    7 0.5000000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 Drivers driver_6 -0.4082079 0.7739453 #ffdd55    9 0.6428571</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><br/>
@@ -1131,13 +1131,13 @@ the metanetwork, or focus on all the links for a single network.</p>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="n">metanetwork</span> <span class="o">&lt;-</span> <span class="nf">linkCol</span><span class="p">(</span><span class="n">metanetwork</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#39;focus&#39;</span><span class="p">,</span> <span class="n">focus</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#39;Species&#39;</span><span class="p">,</span><span class="s">&#39;Drivers&#39;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">metanetwork</span><span class="o">$</span><span class="n">links</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;             from            to      cols</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1     manager_1    species_20 #f4f4f466</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 beneficiary_7 beneficiary_8 #f4f4f466</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3    species_26      action_7 #f4f4f466</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 beneficiary_5 beneficiary_6 #f4f4f466</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5    species_19      action_4 #f4f4f466</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6      driver_9     manager_2 #f4f4f466</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;          from         to      cols</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1   driver_7  species_3 #876b4066</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  manager_4  manager_3 #f4f4f466</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  species_1 species_26 #876b4066</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4   action_6  species_5 #f4f4f466</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5  manager_3   action_9 #f4f4f466</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 species_22 species_13 #876b4066</span>
 </span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">metanetwork</span><span class="o">$</span><span class="n">networkGroup</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;             Var1 Freq      Prop   spanDeg     lower     upper          x          y    cols colNames</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1       Actions    9 0.1250000 0.7853982 0.0125000 0.7728982  0.4619398  0.1913417 #f4f4f4  #212121</span>
@@ -1430,6 +1430,23 @@ the metanetwork, or focus on all the links for a single network.</p>
   
 
   <h1>
+    <a href="/2023/11/23/creating-a-monorepo-of-r-packages-with-github/">Creating a monorepo of R packages with GitHub</a> <small>November 23, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/github"><kbd class="item-tag">github</kbd></a>  <a href="/tags/github-actions"><kbd class="item-tag">github actions</kbd></a>  <a href="/tags/monorepo"><kbd class="item-tag">monorepo</kbd></a>  <a href="/tags/docker"><kbd class="item-tag">docker</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
     <a href="/2023/08/25/a-few-thoughts-about-pipes-in-r/">A few thoughts about pipes in R</a> <small>August 25, 2023</small>
   </h1>
 
@@ -1451,23 +1468,6 @@ the metanetwork, or focus on all the links for a single network.</p>
   </h1>
 
   <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> </p>
-
-  
-
-
-
-  
-
-</div>
-  <div class="item-bottom">
-
-  
-
-  <h1>
-    <a href="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
-  </h1>
-
-  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
 
   
 
@@ -1520,7 +1520,7 @@ the metanetwork, or focus on all the links for a single network.</p>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 23 November 2023 16:07 UTC.
+      Latest build: 23 November 2023 16:43 UTC.
     </p>
 
   </div>
