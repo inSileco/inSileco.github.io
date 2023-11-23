@@ -51,7 +51,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.119.0">
+ <meta name="generator" content="Hugo 0.120.4">
         
 
         
@@ -265,7 +265,7 @@ required to rebuild the packages and as a Debian user that spend a lot of time
 on R, I am extremely grateful to <a href="http://dirk.eddelbuettel.com/blog/2018/06/11/">the work of Dirk, Michael and Johannes on this</a>!</p>
 <p>I thought it was a good opportunity to write few notes about my R setup. Nothing
 really special or tricky and I guess more advanced users proceed otherwise, yet
-it is nonetheless simple and functional 😄! In this post I&rsquo;ll go over two
+it is nonetheless simple and functional &#x1f604;! In this post I&rsquo;ll go over two
 different aspects:</p>
 <ol>
 <li>
@@ -321,7 +321,7 @@ It is true though that I do not use all these packages, but:</p>
 </li>
 <li>
 <p>I have space on my computer and it only takes one single line on my script whereas
-a selection would probably have taken tens 😄!</p>
+a selection would probably have taken tens &#x1f604;!</p>
 </li>
 </ol>
 <p>For the remaining packages (not packaged specifically for Debian), I use the
@@ -342,7 +342,7 @@ In order to install this package I get the gist (an R script) and execute it:</p
 </div>
 </div><p>The path to these packages is <code>/home/kevcaz/R/x86_64-pc-linux-gnu-library/3.5</code>
 this is not the default behavior but a path commonly used. So, yes, in total
-I use 3 different paths to my R packages 😃:</p>
+I use 3 different paths to my R packages &#x1f603;:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -377,7 +377,7 @@ was installed:</p>
 </span></span><span class="line"><span class="cl"><span class="n">[1]</span> <span class="s">&#34;/home/kevcaz/R/x86_64-pc-linux-gnu-library/3.5/drat&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>Well, I very much like it that way 😸! Two notes to conclude this section.
+</div><p>Well, I very much like it that way &#x1f638;! Two notes to conclude this section.
 First, in the near future I may consider
 the neat <a href="http://dirk.eddelbuettel.com/code/drat.html"><code>drat</code> package</a> to add
 packages available on GitHub. Second, if you are interested in
@@ -543,18 +543,18 @@ Here it is (also available on
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">##-- few useful functions</span>
-</span></span><span class="line"><span class="cl"><span class="n">reset</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">()</span> <span class="nf">system</span><span class="p">(</span><span class="s">&#39;reset&#39;</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="n">nautilus</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&#39;.&#39;</span><span class="p">)</span> <span class="nf">system</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&#39;nautilus &#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
-</span></span><span class="line"><span class="cl"><span class="n">deco</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">char</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span> <span class="nf">paste</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">collapse</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">reset</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">()</span> <span class="nf">system</span><span class="p">(</span><span class="s">&#39;reset&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">nautilus</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="s">&#39;.&#39;</span><span class="p">)</span> <span class="nf">system</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&#39;nautilus &#39;</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="n">deco</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">char</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">10</span><span class="p">)</span> <span class="nf">paste</span><span class="p">(</span><span class="nf">rep</span><span class="p">(</span><span class="n">char</span><span class="p">,</span> <span class="n">n</span><span class="p">),</span> <span class="n">collapse</span><span class="o">=</span><span class="s">&#34;&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">##-- function triggered when starting a new session / a Hello function</span>
-</span></span><span class="line"><span class="cl"><span class="n">.First</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl"><span class="n">.First</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">cat</span><span class="p">(</span><span class="s">&#34;\n&#34;</span><span class="p">,</span> <span class="nf">paste0</span><span class="p">(</span><span class="nf">deco</span><span class="p">(</span><span class="s">&#34;=&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">28</span><span class="p">),</span> <span class="s">&#34;&gt;&gt;&#34;</span><span class="p">),</span> <span class="s">&#34; KevCaz 92 Hijo &#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">paste0</span><span class="p">(</span><span class="s">&#34;&lt;&lt;&#34;</span><span class="p">,</span> <span class="nf">deco</span><span class="p">(</span><span class="s">&#34;=&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">28</span><span class="p">)),</span> <span class="s">&#34;\n &gt;&gt;&#34;</span><span class="p">,</span> <span class="nf">date</span><span class="p">(),</span> <span class="s">&#34; \n\n&#34;</span><span class="p">)</span> <span class="p">;</span>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl">
 </span></span><span class="line"><span class="cl"><span class="c1">##-- function triggered when exiting a new session / a Good Bye function</span>
-</span></span><span class="line"><span class="cl"><span class="n">.Last</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(){</span>
+</span></span><span class="line"><span class="cl"><span class="n">.Last</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(){</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">graphics.off</span><span class="p">()</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">cat</span><span class="p">(</span><span class="s">&#34;\n&#34;</span><span class="p">,</span> <span class="nf">paste0</span><span class="p">(</span><span class="nf">deco</span><span class="p">(</span><span class="s">&#34;~&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">28</span><span class="p">),</span> <span class="s">&#34;&lt;&#34;</span><span class="p">)</span> <span class="p">,</span> <span class="s">&#34; Até mais KevCaz! &#34;</span><span class="p">,</span>
 </span></span><span class="line"><span class="cl">    <span class="nf">paste0</span><span class="p">(</span><span class="s">&#34;&gt;&#34;</span><span class="p">,</span> <span class="nf">deco</span><span class="p">(</span><span class="s">&#34;~&#34;</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">28</span><span class="p">)),</span><span class="s">&#34;\n&#34;</span><span class="p">)</span> <span class="p">;</span>
@@ -562,7 +562,7 @@ Here it is (also available on
 </span></span></code></pre></td></tr></table>
 </div>
 </div><br>
-<h4 id="thats-it-hope-this-helps-see-you-next-post-nbsp-">That&rsquo;s it! Hope this helps! See you next post!   🚀</h4>
+<h4 id="thats-it-hope-this-helps-see-you-next-post-nbsp-rocket">That&rsquo;s it! Hope this helps! See you next post!   &#x1f680;</h4>
 
 
                 
@@ -695,7 +695,7 @@ Here it is (also available on
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 11 October 2023 00:41 UTC.
+      Latest build: 23 November 2023 16:07 UTC.
     </p>
 
   </div>
