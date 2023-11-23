@@ -22,15 +22,17 @@ output:
 
 ## Context 
 
-As an R developer who often works on open source project, I normally use one GitHub repository for new R packages. Team of R developers that work on several packages use [organization accounts](https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts) to gather packages that have a common scope, popular accounts of this kind include:
+As an R developer who often works on open source project, I normally use one GitHub repository for new R packages. Team of R developers that work on several packages use [organization accounts](https://docs.github.com/en/get-started/learning-about-github/types-of-github-accounts) to gather packages that have a common scope. Popular accounts of this kind include:
 
 - `r url_gh("r-lib", "")`
 - `r url_gh("tidyverse", "")`
 - `r url_gh("ropensci", "")`
 
-That said, there are situations where using a [monorepo](https://circleci.com/blog/monorepo-dev-practices/) for a bunch of R packages is useful. Two situations comes in my mind. First, you have a strong interdependencies among your packages, for instance a couple of packages developed for a Shiny app and a Shiny app. Second, is you only have one repository because that's how much your CTO trusts you! 
+That said, there are situations where using a [monorepo](https://circleci.com/blog/monorepo-dev-practices/) for a bunch of R packages is useful. Two situations come to my mind. First, there are strong interdependencies among your packages, such as a couple of packages developed for a Shiny app. Second, you only have one repository because that's how much your CTO trusts you! 
 
-As far as I am aware, monorepo is not a common practice for R packages. The fantastic [r-universe](https://ropensci.org/r-universe/) initiative uses this approach and relies on submodules to create a monorepo for your organization that includes all your R packages, it then applies a common pipeline to those packages (e.g. see https://github.com/r-universe/insileco). Very powerful, very will designed. In this post I am presenting how to set up a monorepo that included two packages with one that relies on the other. As a bonus :tada:, at the end of the post, I explain how to include the two packages in a docker file.
+As far as I am aware, monorepo is not a common practice for R packages. The fantastic [r-universe](https://ropensci.org/r-universe/) initiative uses this approach and relies on submodules to create a monorepo for your organization that includes all your R packages, it then applies a common pipeline to those packages (e.g. see https://github.com/r-universe/insileco). This is very powerful and very well designed. 
+
+In this post I am presenting how to set up a monorepo that includes two packages with one that relies on the other. As a bonus :tada:, at the end of the post, I explain how to include the two packages in a docker file.
 
 
 
@@ -56,7 +58,7 @@ devtools::document()
 devtools::check()
 ```
 
-I now have created `testpkg01` and `testpkg02` that are basically folders at the root of the repository. For the sake of the example, I add one function in both packages. In `testpkg01` I add `hello_co2()`: 
+I have now created `testpkg01` and `testpkg02` that are basically folders at the root of the repository. For the sake of this example, I add one function in both packages. In `testpkg01` I add `hello_co2()`: 
 
 ```R
 hello_co2 <- function() {
@@ -85,8 +87,8 @@ Remotes:
 
 ## Checking the packages with GitHub Actions
 
-Now this is what I think is the trickiest part of the post. To work with R packages efficiently, packages must be checked on a regular basis. A CI/CD service such as [GitHub Actions](https://docs.github.com/en/actions) does that. 
-As I am using a monorepo, I need to find a way to check all R packages using a common workflow. GitHub Actions has one feature called [reusable workflow](https://docs.github.com/en/actions/using-workflows/reusing-workflows#creating-a-reusable-workflow) that covers my needs. A reusable workflow is very similar to a regular one but it has input to be declared. I created [R-CMD-check](https://github.com/inSileco/monoRepoR/blob/main/.github/workflows/R-CMD-check.yaml) that takes a string input `pkg-path`:
+Now for what I believe is the trickiest part of the post: to work with R packages efficiently, packages must be checked on a regular basis. A CI/CD service such as [GitHub Actions](https://docs.github.com/en/actions) does that. 
+As I am using a monorepo, I need to find a way to check all R packages using a common workflow. GitHub Actions has one feature called [reusable workflow](https://docs.github.com/en/actions/using-workflows/reusing-workflows#creating-a-reusable-workflow) that covers our needs. A reusable workflow is very similar to a regular one but it has inputs to be declared. I created [R-CMD-check](https://github.com/inSileco/monoRepoR/blob/main/.github/workflows/R-CMD-check.yaml) that takes a string input `pkg-path`:
 
 
 ```yaml
@@ -98,7 +100,7 @@ on:
         type: string
 ```
 
-The other part of the workshop are steps borrowed from [r-lib/actions](https://github.com/r-lib/actions) and I use `working-directory: ${{ inputs.pkg-path }}` to apply them to the right package. There is only one subtlety though, as I need `testpkg01` for `testpkg02` it needs to be installed and as the package is included in the monorepo, I list it as an extra local packages to be installed:
+The other part of the post are steps borrowed from [r-lib/actions](https://github.com/r-lib/actions) and I use `working-directory: ${{ inputs.pkg-path }}` to apply them to the right package. There is however a subtlety to consider, as I need `testpkg01` for `testpkg02`. This means that `testpkg01` must be installed. As the package is included in the monorepo, I simply list it as an extra local packages to be installed:
 
 ```yaml
 - uses: r-lib/actions/setup-r-dependencies@v2
@@ -111,7 +113,9 @@ The other part of the workshop are steps borrowed from [r-lib/actions](https://g
       local::../testpkg01 
 ```
 
-Note that this works if all packages are at the same level. I now create the main workflow that will call the re-usable package. For this workflow, only the packages with changes should be checked. For instance, if a pull request contains only changes in `test01pkg`, `test02pkg` does not need to be checked. That is possible with path filtering and in my workflow I use [`dorny/paths-filter`](https://github.com/dorny/paths-filter). The main workflow [R_CMD-check-all](https://github.com/inSileco/monoRepoR/blob/main/.github/workflows/R-CMD-check-all.yaml) includes two jobs: `changes` and `checkPackages`. `changes` leverage `dorny/paths-filter` to return a list of package names based on what have changed. 
+Note, however, that this only works if all packages are at the same level. 
+
+I now create the main workflow that will call the re-usable package. For this workflow, only the packages with changes should be checked. For instance, if a pull request contains only changes in `test01pkg`, `test02pkg` does not need to be checked. That is possible with path filtering and in my workflow I use [`dorny/paths-filter`](https://github.com/dorny/paths-filter). The main workflow [R_CMD-check-all](https://github.com/inSileco/monoRepoR/blob/main/.github/workflows/R-CMD-check-all.yaml) includes two jobs: `changes` and `checkPackages`. `changes` leverages `dorny/paths-filter` to return a list of package names based on what has changed. 
 
 ```yaml
 # determine what needs to be checked
@@ -135,7 +139,7 @@ changes:
           - 'testpkg02/**'
 ```
 
-If any files in the folder `testpkg01` (`"testpkg01/**"`) change, then `testpkg01` will be in the output list. Similarly, if any file in `testpkg02` change **or** is any file in `testpkg01/R` change then `testpkg02` will make the output list. The latter rule is super useful because it allows me to check that `testpkg02` was not affect by the changes in `testpkg01`. The list of outputs `needs.changes.outputs.packages` is then passed to the next job `checkPackages` that won't be triggered if `changes` is not completed.
+If any files in the folder `testpkg01` (`"testpkg01/**"`) change, then `testpkg01` will be in the output list. Similarly, if any file in `testpkg02` change **or** if any file in `testpkg01/R` change then `testpkg02` will make the output list. The latter rule is super useful because it allows us to check that `testpkg02` was not affected by the changes in `testpkg01`. The list of outputs `needs.changes.outputs.packages` is then passed to the next job `checkPackages` that won't be triggered if `changes` is not completed.
 
 
 ```yaml
@@ -168,7 +172,7 @@ blogdown::shortcode(
 
 ## Adding the two packages in a Docker container 
 
-This is the bonus part of the post where I add the two packages in a [Docker](https://en.wikipedia.org/wiki/Docker_(software)) image that I push it to [DockerHub](https://hub.docker.com/) using GitHub Actions. This is not a post about Docker but still, in a nutshell, docker is an incredible technology to create a virtual container for your application that can be run on any OS. This makes your application easy to share, easy to deploy and easy to scale (with the help of other technologies).
+This is the bonus part of the post where I add the two packages in a [Docker](https://en.wikipedia.org/wiki/Docker_(software)) image that I push to [DockerHub](https://hub.docker.com/) using GitHub Actions. This is not a post about Docker. Still, in a nutshell, docker is an incredible technology to create a virtual container for your application that can be run on any OS. This makes your application easy to share, easy to deploy and easy to scale (with the help of other technologies).
 
 To create my docker image with the two packages, I create a very simple dockerfile.
 
@@ -184,7 +188,7 @@ RUN Rscript install_pkg.R
 CMD ["R"]
 ```
 
-I first pull the base image from the fantastic [rocker](https://github.com/rocker-org/rocker) repository. Then I ensure that [apt](https://en.wikipedia.org/wiki/APT_(software)) packages are up to date. Next I copy the `*.tar.gz` files (created for both packages using with `R CMD build`) as well as a minimal script. To complete the image build, I run the script to install the two packages.
+I first pull the base image from the fantastic [rocker](https://github.com/rocker-org/rocker) repository. Then I ensure that [apt](https://en.wikipedia.org/wiki/APT_(software)) packages are up to date. Next, I copy the `*.tar.gz` files (created for both packages using with `R CMD build`) as well as a minimal script. To complete the image build, I run the script to install the two packages.
 
 ```R
 pkg <- list.files(path = ".", pattern = "^test.+\\.tar\\.gz$")
@@ -192,7 +196,7 @@ stopifnot(length(pkg) > 0)
 lapply(pkg, install.packages, repos = NULL, type = "source")
 ```
 
-I design a last workflow [build-and-release](https://github.com/inSileco/monoRepoR/blob/main/.github/workflows/build-docker-container.yaml) based on the one available in the documentation page ['Publishing Docker images'](https://docs.github.com/en/actions/publishing-packages/publishing-docker-images). It generates the `*.tar.gz` files, creates the docker image and push it to my [DockerHub repo](https://hub.docker.com/repository/docker/kevcaz/monorepor/general). Also, this workflow is only triggered when a tag starting with "v" is added, which for me means every commit that is a new version, pretty neat! 
+I design a last workflow [build-and-release](https://github.com/inSileco/monoRepoR/blob/main/.github/workflows/build-docker-container.yaml) based on the one available in the documentation page ['Publishing Docker images'](https://docs.github.com/en/actions/publishing-packages/publishing-docker-images). It generates the `*.tar.gz` files, creates the docker image and pushes it to my [DockerHub repo](https://hub.docker.com/repository/docker/kevcaz/monorepor/general). Also, this workflow is only triggered when a tag starting with "v" is added. For me, this means every commit that is a new version, pretty neat! 
 
 
 ```{r echo = FALSE}
