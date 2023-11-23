@@ -1,14 +1,12 @@
 ---
-title: Creating a monorepo of R packages
+title: Creating a monorepo of R packages with GitHub
 author: [kevin]
 date: 2023-11-23
 tags: [R, github, github actions, monorepo, docker]
 rpkgs: [usethis]
-tweet: "Creating a monorepo of R packages"
-draft: true
-review: false
-#reviewer: [david]
-rbloggers: false
+tweet: "Creating a monorepo of R packages with GitHub."
+reviewer: [david]
+rbloggers: true
 estime: 8
 bibliography: "`r path_ref_bib`"
 csl: "`r path_ref_csl`"
@@ -100,7 +98,7 @@ on:
         type: string
 ```
 
-The other part of the post are steps borrowed from [r-lib/actions](https://github.com/r-lib/actions) and I use `working-directory: ${{ inputs.pkg-path }}` to apply them to the right package. There is however a subtlety to consider, as I need `testpkg01` for `testpkg02`. This means that `testpkg01` must be installed. As the package is included in the monorepo, I simply list it as an extra local packages to be installed:
+The rest of the workflow are steps borrowed from [r-lib/actions](https://github.com/r-lib/actions) and I use `working-directory: ${{ inputs.pkg-path }}` to apply them to the right package. There is however a subtlety to consider, as I need `testpkg01` for `testpkg02`. This means that `testpkg01` must be installed. As the package is included in the monorepo, I simply list it as an extra local packages to be installed:
 
 ```yaml
 - uses: r-lib/actions/setup-r-dependencies@v2
@@ -204,7 +202,7 @@ blogdown::shortcode(
   "figcenter",
   "gha_docker.png",
   "Screenshot of a successsfull build of the docker image.",
-  "90%"
+  "60%"
 )
 ```
 
