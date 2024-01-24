@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en-us">
     <head>
-        
+        <script data-goatcounter="https://insilecoblog.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Trick or tips 004 {R}</title>
@@ -54,14 +55,6 @@
  <meta name="generator" content="Hugo 0.121.2">
         
 
-        
-            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109508556-1"></script>
-            <script>
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments)};
-              gtag('js', new Date());
-              gtag('config', 'UA-109508556-1');
-            </script>
         
 
         
@@ -539,11 +532,11 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 </span></span><span class="line"><span class="cl"><span class="nf">microbenchmark</span><span class="p">(</span><span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">,</span> <span class="o">!!</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">),</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span> <span class="o">&amp;</span> <span class="m">1</span><span class="p">,</span> <span class="nf">nzchar</span><span class="p">(</span><span class="n">vec</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">  <span class="n">times</span> <span class="o">=</span> <span class="m">1000L</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Unit: nanoseconds</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;             expr min  lq     mean median     uq   max neval</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &gt; 0 811 862  920.035  892.0  932.0  2735  1000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     !!nchar(vec) 891 932  986.158  942.0 1002.0  2725  1000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &amp; 1 922 961 1037.792  972.0 1046.5 10059  1000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      nzchar(vec)  60  90   99.818   90.5  100.0  2244  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;             expr min  lq     mean median   uq   max neval</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &gt; 0 792 841  899.822    862  911  3216  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     !!nchar(vec) 861 902  963.433    922  962  2294  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &amp; 1 891 932 1006.508    952 1002 11151  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      nzchar(vec)  60  81   96.695     90  100   632  1000</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Yep yep!<code>nzchar()</code> is indeed way faster &#x1f680;!</p>
@@ -614,8 +607,8 @@ value of the last evaluated expression is returned.</p>
 </span></span><span class="line"><span class="cl"><span class="nf">microbenchmark</span><span class="p">(</span><span class="nf">foo</span><span class="p">(</span><span class="m">4</span><span class="p">),</span> <span class="nf">foo2</span><span class="p">(</span><span class="m">4</span><span class="p">),</span> <span class="n">times</span> <span class="o">=</span> <span class="m">1e5</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Unit: nanoseconds</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      expr min  lq     mean median  uq      max neval</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    foo(4) 450 471 602.4451    481 491  4315681 1e+05</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   foo2(4) 310 331 527.3652    341 350 14134471 1e+05</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    foo(4) 460 490 746.3875    491 501 14095961 1e+05</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   foo2(4) 320 340 390.5315    341 351  2604733 1e+05</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="invisible"><code>invisible()</code></h2>
@@ -743,7 +736,7 @@ argument <code>env</code> (which can also be the name of a environment).</p>
 <div style="margin: 1.5rem 0rem 0.5rem 0rem;">
 <details>
 <summary>
-Session info <i class="fas fa-cogs" aria-hidden="true"></i>
+<i class="fas fa-cogs" aria-hidden="true"></i> Display information relative to the R session used to render this post.
 </summary>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -809,15 +802,15 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.8        utf8_1.2.4        generics_0.1.3    xml2_1.3.6        blogdown_1.18    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.8.3     httpcode_0.3.0    digest_0.6.33     magrittr_2.0.3    evaluate_0.23    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.8.3     httpcode_0.3.0    digest_0.6.34     magrittr_2.0.3    evaluate_0.23    </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] bookdown_0.37     fastmap_1.1.1     plyr_1.8.9        jsonlite_1.8.8    backports_1.4.1  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] crul_1.4.0        promises_1.2.1    fansi_1.0.6       jquerylib_0.1.4   bibtex_0.5.1     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.2         shiny_1.8.0       rlang_1.1.2       ellipsis_0.3.2    cachem_1.0.8     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.2         shiny_1.8.0       rlang_1.1.3       ellipsis_0.3.2    cachem_1.0.8     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] yaml_2.3.8        tools_4.3.2       dplyr_1.1.4       httpuv_1.6.13     DT_0.31          </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] rcrossref_1.2.0   curl_5.2.0        vctrs_0.6.5       R6_2.5.1          mime_0.12        </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] lifecycle_1.0.4   stringr_1.5.1     fs_1.6.3          htmlwidgets_1.6.4 miniUI_0.1.1.1   </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] pkgconfig_2.0.3   bslib_0.6.1       pillar_1.9.0      later_1.3.2       glue_1.6.2       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] Rcpp_1.0.11       highr_0.10        xfun_0.41         tibble_3.2.1      tidyselect_1.2.0 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] pkgconfig_2.0.3   bslib_0.6.1       pillar_1.9.0      later_1.3.2       glue_1.7.0       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] Rcpp_1.0.12       highr_0.10        xfun_0.41         tibble_3.2.1      tidyselect_1.2.0 </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] knitr_1.45        xtable_1.8-4      htmltools_0.5.7   rmarkdown_2.25    compiler_4.3.2</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -861,7 +854,6 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
         crossorigin="anonymous"
         async>
   </script>
-
 
 
   
@@ -926,7 +918,7 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
 
   
 
-<script type="text/javascript" src="https://insileco.github.io/js/codecopypaste.js"></script>
+  <script type="text/javascript" src="https://insileco.github.io/js/codecopypaste.js"></script>
 
 
 
@@ -960,11 +952,11 @@ Session info <i class="fas fa-cogs" aria-hidden="true"></i>
     </script>
 
     <p class="copyright text-muted" style="font-size: 1.6rem;">
-      &copy; 2017-2023 inSileco |
+      &copy; 2017-2024 inSileco |
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 11 January 2024 00:44 UTC.
+      Latest build: 24 January 2024 20:04 UTC.
     </p>
 
   </div>
