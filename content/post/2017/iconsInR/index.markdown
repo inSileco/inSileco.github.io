@@ -292,7 +292,7 @@ one standard to another (*e.g.*
 3. You may also want to use emoji to cheer your plot up! See the emojifont
 package available on [CRAN](https://cran.r-project.org/web/packages/emojifont/)
 and [Github](https://guangchuangyu.github.io/emojifont/). It now support
-fontawsome [as explained here](https://guangchuangyu.github.io/2016/03/font-awesome-supported-in-emojifont/).
+fontawesome [as explained here](https://guangchuangyu.github.io/2016/03/font-awesome-supported-in-emojifont/).
 
 4. [fontstruct](https://fontstruct.com) is a great web application that helps
 you creating your own font (you can save your font as a `.tff` on your computer

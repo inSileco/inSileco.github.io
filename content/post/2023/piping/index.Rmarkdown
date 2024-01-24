@@ -25,7 +25,6 @@ Back in 2014, I discovered the forward pipe for R introduced in [`magrittr`](htt
 
 When I started using pipes in R, I had some experience with the [bash pipe](https://effective-shell.com/part-2-core-skills/thinking-in-pipelines/), `|`, which basically passes the output of a function to the input of a second one, and so allow to do chaining operations. But using pipes in R was a major breakthrough: with a simple infix operator, lines of code involving a collection of nested function calls were suddenly turned into one readable data recipe. Let's take an example and create a data pipeline where we apply a statistical model, `model_1()`, to the data set `data_1` after two steps of data preprocessing, `transform_1()` and `transform_2()`. Here is the code without pipes:
 
-
 ```R
 res <- model_1(
     transform_1(
@@ -374,14 +373,11 @@ CO2 |>
 tot_conc
 ```
 
-
 ## Final remarks
 
 In this post I wrote down a few thoughts about the native pipe and the magrittr pipes. I did not attempt to compare the two. The main differences between the two pipes `%>%` and `|>` are summarized in one of [Hadley Wickham recent blog post](https://www.tidyverse.org/blog/2023/04/base-vs-magrittr-pipe/). Of course there is only one native pipe and 5 magrittr pipes. But the most significative difference regards the placeholders, `.` coming with more features than `_`. That said, given the latest experimental feature of `_` in R 4.3.0, this may soon no longer hold true.
 
-
 The tidyverse community still recommends the use of the magrittr forward pipe, and even provides a styling guide for it: https://style.tidyverse.org/pipes.html. I now code almost exclusively with the native pipe (following the same guidelines). I apply it everywhere and I have a bunch of shortcuts for function I use the most frequently in the console, e.g. to do `|> names()` or `|> class()`. I prefer `|>` mostly because it is native, meaning that I don't need to load any package to use it. There are two additional minor pros: it is only two characters and [Julia](https://docs.julialang.org/en/v1/manual/functions/) -- which I use frequently -- uses the same symbol. I even use it in packages and as long I not using the placeholder, the package only requires a version >= R 4.3.1 which is not bad (the oldrel is currently R 4.2.3).
-
 
 
 ## References

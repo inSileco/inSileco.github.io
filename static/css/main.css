@@ -274,23 +274,18 @@ pre > code {
 
 /* ----------details---------- */
 
-details summary {
-    font-size: 1.2em;
-    padding-right: 0.8rem;
+details {
+    color: #3fb3b2;
 }
 
-details summary::before {
-    font-family: "FontAwesome";
-    content: "\f0a4";
-    padding-left: 15px;
-    padding-right: 0.8rem;
+details summary::after {
+    content: ">";
     font-size: 1.2em;
 }
 
-details[open] summary::before {
-    font-family: "FontAwesome";
-    content: "\f0a7";
-    padding-right: 0.8rem;
+details[open] summary::after {
+    content: '\2304';
+    font-size: 1.2em;
 }
 
 /* https://stackoverflow.com/questions/255170/markdown-and-image-alignment */
