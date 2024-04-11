@@ -52,7 +52,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.123.8">
+ <meta name="generator" content="Hugo 0.124.1">
         
 
         
@@ -302,12 +302,12 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl"><span class="p">)</span> <span class="o">%&gt;%</span> <span class="n">as.data.frame</span>
 </span></span><span class="line"><span class="cl"><span class="nf">head</span><span class="p">(</span><span class="n">simdata</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    seqt       sim</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.00  9.100773</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.25 10.820853</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.50 11.890331</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.75 11.127647</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 1.00 11.880267</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 1.25 12.710079</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1 0.00  9.366208</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2 0.25 10.724386</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3 0.50 11.112208</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  4 0.75 10.677729</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  5 1.00 11.376080</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  6 1.25 12.713639</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="use-nls">Use <code>nls()</code></h2>
@@ -340,11 +340,11 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    model: sim ~ Tinf - (Tinf - 10) * exp(-k * seqt)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     data: simdata</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     Tinf       k </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  20.0744  0.2027 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   residual sum-of-squares: 52.01</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  20.0033  0.1951 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   residual sum-of-squares: 53.84</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Number of iterations to convergence: 10 </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Achieved convergence tolerance: 1.056e-06</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Number of iterations to convergence: 8 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Achieved convergence tolerance: 1.312e-06</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Let&rsquo;s draw a quick plot:</p>
@@ -434,17 +434,17 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] magrittr_2.0.3    inSilecoRef_0.1.1</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.8        utf8_1.2.4        generics_0.1.3    xml2_1.3.6        blogdown_1.19    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.8.3     httpcode_0.3.0    digest_0.6.34     evaluate_0.23     bookdown_0.38    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] fastmap_1.1.1     plyr_1.8.9        jsonlite_1.8.8    backports_1.4.1   crul_1.4.0       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] promises_1.2.1    fansi_1.0.6       jquerylib_0.1.4   bibtex_0.5.1      cli_3.6.2        </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] shiny_1.8.0       rlang_1.1.3       ellipsis_0.3.2    cachem_1.0.8      yaml_2.3.8       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] tools_4.3.3       dplyr_1.1.4       httpuv_1.6.14     DT_0.32           rcrossref_1.2.0  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] curl_5.2.1        vctrs_0.6.5       R6_2.5.1          mime_0.12         lifecycle_1.0.4  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] stringr_1.5.1     fs_1.6.3          htmlwidgets_1.6.4 miniUI_0.1.1.1    pkgconfig_2.0.3  </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] bslib_0.6.1       pillar_1.9.0      later_1.3.2       glue_1.7.0        Rcpp_1.0.12      </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] highr_0.10        xfun_0.42         tibble_3.2.1      tidyselect_1.2.0  knitr_1.45       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] xtable_1.8-4      htmltools_0.5.7   rmarkdown_2.26    compiler_4.3.3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.9        utf8_1.2.4        generics_0.1.3    xml2_1.3.6        blogdown_1.19    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.8.3     httpcode_0.3.0    digest_0.6.35     evaluate_0.23     bookdown_0.38    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] fastmap_1.1.1     plyr_1.8.9        jsonlite_1.8.8    backports_1.4.1   crul_1.4.2       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] promises_1.3.0    fansi_1.0.6       jquerylib_0.1.4   bibtex_0.5.1      cli_3.6.2        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] shiny_1.8.1.1     rlang_1.1.3       cachem_1.0.8      yaml_2.3.8        tools_4.3.3      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] dplyr_1.1.4       httpuv_1.6.15     DT_0.33           rcrossref_1.2.0   curl_5.2.1       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] vctrs_0.6.5       R6_2.5.1          mime_0.12         lifecycle_1.0.4   stringr_1.5.1    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] fs_1.6.3          htmlwidgets_1.6.4 miniUI_0.1.1.1    pkgconfig_2.0.3   bslib_0.7.0      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] pillar_1.9.0      later_1.3.2       glue_1.7.0        Rcpp_1.0.12       highr_0.10       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] xfun_0.43         tibble_3.2.1      tidyselect_1.2.1  knitr_1.46        xtable_1.8-4     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] htmltools_0.5.8.1 rmarkdown_2.26    compiler_4.3.3</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -580,7 +580,7 @@ with known parameter values, then I add some noise (here a <a href="https://en.w
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 11 March 2024 00:43 UTC.
+      Latest build: 11 April 2024 00:42 UTC.
     </p>
 
   </div>
