@@ -52,7 +52,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.125.7">
+ <meta name="generator" content="Hugo 0.127.0">
         
 
         
@@ -362,21 +362,39 @@ elements of the output vector will have 4 characters:</p>
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;1111&#34; &#34;1112&#34; &#34;1113&#34; &#34;1114&#34; &#34;1115&#34; &#34;1116&#34; &#34;1117&#34; &#34;1118&#34; &#34;1119&#34; &#34;1110&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;a&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;a&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;aaa1&#34; &#34;aaa2&#34; &#34;aaa3&#34; &#34;aaa4&#34; &#34;aaa5&#34; &#34;aaa6&#34; &#34;aaa7&#34; &#34;aaa8&#34; &#34;aaa9&#34; &#34;aa10&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;---1&#34; &#34;---2&#34; &#34;---3&#34; &#34;---4&#34; &#34;---5&#34; &#34;---6&#34; &#34;---7&#34; &#34;---8&#34; &#34;---9&#34; &#34;--10&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;ab&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;ab&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;aba1&#34; &#34;aba2&#34; &#34;aba3&#34; &#34;aba4&#34; &#34;aba5&#34; &#34;aba6&#34; &#34;aba7&#34; &#34;aba8&#34; &#34;aba9&#34; &#34;ab10&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -385,17 +403,29 @@ elements of the output vector will have 4 characters:</p>
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;right&#34;</span><span class="p">)</span> <span class="c1"># default</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;---1&#34; &#34;---2&#34; &#34;---3&#34; &#34;---4&#34; &#34;---5&#34; &#34;---6&#34; &#34;---7&#34; &#34;---8&#34; &#34;---9&#34; &#34;--10&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;left&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;left&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;1---&#34; &#34;2---&#34; &#34;3---&#34; &#34;4---&#34; &#34;5---&#34; &#34;6---&#34; &#34;7---&#34; &#34;8---&#34; &#34;9---&#34; &#34;10--&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;center&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;center&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;--1-&#34; &#34;--2-&#34; &#34;--3-&#34; &#34;--4-&#34; &#34;--5-&#34; &#34;--6-&#34; &#34;--7-&#34; &#34;--8-&#34; &#34;--9-&#34; &#34;-10-&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -404,17 +434,29 @@ elements of the output vector will have 4 characters:</p>
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;right&#34;</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;----1&#34;  &#34;----2&#34;  &#34;----3&#34;  &#34;----4&#34;  &#34;----5&#34;  &#34;----6&#34;  &#34;----7&#34;  &#34;----8&#34;  &#34;----9&#34;  &#34;----10&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;left&#34;</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;left&#34;</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;1----&#34;  &#34;2----&#34;  &#34;3----&#34;  &#34;4----&#34;  &#34;5----&#34;  &#34;6----&#34;  &#34;7----&#34;  &#34;8----&#34;  &#34;9----&#34;  &#34;10----&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;center&#34;</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">adjustStrings</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">4</span><span class="p">,</span> <span class="n">extra</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">,</span> <span class="n">align</span> <span class="o">=</span> <span class="s">&#34;center&#34;</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;--1--&#34;  &#34;--2--&#34;  &#34;--3--&#34;  &#34;--4--&#34;  &#34;--5--&#34;  &#34;--6--&#34;  &#34;--7--&#34;  &#34;--8--&#34;  &#34;--9--&#34;  &#34;--10--&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -632,18 +674,30 @@ argument allows to remove <code>NA</code>s.</p>
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
-</span><span class="lnt">7
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">keepLetters</span><span class="p">(</span><span class="nf">loremIpsum</span><span class="p">(</span><span class="m">18</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span> <span class="m">14</span><span class="o">:</span><span class="m">18</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;Loremiorsit&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">keepLetters</span><span class="p">(</span><span class="nf">loremIpsum</span><span class="p">(</span><span class="m">18</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span> <span class="m">14</span><span class="o">:</span><span class="m">18</span><span class="p">),</span> <span class="n">collapse</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">keepLetters</span><span class="p">(</span><span class="nf">loremIpsum</span><span class="p">(</span><span class="m">18</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span> <span class="m">14</span><span class="o">:</span><span class="m">18</span><span class="p">),</span> <span class="n">collapse</span> <span class="o">=</span> <span class="s">&#34;-&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;L-o-r-e-m-i-o-r-s-i-t&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">keepLetters</span><span class="p">(</span><span class="nf">loremIpsum</span><span class="p">(</span><span class="m">18</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span> <span class="m">14</span><span class="o">:</span><span class="m">18</span><span class="p">),</span> <span class="n">collapse</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">keepLetters</span><span class="p">(</span><span class="nf">loremIpsum</span><span class="p">(</span><span class="m">18</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="o">:</span><span class="m">6</span><span class="p">,</span> <span class="m">14</span><span class="o">:</span><span class="m">18</span><span class="p">),</span> <span class="n">collapse</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [[1]]</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;L&#34; &#34;o&#34; &#34;r&#34; &#34;e&#34; &#34;m&#34; &#34;i&#34; &#34;o&#34; &#34;r&#34; &#34;s&#34; &#34;i&#34; &#34;t&#34;</span>
 </span></span></code></pre></td></tr></table>
@@ -653,13 +707,19 @@ argument allows to remove <code>NA</code>s.</p>
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">keepInitials</span><span class="p">(</span><span class="s">&#34;National Basketball Association&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;NBA&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">keepInitials</span><span class="p">(</span><span class="s">&#34;National Basketball Association&#34;</span><span class="p">,</span> <span class="s">&#34;-&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">keepInitials</span><span class="p">(</span><span class="s">&#34;National Basketball Association&#34;</span><span class="p">,</span> <span class="s">&#34;-&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;N&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -679,13 +739,19 @@ argument allows to remove <code>NA</code>s.</p>
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">keepInitials</span><span class="p">(</span><span class="nf">tolower</span><span class="p">(</span><span class="s">&#34;National basketball association&#34;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;nba&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">keepInitials</span><span class="p">(</span><span class="nf">toupper</span><span class="p">(</span><span class="s">&#34;National basketball association&#34;</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">keepInitials</span><span class="p">(</span><span class="nf">toupper</span><span class="p">(</span><span class="s">&#34;National basketball association&#34;</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;NBA&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -773,15 +839,15 @@ this topic (for instance
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.9        utf8_1.2.4        generics_0.1.3    xml2_1.3.6        blogdown_1.19    </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.8.4     httpcode_0.3.0    digest_0.6.35     magrittr_2.0.3    evaluate_0.23    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] bookdown_0.39     fastmap_1.1.1     plyr_1.8.9        jsonlite_1.8.8    backports_1.4.1  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] bookdown_0.39     fastmap_1.2.0     plyr_1.8.9        jsonlite_1.8.8    backports_1.5.0  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] crul_1.4.2        promises_1.3.0    fansi_1.0.6       jquerylib_0.1.4   bibtex_0.5.1     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.2         shiny_1.8.1.1     crayon_1.5.2      rlang_1.1.3       cachem_1.0.8     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.2         shiny_1.8.1.1     crayon_1.5.2      rlang_1.1.4       cachem_1.1.0     </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] yaml_2.3.8        tools_4.4.0       dplyr_1.1.4       httpuv_1.6.15     DT_0.33          </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] rcrossref_1.2.0   curl_5.2.1        vctrs_0.6.5       R6_2.5.1          mime_0.12        </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] lifecycle_1.0.4   stringr_1.5.1     fs_1.6.4          htmlwidgets_1.6.4 miniUI_0.1.1.1   </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] pkgconfig_2.0.3   bslib_0.7.0       pillar_1.9.0      later_1.3.2       glue_1.7.0       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] Rcpp_1.0.12       xfun_0.43         tibble_3.2.1      tidyselect_1.2.1  knitr_1.46       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] xtable_1.8-4      htmltools_0.5.8.1 rmarkdown_2.26    compiler_4.4.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] Rcpp_1.0.12       xfun_0.44         tibble_3.2.1      tidyselect_1.2.1  knitr_1.47       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] xtable_1.8-4      htmltools_0.5.8.1 rmarkdown_2.27    compiler_4.4.0</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -928,7 +994,7 @@ repositories:
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 11 May 2024 00:42 UTC.
+      Latest build: 11 June 2024 00:46 UTC.
     </p>
 
   </div>

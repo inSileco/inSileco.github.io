@@ -52,7 +52,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.125.7">
+ <meta name="generator" content="Hugo 0.127.0">
         
 
         
@@ -295,6 +295,32 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 <p>Let’s consider two arrays of letters: the first has two dimensions (i.e. a matrix) and the second one has 3.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="p">(</span><span class="n">arr2</span> <span class="o">&lt;-</span> <span class="nf">array</span><span class="p">(</span><span class="kc">LETTERS</span><span class="n">[1</span><span class="o">:</span><span class="m">9</span><span class="n">]</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;       [,1] [,2] [,3]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1,] &#34;A&#34;  &#34;D&#34;  &#34;G&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [2,] &#34;B&#34;  &#34;E&#34;  &#34;H&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [3,] &#34;C&#34;  &#34;F&#34;  &#34;I&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">arr2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;matrix&#34; &#34;array&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
 </span><span class="lnt"> 3
@@ -309,25 +335,9 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 </span><span class="lnt">12
 </span><span class="lnt">13
 </span><span class="lnt">14
-</span><span class="lnt">15
-</span><span class="lnt">16
-</span><span class="lnt">17
-</span><span class="lnt">18
-</span><span class="lnt">19
-</span><span class="lnt">20
-</span><span class="lnt">21
-</span><span class="lnt">22
-</span><span class="lnt">23
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="p">(</span><span class="n">arr2</span> <span class="o">&lt;-</span> <span class="nf">array</span><span class="p">(</span><span class="kc">LETTERS</span><span class="n">[1</span><span class="o">:</span><span class="m">9</span><span class="n">]</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">)))</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;       [,1] [,2] [,3]</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1,] &#34;A&#34;  &#34;D&#34;  &#34;G&#34; </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [2,] &#34;B&#34;  &#34;E&#34;  &#34;H&#34; </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [3,] &#34;C&#34;  &#34;F&#34;  &#34;I&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">arr2</span><span class="p">)</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;matrix&#34; &#34;array&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">arr3</span> <span class="o">&lt;-</span> <span class="nf">array</span><span class="p">(</span><span class="kc">LETTERS</span><span class="n">[1</span><span class="o">:</span><span class="m">18</span><span class="n">]</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">2</span><span class="p">)))</span>
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="p">(</span><span class="n">arr3</span> <span class="o">&lt;-</span> <span class="nf">array</span><span class="p">(</span><span class="kc">LETTERS</span><span class="n">[1</span><span class="o">:</span><span class="m">18</span><span class="n">]</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">2</span><span class="p">)))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  , , 1</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;       [,1] [,2] [,3]</span>
@@ -341,7 +351,15 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1,] &#34;J&#34;  &#34;M&#34;  &#34;P&#34; </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [2,] &#34;K&#34;  &#34;N&#34;  &#34;Q&#34; </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [3,] &#34;L&#34;  &#34;O&#34;  &#34;R&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">arr3</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">arr3</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;array&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -350,13 +368,19 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">arr2[1</span><span class="p">,</span><span class="m">3</span><span class="n">]</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;G&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="n">arr3[1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="n">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">arr3[1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="n">]</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;G&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -365,13 +389,19 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">arr2[7]</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;G&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="n">arr3[7]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">arr3[7]</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;G&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -381,15 +411,21 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># with the line below, we get the 1rst and 3rd elements because we&#39;re using a column vector</span>
 </span></span><span class="line"><span class="cl"><span class="n">arr2</span><span class="nf">[c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">)</span><span class="n">]</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;A&#34; &#34;C&#34;</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># whereas with a row vector, we obtain the element of the 1rst row and the 3rd column</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># whereas with a row vector, we obtain the element of the 1rst row and the 3rd column</span>
 </span></span><span class="line"><span class="cl"><span class="n">arr2</span><span class="nf">[t</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">))</span><span class="n">]</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;G&#34;</span>
 </span></span></code></pre></td></tr></table>
@@ -401,15 +437,21 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 </span><span class="lnt">2
 </span><span class="lnt">3
 </span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="p">(</span><span class="n">mat</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;       [,1] [,2]</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1,]    1    3</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [2,]    2    2</span>
-</span></span><span class="line"><span class="cl"><span class="n">arr2[mat]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">arr2[mat]</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;G&#34; &#34;E&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -423,8 +465,6 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 </span><span class="lnt">5
 </span><span class="lnt">6
 </span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Let us subset `E`,`C` and `O` and `C` (again)</span>
@@ -434,7 +474,15 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [2,]    3    1    1</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [3,]    3    2    2</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [4,]    3    1    1</span>
-</span></span><span class="line"><span class="cl"><span class="n">arr3[msub]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">arr3[msub]</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;E&#34; &#34;C&#34; &#34;O&#34; &#34;C&#34;</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -447,9 +495,6 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 </span><span class="lnt">4
 </span><span class="lnt">5
 </span><span class="lnt">6
-</span><span class="lnt">7
-</span><span class="lnt">8
-</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># this gives you the 1rst and 3rd **entire columns**</span>
@@ -458,7 +503,16 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  A  G</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  B  H</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  C  I</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># this still gives you the element on the 1rst row and the 3rd column</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># this still gives you the element on the 1rst row and the 3rd column</span>
 </span></span><span class="line"><span class="cl"><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">arr2</span><span class="p">)</span><span class="nf">[t</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">))</span><span class="n">]</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;G&#34;</span>
 </span></span></code></pre></td></tr></table>
@@ -482,15 +536,21 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">vec</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;insil&#34;</span><span class="p">,</span> <span class="s">&#34;eco&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="nf">nzchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1]  TRUE  TRUE FALSE</span>
-</span></span><span class="line"><span class="cl"><span class="c1"># is there any empty character string in `vec`?</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># is there any empty character string in `vec`?</span>
 </span></span><span class="line"><span class="cl"><span class="nf">any</span><span class="p">(</span><span class="nf">nzchar</span><span class="p">(</span><span class="n">vec</span><span class="p">))</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] TRUE</span>
 </span></span></code></pre></td></tr></table>
@@ -500,17 +560,29 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
-</span><span class="lnt">3
-</span><span class="lnt">4
-</span><span class="lnt">5
-</span><span class="lnt">6
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1]  TRUE  TRUE FALSE</span>
-</span></span><span class="line"><span class="cl"><span class="o">!!</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="o">!!</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1]  TRUE  TRUE FALSE</span>
-</span></span><span class="line"><span class="cl"><span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span> <span class="o">&amp;</span> <span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span> <span class="o">&amp;</span> <span class="m">1</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1]  TRUE  TRUE FALSE</span>
 </span></span></code></pre></td></tr></table>
 </div>
@@ -532,11 +604,11 @@ useful and underestimated. By the way, there are undoubtedly similar initiatives
 </span></span><span class="line"><span class="cl"><span class="nf">microbenchmark</span><span class="p">(</span><span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">,</span> <span class="o">!!</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">),</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span> <span class="o">&amp;</span> <span class="m">1</span><span class="p">,</span> <span class="nf">nzchar</span><span class="p">(</span><span class="n">vec</span><span class="p">),</span>
 </span></span><span class="line"><span class="cl">  <span class="n">times</span> <span class="o">=</span> <span class="m">1000L</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Unit: nanoseconds</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;             expr min  lq     mean median   uq   max neval</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &gt; 0 851 892  952.235    911  942 11572  1000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     !!nchar(vec) 912 962 1029.830    982 1032  8686  1000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &amp; 1 961 992 1059.882   1012 1082  3437  1000</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      nzchar(vec)  61  90  101.542     91  100   902  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;             expr min  lq     mean median     uq   max neval</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &gt; 0 841 891  940.927    902  942.0  1794  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     !!nchar(vec) 922 962 1022.010    981 1031.5  2144  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &amp; 1 952 992 1065.641   1002 1062.0 13255  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      nzchar(vec)  69  90  103.877     90  100.0  2094  1000</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>Yep yep!<code>nzchar()</code> is indeed way faster &#x1f680;!</p>
@@ -607,27 +679,23 @@ value of the last evaluated expression is returned.</p>
 </span></span><span class="line"><span class="cl"><span class="nf">microbenchmark</span><span class="p">(</span><span class="nf">foo</span><span class="p">(</span><span class="m">4</span><span class="p">),</span> <span class="nf">foo2</span><span class="p">(</span><span class="m">4</span><span class="p">),</span> <span class="n">times</span> <span class="o">=</span> <span class="m">1e5</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Unit: nanoseconds</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      expr min  lq     mean median  uq      max neval</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    foo(4) 410 431 509.2864    441 461  2826320 1e+05</span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   foo2(4) 310 331 607.0088    341 351 13372102 1e+05</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    foo(4) 410 431 594.3174    441 451  4410963 1e+05</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   foo2(4) 311 331 503.8451    341 351 13255111 1e+05</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="invisible"><code>invisible()</code></h2>
 <p>Let’s keep talking about what functions return. The function <code>invisible()</code> allows you to return an invisible copy of an object, meaning that nothing is (apparently) return if not assigned:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
-</span><span class="lnt"> 2
-</span><span class="lnt"> 3
-</span><span class="lnt"> 4
-</span><span class="lnt"> 5
-</span><span class="lnt"> 6
-</span><span class="lnt"> 7
-</span><span class="lnt"> 8
-</span><span class="lnt"> 9
-</span><span class="lnt">10
-</span><span class="lnt">11
-</span><span class="lnt">12
-</span><span class="lnt">13
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
 </span></code></pre></td>
 <td class="lntd">
 <pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">add_v</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
@@ -639,7 +707,17 @@ value of the last evaluated expression is returned.</p>
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span><span class="line"><span class="cl"><span class="nf">add_v</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 5</span>
-</span></span><span class="line"><span class="cl"><span class="nf">add_i</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">add_i</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">res</span> <span class="o">&lt;-</span> <span class="nf">add_i</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
 </span></span><span class="line"><span class="cl"><span class="n">res</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 5</span>
@@ -803,15 +881,15 @@ argument <code>env</code> (which can also be the name of a environment).</p>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.9        utf8_1.2.4        generics_0.1.3    xml2_1.3.6        blogdown_1.19    </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] stringi_1.8.4     httpcode_0.3.0    digest_0.6.35     magrittr_2.0.3    evaluate_0.23    </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] bookdown_0.39     fastmap_1.1.1     plyr_1.8.9        jsonlite_1.8.8    backports_1.4.1  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] bookdown_0.39     fastmap_1.2.0     plyr_1.8.9        jsonlite_1.8.8    backports_1.5.0  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] crul_1.4.2        promises_1.3.0    fansi_1.0.6       jquerylib_0.1.4   bibtex_0.5.1     </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.2         shiny_1.8.1.1     rlang_1.1.3       cachem_1.0.8      yaml_2.3.8       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] cli_3.6.2         shiny_1.8.1.1     rlang_1.1.4       cachem_1.1.0      yaml_2.3.8       </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] tools_4.4.0       dplyr_1.1.4       httpuv_1.6.15     DT_0.33           rcrossref_1.2.0  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] curl_5.2.1        vctrs_0.6.5       R6_2.5.1          mime_0.12         lifecycle_1.0.4  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] stringr_1.5.1     fs_1.6.4          htmlwidgets_1.6.4 miniUI_0.1.1.1    pkgconfig_2.0.3  </span>
 </span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] bslib_0.7.0       pillar_1.9.0      later_1.3.2       glue_1.7.0        Rcpp_1.0.12      </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] highr_0.10        xfun_0.43         tibble_3.2.1      tidyselect_1.2.1  knitr_1.46       </span>
-</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] xtable_1.8-4      htmltools_0.5.8.1 rmarkdown_2.26    compiler_4.4.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] highr_0.11        xfun_0.44         tibble_3.2.1      tidyselect_1.2.1  knitr_1.47       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] xtable_1.8-4      htmltools_0.5.8.1 rmarkdown_2.27    compiler_4.4.0</span>
 </span></span></code></pre></td></tr></table>
 </div>
 </div></details>
@@ -956,7 +1034,7 @@ argument <code>env</code> (which can also be the name of a environment).</p>
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 11 May 2024 00:42 UTC.
+      Latest build: 11 June 2024 00:46 UTC.
     </p>
 
   </div>
