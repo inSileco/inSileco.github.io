@@ -1,5 +1,4 @@
 baseurl = "https://insileco.github.io/"
-languageCode = "en-us"
 title = "inSileco"
 theme = "minimal"
 ignoreFiles = ["\\.Rmd$", "_cache$", "\\.Rmarkdown$", "\\.knit\\.md$", "\\.utf8\\.md$", "Rscript/sessionInfo\\.Rmd"]
@@ -9,6 +8,7 @@ math = false
 pygmentsUseClasses = false
 summaryLength = 25
 # relativeURLs = true
+
 
 [markup]
     [markup.goldmark]
@@ -22,6 +22,22 @@ summaryLength = 25
     [markup.tableOfContents]
         endLevel = 2
         startLevel = 2
+
+[languages]
+  [languages.en]
+    languageCode = "en-us"
+    languageName = "English"
+    weight = 1
+    [languages.en.params]
+        translationText = "Available translation: "
+        flag = ":uk:"
+  [languages.fr]
+    languageCode = "fr-ca"
+    languageName = "Français"
+    weight = 2
+    [languages.fr.params]
+        translationText = "Traduction disponible: "
+        flag = ":fr:"
 
 
 [permalinks]
@@ -56,7 +72,6 @@ summaryLength = 25
     url = "https://insileco.github.io/index.xml"
     name = "fas fa-rss"
     weight = 4
-
 
 [params]
     author = "inSileco"

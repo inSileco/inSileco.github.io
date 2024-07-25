@@ -18,10 +18,21 @@
                 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
             </h1>
 
-            <h4>
-                {{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}
-            </h4>
+            <h3>
+                {{ .Date | time.Format ":date_full" }}
+            </h3>
 
+            {{ if .Translations }}
+                <h4>
+                    {{ .Site.Params.translationText }}
+                    {{ range .Translations }}
+                        <a href="{{ .Permalink }}"> 
+                            {{ .Site.Params.flag | .RenderString }}
+                        </a>
+                    {{ end }}
+                </h4>
+            {{ end }}
+            
             <p>
                 <i class="fas fa-tags" aria-hidden="true"></i> &nbsp; {{ range .Params.tags }} <a
                     href="/tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}
@@ -143,7 +154,6 @@
         {{ partial "bottom" . }}
 
     </div>
-
 
 </div>
 </div>

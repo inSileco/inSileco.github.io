@@ -96,7 +96,7 @@ U/Linux
 ```
 
 During the installation process I was offline and I realized afterwards
-that I was not able to get the wifi working. So I plugged the computer on the Ethernet and found out that the Broadcom wireless driver was not properly installed. I solved this issue following this answer on [Stack Exchange]([wifi](https://askubuntu.com/questions/55868/installing-broadcom-wireless-drivers)). Then I installed a couple of freeware:
+that I was not able to get the wifi working. So I plugged the computer on the Ethernet and found out that the Broadcom wireless driver was not properly installed. I solved this issue following this answer on [Stack Exchange](https://askubuntu.com/questions/55868/installing-broadcom-wireless-drivers). Then I installed a couple of freeware:
 
 ```sh
 sudo apt install calibre inkscape gimp vlc xournal hugo pandoc pandoc-citeproc imagemagick ffmpeg inxi tree curl openssh-server pass

@@ -3,7 +3,19 @@
   {{ if eq .Type "post" }}
 
   <h1>
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a> <small>{{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}</small>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a> 
+    <small>
+      {{ .Date.Format (.Site.Params.dateFormat | default "January 2, 2006") }}
+    </small>
+    {{ if .Translations }}
+      {{ range .Translations }}
+      &nbsp; <small>
+      <a href="{{ .Permalink }}">
+        {{ .Site.Params.flag | .RenderString }}
+      </a>
+      </small>
+      {{ end }}
+    {{ end }}
   </h1>
 
   <p> <i class="fa fa-tags" aria-hidden="true"></i> {{ range .Params.tags }} <a href="/tags/{{ . | urlize }}"><kbd class="item-tag">{{ . }}</kbd></a> {{ end }}</p>
