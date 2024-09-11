@@ -52,7 +52,7 @@
 
 
 <script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
- <meta name="generator" content="Hugo 0.131.0">
+ <meta name="generator" content="Hugo 0.134.2">
         
 
         
@@ -379,22 +379,22 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><table>
-<thead>
-<tr>
-<th style="text-align:left"></th>
-<th style="text-align:right">P1</th>
-<th style="text-align:right">P2</th>
-<th style="text-align:right">P3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Distance from init:</td>
-<td style="text-align:right">5194.299 [m]</td>
-<td style="text-align:right">5696.479 [m]</td>
-<td style="text-align:right">7350.401 [m]</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left"></th>
+          <th style="text-align: right">P1</th>
+          <th style="text-align: right">P2</th>
+          <th style="text-align: right">P3</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Distance from init:</td>
+          <td style="text-align: right">5194.299 [m]</td>
+          <td style="text-align: right">5696.479 [m]</td>
+          <td style="text-align: right">7350.401 [m]</td>
+      </tr>
+  </tbody>
 </table>
 <p>Based on these results, P1 is the closest site to the initial location of Herbert implying that P1 could be the preferential site where he would migrate under the human perturbation scenario (where its initial position would not be available anymore). However, we know that Herbert, even if he is an awesome lobster, cannot go on land which is necessary to attain P1. So, we need to refine our analysis to take this into account.</p>
 <img src="https://insileco.github.io/2020/04/08/r-as-a-ruler-how-to-calculate-distances-between-geographical-objects/index_files/figure-html/plot2-1.png" width="672" style="display: block; margin: auto;" />
@@ -489,22 +489,22 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><table>
-<thead>
-<tr>
-<th style="text-align:left"></th>
-<th style="text-align:right">P1</th>
-<th style="text-align:right">P2</th>
-<th style="text-align:right">P3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Distance from init:</td>
-<td style="text-align:right">8543.394</td>
-<td style="text-align:right">5823.122</td>
-<td style="text-align:right">7798.219</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left"></th>
+          <th style="text-align: right">P1</th>
+          <th style="text-align: right">P2</th>
+          <th style="text-align: right">P3</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Distance from init:</td>
+          <td style="text-align: right">8543.394</td>
+          <td style="text-align: right">5823.122</td>
+          <td style="text-align: right">7798.219</td>
+      </tr>
+  </tbody>
 </table>
 <blockquote>
 <p><code>costDistance()</code> needs a conversion to <code>SpatialPoints</code> class, as the package has been created with <code>sp</code> objects.</p>
@@ -580,22 +580,22 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><table>
-<thead>
-<tr>
-<th style="text-align:left"></th>
-<th style="text-align:right">P1</th>
-<th style="text-align:right">P2</th>
-<th style="text-align:right">P3</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Distance from init:</td>
-<td style="text-align:right">5750</td>
-<td style="text-align:right">6500</td>
-<td style="text-align:right">7500</td>
-</tr>
-</tbody>
+  <thead>
+      <tr>
+          <th style="text-align: left"></th>
+          <th style="text-align: right">P1</th>
+          <th style="text-align: right">P2</th>
+          <th style="text-align: right">P3</th>
+      </tr>
+  </thead>
+  <tbody>
+      <tr>
+          <td style="text-align: left">Distance from init:</td>
+          <td style="text-align: right">5750</td>
+          <td style="text-align: right">6500</td>
+          <td style="text-align: right">7500</td>
+      </tr>
+  </tbody>
 </table>
 <p>You will notice that we find a comparable result from what we calculated previously with <code>gdistance</code> (P2 being the closest potential site), even if this is a bit further than the <code>gdistance</code> estimates. This is likely mostly because of the difference in resolution (and somewhat because of cell shape).</p>
 <p>If you are just calculating a handful of distances such as in this example, <code>gdistance</code> is probably faster. But if you are doing millions, <code>igraph</code> is typically more effective since much of the work is done &lsquo;upfront&rsquo; when you create the graph. It would also be possible to create an <code>igraph</code> network from a <code>gdistance</code> transition raster which would combine the best of both packages.</p>
@@ -843,7 +843,7 @@
       Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
       <a href="https://gohugo.io">Hugo</a>
       and <a href="https://github.com/calintat/minimal">Minimal</a> |
-      Latest build: 11 August 2024 00:54 UTC.
+      Latest build: 11 September 2024 00:51 UTC.
     </p>
 
   </div>
