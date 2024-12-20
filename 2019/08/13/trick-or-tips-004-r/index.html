@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <script data-goatcounter="https://insilecoblog.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Trick or tips 004 {R}</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Lato', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://insileco.github.io/css/main.css">
+
+
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">  <link rel="stylesheet" href="https://insileco.github.io/css/academicons.min.css">  <link rel="stylesheet" href="https://insileco.github.io/css/main.css">  <link rel="stylesheet" href="https://insileco.github.io/css/syntax.css"> 
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+ 
+
+
+
+ <script src="https://insileco.github.io/js/codecopypaste.js"></script> 
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.132.0">
+        
+
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="/css/academicons.min.css">
+
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/css/syntax.css">
+
+
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">Trick or tips 004 {R}</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                                <li><a href="/resource/">Resources</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="/"><i class="fas fa-home"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fab fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fas fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<img class="full-width banner" width="100%" src="/img/banner2.png"></img>
+
+<div class="container-fluid">
+<div class="row">
+
+    <div class="col-md-3 col-sm-3 hidden-xs">
+        <div class="toc">
+
+    <h2 style="padding-top: 0.5rem; padding-bottom: 0.25rem;">
+        <a href="#">
+            <i class='fas fa-chevron-up'></i>
+        </a>
+    </h2>
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#subset-an-array-with-a-matrix">Subset an array with a matrix</a></li>
+    <li><a href="#nzchar"><code>nzchar()</code></a></li>
+    <li><a href="#do-you-need-to-use-return">Do you need to use <code>return()</code>?</a></li>
+    <li><a href="#invisible"><code>invisible()</code></a></li>
+    <li><a href="#bquote-and-substitute"><code>bquote()</code> and <code>substitute()</code></a></li>
+  </ul>
+</nav>
+
+    <h2 style="margin-top: 0.25rem; padding-top: 0.5rem;">
+        <a href="#bottom">
+            <i class='fas fa-chevron-down'></i>
+        </a>
+    </h2>
+
+</div>
+    </div>
+
+    <div class="col-md-6 col-sm-9">
+
+        <div class="post-content">
+
+            <div id="post-content-header">
+            <h1>
+                <a href="/2019/08/13/trick-or-tips-004-r/">Trick or tips 004 {R}</a>
+            </h1>
+
+            <h4>
+                August 13, 2019
+            </h4>
+
+            <p>
+                <i class="fas fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                    href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a
+                    href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a
+                    href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> 
+                <br>
+                
+                    <img src="/img/Rlogo.svg" title="R logo" width="60px" style="margin: 1rem;"></img>
+                    &nbsp; 
+                     
+                        <a href="/rpkgs/base">
+                            <kbd class="item-tag2">base</kbd>
+                        </a> 
+                     
+                        <a href="/rpkgs/utils">
+                            <kbd class="item-tag2">utils</kbd>
+                        </a> 
+                     
+                        <a href="/rpkgs/graphics">
+                            <kbd class="item-tag2">graphics</kbd>
+                        </a> 
+                     
+                        <a href="/rpkgs/microbenchmark">
+                            <kbd class="item-tag2">microbenchmark</kbd>
+                        </a> 
+                    
+                
+            </p>
+
+            
+            <p style="font-size: 1.6em;"> 
+                <i class="fas fa-pencil-alt"></i>
+                
+                 
+                    
+                    <a href="/about/">Kevin Cazelles</a>
+                
+                <a href="#"></a>
+            </p>
+            
+
+            
+            <p> 
+                <i class="fas fa-check-square" title="Reviewer(s)"></i>
+                
+                 
+                    
+                    <a href="/about/">Marie-Hélène Brice</a>
+                
+                <a href="#"></a>
+            </p>
+            
+
+            <p id="badges">
+                
+                
+                
+                    <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=6min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                    &nbsp;
+                
+                
+                
+                
+                
+                    <a href="https://creativecommons.org/licenses/by/4.0/">
+                        <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                    </a>&nbsp;
+                
+                
+                
+                
+                
+                <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2019%2f08%2f13%2ftrick-or-tips-004-r%2f&text=Subset%20an%20array%20with%20a%20matrix%20and%204%20more%20R%20tips" target="_blank">
+                    <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2019%2f08%2f13%2ftrick-or-tips-004-r%2f?link=http://left&link=http://right}'>
+                </a>
+                
+
+                
+
+                <div class="visible-xs">
+                    <div class="toc">
+    
+        <h2>Table of Contents</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#subset-an-array-with-a-matrix">Subset an array with a matrix</a></li>
+    <li><a href="#nzchar"><code>nzchar()</code></a></li>
+    <li><a href="#do-you-need-to-use-return">Do you need to use <code>return()</code>?</a></li>
+    <li><a href="#invisible"><code>invisible()</code></a></li>
+    <li><a href="#bquote-and-substitute"><code>bquote()</code> and <code>substitute()</code></a></li>
+  </ul>
+</nav>
+    
+</div>
+                </div>
+
+            </p>
+            </div>
+
+
+            <div id="post-content-body" class="text-justify">
+
+                <div class="tricksortips">
+<b style="color:#3fb3b2; font-size:1.5em;">Trick or Tips <i class="fas fa-question-circle"></i></b>
+<p>Ever tumbled on a code chunk that made you say:
+"I should have known this f_<i class="fas fa-volume-mute"></i> piece of code long ago!"
+Chances are you have, frustratingly, just like we have, and on multiple occasions too.  In comes <b>Trick or Tips</b>!</p>
+
+<p><b>Trick or Tips</b> is a series of blog posts that each
+present 5 -- hopefully helpful -- coding tips for a specific programming
+language. Posts should be short (<em>i.e.</em> no more than 5 lines of code,
+max 80 characters per line, except when appropriate) and provide tips of
+many kind: a function, a way of combining of functions, a single argument,
+a note about the philosophy of the language and practical consequences,
+tricks to improve the way you code, good practices, etc.</p>
+
+<p>Note that while some tips might be obvious for careful documentation readers
+(God bless them for their wisdom), we do our best to present what we find very
+useful and underestimated. By the way, there are undoubtedly similar initiatives on the web (<em>e.g.</em>
+<a href = "https://twitter.com/RLangTip">"One R Tip a Day" Twitter account</a>). Last, feel free to comment below tip ideas or a post of code tips of your own which we will be happy to incorporate to our next post.</p>
+
+<p>Enjoy <i class="fa fa-smile-o"></i> and get ready to frustratingly appreciate our tips!</p>
+</div>
+
+<h2 id="subset-an-array-with-a-matrix">Subset an array with a matrix</h2>
+<p>Let’s consider two arrays of letters: the first has two dimensions (i.e. a matrix) and the second one has 3.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="p">(</span><span class="n">arr2</span> <span class="o">&lt;-</span> <span class="nf">array</span><span class="p">(</span><span class="kc">LETTERS</span><span class="n">[1</span><span class="o">:</span><span class="m">9</span><span class="n">]</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;       [,1] [,2] [,3]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1,] &#34;A&#34;  &#34;D&#34;  &#34;G&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [2,] &#34;B&#34;  &#34;E&#34;  &#34;H&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [3,] &#34;C&#34;  &#34;F&#34;  &#34;I&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">arr2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;matrix&#34; &#34;array&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">arr3</span> <span class="o">&lt;-</span> <span class="nf">array</span><span class="p">(</span><span class="kc">LETTERS</span><span class="n">[1</span><span class="o">:</span><span class="m">18</span><span class="n">]</span><span class="p">,</span> <span class="n">dim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">3</span><span class="p">,</span> <span class="m">2</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  , , 1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;       [,1] [,2] [,3]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1,] &#34;A&#34;  &#34;D&#34;  &#34;G&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [2,] &#34;B&#34;  &#34;E&#34;  &#34;H&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [3,] &#34;C&#34;  &#34;F&#34;  &#34;I&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  , , 2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;       [,1] [,2] [,3]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1,] &#34;J&#34;  &#34;M&#34;  &#34;P&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [2,] &#34;K&#34;  &#34;N&#34;  &#34;Q&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [3,] &#34;L&#34;  &#34;O&#34;  &#34;R&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">arr3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;array&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Let’s say, you need to subset a specific set of values based on the position of the elements. To subset a single element, say <code>&quot;G&quot;</code>, there are a couple of options, but I guess the most common approach is to use <code>[</code> with one value per dimension:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">arr2[1</span><span class="p">,</span><span class="m">3</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;G&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr3[1</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">1</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;G&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>or with a single value giving the position of the element:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">arr2[7]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;G&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr3[7]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;G&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Now we consider the case where you have a vector of positions (one value per dimension of the array), in this case, beware the orientation of the vector!</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># with the line below, we get the 1rst and 3rd elements because we&#39;re using a column vector</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr2</span><span class="nf">[c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">)</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;A&#34; &#34;C&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># whereas with a row vector, we obtain the element of the 1rst row and the 3rd column</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr2</span><span class="nf">[t</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">))</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;G&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>And for more than one element, you need to use a matrix with one row per element to be subset:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="p">(</span><span class="n">mat</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;       [,1] [,2]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1,]    1    3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [2,]    2    2</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr2[mat]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;G&#34; &#34;E&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Similarly, with an array of 3 dimensions, the matrix will have three columns and as many row as there are elements:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Let us subset `E`,`C` and `O` and `C` (again)</span>
+</span></span><span class="line"><span class="cl"><span class="p">(</span><span class="n">msub</span> <span class="o">&lt;-</span> <span class="nf">rbind</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">2</span><span class="p">,</span> <span class="m">2</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">1</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;       [,1] [,2] [,3]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1,]    2    2    1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [2,]    3    1    1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [3,]    3    2    2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [4,]    3    1    1</span>
+</span></span><span class="line"><span class="cl"><span class="n">arr3[msub]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;E&#34; &#34;C&#34; &#34;O&#34; &#34;C&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Two additional comments. First, we should always keep in mind that data frames and arrays are different:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># this gives you the 1rst and 3rd **entire columns**</span>
+</span></span><span class="line"><span class="cl"><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">arr2</span><span class="p">)</span><span class="nf">[c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">)</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    V1 V3</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  1  A  G</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  2  B  H</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  3  C  I</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># this still gives you the element on the 1rst row and the 3rd column</span>
+</span></span><span class="line"><span class="cl"><span class="nf">as.data.frame</span><span class="p">(</span><span class="n">arr2</span><span class="p">)</span><span class="nf">[t</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">))</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;G&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Second, if you are a <a href="https://www.tidyverse.org/">tidyverse</a> user, there is a new article dealing with <a href="https://tibble.tidyverse.org/dev/articles/subassign.html#section">subassigment with tibble</a> &#x1f60e;.</p>
+<h2 id="nzchar"><code>nzchar()</code></h2>
+<p>You may already be aware of <code>nchar()</code>, a function that returns the number of characters of a given character vector:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">nchar</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;insil&#34;</span><span class="p">,</span> <span class="s">&#34;eco&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 5 3 0</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>nzchar()</code> returns <code>TRUE</code> for every character string in the vector that has at least 1 character:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">vec</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;insil&#34;</span><span class="p">,</span> <span class="s">&#34;eco&#34;</span><span class="p">,</span> <span class="s">&#34;&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">nzchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1]  TRUE  TRUE FALSE</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># is there any empty character string in `vec`?</span>
+</span></span><span class="line"><span class="cl"><span class="nf">any</span><span class="p">(</span><span class="nf">nzchar</span><span class="p">(</span><span class="n">vec</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] TRUE</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Interesting, but let’s dig deeper: I can think about no less than 3 ways of writing a equivalent function with one more character:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1]  TRUE  TRUE FALSE</span>
+</span></span><span class="line"><span class="cl"><span class="o">!!</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1]  TRUE  TRUE FALSE</span>
+</span></span><span class="line"><span class="cl"><span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span> <span class="o">&amp;</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1]  TRUE  TRUE FALSE</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>One more character… so why bother? &#x1f4a1; It should be a matter of performance! Let’s check that out with the cool &#x1f4e6; <a href="https://cran.r-project.org/web/packages/microbenchmark/index.html">microbenchmark</a>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">microbenchmark</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">microbenchmark</span><span class="p">(</span><span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span> <span class="o">&gt;</span> <span class="m">0</span><span class="p">,</span> <span class="o">!!</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">),</span> <span class="nf">nchar</span><span class="p">(</span><span class="n">vec</span><span class="p">)</span> <span class="o">&amp;</span> <span class="m">1</span><span class="p">,</span> <span class="nf">nzchar</span><span class="p">(</span><span class="n">vec</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">times</span> <span class="o">=</span> <span class="m">1000L</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Unit: nanoseconds</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;             expr min  lq     mean median   uq  max neval</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &gt; 0 842 892  938.491    911  932 5631  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;     !!nchar(vec) 922 962 1005.029    981 1002 3777  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   nchar(vec) &amp; 1 942 982 1026.216   1002 1031 2194  1000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      nzchar(vec)  69  90   96.917     90  100 1533  1000</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Yep yep!<code>nzchar()</code> is indeed way faster &#x1f680;!</p>
+<h2 id="do-you-need-to-use-return">Do you need to use <code>return()</code>?</h2>
+<p>If you have already written your own function, you must have used <code>return()</code>
+to specify what your function should return. There are programming languages where this instruction is mandatory, not in R! Check out the documentation <code>?return</code>:</p>
+<blockquote>
+<p>If the end of a function is reached without calling ‘return’, the
+value of the last evaluated expression is returned.</p>
+</blockquote>
+<p>Let me write 2 functions:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">add_v</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">add_v2</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">   <span class="kr">return</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><code>add_v()</code> and <code>add_v2()</code> are equivalent! So… do we care? Well, you must bear in mind that whenever <code>return()</code> is encountered, the evaluation of the set of expressions within the function is stopped and therefore some time can be saved:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">foo</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">out</span> <span class="o">&lt;-</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="m">3</span><span class="p">)</span> <span class="n">out</span> <span class="o">&lt;-</span> <span class="m">3</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="m">2</span><span class="p">)</span> <span class="n">out</span> <span class="o">&lt;-</span> <span class="m">2</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="m">1</span><span class="p">)</span> <span class="n">out</span> <span class="o">&lt;-</span> <span class="m">1</span>
+</span></span><span class="line"><span class="cl">    <span class="kr">return</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="n">foo2</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">out</span> <span class="o">&lt;-</span> <span class="m">0</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="m">3</span><span class="p">)</span> <span class="kr">return</span><span class="p">(</span><span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="m">2</span><span class="p">)</span> <span class="kr">return</span><span class="p">(</span><span class="m">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">if</span> <span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="m">1</span><span class="p">)</span> <span class="kr">return</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="kr">return</span><span class="p">(</span><span class="n">out</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">microbenchmark</span><span class="p">(</span><span class="nf">foo</span><span class="p">(</span><span class="m">4</span><span class="p">),</span> <span class="nf">foo2</span><span class="p">(</span><span class="m">4</span><span class="p">),</span> <span class="n">times</span> <span class="o">=</span> <span class="m">1e5</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Unit: nanoseconds</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      expr min  lq     mean median  uq      max neval</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;    foo(4) 430 461 566.5423    461 472  3749391 1e+05</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   foo2(4) 310 341 511.5477    351 361 12611775 1e+05</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="invisible"><code>invisible()</code></h2>
+<p>Let’s keep talking about what functions return. The function <code>invisible()</code> allows you to return an invisible copy of an object, meaning that nothing is (apparently) return if not assigned:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">add_v</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="n">x</span> <span class="o">+</span> <span class="n">y</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="c1">##</span>
+</span></span><span class="line"><span class="cl"><span class="n">add_i</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">invisible</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">add_v</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 5</span>
+</span></span><span class="line"><span class="cl"><span class="nf">add_i</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">res</span> <span class="o">&lt;-</span> <span class="nf">add_i</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">res</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 5</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>But… why? As explained in the documentation (<code>?invisible</code>):</p>
+<blockquote>
+<p>This function can be useful when it is desired to have functions
+return values which can be assigned, but which do not print when
+they are not assigned.</p>
+</blockquote>
+<p>This is indeed helpful when you have a function that creates a plot (and you don’t normally to assign the result) for which you sometimes need to use an object that was created during the evaluation of the function:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">plot_logy</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># create ty</span>
+</span></span><span class="line"><span class="cl">  <span class="n">ty</span> <span class="o">&lt;-</span> <span class="nf">log10</span><span class="p">(</span><span class="n">y</span> <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">ty</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">invisible</span><span class="p">(</span><span class="n">ty</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot_logy</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="m">0</span><span class="o">:</span><span class="m">10</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/post/2019/trick_or_tips004_files/figure-html/unnamed-chunk-11-1.png" width="672" style="display: block; margin: auto;" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># get ty</span>
+</span></span><span class="line"><span class="cl"><span class="n">ty</span> <span class="o">&lt;-</span> <span class="nf">plot_logy</span><span class="p">(</span><span class="m">0</span><span class="o">:</span><span class="m">10</span><span class="p">,</span> <span class="m">0</span><span class="o">:</span><span class="m">10</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/post/2019/trick_or_tips004_files/figure-html/unnamed-chunk-12-1.png" width="672" style="display: block; margin: auto;" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">ty</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 0.0000000 0.3010300 0.4771213 0.6020600 0.6989700 0.7781513 0.8450980 0.9030900 0.9542425</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] 1.0000000 1.0413927</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="bquote-and-substitute"><code>bquote()</code> and <code>substitute()</code></h2>
+<p>When using mathematical annotations, we sometimes need to include the value
+of a variable. In such case, <code>bquote()</code> or <code>substitute()</code> are the functions you
+would need (rather than <code>expression()</code> you may already be familiar with).</p>
+<p>If you opt for <code>bquote()</code>, then variables to be evaluated must be put in
+brackets and preceded by a dot, e.g. <code>.(var)</code>. If you choose <code>substitute()</code>,
+then variables evaluated will be the ones included in the list passed as
+argument <code>env</code> (which can also be the name of a environment).</p>
+<p>Let’s use both functions in to add mathematical expressions in an empty plot:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">delta</span> <span class="o">&lt;-</span> <span class="m">1.5</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#34;n&#34;</span><span class="p">,</span> <span class="n">axes</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span> <span class="n">ann</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">text</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="m">.75</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nf">bquote</span><span class="p">(</span><span class="n">beta^j</span> <span class="o">==</span> <span class="n">.(delta</span><span class="p">)</span> <span class="o">+</span> <span class="nf">bold</span><span class="p">(</span><span class="s">&#34;h&#34;</span><span class="p">)),</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">text</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="m">.25</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="nf">substitute</span><span class="p">(</span><span class="n">alpha[i]</span> <span class="o">==</span> <span class="n">a</span> <span class="o">+</span> <span class="n">delta</span><span class="p">,</span> <span class="n">env</span> <span class="o">=</span> <span class="nf">list</span><span class="p">(</span><span class="n">a</span> <span class="o">=</span> <span class="m">2</span><span class="p">)),</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">box</span><span class="p">()</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/post/2019/trick_or_tips004_files/figure-html/bquote-1.png" width="768" style="display: block; margin: auto;" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">print</span><span class="p">(</span><span class="n">path_root</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;/home/runner/work/inSileco.github.io/inSileco.github.io&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="thats-all-folks"><strong>That’s all folks!</strong></h4>
+<div style="margin: 1.5rem 0rem 0.5rem 0rem;">
+<details>
+<summary>
+<i class="fas fa-cogs" aria-hidden="true"></i> Display information relative to the R session used to render this post.
+</summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.4.2 (2024-10-31)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.5 LTS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Matrix products: default</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  locale:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8        LC_COLLATE=C.UTF-8    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8    LC_PAPER=C.UTF-8       LC_NAME=C             </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] LC_ADDRESS=C           LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  time zone: UTC</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  tzcode source: system (glibc)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  attached base packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  other attached packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] microbenchmark_1.5.0 inSilecoRef_0.1.1   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.9        generics_0.1.3    xml2_1.3.6        blogdown_1.19     stringi_1.8.4    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] httpcode_0.3.0    digest_0.6.37     magrittr_2.0.3    evaluate_1.0.1    bookdown_0.41    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] fastmap_1.2.0     plyr_1.8.9        jsonlite_1.8.9    backports_1.5.0   crul_1.5.0       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] promises_1.3.2    bibtex_0.5.1      jquerylib_0.1.4   cli_3.6.3         shiny_1.10.0     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] rlang_1.1.4       cachem_1.1.0      yaml_2.3.10       tools_4.4.2       dplyr_1.1.4      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] httpuv_1.6.15     DT_0.33           rcrossref_1.2.0   curl_6.0.1        vctrs_0.6.5      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] R6_2.5.1          mime_0.12         lifecycle_1.0.4   stringr_1.5.1     fs_1.6.5         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] htmlwidgets_1.6.4 miniUI_0.1.1.1    pkgconfig_2.0.3   pillar_1.10.0     bslib_0.8.0      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] later_1.4.1       glue_1.8.0        Rcpp_1.0.13-1     xfun_0.49         tibble_3.2.1     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] tidyselect_1.2.1  knitr_1.49        xtable_1.8-4      htmltools_0.5.8.1 rmarkdown_2.29   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] compiler_4.4.2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+</div>
+
+
+                
+                    <div class="edits" style="margin-top: 2em; margin-bottom: 1em;">
+                        <h4><b><i class="fas fa-edit" aria-hidden="true"></i> Edits</b></h4>
+                        <p style="font-size: 1.5rem">
+                            
+                            <i class="fas fa-pencil-alt" aria-hidden="true"></i> Feb 6, 2023 -- Remove redundant headers. <br>
+                            
+                        </p>
+                    </div>
+                
+
+            </div>
+
+
+        </div>
+
+          <br>
+
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+  
+  
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2023/11/23/creating-a-monorepo-of-r-packages-with-github/">Creating a monorepo of R packages with GitHub</a> <small>November 23, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/github"><kbd class="item-tag">github</kbd></a>  <a href="/tags/github-actions"><kbd class="item-tag">github actions</kbd></a>  <a href="/tags/monorepo"><kbd class="item-tag">monorepo</kbd></a>  <a href="/tags/docker"><kbd class="item-tag">docker</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2023/08/25/a-few-thoughts-about-pipes-in-r/">A few thoughts about pipes in R</a> <small>August 25, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/pipe"><kbd class="item-tag">pipe</kbd></a>  <a href="/tags/internals"><kbd class="item-tag">internals</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2023/02/12/trick-or-tips-005-r/">Trick or Tips 005 {R}</a> <small>February 12, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+  
+
+  <script type="text/javascript" src="https://insileco.github.io/js/codecopypaste.js"></script>
+
+
+
+
+
+
+
+</div>
+
+
+    </div>
+
+
+</div>
+</div>
+
+<footer>
+
+  <hr>
+
+  <div class="col-md-3">
+
+    <a href="#" id="bottom"></a>
+
+  </div>
+
+  <div class="col-md-6">
+
+    <script src="//yihui.name/js/math-code.js"></script>
+    <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <p class="copyright text-muted" style="font-size: 1.6rem;">
+      &copy; 2017-2024 inSileco |
+      Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+      <a href="https://gohugo.io">Hugo</a>
+      and <a href="https://github.com/calintat/minimal">Minimal</a> |
+      Latest build: 20 December 2024 15:24 UTC.
+    </p>
+
+  </div>
+
+
+</footer>
+
+</body>
+
+</html>

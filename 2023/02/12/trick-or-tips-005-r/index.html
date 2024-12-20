@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <script data-goatcounter="https://insilecoblog.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Trick or Tips 005 {R}</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Lato', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://insileco.github.io/css/main.css">
+
+
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">  <link rel="stylesheet" href="https://insileco.github.io/css/academicons.min.css">  <link rel="stylesheet" href="https://insileco.github.io/css/main.css">  <link rel="stylesheet" href="https://insileco.github.io/css/syntax.css"> 
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+ 
+
+
+
+ <script src="https://insileco.github.io/js/codecopypaste.js"></script> 
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.132.0">
+        
+
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="/css/academicons.min.css">
+
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/css/syntax.css">
+
+
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">Trick or Tips 005 {R}</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                                <li><a href="/resource/">Resources</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="/"><i class="fas fa-home"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fab fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fas fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<img class="full-width banner" width="100%" src="/img/banner2.png"></img>
+
+<div class="container-fluid">
+<div class="row">
+
+    <div class="col-md-3 col-sm-3 hidden-xs">
+        <div class="toc">
+
+    <h2 style="padding-top: 0.5rem; padding-bottom: 0.25rem;">
+        <a href="#">
+            <i class='fas fa-chevron-up'></i>
+        </a>
+    </h2>
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#lastvalue"><code>.Last.value</code></a></li>
+    <li><a href="#libpaths-library-and-librarysite"><code>.libPaths()</code>, <code>.Library</code> and <code>.Library.site</code></a></li>
+    <li><a href="#platform"><code>.Platform</code></a></li>
+    <li><a href="#leapseconds"><code>.leap.seconds</code></a></li>
+    <li><a href="#machine"><code>.Machine</code></a></li>
+  </ul>
+</nav>
+
+    <h2 style="margin-top: 0.25rem; padding-top: 0.5rem;">
+        <a href="#bottom">
+            <i class='fas fa-chevron-down'></i>
+        </a>
+    </h2>
+
+</div>
+    </div>
+
+    <div class="col-md-6 col-sm-9">
+
+        <div class="post-content">
+
+            <div id="post-content-header">
+            <h1>
+                <a href="/2023/02/12/trick-or-tips-005-r/">Trick or Tips 005 {R}</a>
+            </h1>
+
+            <h4>
+                February 12, 2023
+            </h4>
+
+            <p>
+                <i class="fas fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                    href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a
+                    href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a
+                    href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> 
+                <br>
+                
+                    <img src="/img/Rlogo.svg" title="R logo" width="60px" style="margin: 1rem;"></img>
+                    &nbsp; 
+                     
+                        <a href="/rpkgs/base">
+                            <kbd class="item-tag2">base</kbd>
+                        </a> 
+                     
+                        <a href="/rpkgs/utils">
+                            <kbd class="item-tag2">utils</kbd>
+                        </a> 
+                     
+                        <a href="/rpkgs/graphics">
+                            <kbd class="item-tag2">graphics</kbd>
+                        </a> 
+                    
+                
+            </p>
+
+            
+            <p style="font-size: 1.6em;"> 
+                <i class="fas fa-pencil-alt"></i>
+                
+                 
+                    
+                    <a href="/about/">Kevin Cazelles</a>
+                
+                <a href="#"></a>
+            </p>
+            
+
+            
+
+            <p id="badges">
+                
+                
+                    <img src='https://img.shields.io/static/v1?style=flat&amp;label=inSileco&amp;message=underReview&amp;color=8555b4&amp;logo=%3cnil%3e'>
+                    &nbsp;
+                
+                
+                    <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=5min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                    &nbsp;
+                
+                
+                
+                
+                
+                    <a href="https://creativecommons.org/licenses/by/4.0/">
+                        <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                    </a>&nbsp;
+                
+                
+                
+                
+                
+                <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2023%2f02%2f12%2ftrick-or-tips-005-r%2f&text=Post%20%235%20of%20the%20%27Trick%20or%20Tips%27%20series" target="_blank">
+                    <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2023%2f02%2f12%2ftrick-or-tips-005-r%2f?link=http://left&link=http://right}'>
+                </a>
+                
+
+                
+
+                <div class="visible-xs">
+                    <div class="toc">
+    
+        <h2>Table of Contents</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#lastvalue"><code>.Last.value</code></a></li>
+    <li><a href="#libpaths-library-and-librarysite"><code>.libPaths()</code>, <code>.Library</code> and <code>.Library.site</code></a></li>
+    <li><a href="#platform"><code>.Platform</code></a></li>
+    <li><a href="#leapseconds"><code>.leap.seconds</code></a></li>
+    <li><a href="#machine"><code>.Machine</code></a></li>
+  </ul>
+</nav>
+    
+</div>
+                </div>
+
+            </p>
+            </div>
+
+
+            <div id="post-content-body" class="text-justify">
+
+                <div class="tricksortips">
+<b style="color:#3fb3b2; font-size:1.5em;">Trick or Tips <i class="fas fa-question-circle"></i></b>
+<p>Ever tumbled on a code chunk that made you say:
+"I should have known this f_<i class="fas fa-volume-mute"></i> piece of code long ago!"
+Chances are you have, frustratingly, just like we have, and on multiple occasions too.  In comes <b>Trick or Tips</b>!</p>
+
+<p><b>Trick or Tips</b> is a series of blog posts that each
+present 5 -- hopefully helpful -- coding tips for a specific programming
+language. Posts should be short (<em>i.e.</em> no more than 5 lines of code,
+max 80 characters per line, except when appropriate) and provide tips of
+many kind: a function, a way of combining of functions, a single argument,
+a note about the philosophy of the language and practical consequences,
+tricks to improve the way you code, good practices, etc.</p>
+
+<p>Note that while some tips might be obvious for careful documentation readers
+(God bless them for their wisdom), we do our best to present what we find very
+useful and underestimated. By the way, there are undoubtedly similar initiatives on the web (<em>e.g.</em>
+<a href = "https://twitter.com/RLangTip">"One R Tip a Day" Twitter account</a>). Last, feel free to comment below tip ideas or a post of code tips of your own which we will be happy to incorporate to our next post.</p>
+
+<p>Enjoy <i class="fa fa-smile-o"></i> and get ready to frustratingly appreciate our tips!</p>
+</div>
+
+<p>In this post, I comment on a few objects that are included in all R session and not very well known. I will start with what I think are the ones you will find the must useful and finish with objects that you are less likely to use!</p>
+<h2 id="lastvalue"><code>.Last.value</code></h2>
+<p>Have you already redone a computation because you forgot to assign the result
+to a variable. If you have, you will be pleased to know that you actually don’t need to! As explained in the documentation of <code>?.Last.value</code> (<code>?.Last.value</code>)</p>
+<blockquote>
+<p>The value of the internal evaluation of a top-level R expression
+is always assigned to ‘.Last.value’ (in ‘package:base’) before
+further processing (e.g., printing).</p>
+</blockquote>
+<p>Say you run the following</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">var1</span> <span class="o">&lt;-</span> <span class="m">23</span>
+</span></span><span class="line"><span class="cl"><span class="n">var1</span> <span class="o">+</span> <span class="m">12</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 35</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>and you realize afterwards that you forgot to assign the result, instead of redoing the computation, use <code>.Last.vaue</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">.Last.value</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] 35</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>and reassign it to your new variable like so</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">var2</span> <span class="o">&lt;-</span> <span class="n">.Last.value</span> 
+</span></span><span class="line"><span class="cl"><span class="n">var2</span> 
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] 35</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This is the equivalent of <code>ans</code> in other programming languages such as <a href="https://www.mathworks.com/products/matlab.html">Matllab</a> and <a href="https://julialang.org/">Julia</a>. By the way, in R Markdown, this will not work, because the last expression of a code chunk is not a top-level R expression (see <a href="https://stackoverflow.com/questions/31475226/using-last-value-in-rmarkdown-knitr)">https://stackoverflow.com/questions/31475226/using-last-value-in-rmarkdown-knitr)</a>, to overcome this in the example above, I simply copypasted the results from my R console &#x1f60f;.</p>
+<h2 id="libpaths-library-and-librarysite"><code>.libPaths()</code>, <code>.Library</code> and <code>.Library.site</code></h2>
+<p>You may have already asked yourself, where are packages installed in your computer? There are various ways to answer this question, one is to use <code>.libPaths()</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">.libPaths</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;/home/runner/work/_temp/Library&#34; &#34;/opt/R/4.4.2/lib/R/site-library&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [3] &#34;/opt/R/4.4.2/lib/R/library&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>As explained in the manual page (<code>?.libPaths</code>):</p>
+<blockquote>
+<p>‘.libPaths’ gets/sets the library trees within which packages are
+looked for.</p>
+</blockquote>
+<p>Let’s look at the first path and list all the files contained therein:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">lsf</span>  <span class="o">&lt;-</span> <span class="nf">list.files</span><span class="p">(</span><span class="nf">.libPaths</span><span class="p">()</span><span class="n">[1]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">length</span><span class="p">(</span><span class="n">lsf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 167</span>
+</span></span><span class="line"><span class="cl"><span class="n">lsf[1</span><span class="o">:</span><span class="m">10</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;_cache&#34;    &#34;animation&#34; &#34;askpass&#34;   &#34;backports&#34; &#34;base64enc&#34; &#34;bibtex&#34;    &#34;bit&#34;       &#34;bit64&#34;    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] &#34;blob&#34;      &#34;blogdown&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Good to know! So now let’s build a function to locate a given package.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">whereIs</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">pkg</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="n">out</span> <span class="o">&lt;-</span> <span class="nf">unlist</span><span class="p">(</span><span class="nf">lapply</span><span class="p">(</span><span class="nf">.libPaths</span><span class="p">(),</span> <span class="n">list.files</span><span class="p">,</span> <span class="n">full.names</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">     <span class="n">out</span><span class="nf">[grepl</span><span class="p">(</span><span class="nf">paste0</span><span class="p">(</span><span class="s">&#34;/&#34;</span><span class="p">,</span> <span class="n">pkg</span><span class="p">,</span> <span class="s">&#34;$&#34;</span><span class="p">),</span> <span class="n">out</span><span class="p">)</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">whereIs</span><span class="p">(</span><span class="s">&#34;rmarkdown&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;/home/runner/work/_temp/Library/rmarkdown&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Note that you may have the same package installed in different locations, which
+probably means that you installed it several times (different ways and/or different settings). In this case you should check whether you are using the right version of the package!</p>
+<p>Last point, if you look at the definition of <code>.libPaths()</code>, you can see that it uses two built-in vectors: <code>.Library</code>, the default library, and <code>.Library.site</code> that includes all the site libraries.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">.libPaths</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  function (new, include.site = TRUE) </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  {</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      if (!missing(new)) {</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;          new &lt;- Sys.glob(path.expand(new))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;          paths &lt;- c(new, if (include.site) .Library.site, .Library)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;          paths &lt;- paths[dir.exists(paths)]</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;          .lib.loc &lt;&lt;- unique(normalizePath(paths, &#34;/&#34;))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      }</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;      else .lib.loc</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  }</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  &lt;bytecode: 0x555a40f07af0&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  &lt;environment: 0x555a40f08dc0&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="n">.Library</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;/opt/R/4.4.2/lib/R/library&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="n">.Library.site</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;/opt/R/4.4.2/lib/R/site-library&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="platform"><code>.Platform</code></h2>
+<p>From <code>?.Platform</code></p>
+<blockquote>
+<p>‘.Platform’ is a list with some details of the platform under
+which R was built. This provides means to write OS-portable R
+code.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">.Platform</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $OS.type</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;unix&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $file.sep</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;/&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $dynlib.ext</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;.so&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $GUI</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;X11&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $endian</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;little&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $pkgType</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;source&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $path.sep</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;:&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $r_arch</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This list could be useful to help your function portable. The seven fields of the list are explained in the help of the function and here I will simply show you one example involving <code>$file.sep</code>. You may have already created a function (or part of a function) to concatenate files, basically doing something like this</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">my_paste</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="nf">paste</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="s">&#34;/&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">my_paste</span><span class="p">(</span><span class="s">&#34;here&#34;</span><span class="p">,</span> <span class="s">&#34;myfile.txt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;here/myfile.txt&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This will work in most cases, but with <code>.Platform</code> there is a simple way to make this portable:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">my_paste</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">file</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">     <span class="nf">paste</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">sep</span> <span class="o">=</span> <span class="n">.Platform</span><span class="o">$</span><span class="n">file.sep</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">my_paste</span><span class="p">(</span><span class="s">&#34;here&#34;</span><span class="p">,</span> <span class="s">&#34;myfile.txt&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;here/myfile.txt&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>That being said, I encourage you to use a function that was built, <code>file.path()</code> which actually uses <code>.Platform$sfile.sep</code> as a default.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">file.path</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  function (..., fsep = .Platform$file.sep) </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  .Internal(file.path(list(...), fsep))</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  &lt;bytecode: 0x555a40ea6a08&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  &lt;environment: namespace:base&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="leapseconds"><code>.leap.seconds</code></h2>
+<p>Leap years are very well known, <a href="https://en.wikipedia.org/wiki/Leap_second">leap seconds</a> maybe less so. Just as leap days, leap seconds are additional seconds added (though negative leap seconds are defined, and leap seconds are added at the same time worldwide) to mitigate the difference between <a href="https://en.wikipedia.org/wiki/International_Atomic_Time">International Atomic Time</a> and <a href="https://en.wikipedia.org/wiki/Coordinated_Universal_Time">Coordinated Universal Time or</a> due to the slowing of rotation of the Earth. In R, all the leap seconds that have ever been added are stored in <code>.leap.seconds</code>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">.leap.seconds</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;1972-07-01 GMT&#34; &#34;1973-01-01 GMT&#34; &#34;1974-01-01 GMT&#34; &#34;1975-01-01 GMT&#34; &#34;1976-01-01 GMT&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] &#34;1977-01-01 GMT&#34; &#34;1978-01-01 GMT&#34; &#34;1979-01-01 GMT&#34; &#34;1980-01-01 GMT&#34; &#34;1981-07-01 GMT&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] &#34;1982-07-01 GMT&#34; &#34;1983-07-01 GMT&#34; &#34;1985-07-01 GMT&#34; &#34;1988-01-01 GMT&#34; &#34;1990-01-01 GMT&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] &#34;1991-01-01 GMT&#34; &#34;1992-07-01 GMT&#34; &#34;1993-07-01 GMT&#34; &#34;1994-07-01 GMT&#34; &#34;1996-01-01 GMT&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] &#34;1997-07-01 GMT&#34; &#34;1999-01-01 GMT&#34; &#34;2006-01-01 GMT&#34; &#34;2009-01-01 GMT&#34; &#34;2012-07-01 GMT&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] &#34;2015-07-01 GMT&#34; &#34;2017-01-01 GMT&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># in seconds since Unix epoch (Thursday 1 January 1970 00:00:00 UT)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">format</span><span class="p">(</span><span class="n">.leap.seconds</span><span class="p">,</span> <span class="s">&#34;%s&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] &#34;78796800&#34;   &#34;94694400&#34;   &#34;126230400&#34;  &#34;157766400&#34;  &#34;189302400&#34;  &#34;220924800&#34;  &#34;252460800&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [8] &#34;283996800&#34;  &#34;315532800&#34;  &#34;362793600&#34;  &#34;394329600&#34;  &#34;425865600&#34;  &#34;489024000&#34;  &#34;567993600&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [15] &#34;631152000&#34;  &#34;662688000&#34;  &#34;709948800&#34;  &#34;741484800&#34;  &#34;773020800&#34;  &#34;820454400&#34;  &#34;867715200&#34; </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] &#34;915148800&#34;  &#34;1136073600&#34; &#34;1230768000&#34; &#34;1341100800&#34; &#34;1435708800&#34; &#34;1483228800&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>What happened when a leap second is added? A Leap second is basically an extra second between 23h59m59s (either June 30th or December 31st) and 00h00m00s the next day (<a href="https://www.ietf.org/timezones/data/leap-seconds.list)">https://www.ietf.org/timezones/data/leap-seconds.list)</a>. In practice for most system 23.59.59 is repeated twice (see <a href="https://access.redhat.com/articles/15145)">https://access.redhat.com/articles/15145)</a>. I very doubt you will ever need to use <code>.leap.seconds</code> but it remains a fun fact to know.</p>
+<h2 id="machine"><code>.Machine</code></h2>
+<p>Lastly let’s have a look at <code>.Machine</code>. According to its documentation</p>
+<blockquote>
+<p>‘.Machine’ is a variable holding information on the numerical
+characteristics of the machine R is running on, such as the
+largest double or integer and the machine’s precision.</p>
+</blockquote>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># have a look at the sessionInfo() at the end of the post to know what </span>
+</span></span><span class="line"><span class="cl"><span class="c1"># system was use</span>
+</span></span><span class="line"><span class="cl"><span class="n">.Machine</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $double.eps</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 2.220446e-16</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $double.neg.eps</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 1.110223e-16</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $double.xmin</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 2.225074e-308</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $double.xmax</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 1.797693e+308</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $double.base</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 2</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $double.digits</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 53</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $double.rounding</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $double.guard</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $double.ulp.digits</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] -52</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $double.neg.ulp.digits</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] -53</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $double.exponent</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 11</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $double.min.exp</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] -1022</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $double.max.exp</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 1024</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $integer.max</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 2147483647</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $sizeof.long</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 8</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $sizeof.longlong</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 8</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $sizeof.longdouble</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 16</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $sizeof.pointer</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 8</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $sizeof.time_t</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 8</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $longdouble.eps</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 1.084202e-19</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $longdouble.neg.eps</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 5.421011e-20</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $longdouble.digits</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 64</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $longdouble.rounding</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 5</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $longdouble.guard</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $longdouble.ulp.digits</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] -63</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $longdouble.neg.ulp.digits</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] -64</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $longdouble.exponent</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 15</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $longdouble.min.exp</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] -16382</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  $longdouble.max.exp</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 16384</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>This vector gives you various details about the precision of your computer. Here I will use <code>$integer.max</code> to trigger an <a href="https://en.wikipedia.org/wiki/Integer_overflow">integer overflow</a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">as.integer</span><span class="p">(</span><span class="n">.Machine</span><span class="o">$</span><span class="n">integer.max</span><span class="p">)</span> <span class="o">+</span> <span class="m">1L</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Warning in as.integer(.Machine$integer.max) + 1L: NAs produced by integer overflow</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] NA</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>I have used <code>1L</code> to force 1 to be an integer, otherwise this will be converted to a double and I won’t get the error.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">typeof</span><span class="p">(</span><span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;double&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">typeof</span><span class="p">(</span><span class="m">1L</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;integer&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">typeof</span><span class="p">(</span><span class="nf">as.integer</span><span class="p">(</span><span class="n">.Machine</span><span class="o">$</span><span class="n">integer.max</span><span class="p">)</span> <span class="o">+</span> <span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;double&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>The integer overflow here is harmless but believe me, it can be very nasty, for instance when this happens for the primary key of an important database, or even worse when in happens in a plane of a space rocket, as delineated in the BBC’ article <a href="https://www.bbc.com/future/article/20150505-the-numbers-that-lead-to-disaster"><em>The number glitch that can lead to catastrophe</em></a>)!</p>
+<div style="margin: 1.5rem 0rem 0.5rem 0rem;">
+<details>
+<summary>
+<i class="fas fa-cogs" aria-hidden="true"></i> Display information relative to the R session used to render this post.
+</summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.4.2 (2024-10-31)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.5 LTS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Matrix products: default</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  locale:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8        LC_COLLATE=C.UTF-8    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8    LC_PAPER=C.UTF-8       LC_NAME=C             </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] LC_ADDRESS=C           LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  time zone: UTC</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  tzcode source: system (glibc)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  attached base packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  other attached packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoRef_0.1.1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.9        generics_0.1.3    xml2_1.3.6        blogdown_1.19     stringi_1.8.4    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [6] httpcode_0.3.0    digest_0.6.37     magrittr_2.0.3    evaluate_1.0.1    bookdown_0.41    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [11] fastmap_1.2.0     plyr_1.8.9        jsonlite_1.8.9    backports_1.5.0   crul_1.5.0       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] promises_1.3.2    bibtex_0.5.1      jquerylib_0.1.4   cli_3.6.3         shiny_1.10.0     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [21] rlang_1.1.4       cachem_1.1.0      yaml_2.3.10       tools_4.4.2       dplyr_1.1.4      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [26] httpuv_1.6.15     DT_0.33           rcrossref_1.2.0   curl_6.0.1        vctrs_0.6.5      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] R6_2.5.1          mime_0.12         lifecycle_1.0.4   stringr_1.5.1     fs_1.6.5         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [36] htmlwidgets_1.6.4 miniUI_0.1.1.1    pkgconfig_2.0.3   pillar_1.10.0     bslib_0.8.0      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [41] later_1.4.1       glue_1.8.0        Rcpp_1.0.13-1     systemfonts_1.1.0 xfun_0.49        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] tibble_3.2.1      tidyselect_1.2.1  knitr_1.49        xtable_1.8-4      htmltools_0.5.8.1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [51] svglite_2.1.3     rmarkdown_2.29    compiler_4.4.2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+</div>
+
+
+                
+
+            </div>
+
+
+        </div>
+
+          <br>
+
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+  
+  
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2023/11/23/creating-a-monorepo-of-r-packages-with-github/">Creating a monorepo of R packages with GitHub</a> <small>November 23, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/github"><kbd class="item-tag">github</kbd></a>  <a href="/tags/github-actions"><kbd class="item-tag">github actions</kbd></a>  <a href="/tags/monorepo"><kbd class="item-tag">monorepo</kbd></a>  <a href="/tags/docker"><kbd class="item-tag">docker</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2023/08/25/a-few-thoughts-about-pipes-in-r/">A few thoughts about pipes in R</a> <small>August 25, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/pipe"><kbd class="item-tag">pipe</kbd></a>  <a href="/tags/internals"><kbd class="item-tag">internals</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2020/08/29/custom-tick-marks-with-rs-base-graphics-system/">Custom tick marks with R&#39;s base graphics system</a> <small>August 29, 2020</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/ticks"><kbd class="item-tag">ticks</kbd></a>  <a href="/tags/axes"><kbd class="item-tag">axes</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+  
+
+  <script type="text/javascript" src="https://insileco.github.io/js/codecopypaste.js"></script>
+
+
+
+
+
+
+
+</div>
+
+
+    </div>
+
+
+</div>
+</div>
+
+<footer>
+
+  <hr>
+
+  <div class="col-md-3">
+
+    <a href="#" id="bottom"></a>
+
+  </div>
+
+  <div class="col-md-6">
+
+    <script src="//yihui.name/js/math-code.js"></script>
+    <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <p class="copyright text-muted" style="font-size: 1.6rem;">
+      &copy; 2017-2024 inSileco |
+      Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+      <a href="https://gohugo.io">Hugo</a>
+      and <a href="https://github.com/calintat/minimal">Minimal</a> |
+      Latest build: 20 December 2024 15:24 UTC.
+    </p>
+
+  </div>
+
+
+</footer>
+
+</body>
+
+</html>

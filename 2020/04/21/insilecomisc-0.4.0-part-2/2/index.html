@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <script data-goatcounter="https://insilecoblog.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>inSilecoMisc 0.4.0 (part 2/2)</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Lato', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://insileco.github.io/css/main.css">
+
+
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">  <link rel="stylesheet" href="https://insileco.github.io/css/academicons.min.css">  <link rel="stylesheet" href="https://insileco.github.io/css/main.css">  <link rel="stylesheet" href="https://insileco.github.io/css/syntax.css"> 
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+ 
+
+
+
+ <script src="https://insileco.github.io/js/codecopypaste.js"></script> 
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.132.0">
+        
+
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="/css/academicons.min.css">
+
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/css/syntax.css">
+
+
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">inSilecoMisc 0.4.0 (part 2/2)</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                                <li><a href="/resource/">Resources</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="/"><i class="fas fa-home"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fab fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fas fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<img class="full-width banner" width="100%" src="/img/banner2.png"></img>
+
+<div class="container-fluid">
+<div class="row">
+
+    <div class="col-md-3 col-sm-3 hidden-xs">
+        <div class="toc">
+
+    <h2 style="padding-top: 0.5rem; padding-bottom: 0.25rem;">
+        <a href="#">
+            <i class='fas fa-chevron-up'></i>
+        </a>
+    </h2>
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#scalewithin">scaleWithin()</a></li>
+    <li><a href="#messages">Messages</a></li>
+    <li><a href="#tbldown">tblDown()</a></li>
+  </ul>
+</nav>
+
+    <h2 style="margin-top: 0.25rem; padding-top: 0.5rem;">
+        <a href="#bottom">
+            <i class='fas fa-chevron-down'></i>
+        </a>
+    </h2>
+
+</div>
+    </div>
+
+    <div class="col-md-6 col-sm-9">
+
+        <div class="post-content">
+
+            <div id="post-content-header">
+            <h1>
+                <a href="/2020/04/21/insilecomisc-0.4.0-part-2/2/">inSilecoMisc 0.4.0 (part 2/2)</a>
+            </h1>
+
+            <h4>
+                April 21, 2020
+            </h4>
+
+            <p>
+                <i class="fas fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                    href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a
+                    href="/tags/package"><kbd class="item-tag">package</kbd></a>  <a
+                    href="/tags/development"><kbd class="item-tag">development</kbd></a>  <a
+                    href="/tags/insilecomisc"><kbd class="item-tag">inSilecoMisc</kbd></a> 
+                <br>
+                
+            </p>
+
+            
+            <p style="font-size: 1.6em;"> 
+                <i class="fas fa-pencil-alt"></i>
+                
+                 
+                    
+                    <a href="/about/">Kevin Cazelles</a>
+                
+                <a href="#"></a>
+            </p>
+            
+
+            
+            <p> 
+                <i class="fas fa-check-square" title="Reviewer(s)"></i>
+                
+                 
+                    
+                    <a href="/about/">David Beauchesne</a>
+                
+                <a href="#"></a>
+            </p>
+            
+
+            <p id="badges">
+                
+                
+                
+                    <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=7min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                    &nbsp;
+                
+                
+                
+                    <a href="/r-bloggers">
+                        <img src="https://img.shields.io/static/v1?style=flat&label=shared on&message=R-bloggers&logo=rss&color=6d4f5b">
+                    <a>&nbsp;
+                
+                
+                
+                    <a href="https://creativecommons.org/licenses/by/4.0/">
+                        <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                    </a>&nbsp;
+                
+                
+                
+                
+                
+                <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f21%2finsilecomisc-0.4.0-part-2%2f2%2f&text=inSilecoMisc%200.4.0%20%28part%202%2f2%29" target="_blank">
+                    <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2020%2f04%2f21%2finsilecomisc-0.4.0-part-2%2f2%2f?link=http://left&link=http://right}'>
+                </a>
+                
+
+                
+
+                <div class="visible-xs">
+                    <div class="toc">
+    
+        <h2>Table of Contents</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#scalewithin">scaleWithin()</a></li>
+    <li><a href="#messages">Messages</a></li>
+    <li><a href="#tbldown">tblDown()</a></li>
+  </ul>
+</nav>
+    
+</div>
+                </div>
+
+            </p>
+            </div>
+
+
+            <div id="post-content-body" class="text-justify">
+
+                <p>In the <a href="/2020/04/05/insilecomisc-0.4.0-part-1/2/">first part of this post</a> I
+introduced several functions available in the package <a href="https://github.com/inSileco/inSilecoMisc"><code>inSilecoMisc</code></a>. In this post, I keep on introducing features of the package you
+might find useful! If you did not read the first part of this post and are
+interested in reproducing the examples below, simply install <code>inSilecoMisc</code>:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Run if package is not already installed</span>
+</span></span><span class="line"><span class="cl"><span class="nf">install.packages</span><span class="p">(</span><span class="s">&#34;remotes&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">remotes</span><span class="o">::</span><span class="nf">install_github</span><span class="p">(</span><span class="s">&#34;inSileco/inSilecoMisc&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Load it:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="s">&#34;inSilecoMisc&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">packageVersion</span><span class="p">(</span><span class="s">&#34;inSilecoMisc&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#39;0.7.0.9000&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>and you’re good to go!</p>
+<h2 id="scalewithin">scaleWithin()</h2>
+<p>I wrote <a href="https://insileco.github.io/inSilecoMisc/reference/scaleWithin.html"><code>scaleWithin()</code></a> to handle color scales for a specific yet frequent situation. Let us say that I have 40 percentage values – meaning 0 to 100 – in a vector <code>val</code>…</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">val</span> <span class="o">&lt;-</span> <span class="nf">runif</span><span class="p">(</span><span class="m">40</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">val</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 68.769632 61.909145 40.130396 75.209055 29.304726 75.496200 65.703511 81.040718 83.298226</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] 46.585156 58.542083 27.997012 57.195533 73.931296 84.219042  5.912050 59.965784 48.295419</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] 54.812361 99.671527 14.682658 89.766555 72.360957 25.820774 55.168746 16.182854 65.406909</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] 43.518002 35.237033 69.417899 54.640679 42.417055 35.295167  9.215586 66.947304 64.070451</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] 63.276888 95.075320 41.570277 86.932384</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>… <strong>and</strong> that I wish to create a color scale with 25 tones. I use <a href="http://insileco.github.io/graphicsutils/reference/showPalette.html"><code>showPalette()</code></a> to show the color palette:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">pal</span> <span class="o">&lt;-</span> <span class="nf">colorRampPalette</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="s">&#34;#f9fa98&#34;</span><span class="p">,</span> <span class="s">&#34;#500127&#34;</span><span class="p">))(</span><span class="m">25</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">graphicsutils</span><span class="o">::</span><span class="nf">showPalette</span><span class="p">(</span><span class="n">pal</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-3-1.png" width="672" style="display: block; margin: auto;" />
+<p><strong>But</strong> the color scale should be used for the range [30%-70%], meaning that values below 30% should have the lowest values and values above 70%, the highest one. The caption should thus indicate <code>\(\geqslant\)</code> 30% and <code>\(\leqslant\)</code> 70%. Then the function <code>scaleWithin()</code> is very handy!</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] 25 20  7 25  1 25 23 25 25 11 18  1 17 25 25  1 19 12 16 25  1 25 25  1 16  1 23  9  4 25 16  8</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [33]  4  1 24 22 21 25  8 25</span>
+</span></span><span class="line"><span class="cl"><span class="n">graphicsutils</span><span class="o">::</span><span class="nf">showPalette</span><span class="p">(</span><span class="n">pal</span><span class="nf">[scaleWithin</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="n">n</span> <span class="o">=</span> <span class="m">25</span><span class="p">,</span> <span class="n">mn</span> <span class="o">=</span> <span class="m">30</span><span class="p">,</span> <span class="n">mx</span> <span class="o">=</span> <span class="m">70</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">add_codecolor</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="https://insileco.github.io/2020/04/21/insilecomisc-0.4.0-part-2/2/index_files/figure-html/unnamed-chunk-4-1.png" width="672" style="display: block; margin: auto;" />
+<p>Even though this function is pretty useful – at least I think it is! – I had a
+lot of trouble conveying why! So, in the last version of <code>inSilecoMisc</code>, I
+re-wrote the entire documentation and I hope that, together with this example,
+others will, as I so, find it useful.</p>
+<h2 id="messages">Messages</h2>
+<p>Daily, I <strong>use</strong> R packages and R functions to analyze data, create
+model, run simulations, and a number of other things! So I write scripts that combine functions from
+various packages to create pipelines that do the analyses I need. When running
+such scripts, I like having information reported on a clear and visual way, that is why I value packages such as
+<a href="https://CRAN.R-project.org/package=progress"><code>progress</code></a>, <a href="https://CRAN.R-project.org/package=crayon"><code>crayon</code></a> and <a href="https://CRAN.R-project.org/package=cli"><code>cli</code></a>. In
+<code>inSilecoMisc</code>, inspired by messages reported by <a href="https://CRAN.R-project.org/package=devtools"><code>devtools</code></a> when
+building a package, I created four simple message functions using <a href="https://CRAN.R-project.org/package=crayon"><code>crayon</code></a> and <a href="https://CRAN.R-project.org/package=cli"><code>cli</code></a> packages to standardize messages in my scripts.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 1. msgInfo() indicates what the upcoming computation</span>
+</span></span><span class="line"><span class="cl"><span class="nf">msgInfo</span><span class="p">(</span><span class="s">&#34;this is what&#39;s gonna happen next&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  ℹ this is what&#39;s gonna happen next</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 2. msgWarning() reminds me something important that should not affect the run</span>
+</span></span><span class="line"><span class="cl"><span class="nf">msgWarning</span><span class="p">(</span><span class="s">&#34;Got to be careful&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  ⚠ Got to be careful</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 3. msgError() when something went wrong (and I anticipated that it could happen)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">msgError</span><span class="p">(</span><span class="s">&#34;Something wrong&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  ✖ Something wrong</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># 4. msgSuccess() when a step/ a computation has been successfully completed</span>
+</span></span><span class="line"><span class="cl"><span class="nf">msgSuccess</span><span class="p">(</span><span class="s">&#34;All good&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  ✔ All good</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>These functions help me structure my scripts. Here is a contrived example:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">scr_min</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">()</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># msgInfo() lets me know where I am in the script</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">msgInfo</span><span class="p">(</span><span class="s">&#34;Average random values&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">set.seed</span><span class="p">(</span><span class="m">111</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="n">out</span> <span class="o">&lt;-</span> <span class="nf">mean</span><span class="p">(</span><span class="nf">runif</span><span class="p">(</span><span class="m">100</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">msgSuccess</span><span class="p">(</span><span class="s">&#34;Done!&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># msgSuccess() indicates the successful completion of this part</span>
+</span></span><span class="line"><span class="cl">  <span class="n">out</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="nf">scr_min</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  ℹ Average random values</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  ✔ Done!</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 0.4895239</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Another helpful aspect of these functions is that they all are based on <code>message()</code>. As such, if I want to execute a script quietly, all I need to do is to call <code>suppressMessages()</code> beforehand</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># quiet run</span>
+</span></span><span class="line"><span class="cl"><span class="nf">suppressMessages</span><span class="p">(</span><span class="nf">scr_min</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] 0.4895239</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>If you want to see an example of how I use these functions in a script for a scientific manuscript,
+check out the research compendium
+<a href="https://github.com/TheoreticalEcosystemEcology/coocNotInteract">coocNotInteract</a>.</p>
+<h2 id="tbldown">tblDown()</h2>
+<p>Last but not least, I’d like to introduce a function to quickly write table data
+frame (or a list of data frames) in documents of various formats. I created
+<a href="https://insileco.github.io/inSilecoMisc/reference/tblDownn.html"><code>tblDown()</code></a>
+for a colleague of mine that was looking for a quick way to export a table. In
+the package <a href="https://CRAN.R-project.org/package=knitr"><code>knitr</code></a>, there is the very handy function <code>kable()</code>
+that quickly writes a data frame in various formats.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">knitr</span><span class="o">::</span><span class="nf">kable</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">CO2</span><span class="p">))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table>
+<thead>
+<tr>
+<th style="text-align:left">Plant</th>
+<th style="text-align:left">Type</th>
+<th style="text-align:left">Treatment</th>
+<th style="text-align:right">conc</th>
+<th style="text-align:right">uptake</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Qn1</td>
+<td style="text-align:left">Quebec</td>
+<td style="text-align:left">nonchilled</td>
+<td style="text-align:right">95</td>
+<td style="text-align:right">16.0</td>
+</tr>
+<tr>
+<td style="text-align:left">Qn1</td>
+<td style="text-align:left">Quebec</td>
+<td style="text-align:left">nonchilled</td>
+<td style="text-align:right">175</td>
+<td style="text-align:right">30.4</td>
+</tr>
+<tr>
+<td style="text-align:left">Qn1</td>
+<td style="text-align:left">Quebec</td>
+<td style="text-align:left">nonchilled</td>
+<td style="text-align:right">250</td>
+<td style="text-align:right">34.8</td>
+</tr>
+<tr>
+<td style="text-align:left">Qn1</td>
+<td style="text-align:left">Quebec</td>
+<td style="text-align:left">nonchilled</td>
+<td style="text-align:right">350</td>
+<td style="text-align:right">37.2</td>
+</tr>
+<tr>
+<td style="text-align:left">Qn1</td>
+<td style="text-align:left">Quebec</td>
+<td style="text-align:left">nonchilled</td>
+<td style="text-align:right">500</td>
+<td style="text-align:right">35.3</td>
+</tr>
+<tr>
+<td style="text-align:left">Qn1</td>
+<td style="text-align:left">Quebec</td>
+<td style="text-align:left">nonchilled</td>
+<td style="text-align:right">675</td>
+<td style="text-align:right">39.2</td>
+</tr>
+</tbody>
+</table>
+<p>I wrote a function that calls <code>kable()</code> to write the data frame
+and then renders the table(s) in the
+desired format indicated by the extension of the output file (<code>docx</code> by
+default) using <a href="https://pandoc.org/">pandoc</a>.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># NB tblDown(head(CO2)) returns table.docx by default</span>
+</span></span><span class="line"><span class="cl"><span class="nf">tblDown</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">CO2</span><span class="p">),</span> <span class="n">output_file</span> <span class="o">=</span> <span class="s">&#34;table.odt&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><center>
+  <figure>
+    <img class="mg-bot" src="/2020/04/21/insilecomisc-0.4.0-part-2/2/table_odt.png" alt="table_odt.png (screenshot)" width="90%%" >
+    <figcaption>
+      <i class="fas fa-info-circle" aria-hidden="true"></i>
+      table_odt.png (screenshot)
+    </figcaption>
+  </figure>
+</center>
+<p>As I mentioned above <code>tblDown()</code> handles lists of data frames and the user can also provide a set of captions for every table and even separate them with section headers (of level 1).</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">tblDown</span><span class="p">(</span><span class="nf">list</span><span class="p">(</span><span class="nf">head</span><span class="p">(</span><span class="n">CO2</span><span class="p">),</span> <span class="nf">tail</span><span class="p">(</span><span class="n">CO2</span><span class="p">)),</span> <span class="n">output_file</span> <span class="o">=</span> <span class="s">&#34;tables.pdf&#34;</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">  <span class="n">caption</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;This is the head of CO2&#34;</span><span class="p">,</span> <span class="s">&#34;This is the tail of CO2&#34;</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">  <span class="n">section</span> <span class="o">=</span> <span class="s">&#34;Table&#34;</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Check out the output file &#x27a1;&#xfe0f; <a href="tables.pdf"><i class="fa
+fa-file-pdf-o"></i></a>! Note that in the example above I only use one
+character string for <code>section</code> and <code>tblDown()</code> has appended an index; this is
+also the default behavior for <code>caption</code>: if there are less captions
+or sections titles than data frames, vectors of captions (and/or sections) are repeated and an index is appended.</p>
+<p>If you are already writing your documents with <a href="https://rmarkdown.rstudio.com/">R
+Markdown</a>, you may not need this. Yet keep in mind that
+<code>tblDown()</code> quickly exports tables in various formats with only one line of
+command!</p>
+<h4 id="thats-all-folks-tada">That’s all folks &#x1f389;!</h4>
+<div style="margin: 1.5rem 0rem 0.5rem 0rem;">
+<details>
+<summary>
+<i class="fas fa-cogs" aria-hidden="true"></i> Display information relative to the R session used to render this post.
+</summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  R version 4.4.2 (2024-10-31)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Platform: x86_64-pc-linux-gnu</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Running under: Ubuntu 22.04.5 LTS</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  Matrix products: default</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  LAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/libopenblasp-r0.3.20.so;  LAPACK version 3.10.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  locale:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] LC_CTYPE=C.UTF-8       LC_NUMERIC=C           LC_TIME=C.UTF-8        LC_COLLATE=C.UTF-8    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [5] LC_MONETARY=C.UTF-8    LC_MESSAGES=C.UTF-8    LC_PAPER=C.UTF-8       LC_NAME=C             </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [9] LC_ADDRESS=C           LC_TELEPHONE=C         LC_MEASUREMENT=C.UTF-8 LC_IDENTIFICATION=C   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  time zone: UTC</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  tzcode source: system (glibc)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  attached base packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  other attached packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] inSilecoMisc_0.7.0.9000 inSilecoRef_0.1.1      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  loaded via a namespace (and not attached):</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [1] sass_0.4.9               generics_0.1.3           xml2_1.3.6              </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [4] blogdown_1.19            stringi_1.8.4            httpcode_0.3.0          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;   [7] graphicsutils_1.6.0.9000 digest_0.6.37            magrittr_2.0.3          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [10] evaluate_1.0.1           bookdown_0.41            fastmap_1.2.0           </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [13] plyr_1.8.9               jsonlite_1.8.9           backports_1.5.0         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [16] crul_1.5.0               promises_1.3.2           bibtex_0.5.1            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [19] jquerylib_0.1.4          cli_3.6.3                shiny_1.10.0            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [22] crayon_1.5.3             rlang_1.1.4              cachem_1.1.0            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [25] yaml_2.3.10              tools_4.4.2              dplyr_1.1.4             </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [28] httpuv_1.6.15            DT_0.33                  rcrossref_1.2.0         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [31] curl_6.0.1               vctrs_0.6.5              R6_2.5.1                </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [34] mime_0.12                lifecycle_1.0.4          stringr_1.5.1           </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [37] fs_1.6.5                 htmlwidgets_1.6.4        miniUI_0.1.1.1          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [40] pkgconfig_2.0.3          pillar_1.10.0            bslib_0.8.0             </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [43] later_1.4.1              glue_1.8.0               Rcpp_1.0.13-1           </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [46] xfun_0.49                tibble_3.2.1             tidyselect_1.2.1        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [49] knitr_1.49               xtable_1.8-4             htmltools_0.5.8.1       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [52] rmarkdown_2.29           compiler_4.4.2</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+</div>
+
+
+                
+
+            </div>
+
+
+        </div>
+
+          <br>
+
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+  
+  
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2023/11/23/creating-a-monorepo-of-r-packages-with-github/">Creating a monorepo of R packages with GitHub</a> <small>November 23, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/github"><kbd class="item-tag">github</kbd></a>  <a href="/tags/github-actions"><kbd class="item-tag">github actions</kbd></a>  <a href="/tags/monorepo"><kbd class="item-tag">monorepo</kbd></a>  <a href="/tags/docker"><kbd class="item-tag">docker</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2023/08/25/a-few-thoughts-about-pipes-in-r/">A few thoughts about pipes in R</a> <small>August 25, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/pipe"><kbd class="item-tag">pipe</kbd></a>  <a href="/tags/internals"><kbd class="item-tag">internals</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2023/02/12/trick-or-tips-005-r/">Trick or Tips 005 {R}</a> <small>February 12, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+  
+
+  <script type="text/javascript" src="https://insileco.github.io/js/codecopypaste.js"></script>
+
+
+
+
+
+
+
+</div>
+
+
+    </div>
+
+
+</div>
+</div>
+
+<footer>
+
+  <hr>
+
+  <div class="col-md-3">
+
+    <a href="#" id="bottom"></a>
+
+  </div>
+
+  <div class="col-md-6">
+
+    <script src="//yihui.name/js/math-code.js"></script>
+    <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <p class="copyright text-muted" style="font-size: 1.6rem;">
+      &copy; 2017-2024 inSileco |
+      Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+      <a href="https://gohugo.io">Hugo</a>
+      and <a href="https://github.com/calintat/minimal">Minimal</a> |
+      Latest build: 20 December 2024 15:24 UTC.
+    </p>
+
+  </div>
+
+
+</footer>
+
+</body>
+
+</html>

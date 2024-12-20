@@ -1,0 +1,1334 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <script data-goatcounter="https://insilecoblog.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Efficiency of spatial intersects in R</title>
+        
+        <style>
+
+    html body {
+        font-family: 'Lato', sans-serif;
+        background-color: white;
+    }
+
+    :root {
+        --accent: #3fb3b2;
+        --border-width:  5px ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://insileco.github.io/css/main.css">
+
+
+ <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">  <link rel="stylesheet" href="https://insileco.github.io/css/academicons.min.css">  <link rel="stylesheet" href="https://insileco.github.io/css/main.css">  <link rel="stylesheet" href="https://insileco.github.io/css/syntax.css"> 
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato">
+
+
+
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+ 
+
+
+
+ <script src="https://insileco.github.io/js/codecopypaste.js"></script> 
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+ <meta name="generator" content="Hugo 0.132.0">
+        
+
+        
+
+        
+            <script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        
+
+        
+
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/tonsky/FiraCode@1.206/distr/fira_code.css">
+
+  <link rel="stylesheet" href="/css/academicons.min.css">
+
+  <link rel="stylesheet" href="/css/main.css">
+
+  <link rel="stylesheet" href="/css/syntax.css">
+
+
+
+    </head>
+
+    <body>
+        
+
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">Efficiency of spatial intersects in R</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/about/">About</a></li>
+                            
+                                <li><a href="https://insilecoinc.github.io/">Consulting</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                                <li><a href="/resource/">Resources</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="/"><i class="fas fa-home"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/inSileco/"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/inSileco/"><i class="fab fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://insileco.github.io/index.xml"><i class="fas fa-rss"></i></a></li>
+                            
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<img class="full-width banner" width="100%" src="/img/banner2.png"></img>
+
+<div class="container-fluid">
+<div class="row">
+
+    <div class="col-md-3 col-sm-3 hidden-xs">
+        <div class="toc">
+
+    <h2 style="padding-top: 0.5rem; padding-bottom: 0.25rem;">
+        <a href="#">
+            <i class='fas fa-chevron-up'></i>
+        </a>
+    </h2>
+
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#intersects--r">Intersects &amp; R</a></li>
+    <li><a href="#initiate-r">Initiate R</a></li>
+    <li><a href="#generate-spatial-objects-for-testing">Generate spatial objects for testing</a></li>
+    <li><a href="#grid">Grid</a></li>
+    <li><a href="#points-and-polygons">Points and Polygons</a></li>
+    <li><a href="#benchmarking">Benchmarking</a></li>
+    <li><a href="#concluding-remarks">Concluding remarks</a></li>
+  </ul>
+</nav>
+
+    <h2 style="margin-top: 0.25rem; padding-top: 0.5rem;">
+        <a href="#bottom">
+            <i class='fas fa-chevron-down'></i>
+        </a>
+    </h2>
+
+</div>
+    </div>
+
+    <div class="col-md-6 col-sm-9">
+
+        <div class="post-content">
+
+            <div id="post-content-header">
+            <h1>
+                <a href="/2017/09/12/efficiency-of-spatial-intersects-in-r/">Efficiency of spatial intersects in R</a>
+            </h1>
+
+            <h4>
+                September 12, 2017
+            </h4>
+
+            <p>
+                <i class="fas fa-tags" aria-hidden="true"></i> &nbsp;  <a
+                    href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a
+                    href="/tags/spatial"><kbd class="item-tag">spatial</kbd></a>  <a
+                    href="/tags/intersection"><kbd class="item-tag">intersection</kbd></a> 
+                <br>
+                
+                    <img src="/img/Rlogo.svg" title="R logo" width="60px" style="margin: 1rem;"></img>
+                    &nbsp; 
+                     
+                        <a href="/rpkgs/sf">
+                            <kbd class="item-tag2">sf</kbd>
+                        </a> 
+                     
+                        <a href="/rpkgs/sp">
+                            <kbd class="item-tag2">sp</kbd>
+                        </a> 
+                     
+                        <a href="/rpkgs/rgeos">
+                            <kbd class="item-tag2">rgeos</kbd>
+                        </a> 
+                    
+                
+            </p>
+
+            
+            <p style="font-size: 1.6em;"> 
+                <i class="fas fa-pencil-alt"></i>
+                
+                 
+                    
+                    <a href="/about/">David Beauchesne</a>,
+                 
+                    
+                    <a href="/about/">Rémi Daigle</a>
+                
+                <a href="#"></a>
+            </p>
+            
+
+            
+            <p> 
+                <i class="fas fa-check-square" title="Reviewer(s)"></i>
+                
+                 
+                    
+                    <a href="/about/">Kevin Cazelles</a>
+                
+                <a href="#"></a>
+            </p>
+            
+
+            <p id="badges">
+                
+                
+                
+                    <img src='https://img.shields.io/static/v1?style=flat&amp;label=reading%20time&amp;message=10min&amp;color=3fb3b2&amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAMAAABEpIrGAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAA/1BMVEU/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7I/s7L////QnMRFAAAAVHRSTlMAAyRgm8Pa5C&#43;GyOPo5xV40unq3y2szJpqSjw3wcVtIwTikCLebwkBeQUQHTB30ZgHAojvroftrQjNS4nsBmfcKbbLbBMXdOvmsUgynn8LWMBxIGRFHj3/AAAAAWJLR0RU5AOIpQAAAAlwSFlzAAAN5QAADeUB5upprwAAAAd0SU1FB&#43;QEBQceG9g0RXAAAAFvSURBVDjLhVPXdoJAEF0BQdwZZMHeKIolMUbTJb2aXv//X4IFZD16uC8wu3fKztwhJERKEKW0rChyWhKFFFlHKqNmKQAGAKBZNbNG0XI6AzCAmiYNPsD0nBa/zxcCPyyWypVqtVIuFWdWIb&#43;6r9UZQqNp2QvTtpoNQFavRf7BveO24iFbrhMwljG0AsO21&#43;GL6nhtZIV5Hd0eouP1F&#43;c7u1p38df3HMTezBjoAG7ovzfcH4UxXAB9QMhYZdCwwsgHh0dRLqsBTB0TIQvYjFIfn5yeRUYTISsQkcJE2EwQJkBFIoFRsjcT7JIBEkkDlMlmAikDpImM1N9G8CnKREGzyhFiHauaqKwRzi8m/iVP4FNcmca1e9ONp&#43;CLHPm3aNzdP8SK5J9JyOPTcPr88jqKnsk3KsD47d2Ztj8uw0bxrZ7j8&#43;sbf6JW88Na4vdPi4bFjzsumeW4ecGssBJMouSSRZss&#43;&#43;TFSV695OUlW9f/HyniMFbfN&#43;2lAAAAJXRFWHRkYXRlOmNyZWF0ZQAyMDIwLTA0LTA1VDExOjMwOjUyLTA0OjAwwJKD8wAAACV0RVh0ZGF0ZTptb2RpZnkAMjAyMC0wNC0wNVQxMTozMDoyNy0wNDowMOkyHfEAAAAZdEVYdFNvZnR3YXJlAHd3dy5pbmtzY2FwZS5vcmeb7jwaAAAAAElFTkSuQmCC'>
+                    &nbsp;
+                
+                
+                
+                
+                
+                    <a href="https://creativecommons.org/licenses/by/4.0/">
+                        <img src="https://img.shields.io/static/v1?style=flat&label=license&message=CC-BY-4.0&color=f76f2b&logo=creative-commons">
+                    </a>&nbsp;
+                
+                
+                
+                    <a href="https://github.com/inSileco/inSileco.github.io/wiki/Posts#archiving-a-posts">
+                        <img src="https://img.shields.io/static/v1?style=flat&label=archived&message=2022-04-23&logo=internet-archive&color=6d4f5b">
+                    </a>&nbsp;
+                
+                
+                
+                <a href="http://twitter.com/share?url=https%3a%2f%2finsileco.github.io%2f2017%2f09%2f12%2fefficiency-of-spatial-intersects-in-r%2f&text=R%20spatial%20intersects%20efficiency" target="_blank">
+                    <img src='https://img.shields.io/twitter/url?style=social&url=https%3a%2f%2finsileco.github.io%2f2017%2f09%2f12%2fefficiency-of-spatial-intersects-in-r%2f?link=http://left&link=http://right}'>
+                </a>
+                
+
+                
+
+                <div class="visible-xs">
+                    <div class="toc">
+    
+        <h2>Table of Contents</h2>
+        <nav id="TableOfContents">
+  <ul>
+    <li><a href="#intersects--r">Intersects &amp; R</a></li>
+    <li><a href="#initiate-r">Initiate R</a></li>
+    <li><a href="#generate-spatial-objects-for-testing">Generate spatial objects for testing</a></li>
+    <li><a href="#grid">Grid</a></li>
+    <li><a href="#points-and-polygons">Points and Polygons</a></li>
+    <li><a href="#benchmarking">Benchmarking</a></li>
+    <li><a href="#concluding-remarks">Concluding remarks</a></li>
+  </ul>
+</nav>
+    
+</div>
+                </div>
+
+            </p>
+            </div>
+
+
+            <div id="post-content-body" class="text-justify">
+
+                <script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
+<script src="/rmarkdown-libs/kePrint/kePrint.js"></script>
+<link href="/rmarkdown-libs/lightable/lightable.css" rel="stylesheet" />
+<h2 id="intersects--r">Intersects &amp; R</h2>
+<p>We are increasingly performing spatial analyses in R. The replicability and the
+efficiency of programming languages is much more appealing than using pieces of
+user friendly software like <a href="https://www.arcgis.com/features/index.html">ArcGIS</a>,
+even though you can still code your way through analyses when using them
+(latter versions of <a href="http://qgis.org/fr/site/">QGIS</a> do a fantastic
+job in that regard!). The performance of tools available for spatial analyses in
+R is however not completely certain.</p>
+<p>In this post, we compare four different methods to perform spatial intersects
+between objects in R, from three different packages:</p>
+<ol>
+<li><code>raster::intersect</code></li>
+<li><code>rgeos::gIntersects</code></li>
+<li><code>rgeos::gIntersection</code></li>
+<li><code>sf::st_intersects</code></li>
+<li><code>sf::st_intersection</code></li>
+</ol>
+<p>More specifically, we test how these methods fare when performing binary
+(TRUE/FALSE) and zonal or aerial intersects. Keep in mind, not all methods
+can be used for both binary and zonal intersects:</p>
+<br/>
+<table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:left;"> Function </th>
+   <th style="text-align:left;"> Binary </th>
+   <th style="text-align:left;"> Zonal </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:left;"> raster::intersect </td>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:left;"> X </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> rgeos::gIntersects </td>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> rgeos::gIntersection </td>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:left;"> X </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> sf::st_intersects </td>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:left;">  </td>
+  </tr>
+  <tr>
+   <td style="text-align:left;"> sf::st_intersection </td>
+   <td style="text-align:left;"> X </td>
+   <td style="text-align:left;"> X </td>
+  </tr>
+</tbody>
+</table>
+<br/>
+<p>Obviously, if you mean to perform binary intersects only, the binary functions
+make more sense as they are built to include less calculations. We nonetheless
+compare all the functions together for the sake of comparison in this post.</p>
+<br/>
+<h2 id="initiate-r">Initiate R</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># R version</span>
+</span></span><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span><span class="n">[[1L]]</span><span class="o">$</span><span class="n">version.string</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] &#34;R version 4.2.0 (2022-04-22)&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#--</span>
+</span></span><span class="line"><span class="cl"><span class="nf">rm</span><span class="p">(</span><span class="n">list</span><span class="o">=</span><span class="nf">ls</span><span class="p">())</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">sf</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">rgdal</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">raster</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">rgeos</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">magrittr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">knitr</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">library</span><span class="p">(</span><span class="n">kableExtra</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">##--</span>
+</span></span><span class="line"><span class="cl"><span class="n">opts_chunk</span><span class="o">$</span><span class="nf">set</span><span class="p">(</span><span class="n">fig.align</span><span class="o">=</span><span class="s">&#39;center&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">##--</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Empty plot function</span>
+</span></span><span class="line"><span class="cl"><span class="n">eplot</span> <span class="o">&lt;-</span> <span class="kr">function</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">xmin</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">xmax</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">ymin</span> <span class="o">=</span> <span class="m">0</span><span class="p">,</span> <span class="n">ymax</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">  <span class="nf">plot</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">y</span><span class="p">,</span><span class="n">bty</span> <span class="o">=</span> <span class="s">&#34;n&#34;</span><span class="p">,</span><span class="n">ann</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span><span class="n">xaxt</span> <span class="o">=</span> <span class="s">&#34;n&#34;</span><span class="p">,</span><span class="n">yaxt</span> <span class="o">=</span> <span class="s">&#34;n&#34;</span><span class="p">,</span><span class="n">type</span> <span class="o">=</span> <span class="s">&#34;n&#34;</span><span class="p">,</span><span class="n">bg</span> <span class="o">=</span> <span class="s">&#39;grey&#39;</span><span class="p">,</span><span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">ymin</span><span class="p">,</span><span class="n">ymax</span><span class="p">),</span><span class="n">xlim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="n">xmin</span><span class="p">,</span><span class="n">xmax</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Version of packages that have been used to build this post and are herein discussed:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">packageVersion</span><span class="p">(</span><span class="s">&#34;raster&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">packageVersion</span><span class="p">(</span><span class="s">&#34;rgeos&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">packageVersion</span><span class="p">(</span><span class="s">&#34;sf&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] &#39;3.5.15&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] &#39;0.5.9&#39;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] &#39;1.0.7&#39;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br/>
+<h2 id="generate-spatial-objects-for-testing">Generate spatial objects for testing</h2>
+<p>We start be generating random spatial object in space. For the record,
+the area selected is within the St. Lawrence estuary in eastern Canada
+(see <a href="https://insileco.github.io/2017/06/19/online-ecology---individual-species-description/">online ecology series</a>),
+although the actual location really does not matter for this post!</p>
+<br/>
+<h2 id="grid">Grid</h2>
+<p>We use a regular grid to intersect vectorized data, <em>i.e.</em> points and polygons
+for this post. This simulate the use of a grid used to extract environmental
+data (biotic and/or abiotic) from multiple sources to characterize a study area.</p>
+<br/>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Projection in lambers</span>
+</span></span><span class="line"><span class="cl"><span class="n">projSpat</span> <span class="o">&lt;-</span> <span class="s">&#34;+proj=lcc +lat_1=46 +lat_2=60 +lat_0=44 +lon_0=-68.5 +x_0=0 +y_0=0 +datum=NAD83 +units=m +no_defs +ellps=GRS80 +towgs84=0,0,0&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Bounding box</span>
+</span></span><span class="line"><span class="cl"><span class="n">latmax</span> <span class="o">&lt;-</span> <span class="m">625000</span>
+</span></span><span class="line"><span class="cl"><span class="n">latmin</span> <span class="o">&lt;-</span> <span class="m">585000</span>
+</span></span><span class="line"><span class="cl"><span class="n">lonmax</span> <span class="o">&lt;-</span> <span class="m">150000</span>
+</span></span><span class="line"><span class="cl"><span class="n">lonmin</span> <span class="o">&lt;-</span> <span class="m">100000</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Create a spatial bounding box for the area of interest using the &#39;sp&#39; package:</span>
+</span></span><span class="line"><span class="cl"><span class="n">bb</span> <span class="o">&lt;-</span> <span class="nf">cbind</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="n">lonmin</span><span class="p">,</span><span class="n">lonmax</span><span class="p">,</span><span class="n">lonmax</span><span class="p">,</span><span class="n">lonmin</span><span class="p">,</span><span class="n">lonmin</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                   <span class="nf">c</span><span class="p">(</span><span class="n">latmin</span><span class="p">,</span><span class="n">latmin</span><span class="p">,</span><span class="n">latmax</span><span class="p">,</span><span class="n">latmax</span><span class="p">,</span><span class="n">latmin</span><span class="p">))</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">Polygon</span><span class="p">()</span> <span class="o">%&gt;%</span> <span class="nf">list</span><span class="p">()</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">Polygons</span><span class="p">(</span><span class="n">ID</span> <span class="o">=</span> <span class="s">&#39;ID1&#39;</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">list</span><span class="p">()</span> <span class="o">%&gt;%</span>
+</span></span><span class="line"><span class="cl">      <span class="nf">SpatialPolygons</span><span class="p">(</span><span class="n">proj4string</span> <span class="o">=</span> <span class="nf">CRS</span><span class="p">(</span><span class="n">projSpat</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Create spatial grid that will be used for intersects</span>
+</span></span><span class="line"><span class="cl"><span class="n">A</span> <span class="o">&lt;-</span> <span class="m">5</span><span class="o">*</span><span class="m">1000000</span> <span class="c1"># Surface of cells in m^2 (area in km^2 * 1000000)</span>
+</span></span><span class="line"><span class="cl"><span class="n">cellsize</span> <span class="o">&lt;-</span> <span class="nf">sqrt</span><span class="p">(</span><span class="m">2</span><span class="o">*</span><span class="n">A</span><span class="p">)</span><span class="o">/</span><span class="m">3</span><span class="nf">^</span><span class="p">(</span><span class="m">1</span><span class="o">/</span><span class="m">4</span><span class="p">)</span> <span class="c1"># value of the small diagonal</span>
+</span></span><span class="line"><span class="cl"><span class="n">grid</span> <span class="o">&lt;-</span> <span class="n">sp</span><span class="o">::</span><span class="nf">spsample</span><span class="p">(</span><span class="n">bb</span><span class="p">,</span><span class="n">type</span><span class="o">=</span><span class="s">&#34;hexagonal&#34;</span><span class="p">,</span><span class="n">cellsize</span><span class="o">=</span><span class="n">cellsize</span><span class="p">,</span> <span class="n">offset</span><span class="o">=</span><span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">))</span> <span class="o">%&gt;%</span> <span class="c1"># Points for a hexagonal grid</span>
+</span></span><span class="line"><span class="cl">        <span class="n">sp</span><span class="o">::</span><span class="nf">HexPoints2SpatialPolygons</span><span class="p">()</span> <span class="c1"># creating polygons</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># We now have a grid of polygons to work with!</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">lines</span><span class="p">(</span><span class="n">bb</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#39;blue&#39;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/post/2017/Rintersects/RIntersects_files/figure-html/grid-1.png" width="672" style="display: block; margin: auto;" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># We need this grid in `sp` and `sf` usable formats</span>
+</span></span><span class="line"><span class="cl"><span class="n">gridSP</span> <span class="o">&lt;-</span> <span class="n">grid</span>
+</span></span><span class="line"><span class="cl"><span class="n">gridSF</span> <span class="o">&lt;-</span> <span class="n">sf</span><span class="o">::</span><span class="nf">st_as_sf</span><span class="p">(</span><span class="n">grid</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">gridSP</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] &#34;SpatialPolygons&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; attr(,&#34;package&#34;)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] &#34;sp&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="nf">class</span><span class="p">(</span><span class="n">gridSF</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] &#34;sf&#34;         &#34;data.frame&#34;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br/>
+<h2 id="points-and-polygons">Points and Polygons</h2>
+<p>Now we generate random points within the bounding box to test the intersects.
+This is done for <code>1, 10, 50, 100, 250, 500, 1000, 10000</code> points. Then, to get
+all data required to perform the tests, we also need to create polygons from
+the point data.</p>
+<br/>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Number of samples</span>
+</span></span><span class="line"><span class="cl"><span class="n">samp</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="m">50</span><span class="p">,</span> <span class="m">100</span><span class="p">,</span> <span class="m">250</span><span class="p">,</span> <span class="m">500</span><span class="p">,</span> <span class="m">1000</span><span class="p">,</span> <span class="m">10000</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">nSamp</span> <span class="o">&lt;-</span> <span class="nf">length</span><span class="p">(</span><span class="n">samp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Names of points samples</span>
+</span></span><span class="line"><span class="cl"><span class="n">sampNames</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&#39;Pt&#39;</span><span class="p">,</span><span class="n">samp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">sampNames</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] &#34;Pt1&#34;     &#34;Pt10&#34;    &#34;Pt50&#34;    &#34;Pt100&#34;   &#34;Pt250&#34;   &#34;Pt500&#34;   &#34;Pt1000&#34;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [8] &#34;Pt10000&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Random points for all samples</span>
+</span></span><span class="line"><span class="cl"><span class="kr">for</span><span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="n">nSamp</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">assign</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">sampNames[i]</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">           <span class="n">value</span> <span class="o">=</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">lon</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">samp[i]</span><span class="p">,</span> <span class="n">min</span> <span class="o">=</span> <span class="n">lonmin</span><span class="p">,</span> <span class="n">max</span> <span class="o">=</span> <span class="n">lonmax</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                              <span class="n">lat</span> <span class="o">=</span> <span class="nf">runif</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">samp[i]</span><span class="p">,</span> <span class="n">min</span> <span class="o">=</span> <span class="n">latmin</span><span class="p">,</span> <span class="n">max</span> <span class="o">=</span> <span class="n">latmax</span><span class="p">)))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># We now have nSamp new objects with randomly generated coordinates</span>
+</span></span><span class="line"><span class="cl"><span class="nf">ls</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] &#34;A&#34;         &#34;bb&#34;        &#34;cellsize&#34;  &#34;eplot&#34;     &#34;grid&#34;      &#34;gridSF&#34;   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [7] &#34;gridSP&#34;    &#34;i&#34;         &#34;latmax&#34;    &#34;latmin&#34;    &#34;lonmax&#34;    &#34;lonmin&#34;   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [13] &#34;nSamp&#34;     &#34;projSpat&#34;  &#34;Pt1&#34;       &#34;Pt10&#34;      &#34;Pt100&#34;     &#34;Pt1000&#34;   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [19] &#34;Pt10000&#34;   &#34;Pt250&#34;     &#34;Pt50&#34;      &#34;Pt500&#34;     &#34;res1&#34;      &#34;res2&#34;     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [25] &#34;samp&#34;      &#34;sampNames&#34;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Let&#39;s now create spatial objects with those coordinates for use with the `sp` package</span>
+</span></span><span class="line"><span class="cl"><span class="n">sampNamesSP</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">sampNames</span><span class="p">,</span> <span class="s">&#39;SP&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">for</span><span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="n">nSamp</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">assign</span><span class="p">(</span>
+</span></span><span class="line"><span class="cl">      <span class="n">x</span> <span class="o">=</span> <span class="n">sampNamesSP[i]</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">      <span class="n">value</span> <span class="o">=</span> <span class="nf">SpatialPoints</span><span class="p">(</span><span class="n">coords</span> <span class="o">=</span> <span class="nf">get</span><span class="p">(</span><span class="n">sampNames[i]</span><span class="p">),</span> <span class="n">proj4string</span><span class="o">=</span><span class="nf">CRS</span><span class="p">(</span><span class="n">projSpat</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Visualize them</span>
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="kr">for</span><span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="n">nSamp</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">par</span><span class="p">(</span><span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">plot</span><span class="p">(</span><span class="n">bb</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">points</span><span class="p">(</span><span class="nf">get</span><span class="p">(</span><span class="n">sampNamesSP[i]</span><span class="p">),</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">0.75</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#39;transparent&#39;</span><span class="p">,</span> <span class="n">bg</span> <span class="o">=</span> <span class="s">&#39;#1e6b7955&#39;</span><span class="p">,</span> <span class="n">pch</span> <span class="o">=</span> <span class="m">21</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/post/2017/Rintersects/RIntersects_files/figure-html/randomData-1.png" width="672" style="display: block; margin: auto;" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Now we generate polygons from the point data using the `rgeos::gBuffer`,</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># see `sf::st_buffer` is the equivalent for the `sf` package</span>
+</span></span><span class="line"><span class="cl"><span class="n">sampNamesPoly</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="s">&#39;Poly&#39;</span><span class="p">,</span><span class="n">samp</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="n">sampNamesSPPoly</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">sampNamesPoly</span><span class="p">,</span> <span class="s">&#39;SP&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="kr">for</span><span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="n">nSamp</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">assign</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">sampNamesSPPoly[i]</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">           <span class="n">value</span> <span class="o">=</span> <span class="n">rgeos</span><span class="o">::</span><span class="nf">gBuffer</span><span class="p">(</span><span class="nf">get</span><span class="p">(</span><span class="n">sampNamesSP[i]</span><span class="p">),</span> <span class="n">byid</span> <span class="o">=</span> <span class="bp">T</span><span class="p">,</span> <span class="n">width</span> <span class="o">=</span> <span class="m">2000</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Visualize them</span>
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mfrow</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">3</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl"><span class="kr">for</span><span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="n">nSamp</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">par</span><span class="p">(</span><span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">plot</span><span class="p">(</span><span class="n">bb</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">plot</span><span class="p">(</span><span class="nf">get</span><span class="p">(</span><span class="n">sampNamesSPPoly[i]</span><span class="p">),</span> <span class="n">border</span> <span class="o">=</span> <span class="s">&#39;transparent&#39;</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="s">&#39;#1e6b7955&#39;</span><span class="p">,</span> <span class="n">add</span> <span class="o">=</span> <span class="bp">T</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/post/2017/Rintersects/RIntersects_files/figure-html/randomData2-1.png" width="672" style="display: block; margin: auto;" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Transform points and polygons for use with the `sf` package</span>
+</span></span><span class="line"><span class="cl"><span class="n">sampNamesSF</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">sampNames</span><span class="p">,</span> <span class="s">&#39;SF&#39;</span><span class="p">)</span> <span class="c1"># for points</span>
+</span></span><span class="line"><span class="cl"><span class="n">sampNamesSFPoly</span> <span class="o">&lt;-</span> <span class="nf">paste0</span><span class="p">(</span><span class="n">sampNamesPoly</span><span class="p">,</span> <span class="s">&#39;SF&#39;</span><span class="p">)</span> <span class="c1"># for polygons</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">for</span><span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="n">nSamp</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">assign</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">sampNamesSF[i]</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">           <span class="n">sf</span><span class="o">::</span><span class="nf">st_as_sf</span><span class="p">(</span><span class="nf">get</span><span class="p">(</span><span class="n">sampNamesSP[i]</span><span class="p">)))</span> <span class="c1"># points</span>
+</span></span><span class="line"><span class="cl">    <span class="nf">assign</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="n">sampNamesSFPoly[i]</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">           <span class="n">sf</span><span class="o">::</span><span class="nf">st_as_sf</span><span class="p">(</span><span class="nf">get</span><span class="p">(</span><span class="n">sampNamesSPPoly[i]</span><span class="p">)))</span> <span class="c1"># polygons</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><br/>
+<h2 id="benchmarking">Benchmarking</h2>
+<p>Now that the data is ready for use, we can perform the tests! But first, let&rsquo;s
+take a quick look at the type of results that are returned by each function.</p>
+<br/>
+<h3 id="points-intersections">Points intersections</h3>
+<p>First, we will test the intersects only with the points.</p>
+<br/>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">res1</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">samp</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">raster_intersect</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">nSamp</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">rgeos_gIntersects</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">nSamp</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">rgeos_gIntersection</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">nSamp</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">sf_st_intersects</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">nSamp</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">sf_st_intersection</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">nSamp</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">for</span><span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="n">nSamp</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res1</span><span class="o">$</span><span class="n">raster_intersect[i]</span> <span class="o">&lt;-</span> <span class="nf">system.time</span><span class="p">(</span><span class="n">raster</span><span class="o">::</span><span class="nf">intersect</span><span class="p">(</span><span class="n">gridSP</span><span class="p">,</span> <span class="nf">get</span><span class="p">(</span><span class="n">sampNamesSP[i]</span><span class="p">)))</span><span class="n">[</span><span class="s">&#39;elapsed&#39;</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res1</span><span class="o">$</span><span class="n">rgeos_gIntersects[i]</span> <span class="o">&lt;-</span> <span class="nf">system.time</span><span class="p">(</span><span class="n">rgeos</span><span class="o">::</span><span class="nf">gIntersects</span><span class="p">(</span><span class="n">gridSP</span><span class="p">,</span> <span class="nf">get</span><span class="p">(</span><span class="n">sampNamesSP[i]</span><span class="p">),</span> <span class="n">byid</span> <span class="o">=</span> <span class="bp">T</span><span class="p">))</span><span class="n">[</span><span class="s">&#39;elapsed&#39;</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res1</span><span class="o">$</span><span class="n">rgeos_gIntersection[i]</span> <span class="o">&lt;-</span> <span class="nf">system.time</span><span class="p">(</span><span class="n">rgeos</span><span class="o">::</span><span class="nf">gIntersection</span><span class="p">(</span><span class="n">gridSP</span><span class="p">,</span> <span class="nf">get</span><span class="p">(</span><span class="n">sampNamesSP[i]</span><span class="p">),</span> <span class="n">byid</span> <span class="o">=</span> <span class="bp">T</span><span class="p">))</span><span class="n">[</span><span class="s">&#39;elapsed&#39;</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res1</span><span class="o">$</span><span class="n">sf_st_intersects[i]</span> <span class="o">&lt;-</span> <span class="nf">system.time</span><span class="p">(</span><span class="n">sf</span><span class="o">::</span><span class="nf">st_intersects</span><span class="p">(</span><span class="n">gridSF</span><span class="p">,</span> <span class="nf">get</span><span class="p">(</span><span class="n">sampNamesSF[i]</span><span class="p">)))</span><span class="n">[</span><span class="s">&#39;elapsed&#39;</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res1</span><span class="o">$</span><span class="n">sf_st_intersection[i]</span> <span class="o">&lt;-</span> <span class="nf">system.time</span><span class="p">(</span><span class="n">sf</span><span class="o">::</span><span class="nf">st_intersection</span><span class="p">(</span><span class="n">gridSF</span><span class="p">,</span> <span class="nf">get</span><span class="p">(</span><span class="n">sampNamesSF[i]</span><span class="p">)))</span><span class="n">[</span><span class="s">&#39;elapsed&#39;</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Visualize results table</span>
+</span></span><span class="line"><span class="cl"><span class="n">knitr</span><span class="o">::</span><span class="nf">kable</span><span class="p">(</span><span class="n">res1</span><span class="p">,</span> <span class="s">&#34;html&#34;</span><span class="p">,</span> <span class="n">digits</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">kable_styling</span><span class="p">(</span><span class="n">full_width</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> n </th>
+   <th style="text-align:right;"> raster_intersect </th>
+   <th style="text-align:right;"> rgeos_gIntersects </th>
+   <th style="text-align:right;"> rgeos_gIntersection </th>
+   <th style="text-align:right;"> sf_st_intersects </th>
+   <th style="text-align:right;"> sf_st_intersection </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.04 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.06 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.03 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 50 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.08 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.04 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 100 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.09 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.03 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 250 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.17 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.03 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 500 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.36 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.04 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1000 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.65 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.05 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10000 </td>
+   <td style="text-align:right;"> 0.37 </td>
+   <td style="text-align:right;"> 0.12 </td>
+   <td style="text-align:right;"> 8.05 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.24 </td>
+  </tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Visualize results</span>
+</span></span><span class="line"><span class="cl"><span class="n">cols</span> <span class="o">&lt;-</span> <span class="nf">c</span><span class="p">(</span><span class="s">&#34;#3fb3b2&#34;</span><span class="p">,</span> <span class="s">&#34;#484f42&#34;</span><span class="p">,</span> <span class="s">&#34;#ffdd55&#34;</span><span class="p">,</span> <span class="s">&#34;#c7254e&#34;</span><span class="p">,</span> <span class="s">&#34;#1b95e0&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">layout</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span><span class="m">2</span><span class="p">),</span> <span class="n">widths</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="n">heights</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#34;serif&#34;</span><span class="p">,</span> <span class="n">las</span><span class="o">=</span><span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">res1</span><span class="o">$</span><span class="n">raster_intersect</span> <span class="o">~</span> <span class="n">res1</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#39;l&#39;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[1]</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="nf">max</span><span class="p">(</span><span class="n">res1[</span><span class="p">,</span><span class="m">2</span><span class="o">:</span><span class="m">6</span><span class="n">]</span><span class="p">)),</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&#39;Number of points&#39;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&#39;Time (s)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">lines</span><span class="p">(</span><span class="n">res1</span><span class="o">$</span><span class="n">rgeos_gIntersects</span> <span class="o">~</span> <span class="n">res1</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[2]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">lines</span><span class="p">(</span><span class="n">res1</span><span class="o">$</span><span class="n">rgeos_gIntersection</span> <span class="o">~</span> <span class="n">res1</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[3]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">lines</span><span class="p">(</span><span class="n">res1</span><span class="o">$</span><span class="n">sf_st_intersects</span> <span class="o">~</span> <span class="n">res1</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[4]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">lines</span><span class="p">(</span><span class="n">res1</span><span class="o">$</span><span class="n">sf_st_intersection</span> <span class="o">~</span> <span class="n">res1</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[5]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Legend</span>
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">),</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#34;serif&#34;</span><span class="p">,</span> <span class="n">las</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">eplot</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">legend</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&#39;center&#39;</span><span class="p">,</span> <span class="n">legend</span> <span class="o">=</span> <span class="nf">as.character</span><span class="p">(</span><span class="nf">colnames</span><span class="p">(</span><span class="n">res1</span><span class="p">)</span><span class="n">[</span><span class="m">-1</span><span class="n">]</span><span class="p">),</span> <span class="n">bty</span> <span class="o">=</span> <span class="s">&#39;n&#39;</span><span class="p">,</span> <span class="n">lty</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols</span><span class="p">,</span> <span class="n">seg.len</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="nf">expression</span><span class="p">(</span><span class="nf">bold</span><span class="p">(</span><span class="s">&#39;Fonctions&#39;</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/post/2017/Rintersects/RIntersects_files/figure-html/ptIntersect2-1.png" width="672" style="display: block; margin: auto;" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Visualize results without gIntersection</span>
+</span></span><span class="line"><span class="cl"><span class="nf">layout</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span><span class="m">2</span><span class="p">),</span> <span class="n">widths</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="n">heights</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#34;serif&#34;</span><span class="p">,</span> <span class="n">las</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">res1</span><span class="o">$</span><span class="n">raster_intersect</span> <span class="o">~</span> <span class="n">res1</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#39;l&#39;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[1]</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="nf">max</span><span class="p">(</span><span class="n">res1[</span><span class="p">,</span><span class="nf">c</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="m">3</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">)</span><span class="n">]</span><span class="p">)),</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&#39;Number of points&#39;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&#39;Time (s)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">lines</span><span class="p">(</span><span class="n">res1</span><span class="o">$</span><span class="n">rgeos_gIntersects</span> <span class="o">~</span> <span class="n">res1</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[2]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">lines</span><span class="p">(</span><span class="n">res1</span><span class="o">$</span><span class="n">sf_st_intersects</span> <span class="o">~</span> <span class="n">res1</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[4]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">lines</span><span class="p">(</span><span class="n">res1</span><span class="o">$</span><span class="n">sf_st_intersection</span> <span class="o">~</span> <span class="n">res1</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[5]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Legend</span>
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">),</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#34;serif&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">eplot</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">legend</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&#39;center&#39;</span><span class="p">,</span> <span class="n">legend</span> <span class="o">=</span> <span class="nf">as.character</span><span class="p">(</span><span class="nf">colnames</span><span class="p">(</span><span class="n">res1</span><span class="p">)</span><span class="n">[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">4</span><span class="p">)</span><span class="n">]</span><span class="p">),</span> <span class="n">bty</span> <span class="o">=</span> <span class="s">&#39;n&#39;</span><span class="p">,</span> <span class="n">lty</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[</span><span class="m">-3</span><span class="n">]</span><span class="p">,</span> <span class="n">seg.len</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="nf">expression</span><span class="p">(</span><span class="nf">bold</span><span class="p">(</span><span class="s">&#39;Fonctions&#39;</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/post/2017/Rintersects/RIntersects_files/figure-html/ptIntersect2-2.png" width="672" style="display: block; margin: auto;" />
+<br/>
+<p>In this analysis <code>rgeos::gIntersection</code> is clearly much less efficient than the
+alternative options. Using <code>raster::intersect</code>, <code>rgeos::gIntersects</code>,
+<code>sf::st_intersects</code> or <code>sf::st_intersection</code> significantly decreases calculation
+time, with <code>sf::st_intersects</code> proving to be the most efficient option.</p>
+<br/>
+<h3 id="polygons-intersections">Polygons intersections</h3>
+<p>Now let&rsquo;s take a look at intersects using polygons only.</p>
+<br/>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="n">res2</span> <span class="o">&lt;-</span> <span class="nf">data.frame</span><span class="p">(</span><span class="n">n</span> <span class="o">=</span> <span class="n">samp</span><span class="p">,</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">raster_intersect</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">nSamp</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">rgeos_gIntersects</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">nSamp</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">rgeos_gIntersection</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">nSamp</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">sf_st_intersects</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">nSamp</span><span class="p">),</span>
+</span></span><span class="line"><span class="cl">                   <span class="n">sf_st_intersection</span> <span class="o">=</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">nSamp</span><span class="p">))</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="kr">for</span><span class="p">(</span><span class="n">i</span> <span class="kr">in</span> <span class="m">1</span><span class="o">:</span><span class="n">nSamp</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res2</span><span class="o">$</span><span class="n">raster_intersect[i]</span> <span class="o">&lt;-</span> <span class="nf">system.time</span><span class="p">(</span><span class="n">raster</span><span class="o">::</span><span class="nf">intersect</span><span class="p">(</span><span class="n">gridSP</span><span class="p">,</span> <span class="nf">get</span><span class="p">(</span><span class="n">sampNamesSPPoly[i]</span><span class="p">)))</span><span class="n">[</span><span class="s">&#39;elapsed&#39;</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res2</span><span class="o">$</span><span class="n">rgeos_gIntersects[i]</span> <span class="o">&lt;-</span> <span class="nf">system.time</span><span class="p">(</span><span class="n">rgeos</span><span class="o">::</span><span class="nf">gIntersects</span><span class="p">(</span><span class="n">gridSP</span><span class="p">,</span> <span class="nf">get</span><span class="p">(</span><span class="n">sampNamesSP[i]</span><span class="p">),</span> <span class="n">byid</span> <span class="o">=</span> <span class="bp">T</span><span class="p">))</span><span class="n">[</span><span class="s">&#39;elapsed&#39;</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res2</span><span class="o">$</span><span class="n">rgeos_gIntersection[i]</span> <span class="o">&lt;-</span> <span class="nf">system.time</span><span class="p">(</span><span class="n">rgeos</span><span class="o">::</span><span class="nf">gIntersection</span><span class="p">(</span><span class="n">gridSP</span><span class="p">,</span> <span class="nf">get</span><span class="p">(</span><span class="n">sampNamesSPPoly[i]</span><span class="p">),</span> <span class="n">byid</span> <span class="o">=</span> <span class="bp">T</span><span class="p">))</span><span class="n">[</span><span class="s">&#39;elapsed&#39;</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res2</span><span class="o">$</span><span class="n">sf_st_intersects[i]</span> <span class="o">&lt;-</span> <span class="nf">system.time</span><span class="p">(</span><span class="n">sf</span><span class="o">::</span><span class="nf">st_intersects</span><span class="p">(</span><span class="n">gridSF</span><span class="p">,</span> <span class="nf">get</span><span class="p">(</span><span class="n">sampNamesSFPoly[i]</span><span class="p">)))</span><span class="n">[</span><span class="s">&#39;elapsed&#39;</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl">    <span class="n">res2</span><span class="o">$</span><span class="n">sf_st_intersection[i]</span> <span class="o">&lt;-</span> <span class="nf">system.time</span><span class="p">(</span><span class="n">sf</span><span class="o">::</span><span class="nf">st_intersection</span><span class="p">(</span><span class="n">gridSF</span><span class="p">,</span> <span class="nf">get</span><span class="p">(</span><span class="n">sampNamesSFPoly[i]</span><span class="p">)))</span><span class="n">[</span><span class="s">&#39;elapsed&#39;</span><span class="n">]</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="c1"># Visualize results table</span>
+</span></span><span class="line"><span class="cl"><span class="n">knitr</span><span class="o">::</span><span class="nf">kable</span><span class="p">(</span><span class="n">res2</span><span class="p">,</span> <span class="s">&#34;html&#34;</span><span class="p">,</span> <span class="n">digits</span> <span class="o">=</span> <span class="m">2</span><span class="p">)</span> <span class="o">%&gt;%</span> <span class="nf">kable_styling</span><span class="p">(</span><span class="n">full_width</span> <span class="o">=</span> <span class="bp">F</span><span class="p">)</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><table class="table" style="width: auto !important; margin-left: auto; margin-right: auto;">
+ <thead>
+  <tr>
+   <th style="text-align:right;"> n </th>
+   <th style="text-align:right;"> raster_intersect </th>
+   <th style="text-align:right;"> rgeos_gIntersects </th>
+   <th style="text-align:right;"> rgeos_gIntersection </th>
+   <th style="text-align:right;"> sf_st_intersects </th>
+   <th style="text-align:right;"> sf_st_intersection </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 1 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.03 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.05 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.04 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 50 </td>
+   <td style="text-align:right;"> 0.09 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.09 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.07 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 100 </td>
+   <td style="text-align:right;"> 0.17 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.18 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.09 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 250 </td>
+   <td style="text-align:right;"> 0.39 </td>
+   <td style="text-align:right;"> 0.02 </td>
+   <td style="text-align:right;"> 0.30 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.14 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 500 </td>
+   <td style="text-align:right;"> 0.67 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 0.68 </td>
+   <td style="text-align:right;"> 0.04 </td>
+   <td style="text-align:right;"> 0.22 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 1000 </td>
+   <td style="text-align:right;"> 1.43 </td>
+   <td style="text-align:right;"> 0.03 </td>
+   <td style="text-align:right;"> 1.20 </td>
+   <td style="text-align:right;"> 0.08 </td>
+   <td style="text-align:right;"> 0.36 </td>
+  </tr>
+  <tr>
+   <td style="text-align:right;"> 10000 </td>
+   <td style="text-align:right;"> 14.58 </td>
+   <td style="text-align:right;"> 0.18 </td>
+   <td style="text-align:right;"> 14.43 </td>
+   <td style="text-align:right;"> 0.23 </td>
+   <td style="text-align:right;"> 3.69 </td>
+  </tr>
+</tbody>
+</table>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Visualize results</span>
+</span></span><span class="line"><span class="cl"><span class="nf">layout</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span><span class="m">2</span><span class="p">),</span> <span class="n">widths</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="n">heights</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> <span class="n">las</span> <span class="o">=</span><span class="m">1</span><span class="p">,</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#34;serif&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">##</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">res2</span><span class="o">$</span><span class="n">raster_intersect</span> <span class="o">~</span> <span class="n">res2</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#39;l&#39;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[1]</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="nf">max</span><span class="p">(</span><span class="n">res2[</span><span class="p">,</span><span class="m">2</span><span class="o">:</span><span class="m">6</span><span class="n">]</span><span class="p">)),</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&#39;Number of polygons&#39;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&#39;Time (s)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">lines</span><span class="p">(</span><span class="n">res2</span><span class="o">$</span><span class="n">rgeos_gIntersects</span> <span class="o">~</span> <span class="n">res1</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[2]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">lines</span><span class="p">(</span><span class="n">res2</span><span class="o">$</span><span class="n">rgeos_gIntersection</span> <span class="o">~</span> <span class="n">res2</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[3]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">lines</span><span class="p">(</span><span class="n">res2</span><span class="o">$</span><span class="n">sf_st_intersects</span> <span class="o">~</span> <span class="n">res2</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[4]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">lines</span><span class="p">(</span><span class="n">res2</span><span class="o">$</span><span class="n">sf_st_intersection</span> <span class="o">~</span> <span class="n">res2</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[5]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Legend</span>
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">),</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#34;serif&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">eplot</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">legend</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&#39;center&#39;</span><span class="p">,</span> <span class="n">legend</span> <span class="o">=</span> <span class="nf">as.character</span><span class="p">(</span><span class="nf">colnames</span><span class="p">(</span><span class="n">res2</span><span class="p">)</span><span class="n">[</span><span class="m">-1</span><span class="n">]</span><span class="p">),</span> <span class="n">bty</span> <span class="o">=</span> <span class="s">&#39;n&#39;</span><span class="p">,</span> <span class="n">lty</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols</span><span class="p">,</span> <span class="n">seg.len</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="nf">expression</span><span class="p">(</span><span class="nf">bold</span><span class="p">(</span><span class="s">&#39;Fonctions&#39;</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/post/2017/Rintersects/RIntersects_files/figure-html/polyIntersect2-1.png" width="672" style="display: block; margin: auto;" />
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># Visualize results without gIntersection</span>
+</span></span><span class="line"><span class="cl"><span class="nf">layout</span><span class="p">(</span><span class="nf">matrix</span><span class="p">(</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="n">ncol</span> <span class="o">=</span><span class="m">2</span><span class="p">),</span> <span class="n">widths</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="m">2</span><span class="p">),</span> <span class="n">heights</span> <span class="o">=</span> <span class="m">3</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="m">4</span><span class="p">,</span><span class="m">1</span><span class="p">,</span><span class="m">1</span><span class="p">),</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#34;serif&#34;</span><span class="p">,</span> <span class="n">las</span> <span class="o">=</span> <span class="m">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#</span>
+</span></span><span class="line"><span class="cl"><span class="nf">plot</span><span class="p">(</span><span class="n">res2</span><span class="o">$</span><span class="n">rgeos_gIntersects</span> <span class="o">~</span> <span class="n">res2</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">type</span> <span class="o">=</span> <span class="s">&#39;l&#39;</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[2]</span><span class="p">,</span> <span class="n">ylim</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="nf">max</span><span class="p">(</span><span class="n">res2[</span><span class="p">,</span><span class="nf">c</span><span class="p">(</span><span class="m">3</span><span class="p">,</span><span class="m">5</span><span class="p">,</span><span class="m">6</span><span class="p">)</span><span class="n">]</span><span class="p">)),</span> <span class="n">xlab</span> <span class="o">=</span> <span class="s">&#39;Number of points&#39;</span><span class="p">,</span> <span class="n">ylab</span> <span class="o">=</span> <span class="s">&#39;Time (s)&#39;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">lines</span><span class="p">(</span><span class="n">res2</span><span class="o">$</span><span class="n">sf_st_intersects</span> <span class="o">~</span> <span class="n">res2</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[4]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">lines</span><span class="p">(</span><span class="n">res2</span><span class="o">$</span><span class="n">sf_st_intersection</span> <span class="o">~</span> <span class="n">res2</span><span class="o">$</span><span class="n">n</span><span class="p">,</span> <span class="n">lwd</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[5]</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># Legend</span>
+</span></span><span class="line"><span class="cl"><span class="nf">par</span><span class="p">(</span><span class="n">mar</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">,</span><span class="m">0</span><span class="p">),</span> <span class="n">family</span> <span class="o">=</span> <span class="s">&#34;serif&#34;</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="nf">eplot</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="nf">legend</span><span class="p">(</span><span class="n">x</span> <span class="o">=</span> <span class="s">&#39;center&#39;</span><span class="p">,</span> <span class="n">legend</span> <span class="o">=</span> <span class="nf">as.character</span><span class="p">(</span><span class="nf">colnames</span><span class="p">(</span><span class="n">res1</span><span class="p">)</span><span class="n">[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">2</span><span class="p">,</span><span class="m">4</span><span class="p">)</span><span class="n">]</span><span class="p">),</span> <span class="n">bty</span> <span class="o">=</span> <span class="s">&#39;n&#39;</span><span class="p">,</span> <span class="n">lty</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span> <span class="n">col</span> <span class="o">=</span> <span class="n">cols[</span><span class="o">-</span><span class="nf">c</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="m">3</span><span class="p">)</span><span class="n">]</span><span class="p">,</span> <span class="n">seg.len</span> <span class="o">=</span> <span class="m">2</span><span class="p">,</span> <span class="n">cex</span> <span class="o">=</span> <span class="m">0.8</span><span class="p">,</span> <span class="n">title</span> <span class="o">=</span> <span class="nf">expression</span><span class="p">(</span><span class="nf">bold</span><span class="p">(</span><span class="s">&#39;Fonctions&#39;</span><span class="p">)))</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><img src="/post/2017/Rintersects/RIntersects_files/figure-html/polyIntersect2-2.png" width="672" style="display: block; margin: auto;" />
+<br/>
+<p>We see here that <code>rgeos::gIntersects</code>, <code>sf::st_intersects</code>, <code>sf::st_intersection</code>
+are far more efficient when dealing with polygons only intersects, with
+<code>rgeos::gIntersects</code> the most efficient option. <code>raster::intersects</code> loses its
+previous efficiency, while the efficiency of <code>rgeos::gIntersection</code> decreases
+even further.</p>
+<br/>
+<h2 id="concluding-remarks">Concluding remarks</h2>
+<p>Et voilà! It is obvious from these simulations that the <code>sf</code> package overall
+provides the most efficient options to perform spatial intersects in R.
+<code>rgeos</code> is also very efficient when it comes to binary intersects, especially
+with polygons on polygons intersects where it edges <code>st_intersects</code> by
+decreasing calculation time in half.</p>
+<p>Our recommendation: use <code>sf::st_intersects</code> for binary intersects and
+use <code>sf::st_intersection</code> for zonal intersects. However, be aware that the <code>sf</code>
+package evolves very rapidly and functions are likely to be modified,
+although one would hope that efficiency decrease will not be the price of
+further development.</p>
+<p>If you wish to stick with the older packages, then binary intersects could be
+done quite efficiently, but if you need zonal intersects, we recommend that you
+start considering changing your ways!</p>
+<br/>
+<details>
+<summary> Session info <i class="fas fa-cogs" aria-hidden="true"></i> </summary>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-r" data-lang="r"><span class="line"><span class="cl"><span class="nf">sessionInfo</span><span class="p">()</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; R version 4.2.0 (2022-04-22)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; Running under: Debian GNU/Linux bookworm/sid</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; Matrix products: default</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.10.1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.10.1</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; locale:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [9] LC_ADDRESS=C               LC_TELEPHONE=C            </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; attached base packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; other attached packages:</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [1] rgeos_0.5-9            raster_3.5-15          rgdal_1.5-32          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [4] sp_1.4-7               sf_1.0-7               kableExtra_1.3.4      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [7] knitr_1.39             magrittr_2.0.3         inSilecoRef_0.0.1.9000</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; loaded via a namespace (and not attached):</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [1] httr_1.4.3         sass_0.4.1         jsonlite_1.8.0     viridisLite_0.4.0</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [5] bslib_0.3.1        shiny_1.7.1        assertthat_0.2.1   highr_0.9         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt;  [9] base64url_1.4      yaml_2.3.5         lattice_0.20-45    pillar_1.7.0      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [13] backports_1.4.1    glue_1.6.2         digest_0.6.29      promises_1.2.0.1  </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [17] rvest_1.0.2        RefManageR_1.3.0   colorspace_2.0-3   htmltools_0.5.2   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [21] httpuv_1.6.5       plyr_1.8.7         pkgconfig_2.0.3    httpcode_0.3.0    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [25] bookdown_0.26      purrr_0.3.4        xtable_1.8-4       scales_1.2.0      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [29] webshot_0.5.3      processx_3.5.3     svglite_2.1.0      terra_1.5-21      </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [33] later_1.3.0        tibble_3.1.6       proxy_0.4-26       generics_0.1.2    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [37] ellipsis_0.3.2     DT_0.23            withr_2.5.0        cli_3.3.0         </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [41] crayon_1.5.1       mime_0.12          evaluate_0.15      ps_1.7.0          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [45] fansi_1.0.3        class_7.3-20       xml2_1.3.3         blogdown_1.10     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [49] tools_4.2.0        data.table_1.14.2  lifecycle_1.0.1    stringr_1.4.0     </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [53] munsell_0.5.0      targets_0.12.0     callr_3.7.0        compiler_4.2.0    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [57] jquerylib_0.1.4    e1071_1.7-9        systemfonts_1.0.4  rlang_1.0.2       </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [61] units_0.8-0        grid_4.2.0         classInt_0.4-3     rstudioapi_0.13   </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [65] htmlwidgets_1.5.4  igraph_1.2.11      miniUI_0.1.1.1     rmarkdown_2.14    </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [69] codetools_0.2-18   DBI_1.1.2          curl_4.3.2         R6_2.5.1          </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [73] lubridate_1.8.0    dplyr_1.0.9        fastmap_1.1.0      utf8_1.2.2        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [77] rcrossref_1.1.0    KernSmooth_2.23-20 stringi_1.7.6      crul_1.2.0        </span>
+</span></span><span class="line"><span class="cl"><span class="c1">#R&gt; [81] Rcpp_1.0.8.3       vctrs_0.4.1        tidyselect_1.1.2   xfun_0.30</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div></details>
+
+
+                
+
+            </div>
+
+
+        </div>
+
+          <br>
+
+
+  
+  <script src="//yihui.name/js/math-code.js"></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-MML-AM_CHTML' async></script>
+  
+  
+
+
+  <h3 class="page-header">Comments on this post</h3>
+
+  <script src="https://utteranc.es/client.js"
+        repo="inSileco/inSileco.github.io"
+        issue-term="pathname"
+        label="Comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+  </script>
+
+
+  
+  
+
+  
+    <h3 class="page-header">Related posts</h3>
+     <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2023/11/23/creating-a-monorepo-of-r-packages-with-github/">Creating a monorepo of R packages with GitHub</a> <small>November 23, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/github"><kbd class="item-tag">github</kbd></a>  <a href="/tags/github-actions"><kbd class="item-tag">github actions</kbd></a>  <a href="/tags/monorepo"><kbd class="item-tag">monorepo</kbd></a>  <a href="/tags/docker"><kbd class="item-tag">docker</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2023/08/25/a-few-thoughts-about-pipes-in-r/">A few thoughts about pipes in R</a> <small>August 25, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/pipe"><kbd class="item-tag">pipe</kbd></a>  <a href="/tags/internals"><kbd class="item-tag">internals</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+  <div class="item-bottom">
+
+  
+
+  <h1>
+    <a href="/2023/02/12/trick-or-tips-005-r/">Trick or Tips 005 {R}</a> <small>February 12, 2023</small>
+  </h1>
+
+  <p> <i class="fas fa-tags" aria-hidden="true"></i>  <a href="/tags/r"><kbd class="item-tag">R</kbd></a>  <a href="/tags/tips"><kbd class="item-tag">tips</kbd></a>  <a href="/tags/trickortips"><kbd class="item-tag">trickortips</kbd></a> </p>
+
+  
+
+
+
+  
+
+</div>
+ 
+  
+
+
+  
+
+  <script type="text/javascript" src="https://insileco.github.io/js/codecopypaste.js"></script>
+
+
+
+
+
+
+
+</div>
+
+
+    </div>
+
+
+</div>
+</div>
+
+<footer>
+
+  <hr>
+
+  <div class="col-md-3">
+
+    <a href="#" id="bottom"></a>
+
+  </div>
+
+  <div class="col-md-6">
+
+    <script src="//yihui.name/js/math-code.js"></script>
+    <script async src="//cdn.bootcss.com/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+    </script>
+
+    <p class="copyright text-muted" style="font-size: 1.6rem;">
+      &copy; 2017-2024 inSileco |
+      Powered by <a href="https://bookdown.org/yihui/blogdown/">Blogdown</a>,
+      <a href="https://gohugo.io">Hugo</a>
+      and <a href="https://github.com/calintat/minimal">Minimal</a> |
+      Latest build: 20 December 2024 15:24 UTC.
+    </p>
+
+  </div>
+
+
+</footer>
+
+</body>
+
+</html>
